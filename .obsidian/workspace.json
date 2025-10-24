@@ -1,0 +1,292 @@
+{
+  "main": {
+    "id": "26971219271eb5a2",
+    "type": "split",
+    "children": [
+      {
+        "id": "f7eb08e2d5684102",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "91786f27d77994fc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ПАРОЛИ/GitHub.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "GitHub"
+            }
+          }
+        ]
+      },
+      {
+        "id": "a872af11feee50ee",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c86f53b5423efe37",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "НЕЙРОСЕТИ/OPEN WEBUI/Open WebUI с Ollama.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Open WebUI с Ollama"
+            }
+          },
+          {
+            "id": "0df56448b9b17a92",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "OBSIDIAN/Векторные представления.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Векторные представления"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "37348ad994936703",
+    "type": "split",
+    "children": [
+      {
+        "id": "173f77ad75660fb9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6750b54081efc654",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Файловый менеджер"
+            }
+          },
+          {
+            "id": "08ac2babbf482862",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d72f8eeeb61aa4b1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Закладки"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 587.5
+  },
+  "right": {
+    "id": "6f33cec510d01824",
+    "type": "split",
+    "children": [
+      {
+        "id": "0772e35fd188552b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "26da709c7481b7fc",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "НЕЙРОСЕТИ/🎥 Видео, анимация, аватары, motion capture.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Обратные ссылки для 🎥 Видео, анимация, аватары, motion capture"
+            }
+          },
+          {
+            "id": "96c1645888f6d1cf",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Исходящие ссылки"
+            }
+          },
+          {
+            "id": "16a46658ad121776",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Теги"
+            }
+          },
+          {
+            "id": "051d350e00b051e6",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "НЕЙРОСЕТИ/🎥 Видео, анимация, аватары, motion capture.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Структура 🎥 Видео, анимация, аватары, motion capture"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "markdown-importer:Импорт Markdown-файлов": false,
+      "zk-prefixer:Создать заметку с уникальным идентификатором": false,
+      "publish:Публикация изменений": false,
+      "bases:Создать новую базу": false,
+      "letta:Open Letta Chat": false,
+      "letta:Open Letta Memory Blocks": false
+    }
+  },
+  "active": "91786f27d77994fc",
+  "lastOpenFiles": [
+    "GitHub/project/vovaipetrova-core/README.md",
+    "ПАРОЛИ/GitHub.md",
+    "ПАРОЛИ",
+    "OBSIDIAN/OBSIDIAN PLUGINS/Letta AI Agent.md",
+    "НЕЙРОСЕТИ/PINOKIO/Pinokio_Civitai.md",
+    "OBSIDIAN/Векторные представления.md",
+    "ВОВА И ПЕТРОВА/Концепция проекта.md",
+    "OBSIDIAN/OBSIDIAN PLUGINS/Плагины с реальной persistent memory.md",
+    "OBSIDIAN/OBSIDIAN PLUGINS/ИИ - плагины.md",
+    "OBSIDIAN/OBSIDIAN PLUGINS/Obsidian MDX + плагин “Text Ranch”.md",
+    "OBSIDIAN/OBSIDIAN PLUGINS/Obsidian MDX.md",
+    "OBSIDIAN/OBSIDIAN PLUGINS/Text Ranch.md",
+    "OBSIDIAN/OBSIDIAN PLUGINS/Ресурсы плагинов.md",
+    "НЕЙРОСЕТИ/OPEN WEBUI/Hazel и File Butler.md",
+    "НЕЙРОСЕТИ/OPEN WEBUI/Middleware.md",
+    "НЕЙРОСЕТИ/OLLAMA/Знакомство с OLLAMA.md",
+    "НЕЙРОСЕТИ/OPEN WEBUI/Open WebUI с Ollama.md",
+    "НЕЙРОСЕТИ/OPEN WEBUI/Плагины.md",
+    "НЕЙРОСЕТИ/OPEN WEBUI/Что нового.md",
+    "КОД/DOCKER/Pinokio чаще всего не устанавливает Docker.md",
+    "КОД/DOCKER/Установка Docker.md",
+    "НЕЙРОСЕТИ/OPEN WEBUI/Open WebUI Desktop.md",
+    "КОД/DOCKER",
+    "КОД",
+    "НЕЙРОСЕТИ/OPEN WEBUI/Open WebUI через Docker.md",
+    "НЕЙРОСЕТИ/OPEN WEBUI",
+    "НЕЙРОСЕТИ/Тестировщики.md",
+    "НЕЙРОСЕТИ/OLLAMA",
+    "Ollama.md",
+    "НЕЙРОСЕТИ/Локальные LLM.md",
+    "СОФТ/ADOBE/Adobe Express.md",
+    "СОФТ/ADOBE",
+    "ДИЗАЙН/ФОРМАТЫ/SVG",
+    "ДИЗАЙН/ФОРМАТЫ",
+    "Untitled.base",
+    "Untitled 1.base",
+    "НЕЙРОСЕТИ/PINOKIO/Open Audio/open-audio-scr-2.png",
+    "НЕЙРОСЕТИ/PINOKIO/Open Audio/open-audio-scr-1.png",
+    "Pasted image 20250727130316.png",
+    "Pasted image 20250727130104.png",
+    "GitHub/project/description/personalities/vova/images/red.png",
+    "GitHub/project/description/personalities/vova/images/vova-classic.png",
+    "GitHub/project/description/personalities/vova/images/vova-idea-2.png",
+    "GitHub/project/description/personalities/vova/images/dav-logo/ableton-logo.png",
+    "GitHub/project/description/personalities/vova/images/vst-cover/ample-guitar-m-cover.jpg",
+    "GitHub/project/description/personalities/vova/images/vst-logo/electronik-sound-lab-logo.png",
+    "Без названия.canvas"
+  ]
+}
