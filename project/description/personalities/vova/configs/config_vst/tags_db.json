@@ -1,0 +1,61 @@
+{
+  "_description": "База тегов для VST-инструментов. Автоматически пополняется агентом Tag_Master.",
+  "_format": "#Tag_Example (с большой буквы, через _)",
+  "_validation": "Новые теги проверяются на уникальность и соответствие правилам",
+  
+  "categories": {
+    "manufacturers": [
+      "#Ample_Sound",
+      "#Native_Instruments",
+      "#Spitfire_Audio",
+      "#Output",
+      "#Spectrasonics"
+    ],
+    "instrument_types": [
+      "#Guitar",
+      "#Bass",
+      "#Piano",
+      "#Drums",
+      "#Synth",
+      "#Orchestra",
+      "#Strings",
+      "#Brass",
+      "#Woodwinds",
+      "#Vocals"
+    ],
+    "characteristics": [
+      "#Realistic",
+      "#Acoustic",
+      "#Electric",
+      "#Vintage",
+      "#Modern",
+      "#Ambient",
+      "#Cinematic"
+    ],
+    "formats": [
+      "#VST",
+      "#VST3",
+      "#AU",
+      "#AAX",
+      "#Standalone",
+      "#KONTAKT",
+      "#Multi_Sample"
+    ],
+    "features": [
+      "#Realistic_Guitar",
+      "#Realistic_Piano",
+      "#Riffer",
+      "#Strummer",
+      "#Tab_Reader",
+      "#Arpeggiator",
+      "#Step_Sequencer"
+    ]
+  },
+  
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2025-11-01",
+    "total_tags": 25,
+    "managed_by": "Tag_Master"
+  }
+}
