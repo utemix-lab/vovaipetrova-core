@@ -1,9 +1,0 @@
-{
-  "name": "AuthorNode",
-  "type": "Manual_Controller",
-  "triggers": ["Awareness", "Coffee", "Intuition"],
-  "limits": ["Human Resource", "Fatigue", "Reflection"],
-  "methods": ["Approve", "Reject", "Rewrite", "SwitchMode"],
-  "zones": ["source", "staging", "public"],
-  "visual": "Node with levers and a sign: 'Press only in case of creative impulse'"
-}

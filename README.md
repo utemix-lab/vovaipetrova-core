@@ -1,0 +1,1 @@
+# Vova & Petrova — DocsnnБаза знаний, экспортированная из Notion в Markdown.n

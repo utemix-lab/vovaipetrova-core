@@ -1,8 +1,0 @@
-{
-  "name": "Vova",
-  "role": "Audio Intelligence Agent",
-  "focus": ["VST", "Kontakt", "AI_Audio"],
-  "monitored_companies": ["8Dio", "Output", "Spitfire_Audio", "Soniccouture"],
-  "primary": ["VST", "Kontakt", "AI_Audio"],
-  "tags": ["#VST", "#Kontakt", "#AI_Audio", "#Generative_Music", "#Vova"]
-}
