@@ -28,12 +28,11 @@ run: |
 set -e
 ZIP_PATH="$ github.event.inputs.zip_path "
 if [ -z "$ZIP_PATH" ]; then
-при пуше возьмём первый новый .zip в uploads/
 ZIP_PATH="$(git diff --name-only HEAD~1 | grep -E '^uploads/.*.zip$' | head -n1 || true)"
 fi
 if [ -z "$ZIP_PATH" ] || [ ! -f "$ZIP_PATH" ]; then
 echo "nozip=true" >> "$GITHUB_OUTPUT"
-echo "Нет ZIP — выходим без ошибки."
+echo "Нет ZIP — завершаем без ошибки."
 exit 0
 fi
 echo "zip=$ZIP_PATH" >> "$GITHUB_OUTPUT"
@@ -42,7 +41,6 @@ name: Unzip export
 if: steps.prep.outputs.nozip != 'true'
 run: |
 unzip -q "$ steps.prep.outputs.zip " -d tmp/unzip || true
-На случай частей ExportBlock--Part-.zip
 find tmp/unzip -maxdepth 1 -type f -name 'ExportBlock--Part-.zip' -print0 | xargs -0 -I{} unzip -q "{}" -d tmp/unzip || true
 name: Copy raw export into docs
 if: steps.prep.outputs.nozip != 'true'
