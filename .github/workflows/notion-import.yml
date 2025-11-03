@@ -1,69 +1,133 @@
 name: Notion import to docs
+
 on:
+
 workflow_dispatch:
+
 inputs:
+
 zip_path:
-description: 'Путь к ZIP (например, uploads/notion_export.zip)'
+
+description: 'Путь к ZIP (например, uploads/notion_[export.zip](http://export.zip))'
+
 required: false
+
 default: ''
+
 push:
+
 paths:
-'uploads/*.zip'
+
+- 'uploads/*.zip'
+
 permissions:
+
 contents: write
+
 jobs:
+
 import:
+
 runs-on: ubuntu-latest
+
 steps:
-name: Checkout
-uses: actions/checkout@v4
-with:
-fetch-depth: 0
-name: Ensure tools
-run: sudo apt-get update -y && sudo apt-get install -y unzip
-name: Resolve ZIP path
-id: prep
-shell: bash
-run: |
-set -e
-ZIP_PATH="$ github.event.inputs.zip_path "
-if [ -z "$ZIP_PATH" ]; then
-При пуше ZIP берём первый изменённый архив в uploads/
-ZIP_PATH="$(git diff --name-only HEAD~1 | grep -E '^uploads/.*.zip$' | head -n1 || true)"
-fi
-if [ -z "$ZIP_PATH" ] || [ ! -f "$ZIP_PATH" ]; then
-echo "nozip=true" >> $GITHUB_OUTPUT
-echo "Нет ZIP — завершаем без ошибок."
-exit 0
-fi
-echo "zip=$ZIP_PATH" >> $GITHUB_OUTPUT
-mkdir -p tmp/unzip docs
-name: Unzip export
-if: steps.prep.outputs.nozip != 'true'
-run: |
-unzip -q "$ steps.prep.outputs.zip " -d tmp/unzip || true
-На случай частей ExportBlock--Part-.zip
-find tmp/unzip -maxdepth 1 -type f -name 'ExportBlock--Part-.zip' -print0 | xargs -0 -I{} unzip -q "{}" -d tmp/unzip || true
-echo "After unzip:"; ls -la tmp/unzip | head -n 200
-name: Copy raw export into docs
-if: steps.prep.outputs.nozip != 'true'
-shell: bash
-run: |
-shopt -s dotglob
-cp -R tmp/unzip/* docs/ 2>/dev/null || true
-echo "Docs tree:"; ls -la docs | head -n 200
-name: Commit changes
-if: steps.prep.outputs.nozip != 'true'
-env:
-GIT_AUTHOR_NAME: github-actions
-GIT_AUTHOR_EMAIL: actions@users.noreply.github.com
-GIT_COMMITTER_NAME: github-actions
-GIT_COMMITTER_EMAIL: actions@users.noreply.github.com
-run: |
-git add docs
-if git diff --cached --quiet; then
-echo "No changes to commit."
-else
-git commit -m "chore: import Notion export (raw)"
-git push
-fi
+
+- name: Checkout
+    
+    uses: actions/checkout@v4
+    
+    with:
+    
+    fetch-depth: 0
+    
+- name: Ensure tools
+    
+    run: sudo apt-get update -y && sudo apt-get install -y unzip
+    
+- name: Resolve ZIP path
+    
+    id: prep
+    
+    shell: bash
+    
+    run: |
+    
+    set -e
+    
+    ZIP_PATH="$ [github.event.inputs.zip](http://github.event.inputs.zip)_path "
+    
+    if [ -z "$ZIP_PATH" ]; then
+    
+    ZIP_PATH="$(git diff --name-only HEAD~1 | grep -E '^uploads/.*.zip$' | head -n1 || true)"
+    
+    fi
+    
+    if [ -z "$ZIP_PATH" ] || [ ! -f "$ZIP_PATH" ]; then
+    
+    echo "nozip=true" >> $GITHUB_OUTPUT
+    
+    echo "Нет ZIP — завершаем без ошибок."
+    
+    exit 0
+    
+    fi
+    
+    echo "zip=$ZIP_PATH" >> $GITHUB_OUTPUT
+    
+    mkdir -p tmp/unzip docs
+    
+- name: Unzip export
+    
+    if: steps.prep.outputs.nozip != 'true'
+    
+    run: |
+    
+    unzip -q "$ [steps.prep.outputs.zip](http://steps.prep.outputs.zip) " -d tmp/unzip || true
+    
+    find tmp/unzip -maxdepth 1 -type f -name 'ExportBlock-*-Part-*.zip' -print0 | xargs -0 -I{} unzip -q "{}" -d tmp/unzip || true
+    
+    echo "After unzip:"; ls -la tmp/unzip | head -n 200
+    
+- name: Copy raw export into docs
+    
+    if: steps.prep.outputs.nozip != 'true'
+    
+    shell: bash
+    
+    run: |
+    
+    shopt -s dotglob
+    
+    cp -R tmp/unzip/* docs/ 2>/dev/null || true
+    
+    echo "Docs tree:"; ls -la docs | head -n 200
+    
+- name: Commit changes
+    
+    if: steps.prep.outputs.nozip != 'true'
+    
+    env:
+    
+    GIT_AUTHOR_NAME: github-actions
+    
+    GIT_AUTHOR_EMAIL: [actions@users.noreply.github.com](mailto:actions@users.noreply.github.com)
+    
+    GIT_COMMITTER_NAME: github-actions
+    
+    GIT_COMMITTER_EMAIL: [actions@users.noreply.github.com](mailto:actions@users.noreply.github.com)
+    
+    run: |
+    
+    git add docs
+    
+    if git diff --cached --quiet; then
+    
+    echo "No changes to commit."
+    
+    else
+    
+    git commit -m "chore: import Notion export (raw)"
+    
+    git push
+    
+    fi
