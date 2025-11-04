@@ -19,29 +19,57 @@ jobs:
 
       - name: Prepare docs folder
         run: |
-          rm -rf docs
+          rm -rf docs tmp_unzip
           mkdir -p docs
 
-      # 1) Первая распаковка (временная папка tmp_unzip)
-      - name: First unpack (bsdtar)
-        run: |
-          rm -rf tmp_unzip
-          mkdir -p tmp_unzip
-          bsdtar -xpf "${{ github.event.inputs.zip_path }}" -C tmp_unzip
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
-      # 2) Если внутри снова ZIP — распакуем второй раз
-      - name: Handle double-zip if present
+      # Python правильно обрабатывает Unicode!
+      - name: Unpack with Python
         run: |
-          inner_zip="$(find tmp_unzip -maxdepth 2 -type f -name '*.zip' | head -n1 || true)"
-          if [ -n "$inner_zip" ]; then
-            echo "Found inner zip: $inner_zip"
-            bsdtar -xpf "$inner_zip" -C docs
-          else
-            echo "No inner zip; move content from tmp_unzip to docs"
-            shopt -s dotglob
-            mv tmp_unzip/* docs/ || true
-            shopt -u dotglob
-          fi
+          python3 << 'PYEOF'
+          import zipfile
+          import os
+          import sys
+          
+          zip_path = "${{ github.event.inputs.zip_path }}"
+          
+          if not os.path.exists(zip_path):
+              print(f"Error: {zip_path} not found!")
+              sys.exit(1)
+          
+          # Первая распаковка
+          with zipfile.ZipFile(zip_path, 'r') as zf:
+              zf.extractall('tmp_unzip')
+          
+          # Ищем вложенный ZIP
+          inner_zip = None
+          for root, dirs, files in os.walk('tmp_unzip'):
+              for f in files:
+                  if f.endswith('.zip'):
+                      inner_zip = os.path.join(root, f)
+                      break
+              if inner_zip:
+                  break
+          
+          # Если есть вложенный — распаковываем в docs
+          if inner_zip:
+              print(f"Found inner zip: {inner_zip}")
+              with zipfile.ZipFile(inner_zip, 'r') as zf:
+                  zf.extractall('docs')
+          else:
+              print("No inner zip, moving tmp_unzip to docs")
+              import shutil
+              for item in os.listdir('tmp_unzip'):
+                  src = os.path.join('tmp_unzip', item)
+                  dst = os.path.join('docs', item)
+                  shutil.move(src, dst)
+          
+          print("✅ Unpack complete!")
+          PYEOF
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -61,7 +89,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs
-          git commit -m "chore: import Notion export (bsdtar, double-zip) + normalize" || echo "No changes to commit"
+          git commit -m "chore: import Notion export (Python unzip) + normalize" || echo "No changes to commit"
 
       - name: Push
         run: |
