@@ -27,23 +27,27 @@ jobs:
         with:
           python-version: '3.11'
 
-      # Python правильно обрабатывает Unicode!
-      - name: Unpack with Python
+      - name: Unpack with Python (Unicode-safe)
         run: |
           python3 << 'PYEOF'
           import zipfile
           import os
           import sys
+          import shutil
           
           zip_path = "${{ github.event.inputs.zip_path }}"
           
           if not os.path.exists(zip_path):
-              print(f"Error: {zip_path} not found!")
+              print(f"❌ Error: {zip_path} not found!")
               sys.exit(1)
           
+          print(f"📦 Unpacking: {zip_path}")
+          
           # Первая распаковка
+          os.makedirs('tmp_unzip', exist_ok=True)
           with zipfile.ZipFile(zip_path, 'r') as zf:
               zf.extractall('tmp_unzip')
+          print("✅ First unpack done")
           
           # Ищем вложенный ZIP
           inner_zip = None
@@ -55,17 +59,19 @@ jobs:
               if inner_zip:
                   break
           
-          # Если есть вложенный — распаковываем в docs
+          # Распаковка в docs
           if inner_zip:
-              print(f"Found inner zip: {inner_zip}")
+              print(f"📦 Found inner zip: {inner_zip}")
               with zipfile.ZipFile(inner_zip, 'r') as zf:
                   zf.extractall('docs')
+              print("✅ Inner zip unpacked to docs/")
           else:
-              print("No inner zip, moving tmp_unzip to docs")
-              import shutil
+              print("📁 No inner zip, moving tmp_unzip/* to docs/")
               for item in os.listdir('tmp_unzip'):
                   src = os.path.join('tmp_unzip', item)
                   dst = os.path.join('docs', item)
+                  if os.path.exists(dst):
+                      shutil.rmtree(dst) if os.path.isdir(dst) else os.remove(dst)
                   shutil.move(src, dst)
           
           print("✅ Unpack complete!")
@@ -89,8 +95,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs
-          git commit -m "chore: import Notion export (Python unzip) + normalize" || echo "No changes to commit"
+          git status
+          git diff --cached --stat
+          git commit -m "chore: import Notion export + normalize" || echo "No changes to commit"
 
-      - name: Push
+      - name: Push changes
         run: |
-          git push || true
+          git push || echo "Nothing to push"
