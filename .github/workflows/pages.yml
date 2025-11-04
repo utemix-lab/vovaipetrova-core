@@ -1,22 +1,29 @@
 name: Deploy Pages (prototype)
 
 on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+
+workflow_dispatch:
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    steps:
-      - uses: actions/checkout@v4
 
-      # Публикуем папку prototype как сайт
-      - uses: actions/configure-pages@v4
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: prototype
-      - uses: actions/deploy-pages@v4
+deploy:
+
+runs-on: ubuntu-latest
+
+permissions:
+
+pages: write
+
+id-token: write
+
+steps:
+
+- uses: actions/checkout@v4
+- uses: actions/configure-pages@v4
+- uses: actions/upload-pages-artifact@v3
+    
+    with:
+    
+    path: prototype
+    
+- uses: actions/deploy-pages@v4
