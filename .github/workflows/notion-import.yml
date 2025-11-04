@@ -2,48 +2,51 @@ name: Notion import to docs
 
 on:
   workflow_dispatch:
-
-permissions:
-  contents: write
+    inputs:
+      zip_path:
+        description: 'Path to Notion export zip inside repo (e.g., uploads/notion_export.zip)'
+        required: true
 
 jobs:
   import:
     runs-on: ubuntu-latest
-    
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Prepare docs folder
+        run: |
+          rm -rf docs
+          mkdir -p docs
+
+      # Важно: bsdtar корректно распаковывает Unicode-имена
+      - name: Unpack Notion export (bsdtar)
+        run: |
+          bsdtar -xpf "${{ github.event.inputs.zip_path }}" -C docs
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
-      
-      - name: Ensure unzip
-        run: sudo apt-get update -y && sudo apt-get install -y unzip
-      
-      - name: Unzip export (fixed path)
+          node-version: '20'
+
+      - name: Install normalizer deps
         run: |
-          set -e
-          ZIP_PATH="uploads/notion_export.zip"
-          if [ ! -f "$ZIP_PATH" ]; then
-            echo "ZIP not found at $ZIP_PATH"; exit 1
-          fi
-          mkdir -p tmp/unzip docs
-          unzip -q "$ZIP_PATH" -d tmp/unzip || true
-          # Дополнительно распакуем возможные части
-          find tmp/unzip -maxdepth 1 -type f -name 'ExportBlock--Part-*.zip' -print0 | xargs -0 -I{} unzip -q "{}" -d tmp/unzip || true
-      
-      - name: Copy raw export into docs
+          npm install gray-matter yaml glob slugify
+
+      - name: Normalize front matter and filenames
         run: |
-          shopt -s dotglob
-          cp -R tmp/unzip/* docs/ 2>/dev/null || true
-      
-      - name: Commit changes
+          node scripts/normalize.mjs
+
+      - name: Commit normalized docs
         run: |
-          git config user.name github-actions
-          git config user.email actions@users.noreply.github.com
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "chore: import Notion export (raw)"
-            git push
-          fi
+          git commit -m "chore: import Notion export (bsdtar) + normalize" || echo "No changes to commit"
+
+      - name: Push
+        run: |
+          git push || true
