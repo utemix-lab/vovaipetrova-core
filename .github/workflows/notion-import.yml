@@ -27,7 +27,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Unpack with Python (Unicode-safe)
+      - name: Unpack with Python
         run: |
           python3 << 'PYEOF'
           import zipfile
@@ -38,18 +38,16 @@ jobs:
           zip_path = "${{ github.event.inputs.zip_path }}"
           
           if not os.path.exists(zip_path):
-              print(f"❌ Error: {zip_path} not found!")
+              print(f"Error: {zip_path} not found!")
               sys.exit(1)
           
-          print(f"📦 Unpacking: {zip_path}")
+          print(f"Unpacking: {zip_path}")
           
-          # Первая распаковка
           os.makedirs('tmp_unzip', exist_ok=True)
           with zipfile.ZipFile(zip_path, 'r') as zf:
               zf.extractall('tmp_unzip')
-          print("✅ First unpack done")
+          print("First unpack done")
           
-          # Ищем вложенный ZIP
           inner_zip = None
           for root, dirs, files in os.walk('tmp_unzip'):
               for f in files:
@@ -59,14 +57,13 @@ jobs:
               if inner_zip:
                   break
           
-          # Распаковка в docs
           if inner_zip:
-              print(f"📦 Found inner zip: {inner_zip}")
+              print(f"Found inner zip: {inner_zip}")
               with zipfile.ZipFile(inner_zip, 'r') as zf:
                   zf.extractall('docs')
-              print("✅ Inner zip unpacked to docs/")
+              print("Inner zip unpacked to docs")
           else:
-              print("📁 No inner zip, moving tmp_unzip/* to docs/")
+              print("No inner zip, moving content to docs")
               for item in os.listdir('tmp_unzip'):
                   src = os.path.join('tmp_unzip', item)
                   dst = os.path.join('docs', item)
@@ -74,31 +71,16 @@ jobs:
                       shutil.rmtree(dst) if os.path.isdir(dst) else os.remove(dst)
                   shutil.move(src, dst)
           
-          print("✅ Unpack complete!")
+          print("Unpack complete")
           PYEOF
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install normalizer deps
-        run: |
-          npm install gray-matter yaml glob slugify
-
-      - name: Normalize front matter and filenames
-        run: |
-          node scripts/normalize.mjs
-
-      - name: Commit normalized docs
+      - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs
-          git status
-          git diff --cached --stat
-          git commit -m "chore: import Notion export + normalize" || echo "No changes to commit"
+          git commit -m "chore: import Notion export" || echo "No changes"
 
-      - name: Push changes
+      - name: Push
         run: |
           git push || echo "Nothing to push"
