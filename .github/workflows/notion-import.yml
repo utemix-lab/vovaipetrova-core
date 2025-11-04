@@ -27,7 +27,7 @@ jobs:
         run: |
           rm -rf tmp_unzip
           mkdir -p tmp_unzip
-          bsdtar -xpf "$ github.event.inputs.zip_path " -C tmp_unzip
+          bsdtar -xpf "${{ github.event.inputs.zip_path }}" -C tmp_unzip
 
       # 2) Если внутри снова ZIP — распакуем второй раз
       - name: Handle double-zip if present
@@ -50,7 +50,7 @@ jobs:
 
       - name: Install normalizer deps
         run: |
-          npm i gray-matter yaml glob slugify
+          npm install gray-matter yaml glob slugify
 
       - name: Normalize front matter and filenames
         run: |
