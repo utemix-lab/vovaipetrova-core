@@ -22,10 +22,26 @@ jobs:
           rm -rf docs
           mkdir -p docs
 
-      # Важно: bsdtar корректно распаковывает Unicode-имена
-      - name: Unpack Notion export (bsdtar)
+      # 1) Первая распаковка (временная папка tmp_unzip)
+      - name: First unpack (bsdtar)
         run: |
-          bsdtar -xpf "${{ github.event.inputs.zip_path }}" -C docs
+          rm -rf tmp_unzip
+          mkdir -p tmp_unzip
+          bsdtar -xpf "$ github.event.inputs.zip_path " -C tmp_unzip
+
+      # 2) Если внутри снова ZIP — распакуем второй раз
+      - name: Handle double-zip if present
+        run: |
+          inner_zip="$(find tmp_unzip -maxdepth 2 -type f -name '*.zip' | head -n1 || true)"
+          if [ -n "$inner_zip" ]; then
+            echo "Found inner zip: $inner_zip"
+            bsdtar -xpf "$inner_zip" -C docs
+          else
+            echo "No inner zip; move content from tmp_unzip to docs"
+            shopt -s dotglob
+            mv tmp_unzip/* docs/ || true
+            shopt -u dotglob
+          fi
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -34,7 +50,7 @@ jobs:
 
       - name: Install normalizer deps
         run: |
-          npm install gray-matter yaml glob slugify
+          npm i gray-matter yaml glob slugify
 
       - name: Normalize front matter and filenames
         run: |
@@ -45,7 +61,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs
-          git commit -m "chore: import Notion export (bsdtar) + normalize" || echo "No changes to commit"
+          git commit -m "chore: import Notion export (bsdtar, double-zip) + normalize" || echo "No changes to commit"
 
       - name: Push
         run: |
