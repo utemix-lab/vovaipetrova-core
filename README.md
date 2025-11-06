@@ -52,17 +52,35 @@ npm run lint:docs:strict
 ### Безопасный импорт из Notion
 
 **Вариант 1: ZIP архив (рекомендуется)**
-1. Экспортируй из Notion → получи ZIP архив
-2. Положи ZIP в папку `uploads/`
-3. Создай ветку `notion-sync/YYYY-MM-DD` и закоммить ZIP
-4. Push в ветку `notion-sync/**`
-5. Workflow автоматически:
-   - Распакует ZIP из `uploads/`
-   - Применит маппинг путей из `docs/.import-map.yaml`
-   - Проверит безопасность
-   - Нормализует документы
-   - Создаст PR с чек-листом
-6. Проверь PR и merge, если всё ок
+
+Пошаговая инструкция:
+
+```powershell
+# 1. Убедись, что папка uploads/ существует (создаётся автоматически)
+# 2. Положи ZIP архив из Notion в папку uploads/
+
+# 3. Создай ветку (замени дату на текущую)
+git checkout -b notion-sync/2025-11-06
+
+# 4. Добавь ZIP файл в git
+git add uploads/*.zip
+
+# 5. Закоммить
+git commit -m "Notion export"
+
+# 6. Отправь на GitHub
+git push origin notion-sync/2025-11-06
+```
+
+После push:
+- Workflow автоматически запустится
+- Распакует ZIP из `uploads/`
+- Применит маппинг путей из `docs/.import-map.yaml`
+- Проверит безопасность
+- Нормализует документы с таблицей действий
+- Создаст PR с чек-листом и label (`auto:ready-for-review` или `auto:needs-fixes`)
+
+Проверь PR в GitHub → Actions → "Notion Import" и merge, если всё ок.
 
 **Вариант 2: Уже распакованные .md файлы**
 1. Экспортируй из Notion → получи `.md` файлы
