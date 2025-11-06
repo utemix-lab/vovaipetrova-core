@@ -3,15 +3,18 @@
 
 mappings:
   # Корневые разделы
-  "Вова и Петрова/База знаний":
-    to: "docs/"
+  "Вова и Петрова/База знаний/**":
+    to: "docs/kb/"
     preserve_structure: true
   
-  "Think Tank — компактное ядро":
+  "Think Tank — компактное ядро/**":
     to: "docs/think-tank/"
   
-  "Think Tank — витрина процесса":
+  "Think Tank — витрина процесса/**":
     to: "docs/think-tank/"
+  
+  "Навигация (пользовательская)/**":
+    to: "docs/nav/"
 
 # Разрешённые зоны записи
 allowed_paths:

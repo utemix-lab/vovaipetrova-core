@@ -109,6 +109,16 @@ function ensureFrontMatter(filePath) {
   const parsed = matter(raw);
   let { content } = parsed;
   const fm = parsed.data || {};
+  const hadFrontMatter = !!parsed.data && Object.keys(parsed.data).length > 0;
+
+  const before = {
+    title: fm.title,
+    slug: fm.slug,
+    tags: fm.tags || [],
+    machine_tags: fm.machine_tags || [],
+    notion_page_id: fm.notion_page_id,
+    last_edited_time: fm.last_edited_time
+  };
 
   if (!fm.title) {
     const h1 = (content.match(/^#\s+(.+)$/m) || [])[1];
@@ -142,7 +152,27 @@ function ensureFrontMatter(filePath) {
     writeFileSync(filePath, next, 'utf8');
   }
 
-  return { slug: fm.slug, title: fm.title };
+  const after = {
+    title: fm.title,
+    slug: fm.slug,
+    tags,
+    machine_tags,
+    notion_page_id: fm.notion_page_id,
+    last_edited_time: fm.last_edited_time
+  };
+
+  const action = hadFrontMatter ? 'update' : 'add';
+  const changed = JSON.stringify(before) !== JSON.stringify(after);
+
+  return { 
+    slug: fm.slug, 
+    title: fm.title,
+    action: changed ? action : 'skip',
+    notion_page_id: fm.notion_page_id,
+    last_edited_time: fm.last_edited_time,
+    tags_count: tags.length,
+    machine_tags_count: machine_tags.length
+  };
 }
 
 function renameToSlug(filePath, slug) {
@@ -161,32 +191,71 @@ function renameToSlug(filePath, slug) {
   return filePath;
 }
 
+function formatTable(rows) {
+  if (rows.length === 0) return '';
+  
+  const cols = Object.keys(rows[0]);
+  const widths = cols.map(c => Math.max(c.length, ...rows.map(r => String(r[c] || '').length)));
+  
+  const header = '| ' + cols.map((c, i) => c.padEnd(widths[i])).join(' | ') + ' |';
+  const separator = '| ' + cols.map((_, i) => '-'.repeat(widths[i])).join(' | ') + ' |';
+  const body = rows.map(r => '| ' + cols.map((c, i) => String(r[c] || '').padEnd(widths[i])).join(' | ') + ' |').join('\n');
+  
+  return `${header}\n${separator}\n${body}`;
+}
+
 function normalizeAll() {
   const files = globSync(`${ROOT}/**/*.md`, { nodir: true });
   let normalized = 0, renamed = 0;
   const slugCounters = new Map();
+  const actions = [];
 
   for (const f of files) {
-    const { slug, title } = ensureFrontMatter(f);
+    const info = ensureFrontMatter(f);
     normalized++;
-    const finalSlug = resolveDuplicateSlug(slug, f, slugCounters);
-    if (finalSlug !== slug && !DRY_RUN) {
-      // Update stored slug in front matter if we had to disambiguate
-      const raw = readFileSync(f, 'utf8');
-      const parsed = matter(raw);
-      const data = { ...parsed.data, slug: finalSlug };
-      const next = matter.stringify(parsed.content, data);
-      writeFileSync(f, next, 'utf8');
-      console.log(`ℹ️ slug collision: "${slug}" → "${finalSlug}" for ${f}`);
-    } else if (finalSlug !== slug && DRY_RUN) {
-      console.log(`DRY: slug collision would resolve "${slug}" → "${finalSlug}" for ${f}`);
+    const finalSlug = resolveDuplicateSlug(info.slug, f, slugCounters);
+    let action = info.action;
+    let reason = '';
+    
+    if (finalSlug !== info.slug) {
+      action = 'move';
+      reason = `slug collision: "${info.slug}" → "${finalSlug}"`;
+      if (!DRY_RUN) {
+        const raw = readFileSync(f, 'utf8');
+        const parsed = matter(raw);
+        const data = { ...parsed.data, slug: finalSlug };
+        const next = matter.stringify(parsed.content, data);
+        writeFileSync(f, next, 'utf8');
+      }
+    } else if (info.action === 'add') {
+      reason = 'new file';
+    } else if (info.action === 'update') {
+      reason = 'front matter updated';
     }
+    
     const finalPath = renameToSlug(f, finalSlug);
-    if (finalPath !== f) renamed++;
+    if (finalPath !== f) {
+      renamed++;
+      action = 'move';
+      reason = `renamed to match slug: ${parse(f).name} → ${parse(finalPath).name}`;
+    }
+
+    actions.push({
+      file: finalPath.replace(/^docs\//, ''),
+      action: action,
+      reason: reason || '-',
+      notion_page_id: info.notion_page_id || '-',
+      tags: `${info.tags_count}/${info.machine_tags_count}`
+    });
+  }
+
+  if (actions.length > 0 && !DRY_RUN) {
+    console.log('\n📊 Normalization actions:');
+    console.log(formatTable(actions));
   }
 
   const suffix = DRY_RUN ? ' (dry-run)' : '';
-  console.log(`✅ Normalized ${normalized} files, renamed ${renamed} files by slug${suffix}.`);
+  console.log(`\n✅ Normalized ${normalized} files, renamed ${renamed} files by slug${suffix}.`);
 }
 
 normalizeAll();

@@ -33,15 +33,22 @@ jobs:
         run: npm ci
 
       - name: Check import safety
+        id: safety
         run: node scripts/check-import-safety.mjs
+        continue-on-error: false
 
       - name: Run normalize
+        id: normalize
         run: npm run normalize
+        continue-on-error: false
 
       - name: Fix links
+        id: fixlinks
         run: npm run fix:links
+        continue-on-error: false
 
       - name: Lint docs
+        id: lint
         run: npm run lint:docs || true  # Не валит, только предупреждения
 
       - name: Check for changes
@@ -53,21 +60,55 @@ jobs:
             echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Create or update PR
+      - name: Commit changes
         if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "chore: normalize imported Notion docs [skip ci]" || exit 0
+
+      - name: Determine PR status
+        id: pr_status
+        run: |
+          if [ "${{ steps.safety.outcome }}" == "success" ] && [ "${{ steps.normalize.outcome }}" == "success" ] && [ "${{ steps.fixlinks.outcome }}" == "success" ]; then
+            echo "status=ready" >> $GITHUB_OUTPUT
+            echo "label=auto:ready-for-review" >> $GITHUB_OUTPUT
+          else
+            echo "status=needs-fixes" >> $GITHUB_OUTPUT
+            echo "label=auto:needs-fixes" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create or update PR
+        if: steps.changes.outputs.has_changes == 'true' && github.ref != 'refs/heads/main'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore: normalize imported Notion docs [skip ci]'
           title: 'Notion import: normalize and validate'
           body: |
-            Автоматический импорт из Notion с нормализацией.
+            ## Автоматический импорт из Notion с нормализацией
             
-            - ✅ Проверка безопасности (deny_paths)
-            - ✅ Нормализация front matter
-            - ✅ Исправление ссылок
+            ### Чек-лист проверки
+            
+            - [ ] Front matter в каждом .md файле
+            - [ ] slug = имя файла (kebab-case)
+            - [ ] Ссылки относительные, без percent-encoding
+            - [ ] Есть notion_page_id и last_edited_time (если импорт из Notion)
+            - [ ] Не изменялись deny_paths (scripts/, .github/, package.json и т.д.)
+            - [ ] Все изменения только в allowed_paths (docs/**)
+            
+            ### Выполненные шаги
+            
+            - ✅ Проверка безопасности (deny_paths, allowed_paths)
+            - ✅ Нормализация front matter (title, slug, tags, machine_tags)
+            - ✅ Исправление ссылок (percent-encoded → нормализованные)
             - ✅ Линтинг документов
             
+            ### Статус
+            
+            **${{ steps.pr_status.outputs.status == 'ready' && '✅ Готово к ревью' || '⚠️ Требует исправлений' }}**
+            
             **Проверь изменения перед merge!**
-          branch: ${{ github.event.inputs.branch_name || github.ref_name }}
-          delete-branch: true
+          branch: ${{ github.ref_name }}
+          base: main
+          labels: ${{ steps.pr_status.outputs.label }}
