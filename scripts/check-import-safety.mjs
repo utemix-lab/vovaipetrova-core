@@ -1,6 +1,7 @@
 // scripts/check-import-safety.mjs
 // Проверяет, что импорт не перезапишет защищённые файлы
 import { readFileSync, existsSync, statSync } from 'fs';
+import { execSync } from 'child_process';
 import { globSync } from 'glob';
 import YAML from 'yaml';
 import matter from 'gray-matter';
@@ -55,7 +56,6 @@ function main() {
   const allowedPaths = config.allowed_paths || ['docs/**'];
 
   // Получаем список изменённых файлов из git
-  const { execSync } = require('child_process');
   let changedFiles = [];
   let deletedFiles = [];
   let addedFiles = [];
