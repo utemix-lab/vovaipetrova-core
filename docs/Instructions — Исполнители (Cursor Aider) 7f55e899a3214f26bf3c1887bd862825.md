@@ -1,1 +1,0 @@
-# Instructions — Исполнители (Cursor/Aider)

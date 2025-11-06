@@ -1,0 +1,43 @@
+aliases:
+  UX:
+    - theme/ux
+  "Генерация_Видео":
+    - theme/graphics
+  "Айдентика":
+    - theme/graphics
+    - product/services
+  "Видео":
+    - theme/graphics
+    - product/services
+  "Монтаж":
+    - action/build
+    - product/services
+  Adobe:
+    - producer/adobe
+  Adobe_Photoshop:
+    - tool/adobe-photoshop
+    - producer/adobe
+  Figma:
+    - tool/figma
+  Next_js:
+    - tool/nextjs
+  WordPress:
+    - tool/wordpress
+  FastAPI:
+    - tool/fastapi
+  Stable_Diffusion:
+    - tool/stable-diffusion
+  ComfyUI:
+    - tool/stable-diffusion
+    - tool/graphics
+  CAD_3D:
+    - product/services
+    - theme/graphics
+  "Проектирование":
+    - product/services
+    - theme/graphics
+    - action/build
+
+canonical: {}
+
+

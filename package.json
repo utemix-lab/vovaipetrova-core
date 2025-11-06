@@ -1,0 +1,35 @@
+{
+  "name": "vovaipetrova-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "normalize": "node scripts/normalize.mjs",
+    "normalize:dry": "node scripts/normalize.mjs --dry",
+    "lint:docs": "node scripts/lint-docs.mjs",
+    "fix:links": "node scripts/fix-links.mjs",
+    "lint:docs:strict": "node scripts/lint-docs.mjs --strict"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/utemix-lab/vovaipetrova-core.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/utemix-lab/vovaipetrova-core/issues"
+  },
+  "homepage": "https://github.com/utemix-lab/vovaipetrova-core#readme",
+  "dependencies": {
+    "glob": "^11.0.3",
+    "gray-matter": "^4.0.3",
+    "slugify": "^1.6.6",
+    "yaml": "^2.8.1"
+  }
+}
