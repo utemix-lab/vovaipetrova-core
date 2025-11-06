@@ -130,7 +130,12 @@ function ensureFrontMatter(filePath) {
     if (firstPara) fm.summary = firstPara.slice(0, 240);
   }
 
-  const next = matter.stringify(content, { ...fm, tags, machine_tags });
+  // Сохраняем notion_page_id и last_edited_time, если они есть (для дельта-синка)
+  const preserved = {};
+  if (fm.notion_page_id) preserved.notion_page_id = fm.notion_page_id;
+  if (fm.last_edited_time) preserved.last_edited_time = fm.last_edited_time;
+
+  const next = matter.stringify(content, { ...fm, ...preserved, tags, machine_tags });
   if (DRY_RUN) {
     console.log(`DRY: would update front matter for ${filePath} with slug="${fm.slug}"`);
   } else {

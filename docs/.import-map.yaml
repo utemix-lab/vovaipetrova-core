@@ -1,0 +1,35 @@
+# Маппинг путей: Notion структура → GitHub структура
+# Используется при импорте для безопасного сопоставления
+
+mappings:
+  # Корневые разделы
+  "Вова и Петрова/База знаний":
+    to: "docs/"
+    preserve_structure: true
+  
+  "Think Tank — компактное ядро":
+    to: "docs/think-tank/"
+  
+  "Think Tank — витрина процесса":
+    to: "docs/think-tank/"
+
+# Разрешённые зоны записи
+allowed_paths:
+  - "docs/**"
+  - "docs/nav/**"
+
+# Запрещённые зоны (нельзя перезаписывать)
+deny_paths:
+  - "scripts/**"
+  - ".github/**"
+  - "package.json"
+  - "package-lock.json"
+  - "README.md"
+  - "MONUMENT.md"
+  - ".gitignore"
+
+# Правила переименования по slug (если нужно)
+slug_overrides:
+  # Пример: если Notion экспортирует как "Старое название", а в репо уже "novoe-nazvanie"
+  # "Старое название": "novoe-nazvanie"
+

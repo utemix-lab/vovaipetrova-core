@@ -1,86 +1,73 @@
-name: Notion import to docs
+name: Notion Import (Safe PR)
 
 on:
   workflow_dispatch:
     inputs:
-      zip_path:
-        description: 'Path to Notion export zip inside repo (e.g., uploads/notion_export.zip)'
+      branch_name:
+        description: 'Branch name for import (e.g., notion-sync/2025-01-15)'
         required: true
+        default: 'notion-sync/YYYY-MM-DD'
+  push:
+    branches:
+      - 'notion-sync/**'
+    paths:
+      - 'docs/**/*.md'
 
 jobs:
-  import:
+  import-check:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
+    
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Prepare docs folder
-        run: |
-          rm -rf docs tmp_unzip
-          mkdir -p docs
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          fetch-depth: 0
 
-      - name: Unpack with Python
-        run: |
-          python3 << 'PYEOF'
-          import zipfile
-          import os
-          import sys
-          import shutil
-          
-          zip_path = "${{ github.event.inputs.zip_path }}"
-          
-          if not os.path.exists(zip_path):
-              print(f"Error: {zip_path} not found!")
-              sys.exit(1)
-          
-          print(f"Unpacking: {zip_path}")
-          
-          os.makedirs('tmp_unzip', exist_ok=True)
-          with zipfile.ZipFile(zip_path, 'r') as zf:
-              zf.extractall('tmp_unzip')
-          print("First unpack done")
-          
-          inner_zip = None
-          for root, dirs, files in os.walk('tmp_unzip'):
-              for f in files:
-                  if f.endswith('.zip'):
-                      inner_zip = os.path.join(root, f)
-                      break
-              if inner_zip:
-                  break
-          
-          if inner_zip:
-              print(f"Found inner zip: {inner_zip}")
-              with zipfile.ZipFile(inner_zip, 'r') as zf:
-                  zf.extractall('docs')
-              print("Inner zip unpacked to docs")
-          else:
-              print("No inner zip, moving content to docs")
-              for item in os.listdir('tmp_unzip'):
-                  src = os.path.join('tmp_unzip', item)
-                  dst = os.path.join('docs', item)
-                  if os.path.exists(dst):
-                      shutil.rmtree(dst) if os.path.isdir(dst) else os.remove(dst)
-                  shutil.move(src, dst)
-          
-          print("Unpack complete")
-          PYEOF
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
 
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs
-          git commit -m "chore: import Notion export" || echo "No changes"
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Push
+      - name: Check import safety
+        run: node scripts/check-import-safety.mjs
+
+      - name: Run normalize
+        run: npm run normalize
+
+      - name: Fix links
+        run: npm run fix:links
+
+      - name: Lint docs
+        run: npm run lint:docs || true  # Не валит, только предупреждения
+
+      - name: Check for changes
+        id: changes
         run: |
-          git push || echo "Nothing to push"
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create or update PR
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: normalize imported Notion docs [skip ci]'
+          title: 'Notion import: normalize and validate'
+          body: |
+            Автоматический импорт из Notion с нормализацией.
+            
+            - ✅ Проверка безопасности (deny_paths)
+            - ✅ Нормализация front matter
+            - ✅ Исправление ссылок
+            - ✅ Линтинг документов
+            
+            **Проверь изменения перед merge!**
+          branch: ${{ github.event.inputs.branch_name || github.ref_name }}
+          delete-branch: true
