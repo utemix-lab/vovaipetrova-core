@@ -12,7 +12,8 @@
     "normalize:dry": "node scripts/normalize.mjs --dry",
     "lint:docs": "node scripts/lint-docs.mjs",
     "fix:links": "node scripts/fix-links.mjs",
-    "lint:docs:strict": "node scripts/lint-docs.mjs --strict"
+    "lint:docs:strict": "node scripts/lint-docs.mjs --strict",
+    "report:structure": "node scripts/generate-structure-report.mjs"
   },
   "repository": {
     "type": "git",
