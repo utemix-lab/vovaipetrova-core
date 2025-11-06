@@ -35,3 +35,7 @@ tmp/
 temp/
 *.tmp
 
+# Notion exports (processed, can be removed after import)
+uploads/*.zip
+uploads/*.ZIP
+

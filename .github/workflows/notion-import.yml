@@ -32,6 +32,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Unpack Notion export (if ZIP in uploads/)
+        id: unpack
+        run: |
+          if [ -d "uploads" ] && [ -n "$(find uploads -name '*.zip' -o -name '*.ZIP' 2>/dev/null)" ]; then
+            echo "has_zip=true" >> $GITHUB_OUTPUT
+            npm run unpack:notion
+          else
+            echo "has_zip=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No ZIP files in uploads/, skipping extraction"
+          fi
+        continue-on-error: false
+
       - name: Check import safety
         id: safety
         run: node scripts/check-import-safety.mjs
