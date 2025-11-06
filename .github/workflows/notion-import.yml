@@ -12,6 +12,7 @@ on:
       - 'notion-sync/**'
     paths:
       - 'docs/**/*.md'
+      - 'uploads/**/*.zip'
 
 jobs:
   import-check:
