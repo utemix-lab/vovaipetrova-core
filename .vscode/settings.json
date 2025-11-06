@@ -1,0 +1,9 @@
+﻿{
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "editor.wordWrap": "on",
+  "editor.detectIndentation": true,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.renderWhitespace": "selection"
+}
