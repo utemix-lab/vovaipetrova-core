@@ -4,6 +4,7 @@ slug: notion-brain
 summary: "# notion-brain\r\n\r\n### Назначение\r\n\r\nМини‑пакет архитектуры и правил проекта для исполнителей (Cursor/Aider/Windsurf) и GitHub Actions. Зеркалируется в репозиторий в папку notion-brain/.\r\n\r\nСодержит: ADR (решения), Specs (требования), Instru"
 tags: []
 machine_tags: []
+service: true
 ---
 # notion-brain
 
