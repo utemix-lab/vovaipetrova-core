@@ -1,6 +1,12 @@
 # Vova & Petrova — Docs
 
+[![Docs CI](https://github.com/utemix-lab/vovaipetrova-core/workflows/Docs%20CI/badge.svg)](https://github.com/utemix-lab/vovaipetrova-core/actions/workflows/docs-ci.yml)
+[![Protected main](https://img.shields.io/badge/main-protected-blue)](https://github.com/utemix-lab/vovaipetrova-core/settings/rules)
+[![Tag v0.2-docs](https://img.shields.io/badge/tag-v0.2--docs-green)](https://github.com/utemix-lab/vovaipetrova-core/releases/tag/v0.2-docs)
+
 База знаний, экспортированная из Notion в Markdown.
+
+> 📖 См. [CONTRIBUTING.md](CONTRIBUTING.md) для инструкций по работе с репозиторием.
 
 ## Структура
 
