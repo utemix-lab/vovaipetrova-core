@@ -15,7 +15,9 @@
     "lint:docs:strict": "node scripts/lint-docs.mjs --strict",
     "report:structure": "node scripts/generate-structure-report.mjs",
     "check:import": "node scripts/check-import-safety.mjs",
-    "unpack:notion": "node scripts/unpack-notion-export.mjs"
+    "unpack:notion": "node scripts/unpack-notion-export.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "report:no-alias": "node scripts/report-no-alias.mjs"
   },
   "repository": {
     "type": "git",
