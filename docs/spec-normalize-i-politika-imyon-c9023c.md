@@ -5,9 +5,13 @@ summary: '# Spec — Normalize и политика имён'
 tags:
   - Автоматизация
   - Кодинг
+  - UX
+  - Генерация_Видео
 machine_tags:
   - theme/automation
   - theme/dev
+  - theme/ux
+  - theme/graphics
 ---
 # Spec — Normalize и политика имён
 
