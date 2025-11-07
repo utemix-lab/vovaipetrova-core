@@ -3,11 +3,11 @@ title: Таксономия и теги
 slug: taksonomiya-i-tegi
 summary: '# Таксономия и теги'
 tags:
-  - проектирование
-  - дизайн
-  - автоматизация
-  - видеомонтаж
-  - кодинг
+  - Проектирование
+  - Дизайн
+  - Автоматизация
+  - Видеомонтаж
+  - Кодинг
   - ComfyUI
   - StableDiffusion
   - OpenAI
@@ -15,6 +15,12 @@ tags:
   - NextJS
   - FastAPI
 machine_tags:
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/automation
+  - action/edit
+  - theme/dev
   - tool/stable-diffusion
   - tool/graphics
   - producer/openai
@@ -34,7 +40,7 @@ machine_tags:
 
 2) Подрубрики (пример): Генерация изображений, Видео, Автоматизация, Код, Дизайн
 
-3) Теги задач: #проектирование #дизайн #автоматизация #видеомонтаж #кодинг
+3) Теги задач: #Проектирование #Дизайн #Автоматизация #Видеомонтаж #Кодинг
 
 4) Теги технологий: #ComfyUI #StableDiffusion #OpenAI #Ollama #NextJS #FastAPI
 
