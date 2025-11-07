@@ -3,8 +3,11 @@ title: Spec — Normalize и политика имён
 slug: spec-normalize-i-politika-imyon-c9023c
 summary: '# Spec — Normalize и политика имён'
 tags:
-  - Хэштегов
-machine_tags: []
+  - Автоматизация
+  - Кодинг
+machine_tags:
+  - theme/automation
+  - theme/dev
 ---
 # Spec — Normalize и политика имён
 
@@ -16,7 +19,7 @@ machine_tags: []
 
 - Распаковка: bsdtar, поддержка «двойного ZIP»
 - Нормализация: scripts/normalize.mjs
-    - перенос #Хэштегов из текста → tags[]
+    - перенос #UX, #Генерация_Видео из текста → tags[]
     - дополнение machine_tags по aliases из context-map.yaml
     - проставление title/slug/summary
     - переименование файла по slug → [kebab-case.md](http://kebab-case.md)

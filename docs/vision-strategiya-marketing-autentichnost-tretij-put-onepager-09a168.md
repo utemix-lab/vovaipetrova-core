@@ -3,8 +3,12 @@ title: 'Vision — Стратегия: Маркетинг × Аутентичн�
 slug: vision-strategiya-marketing-autentichnost-tretij-put-onepager-09a168
 summary: '# Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)'
 tags:
-  - Теги
-machine_tags: []
+  - Дизайн
+  - Проектирование
+machine_tags:
+  - theme/graphics
+  - product/services
+  - action/build
 ---
 # Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)
 
@@ -29,7 +33,7 @@ machine_tags: []
 
 - Шапка с ролями и корзина артефактов (без сервера, Pages + LocalStorage).
 - Таксономия: theme, action, product, tool, role, country/producer.
-- Контент: Markdown + front matter, видимые #Теги и скрытые machine_tags.
+- Контент: Markdown + front matter, видимые #Дизайн и #Проектирование, скрытые machine_tags.
 
 ### Позиционирование и тон
 
