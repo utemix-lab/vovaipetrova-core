@@ -18,6 +18,9 @@ machine_tags:
   - tool/stable-diffusion
   - tool/graphics
   - tool/fastapi
+  - producer/openai
+  - tool/ollama
+  - tool/nextjs
 ---
 # Таксономия и теги
 
