@@ -1,6 +1,6 @@
 ---
 title: '[ADR] Журнал решений'
-slug: adr-zhurnal-reshenij
+slug: adr-zhurnal-reshenij-b34c2e
 summary: "# [ADR] Журнал решений\r\n\r\n### TL;DR\r\n\r\nЖурнал архитектурных решений (ADR).\r\n\r\n### Шаблон ADR\r\n\r\n- ID: ADR‑0001\r\n- Дата: November 2, 2025\r\n- Контекст:\r\n- Варианты:\r\n- Решение:\r\n- Последствия:\r\n- Статус: Принято\r\n- Автор:\r\n\r\n### Записи\r\n\r\n- A"
 tags: []
 machine_tags: []

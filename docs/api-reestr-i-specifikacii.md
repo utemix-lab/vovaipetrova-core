@@ -1,6 +1,6 @@
 ---
 title: '[API] Реестр и спецификации'
-slug: api-reestr-i-specifikacii
+slug: api-reestr-i-specifikacii-711159
 summary: "# [API] Реестр и спецификации\r\n\r\n### TL;DR\r\n\r\nРеестр сервисов и спецификации API.\r\n\r\n### Сервисы\r\n\r\n- api: REST API для контента и генерации\r\n- gen: эндпоинты очереди генерации\r\n- web: SSR страницы и публичные эндпоинты\r\n- Сервис: описание,"
 tags:
   - FastAPI
