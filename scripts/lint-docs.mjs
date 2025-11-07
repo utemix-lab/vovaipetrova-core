@@ -26,12 +26,15 @@ function lintFile(file) {
   const parsed = matter(raw);
   const fm = parsed.data || {};
   const body = parsed.content || '';
+  const isService = fm.service === true;
 
   if (!fm.title) issues.push('missing title');
   if (!fm.slug) issues.push('missing slug');
   if (!fm.summary || String(fm.summary).trim().length === 0) issues.push('missing summary');
-  if (!Array.isArray(fm.tags) || fm.tags.length === 0) issues.push(STRICT ? 'missing tags[]' : 'warn: missing tags[]');
-  if (!Array.isArray(fm.machine_tags) || fm.machine_tags.length === 0) issues.push(STRICT ? 'missing machine_tags[]' : 'warn: missing machine_tags[]');
+  if (!isService) {
+    if (!Array.isArray(fm.tags) || fm.tags.length === 0) issues.push(STRICT ? 'missing tags[]' : 'warn: missing tags[]');
+    if (!Array.isArray(fm.machine_tags) || fm.machine_tags.length === 0) issues.push(STRICT ? 'missing machine_tags[]' : 'warn: missing machine_tags[]');
+  }
 
   // Flag legacy encoded Notion links (percent-encoded .md)
   const legacyLinkRe = /\(([^)]+%[0-9A-Fa-f]{2}[^)]*\.md)\)/g;

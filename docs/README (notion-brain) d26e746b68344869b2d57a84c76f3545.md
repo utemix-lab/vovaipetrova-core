@@ -1,9 +1,10 @@
 ---
 title: README (notion-brain)
-slug: readme-notion-brain
+slug: readme-notion-brain-d26e74
 summary: "# README (notion-brain)\r\n\r\n### Что это\r\n\r\nКонтекстный пакет для исполнителей и CI. Архитектура и правила без контента.\r\n\r\n### Состав\r\n\r\n- ADR — ключевые решения\r\n- Specs — форматы и требования\r\n- Instructions — как править и деплоить\r\n- con"
 tags: []
 machine_tags: []
+service: true
 ---
 # README (notion-brain)
 

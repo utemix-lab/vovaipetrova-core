@@ -42,7 +42,8 @@ function loadTagsCanon() {
 }
 
 function toSlugKebab(s) {
-  return slugify(String(s || ''), { lower: true, strict: true, locale: 'ru' })
+  const base = String(s || '').replace(/\./g, '-');
+  return slugify(base, { lower: true, strict: true, locale: 'ru' })
     .replace(/_/g, '-')
     .replace(/^-+|-+$/g, '') || 'index';
 }
@@ -105,6 +106,25 @@ function resolveDuplicateSlug(baseSlug, filePath, slugCounters) {
   return `${baseSlug}-${suf}`;
 }
 
+const SERVICE_KEYWORDS = [
+  'readme',
+  'context-map',
+  'contributing',
+  'manifest',
+  'structure-report',
+  'index',
+  'notion-brain'
+];
+
+function shouldMarkService(filePath, fmTitle) {
+  const lcPath = filePath.toLowerCase();
+  if (SERVICE_KEYWORDS.some(kw => lcPath.includes(kw))) return true;
+  if (fmTitle && SERVICE_KEYWORDS.some(kw => String(fmTitle).toLowerCase().includes(kw))) {
+    return true;
+  }
+  return false;
+}
+
 function ensureFrontMatter(filePath) {
   const raw = readFileSync(filePath, 'utf8');
   const parsed = matter(raw);
@@ -128,13 +148,34 @@ function ensureFrontMatter(filePath) {
 
   const { content: stripped, human } = extractHumanTags(content);
   content = stripped;
-  const tags = Array.from(new Set([...(fm.tags || []), ...human]));
+  const isService = fm.service === true || shouldMarkService(filePath, fm.title);
 
-  const machine_tags = Array.from(
-    new Set([...(fm.machine_tags || []), ...machineFromAliases(tags)])
-  );
+  const baseTags = Array.isArray(fm.tags) ? fm.tags : [];
+  const tags = isService ? [] : Array.from(new Set([...baseTags, ...human]));
 
-  if (!fm.slug) fm.slug = toSlugKebab(fm.title);
+  const baseMachine = Array.isArray(fm.machine_tags) ? fm.machine_tags : [];
+  const machine_tags = isService
+    ? []
+    : Array.from(new Set([...baseMachine, ...machineFromAliases(tags)]));
+
+  fm.slug = toSlugKebab(fm.slug || fm.title || parse(filePath).name)
+    .replace(/mapyaml/g, 'map-yaml');
+
+  if (isService) {
+    const suffixMatch = parse(filePath).name.match(/[a-f0-9]{6,}/i);
+    if (suffixMatch) {
+      const suffix = suffixMatch[0].slice(0, 6).toLowerCase();
+      if (!fm.slug.endsWith(`-${suffix}`)) {
+        fm.slug = `${fm.slug}-${suffix}`;
+      }
+    }
+  }
+
+  if (isService) {
+    fm.service = true;
+  } else if (fm.service === false) {
+    delete fm.service;
+  }
 
   if (!fm.summary) {
     const firstPara = content.split(/\n{2,}/).map(s => s.trim()).find(Boolean);
