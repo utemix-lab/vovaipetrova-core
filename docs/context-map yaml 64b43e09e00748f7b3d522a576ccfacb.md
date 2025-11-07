@@ -1,3 +1,10 @@
+---
+title: context-map.yaml
+slug: context-mapyaml
+summary: "# context-map.yaml\r\n\r\n```yaml\r\nfacets:\r\n  theme: [theme/ml, theme/nlp, theme/graphics, theme/ux, theme/automation]\r\n  action: [action/learn, action/build, action/evaluate, action/publish, action/debug]\r\n  product: [product/site, product/thi"
+tags: []
+machine_tags: []
+---
 # context-map.yaml
 
 ```yaml
