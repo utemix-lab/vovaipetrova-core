@@ -10,6 +10,7 @@ import crypto from 'crypto';
 const ROOT = 'docs';
 const TAGS_MAP_PATH = 'docs/nav/tags.yaml'; // ← ИСПРАВЛЕНО!
 const DRY_RUN = process.argv.includes('--dry');
+const TAGS_ONLY = process.argv.includes('--tags-only');
 
 function loadTagsCanon() {
   // Prefer explicit YAML map if present
@@ -213,11 +214,11 @@ function normalizeAll() {
   for (const f of files) {
     const info = ensureFrontMatter(f);
     normalized++;
-    const finalSlug = resolveDuplicateSlug(info.slug, f, slugCounters);
+    const finalSlug = TAGS_ONLY ? info.slug : resolveDuplicateSlug(info.slug, f, slugCounters);
     let action = info.action;
     let reason = '';
     
-    if (finalSlug !== info.slug) {
+    if (!TAGS_ONLY && finalSlug !== info.slug) {
       action = 'move';
       reason = `slug collision: "${info.slug}" → "${finalSlug}"`;
       if (!DRY_RUN) {
@@ -233,11 +234,14 @@ function normalizeAll() {
       reason = 'front matter updated';
     }
     
-    const finalPath = renameToSlug(f, finalSlug);
-    if (finalPath !== f) {
-      renamed++;
-      action = 'move';
-      reason = `renamed to match slug: ${parse(f).name} → ${parse(finalPath).name}`;
+    let finalPath = f;
+    if (!TAGS_ONLY) {
+      finalPath = renameToSlug(f, finalSlug);
+      if (finalPath !== f) {
+        renamed++;
+        action = 'move';
+        reason = `renamed to match slug: ${parse(f).name} → ${parse(finalPath).name}`;
+      }
     }
 
     actions.push({
