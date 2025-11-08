@@ -1,6 +1,7 @@
 ---
 title: context-map.yaml
-slug: context-mapyaml-da0108
+slug: context-map-yaml-da0108
+service: true
 summary: '# context-map.yaml'
 tags: []
 machine_tags: []

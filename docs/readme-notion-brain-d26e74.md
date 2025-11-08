@@ -1,6 +1,7 @@
 ---
 title: README (notion-brain)
 slug: readme-notion-brain-d26e74
+service: true
 summary: '# README (notion-brain)'
 tags: []
 machine_tags: []
