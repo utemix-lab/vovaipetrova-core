@@ -8,6 +8,7 @@ import yauzl from 'yauzl';
 const UPLOADS_DIR = 'uploads';
 const IMPORT_MAP_PATH = 'docs/.import-map.yaml';
 const TARGET_DIR = 'docs';
+const CUSTOM_ZIP_PATH = process.env.NOTION_IMPORT_ZIP;
 
 function loadImportMap() {
   if (!existsSync(IMPORT_MAP_PATH)) {
@@ -118,7 +119,19 @@ function extractZip(zipPath, config) {
 
 async function main() {
   const config = loadImportMap();
-  const zipPath = findZipFile();
+  let zipPath = CUSTOM_ZIP_PATH;
+
+  if (zipPath) {
+    const resolved = zipPath.startsWith('/') ? zipPath : join(process.cwd(), zipPath);
+    if (!existsSync(resolved)) {
+      console.error(`❌ Specified ZIP file not found: ${resolved}`);
+      process.exit(1);
+    }
+    zipPath = resolved;
+  } else {
+    zipPath = findZipFile();
+  }
+
   const files = await extractZip(zipPath, config);
   
   console.log('\n📋 Extracted files:');

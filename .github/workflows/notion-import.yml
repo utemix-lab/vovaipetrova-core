@@ -3,10 +3,14 @@ name: Notion Import (Safe PR)
 on:
   workflow_dispatch:
     inputs:
-      branch_name:
-        description: 'Branch name for import (e.g., notion-sync/2025-01-15)'
+      zip_path:
+        description: 'Path to Notion export ZIP (relative to repo, e.g. uploads/notion_export.zip)'
         required: true
-        default: 'notion-sync/YYYY-MM-DD'
+        default: 'uploads/notion_export.zip'
+      branch_suffix:
+        description: 'Suffix for notion-sync branch (YYYY-MM-DD или свободный текст)'
+        required: true
+        default: 'manual'
   push:
     branches:
       - 'notion-sync/**'
@@ -33,12 +37,47 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Resolve inputs
+        id: inputs
+        run: |
+          ZIP_INPUT="${{ github.event.inputs.zip_path }}"
+          if [ -z "$ZIP_INPUT" ]; then
+            echo "zip_path input is required" >&2
+            exit 1
+          fi
+
+          ABS_ZIP="$GITHUB_WORKSPACE/$ZIP_INPUT"
+          if [ ! -f "$ABS_ZIP" ]; then
+            echo "❌ ZIP not found at $ABS_ZIP" >&2
+            exit 1
+          fi
+
+          SUFFIX_INPUT="${{ github.event.inputs.branch_suffix }}"
+          if [ -z "$SUFFIX_INPUT" ]; then
+            SUFFIX_INPUT="manual"
+          fi
+
+          SANITIZED_SUFFIX=$(echo "$SUFFIX_INPUT" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9._-' '-' | sed 's/^-*//;s/-*$//')
+          if [ -z "$SANITIZED_SUFFIX" ]; then
+            SANITIZED_SUFFIX="manual"
+          fi
+
+          BRANCH_NAME="notion-sync/$SANITIZED_SUFFIX"
+
+          echo "zip_abs=$ABS_ZIP" >> "$GITHUB_OUTPUT"
+          echo "zip_rel=$ZIP_INPUT" >> "$GITHUB_OUTPUT"
+          echo "branch_suffix=$SANITIZED_SUFFIX" >> "$GITHUB_OUTPUT"
+          echo "branch_name=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Create working branch
+        run: git switch -c "${{ steps.inputs.outputs.branch_name }}"
+
       - name: Unpack Notion export (if ZIP in uploads/)
         id: unpack
         run: |
-          if [ -d "uploads" ] && [ -n "$(find uploads -name '*.zip' -o -name '*.ZIP' 2>/dev/null)" ]; then
+          if [ -d "uploads" ] && [ -f "${{ steps.inputs.outputs.zip_abs }}" ]; then
             echo "has_zip=true" >> $GITHUB_OUTPUT
-            npm run unpack:notion
+            NOTION_IMPORT_ZIP="${{ steps.inputs.outputs.zip_abs }}" npm run unpack:notion
           else
             echo "has_zip=false" >> $GITHUB_OUTPUT
             echo "ℹ️ No ZIP files in uploads/, skipping extraction"
@@ -92,36 +131,50 @@ jobs:
             echo "label=auto:needs-fixes" >> $GITHUB_OUTPUT
           fi
 
-      - name: Create or update PR
-        if: steps.changes.outputs.has_changes == 'true' && github.ref != 'refs/heads/main'
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: 'Notion import: normalize and validate'
-          body: |
-            ## Автоматический импорт из Notion с нормализацией
-            
-            ### Чек-лист проверки
-            
-            - [ ] Front matter в каждом .md файле
-            - [ ] slug = имя файла (kebab-case)
-            - [ ] Ссылки относительные, без percent-encoding
-            - [ ] Есть notion_page_id и last_edited_time (если импорт из Notion)
-            - [ ] Не изменялись deny_paths (scripts/, .github/, package.json и т.д.)
-            - [ ] Все изменения только в allowed_paths (docs/**)
-            
-            ### Выполненные шаги
-            
-            - ✅ Проверка безопасности (deny_paths, allowed_paths)
-            - ✅ Нормализация front matter (title, slug, tags, machine_tags)
-            - ✅ Исправление ссылок (percent-encoded → нормализованные)
-            - ✅ Линтинг документов
-            
-            ### Статус
-            
-            **${{ steps.pr_status.outputs.status == 'ready' && '✅ Готово к ревью' || '⚠️ Требует исправлений' }}**
-            
-            **Проверь изменения перед merge!**
-          branch: ${{ github.ref_name }}
-          base: main
-          labels: ${{ steps.pr_status.outputs.label }}
+      - name: Push branch and open PR
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: ${{ steps.inputs.outputs.branch_name }}
+          BRANCH_SUFFIX: ${{ steps.inputs.outputs.branch_suffix }}
+          ZIP_REL: ${{ steps.inputs.outputs.zip_rel }}
+          PR_LABEL: ${{ steps.pr_status.outputs.label }}
+        run: |
+          git push -u origin "$BRANCH_NAME"
+
+          TITLE="Notion Import (${BRANCH_SUFFIX})"
+          BODY=$(cat <<'EOF'
+Manual import via workflow_dispatch.
+
+- zip_path: ZIP_PLACEHOLDER
+- branch: BRANCH_PLACEHOLDER
+
+This PR was created automatically by the Notion Import workflow.
+EOF
+)
+
+          BODY="${BODY//ZIP_PLACEHOLDER/$ZIP_REL}"
+          BODY="${BODY//BRANCH_PLACEHOLDER/$BRANCH_NAME}"
+
+          if [ -n "$PR_LABEL" ]; then
+            CREATE_CMD=(gh pr create --base main --head "$BRANCH_NAME" --title "$TITLE" --body "$BODY" --label "$PR_LABEL")
+          else
+            CREATE_CMD=(gh pr create --base main --head "$BRANCH_NAME" --title "$TITLE" --body "$BODY")
+          fi
+
+          if "${CREATE_CMD[@]}"; then
+            echo "PR created."
+          else
+            echo "PR already exists, attempting to update..."
+            PR_NUMBER=$(gh pr list --head "$BRANCH_NAME" --json number --jq '.[0].number')
+            if [ -z "$PR_NUMBER" ]; then
+              echo "❌ Unable to create or locate PR for $BRANCH_NAME" >&2
+              exit 1
+            fi
+            if [ -n "$PR_LABEL" ]; then
+              gh pr edit "$PR_NUMBER" --title "$TITLE" --body "$BODY" --add-label "$PR_LABEL"
+            else
+              gh pr edit "$PR_NUMBER" --title "$TITLE" --body "$BODY"
+            fi
+          fi
+
