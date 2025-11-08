@@ -89,21 +89,31 @@ jobs:
         run: node scripts/check-import-safety.mjs
         continue-on-error: false
 
+      - name: Import halted
+        if: steps.safety.outputs.status == 'halt'
+        run: |
+          echo "Import halted: ${{ steps.safety.outputs.halt_reason }}"
+          echo "Skipping normalization and PR creation."
+
       - name: Run normalize
+        if: steps.safety.outputs.status != 'halt'
         id: normalize
         run: npm run normalize
         continue-on-error: false
 
       - name: Fix links
+        if: steps.safety.outputs.status != 'halt'
         id: fixlinks
         run: npm run fix:links
         continue-on-error: false
 
       - name: Lint docs
+        if: steps.safety.outputs.status != 'halt'
         id: lint
         run: npm run lint:docs || true  # Не валит, только предупреждения
 
       - name: Check for changes
+        if: steps.safety.outputs.status != 'halt'
         id: changes
         run: |
           if [ -n "$(git status --porcelain)" ]; then
@@ -113,7 +123,7 @@ jobs:
           fi
 
       - name: Commit changes
-        if: steps.changes.outputs.has_changes == 'true'
+        if: steps.safety.outputs.status != 'halt' && steps.changes.outputs.has_changes == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -121,6 +131,7 @@ jobs:
           git commit -m "chore: normalize imported Notion docs [skip ci]" || exit 0
 
       - name: Determine PR status
+        if: steps.safety.outputs.status != 'halt'
         id: pr_status
         run: |
           if [ "${{ steps.safety.outcome }}" == "success" ] && [ "${{ steps.normalize.outcome }}" == "success" ] && [ "${{ steps.fixlinks.outcome }}" == "success" ]; then
@@ -132,13 +143,14 @@ jobs:
           fi
 
       - name: Push branch and open PR
-        if: steps.changes.outputs.has_changes == 'true'
+        if: steps.safety.outputs.status != 'halt' && steps.changes.outputs.has_changes == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: ${{ steps.inputs.outputs.branch_name }}
           BRANCH_SUFFIX: ${{ steps.inputs.outputs.branch_suffix }}
           ZIP_REL: ${{ steps.inputs.outputs.zip_rel }}
           PR_LABEL: ${{ steps.pr_status.outputs.label }}
+          NEEDS_REVIEW: ${{ steps.safety.outputs.needs_review }}
         run: |
           git push -u origin "$BRANCH_NAME"
 
@@ -156,11 +168,15 @@ EOF
           BODY="${BODY//ZIP_PLACEHOLDER/$ZIP_REL}"
           BODY="${BODY//BRANCH_PLACEHOLDER/$BRANCH_NAME}"
 
+          LABEL_FLAGS=(--label "auto:import")
           if [ -n "$PR_LABEL" ]; then
-            CREATE_CMD=(gh pr create --base main --head "$BRANCH_NAME" --title "$TITLE" --body "$BODY" --label "$PR_LABEL")
-          else
-            CREATE_CMD=(gh pr create --base main --head "$BRANCH_NAME" --title "$TITLE" --body "$BODY")
+            LABEL_FLAGS+=(--label "$PR_LABEL")
           fi
+          if [ "$NEEDS_REVIEW" = "true" ]; then
+            LABEL_FLAGS+=(--label "auto:needs-review")
+          fi
+
+          CREATE_CMD=(gh pr create --base main --head "$BRANCH_NAME" --title "$TITLE" --body "$BODY" "${LABEL_FLAGS[@]}")
 
           if "${CREATE_CMD[@]}"; then
             echo "PR created."
@@ -171,10 +187,13 @@ EOF
               echo "❌ Unable to create or locate PR for $BRANCH_NAME" >&2
               exit 1
             fi
+            ADD_LABELS="auto:import"
             if [ -n "$PR_LABEL" ]; then
-              gh pr edit "$PR_NUMBER" --title "$TITLE" --body "$BODY" --add-label "$PR_LABEL"
-            else
-              gh pr edit "$PR_NUMBER" --title "$TITLE" --body "$BODY"
+              ADD_LABELS="$ADD_LABELS,$PR_LABEL"
             fi
+            if [ "$NEEDS_REVIEW" = "true" ]; then
+              ADD_LABELS="$ADD_LABELS,auto:needs-review"
+            fi
+            gh pr edit "$PR_NUMBER" --title "$TITLE" --body "$BODY" --add-label "$ADD_LABELS"
           fi
 
