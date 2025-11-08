@@ -15,7 +15,9 @@
     "lint:docs:strict": "node scripts/lint-docs.mjs --strict",
     "report:structure": "node scripts/generate-structure-report.mjs",
     "check:import": "node scripts/check-import-safety.mjs",
-    "unpack:notion": "node scripts/unpack-notion-export.mjs"
+    "unpack:notion": "node scripts/unpack-notion-export.mjs",
+    "scaffold:article": "node scripts/scaffold.mjs --type=article",
+    "scaffold:adr": "node scripts/scaffold.mjs --type=adr"
   },
   "repository": {
     "type": "git",
