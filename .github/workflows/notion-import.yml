@@ -112,6 +112,105 @@ jobs:
             echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Summarize changes
+        if: steps.changes.outputs.has_changes == 'true'
+        id: summary
+        run: |
+          node <<'EOF'
+          const { execSync } = require('child_process');
+          const { readFileSync, writeFileSync } = require('fs');
+          const matter = require('gray-matter');
+
+          const diffRaw = execSync('git diff --name-status --find-renames HEAD', { encoding: 'utf8' }).trim();
+          if (!diffRaw) {
+            writeFileSync('import-diff.md', 'No changes detected\n');
+            process.exit(0);
+          }
+
+          const rows = [];
+          const lines = diffRaw.split('\n').filter(Boolean);
+
+          const getNotionId = (file) => {
+            try {
+              const content = readFileSync(file, 'utf8');
+              return matter(content).data?.notion_page_id || '-';
+            } catch {
+              try {
+                const content = execSync(`git show HEAD:${file}`, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+                return matter(content).data?.notion_page_id || '-';
+              } catch {
+                return '-';
+              }
+            }
+          };
+
+          for (const line of lines) {
+            const parts = line.split('\t');
+            const status = parts[0];
+            if (status.startsWith('R')) {
+              const from = parts[1];
+              const to = parts[2];
+              rows.push({
+                file: to,
+                action: 'move',
+                reason: `Renamed from ${from}`,
+                notion: getNotionId(to)
+              });
+            } else if (status === 'A') {
+              const file = parts[1];
+              rows.push({
+                file,
+                action: 'add',
+                reason: 'Added file',
+                notion: getNotionId(file)
+              });
+            } else if (status === 'M') {
+              const file = parts[1];
+              rows.push({
+                file,
+                action: 'update',
+                reason: 'Updated content',
+                notion: getNotionId(file)
+              });
+            } else if (status === 'D') {
+              const file = parts[1];
+              rows.push({
+                file,
+                action: 'delete',
+                reason: 'Removed file',
+                notion: getNotionId(file)
+              });
+            } else {
+              const file = parts[parts.length - 1];
+              rows.push({
+                file,
+                action: status,
+                reason: 'Unhandled status',
+                notion: getNotionId(file)
+              });
+            }
+          }
+
+          const header = '| File | Action | Reason | notion_page_id |\n| --- | --- | --- | --- |\n';
+          const body = rows.map(row => {
+            const fileCell = `\`${row.file}\``;
+            const reasonCell = row.reason ? row.reason.replace(/\r?\n/g, ' ') : '-';
+            const notionCell = row.notion || '-';
+            return `| ${fileCell} | ${row.action} | ${reasonCell} | ${notionCell} |`;
+          }).join('\n');
+
+          writeFileSync('import-diff.md', header + body + '\n');
+          console.log(`Generated import-diff.md with ${rows.length} entries`);
+          EOF
+          echo "summary_path=import-diff.md" >> "$GITHUB_OUTPUT"
+
+      - name: Upload import diff
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: import-diff
+          path: ${{ steps.summary.outputs.summary_path }}
+
       - name: Commit changes
         if: steps.changes.outputs.has_changes == 'true'
         run: |
@@ -139,11 +238,13 @@ jobs:
           BRANCH_SUFFIX: ${{ steps.inputs.outputs.branch_suffix }}
           ZIP_REL: ${{ steps.inputs.outputs.zip_rel }}
           PR_LABEL: ${{ steps.pr_status.outputs.label }}
+          IMPORT_DIFF_PATH: ${{ steps.summary.outputs.summary_path }}
         run: |
           git push -u origin "$BRANCH_NAME"
 
           TITLE="Notion Import (${BRANCH_SUFFIX})"
-          BODY=$(cat <<'EOF'
+          BODY_FILE=$(mktemp)
+          cat <<'EOF' > "$BODY_FILE"
 Manual import via workflow_dispatch.
 
 - zip_path: ZIP_PLACEHOLDER
@@ -151,18 +252,26 @@ Manual import via workflow_dispatch.
 
 This PR was created automatically by the Notion Import workflow.
 EOF
-)
 
-          BODY="${BODY//ZIP_PLACEHOLDER/$ZIP_REL}"
-          BODY="${BODY//BRANCH_PLACEHOLDER/$BRANCH_NAME}"
+          sed -i "s|ZIP_PLACEHOLDER|$ZIP_REL|g" "$BODY_FILE"
+          sed -i "s|BRANCH_PLACEHOLDER|$BRANCH_NAME|g" "$BODY_FILE"
 
-          if [ -n "$PR_LABEL" ]; then
-            CREATE_CMD=(gh pr create --base main --head "$BRANCH_NAME" --title "$TITLE" --body "$BODY" --label "$PR_LABEL")
-          else
-            CREATE_CMD=(gh pr create --base main --head "$BRANCH_NAME" --title "$TITLE" --body "$BODY")
+          if [ -n "$IMPORT_DIFF_PATH" ] && [ -f "$IMPORT_DIFF_PATH" ]; then
+            {
+              echo ""
+              echo "---"
+              echo "### Import diff"
+              echo ""
+              cat "$IMPORT_DIFF_PATH"
+            } >> "$BODY_FILE"
           fi
 
-          if "${CREATE_CMD[@]}"; then
+          LABEL_FLAGS=(--label "auto:import")
+          if [ -n "$PR_LABEL" ]; then
+            LABEL_FLAGS+=(--label "$PR_LABEL")
+          fi
+
+          if gh pr create --base main --head "$BRANCH_NAME" --title "$TITLE" --body-file "$BODY_FILE" "${LABEL_FLAGS[@]}"; then
             echo "PR created."
           else
             echo "PR already exists, attempting to update..."
@@ -171,10 +280,38 @@ EOF
               echo "❌ Unable to create or locate PR for $BRANCH_NAME" >&2
               exit 1
             fi
-            if [ -n "$PR_LABEL" ]; then
-              gh pr edit "$PR_NUMBER" --title "$TITLE" --body "$BODY" --add-label "$PR_LABEL"
+
+            CURRENT_BODY=$(gh pr view "$PR_NUMBER" --json body --jq '.body')
+            if [ -n "$CURRENT_BODY" ]; then
+              printf "%s\n" "$CURRENT_BODY" > "$BODY_FILE"
             else
-              gh pr edit "$PR_NUMBER" --title "$TITLE" --body "$BODY"
+              cat <<'EOF' > "$BODY_FILE"
+Manual import via workflow_dispatch.
+
+- zip_path: ZIP_PLACEHOLDER
+- branch: BRANCH_PLACEHOLDER
+
+This PR was created automatically by the Notion Import workflow.
+EOF
+              sed -i "s|ZIP_PLACEHOLDER|$ZIP_REL|g" "$BODY_FILE"
+              sed -i "s|BRANCH_PLACEHOLDER|$BRANCH_NAME|g" "$BODY_FILE"
+            fi
+
+            if [ -n "$IMPORT_DIFF_PATH" ] && [ -f "$IMPORT_DIFF_PATH" ]; then
+              {
+                echo ""
+                echo "---"
+                echo "### Import diff"
+                echo ""
+                cat "$IMPORT_DIFF_PATH"
+              } >> "$BODY_FILE"
+            fi
+
+            if [ -n "$PR_LABEL" ]; then
+              gh pr edit "$PR_NUMBER" --title "$TITLE" --body-file "$BODY_FILE" --add-label "auto:import,$PR_LABEL"
+            else
+              gh pr edit "$PR_NUMBER" --title "$TITLE" --body-file "$BODY_FILE" --add-label "auto:import"
             fi
           fi
+          rm -f "$BODY_FILE"
 
