@@ -5,7 +5,10 @@ summary: 'Правила нормализации экспорта Notion: фр�
 tags:
   - Автоматизация
   - Кодинг
-machine_tags: []
+  - Хэштегов
+machine_tags:
+  - theme/automation
+  - theme/dev
 status: review
 ---
 # Spec — Normalize и политика имён

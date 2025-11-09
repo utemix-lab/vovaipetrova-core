@@ -1,12 +1,19 @@
 ---
 title: Экспорт в GitHub — руководство и шаблоны
 slug: eksport-v-github-rukovodstvo-i-shablony
-summary: 'Как выгружать контент из Notion в GitHub: структура репозитория, скрипты и чек-лист экспорта.'
+summary: >-
+  Как выгружать контент из Notion в GitHub: структура репозитория, скрипты и
+  чек-лист экспорта.
 tags:
   - Автоматизация
   - Проектирование
   - Кодинг
-machine_tags: []
+machine_tags:
+  - theme/automation
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/dev
 status: review
 ---
 # Экспорт в GitHub — руководство и шаблоны

@@ -1,11 +1,17 @@
 ---
 title: Think Tank — компактное ядро
 slug: think-tank-kompaktnoe-yadro
-summary: 'Каркас Think Tank: что входит в компактное ядро и как держать связку Notion ↔ GitHub.'
+summary: >-
+  Каркас Think Tank: что входит в компактное ядро и как держать связку Notion ↔
+  GitHub.
 tags:
   - Автоматизация
   - Проектирование
-machine_tags: []
+machine_tags:
+  - theme/automation
+  - product/services
+  - theme/graphics
+  - action/build
 status: review
 ---
 # Think Tank — компактное ядро

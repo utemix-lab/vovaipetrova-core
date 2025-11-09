@@ -1,12 +1,19 @@
 ---
 title: Инструкции для Notion AI — vova_i_petrova
 slug: instrukcii-dlya-notion-ai-vovaipetrova
-summary: 'Памятка для Notion AI: где находится источник истины и как синхронизировать данные с GitHub.'
+summary: >-
+  Памятка для Notion AI: где находится источник истины и как синхронизировать
+  данные с GitHub.
 tags:
   - Автоматизация
   - Проектирование
   - Кодинг
-machine_tags: []
+machine_tags:
+  - theme/automation
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/dev
 status: review
 ---
 # Инструкции для Notion AI — vova_i_petrova

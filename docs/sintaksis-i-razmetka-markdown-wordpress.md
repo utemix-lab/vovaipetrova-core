@@ -1,13 +1,25 @@
 ---
 title: Синтаксис и разметка — Markdown → WordPress
 slug: sintaksis-i-razmetka-markdown-wordpress
-summary: 'Памятка по Markdown: как готовить тексты для импорта в WordPress и не ломать автоматизацию.'
+summary: >-
+  Памятка по Markdown: как готовить тексты для импорта в WordPress и не ломать
+  автоматизацию.
 tags:
   - UX
   - Референсы
   - Дизайн
   - Автоматизация
-machine_tags: []
+  - Генерация_Видео
+  - Adobe
+  - Adobe_Photoshop
+machine_tags:
+  - theme/ux
+  - theme/references
+  - theme/graphics
+  - product/services
+  - theme/automation
+  - producer/adobe
+  - tool/adobe-photoshop
 status: review
 ---
 # Синтаксис и разметка — Markdown → WordPress

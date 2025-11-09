@@ -1,11 +1,17 @@
 ---
 title: Think Tank — компактное ядро
 slug: think-tank-kompaktnoe-yadro-1d36dd
-summary: 'Выжимка по компактному ядру Think Tank: состав артефактов и базовые правила синхронизации.'
+summary: >-
+  Выжимка по компактному ядру Think Tank: состав артефактов и базовые правила
+  синхронизации.
 tags:
   - Автоматизация
   - Проектирование
-machine_tags: []
+machine_tags:
+  - theme/automation
+  - product/services
+  - theme/graphics
+  - action/build
 status: review
 ---
 # Think Tank — компактное ядро
