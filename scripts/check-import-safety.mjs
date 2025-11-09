@@ -1,12 +1,21 @@
 // scripts/check-import-safety.mjs
 // Проверяет, что импорт не перезапишет защищённые файлы
-import { readFileSync, existsSync, statSync } from 'fs';
+import { readFileSync, existsSync, statSync, appendFileSync, writeFileSync } from 'fs';
 import { execSync } from 'child_process';
 import { globSync } from 'glob';
 import YAML from 'yaml';
 import matter from 'gray-matter';
 
 const IMPORT_MAP_PATH = 'docs/.import-map.yaml';
+const MAX_CHANGED_FILES = 500;
+const MAX_BINARY_SIZE = 10 * 1024 * 1024; // 10 MB
+const ALLOWED_DOC_EXTS = new Set(['.md', '.csv', '.png', '.jpg', '.jpeg', '.svg', '.gif']);
+
+function appendOutput(key, value) {
+  const output = process.env.GITHUB_OUTPUT;
+  if (!output) return;
+  appendFileSync(output, `${key}=${value}\n`);
+}
 
 function loadImportMap() {
   if (!existsSync(IMPORT_MAP_PATH)) {
@@ -55,22 +64,30 @@ function main() {
   const denyPaths = config.deny_paths || [];
   const allowedPaths = config.allowed_paths || ['docs/**'];
 
-  // Получаем список изменённых файлов из git
   let changedFiles = [];
   let deletedFiles = [];
   let addedFiles = [];
-  
+
   try {
-    const diffOutput = execSync('git diff --name-status HEAD', { encoding: 'utf8' });
+    const diffOutput = execSync('git diff --name-status --find-renames HEAD', { encoding: 'utf8' });
     const lines = diffOutput.trim().split('\n').filter(Boolean);
     for (const line of lines) {
       const [status, ...rest] = line.split('\t');
-      const file = rest.join('\t');
       if (status.startsWith('D')) {
+        const file = rest[0];
         deletedFiles.push(file);
       } else if (status.startsWith('A')) {
+        const file = rest.join('\t');
         addedFiles.push(file);
+        changedFiles.push(file);
+      } else if (status.startsWith('R')) {
+        const from = rest[0];
+        const to = rest[1];
+        deletedFiles.push(from);
+        addedFiles.push(to);
+        changedFiles.push(to);
       } else {
+        const file = rest.join('\t');
         changedFiles.push(file);
       }
     }
@@ -82,6 +99,43 @@ function main() {
 
   const violations = [];
   const warnings = [];
+  const guardHalts = [];
+
+  const totalAffected = new Set([...changedFiles, ...deletedFiles]);
+  if (totalAffected.size > MAX_CHANGED_FILES) {
+    guardHalts.push(`too many files changed (${totalAffected.size} > ${MAX_CHANGED_FILES})`);
+  }
+
+  const isDocFile = (file) => file.startsWith('docs/');
+  const hasAllowedDocExtension = (file) => {
+    const idx = file.lastIndexOf('.');
+    if (idx === -1) return false;
+    const ext = file.slice(idx).toLowerCase();
+    return ALLOWED_DOC_EXTS.has(ext);
+  };
+
+  for (const file of changedFiles) {
+    if (isDocFile(file) && !hasAllowedDocExtension(file)) {
+      violations.push({
+        file,
+        reason: `unsupported extension for docs (allowed: ${[...ALLOWED_DOC_EXTS].join(', ')})`
+      });
+    }
+    if (!file.startsWith('uploads/') && existsSync(file)) {
+      try {
+        const size = statSync(file).size;
+        if (size > MAX_BINARY_SIZE) {
+          const mb = Math.round((size / 1024 / 1024) * 10) / 10;
+          violations.push({
+            file,
+            reason: `file size ${mb}MB exceeds 10MB threshold (outside uploads/)`
+          });
+        }
+      } catch {
+        // ignore stat errors
+      }
+    }
+  }
 
   // Жёсткая проверка: изменения только в allowed_paths
   for (const file of changedFiles) {
@@ -135,6 +189,17 @@ function main() {
     }
   }
 
+  if (guardHalts.length > 0) {
+    const reason = guardHalts.join('; ');
+    console.log('ℹ️ Import halted by safety guard:', reason);
+    console.log('   Split the export or reduce the change set before retrying.');
+    appendOutput('status', 'halt');
+    appendOutput('halt_reason', reason);
+    appendOutput('needs_review', 'true');
+    writeFileSync('import-halt.txt', `Import halted: ${reason}\n`);
+    process.exit(0);
+  }
+
   if (warnings.length > 0) {
     console.warn('⚠️  Warnings:');
     for (const w of warnings) {
@@ -147,12 +212,14 @@ function main() {
     for (const v of violations) {
       console.error(`  - ${v.file}: ${v.reason}`);
     }
+    appendOutput('needs_review', 'true');
     process.exit(1);
   } else {
     console.log('✅ Import safety check passed');
     if (warnings.length > 0) {
       console.log(`   (${warnings.length} warnings)`);
     }
+    appendOutput('needs_review', warnings.length > 0 ? 'true' : 'false');
     process.exit(0);
   }
 }
