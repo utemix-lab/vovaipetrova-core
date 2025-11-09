@@ -1,9 +1,12 @@
 ---
 title: Spec — Content linter и scaffold (черновик)
 slug: spec-content-linter-i-scaffold-chernovik-6329bc
-summary: '# Spec — Content linter и scaffold (черновик)'
-tags: []
+summary: 'Черновой план контент-линтера и генератора шаблонов для автоматизации импорта.'
+tags:
+  - Автоматизация
+  - Кодинг
 machine_tags: []
+status: draft
 ---
 # Spec — Content linter и scaffold (черновик)
 
@@ -23,11 +26,16 @@ machine_tags: []
 
 CLI‑скрипт `node scripts/scaffold.mjs --type page --section kb --title "Flux"`:
 
-- Создаёт docs/kb/[flux.md](http://flux.md) с фронт‑маттером по канону
+- Создаёт docs/kb/`flux.md` с фронт‑маттером по канону
 - Добавляет черновой текст‑заглушку
 - Опционально обновляет индекс раздела
+
+### Связано с…
+
+- [Spec — Normalize и политика имён](spec-normalize-i-politika-imyon-c9023c.md)
+- [Spec — Front matter и слуги](spec-front-matter-i-slugi-91237c.md)
 
 ### Следующие шаги
 
 - Описать интерфейс CLI (аргументы) и минимальные правила линтера
-- Добавить как отдельные jobs в .github/workflows (после стабилизации)
+- Добавить отдельные jobs в GitHub Actions после стабилизации

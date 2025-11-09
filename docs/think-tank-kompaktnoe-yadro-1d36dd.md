@@ -1,9 +1,12 @@
 ---
 title: Think Tank — компактное ядро
 slug: think-tank-kompaktnoe-yadro-1d36dd
-summary: '# Think Tank — компактное ядро'
-tags: []
+summary: 'Выжимка по компактному ядру Think Tank: состав артефактов и базовые правила синхронизации.'
+tags:
+  - Автоматизация
+  - Проектирование
 machine_tags: []
+status: review
 ---
 # Think Tank — компактное ядро
 
@@ -25,16 +28,16 @@ machine_tags: []
 
 ### Структура
 
-- [goals.md](http://goals.md) — цели и философия
-- [organization.md](http://organization.md) — инфраструктура и технологии
-- [agents.md](http://agents.md) — реестр AI‑агентов
-- [focus.md](http://focus.md) — текущие приоритеты
+- goals — цели и философия (описание в подготовке)
+- organization — инфраструктура и технологии (описание в подготовке)
+- agents — реестр AI‑агентов (описание в подготовке)
+- focus — текущие приоритеты (описание в подготовке)
 
 ### В Notion
 
-Быстрый переход: [Индекс сайта](arhitektura-i-komponenty-486a0b.md) • [Контент‑модель и маршруты](arhitektura-i-komponenty-486a0b.md) • [Навигация (пользовательская)](%D0%9D%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%86%D0%B8%D1%8F%20(%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F)%202ba5dd285a3643f788773751f6d24184.md)
+Быстрый переход: [Индекс сайта](indeks-sajta-4b85d7.md) • [Контент‑модель и маршруты](kontentmodel-i-marshruty-7c779a.md) • [Навигация (пользовательская)](navigaciya-polzovatelskaya-4dd66e.md)
 
-Процесс: [Процесс: Обсудили → Разложили → Связали](arhitektura-i-komponenty-486a0b.md)
+Процесс: [Процесс: Обсудили → Разложили → Связали](process-obsudili-razlozhili-svyazali-5af71f.md)
 
 - Эти файлы представлены разделами/страницами и синхронизируются по содержанию.
 
@@ -50,5 +53,8 @@ machine_tags: []
 
 Метки: theme/automation, role/dev, product/think-tank
 
-- [Индекс сайта](arhitektura-i-komponenty-486a0b.md)
-- [Услуги](arhitektura-i-komponenty-486a0b.md)
+### Связано с…
+
+- [Think Tank — витрина процесса](think-tank-vitrina-processa-cfb19b.md)
+- [Навигация (техническая)](navigaciya-tehnicheskaya-9213d8.md)
+- [Услуги](uslugi-e38e09.md)

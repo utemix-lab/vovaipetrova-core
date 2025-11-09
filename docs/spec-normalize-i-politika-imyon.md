@@ -1,10 +1,12 @@
 ---
 title: Spec — Normalize и политика имён
 slug: spec-normalize-i-politika-imyon
-summary: "# Spec — Normalize и политика имён\r\n\r\n### Цель\r\n\r\nЕдинообразие md‑файлов и маршрутов после импорта Notion.\r\n\r\n### Политика\r\n\r\n- Распаковка: bsdtar, поддержка «двойного ZIP»\r\n- Нормализация: scripts/normalize.mjs\r\n    - перенос #Хэштегов из "
+summary: 'Правила нормализации экспорта Notion: фронт-маттер, slug и устойчивость путей.'
 tags:
-  - Хэштегов
+  - Автоматизация
+  - Кодинг
 machine_tags: []
+status: review
 ---
 # Spec — Normalize и политика имён
 
@@ -19,7 +21,7 @@ machine_tags: []
     - перенос #Хэштегов из текста → tags[]
     - дополнение machine_tags по aliases из context-map.yaml
     - проставление title/slug/summary
-    - переименование файла по slug → [kebab-case.md](http://kebab-case.md)
+    - переименование файла по slug → `kebab-case.md`
 - Стабильность путей: не меняем slug без явной миграции (редиректы на уровне сборки)
 
 ### Проверки
@@ -27,4 +29,4 @@ machine_tags: []
 - Отсутствуют дубликаты slug в одном разделе
 - Нет «кракозябр» в названиях (Unicode → OK)
 
-Связано: [README (черновик) для корня GitHub](https://www.notion.so/README-GitHub-98c47949f1244855b37edba741b2ada9?pvs=21)
+Связано: [Spec — Front matter и слуги](spec-front-matter-i-slugi.md), [Spec — Normalize и политика имён (актуальная версия)](spec-normalize-i-politika-imyon-c9023c.md), [README](../README.md)

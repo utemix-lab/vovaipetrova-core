@@ -1,9 +1,13 @@
 ---
 title: Инструкции для Notion AI — vova_i_petrova
 slug: instrukcii-dlya-notion-ai-vovaipetrova
-summary: '# Инструкции для Notion AI — vova_i_petrova'
-tags: []
+summary: 'Памятка для Notion AI: где находится источник истины и как синхронизировать данные с GitHub.'
+tags:
+  - Автоматизация
+  - Проектирование
+  - Кодинг
 machine_tags: []
+status: review
 ---
 # Инструкции для Notion AI — vova_i_petrova
 
@@ -62,7 +66,7 @@ machine_tags: []
 - Всегда включаем Include subpages при экспорте
 - Структура в Notion: все ключевые разделы — подстраницы «Вова и Петрова»
 - В репозитории: весь экспорт складываем «как есть» в папку `docs/`
-- Имена файлов: kebab-case ([`пример-файла.md`](http://пример-файла.md)). Если нужен стабильный slug — используем `vova_i_petrova` как префикс, либо поле в фронт-маттере позже
+- Имена файлов: kebab-case (`primer-fayla.md`). Если нужен стабильный slug — используем `vova_i_petrova` как префикс, либо поле в фронт-маттере позже
 - В каждом .md — H1 вверху; внизу, по возможности, блок «Связано с…»
 
 ### Чек‑лист перед экспортом
@@ -71,3 +75,9 @@ machine_tags: []
 - [ ]  Нет приватных токенов/секретов в тексте
 - [ ]  Экспорт: Markdown & CSV + Include subpages
 - [ ]  Загрузка ZIP в `uploads/` и запуск GitHub Actions «Notion import to docs»
+
+### Связано с…
+
+- [Think Tank — компактное ядро](think-tank-kompaktnoe-yadro.md)
+- [Spec — Normalize и политика имён](spec-normalize-i-politika-imyon-c9023c.md)
+- [README](../README.md)

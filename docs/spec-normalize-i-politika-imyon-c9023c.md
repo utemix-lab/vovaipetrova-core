@@ -1,7 +1,7 @@
 ---
 title: Spec — Normalize и политика имён
 slug: spec-normalize-i-politika-imyon-c9023c
-summary: '# Spec — Normalize и политика имён'
+summary: 'Актуальные правила нормализации экспорта Notion: что делает скрипт и какие ограничения на slug.'
 tags:
   - Автоматизация
   - Кодинг
@@ -12,6 +12,7 @@ machine_tags:
   - theme/dev
   - theme/ux
   - theme/graphics
+status: review
 ---
 # Spec — Normalize и политика имён
 
@@ -26,7 +27,7 @@ machine_tags:
     - перенос #UX, #Генерация_Видео из текста → tags[]
     - дополнение machine_tags по aliases из context-map.yaml
     - проставление title/slug/summary
-    - переименование файла по slug → [kebab-case.md](http://kebab-case.md)
+    - переименование файла по slug → `kebab-case.md`
 - Стабильность путей: не меняем slug без явной миграции (редиректы на уровне сборки)
 
 ### Проверки
@@ -34,4 +35,4 @@ machine_tags:
 - Отсутствуют дубликаты slug в одном разделе
 - Нет «кракозябр» в названиях (Unicode → OK)
 
-Связано: [README (черновик) для корня GitHub](https://www.notion.so/README-GitHub-98c47949f1244855b37edba741b2ada9?pvs=21)
+Связано: [Spec — Front matter и слуги](spec-front-matter-i-slugi-91237c.md), [Spec — Normalize и политика имён](spec-normalize-i-politika-imyon.md), [README](../README.md)
