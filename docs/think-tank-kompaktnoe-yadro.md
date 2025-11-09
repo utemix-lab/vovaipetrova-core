@@ -1,9 +1,12 @@
 ---
 title: Think Tank — компактное ядро
 slug: think-tank-kompaktnoe-yadro
-summary: "# Think Tank — компактное ядро\r\n\r\n### Принцип\r\n\r\n<aside>\r\n\U0001F4CC\r\n\r\nИсточник истины (Source of truth)\r\n\r\n</aside>\r\n\r\n- Место правды: этот воркспейс Notion.\r\n- GitHub — зеркало для публикации и предпросмотра (GitHub Pages / прототип / статика).\r"
-tags: []
+summary: 'Каркас Think Tank: что входит в компактное ядро и как держать связку Notion ↔ GitHub.'
+tags:
+  - Автоматизация
+  - Проектирование
 machine_tags: []
+status: review
 ---
 # Think Tank — компактное ядро
 
@@ -25,16 +28,16 @@ machine_tags: []
 
 ### Структура
 
-- [goals.md](http://goals.md) — цели и философия
-- [organization.md](http://organization.md) — инфраструктура и технологии
-- [agents.md](http://agents.md) — реестр AI‑агентов
-- [focus.md](http://focus.md) — текущие приоритеты
+- goals — цели и философия (описание в подготовке)
+- organization — инфраструктура и технологии (описание в подготовке)
+- agents — реестр AI‑агентов (описание в подготовке)
+- focus — текущие приоритеты (описание в подготовке)
 
 ### В Notion
 
-Быстрый переход: [Индекс сайта](arhitektura-i-komponenty.md) • [Контент‑модель и маршруты](arhitektura-i-komponenty.md) • [Навигация (пользовательская)](%D0%9D%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%86%D0%B8%D1%8F%20(%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F)%202ba5dd285a3643f788773751f6d24184.md)
+Быстрый переход: [Индекс сайта](indeks-sajta.md) • [Контент‑модель и маршруты](kontentmodel-i-marshruty.md) • [Навигация (пользовательская)](navigaciya-polzovatelskaya.md)
 
-Процесс: [Процесс: Обсудили → Разложили → Связали](arhitektura-i-komponenty.md)
+Процесс: [Процесс: Обсудили → Разложили → Связали](process-obsudili-razlozhili-svyazali.md)
 
 - Эти файлы представлены разделами/страницами и синхронизируются по содержанию.
 
@@ -48,7 +51,8 @@ machine_tags: []
 - Think Tank — витрина процесса
 - Индекс и TL;DR
 
-Метки: theme/automation, role/dev, product/think-tank
+### Связано с…
 
-- [Индекс сайта](arhitektura-i-komponenty.md)
-- [Услуги](arhitektura-i-komponenty.md)
+- [Think Tank — витрина процесса](think-tank-vitrina-processa.md)
+- [Навигация (техническая)](navigaciya-tehnicheskaya.md)
+- [Услуги](uslugi.md)

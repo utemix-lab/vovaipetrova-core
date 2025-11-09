@@ -1,19 +1,14 @@
 ---
 title: Синтаксис и разметка — Markdown → WordPress
 slug: sintaksis-i-razmetka-markdown-wordpress
-summary: '# Синтаксис и разметка — Markdown → WordPress'
+summary: 'Памятка по Markdown: как готовить тексты для импорта в WordPress и не ломать автоматизацию.'
 tags:
   - UX
-  - Генерация_Видео
   - Референсы
-  - Adobe
-  - Adobe_Photoshop
-machine_tags:
-  - theme/ux
-  - theme/graphics
-  - theme/references
-  - producer/adobe
-  - tool/adobe-photoshop
+  - Дизайн
+  - Автоматизация
+machine_tags: []
+status: review
 ---
 # Синтаксис и разметка — Markdown → WordPress
 
@@ -75,7 +70,7 @@ machine_tags:
 - [ ]  Машинотеги не вставляю в текст — они управляются технавигацией
 - [ ]  Заголовки начинаю с # / ## / ### и избегаю «пустых» блоков
 
-Связано: [Навигация (техническая)](%D0%9D%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%86%D0%B8%D1%8F%20(%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F)%20103c222189b04e90a7529840e9faf9dc.md), [Артефакты — корзина и заявка (MVP)](%D0%90%D1%80%D1%82%D0%B5%D1%84%D0%B0%D0%BA%D1%82%D1%8B%20%E2%80%94%20%D0%BA%D0%BE%D1%80%D0%B7%D0%B8%D0%BD%D0%B0%20%D0%B8%20%D0%B7%D0%B0%D1%8F%D0%B2%D0%BA%D0%B0%20(MVP)%20721d156e169a445da062d65dd834e105.md)
+Связано:
 
 - Теги в тексте: #UX в конце абзаца или раздела
 - Псевдо‑вики‑ссылки: [[Название страницы]] → создаём обычную ссылку на страницу
@@ -95,6 +90,10 @@ machine_tags:
 - Сохраняем структуру заголовков и теги‑хештеги для последующей таксономии
 
 ### Связано с…
+
+- [Навигация (техническая)](navigaciya-tehnicheskaya.md)
+- [Артефакты — корзина и заявка (MVP)](artefakty-korzina-i-zayavka-mvp.md)
+- [Контент‑пайплайн экспорта](kontentpajplajn-eksporta.md)
 
 ---
 
