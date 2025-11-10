@@ -1,9 +1,17 @@
 ---
 title: TEMPLATE — Vision
 slug: template-vision-e2acba
-summary: '# TEMPLATE — Vision'
-tags: []
-machine_tags: []
+summary: 'Альтернативный шаблон vision с блоками цели, метрик и контекста.'
+tags:
+  - Проектирование
+  - Дизайн
+  - Автоматизация
+machine_tags:
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/automation
+status: review
 ---
 # TEMPLATE — Vision
 

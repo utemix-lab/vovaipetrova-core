@@ -1,9 +1,20 @@
 ---
 title: Тест‑стратегия и качество
 slug: teststrategiya-i-kachestvo
-summary: '# Тест‑стратегия и качество'
-tags: []
-machine_tags: []
+summary: >-
+  Черновик стратегии тестирования: типы проверок, политики качества и
+  нефункциональные требования для продукта.
+tags:
+  - Проектирование
+  - Автоматизация
+  - Кодинг
+machine_tags:
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/automation
+  - theme/dev
+status: review
 ---
 # Тест‑стратегия и качество
 
@@ -25,4 +36,5 @@ machine_tags: []
 
 ### Связано с…
 
--
+- [Spec — Content linter и scaffold (черновик)](spec-content-linter-i-scaffold-chernovik.md)
+- [Spec — Normalize и политика имён](spec-normalize-i-politika-imyon.md)

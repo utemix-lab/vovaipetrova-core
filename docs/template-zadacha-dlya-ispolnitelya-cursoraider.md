@@ -1,9 +1,20 @@
 ---
 title: TEMPLATE — Задача для исполнителя (Cursor/Aider)
 slug: template-zadacha-dlya-ispolnitelya-cursoraider
-summary: "# TEMPLATE — Задача для исполнителя (Cursor/Aider)\r\n\r\n### Задача\r\n\r\nКоротко, что нужно получить на выходе.\r\n\r\n### Контекст\r\n\r\n- Отсылка на ADR/Spec из notion-brain\r\n- Где менять: пути (docs/**, prototype/**, workflows/**, scripts/**)\r\n\r\n###"
-tags: []
-machine_tags: []
+summary: >-
+  Шаблон задачи для агентов Cursor/Aider: структура постановки, требования и
+  чек-лист принятия.
+tags:
+  - Проектирование
+  - Автоматизация
+  - Кодинг
+machine_tags:
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/automation
+  - theme/dev
+status: review
 ---
 # TEMPLATE — Задача для исполнителя (Cursor/Aider)
 

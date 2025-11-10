@@ -1,9 +1,20 @@
 ---
 title: TEMPLATE — ADR
 slug: template-adr
-summary: "# TEMPLATE — ADR\r\n\r\n### Заголовок\r\n\r\nКраткое имя решения (одно предложение)\r\n\r\n### Контекст\r\n\r\n- Проблема / ограничения\r\n- Варианты\r\n\r\n### Решение\r\n\r\n- Что выбрано и почему (пулами)\r\n- Диаграмма/схема (по желанию)\r\n\r\n### Последствия\r\n\r\n- Пл"
-tags: []
-machine_tags: []
+summary: >-
+  Шаблон ADR: блоки контекста, решения, последствий и статуса с ссылками на
+  связанные материалы.
+tags:
+  - Проектирование
+  - Автоматизация
+  - Кодинг
+machine_tags:
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/automation
+  - theme/dev
+status: review
 ---
 # TEMPLATE — ADR
 

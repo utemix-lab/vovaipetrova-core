@@ -1,9 +1,20 @@
 ---
 title: TEMPLATE — Task spec
 slug: template-task-spec
-summary: '# TEMPLATE — Task spec'
-tags: []
-machine_tags: []
+summary: >-
+  Шаблон постановки технической задачи с путями правок, требованиями и
+  чек-листом приёмки.
+tags:
+  - Проектирование
+  - Автоматизация
+  - Кодинг
+machine_tags:
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/automation
+  - theme/dev
+status: review
 ---
 # TEMPLATE — Task spec
 

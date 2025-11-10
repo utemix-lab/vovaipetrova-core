@@ -1,9 +1,19 @@
 ---
 title: Vision — Игровая навигация и роли (V1)
 slug: vision-igrovaya-navigaciya-i-roli-v1
-summary: '# Vision — Игровая навигация и роли (V1)'
-tags: []
-machine_tags: []
+summary: >-
+  Концепция игрового первого экрана с переключением ролей и корзиной артефактов
+  для быстрого погружения в сервисы.
+tags:
+  - Проектирование
+  - Дизайн
+  - Автоматизация
+machine_tags:
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/automation
+status: review
 ---
 # Vision — Игровая навигация и роли (V1)
 

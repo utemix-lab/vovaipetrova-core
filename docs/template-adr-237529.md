@@ -1,9 +1,18 @@
 ---
 title: TEMPLATE — ADR
 slug: template-adr-237529
-summary: '# TEMPLATE — ADR'
-tags: []
-machine_tags: []
+summary: 'Дублирующий шаблон ADR с разделами контекста, решений, последствий и статуса.'
+tags:
+  - Проектирование
+  - Автоматизация
+  - Кодинг
+machine_tags:
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/automation
+  - theme/dev
+status: review
 ---
 # TEMPLATE — ADR
 
