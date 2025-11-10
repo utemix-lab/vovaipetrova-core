@@ -2,16 +2,18 @@
 title: Think Tank — компактное ядро
 slug: think-tank-kompaktnoe-yadro-1d36dd
 summary: >-
-  Выжимка по компактному ядру Think Tank: состав артефактов и базовые правила
-  синхронизации.
+  Черновик описания компактного ядра Think Tank и правил синхронизации Notion ↔
+  GitHub.
 tags:
   - Автоматизация
   - Проектирование
+  - Кодинг
 machine_tags:
   - theme/automation
   - product/services
   - theme/graphics
   - action/build
+  - theme/dev
 status: review
 ---
 # Think Tank — компактное ядро
@@ -34,16 +36,16 @@ status: review
 
 ### Структура
 
-- goals — цели и философия (описание в подготовке)
-- organization — инфраструктура и технологии (описание в подготовке)
-- agents — реестр AI‑агентов (описание в подготовке)
-- focus — текущие приоритеты (описание в подготовке)
+- goals.md — цели и философия
+- organization.md — инфраструктура и технологии
+- agents.md — реестр AI‑агентов
+- focus.md — текущие приоритеты
 
 ### В Notion
 
-Быстрый переход: [Индекс сайта](indeks-sajta-4b85d7.md) • [Контент‑модель и маршруты](kontentmodel-i-marshruty-7c779a.md) • [Навигация (пользовательская)](navigaciya-polzovatelskaya-4dd66e.md)
+Быстрый переход: [Индекс сайта](indeks-sajta.md) • [Контент‑модель и маршруты](kontentmodel-i-marshruty.md) • [Навигация (пользовательская)](navigaciya-polzovatelskaya-4dd66e.md)
 
-Процесс: [Процесс: Обсудили → Разложили → Связали](process-obsudili-razlozhili-svyazali-5af71f.md)
+Процесс: [Процесс: Обсудили → Разложили → Связали](process-obsudili-razlozhili-svyazali.md)
 
 - Эти файлы представлены разделами/страницами и синхронизируются по содержанию.
 
@@ -59,8 +61,5 @@ status: review
 
 Метки: theme/automation, role/dev, product/think-tank
 
-### Связано с…
-
-- [Think Tank — витрина процесса](think-tank-vitrina-processa-cfb19b.md)
-- [Навигация (техническая)](navigaciya-tehnicheskaya-9213d8.md)
-- [Услуги](uslugi-e38e09.md)
+- [Индекс сайта](indeks-sajta.md)
+- [Услуги](uslugi.md)

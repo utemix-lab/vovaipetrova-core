@@ -1,9 +1,16 @@
 ---
 title: UI макет — шапка и первый экран (Static First)
 slug: ui-maket-shapka-i-pervyj-ekran-static-first-0b7377
-summary: '# UI макет — шапка и первый экран (Static First)'
-tags: []
-machine_tags: []
+summary: >-
+  Черновой вариант статического прототипа первого экрана с переключателем ролей
+  и корзиной артефактов без серверной логики.
+tags:
+  - Figma
+  - UX
+machine_tags:
+  - tool/figma
+  - theme/ux
+status: review
 ---
 # UI макет — шапка и первый экран (Static First)
 
