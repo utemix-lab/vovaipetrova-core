@@ -1,9 +1,18 @@
 ---
 title: Вася
 slug: vasya
-summary: '# Вася'
-tags: []
-machine_tags: []
+summary: >-
+  Портрет персонажа «Васи»: монтажёр и моушн-дизайнер с описанием ролей и
+  инструментов.
+tags:
+  - Видео
+  - Дизайн
+  - Автоматизация
+machine_tags:
+  - theme/graphics
+  - product/services
+  - theme/automation
+status: ready
 ---
 # Вася
 

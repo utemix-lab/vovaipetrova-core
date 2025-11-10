@@ -1,9 +1,20 @@
 ---
 title: Вова
 slug: vova
-summary: '# Вова'
-tags: []
-machine_tags: []
+summary: >-
+  Профиль героя студии: музыкальный продюсер Вова с его ролями, тоном и
+  техслоями.
+tags:
+  - Дизайн
+  - Видео
+  - Автоматизация
+  - Референсы
+machine_tags:
+  - theme/graphics
+  - product/services
+  - theme/automation
+  - theme/references
+status: ready
 ---
 # Вова
 

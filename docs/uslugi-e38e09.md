@@ -1,15 +1,23 @@
 ---
 title: Услуги
 slug: uslugi-e38e09
-summary: '# Услуги'
+summary: >-
+  Рабочий набросок каталога услуг: направления, процессы и чек-листы по
+  видеопродакшну и дизайну.
 tags:
+  - Видео
+  - Дизайн
+  - Генерация_Видео
+  - Автоматизация
   - Adobe
   - Adobe_Photoshop
-  - Генерация_Видео
 machine_tags:
+  - theme/graphics
+  - product/services
+  - theme/automation
   - producer/adobe
   - tool/adobe-photoshop
-  - theme/graphics
+status: review
 ---
 # Услуги
 
@@ -23,7 +31,7 @@ machine_tags:
 
 ### Как работаю
 
-Быстрый переход: [Индекс сайта](arhitektura-i-komponenty-486a0b.md) • [Навигация (пользовательская)](%D0%9D%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%86%D0%B8%D1%8F%20(%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F)%202ba5dd285a3643f788773751f6d24184.md) • [Портфолио — структура](arhitektura-i-komponenty-486a0b.md)
+Быстрый переход: [Индекс сайта](arhitektura-i-komponenty-486a0b.md) • [Навигация (пользовательская)](navigaciya-polzovatelskaya-4dd66e.md) • [Портфолио — структура](arhitektura-i-komponenty-486a0b.md)
 
 Связанный процесс: [Процесс: Обсудили → Разложили → Связали](arhitektura-i-komponenty-486a0b.md)
 

@@ -1,9 +1,20 @@
 ---
 title: TEMPLATE — Задача для исполнителя (Cursor/Aider)
 slug: template-zadacha-dlya-ispolnitelya-cursoraider-82545d
-summary: '# TEMPLATE — Задача для исполнителя (Cursor/Aider)'
-tags: []
-machine_tags: []
+summary: >-
+  Дубликат шаблона задачи для Cursor/Aider с блоками контекста, требований и
+  чек-листа.
+tags:
+  - Проектирование
+  - Автоматизация
+  - Кодинг
+machine_tags:
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/automation
+  - theme/dev
+status: review
 ---
 # TEMPLATE — Задача для исполнителя (Cursor/Aider)
 

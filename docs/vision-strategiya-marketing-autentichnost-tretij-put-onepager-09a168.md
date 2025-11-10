@@ -1,14 +1,21 @@
 ---
 title: 'Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)'
 slug: vision-strategiya-marketing-autentichnost-tretij-put-onepager-09a168
-summary: '# Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)'
+summary: >-
+  Черновой конспект vision по балансировке маркетинга, аутентичности и третьего
+  пути с метриками и рисками.
 tags:
-  - Дизайн
   - Проектирование
+  - Дизайн
+  - Автоматизация
+  - Референсы
 machine_tags:
-  - theme/graphics
   - product/services
+  - theme/graphics
   - action/build
+  - theme/automation
+  - theme/references
+status: review
 ---
 # Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)
 
