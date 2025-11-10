@@ -7,11 +7,13 @@ summary: >-
 tags:
   - Автоматизация
   - Проектирование
+  - Кодинг
 machine_tags:
   - theme/automation
   - product/services
   - theme/graphics
   - action/build
+  - theme/dev
 status: review
 ---
 # Think Tank — компактное ядро
@@ -34,14 +36,14 @@ status: review
 
 ### Структура
 
-- goals — цели и философия (описание в подготовке)
-- organization — инфраструктура и технологии (описание в подготовке)
-- agents — реестр AI‑агентов (описание в подготовке)
-- focus — текущие приоритеты (описание в подготовке)
+- goals.md — цели и философия
+- organization.md — инфраструктура и технологии
+- agents.md — реестр AI‑агентов
+- focus.md — текущие приоритеты
 
 ### В Notion
 
-Быстрый переход: [Индекс сайта](indeks-sajta.md) • [Контент‑модель и маршруты](kontentmodel-i-marshruty.md) • [Навигация (пользовательская)](navigaciya-polzovatelskaya.md)
+Быстрый переход: [Индекс сайта](indeks-sajta.md) • [Контент‑модель и маршруты](kontentmodel-i-marshruty.md) • [Навигация (пользовательская)](navigaciya-polzovatelskaya-4dd66e.md)
 
 Процесс: [Процесс: Обсудили → Разложили → Связали](process-obsudili-razlozhili-svyazali.md)
 
@@ -57,8 +59,7 @@ status: review
 - Think Tank — витрина процесса
 - Индекс и TL;DR
 
-### Связано с…
+Метки: theme/automation, role/dev, product/think-tank
 
-- [Think Tank — витрина процесса](think-tank-vitrina-processa.md)
-- [Навигация (техническая)](navigaciya-tehnicheskaya.md)
+- [Индекс сайта](indeks-sajta.md)
 - [Услуги](uslugi.md)
