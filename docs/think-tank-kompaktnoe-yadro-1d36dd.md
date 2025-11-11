@@ -2,8 +2,8 @@
 title: Think Tank — компактное ядро
 slug: think-tank-kompaktnoe-yadro-1d36dd
 summary: >
-  Базовый набор артефактов Think Tank: что держим в Notion, что зеркалим в GitHub
-  и как сохраняем контекст.
+  Базовый набор артефактов Think Tank: что держим в Notion, что зеркалим в
+  GitHub и как сохраняем контекст.
 tags:
   - Автоматизация
   - Проектирование
@@ -13,6 +13,7 @@ machine_tags:
   - product/services
   - action/build
   - theme/dev
+  - theme/graphics
 status: ready
 ---
 # Think Tank — компактное ядро

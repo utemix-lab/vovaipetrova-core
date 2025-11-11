@@ -13,6 +13,7 @@ machine_tags:
   - action/build
   - theme/automation
   - theme/dev
+  - theme/graphics
 status: ready
 ---
 # Архитектура и компоненты

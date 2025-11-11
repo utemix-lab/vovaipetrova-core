@@ -11,6 +11,7 @@ machine_tags:
   - product/services
   - action/build
   - theme/automation
+  - theme/graphics
 status: ready
 ---
 # [ADR] Журнал решений

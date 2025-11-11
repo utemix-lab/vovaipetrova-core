@@ -12,6 +12,7 @@ machine_tags:
   - tool/stable-diffusion
   - tool/graphics
   - theme/graphics
+  - product/services
 status: ready
 ---
 # ComfyUI — обзор и быстрый старт
