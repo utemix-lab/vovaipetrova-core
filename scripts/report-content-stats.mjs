@@ -96,6 +96,13 @@ function buildStats() {
   }
 
   const aliasCoverage = coverage(tagsUsedLower, aliasKeys);
+  const readyCoverage = {
+    ready: totals.ready,
+    total: Math.max(0, totals.files - totals.service),
+    percent: totals.files === 0
+      ? 0
+      : Math.round((totals.ready / Math.max(1, totals.files - totals.service)) * 1000) / 10
+  };
   const result = {
     generatedAt: new Date().toISOString(),
     totals,
@@ -108,7 +115,8 @@ function buildStats() {
       uniqueMachine: machineTagsCount.size,
       topVisible: topEntries(tagsCount),
       topMachine: topEntries(machineTagsCount),
-      aliasCoverage
+      aliasCoverage,
+      readyCoverage
     },
     lint: {
       warnings: 0
@@ -122,6 +130,7 @@ function buildStats() {
     `- Страниц ready: **${totals.ready}**`,
     `- Страниц draft: **${totals.draft}**`,
     `- Служебные материалы: **${totals.service}**`,
+    `- Ready среди неслужебных: **${readyCoverage.ready}/${readyCoverage.total} (${readyCoverage.percent}%)**`,
     `- Уникальных tags[]: **${tagsCount.size}**`,
     `- Уникальных machine_tags[]: **${machineTagsCount.size}**`,
     `- Покрытие алиасов из \`tags.yaml\`: **${aliasCoverage.used}/${aliasCoverage.total} (${aliasCoverage.percent}%)**`,
