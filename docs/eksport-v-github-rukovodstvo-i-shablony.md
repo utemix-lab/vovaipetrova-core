@@ -6,14 +6,14 @@ summary: >-
   чек-лист экспорта.
 tags:
   - Автоматизация
-  - Проектирование
   - Кодинг
+  - Проектирование
 machine_tags:
-  - theme/automation
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
+  - theme/automation
   - theme/dev
+  - theme/graphics
 status: review
 ---
 # Экспорт в GitHub — руководство и шаблоны

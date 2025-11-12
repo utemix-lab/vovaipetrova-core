@@ -4,24 +4,24 @@ slug: taksonomiya-i-tegi-26693f
 summary: '# Таксономия и теги'
 status: draft
 tags:
-  - проектирование
-  - дизайн
-  - автоматизация
-  - видеомонтаж
-  - кодинг
-  - ComfyUI
-  - StableDiffusion
-  - OpenAI
-  - Ollama
-  - NextJS
-  - FastAPI
+  - Автоматизация
+  - Видеомонтаж
+  - Дизайн
+  - Кодинг
+  - Проектирование
 machine_tags:
-  - tool/stable-diffusion
-  - tool/graphics
-  - tool/fastapi
+  - action/build
+  - action/edit
   - producer/openai
-  - tool/ollama
+  - product/services
+  - theme/automation
+  - theme/dev
+  - theme/graphics
+  - tool/fastapi
+  - tool/graphics
   - tool/nextjs
+  - tool/ollama
+  - tool/stable-diffusion
 ---
 # Таксономия и теги
 

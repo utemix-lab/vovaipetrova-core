@@ -5,13 +5,13 @@ summary: >-
   Дубликат профиля монтажёра «Васи» с описанием его ролей, форматов и
   инструментов.
 tags:
+  - Автоматизация
   - Видео
   - Дизайн
-  - Автоматизация
 machine_tags:
-  - theme/graphics
   - product/services
   - theme/automation
+  - theme/graphics
 status: review
 ---
 # Вася

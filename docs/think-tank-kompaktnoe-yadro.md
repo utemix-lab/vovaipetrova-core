@@ -9,13 +9,13 @@ tags:
   - Проектирование
   - UX
 machine_tags:
-  - theme/automation
   - action/build
-  - product/think-tank
-  - theme/dev
-  - theme/ux
   - product/services
+  - product/think-tank
+  - theme/automation
+  - theme/dev
   - theme/graphics
+  - theme/ux
 status: ready
 ---
 # Think Tank — компактное ядро

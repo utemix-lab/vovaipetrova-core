@@ -7,9 +7,9 @@ tags:
   - Автоматизация
   - Кодинг
 machine_tags:
+  - action/build
   - theme/automation
   - theme/dev
-  - action/build
 ---
 # Spec — Content linter и scaffold (черновик)
 

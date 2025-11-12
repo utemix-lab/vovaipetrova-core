@@ -5,15 +5,15 @@ summary: >-
   Фиксируем правила для видимых тегов и machine_tags, чтобы поддерживать единую
   фасетную модель.
 tags:
-  - Проектирование
   - Автоматизация
   - Кодинг
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
   - theme/dev
+  - theme/graphics
 status: ready
 ---
 # ADR — Политика тегов и фасетов

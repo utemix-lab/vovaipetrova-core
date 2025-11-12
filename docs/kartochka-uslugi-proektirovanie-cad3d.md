@@ -6,14 +6,14 @@ summary: >-
   техпак.
 status: ready
 tags:
-  - Проектирование
-  - Дизайн
   - Автоматизация
+  - Дизайн
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
+  - theme/graphics
 ---
 # Карточка услуги: Проектирование (CAD/3D)
 

@@ -5,13 +5,13 @@ summary: >-
   Портрет персонажа «Васи»: монтажёр и моушн-дизайнер с описанием ролей и
   инструментов.
 tags:
+  - Автоматизация
   - Видео
   - Дизайн
-  - Автоматизация
 machine_tags:
-  - theme/graphics
   - product/services
   - theme/automation
+  - theme/graphics
 status: ready
 ---
 # Вася

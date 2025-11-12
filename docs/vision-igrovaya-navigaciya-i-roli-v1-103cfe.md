@@ -5,14 +5,14 @@ summary: >-
   Альтернативный драфт игрового первого экрана с переключателями ролей и
   корзиной артефактов.
 tags:
-  - Проектирование
-  - Дизайн
   - Автоматизация
+  - Дизайн
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
+  - theme/graphics
 status: review
 ---
 # Vision — Игровая навигация и роли (V1)

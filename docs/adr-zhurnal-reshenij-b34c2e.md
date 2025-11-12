@@ -5,11 +5,11 @@ summary: >
   Корневой реестр архитектурных решений: формат записей, статусы и ссылки на
   связанные артефакты.
 tags:
-  - Проектирование
   - Автоматизация
+  - Проектирование
 machine_tags:
-  - product/services
   - action/build
+  - product/services
   - theme/automation
   - theme/graphics
 status: ready

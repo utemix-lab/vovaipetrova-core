@@ -7,16 +7,16 @@ summary: >-
 status: ready
 tags:
   - Автоматизация
-  - UX
   - Проектирование
+  - UX
 machine_tags:
-  - theme/automation
-  - theme/ux
-  - product/site
   - action/build
-  - theme/dev
   - product/services
+  - product/site
+  - theme/automation
+  - theme/dev
   - theme/graphics
+  - theme/ux
 ---
 # Навигация (техническая)
 

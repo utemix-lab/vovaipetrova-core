@@ -8,8 +8,8 @@ tags:
   - Figma
   - UX
 machine_tags:
-  - tool/figma
   - theme/ux
+  - tool/figma
 status: review
 ---
 # UI макет — шапка и первый экран (Static First)

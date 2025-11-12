@@ -9,10 +9,10 @@ tags:
   - Кодинг
   - UX
 machine_tags:
+  - action/build
   - theme/automation
   - theme/dev
   - theme/ux
-  - action/build
 status: ready
 ---
 # Spec — Normalize и политика имён

@@ -5,15 +5,15 @@ summary: >-
   Альтернативный вариант стратегии тестирования с перечислением видов проверок и
   критериев качества.
 tags:
-  - Проектирование
   - Автоматизация
   - Кодинг
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
   - theme/dev
+  - theme/graphics
 status: review
 ---
 # Тест‑стратегия и качество

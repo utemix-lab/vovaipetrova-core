@@ -3,14 +3,14 @@ title: TEMPLATE — Vision
 slug: template-vision
 summary: 'Базовый шаблон продуктового vision: замысел, метрики, ограничения и материалы.'
 tags:
-  - Проектирование
-  - Дизайн
   - Автоматизация
+  - Дизайн
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
+  - theme/graphics
 status: review
 ---
 # TEMPLATE — Vision

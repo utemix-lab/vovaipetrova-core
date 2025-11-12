@@ -6,16 +6,16 @@ summary: >-
   подсказки по ролям.
 status: ready
 tags:
-  - UX
-  - Дизайн
   - Автоматизация
+  - Дизайн
+  - UX
 machine_tags:
-  - theme/ux
-  - product/site
   - action/learn
+  - product/services
+  - product/site
   - theme/automation
   - theme/graphics
-  - product/services
+  - theme/ux
 ---
 # Навигация (пользовательская)
 

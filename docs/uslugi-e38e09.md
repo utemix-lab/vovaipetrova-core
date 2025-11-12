@@ -5,17 +5,16 @@ summary: >-
   Рабочий набросок каталога услуг: направления, процессы и чек-листы по
   видеопродакшну и дизайну.
 tags:
-  - Видео
-  - Дизайн
-  - Генерация_Видео
   - Автоматизация
+  - Видео
+  - Генерация_Видео
+  - Дизайн
   - Adobe
-  - Adobe_Photoshop
 machine_tags:
-  - theme/graphics
+  - producer/adobe
   - product/services
   - theme/automation
-  - producer/adobe
+  - theme/graphics
   - tool/adobe-photoshop
 status: review
 ---

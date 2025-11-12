@@ -5,12 +5,12 @@ summary: >
   Центральный узел проекта: объяснение замысла, роли ключевых артефактов и
   маршруты для быстрого погружения.
 tags:
-  - Проектирование
   - Автоматизация
   - Дизайн
+  - Проектирование
 machine_tags:
-  - product/services
   - action/build
+  - product/services
   - theme/automation
   - theme/graphics
 status: ready

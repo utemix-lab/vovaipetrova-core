@@ -6,16 +6,16 @@ summary: >-
   обслуживает система.
 status: ready
 tags:
-  - UX
-  - Проектирование
   - Автоматизация
+  - Проектирование
+  - UX
 machine_tags:
-  - theme/ux
-  - product/site
-  - theme/automation
   - action/build
   - product/services
+  - product/site
+  - theme/automation
   - theme/graphics
+  - theme/ux
 ---
 # Контент‑модель и маршруты
 

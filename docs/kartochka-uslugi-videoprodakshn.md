@@ -6,14 +6,14 @@ summary: >-
   публикации.
 status: ready
 tags:
+  - Автоматизация
   - Видео
   - Дизайн
-  - Автоматизация
 machine_tags:
-  - theme/graphics
-  - product/services
   - action/build
+  - product/services
   - theme/automation
+  - theme/graphics
 ---
 # Карточка услуги: Видеопродакшн
 

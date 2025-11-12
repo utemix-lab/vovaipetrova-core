@@ -6,12 +6,12 @@ summary: >
   GitHub и как сохраняем контекст.
 tags:
   - Автоматизация
-  - Проектирование
   - Кодинг
+  - Проектирование
 machine_tags:
-  - theme/automation
-  - product/services
   - action/build
+  - product/services
+  - theme/automation
   - theme/dev
   - theme/graphics
 status: ready

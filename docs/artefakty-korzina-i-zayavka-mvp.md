@@ -6,16 +6,16 @@ summary: >-
   автоматически подтягивает выбранные артефакты.
 status: ready
 tags:
-  - UX
   - Автоматизация
   - Дизайн
+  - UX
 machine_tags:
-  - theme/ux
-  - theme/automation
+  - action/build
   - product/artifacts
   - product/services
-  - action/build
+  - theme/automation
   - theme/graphics
+  - theme/ux
 ---
 # Артефакты — корзина и заявка (MVP)
 

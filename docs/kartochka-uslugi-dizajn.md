@@ -6,14 +6,14 @@ summary: >-
   ассетов.
 status: ready
 tags:
+  - Автоматизация
   - Дизайн
   - UX
-  - Автоматизация
 machine_tags:
-  - theme/graphics
-  - product/services
   - action/build
+  - product/services
   - theme/automation
+  - theme/graphics
   - theme/ux
 ---
 # Карточка услуги: Дизайн

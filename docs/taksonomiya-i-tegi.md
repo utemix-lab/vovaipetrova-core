@@ -5,17 +5,17 @@ summary: >
   Правила разметки контента: фасеты, видимые теги и машинотеги для стабильной
   навигации.
 tags:
-  - Проектирование
   - Автоматизация
-  - Дизайн
   - Видео
+  - Дизайн
+  - Проектирование
   - OpenAI
 machine_tags:
-  - product/services
   - action/build
+  - producer/openai
+  - product/services
   - theme/automation
   - theme/graphics
-  - producer/openai
 status: ready
 ---
 # Таксономия и теги

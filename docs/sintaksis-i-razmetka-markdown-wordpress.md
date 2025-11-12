@@ -5,20 +5,18 @@ summary: >-
   Памятка по Markdown: как готовить тексты для импорта в WordPress и не ломать
   автоматизацию.
 tags:
-  - UX
-  - Референсы
-  - Дизайн
   - Автоматизация
   - Генерация_Видео
+  - Дизайн
+  - Референсы
   - Adobe
-  - Adobe_Photoshop
 machine_tags:
-  - theme/ux
-  - theme/references
-  - theme/graphics
+  - producer/adobe
   - product/services
   - theme/automation
-  - producer/adobe
+  - theme/graphics
+  - theme/references
+  - theme/ux
   - tool/adobe-photoshop
 status: review
 ---
