@@ -1,8 +1,7 @@
 ---
 title: Spec — Content linter и scaffold (черновик)
 slug: spec-content-linter-i-scaffold-chernovik
-summary: >-
-  План контент-линтера и генератора шаблонов: проверки, CLI и дальнейшие шаги.
+summary: 'План контент-линтера и генератора шаблонов: проверки, CLI и дальнейшие шаги.'
 status: ready
 tags:
   - Автоматизация

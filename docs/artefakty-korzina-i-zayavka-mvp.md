@@ -1,7 +1,9 @@
 ---
 title: Артефакты — корзина и заявка (MVP)
 slug: artefakty-korzina-i-zayavka-mvp
-summary: Игровая витрина, где клиент собирает услуги и кейсы в корзину, а заявка автоматически подтягивает выбранные артефакты.
+summary: >-
+  Игровая витрина, где клиент собирает услуги и кейсы в корзину, а заявка
+  автоматически подтягивает выбранные артефакты.
 status: ready
 tags:
   - UX
@@ -13,6 +15,7 @@ machine_tags:
   - product/artifacts
   - product/services
   - action/build
+  - theme/graphics
 ---
 # Артефакты — корзина и заявка (MVP)
 

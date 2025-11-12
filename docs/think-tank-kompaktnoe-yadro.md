@@ -14,6 +14,8 @@ machine_tags:
   - product/think-tank
   - theme/dev
   - theme/ux
+  - product/services
+  - theme/graphics
 status: ready
 ---
 # Think Tank — компактное ядро

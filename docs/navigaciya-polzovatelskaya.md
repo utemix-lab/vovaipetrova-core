@@ -14,6 +14,8 @@ machine_tags:
   - product/site
   - action/learn
   - theme/automation
+  - theme/graphics
+  - product/services
 ---
 # Навигация (пользовательская)
 

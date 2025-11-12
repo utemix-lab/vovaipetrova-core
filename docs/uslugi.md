@@ -9,12 +9,17 @@ tags:
   - Дизайн
   - Видео
   - Автоматизация
+  - Adobe
+  - Adobe_Photoshop
+  - Генерация_Видео
 machine_tags:
   - product/services
   - theme/graphics
   - action/build
   - theme/automation
   - theme/ux
+  - producer/adobe
+  - tool/adobe-photoshop
 status: ready
 ---
 # Услуги

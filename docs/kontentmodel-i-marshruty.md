@@ -14,6 +14,8 @@ machine_tags:
   - product/site
   - theme/automation
   - action/build
+  - product/services
+  - theme/graphics
 ---
 # Контент‑модель и маршруты
 

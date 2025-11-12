@@ -14,6 +14,7 @@ machine_tags:
   - product/services
   - action/build
   - theme/automation
+  - theme/ux
 ---
 # Карточка услуги: Дизайн
 
