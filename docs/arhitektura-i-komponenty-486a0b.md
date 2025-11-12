@@ -4,17 +4,10 @@ slug: arhitektura-i-komponenty-486a0b
 summary: >
   Верхнеуровневая схема платформы: ключевые подсистемы, их обязанности и
   интерфейсы.
-tags:
-  - Автоматизация
-  - Кодинг
-  - Проектирование
-machine_tags:
-  - action/build
-  - product/services
-  - theme/automation
-  - theme/dev
-  - theme/graphics
+tags: []
+machine_tags: []
 status: ready
+service: true
 ---
 # Архитектура и компоненты
 

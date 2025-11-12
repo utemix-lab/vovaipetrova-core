@@ -4,17 +4,10 @@ slug: template-zadacha-dlya-ispolnitelya-cursoraider
 summary: >-
   Шаблон задачи для агентов Cursor/Aider: структура постановки, требования и
   чек-лист принятия.
-tags:
-  - Автоматизация
-  - Кодинг
-  - Проектирование
-machine_tags:
-  - action/build
-  - product/services
-  - theme/automation
-  - theme/dev
-  - theme/graphics
+tags: []
+machine_tags: []
 status: review
+service: true
 ---
 # TEMPLATE — Задача для исполнителя (Cursor/Aider)
 

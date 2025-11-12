@@ -1,10 +1,18 @@
 ---
 title: Интеграции с соцсетями
 slug: integracii-s-socsetyami
-summary: '# Интеграции с соцсетями'
+summary: >-
+  План интеграций и точки подключения. Списком + ссылки Что автоматизируем
+  сейчас, что вручную
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Публикация
+  - Контент
+  - Автоматизация
+machine_tags:
+  - action/publish
+  - product/kb
+  - theme/automation
 ---
 # Интеграции с соцсетями
 

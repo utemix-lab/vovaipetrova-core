@@ -1,10 +1,13 @@
 ---
 title: '[DATA] Модель данных'
 slug: data-model-dannyh-214280
-summary: '# [DATA] Модель данных'
+summary: >-
+  Модель данных, схемы и миграции. Таблица/Коллекция: поля, типы, индексы
+  MIG‑0001: описание, дата, up/down
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # [DATA] Модель данных
 

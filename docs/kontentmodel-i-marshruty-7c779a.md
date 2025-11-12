@@ -1,10 +1,14 @@
 ---
 title: Контент‑модель и маршруты
 slug: kontentmodel-i-marshruty-7c779a
-summary: '# Контент‑модель и маршруты'
+summary: >-
+  Контент‑модель сайта, страницы и маршруты. /artifacts — список артефактов
+  (гость/аккаунт), фильтры по типу и фасетам /artifacts/picker — шторка/страница
+  выбора из контента
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Контент‑модель и маршруты
 

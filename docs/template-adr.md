@@ -4,17 +4,10 @@ slug: template-adr
 summary: >-
   Шаблон ADR: блоки контекста, решения, последствий и статуса с ссылками на
   связанные материалы.
-tags:
-  - Автоматизация
-  - Кодинг
-  - Проектирование
-machine_tags:
-  - action/build
-  - product/services
-  - theme/automation
-  - theme/dev
-  - theme/graphics
+tags: []
+machine_tags: []
 status: review
+service: true
 ---
 # TEMPLATE — ADR
 

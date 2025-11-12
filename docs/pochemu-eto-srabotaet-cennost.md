@@ -1,10 +1,14 @@
 ---
 title: Почему это сработает — ценность
 slug: pochemu-eto-srabotaet-cennost
-summary: '# Почему это сработает — ценность'
+summary: >-
+  1) Антимаркетинг: честность и процесс 2) Open Source‑подход: доверие и рост
+  сообщества 3) Post‑Digital: технологии как язык
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Монтаж
+machine_tags:
+  - action/build
 ---
 # Почему это сработает — ценность
 

@@ -1,10 +1,19 @@
 ---
 title: Playbook — Роли
 slug: playbook-roli
-summary: '# Playbook — Роли'
+summary: >-
+  Пишет Vision, ADR, Specs в notion-brain Формирует Task spec Читает
+  notion-brain
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Процесс
+  - Контент
+  - Навигация
+machine_tags:
+  - action/build
+  - product/kb
+  - theme/ux
+  - product/site
 ---
 # Playbook — Роли
 

@@ -1,10 +1,13 @@
 ---
 title: Think Tank — витрина процесса
 slug: think-tank-vitrina-processa-cfb19b
-summary: '# Think Tank — витрина процесса'
+summary: >-
+  Витрина того, как строится проект: заметки, наброски, решения, эволюция.
+  Выжимки из дневника проекта Черновики, наброски, эксперименты
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Think Tank — витрина процесса
 

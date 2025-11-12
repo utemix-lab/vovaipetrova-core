@@ -4,16 +4,10 @@ slug: adr-tegi-i-fasety-b1150c
 summary: >
   Утверждаем фасетную модель тегов: видимые хэштеги, машинотеги и aliases для
   автоматической нормализации.
-tags:
-  - Автоматизация
-  - Дизайн
-  - Проектирование
-machine_tags:
-  - action/build
-  - product/services
-  - theme/automation
-  - theme/graphics
+tags: []
+machine_tags: []
 status: ready
+service: true
 ---
 # ADR — Теги и фасеты
 

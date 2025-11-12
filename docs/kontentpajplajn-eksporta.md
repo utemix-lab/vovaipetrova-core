@@ -1,10 +1,16 @@
 ---
 title: Контент‑пайплайн экспорта
 slug: kontentpajplajn-eksporta
-summary: '# Контент‑пайплайн экспорта'
+summary: >-
+  Из базы знаний формируем публикации для соцсетей. YouTube, Instagram,
+  Telegram, VK, X Пост, шорт/сториз, ролик 3–5 мин, лонгрид
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - База_знаний
+  - Сайт
+machine_tags:
+  - product/kb
+  - product/site
 ---
 # Контент‑пайплайн экспорта
 

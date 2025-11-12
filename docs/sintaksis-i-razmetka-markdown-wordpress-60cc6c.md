@@ -4,21 +4,10 @@ slug: sintaksis-i-razmetka-markdown-wordpress-60cc6c
 summary: >-
   Markdown-гайд для переноса материалов в WordPress с сохранением тегов и
   ссылок.
-tags:
-  - Автоматизация
-  - Генерация_Видео
-  - Дизайн
-  - Референсы
-  - тег
-machine_tags:
-  - producer/adobe
-  - product/services
-  - theme/automation
-  - theme/graphics
-  - theme/references
-  - theme/ux
-  - tool/adobe-photoshop
+tags: []
+machine_tags: []
 status: review
+service: true
 ---
 # Синтаксис и разметка — Markdown → WordPress
 
@@ -32,7 +21,7 @@ status: review
 - Списки: -, 1.
 - Код: `lang
 - Ссылки: [Текст](URL)
-- Изображения: ![alt](URL)
+- Изображения: ![alt](https://example.com/image.png)
 
 ### Теги и ссылки
 

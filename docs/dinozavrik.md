@@ -1,10 +1,17 @@
 ---
 title: Динозаврик
 slug: dinozavrik
-summary: '# Динозаврик'
+summary: >-
+  Архетип: Гость Голос и тон: Забавный прокрастинатор; приносит «интересные
+  штуки» Слои: Игровой, Театральный, Технический
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Контент
+  - Видео
+machine_tags:
+  - product/kb
+  - theme/graphics
+  - product/services
 ---
 # Динозаврик
 

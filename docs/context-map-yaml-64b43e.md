@@ -2,9 +2,12 @@
 title: context-map.yaml
 slug: context-map-yaml-64b43e
 service: true
-summary: '# context-map.yaml'
+summary: >-
+  ```yaml facets: theme: [theme/ml, theme/nlp, theme/graphics, theme/ux,
+  theme/automation]
 tags: []
 machine_tags: []
+status: draft
 ---
 # context-map.yaml
 

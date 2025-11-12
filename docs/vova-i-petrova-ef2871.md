@@ -1,10 +1,11 @@
 ---
 title: Вова и Петрова
 slug: vova-i-petrova-ef2871
-summary: '# Вова и Петрова'
+summary: "<aside> \U0001F9ED Каркас проекта. Это «ядро памяти» для быстрых погружений в контекст и стабильные якоря навигации."
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Вова и Петрова
 

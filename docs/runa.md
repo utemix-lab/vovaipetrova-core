@@ -1,10 +1,19 @@
 ---
 title: Руна
 slug: runa
-summary: '# Руна'
+summary: >-
+  Архетип: Гость Голос и тон: Спокойная, точная, немного инопланетная ирония
+  Слои: Игровой, Театральный, Технический
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Автоматизация
+  - Контент
+  - Навигация
+machine_tags:
+  - theme/automation
+  - product/kb
+  - theme/ux
+  - product/site
 ---
 # Руна
 

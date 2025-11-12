@@ -1,10 +1,18 @@
 ---
 title: Портфолио — структура
 slug: portfolio-struktura
-summary: '# Портфолио — структура'
+summary: >-
+  Как хранить и показывать кейсы и работы. Творческие, Коммерческие,
+  Исследовательские, Обучающие Название, дата, роль, задача
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Генерация_Видео
+  - Публикация
+  - Портфолио
+machine_tags:
+  - theme/graphics
+  - action/publish
+  - product/portfolio
 ---
 # Портфолио — структура
 

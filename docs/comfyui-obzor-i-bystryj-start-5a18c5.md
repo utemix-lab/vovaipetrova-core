@@ -4,16 +4,10 @@ slug: comfyui-obzor-i-bystryj-start-5a18c5
 summary: >
   Шпаргалка по настройке пайплайнов ComfyUI: пресеты, интеграции и контроль
   качества рендеров.
-tags:
-  - Дизайн
-  - ComfyUI
-  - Stable_Diffusion
-machine_tags:
-  - product/services
-  - theme/graphics
-  - tool/graphics
-  - tool/stable-diffusion
+tags: []
+machine_tags: []
 status: ready
+service: true
 ---
 # ComfyUI — обзор и быстрый старт
 

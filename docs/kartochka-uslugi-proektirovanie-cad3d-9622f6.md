@@ -1,10 +1,13 @@
 ---
 title: 'Карточка услуги: Проектирование (CAD/3D)'
 slug: kartochka-uslugi-proektirovanie-cad3d-9622f6
-summary: '# Карточка услуги: Проектирование (CAD/3D)'
+summary: >-
+  , role/client Проектирование предметов/помещений: эскиз → 3D/чертежи →
+  визуализация → техпак. Моделирование, чертежи, визуализация
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Карточка услуги: Проектирование (CAD/3D)
 

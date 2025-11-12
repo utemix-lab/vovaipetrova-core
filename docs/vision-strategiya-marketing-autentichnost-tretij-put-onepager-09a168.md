@@ -4,18 +4,10 @@ slug: vision-strategiya-marketing-autentichnost-tretij-put-onepager-09a168
 summary: >-
   Черновой конспект vision по балансировке маркетинга, аутентичности и третьего
   пути с метриками и рисками.
-tags:
-  - Автоматизация
-  - Дизайн
-  - Проектирование
-  - Референсы
-machine_tags:
-  - action/build
-  - product/services
-  - theme/automation
-  - theme/graphics
-  - theme/references
+tags: []
+machine_tags: []
 status: review
+service: true
 ---
 # Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)
 

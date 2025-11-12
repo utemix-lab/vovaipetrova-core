@@ -5,5 +5,6 @@ summary: '# ADR — Теги и фасеты'
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # ADR — Теги и фасеты

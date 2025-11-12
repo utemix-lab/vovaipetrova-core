@@ -1,10 +1,13 @@
 ---
 title: Ancy
 slug: ancy-b786fe
-summary: '# Ancy'
+summary: >-
+  Архетип: Гость Голос и тон: Вдумчивый, философичный, системный Слои: Игровой,
+  Театральный, Технический
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Ancy
 

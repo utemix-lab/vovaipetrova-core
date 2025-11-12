@@ -4,15 +4,10 @@ slug: vasya-a127c4
 summary: >-
   Дубликат профиля монтажёра «Васи» с описанием его ролей, форматов и
   инструментов.
-tags:
-  - Автоматизация
-  - Видео
-  - Дизайн
-machine_tags:
-  - product/services
-  - theme/automation
-  - theme/graphics
+tags: []
+machine_tags: []
 status: review
+service: true
 ---
 # Вася
 

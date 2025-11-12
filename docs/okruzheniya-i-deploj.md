@@ -1,10 +1,14 @@
 ---
 title: Окружения и деплой
 slug: okruzheniya-i-deploj
-summary: '# Окружения и деплой'
+summary: >-
+  Окружения, конфиги и процессы деплоя. Dev: локально Docker Compose Staging:
+  VPS Docker Compose, автодеплой из main
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Монтаж
+machine_tags:
+  - action/build
 ---
 # Окружения и деплой
 

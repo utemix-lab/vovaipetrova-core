@@ -1,10 +1,16 @@
 ---
 title: prototype
 slug: prototype
-summary: "# prototype\r\n\r\n### Статический прототип UI\r\n\r\n<aside>\r\n✅\r\n\r\nПамятка: перед пушем\r\n\r\n</aside>\r\n\r\n- [ ]  Скопировать/обновить файлы в репозитории по тем же путям: prototype/index.html, styles.css, app.js, data/*.json, assets/placeholders/*.pn"
+summary: '<aside> ✅ Памятка: перед пушем'
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Экспорт
+  - Навигация
+  - Процесс
+machine_tags:
+  - product/site
+  - theme/ux
+  - action/build
 ---
 # prototype
 

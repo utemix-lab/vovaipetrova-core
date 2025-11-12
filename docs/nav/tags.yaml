@@ -17,6 +17,10 @@ aliases:
   "Видеомонтаж":
     - action/edit
     - product/services
+  "Публикация":
+    - action/publish
+  "Обучение":
+    - action/learn
   "Дизайн":
     - theme/graphics
     - product/services
@@ -53,10 +57,39 @@ aliases:
     - action/build
   "Кодинг":
     - theme/dev
+  "Артефакты":
+    - product/artifacts
+  "База_знаний":
+    - product/kb
+  "Портфолио":
+    - product/portfolio
+  "Услуги":
+    - product/services
+  "Сайт":
+    - product/site
+  "Навигация":
+    - theme/ux
+    - product/site
+  Think_Tank:
+    - product/services
+  "Контент":
+    - product/kb
+  "Глоссарий":
+    - product/kb
+  "Дорожная_карта":
+    - product/artifacts
+  "Процесс":
+    - action/build
+  "Экспорт":
+    - product/site
   OpenAI:
     - producer/openai
   Ollama:
     - tool/ollama
+  AfterEffects:
+    - tool/aftereffects
+  SketchUp:
+    - tool/sketchup
 
 canonical: {}
 

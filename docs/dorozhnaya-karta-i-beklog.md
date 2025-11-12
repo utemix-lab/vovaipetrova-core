@@ -1,10 +1,14 @@
 ---
 title: Дорожная карта и бэклог
 slug: dorozhnaya-karta-i-beklog
-summary: '# Дорожная карта и бэклог'
+summary: >-
+  Этапы, эпики и приоритеты работ. Этап 1: цели, критерии готовности Эпик →
+  задачи → связи с компонентами
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Артефакты
+machine_tags:
+  - product/artifacts
 ---
 # Дорожная карта и бэклог
 

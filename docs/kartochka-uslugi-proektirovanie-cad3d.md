@@ -5,15 +5,9 @@ summary: >-
   Проектирование предметов и пространств: эскиз → 3D → чертежи → визуализации и
   техпак.
 status: ready
-tags:
-  - Автоматизация
-  - Дизайн
-  - Проектирование
-machine_tags:
-  - action/build
-  - product/services
-  - theme/automation
-  - theme/graphics
+tags: []
+machine_tags: []
+service: true
 ---
 # Карточка услуги: Проектирование (CAD/3D)
 

@@ -4,15 +4,10 @@ slug: adr-zhurnal-reshenij-b34c2e
 summary: >
   Корневой реестр архитектурных решений: формат записей, статусы и ссылки на
   связанные артефакты.
-tags:
-  - Автоматизация
-  - Проектирование
-machine_tags:
-  - action/build
-  - product/services
-  - theme/automation
-  - theme/graphics
+tags: []
+machine_tags: []
 status: ready
+service: true
 ---
 # [ADR] Журнал решений
 
