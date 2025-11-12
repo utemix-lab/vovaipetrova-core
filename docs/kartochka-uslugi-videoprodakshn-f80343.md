@@ -1,10 +1,13 @@
 ---
 title: 'Карточка услуги: Видеопродакшн'
 slug: kartochka-uslugi-videoprodakshn-f80343
-summary: '# Карточка услуги: Видеопродакшн'
+summary: >-
+  , role/client Полный цикл: бриф → препродакшн → продакшн → пост → публикация.
+  Сценарий, раскадровка, подготовка съёмки
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Карточка услуги: Видеопродакшн
 

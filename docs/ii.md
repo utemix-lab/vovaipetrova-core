@@ -1,10 +1,18 @@
 ---
 title: ИИ
 slug: ii
-summary: '# ИИ'
+summary: >-
+  Архетип: ИИ (метаагент) Голос и тон: Лёгкая надменность к автору, юмор к
+  коллегам, уважение к аудитории Слои: Игровой, Театральный, Технический
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - OpenAI
+  - Автоматизация
+  - Контент
+machine_tags:
+  - producer/openai
+  - theme/automation
+  - product/kb
 ---
 # ИИ
 

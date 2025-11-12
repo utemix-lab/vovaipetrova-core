@@ -1,10 +1,11 @@
 ---
 title: Глоссарий терминов
 slug: glossarij-terminov-c32542
-summary: '# Глоссарий терминов'
+summary: 'Ключевые термины и сокращения проекта. Термин: определение Аббр.: расшифровка'
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Глоссарий терминов
 

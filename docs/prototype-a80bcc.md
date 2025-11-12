@@ -1,10 +1,11 @@
 ---
 title: prototype
 slug: prototype-a80bcc
-summary: '# prototype'
+summary: '<aside> ✅ Памятка: перед пушем'
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # prototype
 

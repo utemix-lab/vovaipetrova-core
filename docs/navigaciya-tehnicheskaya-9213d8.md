@@ -1,16 +1,14 @@
 ---
 title: Навигация (техническая)
 slug: navigaciya-tehnicheskaya-9213d8
-summary: '# Навигация (техническая)'
+summary: >-
+  Технический слой навигации: внутренняя таксономия, метки и правила, которые
+  питают пользовательские фасеты и поиск. Контролируемый словарь
+  слагифицированных меток Иерархии: тип → подтип, часть ↔ целое
 status: draft
-tags:
-  - Генерация_Видео
-  - Adobe
-  - Adobe_Photoshop
-machine_tags:
-  - producer/adobe
-  - theme/graphics
-  - tool/adobe-photoshop
+tags: []
+machine_tags: []
+service: true
 ---
 # Навигация (техническая)
 

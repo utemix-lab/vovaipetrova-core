@@ -1,7 +1,7 @@
 ---
 title: Индекс сайта
 slug: indeks-sajta
-summary: '# Индекс сайта'
+summary: '--- --- Формат slug: theme/ml, tool/stable-diffusion, role/client'
 status: draft
 tags:
   - Генерация_Видео

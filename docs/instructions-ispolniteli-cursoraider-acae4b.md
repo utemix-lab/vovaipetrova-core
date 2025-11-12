@@ -1,10 +1,13 @@
 ---
 title: Instructions — Исполнители (Cursor/Aider)
 slug: instructions-ispolniteli-cursoraider-acae4b
-summary: '# Instructions — Исполнители (Cursor/Aider)'
+summary: >-
+  1) Прочитайте папку notion-brain/ (ADR, Specs, context-map.yaml) 2) Вносите
+  изменения ТОЛЬКО в: docs/ (контентные .md)
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Instructions — Исполнители (Cursor/Aider)
 

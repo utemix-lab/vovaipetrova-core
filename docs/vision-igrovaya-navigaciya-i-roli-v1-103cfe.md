@@ -4,16 +4,10 @@ slug: vision-igrovaya-navigaciya-i-roli-v1-103cfe
 summary: >-
   Альтернативный драфт игрового первого экрана с переключателями ролей и
   корзиной артефактов.
-tags:
-  - Автоматизация
-  - Дизайн
-  - Проектирование
-machine_tags:
-  - action/build
-  - product/services
-  - theme/automation
-  - theme/graphics
+tags: []
+machine_tags: []
 status: review
+service: true
 ---
 # Vision — Игровая навигация и роли (V1)
 

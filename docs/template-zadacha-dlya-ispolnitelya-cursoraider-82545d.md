@@ -4,17 +4,10 @@ slug: template-zadacha-dlya-ispolnitelya-cursoraider-82545d
 summary: >-
   Дубликат шаблона задачи для Cursor/Aider с блоками контекста, требований и
   чек-листа.
-tags:
-  - Автоматизация
-  - Кодинг
-  - Проектирование
-machine_tags:
-  - action/build
-  - product/services
-  - theme/automation
-  - theme/dev
-  - theme/graphics
+tags: []
+machine_tags: []
 status: review
+service: true
 ---
 # TEMPLATE — Задача для исполнителя (Cursor/Aider)
 

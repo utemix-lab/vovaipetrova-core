@@ -1,10 +1,14 @@
 ---
 title: Текущие задачи
 slug: tekushie-zadachi-4ab1b1
-summary: '# Текущие задачи'
+summary: >-
+  [ ]  Поднять GitHub Pages из /prototype (ручной деплой) [ ]  Импорт Notion →
+  docs: починить распаковку (двойной ZIP), нормализатор [ ]  Настроить фильтр
+  триггера деплоя (только prototype/)
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Текущие задачи
 

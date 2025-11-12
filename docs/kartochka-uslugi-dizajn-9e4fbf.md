@@ -1,10 +1,13 @@
 ---
 title: 'Карточка услуги: Дизайн'
 slug: kartochka-uslugi-dizajn-9e4fbf
-summary: '# Карточка услуги: Дизайн'
+summary: >-
+  , role/client Графдизайн и айдентика: концепт → макеты → гайд → экспорт
+  ассетов. Логотип/знак, палитра, типографика
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Карточка услуги: Дизайн
 

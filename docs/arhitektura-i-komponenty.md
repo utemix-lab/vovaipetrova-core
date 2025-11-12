@@ -1,10 +1,20 @@
 ---
 title: Архитектура и компоненты
 slug: arhitektura-i-komponenty
-summary: '# Архитектура и компоненты'
+summary: >-
+  Верхнеуровневая архитектура и список компонентов. Контуры систем и потоки
+  данных. COMP‑WebApp: Next.js/SSR, UI, маршруты, SEO
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Проектирование
+  - Кодинг
+  - Автоматизация
+machine_tags:
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/dev
+  - theme/automation
 ---
 # Архитектура и компоненты
 

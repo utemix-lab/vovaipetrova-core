@@ -1,10 +1,13 @@
 ---
 title: Петрова
 slug: petrova-6ab5c2
-summary: '# Петрова'
+summary: >-
+  Архетип: Визуал/Дизайн (Petrova) Голос и тон: Тёплая и острая,
+  художница‑аниматор Слои: Игровой, Театральный, Технический
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Петрова
 

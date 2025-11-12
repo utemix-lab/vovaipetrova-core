@@ -1,10 +1,11 @@
 ---
 title: Монетизация и уровни доступа
 slug: monetizaciya-i-urovni-dostupa-726e1d
-summary: '# Монетизация и уровни доступа'
+summary: Часть базы знаний Telegram‑боты Образовательный контент
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Монетизация и уровни доступа
 

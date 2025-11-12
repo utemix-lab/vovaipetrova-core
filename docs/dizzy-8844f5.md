@@ -1,10 +1,13 @@
 ---
 title: Dizzy
 slug: dizzy-8844f5
-summary: '# Dizzy'
+summary: >-
+  Архетип: Дизайн‑системы (Dizzy) Голос и тон: Игровой, меняющий облики;
+  креативный перфекционист Слои: Игровой, Театральный, Технический
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Dizzy
 

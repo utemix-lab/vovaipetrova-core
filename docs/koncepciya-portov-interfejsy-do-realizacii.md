@@ -1,10 +1,20 @@
 ---
 title: Концепция «портов» — интерфейсы до реализации
 slug: koncepciya-portov-interfejsy-do-realizacii
-summary: '# Концепция «портов» — интерфейсы до реализации'
+summary: >-
+  Проектируем точки подключения заранее через переменные окружения и конфиги.
+  ```json {
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Автоматизация
+  - Проектирование
+  - Кодинг
+machine_tags:
+  - theme/automation
+  - product/services
+  - theme/graphics
+  - action/build
+  - theme/dev
 ---
 # Концепция «портов» — интерфейсы до реализации
 

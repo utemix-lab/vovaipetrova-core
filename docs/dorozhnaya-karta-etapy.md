@@ -1,10 +1,12 @@
 ---
 title: Дорожная карта (этапы)
 slug: dorozhnaya-karta-etapy
-summary: '# Дорожная карта (этапы)'
+summary: '[x]  Letta + MCP‑серверы [x]  Структура Core Memory [x]  GitHub think‑tank'
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Артефакты
+machine_tags:
+  - product/artifacts
 ---
 # Дорожная карта (этапы)
 

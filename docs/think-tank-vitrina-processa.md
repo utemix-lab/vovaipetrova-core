@@ -1,10 +1,16 @@
 ---
 title: Think Tank — витрина процесса
 slug: think-tank-vitrina-processa
-summary: "# Think Tank — витрина процесса\r\n\r\n### TL;DR\r\n\r\nПроцесс работы: [Процесс: Обсудили → Разложили → Связали](process-obsudili-razlozhili-svyazali.md)"
+summary: >-
+  Витрина того, как строится проект: заметки, наброски, решения, эволюция.
+  Выжимки из дневника проекта Черновики, наброски, эксперименты
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Айдентика
+  - Монтаж
+machine_tags:
+  - product/services
+  - action/build
 ---
 # Think Tank — витрина процесса
 

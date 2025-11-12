@@ -1,10 +1,14 @@
 ---
 title: Метрики успеха
 slug: metriki-uspeha
-summary: '# Метрики успеха'
+summary: >-
+  Скорость погружения в контекст < 1 мин Автоматизация публикаций ≥ 80% Покрытие
+  актуальных технологий
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Автоматизация
+machine_tags:
+  - theme/automation
 ---
 # Метрики успеха
 

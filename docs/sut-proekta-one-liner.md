@@ -1,10 +1,17 @@
 ---
 title: Суть проекта — One-liner
 slug: sut-proekta-one-liner
-summary: '# Суть проекта — One-liner'
+summary: >-
+  Автоматизированная система сбора и структуризации знаний о нейросетях с
+  театральным слоем, где AI‑персонажи создают контент о собственном создании.
+  Уникальность: «рекурсивный театр» — процесс создавЂ¦
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - База_знаний
+  - Монтаж
+machine_tags:
+  - product/kb
+  - action/build
 ---
 # Суть проекта — One-liner
 

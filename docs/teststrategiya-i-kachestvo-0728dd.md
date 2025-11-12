@@ -4,17 +4,10 @@ slug: teststrategiya-i-kachestvo-0728dd
 summary: >-
   Альтернативный вариант стратегии тестирования с перечислением видов проверок и
   критериев качества.
-tags:
-  - Автоматизация
-  - Кодинг
-  - Проектирование
-machine_tags:
-  - action/build
-  - product/services
-  - theme/automation
-  - theme/dev
-  - theme/graphics
+tags: []
+machine_tags: []
 status: review
+service: true
 ---
 # Тест‑стратегия и качество
 

@@ -5,5 +5,6 @@ summary: '# Instructions — Исполнители (Cursor/Aider)'
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Instructions — Исполнители (Cursor/Aider)

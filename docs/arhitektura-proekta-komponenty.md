@@ -1,10 +1,14 @@
 ---
 title: Архитектура проекта — компоненты
 slug: arhitektura-proekta-komponenty
-summary: '# Архитектура проекта — компоненты'
+summary: >-
+  1) База знаний Формат исходных материалов: Markdown/YAML Структура: теги, граф
+  связей
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - База_знаний
+machine_tags:
+  - product/kb
 ---
 # Архитектура проекта — компоненты
 

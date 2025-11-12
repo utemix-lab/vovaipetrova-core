@@ -1,10 +1,15 @@
 ---
 title: Технический стек и инфраструктура
 slug: tehnicheskij-stek-i-infrastruktura
-summary: '# Технический стек и инфраструктура'
+summary: >-
+  AI‑платформа: Letta Cloud PRO, Claude Sonnet 4.5 MCP‑серверы: GitHub, Hugging
+  Face, Apify, DeepWiki Хранилища: GitHub (core), локальный Obsidian vault,
+  Think Tank ядро
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Айдентика
+machine_tags:
+  - product/services
 ---
 # Технический стек и инфраструктура
 

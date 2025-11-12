@@ -5,5 +5,6 @@ summary: '# Spec — Front matter и слуги'
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Spec — Front matter и слуги

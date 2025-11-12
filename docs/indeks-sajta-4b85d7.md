@@ -1,16 +1,11 @@
 ---
 title: Индекс сайта
 slug: indeks-sajta-4b85d7
-summary: '# Индекс сайта'
+summary: '--- --- Формат slug: theme/ml, tool/stable-diffusion, role/client'
 status: draft
-tags:
-  - Генерация_Видео
-  - Adobe
-  - Adobe_Photoshop
-machine_tags:
-  - producer/adobe
-  - theme/graphics
-  - tool/adobe-photoshop
+tags: []
+machine_tags: []
+service: true
 ---
 # Индекс сайта
 

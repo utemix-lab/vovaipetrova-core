@@ -1,10 +1,14 @@
 ---
 title: TEMPLATE — PR чек‑лист
 slug: template-pr-cheklist-3a6077
-summary: '# TEMPLATE — PR чек‑лист'
+summary: >-
+  [ ]  Только нужные пути затронуты (docs/**, prototype/**,
+  .github/workflows/**, scripts/**) [ ]  Front matter валиден, нет пустых
+  slug/summary [ ]  Нет кракозябр в именах файлов; slug → kebab-case
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # TEMPLATE — PR чек‑лист
 

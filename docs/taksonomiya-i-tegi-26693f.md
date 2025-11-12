@@ -1,27 +1,14 @@
 ---
 title: Таксономия и теги
 slug: taksonomiya-i-tegi-26693f
-summary: '# Таксономия и теги'
+summary: >-
+  Единая система тегов и рубрик для навигации и фильтрации. 1) Рубрики:
+  Инструменты, Технологии, Шаблоны, Практики, Проекты 2) Подрубрики (пример):
+  Генерация изображений, Видео, Автоматизация, Код, ДвЂ¦
 status: draft
-tags:
-  - Автоматизация
-  - Видеомонтаж
-  - Дизайн
-  - Кодинг
-  - Проектирование
-machine_tags:
-  - action/build
-  - action/edit
-  - producer/openai
-  - product/services
-  - theme/automation
-  - theme/dev
-  - theme/graphics
-  - tool/fastapi
-  - tool/graphics
-  - tool/nextjs
-  - tool/ollama
-  - tool/stable-diffusion
+tags: []
+machine_tags: []
+service: true
 ---
 # Таксономия и теги
 

@@ -1,10 +1,13 @@
 ---
 title: CADрик
 slug: cadrik-b04be9
-summary: '# CADрик'
+summary: >-
+  Архетип: CAD/3D (Cadric) Голос и тон: Дотошный инженер, любит схемы и
+  TDD‑мышление Слои: Игровой, Театральный, Технический
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # CADрик
 

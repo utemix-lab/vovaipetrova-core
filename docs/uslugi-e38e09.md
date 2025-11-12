@@ -4,19 +4,10 @@ slug: uslugi-e38e09
 summary: >-
   Рабочий набросок каталога услуг: направления, процессы и чек-листы по
   видеопродакшну и дизайну.
-tags:
-  - Автоматизация
-  - Видео
-  - Генерация_Видео
-  - Дизайн
-  - Adobe
-machine_tags:
-  - producer/adobe
-  - product/services
-  - theme/automation
-  - theme/graphics
-  - tool/adobe-photoshop
+tags: []
+machine_tags: []
 status: review
+service: true
 ---
 # Услуги
 

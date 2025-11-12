@@ -4,17 +4,10 @@ slug: instrukcii-dlya-notion-ai-vovaipetrova-28ce52
 summary: >-
   Как Notion AI синхронизируется с GitHub: экспорт, структуры и страховка на
   случай сброса сессии.
-tags:
-  - Автоматизация
-  - Кодинг
-  - Проектирование
-machine_tags:
-  - action/build
-  - product/services
-  - theme/automation
-  - theme/dev
-  - theme/graphics
+tags: []
+machine_tags: []
 status: review
+service: true
 ---
 # Инструкции для Notion AI — vova_i_petrova
 

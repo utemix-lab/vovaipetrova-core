@@ -1,10 +1,13 @@
 ---
 title: '[API] Реестр и спецификации'
 slug: api-reestr-i-specifikacii-711159
-summary: '# [API] Реестр и спецификации'
+summary: >-
+  Реестр сервисов и спецификации API. api: REST API для контента и генерации
+  gen: эндпоинты очереди генерации
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # [API] Реестр и спецификации
 

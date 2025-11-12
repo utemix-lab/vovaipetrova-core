@@ -4,16 +4,10 @@ slug: spec-normalize-i-politika-imyon-c9023c
 summary: >-
   Правила нормализации экспорта из Notion: как работает скрипт и какие
   ограничения на slug.
-tags:
-  - Автоматизация
-  - Кодинг
-  - UX
-machine_tags:
-  - action/build
-  - theme/automation
-  - theme/dev
-  - theme/ux
+tags: []
+machine_tags: []
 status: ready
+service: true
 ---
 # Spec — Normalize и политика имён
 

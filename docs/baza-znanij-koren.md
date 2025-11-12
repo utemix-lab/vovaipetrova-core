@@ -1,10 +1,18 @@
 ---
 title: База знаний — корень
 slug: baza-znanij-koren
-summary: '# База знаний — корень'
+summary: >-
+  Центральный узел для тысяч страниц по инструментам и технологиям. Карточки
+  инструментов по шаблону Рубрики и теги для фильтрации
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Автоматизация
+  - Обучение
+  - База_знаний
+machine_tags:
+  - theme/automation
+  - action/learn
+  - product/kb
 ---
 # База знаний — корень
 

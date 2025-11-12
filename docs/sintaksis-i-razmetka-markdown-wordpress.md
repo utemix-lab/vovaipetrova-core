@@ -32,7 +32,7 @@ status: review
 - Списки: -, 1.
 - Код: `lang
 - Ссылки: [Текст](URL)
-- Изображения: ![alt](URL)
+- Изображения: ![alt](https://example.com/image.png)
 
 ### Теги и ссылки
 

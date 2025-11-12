@@ -2,9 +2,13 @@
 title: notion-brain
 slug: notion-brain-108a7f
 service: true
-summary: '# notion-brain'
+summary: >-
+  Мини‑пакет архитектуры и правил проекта для исполнителей
+  (Cursor/Aider/Windsurf) и GitHub Actions. Зеркалируется в репозиторий в папку
+  notion-brain/. Содержит: ADR (решения), Specs (требования), InвЂ¦
 tags: []
 machine_tags: []
+status: draft
 ---
 # notion-brain
 

@@ -1,10 +1,13 @@
 ---
 title: 'Шаблон: Карточка производителя'
 slug: shablon-kartochka-proizvoditelya-7ce17e
-summary: '# Шаблон: Карточка производителя'
+summary: >-
+  Название Тип: software | studio | label | festival | research | vendor Страна:
+  country/xx
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Шаблон: Карточка производителя
 

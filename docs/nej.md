@@ -1,10 +1,19 @@
 ---
 title: Нэй
 slug: nej
-summary: '# Нэй'
+summary: >-
+  Архетип: Графы (Nay) Голос и тон: Любопытный, азартный исследователь
+  визуальных графов Слои: Игровой, Театральный, Технический
 status: draft
-tags: []
-machine_tags: []
+tags:
+  - Генерация_Видео
+  - ComfyUI
+  - Автоматизация
+machine_tags:
+  - theme/graphics
+  - tool/stable-diffusion
+  - tool/graphics
+  - theme/automation
 ---
 # Нэй
 

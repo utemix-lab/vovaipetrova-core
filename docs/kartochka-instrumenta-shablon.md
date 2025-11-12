@@ -1,10 +1,13 @@
 ---
 title: Карточка инструмента — шаблон
 slug: kartochka-instrumenta-shablon
-summary: '# Карточка инструмента — шаблон'
+summary: >-
+  Кто это? Для чего? Когда использовать? Альтернативы. Название инструмента Тип:
+  SaaS / Open‑source / Desktop / Плагин
 status: draft
 tags: []
 machine_tags: []
+service: true
 ---
 # Карточка инструмента — шаблон
 
