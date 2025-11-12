@@ -16,7 +16,7 @@ machine_tags: []
 
 - [Карточка услуги: Видеопродакшн](arhitektura-i-komponenty-486a0b.md)
 - [Карточка услуги: Дизайн](arhitektura-i-komponenty-486a0b.md)
-- [Карточка услуги: Проектирование (CAD/3D)](%D0%9A%D0%B0%D1%80%D1%82%D0%BE%D1%87%D0%BA%D0%B0%20%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B8%20%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20(CAD%203D)%203d3a300e27fd4b5caff9825bc4d0e450.md)
+- [Карточка услуги: Проектирование (CAD/3D)](kartochka-uslugi-proektirovanie-cad3d.md)
 
 Игровая витрина с роль‑ориентированным UI и «корзиной артефактов». Пользователь собирает примеры работ и пунктов услуг, прикладывает к заявке. В заявке — текст + ссылки на выбранные артефакты.
 
@@ -67,5 +67,5 @@ machine_tags: []
 
 - [Контент‑модель и маршруты](arhitektura-i-komponenty-486a0b.md)
 - [Услуги](arhitektura-i-komponenty-486a0b.md)
-- [Навигация (пользовательская)](%D0%9D%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%86%D0%B8%D1%8F%20(%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F)%202ba5dd285a3643f788773751f6d24184.md)
-- [Навигация (техническая)](%D0%9D%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%86%D0%B8%D1%8F%20(%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F)%20103c222189b04e90a7529840e9faf9dc.md)
+- [Навигация (пользовательская)](navigaciya-polzovatelskaya.md)
+- [Навигация (техническая)](navigaciya-tehnicheskaya.md)

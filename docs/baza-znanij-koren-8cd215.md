@@ -10,7 +10,7 @@ machine_tags: []
 
 ### TL;DR
 
-Быстрый переход: [Индекс сайта](arhitektura-i-komponenty-486a0b.md) • [Навигация (пользовательская)](%D0%9D%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%86%D0%B8%D1%8F%20(%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F)%202ba5dd285a3643f788773751f6d24184.md) • [Портфолио — структура](arhitektura-i-komponenty-486a0b.md)
+Быстрый переход: [Индекс сайта](arhitektura-i-komponenty-486a0b.md) • [Навигация (пользовательская)](navigaciya-polzovatelskaya.md) • [Портфолио — структура](arhitektura-i-komponenty-486a0b.md)
 
 Метки: theme/automation, action/learn, product/kb
 

@@ -20,8 +20,8 @@ machine_tags: []
 - [Think Tank — компактное ядро](think-tank-kompaktnoe-yadro-1d36dd.md)
 - [[ADR] Журнал решений](adr-tegi-i-fasety-b1150c.md)
 - [Контент‑пайплайн экспорта](arhitektura-i-komponenty-486a0b.md)
-- [Дорожная карта (этапы)](%D0%94%D0%BE%D1%80%D0%BE%D0%B6%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20(%D1%8D%D1%82%D0%B0%D0%BF%D1%8B)%20e8df86bf68b84db692fd6f495c98edcd.md)
-- [Навигация (пользовательская)](%D0%9D%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%86%D0%B8%D1%8F%20(%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F)%202ba5dd285a3643f788773751f6d24184.md)
+- [Дорожная карта (этапы)](dorozhnaya-karta-etapy.md)
+- [Навигация (пользовательская)](navigaciya-polzovatelskaya.md)
     
     
 </aside>
@@ -56,7 +56,7 @@ machine_tags: []
 
 ### База знаний (индекс)
 
-[База знаний — Все материалы](%D0%91%D0%B0%D0%B7%D0%B0%20%D0%B7%D0%BD%D0%B0%D0%BD%D0%B8%D0%B9%20%E2%80%94%20%D0%92%D1%81%D0%B5%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%203690e47321a348049faab35fffa82ec5.csv)
+База знаний — Все материалы
 
 [Индекс и TL;DR](indeks-i-tldr-11ee74.md)
 
@@ -96,11 +96,11 @@ machine_tags: []
 
 [Портфолио — корень](arhitektura-i-komponenty-486a0b.md)
 
-[Навигация (пользовательская)](%D0%9D%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%86%D0%B8%D1%8F%20(%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F)%202ba5dd285a3643f788773751f6d24184.md)
+[Навигация (пользовательская)](navigaciya-polzovatelskaya.md)
 
 [Синтаксис и разметка — Markdown → WordPress](sintaksis-i-razmetka-markdown-wordpress-60cc6c.md)
 
-[База знаний](%D0%91%D0%B0%D0%B7%D0%B0%20%D0%B7%D0%BD%D0%B0%D0%BD%D0%B8%D0%B9%20dcec31887b6145d78d9096d911a951cb.csv)
+[База знаний](База знаний dcec31887b6145d78d9096d911a951cb.csv)
 
 [Суть проекта — One-liner](sut-proekta-one-liner-f9aa4d.md)
 
@@ -112,7 +112,7 @@ machine_tags: []
 
 [Концепция «портов» — интерфейсы до реализации](arhitektura-i-komponenty-486a0b.md)
 
-[Дорожная карта (этапы)](%D0%94%D0%BE%D1%80%D0%BE%D0%B6%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20(%D1%8D%D1%82%D0%B0%D0%BF%D1%8B)%20e8df86bf68b84db692fd6f495c98edcd.md)
+[Дорожная карта (этапы)](dorozhnaya-karta-etapy.md)
 
 [Метрики успеха](arhitektura-i-komponenty-486a0b.md)
 
@@ -120,7 +120,7 @@ machine_tags: []
 
 [Почему это сработает — ценность](arhitektura-i-komponenty-486a0b.md)
 
-[Персонажи (Агенты)](%D0%9F%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%B6%D0%B8%20(%D0%90%D0%B3%D0%B5%D0%BD%D1%82%D1%8B)%200ba2d281cd214cca8bd68868e56bfef4.csv)
+[Персонажи (Агенты)](Персонажи (Агенты) 0ba2d281cd214cca8bd68868e56bfef4.csv)
 
 [Экспорт в GitHub — руководство и шаблоны](eksport-v-github-rukovodstvo-i-shablony-007c56.md)
 
@@ -132,15 +132,15 @@ machine_tags: []
 
 [Процесс: Обсудили → Разложили → Связали](arhitektura-i-komponenty-486a0b.md)
 
-[Навигация (техническая)](%D0%9D%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%86%D0%B8%D1%8F%20(%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F)%20103c222189b04e90a7529840e9faf9dc.md)
+[Навигация (техническая)](navigaciya-tehnicheskaya.md)
 
-[Артефакты — корзина и заявка (MVP)](%D0%90%D1%80%D1%82%D0%B5%D1%84%D0%B0%D0%BA%D1%82%D1%8B%20%E2%80%94%20%D0%BA%D0%BE%D1%80%D0%B7%D0%B8%D0%BD%D0%B0%20%D0%B8%20%D0%B7%D0%B0%D1%8F%D0%B2%D0%BA%D0%B0%20(MVP)%20721d156e169a445da062d65dd834e105.md)
+[Артефакты — корзина и заявка (MVP)](artefakty-korzina-i-zayavka-mvp.md)
 
 [Шаблон: Карточка страны](arhitektura-i-komponenty-486a0b.md)
 
 [Шаблон: Карточка производителя](arhitektura-i-komponenty-486a0b.md)
 
-[UI макет — шапка и первый экран (Static First)](UI%20%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%20%E2%80%94%20%D1%88%D0%B0%D0%BF%D0%BA%D0%B0%20%D0%B8%20%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%20(Static%20First)%200b7377b4b3dc4b6ba237a19156c3a518.md)
+[UI макет — шапка и первый экран (Static First)](ui-maket-shapka-i-pervyj-ekran-static-first.md)
 
 [prototype](prototype-a80bcc.md)
 
@@ -154,8 +154,8 @@ machine_tags: []
 
 [Spec — Normalize и политика имён](spec-normalize-i-politika-imyon-c9023c.md)
 
-[Instructions — Исполнители (Cursor/Aider)](Instructions%20%E2%80%94%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D0%BD%D0%B8%D1%82%D0%B5%D0%BB%D0%B8%20(Cursor%20Aider)%20acae4b7404f54cd096ebfce6a48aa7ea.md)
+[Instructions — Исполнители (Cursor/Aider)](instructions-ispolniteli-cursoraider.md)
 
 [context-map.yaml](context-mapyaml-64b43e.md)
 
-[README (notion-brain)](README%20(notion-brain)%20d26e746b68344869b2d57a84c76f3545.md)
+[README (notion-brain)](readme-notion-brain.md)
