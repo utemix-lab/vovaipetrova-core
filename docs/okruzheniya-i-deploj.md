@@ -2,6 +2,7 @@
 title: Окружения и деплой
 slug: okruzheniya-i-deploj
 summary: '# Окружения и деплой'
+status: draft
 tags: []
 machine_tags: []
 ---

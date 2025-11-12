@@ -2,6 +2,7 @@
 title: Нэй
 slug: nej
 summary: '# Нэй'
+status: draft
 tags: []
 machine_tags: []
 ---

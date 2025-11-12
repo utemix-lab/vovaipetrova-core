@@ -2,6 +2,7 @@
 title: Монетизация и уровни доступа
 slug: monetizaciya-i-urovni-dostupa-726e1d
 summary: '# Монетизация и уровни доступа'
+status: draft
 tags: []
 machine_tags: []
 ---

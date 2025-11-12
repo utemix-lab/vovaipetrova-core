@@ -2,6 +2,7 @@
 title: Почему это сработает — ценность
 slug: pochemu-eto-srabotaet-cennost-938a63
 summary: '# Почему это сработает — ценность'
+status: draft
 tags: []
 machine_tags: []
 ---

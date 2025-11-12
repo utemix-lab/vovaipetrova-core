@@ -2,6 +2,7 @@
 title: Метрики успеха
 slug: metriki-uspeha
 summary: '# Метрики успеха'
+status: draft
 tags: []
 machine_tags: []
 ---

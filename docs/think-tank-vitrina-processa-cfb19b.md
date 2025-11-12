@@ -2,6 +2,7 @@
 title: Think Tank — витрина процесса
 slug: think-tank-vitrina-processa-cfb19b
 summary: '# Think Tank — витрина процесса'
+status: draft
 tags: []
 machine_tags: []
 ---

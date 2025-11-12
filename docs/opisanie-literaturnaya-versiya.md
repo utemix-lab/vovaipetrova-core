@@ -2,6 +2,7 @@
 title: Описание — литературная версия
 slug: opisanie-literaturnaya-versiya
 summary: '# Описание — литературная версия'
+status: draft
 tags: []
 machine_tags: []
 ---

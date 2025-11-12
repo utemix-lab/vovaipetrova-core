@@ -2,6 +2,7 @@
 title: Дорожная карта и бэклог
 slug: dorozhnaya-karta-i-beklog
 summary: '# Дорожная карта и бэклог'
+status: draft
 tags: []
 machine_tags: []
 ---

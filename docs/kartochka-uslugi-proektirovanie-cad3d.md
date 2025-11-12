@@ -2,6 +2,7 @@
 title: 'Карточка услуги: Проектирование (CAD/3D)'
 slug: kartochka-uslugi-proektirovanie-cad3d
 summary: '# Карточка услуги: Проектирование (CAD/3D)'
+status: draft
 tags: []
 machine_tags: []
 ---

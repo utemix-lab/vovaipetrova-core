@@ -2,6 +2,7 @@
 title: Карточка инструмента — шаблон
 slug: kartochka-instrumenta-shablon
 summary: '# Карточка инструмента — шаблон'
+status: draft
 tags: []
 machine_tags: []
 ---

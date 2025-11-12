@@ -2,6 +2,7 @@
 title: Think Tank — витрина процесса
 slug: think-tank-vitrina-processa
 summary: "# Think Tank — витрина процесса\r\n\r\n### TL;DR\r\n\r\nПроцесс работы: [Процесс: Обсудили → Разложили → Связали](%D0%9F%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%20%D0%9E%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D0%BB%D0%B8%20%E2%86%92%20%D0%A0%D0%B0%D0%B7%D0%BB%D"
+status: draft
 tags: []
 machine_tags: []
 ---

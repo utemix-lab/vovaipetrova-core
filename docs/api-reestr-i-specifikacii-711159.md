@@ -2,6 +2,7 @@
 title: '[API] Реестр и спецификации'
 slug: api-reestr-i-specifikacii-711159
 summary: '# [API] Реестр и спецификации'
+status: draft
 tags: []
 machine_tags: []
 ---

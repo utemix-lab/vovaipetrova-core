@@ -2,6 +2,7 @@
 title: База знаний — корень
 slug: baza-znanij-koren-8cd215
 summary: '# База знаний — корень'
+status: draft
 tags: []
 machine_tags: []
 ---

@@ -2,6 +2,7 @@
 title: Руна
 slug: runa
 summary: '# Руна'
+status: draft
 tags: []
 machine_tags: []
 ---

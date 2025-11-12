@@ -2,6 +2,7 @@
 title: Артефакты — корзина и заявка (MVP)
 slug: artefakty-korzina-i-zayavka-mvp-925151
 summary: '# Артефакты — корзина и заявка (MVP)'
+status: draft
 tags: []
 machine_tags: []
 ---

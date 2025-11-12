@@ -2,6 +2,7 @@
 title: ADR — Source of truth и зеркалирование
 slug: adr-source-of-truth-i-zerkalirovanie-f649b1
 summary: '# ADR — Source of truth и зеркалирование'
+status: draft
 tags: []
 machine_tags: []
 ---

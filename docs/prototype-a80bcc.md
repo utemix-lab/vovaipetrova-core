@@ -2,6 +2,7 @@
 title: prototype
 slug: prototype-a80bcc
 summary: '# prototype'
+status: draft
 tags: []
 machine_tags: []
 ---

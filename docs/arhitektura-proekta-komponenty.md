@@ -2,6 +2,7 @@
 title: Архитектура проекта — компоненты
 slug: arhitektura-proekta-komponenty
 summary: '# Архитектура проекта — компоненты'
+status: draft
 tags: []
 machine_tags: []
 ---

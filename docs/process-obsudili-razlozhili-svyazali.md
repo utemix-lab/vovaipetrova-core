@@ -2,6 +2,7 @@
 title: 'Процесс: Обсудили → Разложили → Связали'
 slug: process-obsudili-razlozhili-svyazali
 summary: '# Процесс: Обсудили → Разложили → Связали'
+status: draft
 tags: []
 machine_tags: []
 ---

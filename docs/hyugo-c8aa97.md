@@ -2,6 +2,7 @@
 title: Хьюго
 slug: hyugo-c8aa97
 summary: '# Хьюго'
+status: draft
 tags: []
 machine_tags: []
 ---

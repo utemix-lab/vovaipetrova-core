@@ -2,6 +2,7 @@
 title: Instructions — Исполнители (Cursor/Aider)
 slug: instructions-ispolniteli-cursoraider
 summary: '# Instructions — Исполнители (Cursor/Aider)'
+status: draft
 tags: []
 machine_tags: []
 ---

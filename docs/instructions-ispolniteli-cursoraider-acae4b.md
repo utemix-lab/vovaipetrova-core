@@ -2,6 +2,7 @@
 title: Instructions — Исполнители (Cursor/Aider)
 slug: instructions-ispolniteli-cursoraider-acae4b
 summary: '# Instructions — Исполнители (Cursor/Aider)'
+status: draft
 tags: []
 machine_tags: []
 ---

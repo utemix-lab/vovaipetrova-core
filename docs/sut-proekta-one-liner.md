@@ -2,6 +2,7 @@
 title: Суть проекта — One-liner
 slug: sut-proekta-one-liner
 summary: '# Суть проекта — One-liner'
+status: draft
 tags: []
 machine_tags: []
 ---

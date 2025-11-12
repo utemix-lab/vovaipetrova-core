@@ -2,6 +2,7 @@
 title: '[DATA] Модель данных'
 slug: data-model-dannyh-214280
 summary: '# [DATA] Модель данных'
+status: draft
 tags: []
 machine_tags: []
 ---

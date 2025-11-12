@@ -2,6 +2,7 @@
 title: Архитектура и компоненты
 slug: arhitektura-i-komponenty
 summary: '# Архитектура и компоненты'
+status: draft
 tags: []
 machine_tags: []
 ---

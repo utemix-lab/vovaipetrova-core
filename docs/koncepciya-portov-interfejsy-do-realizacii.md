@@ -2,6 +2,7 @@
 title: Концепция «портов» — интерфейсы до реализации
 slug: koncepciya-portov-interfejsy-do-realizacii
 summary: '# Концепция «портов» — интерфейсы до реализации'
+status: draft
 tags: []
 machine_tags: []
 ---
