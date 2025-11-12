@@ -2,6 +2,7 @@
 title: Технический стек и инфраструктура
 slug: tehnicheskij-stek-i-infrastruktura-7fa814
 summary: '# Технический стек и инфраструктура'
+status: draft
 tags: []
 machine_tags: []
 ---

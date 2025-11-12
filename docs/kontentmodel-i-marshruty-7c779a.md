@@ -2,6 +2,7 @@
 title: Контент‑модель и маршруты
 slug: kontentmodel-i-marshruty-7c779a
 summary: '# Контент‑модель и маршруты'
+status: draft
 tags: []
 machine_tags: []
 ---

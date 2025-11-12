@@ -2,6 +2,7 @@
 title: Интеграции с соцсетями
 slug: integracii-s-socsetyami-aa8cb5
 summary: '# Интеграции с соцсетями'
+status: draft
 tags: []
 machine_tags: []
 ---

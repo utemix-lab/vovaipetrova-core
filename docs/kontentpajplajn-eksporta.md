@@ -2,6 +2,7 @@
 title: Контент‑пайплайн экспорта
 slug: kontentpajplajn-eksporta
 summary: '# Контент‑пайплайн экспорта'
+status: draft
 tags: []
 machine_tags: []
 ---

@@ -2,6 +2,7 @@
 title: Таксономия и теги
 slug: taksonomiya-i-tegi-26693f
 summary: '# Таксономия и теги'
+status: draft
 tags:
   - проектирование
   - дизайн

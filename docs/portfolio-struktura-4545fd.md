@@ -2,6 +2,7 @@
 title: Портфолио — структура
 slug: portfolio-struktura-4545fd
 summary: '# Портфолио — структура'
+status: draft
 tags: []
 machine_tags: []
 ---

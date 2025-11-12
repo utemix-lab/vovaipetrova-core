@@ -2,6 +2,7 @@
 title: Текущие задачи
 slug: tekushie-zadachi
 summary: '# Текущие задачи'
+status: draft
 tags: []
 machine_tags: []
 ---

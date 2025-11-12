@@ -2,6 +2,7 @@
 title: Вова и Петрова
 slug: vova-i-petrova-ef2871
 summary: '# Вова и Петрова'
+status: draft
 tags: []
 machine_tags: []
 ---

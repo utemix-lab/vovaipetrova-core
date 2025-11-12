@@ -2,6 +2,7 @@
 title: Петрова
 slug: petrova
 summary: '# Петрова'
+status: draft
 tags: []
 machine_tags: []
 ---

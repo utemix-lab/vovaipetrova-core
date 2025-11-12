@@ -2,6 +2,7 @@
 title: 'Карточка услуги: Дизайн'
 slug: kartochka-uslugi-dizajn
 summary: '# Карточка услуги: Дизайн'
+status: draft
 tags: []
 machine_tags: []
 ---

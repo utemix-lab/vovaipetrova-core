@@ -2,6 +2,7 @@
 title: Индекс и TL;DR
 slug: indeks-i-tldr-11ee74
 summary: '# Индекс и TL;DR'
+status: draft
 tags: []
 machine_tags: []
 ---

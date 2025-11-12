@@ -2,6 +2,7 @@
 title: Глоссарий терминов
 slug: glossarij-terminov-c32542
 summary: '# Глоссарий терминов'
+status: draft
 tags: []
 machine_tags: []
 ---

@@ -2,6 +2,7 @@
 title: Портфолио — корень
 slug: portfolio-koren-ac02dd
 summary: '# Портфолио — корень'
+status: draft
 tags: []
 machine_tags: []
 ---

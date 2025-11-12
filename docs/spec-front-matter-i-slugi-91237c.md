@@ -2,6 +2,7 @@
 title: Spec — Front matter и слуги
 slug: spec-front-matter-i-slugi-91237c
 summary: '# Spec — Front matter и слуги'
+status: draft
 tags:
   - UX
   - Генерация_Видео

@@ -2,6 +2,7 @@
 title: ADR — Теги и фасеты
 slug: adr-tegi-i-fasety
 summary: "# ADR — Теги и фасеты\r\n\r\n### Решение: модель навигации\r\n\r\n- Фасеты: theme/*, action/*, product/*, tool/*, role/*, country/*, producer/*\r\n- Видимые хэштеги: TitleCase_с_подчёркиваниями (#Adobe_Photoshop)\r\n- Машинотеги: живут в front matter ("
+status: draft
 tags: []
 machine_tags: []
 ---

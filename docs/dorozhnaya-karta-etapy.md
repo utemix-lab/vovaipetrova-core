@@ -2,6 +2,7 @@
 title: Дорожная карта (этапы)
 slug: dorozhnaya-karta-etapy
 summary: '# Дорожная карта (этапы)'
+status: draft
 tags: []
 machine_tags: []
 ---

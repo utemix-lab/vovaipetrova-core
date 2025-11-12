@@ -2,6 +2,7 @@
 title: TEMPLATE — PR чек‑лист
 slug: template-pr-cheklist-3a6077
 summary: '# TEMPLATE — PR чек‑лист'
+status: draft
 tags: []
 machine_tags: []
 ---

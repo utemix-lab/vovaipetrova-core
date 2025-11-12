@@ -2,6 +2,7 @@
 title: 'Шаблон: Карточка производителя'
 slug: shablon-kartochka-proizvoditelya
 summary: '# Шаблон: Карточка производителя'
+status: draft
 tags: []
 machine_tags: []
 ---

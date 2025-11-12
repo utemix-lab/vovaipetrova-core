@@ -2,6 +2,7 @@
 title: CADрик
 slug: cadrik-b04be9
 summary: '# CADрик'
+status: draft
 tags: []
 machine_tags: []
 ---

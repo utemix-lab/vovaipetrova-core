@@ -2,6 +2,7 @@
 title: Индекс сайта
 slug: indeks-sajta-4b85d7
 summary: '# Индекс сайта'
+status: draft
 tags:
   - Adobe
   - Adobe_Photoshop

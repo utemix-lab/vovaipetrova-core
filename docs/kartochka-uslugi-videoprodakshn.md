@@ -2,6 +2,7 @@
 title: 'Карточка услуги: Видеопродакшн'
 slug: kartochka-uslugi-videoprodakshn
 summary: '# Карточка услуги: Видеопродакшн'
+status: draft
 tags: []
 machine_tags: []
 ---

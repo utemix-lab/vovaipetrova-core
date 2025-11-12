@@ -2,6 +2,7 @@
 title: Динозаврик
 slug: dinozavrik
 summary: '# Динозаврик'
+status: draft
 tags: []
 machine_tags: []
 ---

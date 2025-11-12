@@ -2,6 +2,7 @@
 title: Навигация (техническая)
 slug: navigaciya-tehnicheskaya-9213d8
 summary: '# Навигация (техническая)'
+status: draft
 tags:
   - Adobe
   - Adobe_Photoshop

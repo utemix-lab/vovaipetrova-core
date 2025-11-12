@@ -2,6 +2,7 @@
 title: ИИ
 slug: ii
 summary: '# ИИ'
+status: draft
 tags: []
 machine_tags: []
 ---

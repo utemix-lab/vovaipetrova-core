@@ -2,6 +2,7 @@
 title: 'Шаблон: Карточка страны'
 slug: shablon-kartochka-strany
 summary: '# Шаблон: Карточка страны'
+status: draft
 tags: []
 machine_tags: []
 ---
