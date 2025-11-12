@@ -2,39 +2,45 @@
 title: Spec — Normalize и политика имён
 slug: spec-normalize-i-politika-imyon-c9023c
 summary: >-
-  Актуальные правила нормализации экспорта Notion: что делает скрипт и какие
+  Правила нормализации экспорта из Notion: как работает скрипт и какие
   ограничения на slug.
 tags:
   - Автоматизация
   - Кодинг
   - UX
-  - Генерация_Видео
 machine_tags:
   - theme/automation
   - theme/dev
   - theme/ux
-  - theme/graphics
-status: review
+  - action/build
+status: ready
 ---
 # Spec — Normalize и политика имён
 
-### Цель
+## TL;DR
+- Скрипт `normalize.mjs` приводит экспорт к канону: slug, summary, теги.  
+- Алиасы из `docs/nav/tags.yaml` попадают в machine_tags.  
+- Стабильность путей гарантируется редиректами и запретом «ручных» переименований.  
+- Проверки ловят дубликаты slug и «кракозябр» в именах файлов.
 
-Единообразие md‑файлов и маршрутов после импорта Notion.
+## Политика нормализации
+- Распаковка архивов через `bsdtar` (поддержка двойного ZIP).  
+- Перенос видимых хэштегов в `tags[]`, машинных — в `machine_tags[]`.  
+- Автогенерация `title`, `slug`, `summary`, `status` по шаблонам.  
+- Переименование файла по slug → `kebab-case.md`.
 
-### Политика
+## Проверки
+- Отсутствие дубликатов slug в одном разделе.  
+- Unicode допускается, но slug только латиница + дефис.  
+- Проверка соответствия slug ↔ имя файла и ссылок внутри контента.
 
-- Распаковка: bsdtar, поддержка «двойного ZIP»
-- Нормализация: scripts/normalize.mjs
-    - перенос #UX, #Генерация_Видео из текста → tags[]
-    - дополнение machine_tags по aliases из context-map.yaml
-    - проставление title/slug/summary
-    - переименование файла по slug → `kebab-case.md`
-- Стабильность путей: не меняем slug без явной миграции (редиректы на уровне сборки)
+## Миграции и редиректы
+- Переименование slug требует миграции и обновления ссылок.  
+- Таблица редиректов хранится отдельно и загружается при сборке.  
+- На PR обязательно прикладываем список затронутых slug.
 
-### Проверки
-
-- Отсутствуют дубликаты slug в одном разделе
-- Нет «кракозябр» в названиях (Unicode → OK)
-
-Связано: [Spec — Front matter и слуги](spec-front-matter-i-slugi-91237c.md), [Spec — Normalize и политика имён](spec-normalize-i-politika-imyon.md), [README](../README.md)
+## Связано с…
+- [Spec — Front matter и слуги](spec-front-matter-i-slugi-91237c.md)
+- [Spec — Content linter и scaffold (черновик)](spec-content-linter-i-scaffold-chernovik.md)
+- [Process: Обсудили → Разложили → Связали](process-obsudili-razlozhili-svyazali.md)
+- [Навигация (техническая)](navigaciya-tehnicheskaya.md)

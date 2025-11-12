@@ -1,122 +1,57 @@
 ---
 title: Навигация (техническая)
 slug: navigaciya-tehnicheskaya
-summary: '# Навигация (техническая)'
-status: draft
+summary: Внутренняя таксономия и правила видимости, которые подпитывают фасеты, поиск и пользовательские маршруты.
+status: ready
 tags:
-  - Adobe
-  - Adobe_Photoshop
-  - Генерация_Видео
+  - Автоматизация
+  - UX
+  - Проектирование
 machine_tags:
-  - producer/adobe
-  - tool/adobe-photoshop
-  - theme/graphics
+  - theme/automation
+  - theme/ux
+  - product/site
+  - action/build
+  - theme/dev
 ---
 # Навигация (техническая)
 
-### TL;DR
+## TL;DR
+- Словарь slug и алиасов поддерживает единый UI и поиск.
+- Видимость регулируем по ролям и прячем `internal:*` из публичной витрины.
+- Линтер отслеживает сиротские теги, циклы и число ярлыков.
+- Индекс синхронизируем между Notion и GitHub перед релизом.
 
-Быстрый переход: [Индекс сайта](arhitektura-i-komponenty-486a0b.md) • [Навигация (пользовательская)](navigaciya-polzovatelskaya.md) • [Услуги](arhitektura-i-komponenty-486a0b.md)
+Быстрый переход: [Индекс сайта](indeks-sajta.md) • [Навигация (пользовательская)](navigaciya-polzovatelskaya.md) • [Услуги](uslugi.md)
 
-Технический слой навигации: внутренняя таксономия, метки и правила, которые питают пользовательские фасеты и поиск.
+## Таксономия и алиасы
+- Контролируемый словарь (`theme/*`, `action/*`, `product/*`, `tool/*`, `role/*`).
+- Структура: тип → подтип, часть ↔ целое, связи `related_to`, `depends_on`.
+- Алиасы переводят пользовательские ярлыки в канонический slug (например, «Дизайн» → `theme/graphics` + `product/services`).
 
-### Таксономия и метки
+## Политики видимости
+- Ролевые аудитории: `guest`, `client`, `editor`, `dev`.
+- `internal:*` остаются только в редакторском UI и скрыты от сайта.
+- На материал выводим до пяти видимых тегов, остальное уходит в `machine_tags`.
 
-- Контролируемый словарь слагифицированных меток
-- Иерархии: тип → подтип, часть ↔ целое
-- Связи: related_to, depends_on, alternative_of
+## Проверки и редиректы
+- Лимит ярлыков, поиск orphan-tags и циклов в иерархии.
+- Карта `canonical_slug ↔ aliases`, чтобы переименования не ломали ссылки.
+- Автоматическая сверка slug ↔ имя файла в normalize/линтере.
 
-### Политики видимости
+## Фасеты и модели
+- **Фасет «Страна» (`country/*`).** Обновляет агрегаторы производителей.
+- **Сущность «Производитель».** {name, logo, country, type, url, relations}.
+- **Стартовый словарь (~30 меток).** Темы, действия, продукты, роли, инструменты.
 
-- Видимость по ролям: гость, клиент, редактор, разработчик
-- Приватные internal:* метки скрыты от UI
-- Маппинг внутренних меток → пользовательские ярлыки и фасеты
+## Поиск и экспорт
+- Индекс учитывает синонимы и опечатки; ключевые материалы получают буст.
+- Экспорт и синхронизация: Notion → GitHub → статический сайт, единый source of truth.
+- Контент-линтер и normalize-скрипты обновляют сигнатуры перед PR.
 
-### Правила и валидаторы
-
-- Лимиты на число видимых ярлыков на материал
-- Проверки: сиротские метки, циклы в иерархии, конфликтующие синонимы
-- Редиректы и синонимы: canonical_slug ↔ aliases
-
-### Интеграции и индекс
-
-### Стартовый словарь тегов (~30)
-
-- Тема (theme/*): theme/ml, theme/nlp, theme/graphics, theme/ux, theme/automation
-- Действие (action/*): action/learn, action/build, action/evaluate, action/publish, action/debug
-- Роль (role/*): role/novice, role/client, role/dev, role/editor
-- Продукт/Модуль (product/*): product/site, product/think-tank, product/kb, product/portfolio, product/artifacts, product/services
-- Технология/Инструмент (tool/*): tool/nextjs, tool/fastapi, tool/wordpress, tool/transformers, tool/stable-diffusion, tool/figma, tool/photoshop, tool/illustrator, tool/aftereffects, tool/premiere, tool/davinci, tool/blender, tool/sketchup, tool/cad
-
-Синонимы/алиасы (пример):
-
-- theme/ml ↔ ["машинное обучение", "ML"]
-- theme/graphics ↔ ["графика", "визуал"]
-- action/build ↔ ["сделать", "реализовать", "построить"]
-- action/publish ↔ ["опубликовать", "релиз"]
-- product/think-tank ↔ ["ФинкТенк", "Think Tank"]
-- product/artifacts ↔ ["корзина", "артефакты"]
-- tool/transformers ↔ ["HF Transformers", "Transformers"]
-- tool/stable-diffusion ↔ ["SD", "Stable Diffusion"]
-- tool/aftereffects ↔ ["AE", "After Effects"]
-- tool/davinci ↔ ["Resolve", "DaVinci"]
-
-Правила тегирования (кратко):
-
-Человеко‑читаемые хэштеги — стиль написания:
-
-- Формат: TitleCase с подчёркиваниями между словами. Примеры: #Adobe, #Adobe_Photoshop, #Генерация_Видео
-- Разрешённые символы: буквы, цифры, подчёркивание. Без пробелов и дефисов
-- Язык: используем язык страницы (рус/англ), без транслитерации. Машинные слаги живут отдельно (theme/*, tool/*)
-- Количество: 1–5 видимых тегов на страницу. Остальные — в machine_tags
-- На материал ставим: 1–3 theme, 1–2 action, 1 product, 0–5 tool, по необходимости role
-- role/* в основном на сервисные/гайдовые страницы
-- internal:* скрываем из UI, используем в логике видимости
-
-### Мини‑реестр меток и фасетов (стартовый)
-
-### Фасет «Страна» (country/*)
-
-- Примеры: country/ru, country/us, country/jp, country/de, country/gb
-- Использование: фильтры и агрегаторы по странам производителей
-
-### Сущность «Производитель» (черновик модели)
-
-- Поля: name, logo (image), country (country/*), type (software|studio|label|festival|research|vendor), url
-- Связи: materials (relation), tools (relation)
-- Витрина: логотип как кликабельный ярлык → карточка производителя; флаг как визуал country
-- Правило: флаг/логотип — это визуал и навигация, не отдельные теги (метки: country/ *и producer/*)
-- Фасет «Тема» (theme/*): theme/ml, theme/nlp, theme/graphics, theme/automation, theme/ux
-- Фасет «Действие» (action/*): action/learn, action/build, action/evaluate, action/publish, action/debug
-- Фасет «Роль» (role/*): role/guest, role/client, role/editor, role/dev, role/student
-- Фасет «Продукт/Модуль» (product/*): product/site, product/think-tank, product/kb, product/portfolio, product/export
-- Фасет «Технологии/Инструменты» (tool/*): tool/transformers, tool/stable-diffusion, tool/nextjs, tool/fastapi, tool/wordpress
-
-Примеры маппинга в UI:
-
-- internal:theme/ml → ярлык «Машинное обучение» в фасете «Тема»
-- internal:action/learn → «Обучение» в фасете «Действие»
-- internal:role/client → скрыт для гостей, видим клиентам
-
-Политики видимости (по умолчанию):
-
-- theme/*, action/*, product/*, tool/* → audience: ["guest", "client", "editor", "dev"]
-- role/* → audience: ["client", "editor", "dev"]
-
-Синонимы (aliases):
-
-- theme/ml ↔ ["машинное обучение", "ML"]
-- tool/transformers ↔ ["HF Transformers", "Transformers"]
-- product/think-tank ↔ ["ФинкТенк", "Think Tank"]
-- Поисковый индекс: буст ключевых материалов, синонимы, опечатки
-- Экспорт/синхронизация: Notion → GitHub → сайт (маршруты)
-
----
-
-### Связано с…
-
+## Связано с…
 - [Навигация (пользовательская)](navigaciya-polzovatelskaya.md)
-- [Услуги](arhitektura-i-komponenty-486a0b.md)
-- [Think Tank — компактное ядро](think-tank-kompaktnoe-yadro-1d36dd.md)
-- [Индекс сайта](arhitektura-i-komponenty-486a0b.md)
-- [Контент‑модель и маршруты](arhitektura-i-komponenty-486a0b.md)
+- [Контент-модель и маршруты](kontentmodel-i-marshruty.md)
+- [Think Tank — компактное ядро](think-tank-kompaktnoe-yadro.md)
+- [Артефакты — корзина и заявка (MVP)](artefakty-korzina-i-zayavka-mvp.md)
+- [Spec — Normalize и политика имён](spec-normalize-i-politika-imyon-c9023c.md)
