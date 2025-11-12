@@ -6,14 +6,14 @@ summary: >-
   данные с GitHub.
 tags:
   - Автоматизация
-  - Проектирование
   - Кодинг
+  - Проектирование
 machine_tags:
-  - theme/automation
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
+  - theme/automation
   - theme/dev
+  - theme/graphics
 status: review
 ---
 # Инструкции для Notion AI — vova_i_petrova

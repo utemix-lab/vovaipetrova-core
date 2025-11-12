@@ -5,12 +5,12 @@ summary: >
   Верхнеуровневая схема платформы: ключевые подсистемы, их обязанности и
   интерфейсы.
 tags:
-  - Проектирование
   - Автоматизация
   - Кодинг
+  - Проектирование
 machine_tags:
-  - product/services
   - action/build
+  - product/services
   - theme/automation
   - theme/dev
   - theme/graphics

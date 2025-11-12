@@ -5,15 +5,15 @@ summary: >-
   Шаблон постановки технической задачи с путями правок, требованиями и
   чек-листом приёмки.
 tags:
-  - Проектирование
   - Автоматизация
   - Кодинг
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
   - theme/dev
+  - theme/graphics
 status: review
 ---
 # TEMPLATE — Task spec

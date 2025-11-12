@@ -5,15 +5,15 @@ summary: >-
   Шаблон задачи для агентов Cursor/Aider: структура постановки, требования и
   чек-лист принятия.
 tags:
-  - Проектирование
   - Автоматизация
   - Кодинг
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
   - theme/dev
+  - theme/graphics
 status: review
 ---
 # TEMPLATE — Задача для исполнителя (Cursor/Aider)

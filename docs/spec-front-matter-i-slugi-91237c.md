@@ -4,11 +4,11 @@ slug: spec-front-matter-i-slugi-91237c
 summary: '# Spec — Front matter и слуги'
 status: draft
 tags:
-  - UX
   - Генерация_Видео
+  - UX
 machine_tags:
-  - theme/ux
   - theme/graphics
+  - theme/ux
 ---
 # Spec — Front matter и слуги
 

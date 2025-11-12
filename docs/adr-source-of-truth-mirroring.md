@@ -5,15 +5,15 @@ summary: >-
   Закрепляем, что Notion остаётся авторским источником, а GitHub —
   контролируемым зеркалом с проверяемым импортом.
 tags:
-  - Проектирование
   - Автоматизация
   - Кодинг
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
   - theme/dev
+  - theme/graphics
 status: ready
 ---
 # ADR — Source of truth и зеркалирование

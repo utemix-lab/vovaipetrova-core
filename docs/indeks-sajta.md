@@ -4,13 +4,13 @@ slug: indeks-sajta
 summary: '# Индекс сайта'
 status: draft
 tags:
+  - Генерация_Видео
   - Adobe
   - Adobe_Photoshop
-  - Генерация_Видео
 machine_tags:
   - producer/adobe
-  - tool/adobe-photoshop
   - theme/graphics
+  - tool/adobe-photoshop
 ---
 # Индекс сайта
 

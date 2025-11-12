@@ -5,12 +5,12 @@ summary: >
   Утверждаем фасетную модель тегов: видимые хэштеги, машинотеги и aliases для
   автоматической нормализации.
 tags:
-  - Проектирование
   - Автоматизация
   - Дизайн
+  - Проектирование
 machine_tags:
-  - product/services
   - action/build
+  - product/services
   - theme/automation
   - theme/graphics
 status: ready

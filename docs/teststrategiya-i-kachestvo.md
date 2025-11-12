@@ -5,15 +5,15 @@ summary: >-
   Черновик стратегии тестирования: типы проверок, политики качества и
   нефункциональные требования для продукта.
 tags:
-  - Проектирование
   - Автоматизация
   - Кодинг
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
   - theme/dev
+  - theme/graphics
 status: review
 ---
 # Тест‑стратегия и качество

@@ -5,15 +5,15 @@ summary: >-
   Шаблон ADR: блоки контекста, решения, последствий и статуса с ссылками на
   связанные материалы.
 tags:
-  - Проектирование
   - Автоматизация
   - Кодинг
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
   - theme/dev
+  - theme/graphics
 status: review
 ---
 # TEMPLATE — ADR

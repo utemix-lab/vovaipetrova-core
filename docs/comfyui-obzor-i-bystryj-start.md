@@ -8,8 +8,8 @@ tags:
   - ComfyUI
   - Stable_Diffusion
 machine_tags:
-  - tool/stable-diffusion
   - tool/graphics
+  - tool/stable-diffusion
 status: ready
 ---
 # ComfyUI — обзор и быстрый старт

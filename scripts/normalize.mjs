@@ -49,17 +49,40 @@ function toSlugKebab(s) {
 }
 
 const TAGS_CANON = loadTagsCanon();
+const ALIAS_LOOKUP = new Map();
+if (TAGS_CANON?.aliases) {
+  for (const rawKey of Object.keys(TAGS_CANON.aliases)) {
+    const key = String(rawKey || '').trim();
+    if (!key) continue;
+    if (!ALIAS_LOOKUP.has(key)) ALIAS_LOOKUP.set(key, key);
+    const lower = key.toLowerCase();
+    if (!ALIAS_LOOKUP.has(lower)) ALIAS_LOOKUP.set(lower, key);
+  }
+}
+const TAGS_WARNINGS = new Map(); // tag -> Set<file>
+const STATS = {
+  filesProcessed: 0,
+  filesUpdated: 0,
+  tagsAdded: 0,
+  machineTagsAdded: 0,
+};
 
-function machineFromAliases(humanTags) {
+function machineFromAliases(humanTags, filePath) {
   const out = new Set();
   for (const ht of humanTags) {
-    const list = TAGS_CANON?.aliases?.[ht];
-    if (Array.isArray(list)) list.forEach(t => out.add(t));
+    const lookupKey = ALIAS_LOOKUP.get(ht) || ht;
+    const list = TAGS_CANON?.aliases?.[lookupKey];
+    if (Array.isArray(list) && list.length > 0) {
+      list.forEach(t => out.add(t));
+    } else if (filePath) {
+      if (!TAGS_WARNINGS.has(ht)) TAGS_WARNINGS.set(ht, new Set());
+      TAGS_WARNINGS.get(ht).add(filePath);
+    }
   }
   return [...out];
 }
 
-function extractHumanTags(content) {
+function extractHumanTags(content, { stripTrailingLine = true } = {}) {
   // Collect inline hashtags like #Title_Case (Unicode letters and digits)
   const inline = new Set();
   try {
@@ -70,6 +93,9 @@ function extractHumanTags(content) {
     }
   } catch {}
 
+  if (!stripTrailingLine) {
+    return { content, human: [...inline] };
+  }
   // Preserve behavior: remove a final hashtag-only line if present
   const lines = content.trimEnd().split('\n');
   let idx = -1;
@@ -89,6 +115,31 @@ function extractHumanTags(content) {
   const next = lines.slice(0, idx).join('\n').trimEnd() + '\n';
   const human = Array.from(new Set([...inline, ...tail]));
   return { content: next, human };
+}
+
+function normalizeVisibleTag(tag) {
+  const trimmed = String(tag || '').trim().replace(/^#/, '');
+  if (!trimmed) return '';
+  const lookupKey = ALIAS_LOOKUP.get(trimmed) || ALIAS_LOOKUP.get(trimmed.toLowerCase());
+  return lookupKey || trimmed;
+}
+
+function sortCaseAware(list) {
+  const collator = new Intl.Collator('ru', { sensitivity: 'base' });
+  return [...list].sort((a, b) => collator.compare(a, b) || a.localeCompare(b));
+}
+
+function uniqueCaseInsensitive(list) {
+  const seen = new Set();
+  const out = [];
+  for (const item of list) {
+    const key = item.toLowerCase();
+    if (key && !seen.has(key)) {
+      seen.add(key);
+      out.push(item);
+    }
+  }
+  return out;
 }
 
 function uniqueSuffixFromName(name) {
@@ -146,17 +197,54 @@ function ensureFrontMatter(filePath) {
     fm.title = h1 || parse(filePath).name;
   }
 
-  const { content: stripped, human } = extractHumanTags(content);
-  content = stripped;
+  const { content: stripped, human } = extractHumanTags(
+    content,
+    { stripTrailingLine: !TAGS_ONLY }
+  );
+  if (!TAGS_ONLY) {
+    content = stripped;
+  }
   const isService = fm.service === true || shouldMarkService(filePath, fm.title);
 
-  const baseTags = Array.isArray(fm.tags) ? fm.tags : [];
-  const tags = isService ? [] : Array.from(new Set([...baseTags, ...human]));
+  if (TAGS_ONLY && isService) {
+    return {
+      slug: fm.slug,
+      title: fm.title,
+      action: 'skip',
+      notion_page_id: fm.notion_page_id,
+      last_edited_time: fm.last_edited_time,
+      tags_count: Array.isArray(fm.tags) ? fm.tags.length : 0,
+      machine_tags_count: Array.isArray(fm.machine_tags) ? fm.machine_tags.length : 0,
+      tags_before: fm.tags || [],
+      tags_after: fm.tags || [],
+      machine_before: fm.machine_tags || [],
+      machine_after: fm.machine_tags || []
+    };
+  }
 
-  const baseMachine = Array.isArray(fm.machine_tags) ? fm.machine_tags : [];
-  const machine_tags = isService
-    ? []
-    : Array.from(new Set([...baseMachine, ...machineFromAliases(tags)]));
+  const baseTagsRaw = Array.isArray(fm.tags) ? fm.tags : [];
+  const baseTags = baseTagsRaw.map(normalizeVisibleTag).filter(Boolean);
+  const humanFromContent = human.map(normalizeVisibleTag).filter(Boolean);
+
+  let computedTags = baseTags;
+  if (!isService) {
+    computedTags = uniqueCaseInsensitive([...baseTags, ...humanFromContent]);
+    if (computedTags.length > 5) {
+      computedTags = sortCaseAware(computedTags).slice(0, 5);
+    } else {
+      computedTags = sortCaseAware(computedTags);
+    }
+  }
+
+  const baseMachineRaw = Array.isArray(fm.machine_tags) ? fm.machine_tags : [];
+  let machine_tags = baseMachineRaw.map(t => String(t || '').trim()).filter(Boolean);
+  if (!isService) {
+    const mapped = machineFromAliases(computedTags, filePath.replace(/\\+/g, '/'));
+    machine_tags = uniqueCaseInsensitive([...machine_tags, ...mapped.map(String)]);
+    machine_tags = sortCaseAware(machine_tags);
+  } else {
+    machine_tags = [];
+  }
 
   fm.slug = toSlugKebab(fm.slug || fm.title || parse(filePath).name)
     .replace(/mapyaml/g, 'map-yaml');
@@ -177,7 +265,7 @@ function ensureFrontMatter(filePath) {
     delete fm.service;
   }
 
-  if (!fm.summary) {
+  if (!fm.summary && !TAGS_ONLY) {
     const firstPara = content.split(/\n{2,}/).map(s => s.trim()).find(Boolean);
     if (firstPara) fm.summary = firstPara.slice(0, 240);
   }
@@ -187,7 +275,16 @@ function ensureFrontMatter(filePath) {
   if (fm.notion_page_id) preserved.notion_page_id = fm.notion_page_id;
   if (fm.last_edited_time) preserved.last_edited_time = fm.last_edited_time;
 
-  const next = matter.stringify(content, { ...fm, ...preserved, tags, machine_tags });
+  const nextData = { ...fm, ...preserved };
+  if (!isService) {
+    nextData.tags = computedTags;
+    nextData.machine_tags = machine_tags;
+  } else {
+    nextData.tags = [];
+    nextData.machine_tags = [];
+  }
+  const nextContent = TAGS_ONLY ? parsed.content : content;
+  const next = matter.stringify(nextContent, nextData);
   if (DRY_RUN) {
     console.log(`DRY: would update front matter for ${filePath} with slug="${fm.slug}"`);
   } else {
@@ -197,8 +294,8 @@ function ensureFrontMatter(filePath) {
   const after = {
     title: fm.title,
     slug: fm.slug,
-    tags,
-    machine_tags,
+    tags: nextData.tags,
+    machine_tags: nextData.machine_tags,
     notion_page_id: fm.notion_page_id,
     last_edited_time: fm.last_edited_time
   };
@@ -212,8 +309,12 @@ function ensureFrontMatter(filePath) {
     action: changed ? action : 'skip',
     notion_page_id: fm.notion_page_id,
     last_edited_time: fm.last_edited_time,
-    tags_count: tags.length,
-    machine_tags_count: machine_tags.length
+    tags_count: nextData.tags.length,
+    machine_tags_count: nextData.machine_tags.length,
+    tags_before: baseTagsRaw,
+    tags_after: nextData.tags,
+    machine_before: baseMachineRaw,
+    machine_after: nextData.machine_tags
   };
 }
 
@@ -285,6 +386,17 @@ function normalizeAll() {
       }
     }
 
+    const humanChanged = JSON.stringify(info.tags_before) !== JSON.stringify(info.tags_after);
+    const machineChanged = JSON.stringify(info.machine_before) !== JSON.stringify(info.machine_after);
+    if (TAGS_ONLY) {
+      STATS.filesProcessed += 1;
+      if (humanChanged || machineChanged) {
+        STATS.filesUpdated += 1;
+        STATS.tagsAdded += Math.max(0, info.tags_after.length - info.tags_before.length);
+        STATS.machineTagsAdded += Math.max(0, info.machine_after.length - info.machine_before.length);
+      }
+    }
+
     actions.push({
       file: finalPath.replace(/^docs\//, ''),
       action: action,
@@ -299,8 +411,43 @@ function normalizeAll() {
     console.log(formatTable(actions));
   }
 
+  if (TAGS_ONLY) {
+    console.log('\n📈 Tags-only summary:');
+    console.log(`  • Files processed: ${STATS.filesProcessed}`);
+    console.log(`  • Files updated: ${STATS.filesUpdated}`);
+    console.log(`  • Visible tags added: ${STATS.tagsAdded}`);
+    console.log(`  • Machine tags added: ${STATS.machineTagsAdded}`);
+    if (TAGS_WARNINGS.size > 0) {
+      console.log('\n⚠️ Tags without aliases:');
+      for (const [tag, files] of TAGS_WARNINGS) {
+        console.log(`  - ${tag}: ${files.size} files`);
+      }
+    }
+  }
+
   const suffix = DRY_RUN ? ' (dry-run)' : '';
   console.log(`\n✅ Normalized ${normalized} files, renamed ${renamed} files by slug${suffix}.`);
+
+  if (TAGS_ONLY) {
+    const rows = [];
+    for (const [tag, files] of TAGS_WARNINGS) {
+      const list = Array.from(files).map(f => f.replace(/^docs\//, '').replace(/\\+/g, '/'));
+      rows.push({ tag, files_count: files.size, files: list });
+    }
+    if (rows.length > 0) {
+      console.log('\n📋 Missing alias report:');
+      console.log(formatTable(rows.map(({ tag, files_count }) => ({ tag, files_count }))));
+      for (const row of rows) {
+        console.log(`    • ${row.tag}: ${row.files.join(', ')}`);
+      }
+    }
+
+    const jsonSummary = {
+      stats: STATS,
+      missingAliases: rows,
+    };
+    console.log('\n' + JSON.stringify(jsonSummary, null, 2));
+  }
 }
 
 normalizeAll();

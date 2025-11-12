@@ -6,14 +6,14 @@ summary: >-
   ограничения на slug.
 tags:
   - Автоматизация
+  - Генерация_Видео
   - Кодинг
   - UX
-  - Генерация_Видео
 machine_tags:
   - theme/automation
   - theme/dev
-  - theme/ux
   - theme/graphics
+  - theme/ux
 status: review
 ---
 # Spec — Normalize и политика имён

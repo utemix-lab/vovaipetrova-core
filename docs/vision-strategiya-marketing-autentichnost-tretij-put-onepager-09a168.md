@@ -5,15 +5,15 @@ summary: >-
   Черновой конспект vision по балансировке маркетинга, аутентичности и третьего
   пути с метриками и рисками.
 tags:
-  - Проектирование
-  - Дизайн
   - Автоматизация
+  - Дизайн
+  - Проектирование
   - Референсы
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
+  - theme/graphics
   - theme/references
 status: review
 ---

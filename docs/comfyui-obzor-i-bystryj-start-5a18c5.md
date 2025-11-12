@@ -5,14 +5,14 @@ summary: >
   Шпаргалка по настройке пайплайнов ComfyUI: пресеты, интеграции и контроль
   качества рендеров.
 tags:
+  - Дизайн
   - ComfyUI
   - Stable_Diffusion
-  - Дизайн
 machine_tags:
-  - tool/stable-diffusion
-  - tool/graphics
-  - theme/graphics
   - product/services
+  - theme/graphics
+  - tool/graphics
+  - tool/stable-diffusion
 status: ready
 ---
 # ComfyUI — обзор и быстрый старт

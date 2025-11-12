@@ -5,16 +5,16 @@ summary: >-
   Видение продукта: баланс маркетинга, аутентичности и третьего пути с
   метриками, рисками и дорожной картой.
 tags:
-  - Проектирование
-  - Дизайн
   - Автоматизация
+  - Дизайн
+  - Проектирование
   - Референсы
   - Теги
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
+  - theme/graphics
   - theme/references
 status: review
 ---

@@ -5,14 +5,14 @@ summary: >-
   Профиль героя студии: музыкальный продюсер Вова с его ролями, тоном и
   техслоями.
 tags:
-  - Дизайн
-  - Видео
   - Автоматизация
+  - Видео
+  - Дизайн
   - Референсы
 machine_tags:
-  - theme/graphics
   - product/services
   - theme/automation
+  - theme/graphics
   - theme/references
 status: ready
 ---

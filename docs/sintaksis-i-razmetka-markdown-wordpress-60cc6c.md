@@ -5,27 +5,18 @@ summary: >-
   Markdown-гайд для переноса материалов в WordPress с сохранением тегов и
   ссылок.
 tags:
-  - UX
-  - Референсы
-  - Дизайн
   - Автоматизация
-  - ux
-  - генерация_видео
-  - референсы
-  - Тег1
-  - Тег2
-  - Тег_подтема
-  - тег
-  - Adobe
-  - Adobe_Photoshop
   - Генерация_Видео
+  - Дизайн
+  - Референсы
+  - тег
 machine_tags:
-  - theme/ux
-  - theme/references
-  - theme/graphics
+  - producer/adobe
   - product/services
   - theme/automation
-  - producer/adobe
+  - theme/graphics
+  - theme/references
+  - theme/ux
   - tool/adobe-photoshop
 status: review
 ---

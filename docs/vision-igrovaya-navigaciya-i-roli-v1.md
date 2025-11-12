@@ -5,14 +5,14 @@ summary: >-
   Концепция игрового первого экрана с переключением ролей и корзиной артефактов
   для быстрого погружения в сервисы.
 tags:
-  - Проектирование
-  - Дизайн
   - Автоматизация
+  - Дизайн
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
+  - theme/graphics
 status: review
 ---
 # Vision — Игровая навигация и роли (V1)

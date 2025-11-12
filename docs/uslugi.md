@@ -5,19 +5,17 @@ summary: >
   Каталог услуг студии: что делаем, как выстраиваем процессы и какие результаты
   получает клиент.
 tags:
-  - Проектирование
-  - Дизайн
   - Автоматизация
   - Видео
-  - Adobe
-  - Adobe_Photoshop
   - Генерация_Видео
+  - Дизайн
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
-  - theme/automation
   - producer/adobe
+  - product/services
+  - theme/automation
+  - theme/graphics
   - tool/adobe-photoshop
 status: ready
 ---

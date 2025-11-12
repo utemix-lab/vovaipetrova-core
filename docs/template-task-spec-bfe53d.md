@@ -3,15 +3,15 @@ title: TEMPLATE — Task spec
 slug: template-task-spec-bfe53d
 summary: 'Дубликат шаблона технической задачи с путями правок, критериями и чек-листом.'
 tags:
-  - Проектирование
   - Автоматизация
   - Кодинг
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
   - theme/automation
   - theme/dev
+  - theme/graphics
 status: review
 ---
 # TEMPLATE — Task spec
