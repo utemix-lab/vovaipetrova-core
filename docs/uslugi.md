@@ -55,8 +55,8 @@ status: ready
 - [Вова и Петрова](vova-i-petrova.md)
 - [Таксономия и теги](taksonomiya-i-tegi.md)
 - [Контент‑модель и маршруты](kontentmodel-i-marshruty.md)
-- [Артефакты — корзина и заявка (MVP)](artefakty-korzina-i-zayavka-mvp-925151.md)
-- [Навигация (пользовательская)](navigaciya-polzovatelskaya-4dd66e.md)
+- [Артефакты — корзина и заявка (MVP)](artefakty-korzina-i-zayavka-mvp.md)
+- [Навигация (пользовательская)](navigaciya-polzovatelskaya.md)
 
 ### Канон хэштегов (памятка)
 
@@ -68,8 +68,6 @@ status: ready
 - [Описание — литературная версия](arhitektura-i-komponenty-486a0b.md)
 - [docs/README (черновик оглавления)](https://www.notion.so/docs-README-9d53eff69e904162a6b887f8d9592c7c?pvs=21)
 
-[Карточка услуги: Видеопродакшн](arhitektura-i-komponenty-486a0b.md)
-
-[Карточка услуги: Дизайн](arhitektura-i-komponenty-486a0b.md)
-
-[Карточка услуги: Проектирование (CAD/3D)](kartochka-uslugi-proektirovanie-cad3d.md)
+- [Карточка услуги: Видеопродакшн](kartochka-uslugi-videoprodakshn.md)
+- [Карточка услуги: Дизайн](kartochka-uslugi-dizajn.md)
+- [Карточка услуги: Проектирование (CAD/3D)](kartochka-uslugi-proektirovanie-cad3d.md)

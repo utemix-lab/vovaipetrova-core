@@ -1,26 +1,34 @@
 ---
 title: Артефакты — корзина и заявка (MVP)
 slug: artefakty-korzina-i-zayavka-mvp
-summary: '# Артефакты — корзина и заявка (MVP)'
-status: draft
-tags: []
-machine_tags: []
+summary: >-
+  Игровая витрина, где клиент собирает услуги и кейсы в корзину, а заявка
+  автоматически подтягивает выбранные артефакты.
+status: ready
+tags:
+  - Автоматизация
+  - Дизайн
+  - UX
+machine_tags:
+  - action/build
+  - product/artifacts
+  - product/services
+  - theme/automation
+  - theme/graphics
+  - theme/ux
 ---
 # Артефакты — корзина и заявка (MVP)
 
-### TL;DR
+## TL;DR
 
-Метки: theme/ux, action/build, product/artifacts
-
-Быстрый старт: добавьте услугу в артефакты
-
-- [Карточка услуги: Видеопродакшн](arhitektura-i-komponenty-486a0b.md)
-- [Карточка услуги: Дизайн](arhitektura-i-komponenty-486a0b.md)
-- [Карточка услуги: Проектирование (CAD/3D)](kartochka-uslugi-proektirovanie-cad3d.md)
+- Корзина хранит выбранные услуги и кейсы, а заявка собирает их автоматически.
+- Поддерживаются разные роли: гость, клиент и разработчик.
+- Все действия ведут к единому webhook: письмо, CRM или Telegram.
+- Экспорт артефактов идёт в локальное хранилище или серверную коллекцию.
 
 Игровая витрина с роль‑ориентированным UI и «корзиной артефактов». Пользователь собирает примеры работ и пунктов услуг, прикладывает к заявке. В заявке — текст + ссылки на выбранные артефакты.
 
-### Сущности (минимум)
+## Сущности (минимум)
 
 - UserRole: novice | client | dev
 - Artifact: {id, type: image|video|case|service|article, ref, title, cover, meta}
@@ -28,7 +36,7 @@ machine_tags: []
 - Service: {id, slug, title, description}
 - Request: {id, user_id?, role, text, items: ArtifactRef[], contact, status}
 
-### UI‑флоу
+## UI‑флоу
 
 1) Выбор роли (шапка) → роль‑скин и стартовые маршруты
 
@@ -38,7 +46,7 @@ machine_tags: []
 
 4) Форма заявки: текст + автоматическая подстановка артефактов → предпросмотр → отправка
 
-### API (черновик)
+## API (черновик)
 
 - POST /api/artifacts/add {item}
 - POST /api/artifacts/remove {item_id}
@@ -47,25 +55,24 @@ machine_tags: []
 - GET /api/services
 - GET /api/cases
 
-### Данные и хранение
+## Данные и хранение
 
 - Гости: LocalStorage (artifact_list) + optional device_id
 - Авторизованные: серверная коллекция артефактов, синхронизация при входе
 
-### Правила и видимость
+## Правила и видимость
 
 - Политики из тех‑навигации (roles, audience) → фильтры UI
 - Ограничения: отправляем превью и ссылки, не оригиналы
 
-### Интеграции
+## Интеграции
 
 - Webhook в почту/CRM/Telegram с карточкой заявки
 
----
+## Связано с…
 
-### Связано с…
-
-- [Контент‑модель и маршруты](arhitektura-i-komponenty-486a0b.md)
-- [Услуги](arhitektura-i-komponenty-486a0b.md)
+- [Контент‑модель и маршруты](kontentmodel-i-marshruty.md)
+- [Услуги](uslugi.md)
 - [Навигация (пользовательская)](navigaciya-polzovatelskaya.md)
 - [Навигация (техническая)](navigaciya-tehnicheskaya.md)
+- [Карточка услуги: Проектирование (CAD/3D)](kartochka-uslugi-proektirovanie-cad3d.md)
