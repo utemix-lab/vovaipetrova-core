@@ -7,14 +7,14 @@ summary: >-
 status: draft
 tags:
   - Автоматизация
-  - Проектирование
   - Кодинг
+  - Проектирование
 machine_tags:
-  - theme/automation
-  - product/services
-  - theme/graphics
   - action/build
+  - product/services
+  - theme/automation
   - theme/dev
+  - theme/graphics
 ---
 # Концепция «портов» — интерфейсы до реализации
 

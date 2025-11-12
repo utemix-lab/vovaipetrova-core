@@ -9,6 +9,7 @@ tags:
   - Монтаж
 machine_tags:
   - action/build
+  - product/services
 ---
 # Окружения и деплой
 

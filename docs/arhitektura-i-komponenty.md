@@ -6,15 +6,15 @@ summary: >-
   данных. COMP‑WebApp: Next.js/SSR, UI, маршруты, SEO
 status: draft
 tags:
-  - Проектирование
-  - Кодинг
   - Автоматизация
+  - Кодинг
+  - Проектирование
 machine_tags:
-  - product/services
-  - theme/graphics
   - action/build
-  - theme/dev
+  - product/services
   - theme/automation
+  - theme/dev
+  - theme/graphics
 ---
 # Архитектура и компоненты
 

@@ -8,13 +8,13 @@ summary: >-
 status: draft
 tags:
   - Контент
-  - Публикация
   - Навигация
+  - Публикация
 machine_tags:
-  - product/kb
   - action/publish
-  - theme/ux
+  - product/kb
   - product/site
+  - theme/ux
 ---
 # ADR — Source of truth и зеркалирование
 

@@ -4,10 +4,8 @@ slug: context-map-yaml
 summary: >-
   ```yaml facets: theme: [theme/ml, theme/nlp, theme/graphics, theme/ux,
   theme/automation]
-tags:
-  - UX
-machine_tags:
-  - theme/ux
+tags: []
+machine_tags: []
 service: true
 status: draft
 ---

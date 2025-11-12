@@ -6,12 +6,12 @@ summary: >-
   штуки» Слои: Игровой, Театральный, Технический
 status: draft
 tags:
-  - Контент
   - Видео
+  - Контент
 machine_tags:
   - product/kb
-  - theme/graphics
   - product/services
+  - theme/graphics
 ---
 # Динозаврик
 

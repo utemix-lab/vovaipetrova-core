@@ -6,11 +6,12 @@ summary: >-
   креативный перфекционист Слои: Игровой, Театральный, Технический
 status: draft
 tags:
-  - Генерация_Видео
   - Айдентика
+  - Генерация_Видео
 machine_tags:
-  - theme/graphics
   - product/services
+  - theme/branding
+  - theme/graphics
 ---
 # Dizzy
 

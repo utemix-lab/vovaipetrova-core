@@ -11,10 +11,10 @@ tags:
   - Навигация
   - Процесс
 machine_tags:
-  - product/kb
-  - theme/ux
-  - product/site
   - action/build
+  - product/kb
+  - product/site
+  - theme/ux
 ---
 # Текущие задачи
 

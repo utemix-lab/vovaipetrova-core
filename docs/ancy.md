@@ -6,8 +6,8 @@ summary: >-
   Театральный, Технический
 status: draft
 tags:
-  - Контент
   - База_знаний
+  - Контент
 machine_tags:
   - product/kb
 ---

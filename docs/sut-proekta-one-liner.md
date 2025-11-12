@@ -10,8 +10,9 @@ tags:
   - База_знаний
   - Монтаж
 machine_tags:
-  - product/kb
   - action/build
+  - product/kb
+  - product/services
 ---
 # Суть проекта — One-liner
 

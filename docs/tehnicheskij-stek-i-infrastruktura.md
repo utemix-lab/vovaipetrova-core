@@ -10,6 +10,7 @@ tags:
   - Айдентика
 machine_tags:
   - product/services
+  - theme/branding
 ---
 # Технический стек и инфраструктура
 

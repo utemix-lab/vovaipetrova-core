@@ -7,11 +7,11 @@ summary: >-
 status: draft
 tags:
   - Автоматизация
-  - Контент
   - База_знаний
+  - Контент
 machine_tags:
-  - theme/automation
   - product/kb
+  - theme/automation
 ---
 # Хьюго
 

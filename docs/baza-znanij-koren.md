@@ -7,12 +7,12 @@ summary: >-
 status: draft
 tags:
   - Автоматизация
-  - Обучение
   - База_знаний
+  - Обучение
 machine_tags:
-  - theme/automation
   - action/learn
   - product/kb
+  - theme/automation
 ---
 # База знаний — корень
 

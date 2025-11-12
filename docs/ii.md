@@ -6,13 +6,13 @@ summary: >-
   коллегам, уважение к аудитории Слои: Игровой, Театральный, Технический
 status: draft
 tags:
-  - OpenAI
   - Автоматизация
   - Контент
+  - OpenAI
 machine_tags:
   - producer/openai
-  - theme/automation
   - product/kb
+  - theme/automation
 ---
 # ИИ
 

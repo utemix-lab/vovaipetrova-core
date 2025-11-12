@@ -10,10 +10,10 @@ tags:
   - Контент
   - Навигация
 machine_tags:
-  - theme/automation
   - product/kb
-  - theme/ux
   - product/site
+  - theme/automation
+  - theme/ux
 ---
 # Руна
 

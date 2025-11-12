@@ -7,12 +7,12 @@ summary: >-
 status: draft
 tags:
   - Генерация_Видео
-  - Публикация
   - Портфолио
+  - Публикация
 machine_tags:
-  - theme/graphics
   - action/publish
   - product/portfolio
+  - theme/graphics
 ---
 # Портфолио — структура
 

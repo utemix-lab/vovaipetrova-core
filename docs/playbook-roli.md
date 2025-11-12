@@ -6,14 +6,14 @@ summary: >-
   notion-brain
 status: draft
 tags:
-  - Процесс
   - Контент
   - Навигация
+  - Процесс
 machine_tags:
   - action/build
   - product/kb
-  - theme/ux
   - product/site
+  - theme/ux
 ---
 # Playbook — Роли
 

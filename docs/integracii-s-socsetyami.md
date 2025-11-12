@@ -6,9 +6,9 @@ summary: >-
   сейчас, что вручную
 status: draft
 tags:
-  - Публикация
-  - Контент
   - Автоматизация
+  - Контент
+  - Публикация
 machine_tags:
   - action/publish
   - product/kb

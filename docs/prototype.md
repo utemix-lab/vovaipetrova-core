@@ -4,13 +4,13 @@ slug: prototype
 summary: '<aside> ✅ Памятка: перед пушем'
 status: draft
 tags:
-  - Экспорт
   - Навигация
   - Процесс
+  - Экспорт
 machine_tags:
+  - action/build
   - product/site
   - theme/ux
-  - action/build
 ---
 # prototype
 

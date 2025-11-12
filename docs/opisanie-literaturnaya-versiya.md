@@ -7,13 +7,13 @@ summary: >-
   знаний + сторителлинг о создании проекта и эвЂ¦
 status: draft
 tags:
-  - UX
   - Обучение
   - Сайт
+  - UX
 machine_tags:
-  - theme/ux
   - action/learn
   - product/site
+  - theme/ux
 ---
 # Описание — литературная версия
 

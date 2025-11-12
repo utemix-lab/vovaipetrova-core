@@ -9,8 +9,9 @@ tags:
   - Айдентика
   - Монтаж
 machine_tags:
-  - product/services
   - action/build
+  - product/services
+  - theme/branding
 ---
 # Think Tank — витрина процесса
 

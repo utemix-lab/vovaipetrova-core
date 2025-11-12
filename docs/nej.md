@@ -6,14 +6,14 @@ summary: >-
   визуальных графов Слои: Игровой, Театральный, Технический
 status: draft
 tags:
+  - Автоматизация
   - Генерация_Видео
   - ComfyUI
-  - Автоматизация
 machine_tags:
-  - theme/graphics
-  - tool/stable-diffusion
-  - tool/graphics
   - theme/automation
+  - theme/graphics
+  - tool/graphics
+  - tool/stable-diffusion
 ---
 # Нэй
 
