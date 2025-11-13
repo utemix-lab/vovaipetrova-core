@@ -144,6 +144,15 @@ function renderTags(container, tags) {
   container.appendChild(fragment);
 }
 
+function resolveMarkdownUrl(relativePath) {
+  const host = window.location.hostname;
+  const isGithubPages = host.endsWith("github.io");
+  if (isGithubPages) {
+    return `https://raw.githubusercontent.com/utemix-lab/vovaipetrova-core/main/${relativePath}`;
+  }
+  return `../${relativePath}`;
+}
+
 async function renderPage() {
   const slug = window.__PAGE_SLUG__;
   if (!slug) {
@@ -170,7 +179,7 @@ async function renderPage() {
   applyStatusBadge(document.getElementById("page-status"), entry.status);
   renderTags(document.getElementById("page-tags"), entry.tags);
 
-  const markdownPath = `../${entry.url}`;
+  const markdownPath = resolveMarkdownUrl(entry.url);
   const response = await fetch(markdownPath);
   if (!response.ok) {
     document.getElementById("page-content").textContent =
