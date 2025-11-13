@@ -1,0 +1,1035 @@
+[
+  {
+    "title": "ADR — Source of truth и зеркалирование",
+    "slug": "adr-source-of-truth-i-zerkalirovanie",
+    "status": "draft",
+    "summary": "Источник истины — Notion. Репозиторий — зеркало для исполнения и публикации. Ранний этап требует скорости вносить массовые правки и фиксировать архитектуру Нужны предпросмотры (Pages) и истории измвЂ¦",
+    "tags": [
+      "Контент",
+      "Навигация",
+      "Публикация"
+    ],
+    "machine_tags": [
+      "action/publish",
+      "product/kb",
+      "product/site",
+      "theme/ux"
+    ],
+    "url": "docs/adr-source-of-truth-i-zerkalirovanie.md"
+  },
+  {
+    "title": "ADR — Source of truth и зеркалирование",
+    "slug": "adr-source-of-truth-mirroring",
+    "status": "ready",
+    "summary": "Закрепляем, что Notion остаётся авторским источником, а GitHub — контролируемым зеркалом с проверяемым импортом.",
+    "tags": [
+      "Автоматизация",
+      "Кодинг",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/dev",
+      "theme/graphics"
+    ],
+    "url": "docs/adr-source-of-truth-mirroring.md"
+  },
+  {
+    "title": "ADR — Политика тегов и фасетов",
+    "slug": "adr-tags-and-facets",
+    "status": "ready",
+    "summary": "Фиксируем правила для видимых тегов и machine_tags, чтобы поддерживать единую фасетную модель.",
+    "tags": [
+      "Автоматизация",
+      "Кодинг",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/dev",
+      "theme/graphics"
+    ],
+    "url": "docs/adr-tags-and-facets.md"
+  },
+  {
+    "title": "ADR — Теги и фасеты",
+    "slug": "adr-tegi-i-fasety",
+    "status": "draft",
+    "summary": "Фасеты: theme/*, action/*, product/*, tool/*, role/*, country/*, producer/* Видимые хэштеги: TitleCase_с_подчёркиваниями (#Adobe_Photoshop) Машинотеги: живут в front matter (machine_tags[]), скрытывЂ¦",
+    "tags": [
+      "Adobe"
+    ],
+    "machine_tags": [
+      "producer/adobe"
+    ],
+    "url": "docs/adr-tegi-i-fasety.md"
+  },
+  {
+    "title": "Ancy",
+    "slug": "ancy",
+    "status": "draft",
+    "summary": "Архетип: Гость Голос и тон: Вдумчивый, философичный, системный Слои: Игровой, Театральный, Технический",
+    "tags": [
+      "База_знаний",
+      "Контент"
+    ],
+    "machine_tags": [
+      "product/kb"
+    ],
+    "url": "docs/ancy.md"
+  },
+  {
+    "title": "Архитектура и компоненты",
+    "slug": "arhitektura-i-komponenty",
+    "status": "draft",
+    "summary": "Верхнеуровневая архитектура и список компонентов. Контуры систем и потоки данных. COMP‑WebApp: Next.js/SSR, UI, маршруты, SEO",
+    "tags": [
+      "Автоматизация",
+      "Кодинг",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/dev",
+      "theme/graphics"
+    ],
+    "url": "docs/arhitektura-i-komponenty.md"
+  },
+  {
+    "title": "Архитектура проекта — компоненты",
+    "slug": "arhitektura-proekta-komponenty",
+    "status": "draft",
+    "summary": "1) База знаний Формат исходных материалов: Markdown/YAML Структура: теги, граф связей",
+    "tags": [
+      "База_знаний"
+    ],
+    "machine_tags": [
+      "product/kb"
+    ],
+    "url": "docs/arhitektura-proekta-komponenty.md"
+  },
+  {
+    "title": "Артефакты — корзина и заявка (MVP)",
+    "slug": "artefakty-korzina-i-zayavka-mvp",
+    "status": "ready",
+    "summary": "Игровая витрина, где клиент собирает услуги и кейсы в корзину, а заявка автоматически подтягивает выбранные артефакты.",
+    "tags": [
+      "Автоматизация",
+      "Дизайн",
+      "UX"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/artifacts",
+      "product/services",
+      "theme/automation",
+      "theme/graphics",
+      "theme/ux"
+    ],
+    "url": "docs/artefakty-korzina-i-zayavka-mvp.md"
+  },
+  {
+    "title": "База знаний — корень",
+    "slug": "baza-znanij-koren",
+    "status": "draft",
+    "summary": "Центральный узел для тысяч страниц по инструментам и технологиям. Карточки инструментов по шаблону Рубрики и теги для фильтрации",
+    "tags": [
+      "Автоматизация",
+      "База_знаний",
+      "Обучение"
+    ],
+    "machine_tags": [
+      "action/learn",
+      "product/kb",
+      "theme/automation"
+    ],
+    "url": "docs/baza-znanij-koren.md"
+  },
+  {
+    "title": "ComfyUI — обзор и быстрый старт",
+    "slug": "comfyui-obzor-i-bystryj-start",
+    "status": "ready",
+    "summary": "Объясняем, зачем нужен ComfyUI, как собрать первый пайплайн и какие ошибки встречаются чаще всего.",
+    "tags": [
+      "ComfyUI",
+      "Stable_Diffusion"
+    ],
+    "machine_tags": [
+      "tool/graphics",
+      "tool/stable-diffusion"
+    ],
+    "url": "docs/comfyui-obzor-i-bystryj-start.md"
+  },
+  {
+    "title": "Динозаврик",
+    "slug": "dinozavrik",
+    "status": "draft",
+    "summary": "Архетип: Гость Голос и тон: Забавный прокрастинатор; приносит «интересные штуки» Слои: Игровой, Театральный, Технический",
+    "tags": [
+      "Видео",
+      "Контент"
+    ],
+    "machine_tags": [
+      "product/kb",
+      "product/services",
+      "theme/graphics"
+    ],
+    "url": "docs/dinozavrik.md"
+  },
+  {
+    "title": "Dizzy",
+    "slug": "dizzy",
+    "status": "draft",
+    "summary": "Архетип: Дизайн‑системы (Dizzy) Голос и тон: Игровой, меняющий облики; креативный перфекционист Слои: Игровой, Театральный, Технический",
+    "tags": [
+      "Айдентика",
+      "Генерация_Видео"
+    ],
+    "machine_tags": [
+      "product/services",
+      "theme/branding",
+      "theme/graphics"
+    ],
+    "url": "docs/dizzy.md"
+  },
+  {
+    "title": "Дорожная карта (этапы)",
+    "slug": "dorozhnaya-karta-etapy",
+    "status": "draft",
+    "summary": "[x]  Letta + MCP‑серверы [x]  Структура Core Memory [x]  GitHub think‑tank",
+    "tags": [
+      "Артефакты"
+    ],
+    "machine_tags": [
+      "product/artifacts"
+    ],
+    "url": "docs/dorozhnaya-karta-etapy.md"
+  },
+  {
+    "title": "Дорожная карта и бэклог",
+    "slug": "dorozhnaya-karta-i-beklog",
+    "status": "draft",
+    "summary": "Этапы, эпики и приоритеты работ. Этап 1: цели, критерии готовности Эпик → задачи → связи с компонентами",
+    "tags": [
+      "Артефакты"
+    ],
+    "machine_tags": [
+      "product/artifacts"
+    ],
+    "url": "docs/dorozhnaya-karta-i-beklog.md"
+  },
+  {
+    "title": "Экспорт в GitHub — руководство и шаблоны",
+    "slug": "eksport-v-github-rukovodstvo-i-shablony",
+    "status": "review",
+    "summary": "Как выгружать контент из Notion в GitHub: структура репозитория, скрипты и чек-лист экспорта.",
+    "tags": [
+      "Автоматизация",
+      "Кодинг",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/dev",
+      "theme/graphics"
+    ],
+    "url": "docs/eksport-v-github-rukovodstvo-i-shablony.md"
+  },
+  {
+    "title": "Глоссарий терминов",
+    "slug": "glossarij-terminov",
+    "status": "draft",
+    "summary": "Ключевые термины и сокращения проекта. Термин: определение Аббр.: расшифровка",
+    "tags": [
+      "База_знаний"
+    ],
+    "machine_tags": [
+      "product/kb"
+    ],
+    "url": "docs/glossarij-terminov.md"
+  },
+  {
+    "title": "Хьюго",
+    "slug": "hyugo",
+    "status": "draft",
+    "summary": "Архетип: Парсинг/Обогащение (Hugo) Голос и тон: Рациональный, педантичный, добродушный робот‑заяц Слои: Игровой, Театральный, Технический",
+    "tags": [
+      "Автоматизация",
+      "База_знаний",
+      "Контент"
+    ],
+    "machine_tags": [
+      "product/kb",
+      "theme/automation"
+    ],
+    "url": "docs/hyugo.md"
+  },
+  {
+    "title": "ИИ",
+    "slug": "ii",
+    "status": "draft",
+    "summary": "Архетип: ИИ (метаагент) Голос и тон: Лёгкая надменность к автору, юмор к коллегам, уважение к аудитории Слои: Игровой, Театральный, Технический",
+    "tags": [
+      "Автоматизация",
+      "Контент",
+      "OpenAI"
+    ],
+    "machine_tags": [
+      "producer/openai",
+      "product/kb",
+      "theme/automation"
+    ],
+    "url": "docs/ii.md"
+  },
+  {
+    "title": "Индекс и TL;DR",
+    "slug": "indeks-i-tldr",
+    "status": "draft",
+    "summary": "Проект «Вова и Петрова» — творческо‑технологическая экосистема: виртуальные персонажи + «невидимый ИИ» + база знаний о нейросетях. Цель: личный инструмент и публичный ресурс с экспортом контента в вЂ¦",
+    "tags": [
+      "База_знаний",
+      "Сайт"
+    ],
+    "machine_tags": [
+      "product/kb",
+      "product/site"
+    ],
+    "url": "docs/indeks-i-tldr.md"
+  },
+  {
+    "title": "Индекс сайта",
+    "slug": "indeks-sajta",
+    "status": "draft",
+    "summary": "--- --- Формат slug: theme/ml, tool/stable-diffusion, role/client",
+    "tags": [
+      "Генерация_Видео",
+      "Adobe",
+      "Adobe_Photoshop"
+    ],
+    "machine_tags": [
+      "producer/adobe",
+      "theme/graphics",
+      "tool/adobe-photoshop"
+    ],
+    "url": "docs/indeks-sajta.md"
+  },
+  {
+    "title": "Instructions — Исполнители (Cursor/Aider)",
+    "slug": "instructions-ispolniteli-cursoraider",
+    "status": "draft",
+    "summary": "# Instructions — Исполнители (Cursor/Aider)",
+    "tags": [
+      "Контент",
+      "Навигация",
+      "Процесс"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/kb",
+      "product/site",
+      "theme/ux"
+    ],
+    "url": "docs/instructions-ispolniteli-cursoraider.md"
+  },
+  {
+    "title": "Инструкции для Notion AI — vova_i_petrova",
+    "slug": "instrukcii-dlya-notion-ai-vovaipetrova",
+    "status": "review",
+    "summary": "Памятка для Notion AI: где находится источник истины и как синхронизировать данные с GitHub.",
+    "tags": [
+      "Автоматизация",
+      "Кодинг",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/dev",
+      "theme/graphics"
+    ],
+    "url": "docs/instrukcii-dlya-notion-ai-vovaipetrova.md"
+  },
+  {
+    "title": "Интеграции с соцсетями",
+    "slug": "integracii-s-socsetyami",
+    "status": "draft",
+    "summary": "План интеграций и точки подключения. Списком + ссылки Что автоматизируем сейчас, что вручную",
+    "tags": [
+      "Автоматизация",
+      "Контент",
+      "Публикация"
+    ],
+    "machine_tags": [
+      "action/publish",
+      "product/kb",
+      "theme/automation"
+    ],
+    "url": "docs/integracii-s-socsetyami.md"
+  },
+  {
+    "title": "Карточка услуги: Дизайн",
+    "slug": "kartochka-uslugi-dizajn",
+    "status": "ready",
+    "summary": "Графический дизайн и айдентика: от концепта до бренд-кита и экспортированных ассетов.",
+    "tags": [
+      "Автоматизация",
+      "Дизайн",
+      "UX"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/graphics",
+      "theme/ux"
+    ],
+    "url": "docs/kartochka-uslugi-dizajn.md"
+  },
+  {
+    "title": "Карточка услуги: Видеопродакшн",
+    "slug": "kartochka-uslugi-videoprodakshn",
+    "status": "ready",
+    "summary": "Полный цикл видеопродакшна: от сценария и съёмки до монтажа, моушн-дизайна и публикации.",
+    "tags": [
+      "Автоматизация",
+      "Видео",
+      "Дизайн"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/graphics"
+    ],
+    "url": "docs/kartochka-uslugi-videoprodakshn.md"
+  },
+  {
+    "title": "Концепция «портов» — интерфейсы до реализации",
+    "slug": "koncepciya-portov-interfejsy-do-realizacii",
+    "status": "draft",
+    "summary": "Проектируем точки подключения заранее через переменные окружения и конфиги. ```json {",
+    "tags": [
+      "Автоматизация",
+      "Кодинг",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/dev",
+      "theme/graphics"
+    ],
+    "url": "docs/koncepciya-portov-interfejsy-do-realizacii.md"
+  },
+  {
+    "title": "Контент‑модель и маршруты",
+    "slug": "kontentmodel-i-marshruty",
+    "status": "ready",
+    "summary": "Карта страниц сайта, связей и маршрутов: что видит каждая роль и какие URL обслуживает система.",
+    "tags": [
+      "Автоматизация",
+      "Проектирование",
+      "UX"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "product/site",
+      "theme/automation",
+      "theme/graphics",
+      "theme/ux"
+    ],
+    "url": "docs/kontentmodel-i-marshruty.md"
+  },
+  {
+    "title": "Контент‑пайплайн экспорта",
+    "slug": "kontentpajplajn-eksporta",
+    "status": "draft",
+    "summary": "Из базы знаний формируем публикации для соцсетей. YouTube, Instagram, Telegram, VK, X Пост, шорт/сториз, ролик 3–5 мин, лонгрид",
+    "tags": [
+      "База_знаний",
+      "Сайт"
+    ],
+    "machine_tags": [
+      "product/kb",
+      "product/site"
+    ],
+    "url": "docs/kontentpajplajn-eksporta.md"
+  },
+  {
+    "title": "Метрики успеха",
+    "slug": "metriki-uspeha",
+    "status": "draft",
+    "summary": "Скорость погружения в контекст < 1 мин Автоматизация публикаций ≥ 80% Покрытие актуальных технологий",
+    "tags": [
+      "Автоматизация"
+    ],
+    "machine_tags": [
+      "theme/automation"
+    ],
+    "url": "docs/metriki-uspeha.md"
+  },
+  {
+    "title": "Монетизация и уровни доступа",
+    "slug": "monetizaciya-i-urovni-dostupa",
+    "status": "draft",
+    "summary": "Часть базы знаний Telegram‑боты Образовательный контент",
+    "tags": [
+      "База_знаний"
+    ],
+    "machine_tags": [
+      "product/kb"
+    ],
+    "url": "docs/monetizaciya-i-urovni-dostupa.md"
+  },
+  {
+    "title": "Навигация (пользовательская)",
+    "slug": "navigaciya-polzovatelskaya",
+    "status": "ready",
+    "summary": "Как посетителю быстро найти нужный раздел: уровни навигации, сценарии и подсказки по ролям.",
+    "tags": [
+      "Автоматизация",
+      "Дизайн",
+      "UX"
+    ],
+    "machine_tags": [
+      "action/learn",
+      "product/services",
+      "product/site",
+      "theme/automation",
+      "theme/graphics",
+      "theme/ux"
+    ],
+    "url": "docs/navigaciya-polzovatelskaya.md"
+  },
+  {
+    "title": "Навигация (техническая)",
+    "slug": "navigaciya-tehnicheskaya",
+    "status": "ready",
+    "summary": "Внутренняя таксономия и правила видимости, которые подпитывают фасеты, поиск и пользовательские маршруты.",
+    "tags": [
+      "Автоматизация",
+      "Проектирование",
+      "UX"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "product/site",
+      "theme/automation",
+      "theme/dev",
+      "theme/graphics",
+      "theme/ux"
+    ],
+    "url": "docs/navigaciya-tehnicheskaya.md"
+  },
+  {
+    "title": "Нэй",
+    "slug": "nej",
+    "status": "draft",
+    "summary": "Архетип: Графы (Nay) Голос и тон: Любопытный, азартный исследователь визуальных графов Слои: Игровой, Театральный, Технический",
+    "tags": [
+      "Автоматизация",
+      "Генерация_Видео",
+      "ComfyUI"
+    ],
+    "machine_tags": [
+      "theme/automation",
+      "theme/graphics",
+      "tool/graphics",
+      "tool/stable-diffusion"
+    ],
+    "url": "docs/nej.md"
+  },
+  {
+    "title": "Окружения и деплой",
+    "slug": "okruzheniya-i-deploj",
+    "status": "draft",
+    "summary": "Окружения, конфиги и процессы деплоя. Dev: локально Docker Compose Staging: VPS Docker Compose, автодеплой из main",
+    "tags": [
+      "Монтаж"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services"
+    ],
+    "url": "docs/okruzheniya-i-deploj.md"
+  },
+  {
+    "title": "Описание — литературная версия",
+    "slug": "opisanie-literaturnaya-versiya",
+    "status": "draft",
+    "summary": "Творческо‑технологический проект с виртуальными персонажами (Вова, Петрова) и «невидимым ИИ» как координатором. Цель: личный инструмент + публичная база знаний + сторителлинг о создании проекта и эвЂ¦",
+    "tags": [
+      "Обучение",
+      "Сайт",
+      "UX"
+    ],
+    "machine_tags": [
+      "action/learn",
+      "product/site",
+      "theme/ux"
+    ],
+    "url": "docs/opisanie-literaturnaya-versiya.md"
+  },
+  {
+    "title": "Петрова",
+    "slug": "petrova",
+    "status": "draft",
+    "summary": "Архетип: Визуал/Дизайн (Petrova) Голос и тон: Тёплая и острая, художница‑аниматор Слои: Игровой, Театральный, Технический",
+    "tags": [
+      "Айдентика",
+      "Генерация_Видео"
+    ],
+    "machine_tags": [
+      "product/services",
+      "theme/branding",
+      "theme/graphics"
+    ],
+    "url": "docs/petrova.md"
+  },
+  {
+    "title": "Playbook — Роли",
+    "slug": "playbook-roli",
+    "status": "draft",
+    "summary": "Пишет Vision, ADR, Specs в notion-brain Формирует Task spec Читает notion-brain",
+    "tags": [
+      "Контент",
+      "Навигация",
+      "Процесс"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/kb",
+      "product/site",
+      "theme/ux"
+    ],
+    "url": "docs/playbook-roli.md"
+  },
+  {
+    "title": "Почему это сработает — ценность",
+    "slug": "pochemu-eto-srabotaet-cennost",
+    "status": "draft",
+    "summary": "1) Антимаркетинг: честность и процесс 2) Open Source‑подход: доверие и рост сообщества 3) Post‑Digital: технологии как язык",
+    "tags": [
+      "Монтаж"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services"
+    ],
+    "url": "docs/pochemu-eto-srabotaet-cennost.md"
+  },
+  {
+    "title": "Портфолио — корень",
+    "slug": "portfolio-koren",
+    "status": "draft",
+    "summary": "Кейсы: творческие, коммерческие, исследовательские, обучающие. На каждый кейс — отдельная страница по шаблону Ставим теги задач и технологий, связываем с инструментами",
+    "tags": [
+      "Портфолио"
+    ],
+    "machine_tags": [
+      "product/portfolio"
+    ],
+    "url": "docs/portfolio-koren.md"
+  },
+  {
+    "title": "Портфолио — структура",
+    "slug": "portfolio-struktura",
+    "status": "draft",
+    "summary": "Как хранить и показывать кейсы и работы. Творческие, Коммерческие, Исследовательские, Обучающие Название, дата, роль, задача",
+    "tags": [
+      "Генерация_Видео",
+      "Портфолио",
+      "Публикация"
+    ],
+    "machine_tags": [
+      "action/publish",
+      "product/portfolio",
+      "theme/graphics"
+    ],
+    "url": "docs/portfolio-struktura.md"
+  },
+  {
+    "title": "Процесс: Обсудили → Разложили → Связали",
+    "slug": "process-obsudili-razlozhili-svyazali",
+    "status": "draft",
+    "summary": "Тема → Распределение по разделам → Взаимосвязанность Коротко: «Обсудили → Разложили → Связали» 1) Обсуждаем аспект и фиксируем 3–5 тезисов.",
+    "tags": [
+      "Монтаж"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services"
+    ],
+    "url": "docs/process-obsudili-razlozhili-svyazali.md"
+  },
+  {
+    "title": "prototype",
+    "slug": "prototype",
+    "status": "draft",
+    "summary": "<aside> ✅ Памятка: перед пушем",
+    "tags": [
+      "Навигация",
+      "Процесс",
+      "Экспорт"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/site",
+      "theme/ux"
+    ],
+    "url": "docs/prototype.md"
+  },
+  {
+    "title": "Руна",
+    "slug": "runa",
+    "status": "draft",
+    "summary": "Архетип: Гость Голос и тон: Спокойная, точная, немного инопланетная ирония Слои: Игровой, Театральный, Технический",
+    "tags": [
+      "Автоматизация",
+      "Контент",
+      "Навигация"
+    ],
+    "machine_tags": [
+      "product/kb",
+      "product/site",
+      "theme/automation",
+      "theme/ux"
+    ],
+    "url": "docs/runa.md"
+  },
+  {
+    "title": "Синтаксис и разметка — Markdown → WordPress",
+    "slug": "sintaksis-i-razmetka-markdown-wordpress",
+    "status": "review",
+    "summary": "Памятка по Markdown: как готовить тексты для импорта в WordPress и не ломать автоматизацию.",
+    "tags": [
+      "Автоматизация",
+      "Генерация_Видео",
+      "Дизайн",
+      "Референсы",
+      "Adobe"
+    ],
+    "machine_tags": [
+      "producer/adobe",
+      "product/services",
+      "theme/automation",
+      "theme/graphics",
+      "theme/references",
+      "theme/ux",
+      "tool/adobe-photoshop"
+    ],
+    "url": "docs/sintaksis-i-razmetka-markdown-wordpress.md"
+  },
+  {
+    "title": "Spec — Content linter и scaffold (черновик)",
+    "slug": "spec-content-linter-i-scaffold-chernovik",
+    "status": "ready",
+    "summary": "План контент-линтера и генератора шаблонов: проверки, CLI и дальнейшие шаги.",
+    "tags": [
+      "Автоматизация",
+      "Кодинг"
+    ],
+    "machine_tags": [
+      "action/build",
+      "theme/automation",
+      "theme/dev"
+    ],
+    "url": "docs/spec-content-linter-i-scaffold-chernovik.md"
+  },
+  {
+    "title": "Spec — Front matter и слуги",
+    "slug": "spec-front-matter-i-slugi",
+    "status": "draft",
+    "summary": "# Spec — Front matter и слуги",
+    "tags": [
+      "UX"
+    ],
+    "machine_tags": [
+      "theme/ux"
+    ],
+    "url": "docs/spec-front-matter-i-slugi.md"
+  },
+  {
+    "title": "Spec — Normalize и политика имён",
+    "slug": "spec-normalize-i-politika-imyon",
+    "status": "review",
+    "summary": "Правила нормализации экспорта Notion: фронт-маттер, slug и устойчивость путей.",
+    "tags": [
+      "Автоматизация",
+      "Кодинг",
+      "Хэштегов"
+    ],
+    "machine_tags": [
+      "theme/automation",
+      "theme/dev"
+    ],
+    "url": "docs/spec-normalize-i-politika-imyon.md"
+  },
+  {
+    "title": "Суть проекта — One-liner",
+    "slug": "sut-proekta-one-liner",
+    "status": "draft",
+    "summary": "Автоматизированная система сбора и структуризации знаний о нейросетях с театральным слоем, где AI‑персонажи создают контент о собственном создании. Уникальность: «рекурсивный театр» — процесс создавЂ¦",
+    "tags": [
+      "База_знаний",
+      "Монтаж"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/kb",
+      "product/services"
+    ],
+    "url": "docs/sut-proekta-one-liner.md"
+  },
+  {
+    "title": "Таксономия и теги",
+    "slug": "taksonomiya-i-tegi",
+    "status": "ready",
+    "summary": "Правила разметки контента: фасеты, видимые теги и машинотеги для стабильной навигации.",
+    "tags": [
+      "Автоматизация",
+      "Видео",
+      "Дизайн",
+      "Проектирование",
+      "OpenAI"
+    ],
+    "machine_tags": [
+      "action/build",
+      "producer/openai",
+      "product/services",
+      "theme/automation",
+      "theme/graphics"
+    ],
+    "url": "docs/taksonomiya-i-tegi.md"
+  },
+  {
+    "title": "Технический стек и инфраструктура",
+    "slug": "tehnicheskij-stek-i-infrastruktura",
+    "status": "draft",
+    "summary": "AI‑платформа: Letta Cloud PRO, Claude Sonnet 4.5 MCP‑серверы: GitHub, Hugging Face, Apify, DeepWiki Хранилища: GitHub (core), локальный Obsidian vault, Think Tank ядро",
+    "tags": [
+      "Айдентика"
+    ],
+    "machine_tags": [
+      "product/services",
+      "theme/branding"
+    ],
+    "url": "docs/tehnicheskij-stek-i-infrastruktura.md"
+  },
+  {
+    "title": "Текущие задачи",
+    "slug": "tekushie-zadachi",
+    "status": "draft",
+    "summary": "[ ]  Поднять GitHub Pages из /prototype (ручной деплой) [ ]  Импорт Notion → docs: починить распаковку (двойной ZIP), нормализатор [ ]  Настроить фильтр триггера деплоя (только prototype/)",
+    "tags": [
+      "Контент",
+      "Навигация",
+      "Процесс"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/kb",
+      "product/site",
+      "theme/ux"
+    ],
+    "url": "docs/tekushie-zadachi.md"
+  },
+  {
+    "title": "Тест‑стратегия и качество",
+    "slug": "teststrategiya-i-kachestvo",
+    "status": "review",
+    "summary": "Черновик стратегии тестирования: типы проверок, политики качества и нефункциональные требования для продукта.",
+    "tags": [
+      "Автоматизация",
+      "Кодинг",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/dev",
+      "theme/graphics"
+    ],
+    "url": "docs/teststrategiya-i-kachestvo.md"
+  },
+  {
+    "title": "Think Tank — компактное ядро",
+    "slug": "think-tank-kompaktnoe-yadro",
+    "status": "ready",
+    "summary": "Каркас Think Tank: четыре файла с контекстом, которые синхронизируют Notion и GitHub.",
+    "tags": [
+      "Автоматизация",
+      "Проектирование",
+      "UX"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "product/think-tank",
+      "theme/automation",
+      "theme/dev",
+      "theme/graphics",
+      "theme/ux"
+    ],
+    "url": "docs/think-tank-kompaktnoe-yadro.md"
+  },
+  {
+    "title": "Think Tank — витрина процесса",
+    "slug": "think-tank-vitrina-processa",
+    "status": "draft",
+    "summary": "Витрина того, как строится проект: заметки, наброски, решения, эволюция. Выжимки из дневника проекта Черновики, наброски, эксперименты",
+    "tags": [
+      "Айдентика",
+      "Монтаж"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/branding"
+    ],
+    "url": "docs/think-tank-vitrina-processa.md"
+  },
+  {
+    "title": "UI макет — шапка и первый экран (Static First)",
+    "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+    "status": "ready",
+    "summary": "Статический прототип первого экрана с переключением ролей, корзиной артефактов и набором UI-компонентов без серверной части.",
+    "tags": [
+      "Figma",
+      "UX"
+    ],
+    "machine_tags": [
+      "theme/ux",
+      "tool/figma"
+    ],
+    "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md"
+  },
+  {
+    "title": "Услуги",
+    "slug": "uslugi",
+    "status": "ready",
+    "summary": "Каталог услуг студии: что делаем, как выстраиваем процессы и какие результаты получает клиент.",
+    "tags": [
+      "Автоматизация",
+      "Видео",
+      "Генерация_Видео",
+      "Дизайн",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "producer/adobe",
+      "product/services",
+      "theme/automation",
+      "theme/graphics",
+      "tool/adobe-photoshop"
+    ],
+    "url": "docs/uslugi.md"
+  },
+  {
+    "title": "Вася",
+    "slug": "vasya",
+    "status": "ready",
+    "summary": "Портрет персонажа «Васи»: монтажёр и моушн-дизайнер с описанием ролей и инструментов.",
+    "tags": [
+      "Автоматизация",
+      "Видео",
+      "Дизайн"
+    ],
+    "machine_tags": [
+      "product/services",
+      "theme/automation",
+      "theme/graphics"
+    ],
+    "url": "docs/vasya.md"
+  },
+  {
+    "title": "Vision — Игровая навигация и роли (V1)",
+    "slug": "vision-igrovaya-navigaciya-i-roli-v1",
+    "status": "review",
+    "summary": "Концепция игрового первого экрана с переключением ролей и корзиной артефактов для быстрого погружения в сервисы.",
+    "tags": [
+      "Автоматизация",
+      "Дизайн",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/graphics"
+    ],
+    "url": "docs/vision-igrovaya-navigaciya-i-roli-v1.md"
+  },
+  {
+    "title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)",
+    "slug": "vision-strategiya-marketing-autentichnost-tretij-put-onepager",
+    "status": "review",
+    "summary": "Видение продукта: баланс маркетинга, аутентичности и третьего пути с метриками, рисками и дорожной картой.",
+    "tags": [
+      "Автоматизация",
+      "Дизайн",
+      "Проектирование",
+      "Референсы",
+      "Теги"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/graphics",
+      "theme/references"
+    ],
+    "url": "docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager.md"
+  },
+  {
+    "title": "Вова и Петрова",
+    "slug": "vova-i-petrova",
+    "status": "ready",
+    "summary": "Центральный узел проекта: объяснение замысла, роли ключевых артефактов и маршруты для быстрого погружения.",
+    "tags": [
+      "Автоматизация",
+      "Дизайн",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/graphics"
+    ],
+    "url": "docs/vova-i-petrova.md"
+  },
+  {
+    "title": "Вова",
+    "slug": "vova",
+    "status": "ready",
+    "summary": "Профиль героя студии: музыкальный продюсер Вова с его ролями, тоном и техслоями.",
+    "tags": [
+      "Автоматизация",
+      "Видео",
+      "Дизайн",
+      "Референсы"
+    ],
+    "machine_tags": [
+      "product/services",
+      "theme/automation",
+      "theme/graphics",
+      "theme/references"
+    ],
+    "url": "docs/vova.md"
+  }
+]

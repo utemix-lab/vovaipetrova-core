@@ -1,6 +1,14 @@
 name: Deploy Pages (prototype)
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "prototype/**"
+      - "docs/**"
+      - ".github/workflows/pages.yml"
+      - "package.json"
+      - "package-lock.json"
   workflow_dispatch:
 
 jobs:
@@ -9,14 +17,29 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - uses: actions/checkout@v4
-      
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build prototype index
+        run: node prototype/build-index.mjs
+
       - uses: actions/configure-pages@v4
-      
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: prototype
-      
-      - uses: actions/deploy-pages@v4
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

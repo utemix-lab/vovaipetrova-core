@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vova &amp; Petrova — Документы</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <body data-view="index">
+    <header class="site-header">
+      <div class="site-header__top">
+        <h1 class="site-title">Vova &amp; Petrova — Docs Gallery</h1>
+        <span class="site-meta">Статичный прототип для GitHub Pages</span>
+      </div>
+      <div class="controls">
+        <div class="filters" role="group" aria-label="Фильтр по статусу">
+          <button type="button" class="filter-button is-active" data-status="all">
+            Все
+          </button>
+          <button type="button" class="filter-button" data-status="ready">
+            Ready
+          </button>
+          <button type="button" class="filter-button" data-status="review">
+            Review
+          </button>
+          <button type="button" class="filter-button" data-status="draft">
+            Draft
+          </button>
+        </div>
+        <label class="search">
+          <span class="search__label">Поиск</span>
+          <input
+            id="search-input"
+            class="search__input"
+            type="search"
+            placeholder="Поиск по названию…"
+            autocomplete="off"
+          />
+        </label>
+      </div>
+    </header>
+    <main class="content">
+      <section id="cards" class="cards-grid" aria-live="polite"></section>
+      <div id="empty-state" class="empty-state hidden">
+        <h2>Ничего не найдено</h2>
+        <p>Поменяйте фильтр или запрос поиска.</p>
+      </div>
+    </main>
+    <footer class="site-footer">
+      Генерация данных: <code>prototype/build-index.mjs</code>
+    </footer>
+  </body>
+</html>
+
