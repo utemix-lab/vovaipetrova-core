@@ -144,6 +144,39 @@ function renderTags(container, tags) {
   container.appendChild(fragment);
 }
 
+function rewriteInternalLinks(article, pages) {
+  const slugByReference = new Map();
+  pages.forEach((page) => {
+    const url = page.url.replace(/^\.\//, "");
+    slugByReference.set(url, page.slug);
+    slugByReference.set(url.replace(/^docs\//, ""), page.slug);
+    slugByReference.set(`${page.slug}.md`, page.slug);
+    slugByReference.set(page.slug, page.slug);
+  });
+
+  article.querySelectorAll("a[href]").forEach((anchor) => {
+    const href = anchor.getAttribute("href");
+    if (!href || href.startsWith("http") || href.startsWith("mailto:")) return;
+    if (href.startsWith("#")) return;
+
+    const [pathPart, hashPart] = href.split("#");
+    const normalized = pathPart
+      .replace(/^(\.\/)+/, "")
+      .replace(/^(\.\.\/)+/, "")
+      .replace(/^docs\//, "");
+
+    const slug =
+      slugByReference.get(normalized) ||
+      slugByReference.get(`${normalized}.md`) ||
+      slugByReference.get(normalized.replace(/\.md$/i, ""));
+
+    if (!slug) return;
+    const hash = hashPart ? `#${hashPart}` : "";
+    const target = `../page/${slug}.html${hash}`;
+    anchor.setAttribute("href", target);
+  });
+}
+
 function resolveMarkdownUrl(relativePath) {
   const host = window.location.hostname;
   const isGithubPages = host.endsWith("github.io");
@@ -196,6 +229,7 @@ async function renderPage() {
   const html = marked.parse(content);
   const article = document.getElementById("page-content");
   article.innerHTML = html;
+  rewriteInternalLinks(article, pages);
 
   const headings = article.querySelectorAll("h2, h3");
   const relatedSection = Array.from(headings).find((node) =>
