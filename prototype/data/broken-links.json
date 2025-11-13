@@ -1,0 +1,229 @@
+{
+  "generatedAt": "2025-11-13T21:07:22.703Z",
+  "totalFiles": 154,
+  "brokenCount": 37,
+  "issues": [
+    {
+      "file": "vova-i-petrova-ef2871.md",
+      "link": "База знаний dcec31887b6145d78d9096d911a951cb.csv",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "vova-i-petrova-ef2871.md",
+      "link": "Персонажи (Агенты",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "vova-i-petrova-ef2871.md",
+      "link": "notion-brain-108a7f.md",
+      "reason": "service",
+      "resolved_to": "notion-brain"
+    },
+    {
+      "file": "vova-i-petrova-ef2871.md",
+      "link": "context-mapyaml-64b43e.md",
+      "reason": "unknown_target",
+      "resolved_to": "context-mapyaml"
+    },
+    {
+      "file": "vova-i-petrova-ef2871.md",
+      "link": "readme-notion-brain.md",
+      "reason": "service",
+      "resolved_to": "readme-notion-brain.md"
+    },
+    {
+      "file": "uslugi.md",
+      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "reason": "service",
+      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "uslugi-e38e09.md",
+      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "reason": "service",
+      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "link": "file://",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "link": "file://",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "spec-normalize-i-politika-imyon.md",
+      "link": "../README.md",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
+      "link": "URL",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
+      "link": "/kb/flux",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
+      "link": "/nav/user",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
+      "link": "URL",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
+      "link": "/kb/flux",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
+      "link": "/nav/user",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "notion-brain.md",
+      "link": "context-mapyaml.md",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "notion-brain.md",
+      "link": "readme-notion-brain.md",
+      "reason": "service",
+      "resolved_to": "readme-notion-brain.md"
+    },
+    {
+      "file": "notion-brain.md",
+      "link": "template-adr.md",
+      "reason": "service",
+      "resolved_to": "template-adr.md"
+    },
+    {
+      "file": "notion-brain.md",
+      "link": "template-zadacha-dlya-ispolnitelya-cursoraider.md",
+      "reason": "service",
+      "resolved_to": "template-zadacha-dlya-ispolnitelya-cursoraider.md"
+    },
+    {
+      "file": "notion-brain.md",
+      "link": "template-pr-cheklist.md",
+      "reason": "service",
+      "resolved_to": "template-pr-cheklist.md"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "link": "context-map-yaml-64b43e.md",
+      "reason": "service",
+      "resolved_to": "context-map-yaml"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "link": "readme-notion-brain.md",
+      "reason": "service",
+      "resolved_to": "readme-notion-brain.md"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "link": "template-adr-237529.md",
+      "reason": "service",
+      "resolved_to": "template-adr"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "link": "template-zadacha-dlya-ispolnitelya-cursoraider.md",
+      "reason": "service",
+      "resolved_to": "template-zadacha-dlya-ispolnitelya-cursoraider.md"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "link": "template-pr-cheklist-3a6077.md",
+      "reason": "service",
+      "resolved_to": "template-pr-cheklist"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "link": "template-vision-e2acba.md",
+      "reason": "service",
+      "resolved_to": "template-vision"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "link": "template-task-spec-bfe53d.md",
+      "reason": "service",
+      "resolved_to": "template-task-spec"
+    },
+    {
+      "file": "kartochka-uslugi-videoprodakshn.md",
+      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "reason": "service",
+      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "kartochka-uslugi-dizajn.md",
+      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "reason": "service",
+      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "instrukcii-dlya-notion-ai-vovaipetrova.md",
+      "link": "../README.md",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "instrukcii-dlya-notion-ai-vovaipetrova-28ce52.md",
+      "link": "../README.md",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "indeks-sajta.md",
+      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "reason": "service",
+      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "indeks-sajta-4b85d7.md",
+      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "reason": "service",
+      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "artefakty-korzina-i-zayavka-mvp.md",
+      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "reason": "service",
+      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "artefakty-korzina-i-zayavka-mvp-925151.md",
+      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "reason": "service",
+      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "arhitektura-i-komponenty-486a0b.md",
+      "link": "api-reestr-i-specifikacii-711159.md",
+      "reason": "unknown_target",
+      "resolved_to": "api-reestr-i-specifikacii"
+    }
+  ]
+}

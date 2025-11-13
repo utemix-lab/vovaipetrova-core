@@ -5,6 +5,7 @@ const STATUS_META = {
 };
 
 const VIEW = document.body.dataset.view;
+const LINK_MAP_CACHE = {};
 
 function byStatus(status, searchTerm) {
   return (page) => {
@@ -159,7 +160,7 @@ function buildSlugReference(pages) {
   return map;
 }
 
-function findSlugForReference(slugMap, reference) {
+function normalizeReferenceCandidates(reference) {
   const queue = [];
   const seen = new Set();
   const addCandidate = (value) => {
@@ -179,21 +180,61 @@ function findSlugForReference(slugMap, reference) {
   if (base.endsWith(".md")) {
     addCandidate(base.replace(/\.md$/i, ""));
   }
-  const withoutHashMd = base.replace(/-[0-9a-f]{4,}\.md$/i, ".md");
+  const withoutHashMd = base.replace(/-[0-9a-f]{6,}\.md$/i, ".md");
   addCandidate(withoutHashMd);
   if (withoutHashMd.endsWith(".md")) {
     addCandidate(withoutHashMd.replace(/\.md$/i, ""));
   }
-  addCandidate(base.replace(/-[0-9a-f]{4,}$/i, ""));
+  addCandidate(base.replace(/-[0-9a-f]{6,}$/i, ""));
+
+  return queue;
+}
+
+function findSlugForReference(slugMap, reference, linkMap) {
+  const queue = normalizeReferenceCandidates(reference);
 
   for (const candidate of queue) {
     const slug = slugMap.get(candidate);
     if (slug) return slug;
   }
+
+  if (linkMap?.exact) {
+    for (const candidate of queue) {
+      const mapped =
+        linkMap.exact[candidate] ||
+        linkMap.exact[`docs/${candidate}`] ||
+        linkMap.exact[`${candidate}.md`];
+      if (mapped) return mapped;
+    }
+  }
+
+  if (Array.isArray(linkMap?.patterns)) {
+    for (const pattern of linkMap.patterns) {
+      if (!pattern?.match) continue;
+      try {
+        const regex = new RegExp(pattern.match, "i");
+        for (const candidate of queue) {
+          if (!regex.test(candidate)) continue;
+          const replacement =
+            pattern.replacement != null
+              ? candidate.replace(regex, pattern.replacement)
+              : candidate.replace(regex, "");
+          const resolved =
+            slugMap.get(replacement.toLowerCase()) ||
+            linkMap.exact?.[replacement.toLowerCase()] ||
+            replacement;
+          if (resolved) return resolved;
+        }
+      } catch (error) {
+        console.warn("⚠️  Invalid pattern in link-map:", pattern.match, error);
+      }
+    }
+  }
+
   return null;
 }
 
-function rewriteInternalLinks(rootElement, pages) {
+function rewriteInternalLinks(rootElement, pages, linkMap) {
   const slugMap = buildSlugReference(pages);
 
   rootElement.querySelectorAll("a[href]").forEach((anchor) => {
@@ -202,7 +243,7 @@ function rewriteInternalLinks(rootElement, pages) {
     if (href.startsWith("#")) return;
 
     const [pathPart, hashPart] = href.split("#");
-    const slug = findSlugForReference(slugMap, pathPart);
+    const slug = findSlugForReference(slugMap, pathPart, linkMap);
     if (!slug) return;
     const hash = hashPart ? `#${hashPart}` : "";
     const target = `../page/${slug}.html${hash}`;
@@ -217,6 +258,26 @@ function resolveMarkdownUrl(relativePath) {
     return `https://raw.githubusercontent.com/utemix-lab/vovaipetrova-core/main/${relativePath}`;
   }
   return `../${relativePath}`;
+}
+
+async function loadLinkMap(path) {
+  if (LINK_MAP_CACHE[path]) return LINK_MAP_CACHE[path];
+  try {
+    const response = await fetch(path);
+    if (!response.ok) throw new Error(`status ${response.status}`);
+    const data = await response.json();
+    const normalized = {
+      exact: data?.exact || {},
+      patterns: Array.isArray(data?.patterns) ? data.patterns : []
+    };
+    LINK_MAP_CACHE[path] = normalized;
+    return normalized;
+  } catch (error) {
+    console.warn("⚠️  Failed to load link map:", error.message);
+    const fallback = { exact: {}, patterns: [] };
+    LINK_MAP_CACHE[path] = fallback;
+    return fallback;
+  }
 }
 
 async function renderPage() {
@@ -246,6 +307,7 @@ async function renderPage() {
   renderTags(document.getElementById("page-tags"), entry.tags);
 
   const markdownPath = resolveMarkdownUrl(entry.url);
+  const linkMap = await loadLinkMap("../data/link-map.json");
   const response = await fetch(markdownPath);
   if (!response.ok) {
     document.getElementById("page-content").textContent =
@@ -262,7 +324,7 @@ async function renderPage() {
   const html = marked.parse(content);
   const article = document.getElementById("page-content");
   article.innerHTML = html;
-  rewriteInternalLinks(article, pages);
+  rewriteInternalLinks(article, pages, linkMap);
 
   const headings = article.querySelectorAll("h2, h3");
   const relatedSection = Array.from(headings).find((node) =>
@@ -276,7 +338,7 @@ async function renderPage() {
       document.createElement("p");
     relatedTarget.innerHTML = "";
     relatedTarget.appendChild(list);
-    rewriteInternalLinks(relatedTarget, pages);
+    rewriteInternalLinks(relatedTarget, pages, linkMap);
     relatedBlock.classList.remove("hidden");
   }
 }

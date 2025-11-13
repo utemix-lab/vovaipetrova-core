@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync, rmSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from "fs";
 import path from "path";
 import { globSync } from "glob";
 import YAML from "yaml";
@@ -8,6 +8,8 @@ const OUTPUT_DIR = "prototype";
 const DATA_DIR = path.join(OUTPUT_DIR, "data");
 const PAGES_DIR = path.join(OUTPUT_DIR, "page");
 const OUTPUT_JSON = path.join(DATA_DIR, "pages.json");
+const LINK_MAP_SOURCE = path.join(OUTPUT_DIR, "link-map.json");
+const LINK_MAP_OUTPUT = path.join(DATA_DIR, "link-map.json");
 const PAGE_TEMPLATE_PATH = path.join(OUTPUT_DIR, "page.html");
 
 function toPosix(filePath) {
@@ -41,8 +43,26 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
+function loadLinkMap() {
+  if (!existsSync(LINK_MAP_SOURCE)) {
+    return { exact: {}, patterns: [] };
+  }
+  try {
+    const raw = readFileSync(LINK_MAP_SOURCE, "utf8");
+    const parsed = JSON.parse(raw);
+    return {
+      exact: parsed?.exact || {},
+      patterns: Array.isArray(parsed?.patterns) ? parsed.patterns : []
+    };
+  } catch (error) {
+    console.warn("⚠️  Failed to load link-map.json:", error.message);
+    return { exact: {}, patterns: [] };
+  }
+}
+
 function buildIndex() {
   ensureDirs();
+  const linkMap = loadLinkMap();
   const files = globSync(`${DOCS_ROOT}/**/*.md`, { nodir: true }).sort();
   const pages = [];
 
@@ -89,6 +109,7 @@ function buildIndex() {
   }
 
   writeFileSync(OUTPUT_JSON, JSON.stringify(pages, null, 2), "utf8");
+  writeFileSync(LINK_MAP_OUTPUT, JSON.stringify(linkMap, null, 2), "utf8");
 
   const templateRaw = readFileSync(PAGE_TEMPLATE_PATH, "utf8");
   for (const page of pages) {
