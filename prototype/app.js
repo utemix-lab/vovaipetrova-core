@@ -1,0 +1,222 @@
+const STATUS_META = {
+  ready: { label: "ready", emoji: "🟢", className: "status-ready" },
+  review: { label: "review", emoji: "🟡", className: "status-review" },
+  draft: { label: "draft", emoji: "⚪", className: "status-draft" }
+};
+
+const VIEW = document.body.dataset.view;
+
+function byStatus(status, searchTerm) {
+  return (page) => {
+    const matchesStatus =
+      status === "all" ? true : page.status?.toLowerCase() === status;
+    if (!matchesStatus) return false;
+    if (!searchTerm) return true;
+    const query = searchTerm.toLowerCase();
+    return (
+      page.title.toLowerCase().includes(query) ||
+      (page.summary && page.summary.toLowerCase().includes(query)) ||
+      page.tags.some((tag) => tag.toLowerCase().includes(query))
+    );
+  };
+}
+
+function createCard(page) {
+  const card = document.createElement("article");
+  card.className = "card";
+
+  const titleLink = document.createElement("a");
+  titleLink.className = "card__title";
+  titleLink.href = `page/${page.slug}.html`;
+  titleLink.textContent = page.title || page.slug;
+  card.appendChild(titleLink);
+
+  const status = document.createElement("span");
+  const meta = STATUS_META[page.status] || STATUS_META.draft;
+  status.className = `status-badge ${meta.className}`;
+  status.textContent = `${meta.emoji} ${meta.label}`;
+  card.appendChild(status);
+
+  if (page.summary) {
+    const summary = document.createElement("p");
+    summary.className = "card__summary";
+    summary.textContent =
+      page.summary.length > 140
+        ? `${page.summary.slice(0, 137).trim()}…`
+        : page.summary;
+    card.appendChild(summary);
+  }
+
+  if (page.tags?.length) {
+    const tags = document.createElement("div");
+    tags.className = "tag-list";
+    for (const tag of page.tags) {
+      const chip = document.createElement("span");
+      chip.className = "tag-chip";
+      chip.textContent = tag;
+      tags.appendChild(chip);
+    }
+    card.appendChild(tags);
+  }
+
+  return card;
+}
+
+async function loadPages(basePath) {
+  const response = await fetch(basePath);
+  if (!response.ok) {
+    throw new Error(`Не удалось загрузить pages.json: ${response.status}`);
+  }
+  const data = await response.json();
+  return data.sort((a, b) =>
+    (a.title || a.slug).localeCompare(b.title || b.slug, "ru")
+  );
+}
+
+async function renderIndex() {
+  const cardsContainer = document.getElementById("cards");
+  const emptyState = document.getElementById("empty-state");
+  const searchInput = document.getElementById("search-input");
+  const filterButtons = Array.from(
+    document.querySelectorAll(".filter-button")
+  );
+
+  const pages = await loadPages("data/pages.json");
+  let currentStatus = "all";
+  let currentSearch = "";
+
+  function render() {
+    cardsContainer.innerHTML = "";
+    const filtered = pages.filter(byStatus(currentStatus, currentSearch));
+    if (filtered.length === 0) {
+      emptyState.classList.remove("hidden");
+      return;
+    }
+    emptyState.classList.add("hidden");
+    const fragment = document.createDocumentFragment();
+    for (const page of filtered) {
+      fragment.appendChild(createCard(page));
+    }
+    cardsContainer.appendChild(fragment);
+  }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach((btn) => btn.classList.remove("is-active"));
+      button.classList.add("is-active");
+      currentStatus = button.dataset.status;
+      render();
+    });
+  });
+
+  let searchTimeout;
+  searchInput.addEventListener("input", (event) => {
+    const value = event.target.value.trim();
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      currentSearch = value;
+      render();
+    }, 150);
+  });
+
+  render();
+}
+
+function applyStatusBadge(element, status) {
+  const meta = STATUS_META[status] || STATUS_META.draft;
+  element.className = `status-badge ${meta.className}`;
+  element.textContent = `${meta.emoji} ${meta.label}`;
+}
+
+function renderTags(container, tags) {
+  container.innerHTML = "";
+  if (!tags || tags.length === 0) {
+    container.textContent = "Без тегов";
+    return;
+  }
+  const fragment = document.createDocumentFragment();
+  tags.forEach((tag) => {
+    const chip = document.createElement("span");
+    chip.className = "tag-chip";
+    chip.textContent = tag;
+    fragment.appendChild(chip);
+  });
+  container.appendChild(fragment);
+}
+
+async function renderPage() {
+  const slug = window.__PAGE_SLUG__;
+  if (!slug) {
+    document.getElementById("page-content").textContent =
+      "Не указан slug страницы.";
+    return;
+  }
+
+  const pages = await loadPages("../data/pages.json");
+  const entry = pages.find((page) => page.slug === slug);
+  if (!entry) {
+    document.getElementById("page-content").textContent =
+      "Страница не найдена.";
+    return;
+  }
+
+  document.title = `Документ — ${entry.title || entry.slug}`;
+  document.getElementById("breadcrumb-current").textContent =
+    entry.title || entry.slug;
+  document.getElementById("page-heading").textContent =
+    entry.title || entry.slug;
+  document.getElementById("page-summary").textContent =
+    entry.summary || "Описание отсутствует.";
+  applyStatusBadge(document.getElementById("page-status"), entry.status);
+  renderTags(document.getElementById("page-tags"), entry.tags);
+
+  const markdownPath = `../${entry.url}`;
+  const response = await fetch(markdownPath);
+  if (!response.ok) {
+    document.getElementById("page-content").textContent =
+      "Не удалось загрузить markdown.";
+    return;
+  }
+  const markdown = await response.text();
+  marked.setOptions({
+    mangle: false,
+    headerIds: true,
+    langPrefix: "language-"
+  });
+  const content = markdown.replace(/^---[\s\S]*?---/, "").trim();
+  const html = marked.parse(content);
+  const article = document.getElementById("page-content");
+  article.innerHTML = html;
+
+  const headings = article.querySelectorAll("h2, h3");
+  const relatedSection = Array.from(headings).find((node) =>
+    node.textContent.trim().toLowerCase().startsWith("связано с")
+  );
+  if (relatedSection) {
+    const relatedBlock = document.getElementById("related-block");
+    const relatedTarget = document.getElementById("related-content");
+    const list =
+      relatedSection.nextElementSibling?.cloneNode(true) ??
+      document.createElement("p");
+    relatedTarget.innerHTML = "";
+    relatedTarget.appendChild(list);
+    relatedBlock.classList.remove("hidden");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (VIEW === "index") {
+    renderIndex().catch((error) => {
+      console.error(error);
+      const container = document.getElementById("cards");
+      container.innerHTML = `<p>Ошибка загрузки данных: ${error.message}</p>`;
+    });
+  } else if (VIEW === "page") {
+    renderPage().catch((error) => {
+      console.error(error);
+      const article = document.getElementById("page-content");
+      article.textContent = `Ошибка загрузки страницы: ${error.message}`;
+    });
+  }
+});
+
