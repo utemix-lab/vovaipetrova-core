@@ -144,32 +144,65 @@ function renderTags(container, tags) {
   container.appendChild(fragment);
 }
 
-function rewriteInternalLinks(article, pages) {
-  const slugByReference = new Map();
+function buildSlugReference(pages) {
+  const map = new Map();
   pages.forEach((page) => {
-    const url = page.url.replace(/^\.\//, "");
-    slugByReference.set(url, page.slug);
-    slugByReference.set(url.replace(/^docs\//, ""), page.slug);
-    slugByReference.set(`${page.slug}.md`, page.slug);
-    slugByReference.set(page.slug, page.slug);
+    const slug = page.slug;
+    const variants = new Set([
+      page.url.replace(/^\.\//, ""),
+      page.url.replace(/^\.\//, "").replace(/^docs\//, ""),
+      `${slug}`,
+      `${slug}.md`
+    ]);
+    variants.forEach((item) => map.set(item.toLowerCase(), slug));
   });
+  return map;
+}
 
-  article.querySelectorAll("a[href]").forEach((anchor) => {
+function findSlugForReference(slugMap, reference) {
+  const queue = [];
+  const seen = new Set();
+  const addCandidate = (value) => {
+    if (!value) return;
+    const normalized = value.toLowerCase();
+    if (seen.has(normalized)) return;
+    seen.add(normalized);
+    queue.push(normalized);
+  };
+
+  const base = reference
+    .replace(/^(\.\/)+/, "")
+    .replace(/^(\.\.\/)+/, "")
+    .replace(/^docs\//, "");
+
+  addCandidate(base);
+  if (base.endsWith(".md")) {
+    addCandidate(base.replace(/\.md$/i, ""));
+  }
+  const withoutHashMd = base.replace(/-[0-9a-f]{4,}\.md$/i, ".md");
+  addCandidate(withoutHashMd);
+  if (withoutHashMd.endsWith(".md")) {
+    addCandidate(withoutHashMd.replace(/\.md$/i, ""));
+  }
+  addCandidate(base.replace(/-[0-9a-f]{4,}$/i, ""));
+
+  for (const candidate of queue) {
+    const slug = slugMap.get(candidate);
+    if (slug) return slug;
+  }
+  return null;
+}
+
+function rewriteInternalLinks(rootElement, pages) {
+  const slugMap = buildSlugReference(pages);
+
+  rootElement.querySelectorAll("a[href]").forEach((anchor) => {
     const href = anchor.getAttribute("href");
     if (!href || href.startsWith("http") || href.startsWith("mailto:")) return;
     if (href.startsWith("#")) return;
 
     const [pathPart, hashPart] = href.split("#");
-    const normalized = pathPart
-      .replace(/^(\.\/)+/, "")
-      .replace(/^(\.\.\/)+/, "")
-      .replace(/^docs\//, "");
-
-    const slug =
-      slugByReference.get(normalized) ||
-      slugByReference.get(`${normalized}.md`) ||
-      slugByReference.get(normalized.replace(/\.md$/i, ""));
-
+    const slug = findSlugForReference(slugMap, pathPart);
     if (!slug) return;
     const hash = hashPart ? `#${hashPart}` : "";
     const target = `../page/${slug}.html${hash}`;
@@ -243,6 +276,7 @@ async function renderPage() {
       document.createElement("p");
     relatedTarget.innerHTML = "";
     relatedTarget.appendChild(list);
+    rewriteInternalLinks(relatedTarget, pages);
     relatedBlock.classList.remove("hidden");
   }
 }
