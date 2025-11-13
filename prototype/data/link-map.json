@@ -1,0 +1,9 @@
+{
+  "exact": {},
+  "patterns": [
+    {
+      "match": "^(?:docs/)?(.+?)-[0-9a-f]{6,}(?:\\.md)?$",
+      "replacement": "$1"
+    }
+  ]
+}
