@@ -22,9 +22,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-             - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4.1.1
 
-             - uses: actions/setup-node@v4.0.2
+      - uses: actions/setup-node@v4.0.2
         with:
           node-version: 20
           cache: "npm"
@@ -35,11 +35,11 @@ jobs:
       - name: Build prototype index
         run: node prototype/build-index.mjs
 
-             - uses: actions/configure-pages@v4.0.0
+      - uses: actions/configure-pages@v4.0.0
 
-             - uses: actions/upload-pages-artifact@v3.0.0
+      - uses: actions/upload-pages-artifact@v3.0.0
         with:
           path: prototype
 
       - id: deployment
-               uses: actions/deploy-pages@v4.0.0
+        uses: actions/deploy-pages@v4.0.0
