@@ -1,9 +1,11 @@
 ---
-title: "Автопилот: Notion → Cursor → GitHub"
-slug: "04-avtopilot-notion-cursor-github"
-summary: "Как мы сняли требование ручных аппрувов и научили Cursor закрывать цикл сам."
-tags: [Story]
-machine_tags: [content/story]
+title: 'Автопилот: Notion → Cursor → GitHub'
+slug: 04-avtopilot-notion-cursor-github
+summary: Как мы сняли требование ручных аппрувов и научили Cursor закрывать цикл сам.
+tags:
+  - Story
+machine_tags:
+  - content/story
 status: draft
 last_edited_time: 2025-11-14T09:30:00.000Z
 ---

@@ -1,9 +1,13 @@
 ---
-title: "Исток: зачем вообще собирать истории"
-slug: "01-zarozhdenie-idei"
-summary: "Как команда решила вынести процесс и моторику проекта в отдельную ветку Stories."
-tags: [Story]
-machine_tags: [content/story]
+title: 'Исток: зачем вообще собирать истории'
+slug: 01-zarozhdenie-idei
+summary: >-
+  Как команда решила вынести процесс и моторику проекта в отдельную ветку
+  Stories.
+tags:
+  - Story
+machine_tags:
+  - content/story
 status: draft
 last_edited_time: 2025-11-14T09:00:00.000Z
 ---

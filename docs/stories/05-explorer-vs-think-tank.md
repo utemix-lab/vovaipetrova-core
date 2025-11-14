@@ -1,9 +1,11 @@
 ---
-title: "Explorer против Think Tank: делим витрину и лабораторию"
-slug: "05-explorer-vs-think-tank"
-summary: "Как мы развели стратегические материалы и экспериментальные публикации."
-tags: [Story]
-machine_tags: [content/story]
+title: 'Explorer против Think Tank: делим витрину и лабораторию'
+slug: 05-explorer-vs-think-tank
+summary: Как мы развели стратегические материалы и экспериментальные публикации.
+tags:
+  - Story
+machine_tags:
+  - content/story
 status: draft
 last_edited_time: 2025-11-14T09:40:00.000Z
 ---

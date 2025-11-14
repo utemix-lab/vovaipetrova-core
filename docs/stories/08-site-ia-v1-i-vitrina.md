@@ -1,9 +1,13 @@
 ---
-title: "Site IA v1: готовим витрину"
-slug: "08-site-ia-v1-i-vitrina"
-summary: "Как появилась первая карта маршрутов и почему она важна для публикации Stories."
-tags: [Story]
-machine_tags: [content/story]
+title: 'Site IA v1: готовим витрину'
+slug: 08-site-ia-v1-i-vitrina
+summary: >-
+  Как появилась первая карта маршрутов и почему она важна для публикации
+  Stories.
+tags:
+  - Story
+machine_tags:
+  - content/story
 status: draft
 last_edited_time: 2025-11-14T10:10:00.000Z
 ---

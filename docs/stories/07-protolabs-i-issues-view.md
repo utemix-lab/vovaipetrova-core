@@ -1,9 +1,11 @@
 ---
-title: "ProtoLabs: диагностика и Issues View"
-slug: "07-protolabs-i-issues-view"
-summary: "Как прототип превратился из галереи в инструмент диагностики контента."
-tags: [Story]
-machine_tags: [content/story]
+title: 'ProtoLabs: диагностика и Issues View'
+slug: 07-protolabs-i-issues-view
+summary: Как прототип превратился из галереи в инструмент диагностики контента.
+tags:
+  - Story
+machine_tags:
+  - content/story
 status: draft
 last_edited_time: 2025-11-14T10:00:00.000Z
 ---

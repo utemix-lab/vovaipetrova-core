@@ -1,9 +1,11 @@
 ---
-title: "Импорт и безопасность: как мы перестали бояться ZIP"
-slug: "03-import-i-bezopasnost"
-summary: "История появления workflow Notion Import и почему он стал обязательным шлюзом."
-tags: [Story]
-machine_tags: [content/story]
+title: 'Импорт и безопасность: как мы перестали бояться ZIP'
+slug: 03-import-i-bezopasnost
+summary: История появления workflow Notion Import и почему он стал обязательным шлюзом.
+tags:
+  - Story
+machine_tags:
+  - content/story
 status: draft
 last_edited_time: 2025-11-14T09:20:00.000Z
 ---

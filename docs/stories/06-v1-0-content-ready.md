@@ -1,9 +1,11 @@
 ---
-title: "Версия v1.0: фиксируем контентное ядро"
-slug: "06-v1-0-content-ready"
-summary: "Как мы дошли до релиза v1.0-content-ready и что попало в этот срез."
-tags: [Story]
-machine_tags: [content/story]
+title: 'Версия v1.0: фиксируем контентное ядро'
+slug: 06-v1-0-content-ready
+summary: Как мы дошли до релиза v1.0-content-ready и что попало в этот срез.
+tags:
+  - Story
+machine_tags:
+  - content/story
 status: draft
 last_edited_time: 2025-11-14T09:50:00.000Z
 ---
