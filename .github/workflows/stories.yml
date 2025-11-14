@@ -1,0 +1,85 @@
+name: Stories Auto Generator
+
+on:
+  schedule:
+    # 07:00 Europe/Moscow = 04:00 UTC
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate story draft
+        run: node scripts/generate-stories.mjs
+
+      - id: meta
+        run: |
+          if [ ! -f tmp/story-meta.json ]; then
+            echo "created=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          node <<'EOF'
+          const fs = require('fs');
+          const meta = JSON.parse(fs.readFileSync('tmp/story-meta.json', 'utf8'));
+          const output = fs.createWriteStream(process.env.GITHUB_OUTPUT, { flags: 'a' });
+          output.write(`created=${meta.created}\n`);
+          if (meta.file) output.write(`file=${meta.file}\n`);
+          if (meta.title) output.write(`title=${meta.title}\n`);
+          if (meta.sources) output.write(`sources=${meta.sources.join(', ')}\n`);
+          output.end();
+          EOF
+
+      - name: Check for changes
+        id: git_status
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Prepare branch
+        if: steps.meta.outputs.created == 'true' && steps.git_status.outputs.changed == 'true'
+        run: |
+          BRANCH="chore/story-auto-$(date -u +%Y-%m-%d)"
+          git checkout -b "$BRANCH"
+          git add docs/stories
+          git commit -m "chore: story auto-$(date -u +%Y-%m-%d) (draft)"
+          git push -u origin "$BRANCH"
+          echo "BRANCH_NAME=$BRANCH" >> "$GITHUB_ENV"
+
+      - name: Create PR
+        if: steps.meta.outputs.created == 'true' && steps.git_status.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_BRANCH: ${{ env.BRANCH_NAME }}
+          STORY_TITLE: ${{ steps.meta.outputs.title }}
+          STORY_SOURCES: ${{ steps.meta.outputs.sources }}
+        run: |
+          BODY="Автогенерирован черновик Stories: ${STORY_TITLE:-без названия}.
+
+Источники: ${STORY_SOURCES:-CHANGELOG}.
+Workflow: stories.yml (07:00 Europe/Moscow)."
+          gh pr create \
+            --base main \
+            --head "$PR_BRANCH" \
+            --title "chore: story auto-$(date -u +%Y-%m-%d) (draft)" \
+            --body "$BODY" \
+            --label auto:story || echo "PR already exists"
+

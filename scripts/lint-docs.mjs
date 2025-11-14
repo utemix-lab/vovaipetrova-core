@@ -32,6 +32,27 @@ function getFirstContentLine(body) {
   return '';
 }
 
+function containsForbiddenStoryPhrases(body) {
+  const phrases = [
+    'дмитрий',
+    'я ',
+    'я,',
+    ' мне ',
+    ' меня',
+    ' мой',
+    ' моя',
+    ' мои',
+    ' мы с ',
+    'я считаю',
+    'я думаю',
+    'я хочу',
+    'по-моему',
+    'по моему'
+  ];
+  const normalized = body.toLowerCase();
+  return phrases.some((phrase) => normalized.includes(phrase));
+}
+
 function lintFile(file) {
   const errors = [];
   const warnings = [];
@@ -41,6 +62,8 @@ function lintFile(file) {
   const body = parsed.content || '';
   const isService = fm.service === true;
   const status = fm.status;
+  const normalizedPath = file.replace(/\\/g, '/');
+  const isStory = normalizedPath.startsWith(`${ROOT}/stories/`);
 
   if (!fm.title) errors.push('missing title');
   if (!fm.slug) errors.push('missing slug');
@@ -110,7 +133,17 @@ function lintFile(file) {
     }
   }
 
-  return { errors, warnings, status: status ? String(status).toLowerCase() : null };
+  if (isStory && containsForbiddenStoryPhrases(body)) {
+    warnings.push(
+      'warn: Истории ведём от нейтрального автора; используйте «автор» или безличные формулировки'
+    );
+  }
+
+  return {
+    errors,
+    warnings,
+    status: status ? String(status).toLowerCase() : null
+  };
 }
 
 function main() {
