@@ -17,7 +17,8 @@
     "check:import": "node scripts/check-import-safety.mjs",
     "unpack:notion": "node scripts/unpack-notion-export.mjs",
     "scaffold:article": "node scripts/scaffold.mjs --type=article",
-    "scaffold:adr": "node scripts/scaffold.mjs --type=adr"
+    "scaffold:adr": "node scripts/scaffold.mjs --type=adr",
+    "story:generate": "node scripts/generate-stories.mjs"
   },
   "repository": {
     "type": "git",
