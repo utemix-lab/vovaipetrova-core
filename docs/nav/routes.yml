@@ -1,0 +1,145 @@
+version: 1
+updated: 2025-11-14
+routes:
+  - path: "/"
+    title: "Главная"
+    description: "индексы и быстрый ответ на вопрос «Что это?»"
+    entries:
+      - slug: vova-i-petrova
+        doc: docs/vova-i-petrova.md
+        status: ok
+        notes: "общий манифест и позиционирование"
+      - slug: indeks-i-tldr
+        doc: docs/indeks-i-tldr.md
+        status: ok
+        notes: "укороченное оглавление"
+      - slug: sut-proekta-one-liner
+        doc: docs/sut-proekta-one-liner.md
+        status: ok
+        notes: "одно предложение о проекте"
+      - slug: indeks-sajta
+        doc: docs/indeks-sajta.md
+        status: ok
+        notes: "быстрые ссылки и CTA"
+
+  - path: "/project"
+    title: "Проект"
+    description: "архитектура, дорожная карта и контрольные точки"
+    entries:
+      - slug: arhitektura-proekta-komponenty
+        doc: docs/arhitektura-proekta-komponenty.md
+        status: ok
+        notes: "структура ядра и сервисов"
+      - slug: dorozhnaya-karta-etapy
+        doc: docs/dorozhnaya-karta-etapy.md
+        status: ok
+        notes: "основные этапы"
+      - slug: dorozhnaya-karta-i-beklog
+        doc: docs/dorozhnaya-karta-i-beklog.md
+        status: ok
+        notes: "операционный бэклог"
+      - slug: process-obsudili-razlozhili-svyazali
+        doc: docs/process-obsudili-razlozhili-svyazali.md
+        status: ok
+        notes: "рабочий процесс"
+      - slug: vision-strategiya-marketing-autentichnost-tretij-put-onepager
+        doc: docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager.md
+        status: ok
+        notes: "визуализация и стратегический скоуп"
+
+  - path: "/think-tank"
+    title: "Think Tank"
+    description: "ядро решений, ADR и эволюция"
+    entries:
+      - slug: think-tank-kompaktnoe-yadro
+        doc: docs/think-tank-kompaktnoe-yadro.md
+        status: ok
+        notes: "описание компактного ядра"
+      - slug: think-tank-vitrina-processa
+        doc: docs/think-tank-vitrina-processa.md
+        status: ok
+        notes: "как показываем ход мыслей"
+      - slug: adr-source-of-truth-mirroring
+        doc: docs/adr-source-of-truth-mirroring.md
+        status: ok
+        notes: "ключевой ADR про зеркалирование"
+      - slug: adr-tags-and-facets
+        doc: docs/adr-tags-and-facets.md
+        status: ok
+        notes: "правила тегов и фасетов"
+      - slug: adr-zhurnal-reshenij-b34c2e
+        doc: docs/adr-zhurnal-reshenij-b34c2e.md
+        status: ok
+        notes: "журнал решений (черновик)"
+
+  - path: "/kb"
+    title: "Knowledge Base"
+    description: "контентная модель, фасеты, правила импорта"
+    entries:
+      - slug: baza-znanij-koren
+        doc: docs/baza-znanij-koren.md
+        status: ok
+        notes: "структура базы знаний"
+      - slug: kontentmodel-i-marshruty
+        doc: docs/kontentmodel-i-marshruty.md
+        status: ok
+        notes: "маршруты и типы контента"
+      - slug: taksonomiya-i-tegi
+        doc: docs/taksonomiya-i-tegi.md
+        status: ok
+        notes: "видимые теги"
+      - slug: spec-content-linter-i-scaffold-chernovik
+        doc: docs/spec-content-linter-i-scaffold-chernovik.md
+        status: ok
+        notes: "линтер и scaffold"
+      - slug: spec-normalize-i-politika-imyon
+        doc: docs/spec-normalize-i-politika-imyon.md
+        status: ok
+        notes: "нормализация и правила имен"
+
+  - path: "/portfolio"
+    title: "Портфолио и услуги"
+    description: "кейсы, карточки услуг и требования к артефактам"
+    entries:
+      - slug: portfolio-koren
+        doc: docs/portfolio-koren.md
+        status: ok
+        notes: "общее описание портфолио"
+      - slug: portfolio-struktura
+        doc: docs/portfolio-struktura.md
+        status: ok
+        notes: "структура витрины"
+      - slug: kartochka-uslugi-dizajn
+        doc: docs/kartochka-uslugi-dizajn.md
+        status: ok
+        notes: "пример услуги (дизайн)"
+      - slug: kartochka-uslugi-videoprodakshn
+        doc: docs/kartochka-uslugi-videoprodakshn.md
+        status: ok
+        notes: "пример услуги (видео)"
+      - slug: case-library
+        doc: docs/case-library.md
+        status: missing
+        notes: "нужен свод реальных кейсов"
+
+  - path: "/nav"
+    title: "Навигация"
+    description: "режимы навигации и индексы"
+    entries:
+      - slug: navigaciya-polzovatelskaya
+        doc: docs/navigaciya-polzovatelskaya.md
+        status: ok
+        notes: "пользовательский взгляд"
+      - slug: navigaciya-tehnicheskaya
+        doc: docs/navigaciya-tehnicheskaya.md
+        status: ok
+        notes: "техническая карта"
+      - slug: indeks-sajta
+        doc: docs/indeks-sajta.md
+        status: ok
+        notes: "поисковый индекс"
+      - slug: kontentmodel-i-marshruty
+        doc: docs/kontentmodel-i-marshruty.md
+        status: ok
+        notes: "связь разделов с контентными маршрутами"
+
