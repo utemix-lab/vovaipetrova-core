@@ -1,3 +1,11 @@
+---
+title: Site IA / nav
+slug: site-ia-nav
+service: true
+summary: '# Site IA / nav'
+tags: []
+machine_tags: []
+---
 # Site IA / nav
 
 `routes.yml` описывает целевые разделы витрины и то, какими Markdown‑файлами из `docs/` мы их закрываем.  
