@@ -511,6 +511,45 @@ body[data-view="index"] {
   border-radius: 12px;
 }
 
+.link-chip {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.link-chip--external {
+  background: rgba(59, 130, 246, 0.15);
+  color: rgba(59, 130, 246, 0.85);
+}
+
+.link-chip--unknown {
+  background: rgba(249, 115, 22, 0.2);
+  color: rgba(194, 65, 12, 0.9);
+}
+
+.link-chip--service {
+  background: rgba(99, 102, 241, 0.2);
+  color: rgba(99, 102, 241, 0.95);
+}
+
+a[data-link-kind="unknown"] {
+  text-decoration-style: dashed;
+}
+
+a[data-link-kind="external"] {
+  color: rgba(59, 130, 246, 0.95);
+}
+
+.page-content a[data-link-kind="service"] {
+  color: rgba(99, 102, 241, 0.9);
+}
+
 @media (max-width: 900px) {
   .page-layout {
     grid-template-columns: 1fr;

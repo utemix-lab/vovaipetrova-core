@@ -463,11 +463,7 @@ function findSlugForReference(slugMap, reference, linkMap) {
             pattern.replacement != null
               ? candidate.replace(regex, pattern.replacement)
               : candidate.replace(regex, "");
-          const resolved =
-            slugMap.get(replacement.toLowerCase()) ||
-            linkMap.exact?.[replacement.toLowerCase()] ||
-            replacement;
-          if (resolved) return resolved;
+          return replacement;
         }
       } catch (error) {
         console.warn("⚠️  Invalid pattern in link-map:", pattern.match, error);
@@ -478,20 +474,71 @@ function findSlugForReference(slugMap, reference, linkMap) {
   return null;
 }
 
+function addLinkChip(anchor, kind, label, tooltip) {
+  const chip = document.createElement("span");
+  chip.className = `link-chip link-chip--${kind}`;
+  chip.textContent = label;
+  if (tooltip) chip.title = tooltip;
+  anchor.insertAdjacentElement("afterend", chip);
+}
+
+function markExternal(anchor) {
+  anchor.dataset.linkKind = "external";
+  anchor.target = "_blank";
+  anchor.rel = "noopener noreferrer";
+  addLinkChip(anchor, "external", "external");
+}
+
+function markUnknown(anchor, href) {
+  anchor.dataset.linkKind = "unknown";
+  addLinkChip(anchor, "unknown", "не сопоставлено", href);
+}
+
+function markService(anchor) {
+  anchor.dataset.linkKind = "service";
+  addLinkChip(anchor, "service", "service");
+}
+
+function isExternalHref(href) {
+  if (!href) return false;
+  const lower = href.toLowerCase();
+  return (
+    lower.startsWith("http://") ||
+    lower.startsWith("https://") ||
+    lower.startsWith("file://") ||
+    lower.startsWith("/") ||
+    lower.endsWith(".csv")
+  );
+}
+
 function rewriteInternalLinks(rootElement, pages, linkMap) {
   const slugMap = buildSlugReference(pages);
+  const pageMap = new Map(pages.map((page) => [page.slug, page]));
 
   rootElement.querySelectorAll("a[href]").forEach((anchor) => {
     const href = anchor.getAttribute("href");
-    if (!href || href.startsWith("http") || href.startsWith("mailto:")) return;
+    if (!href || href.startsWith("mailto:")) return;
     if (href.startsWith("#")) return;
+
+    if (isExternalHref(href)) {
+      markExternal(anchor);
+      return;
+    }
 
     const [pathPart, hashPart] = href.split("#");
     const slug = findSlugForReference(slugMap, pathPart, linkMap);
-    if (!slug) return;
+    if (!slug) {
+      markUnknown(anchor, href);
+      return;
+    }
     const hash = hashPart ? `#${hashPart}` : "";
     const target = `../page/${slug}.html${hash}`;
     anchor.setAttribute("href", target);
+
+    const targetPage = pageMap.get(slug);
+    if (targetPage?.service) {
+      markService(anchor);
+    }
   });
 }
 

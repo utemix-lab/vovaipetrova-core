@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-11-14T11:39:42.595Z",
+  "generatedAt": "2025-11-14T11:55:47.224Z",
   "totals": {
     "pages": 154,
     "statuses": {
@@ -9,9 +9,9 @@
     },
     "issues": {
       "external": 104,
-      "service": 21,
+      "service": 22,
       "internal-missing": 7,
-      "unknown": 2
+      "unknown": 1
     }
   },
   "tags": [
@@ -245,15 +245,15 @@
       "tags": [],
       "issues": {
         "external": 1,
-        "service": 2,
+        "service": 3,
         "internal-missing": 1,
-        "unknown": 1
+        "unknown": 0
       },
       "issues_total": 5,
       "summary_missing": false,
       "tags_missing": true,
       "has_related_block": false,
-      "score": 11
+      "score": 12
     },
     {
       "slug": "sintaksis-i-razmetka-markdown-wordpress-60cc6c",
@@ -3081,15 +3081,15 @@
       "tags": [],
       "issues": {
         "external": 1,
-        "service": 2,
+        "service": 3,
         "internal-missing": 1,
-        "unknown": 1
+        "unknown": 0
       },
       "issues_total": 5,
       "summary_missing": false,
       "tags_missing": true,
       "has_related_block": false,
-      "score": 11
+      "score": 12
     },
     {
       "slug": "sintaksis-i-razmetka-markdown-wordpress-60cc6c",

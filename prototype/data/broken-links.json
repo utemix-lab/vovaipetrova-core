@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2025-11-14T11:39:42.587Z",
+  "generatedAt": "2025-11-14T11:55:47.216Z",
   "totalFiles": 154,
   "brokenCount": 134,
   "totals": {
     "external": 104,
-    "service": 21,
+    "service": 22,
     "internal-missing": 7,
-    "unknown": 2
+    "unknown": 1
   },
   "issues": [
     {
@@ -1045,9 +1045,9 @@
       "file": "vova-i-petrova-ef2871.md",
       "slug": "vova-i-petrova-ef2871",
       "href": "context-mapyaml-64b43e.md",
-      "kind": "unknown",
-      "reason": "pattern_mapped_unknown",
-      "target": "context-mapyaml"
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "context-map-yaml"
     },
     {
       "file": "vova-i-petrova-ef2871.md",
