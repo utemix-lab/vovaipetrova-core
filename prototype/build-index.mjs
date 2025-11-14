@@ -69,6 +69,12 @@ function buildIndex() {
   for (const file of files) {
     const raw = readFileSync(file, "utf8");
     const fm = readFrontMatter(raw);
+    const relativePath = toPosix(file);
+    const isStory = /\/stories\//.test(relativePath);
+    const storyOrderMatch = path
+      .parse(file)
+      .name.match(/^(\d{1,2})-/);
+    const storyOrder = storyOrderMatch ? Number(storyOrderMatch[1]) : null;
     const serviceValue =
       typeof fm.service === "string"
         ? fm.service.trim().toLowerCase()
@@ -104,8 +110,11 @@ function buildIndex() {
       summary,
       tags,
       machine_tags: machineTags,
-      url: toPosix(file),
-      service: isService
+      url: relativePath,
+      service: isService,
+      collection: isStory ? "stories" : null,
+      story_order:
+        isStory && Number.isInteger(storyOrder) ? storyOrder : null
     });
   }
 

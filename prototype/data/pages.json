@@ -7,7 +7,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/adr-source-of-truth-i-zerkalirovanie-f649b1.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "ADR — Source of truth и зеркалирование",
@@ -26,7 +28,9 @@
       "theme/ux"
     ],
     "url": "docs/adr-source-of-truth-i-zerkalirovanie.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "ADR — Source of truth и зеркалирование",
@@ -46,7 +50,9 @@
       "theme/graphics"
     ],
     "url": "docs/adr-source-of-truth-mirroring.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "ADR — Политика тегов и фасетов",
@@ -66,7 +72,9 @@
       "theme/graphics"
     ],
     "url": "docs/adr-tags-and-facets.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "ADR — Теги и фасеты",
@@ -76,7 +84,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/adr-tegi-i-fasety-b1150c.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "ADR — Теги и фасеты",
@@ -86,7 +96,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/adr-tegi-i-fasety-f3195c.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "ADR — Теги и фасеты",
@@ -100,7 +112,9 @@
       "producer/adobe"
     ],
     "url": "docs/adr-tegi-i-fasety.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "[ADR] Журнал решений",
@@ -110,7 +124,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/adr-zhurnal-reshenij-b34c2e.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Ancy",
@@ -120,7 +136,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/ancy-b786fe.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Ancy",
@@ -135,7 +153,9 @@
       "product/kb"
     ],
     "url": "docs/ancy.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "[API] Реестр и спецификации",
@@ -145,7 +165,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/api-reestr-i-specifikacii-711159.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Архитектура и компоненты",
@@ -155,7 +177,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/arhitektura-i-komponenty-486a0b.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Архитектура и компоненты",
@@ -175,7 +199,9 @@
       "theme/graphics"
     ],
     "url": "docs/arhitektura-i-komponenty.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Архитектура проекта — компоненты",
@@ -185,7 +211,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/arhitektura-proekta-komponenty-bb23c3.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Архитектура проекта — компоненты",
@@ -199,7 +227,9 @@
       "product/kb"
     ],
     "url": "docs/arhitektura-proekta-komponenty.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Артефакты — корзина и заявка (MVP)",
@@ -209,7 +239,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/artefakty-korzina-i-zayavka-mvp-925151.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Артефакты — корзина и заявка (MVP)",
@@ -230,7 +262,9 @@
       "theme/ux"
     ],
     "url": "docs/artefakty-korzina-i-zayavka-mvp.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "База знаний — корень",
@@ -240,7 +274,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/baza-znanij-koren-8cd215.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "База знаний — корень",
@@ -258,7 +294,9 @@
       "theme/automation"
     ],
     "url": "docs/baza-znanij-koren.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "CADрик",
@@ -268,7 +306,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/cadrik-b04be9.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "ComfyUI — обзор и быстрый старт",
@@ -278,7 +318,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/comfyui-obzor-i-bystryj-start-5a18c5.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "ComfyUI — обзор и быстрый старт",
@@ -294,7 +336,9 @@
       "tool/stable-diffusion"
     ],
     "url": "docs/comfyui-obzor-i-bystryj-start.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "context-map.yaml",
@@ -304,7 +348,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/context-map-yaml-64b43e.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "context-map.yaml",
@@ -314,7 +360,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/context-map-yaml-da0108.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "context-map.yaml",
@@ -324,7 +372,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/context-map-yaml.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "[DATA] Модель данных",
@@ -334,7 +384,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/data-model-dannyh-214280.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Динозаврик",
@@ -344,7 +396,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/dinozavrik-7e5f67.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Динозаврик",
@@ -361,7 +415,9 @@
       "theme/graphics"
     ],
     "url": "docs/dinozavrik.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Dizzy",
@@ -371,7 +427,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/dizzy-8844f5.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Dizzy",
@@ -388,7 +446,9 @@
       "theme/graphics"
     ],
     "url": "docs/dizzy.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Дорожная карта (этапы)",
@@ -398,7 +458,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/dorozhnaya-karta-etapy-8d0cea.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Дорожная карта (этапы)",
@@ -412,7 +474,9 @@
       "product/artifacts"
     ],
     "url": "docs/dorozhnaya-karta-etapy.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Дорожная карта и бэклог",
@@ -422,7 +486,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/dorozhnaya-karta-i-beklog-1b53af.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Дорожная карта и бэклог",
@@ -436,7 +502,9 @@
       "product/artifacts"
     ],
     "url": "docs/dorozhnaya-karta-i-beklog.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Р­РєСЃРїРѕСЂС‚ РІ GitHub вЂ” СЂСѓРєРѕРІРѕРґСЃС‚РІРѕ Рё С€Р°Р±Р»РѕРЅС‹",
@@ -446,7 +514,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/eksport-v-github-rukovodstvo-i-shablony-007c56.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Экспорт в GitHub — руководство и шаблоны",
@@ -466,7 +536,9 @@
       "theme/graphics"
     ],
     "url": "docs/eksport-v-github-rukovodstvo-i-shablony.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Глоссарий терминов",
@@ -476,7 +548,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/glossarij-terminov-c32542.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Глоссарий терминов",
@@ -490,7 +564,9 @@
       "product/kb"
     ],
     "url": "docs/glossarij-terminov.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Хьюго",
@@ -500,7 +576,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/hyugo-c8aa97.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Хьюго",
@@ -517,7 +595,9 @@
       "theme/automation"
     ],
     "url": "docs/hyugo.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "ИИ",
@@ -527,7 +607,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/ii-7e98b8.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "ИИ",
@@ -545,7 +627,9 @@
       "theme/automation"
     ],
     "url": "docs/ii.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Индекс и TL;DR",
@@ -555,7 +639,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/indeks-i-tldr-11ee74.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Индекс и TL;DR",
@@ -571,7 +657,9 @@
       "product/site"
     ],
     "url": "docs/indeks-i-tldr.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Индекс сайта",
@@ -581,7 +669,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/indeks-sajta-4b85d7.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Индекс сайта",
@@ -599,7 +689,9 @@
       "tool/adobe-photoshop"
     ],
     "url": "docs/indeks-sajta.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Instructions — Исполнители (Cursor/Aider)",
@@ -609,7 +701,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/instructions-ispolniteli-cursoraider-7f55e8.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Instructions — Исполнители (Cursor/Aider)",
@@ -619,7 +713,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/instructions-ispolniteli-cursoraider-acae4b.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Instructions — Исполнители (Cursor/Aider)",
@@ -638,7 +734,9 @@
       "theme/ux"
     ],
     "url": "docs/instructions-ispolniteli-cursoraider.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Инструкции для Notion AI — vova_i_petrova",
@@ -648,7 +746,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/instrukcii-dlya-notion-ai-vovaipetrova-28ce52.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Инструкции для Notion AI — vova_i_petrova",
@@ -668,7 +768,9 @@
       "theme/graphics"
     ],
     "url": "docs/instrukcii-dlya-notion-ai-vovaipetrova.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Интеграции с соцсетями",
@@ -678,7 +780,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/integracii-s-socsetyami-aa8cb5.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Интеграции с соцсетями",
@@ -696,7 +800,9 @@
       "theme/automation"
     ],
     "url": "docs/integracii-s-socsetyami.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Карточка инструмента — шаблон",
@@ -706,7 +812,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/kartochka-instrumenta-shablon-e0b872.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Карточка инструмента — шаблон",
@@ -716,7 +824,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/kartochka-instrumenta-shablon.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Карточка услуги: Дизайн",
@@ -726,7 +836,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/kartochka-uslugi-dizajn-9e4fbf.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Карточка услуги: Дизайн",
@@ -746,7 +858,9 @@
       "theme/ux"
     ],
     "url": "docs/kartochka-uslugi-dizajn.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Карточка услуги: Проектирование (CAD/3D)",
@@ -756,7 +870,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/kartochka-uslugi-proektirovanie-cad3d-9622f6.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Карточка услуги: Проектирование (CAD/3D)",
@@ -766,7 +882,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/kartochka-uslugi-proektirovanie-cad3d.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Карточка услуги: Видеопродакшн",
@@ -776,7 +894,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/kartochka-uslugi-videoprodakshn-f80343.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Карточка услуги: Видеопродакшн",
@@ -795,7 +915,9 @@
       "theme/graphics"
     ],
     "url": "docs/kartochka-uslugi-videoprodakshn.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Концепция «портов» — интерфейсы до реализации",
@@ -805,7 +927,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/koncepciya-portov-interfejsy-do-realizacii-9b9fb5.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Концепция «портов» — интерфейсы до реализации",
@@ -825,7 +949,9 @@
       "theme/graphics"
     ],
     "url": "docs/koncepciya-portov-interfejsy-do-realizacii.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Контент‑модель и маршруты",
@@ -835,7 +961,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/kontentmodel-i-marshruty-7c779a.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Контент‑модель и маршруты",
@@ -856,7 +984,9 @@
       "theme/ux"
     ],
     "url": "docs/kontentmodel-i-marshruty.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Контент‑пайплайн экспорта",
@@ -866,7 +996,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/kontentpajplajn-eksporta-b05ec3.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Контент‑пайплайн экспорта",
@@ -882,7 +1014,9 @@
       "product/site"
     ],
     "url": "docs/kontentpajplajn-eksporta.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Метрики успеха",
@@ -892,7 +1026,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/metriki-uspeha-d5c625.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Метрики успеха",
@@ -906,7 +1042,9 @@
       "theme/automation"
     ],
     "url": "docs/metriki-uspeha.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Монетизация и уровни доступа",
@@ -916,7 +1054,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/monetizaciya-i-urovni-dostupa-726e1d.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Монетизация и уровни доступа",
@@ -930,7 +1070,9 @@
       "product/kb"
     ],
     "url": "docs/monetizaciya-i-urovni-dostupa.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Навигация (пользовательская)",
@@ -940,7 +1082,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/navigaciya-polzovatelskaya-4dd66e.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Навигация (пользовательская)",
@@ -961,7 +1105,9 @@
       "theme/ux"
     ],
     "url": "docs/navigaciya-polzovatelskaya.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Навигация (техническая)",
@@ -971,7 +1117,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/navigaciya-tehnicheskaya-9213d8.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Навигация (техническая)",
@@ -993,7 +1141,9 @@
       "theme/ux"
     ],
     "url": "docs/navigaciya-tehnicheskaya.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Нэй",
@@ -1003,7 +1153,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/nej-705e63.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Нэй",
@@ -1022,7 +1174,9 @@
       "tool/stable-diffusion"
     ],
     "url": "docs/nej.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "notion-brain",
@@ -1032,7 +1186,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/notion-brain-108a7f.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "notion-brain",
@@ -1042,7 +1198,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/notion-brain.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Окружения и деплой",
@@ -1052,7 +1210,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/okruzheniya-i-deploj-6cd51f.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Окружения и деплой",
@@ -1067,7 +1227,9 @@
       "product/services"
     ],
     "url": "docs/okruzheniya-i-deploj.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Описание — литературная версия",
@@ -1077,7 +1239,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/opisanie-literaturnaya-versiya-8dfedb.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Описание — литературная версия",
@@ -1095,7 +1259,9 @@
       "theme/ux"
     ],
     "url": "docs/opisanie-literaturnaya-versiya.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Петрова",
@@ -1105,7 +1271,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/petrova-6ab5c2.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Петрова",
@@ -1122,7 +1290,9 @@
       "theme/graphics"
     ],
     "url": "docs/petrova.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Playbook — Роли",
@@ -1132,7 +1302,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/playbook-roli-511083.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Playbook — Роли",
@@ -1151,7 +1323,9 @@
       "theme/ux"
     ],
     "url": "docs/playbook-roli.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Почему это сработает — ценность",
@@ -1161,7 +1335,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/pochemu-eto-srabotaet-cennost-938a63.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Почему это сработает — ценность",
@@ -1176,7 +1352,9 @@
       "product/services"
     ],
     "url": "docs/pochemu-eto-srabotaet-cennost.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Портфолио — корень",
@@ -1186,7 +1364,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/portfolio-koren-ac02dd.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Портфолио — корень",
@@ -1200,7 +1380,9 @@
       "product/portfolio"
     ],
     "url": "docs/portfolio-koren.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Портфолио — структура",
@@ -1210,7 +1392,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/portfolio-struktura-4545fd.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Портфолио — структура",
@@ -1228,7 +1412,9 @@
       "theme/graphics"
     ],
     "url": "docs/portfolio-struktura.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Процесс: Обсудили → Разложили → Связали",
@@ -1238,7 +1424,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/process-obsudili-razlozhili-svyazali-5af71f.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Процесс: Обсудили → Разложили → Связали",
@@ -1253,7 +1441,9 @@
       "product/services"
     ],
     "url": "docs/process-obsudili-razlozhili-svyazali.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "prototype",
@@ -1263,7 +1453,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/prototype-a80bcc.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "prototype",
@@ -1281,7 +1473,9 @@
       "theme/ux"
     ],
     "url": "docs/prototype.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "README (notion-brain)",
@@ -1291,7 +1485,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/readme-notion-brain-193a47.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "README (notion-brain)",
@@ -1301,7 +1497,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/readme-notion-brain-d26e74.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "README (notion-brain)",
@@ -1311,7 +1509,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/readme-notion-brain.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Руна",
@@ -1321,7 +1521,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/runa-c42971.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Руна",
@@ -1340,7 +1542,9 @@
       "theme/ux"
     ],
     "url": "docs/runa.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Шаблон: Карточка производителя",
@@ -1350,7 +1554,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/shablon-kartochka-proizvoditelya-7ce17e.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Шаблон: Карточка производителя",
@@ -1360,7 +1566,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/shablon-kartochka-proizvoditelya.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Шаблон: Карточка страны",
@@ -1370,7 +1578,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/shablon-kartochka-strany-f062b2.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Шаблон: Карточка страны",
@@ -1380,7 +1590,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/shablon-kartochka-strany.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Синтаксис и разметка — Markdown → WordPress",
@@ -1390,7 +1602,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Синтаксис и разметка — Markdown → WordPress",
@@ -1414,7 +1628,9 @@
       "tool/adobe-photoshop"
     ],
     "url": "docs/sintaksis-i-razmetka-markdown-wordpress.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Spec — Content linter и scaffold (черновик)",
@@ -1424,7 +1640,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/spec-content-linter-i-scaffold-chernovik-6329bc.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Spec — Content linter и scaffold (черновик)",
@@ -1441,7 +1659,9 @@
       "theme/dev"
     ],
     "url": "docs/spec-content-linter-i-scaffold-chernovik.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Spec — Front matter и слуги",
@@ -1451,7 +1671,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/spec-front-matter-i-slugi-1491ff.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Spec — Front matter и слуги",
@@ -1461,7 +1683,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/spec-front-matter-i-slugi-91237c.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Spec — Front matter и слуги",
@@ -1475,7 +1699,9 @@
       "theme/ux"
     ],
     "url": "docs/spec-front-matter-i-slugi.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Spec — Normalize и политика имён",
@@ -1485,7 +1711,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/spec-normalize-i-politika-imyon-c9023c.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Spec — Normalize и политика имён",
@@ -1495,7 +1723,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/spec-normalize-i-politika-imyon-ff0378.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Spec — Normalize и политика имён",
@@ -1512,7 +1742,137 @@
       "theme/dev"
     ],
     "url": "docs/spec-normalize-i-politika-imyon.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
+  },
+  {
+    "title": "Исток: зачем вообще собирать истории",
+    "slug": "01-zarozhdenie-idei",
+    "status": "draft",
+    "summary": "Как команда решила вынести процесс и моторику проекта в отдельную ветку Stories.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/01-zarozhdenie-idei.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": 1
+  },
+  {
+    "title": "Почему Notion остаётся источником истины",
+    "slug": "02-pochemu-notion-source-of-truth",
+    "status": "draft",
+    "summary": "Аргументы в пользу модели Notion → GitHub и как мы оформили зеркалирование.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/02-pochemu-notion-source-of-truth.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": 2
+  },
+  {
+    "title": "Импорт и безопасность: как мы перестали бояться ZIP",
+    "slug": "03-import-i-bezopasnost",
+    "status": "draft",
+    "summary": "История появления workflow Notion Import и почему он стал обязательным шлюзом.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/03-import-i-bezopasnost.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": 3
+  },
+  {
+    "title": "Автопилот: Notion → Cursor → GitHub",
+    "slug": "04-avtopilot-notion-cursor-github",
+    "status": "draft",
+    "summary": "Как мы сняли требование ручных аппрувов и научили Cursor закрывать цикл сам.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/04-avtopilot-notion-cursor-github.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": 4
+  },
+  {
+    "title": "Explorer против Think Tank: делим витрину и лабораторию",
+    "slug": "05-explorer-vs-think-tank",
+    "status": "draft",
+    "summary": "Как мы развели стратегические материалы и экспериментальные публикации.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/05-explorer-vs-think-tank.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": 5
+  },
+  {
+    "title": "Версия v1.0: фиксируем контентное ядро",
+    "slug": "06-v1-0-content-ready",
+    "status": "draft",
+    "summary": "Как мы дошли до релиза v1.0-content-ready и что попало в этот срез.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/06-v1-0-content-ready.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": 6
+  },
+  {
+    "title": "ProtoLabs: диагностика и Issues View",
+    "slug": "07-protolabs-i-issues-view",
+    "status": "draft",
+    "summary": "Как прототип превратился из галереи в инструмент диагностики контента.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/07-protolabs-i-issues-view.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": 7
+  },
+  {
+    "title": "Site IA v1: готовим витрину",
+    "slug": "08-site-ia-v1-i-vitrina",
+    "status": "draft",
+    "summary": "Как появилась первая карта маршрутов и почему она важна для публикации Stories.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/08-site-ia-v1-i-vitrina.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": 8
   },
   {
     "title": "Суть проекта — One-liner",
@@ -1522,7 +1882,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/sut-proekta-one-liner-f9aa4d.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Суть проекта — One-liner",
@@ -1539,7 +1901,9 @@
       "product/services"
     ],
     "url": "docs/sut-proekta-one-liner.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Таксономия и теги",
@@ -1549,7 +1913,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/taksonomiya-i-tegi-26693f.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Таксономия и теги",
@@ -1571,7 +1937,9 @@
       "theme/graphics"
     ],
     "url": "docs/taksonomiya-i-tegi.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Технический стек и инфраструктура",
@@ -1581,7 +1949,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/tehnicheskij-stek-i-infrastruktura-7fa814.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Технический стек и инфраструктура",
@@ -1596,7 +1966,9 @@
       "theme/branding"
     ],
     "url": "docs/tehnicheskij-stek-i-infrastruktura.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Текущие задачи",
@@ -1606,7 +1978,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/tekushie-zadachi-4ab1b1.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Текущие задачи",
@@ -1625,7 +1999,9 @@
       "theme/ux"
     ],
     "url": "docs/tekushie-zadachi.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "TEMPLATE — ADR",
@@ -1635,7 +2011,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/template-adr-237529.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "TEMPLATE — ADR",
@@ -1645,7 +2023,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/template-adr.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "TEMPLATE — PR чек‑лист",
@@ -1655,7 +2035,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/template-pr-cheklist-3a6077.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "TEMPLATE — PR чек‑лист",
@@ -1665,7 +2047,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/template-pr-cheklist.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "TEMPLATE — Task spec",
@@ -1675,7 +2059,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/template-task-spec-bfe53d.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "TEMPLATE — Task spec",
@@ -1685,7 +2071,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/template-task-spec.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "TEMPLATE — Vision",
@@ -1695,7 +2083,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/template-vision-e2acba.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "TEMPLATE — Vision",
@@ -1705,7 +2095,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/template-vision.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "TEMPLATE — Задача для исполнителя (Cursor/Aider)",
@@ -1715,7 +2107,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/template-zadacha-dlya-ispolnitelya-cursoraider-82545d.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "TEMPLATE — Задача для исполнителя (Cursor/Aider)",
@@ -1725,7 +2119,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/template-zadacha-dlya-ispolnitelya-cursoraider.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Тест‑стратегия и качество",
@@ -1735,7 +2131,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/teststrategiya-i-kachestvo-0728dd.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Тест‑стратегия и качество",
@@ -1755,7 +2153,9 @@
       "theme/graphics"
     ],
     "url": "docs/teststrategiya-i-kachestvo.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Think Tank — компактное ядро",
@@ -1765,7 +2165,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/think-tank-kompaktnoe-yadro-1d36dd.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Think Tank — компактное ядро",
@@ -1787,7 +2189,9 @@
       "theme/ux"
     ],
     "url": "docs/think-tank-kompaktnoe-yadro.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Think Tank — витрина процесса",
@@ -1797,7 +2201,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/think-tank-vitrina-processa-cfb19b.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Think Tank — витрина процесса",
@@ -1814,7 +2220,9 @@
       "theme/branding"
     ],
     "url": "docs/think-tank-vitrina-processa.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "UI макет — шапка и первый экран (Static First)",
@@ -1824,7 +2232,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "UI макет — шапка и первый экран (Static First)",
@@ -1840,7 +2250,9 @@
       "tool/figma"
     ],
     "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Услуги",
@@ -1850,7 +2262,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/uslugi-e38e09.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Услуги",
@@ -1873,7 +2287,9 @@
       "tool/adobe-photoshop"
     ],
     "url": "docs/uslugi.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Вася",
@@ -1883,7 +2299,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/vasya-a127c4.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Вася",
@@ -1901,7 +2319,9 @@
       "theme/graphics"
     ],
     "url": "docs/vasya.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Vision — Игровая навигация и роли (V1)",
@@ -1911,7 +2331,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/vision-igrovaya-navigaciya-i-roli-v1-103cfe.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Vision — Игровая навигация и роли (V1)",
@@ -1930,7 +2352,9 @@
       "theme/graphics"
     ],
     "url": "docs/vision-igrovaya-navigaciya-i-roli-v1.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)",
@@ -1940,7 +2364,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager-09a168.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)",
@@ -1962,7 +2388,9 @@
       "theme/references"
     ],
     "url": "docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Вова",
@@ -1972,7 +2400,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/vova-9804f8.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Вова и Петрова",
@@ -1982,7 +2412,9 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/vova-i-petrova-ef2871.md",
-    "service": true
+    "service": true,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Вова и Петрова",
@@ -2001,7 +2433,9 @@
       "theme/graphics"
     ],
     "url": "docs/vova-i-petrova.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   },
   {
     "title": "Вова",
@@ -2021,6 +2455,8 @@
       "theme/references"
     ],
     "url": "docs/vova.md",
-    "service": false
+    "service": false,
+    "collection": null,
+    "story_order": null
   }
 ]
