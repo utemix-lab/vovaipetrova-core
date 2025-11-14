@@ -188,6 +188,7 @@ function main() {
       if (href.startsWith("#")) return;
       const result = resolveReference(href, maps, linkMap);
       if (result.status === "ok") return;
+      if (result.status === "service") return;
       if (result.status === "mapped" && maps.canonicalSet.has(result.slug)) {
         return;
       }
