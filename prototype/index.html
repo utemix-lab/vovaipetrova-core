@@ -10,8 +10,8 @@
   <body data-view="index">
     <header class="site-header">
       <div class="site-header__top">
-        <h1 class="site-title">Vova &amp; Petrova — Docs Gallery</h1>
-        <span class="site-meta">Статичный прототип для GitHub Pages</span>
+        <h1 class="site-title">Vova &amp; Petrova — Docs Explorer</h1>
+        <span class="site-meta">Статичный предпросмотр GitHub Pages</span>
       </div>
       <div class="controls">
         <div class="filters" role="group" aria-label="Фильтр по статусу">
@@ -39,17 +39,38 @@
           />
         </label>
       </div>
+      <div class="view-toggle" role="group" aria-label="Разделы Explorer">
+        <button type="button" class="view-button is-active" data-panel="docs">
+          Docs
+        </button>
+        <button type="button" class="view-button" data-panel="stories">
+          Stories
+        </button>
+      </div>
     </header>
     <main class="content">
-      <section id="cards" class="cards-grid" aria-live="polite"></section>
-      <div id="empty-state" class="empty-state hidden">
-        <h2>Ничего не найдено</h2>
-        <p>Поменяйте фильтр или запрос поиска.</p>
-      </div>
+      <section id="docs-panel">
+        <section id="cards" class="cards-grid" aria-live="polite"></section>
+        <div id="empty-state" class="empty-state hidden">
+          <h2>Ничего не найдено</h2>
+          <p>Поменяйте фильтр или запрос поиска.</p>
+        </div>
+      </section>
+      <section id="stories-panel" class="hidden" aria-live="polite">
+        <p class="stories-intro">
+          Пилотная линейка Stories фиксирует ключевые эпизоды проекта. Каждый
+          выпуск — 700–1200&nbsp;знаков в структуре «что произошло → зачем →
+          итог → тех-вставка → что дальше».
+        </p>
+        <section id="stories-list" class="stories-list"></section>
+        <div id="stories-empty" class="empty-state hidden">
+          <h2>Stories скоро появятся</h2>
+          <p>Добавьте файлы в <code>docs/stories/</code>, и Explorer покажет их здесь.</p>
+        </div>
+      </section>
     </main>
     <footer class="site-footer">
       Генерация данных: <code>prototype/build-index.mjs</code>
     </footer>
   </body>
 </html>
-

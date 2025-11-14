@@ -77,6 +77,40 @@ body[data-view="index"] {
   align-items: center;
 }
 
+.controls.hidden {
+  display: none;
+}
+
+.view-toggle {
+  display: inline-flex;
+  gap: 0.5rem;
+  background: rgba(148, 163, 184, 0.15);
+  border-radius: 999px;
+  padding: 0.25rem;
+  width: fit-content;
+}
+
+.view-button {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  padding: 0.4rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.view-button.is-active {
+  background: var(--card-bg);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.view-button:hover {
+  color: var(--text);
+}
+
 .filters {
   display: inline-flex;
   padding: 0.25rem;
@@ -147,6 +181,100 @@ body[data-view="index"] {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
   margin-top: 0.5rem;
+}
+
+.stories-intro {
+  margin: 1rem 0 0.5rem;
+  max-width: 720px;
+  color: var(--muted);
+}
+
+.stories-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.story-card {
+  background: var(--card-bg);
+  border-radius: 1.25rem;
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.story-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.story-card__episode {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.story-card__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+}
+
+.story-card__title:hover {
+  color: rgba(59, 130, 246, 0.85);
+}
+
+.story-card__summary {
+  margin: 0;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+.story-card__footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.story-card__link {
+  text-decoration: none;
+  font-weight: 600;
+  color: rgba(59, 130, 246, 0.95);
+}
+
+.story-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  width: fit-content;
+}
+
+.story-banner__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.story-banner__link {
+  text-decoration: none;
+  font-size: 0.85rem;
+  color: rgba(59, 130, 246, 0.9);
 }
 
 .card {

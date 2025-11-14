@@ -7,6 +7,40 @@ const STATUS_META = {
 const VIEW = document.body.dataset.view;
 const LINK_MAP_CACHE = {};
 
+function isStoryPage(page) {
+  if (!page) return false;
+  if (page.collection === "stories") return true;
+  const tags = Array.isArray(page.tags) ? page.tags : [];
+  const machine = Array.isArray(page.machine_tags) ? page.machine_tags : [];
+  return (
+    tags.some((tag) => tag.toLowerCase() === "story") ||
+    machine.some((tag) => tag.toLowerCase() === "content/story") ||
+    (page.url && page.url.includes("/stories/"))
+  );
+}
+
+function getStoryOrder(page) {
+  if (!page) return null;
+  if (typeof page.story_order === "number") return page.story_order;
+  if (typeof page.story_order === "string" && page.story_order.trim()) {
+    const parsed = Number(page.story_order);
+    if (!Number.isNaN(parsed)) return parsed;
+  }
+  if (page.slug) {
+    const match = page.slug.match(/^(\d{1,2})/);
+    if (match) return Number(match[1]);
+  }
+  return null;
+}
+
+function formatStoryOrder(page) {
+  const order = getStoryOrder(page);
+  if (typeof order === "number" && !Number.isNaN(order)) {
+    return order.toString().padStart(2, "0");
+  }
+  return null;
+}
+
 function byStatus(status, searchTerm) {
   return (page) => {
     const matchesStatus =
@@ -63,6 +97,50 @@ function createCard(page) {
   return card;
 }
 
+function createStoryCard(page) {
+  const card = document.createElement("article");
+  card.className = "story-card";
+
+  const meta = document.createElement("div");
+  meta.className = "story-card__meta";
+
+  const order = document.createElement("span");
+  order.className = "story-card__episode";
+  const numberText = formatStoryOrder(page);
+  order.textContent = numberText ? `Эпизод ${numberText}` : "Эпизод";
+  meta.appendChild(order);
+
+  const status = document.createElement("span");
+  applyStatusBadge(status, page.status);
+  meta.appendChild(status);
+
+  card.appendChild(meta);
+
+  const titleLink = document.createElement("a");
+  titleLink.className = "story-card__title";
+  titleLink.href = `page/${page.slug}.html`;
+  titleLink.textContent = page.title || page.slug;
+  card.appendChild(titleLink);
+
+  if (page.summary) {
+    const summary = document.createElement("p");
+    summary.className = "story-card__summary";
+    summary.textContent = page.summary;
+    card.appendChild(summary);
+  }
+
+  const footer = document.createElement("div");
+  footer.className = "story-card__footer";
+  const link = document.createElement("a");
+  link.className = "story-card__link";
+  link.href = `page/${page.slug}.html`;
+  link.textContent = "Читать эпизод";
+  footer.appendChild(link);
+  card.appendChild(footer);
+
+  return card;
+}
+
 async function loadPages(basePath) {
   const response = await fetch(basePath);
   if (!response.ok) {
@@ -77,19 +155,35 @@ async function loadPages(basePath) {
 async function renderIndex() {
   const cardsContainer = document.getElementById("cards");
   const emptyState = document.getElementById("empty-state");
+  const storiesContainer = document.getElementById("stories-list");
+  const storiesEmpty = document.getElementById("stories-empty");
   const searchInput = document.getElementById("search-input");
   const filterButtons = Array.from(
     document.querySelectorAll(".filter-button")
   );
+  const viewButtons = Array.from(document.querySelectorAll(".view-button"));
+  const controls = document.querySelector(".controls");
+  const docsPanel = document.getElementById("docs-panel");
+  const storiesPanel = document.getElementById("stories-panel");
 
   const pages = await loadPages("data/pages.json");
   const visiblePages = pages.filter((page) => page.service !== true);
+  const storyPages = visiblePages
+    .filter(isStoryPage)
+    .sort((a, b) => {
+      const orderA = getStoryOrder(a) ?? 999;
+      const orderB = getStoryOrder(b) ?? 999;
+      if (orderA !== orderB) return orderA - orderB;
+      return (a.title || a.slug).localeCompare(b.title || b.slug, "ru");
+    });
+  const docPages = visiblePages.filter((page) => !isStoryPage(page));
   let currentStatus = "all";
   let currentSearch = "";
+  let activePanel = "docs";
 
-  function render() {
+  function renderDocs() {
     cardsContainer.innerHTML = "";
-    const filtered = visiblePages.filter(byStatus(currentStatus, currentSearch));
+    const filtered = docPages.filter(byStatus(currentStatus, currentSearch));
     if (filtered.length === 0) {
       emptyState.classList.remove("hidden");
       return;
@@ -102,12 +196,40 @@ async function renderIndex() {
     cardsContainer.appendChild(fragment);
   }
 
+  function renderStories() {
+    storiesContainer.innerHTML = "";
+    if (!storyPages.length) {
+      storiesEmpty.classList.remove("hidden");
+      return;
+    }
+    storiesEmpty.classList.add("hidden");
+    const fragment = document.createDocumentFragment();
+    storyPages.forEach((story) => fragment.appendChild(createStoryCard(story)));
+    storiesContainer.appendChild(fragment);
+  }
+
+  function setActivePanel(panel) {
+    activePanel = panel;
+    if (panel === "stories") {
+      docsPanel.classList.add("hidden");
+      storiesPanel.classList.remove("hidden");
+      controls?.classList.add("hidden");
+    } else {
+      docsPanel.classList.remove("hidden");
+      storiesPanel.classList.add("hidden");
+      controls?.classList.remove("hidden");
+    }
+    viewButtons.forEach((button) => {
+      button.classList.toggle("is-active", button.dataset.panel === panel);
+    });
+  }
+
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       filterButtons.forEach((btn) => btn.classList.remove("is-active"));
       button.classList.add("is-active");
       currentStatus = button.dataset.status;
-      render();
+      renderDocs();
     });
   });
 
@@ -117,11 +239,21 @@ async function renderIndex() {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
       currentSearch = value;
-      render();
+      renderDocs();
     }, 150);
   });
 
-  render();
+  viewButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const targetPanel = button.dataset.panel;
+      if (!targetPanel || targetPanel === activePanel) return;
+      setActivePanel(targetPanel);
+    });
+  });
+
+  renderDocs();
+  renderStories();
+  setActivePanel("docs");
 }
 
 function applyStatusBadge(element, status) {
@@ -353,6 +485,20 @@ async function renderPage() {
     entry.summary || "Описание отсутствует.";
   applyStatusBadge(document.getElementById("page-status"), entry.status);
   renderTags(document.getElementById("page-tags"), entry.tags);
+
+  const storyBanner = document.getElementById("story-banner");
+  if (storyBanner) {
+    if (isStoryPage(entry)) {
+      const label = storyBanner.querySelector(".story-banner__label");
+      const numberText = formatStoryOrder(entry);
+      label.textContent = numberText
+        ? `Stories · эпизод ${numberText}`
+        : "Stories";
+      storyBanner.classList.remove("hidden");
+    } else {
+      storyBanner.classList.add("hidden");
+    }
+  }
 
   const markdownPath = resolveMarkdownUrl(entry.url);
   const linkMap = await loadLinkMap("../data/link-map.json");
