@@ -1,6 +1,20 @@
 # Vova & Petrova — Docs
 
+[![Docs CI](https://github.com/utemix-lab/vovaipetrova-core/actions/workflows/docs-ci.yml/badge.svg?branch=main)](https://github.com/utemix-lab/vovaipetrova-core/actions/workflows/docs-ci.yml)
+[![Pages](https://github.com/utemix-lab/vovaipetrova-core/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/utemix-lab/vovaipetrova-core/actions/workflows/pages.yml)
+[![Release v1.0-content-ready](https://img.shields.io/github/v/release/utemix-lab/vovaipetrova-core?display_name=tag&sort=semver&label=Release)](https://github.com/utemix-lab/vovaipetrova-core/releases/tag/v1.0-content-ready)
+
 База знаний, экспортированная из Notion в Markdown.
+
+## Навигация: Think Tank vs Labs/Explorer
+
+| Зона | Описание | Быстрые ссылки |
+| --- | --- | --- |
+| **Think Tank** | Архитектурные решения, ADR, картина проекта. Источник правды для стратегии и процессов. | `docs/think-tank-kompaktnoe-yadro.md`, `docs/adr-source-of-truth-mirroring.md`, `docs/adr-zhurnal-reshenij-b34c2e.md` |
+| **Labs / Explorer** | Практические эксперименты, услуги, прототипы и навигационные карты. Здесь живут карточки услуг, макеты и отчёты. | `docs/artefakty-korzina-i-zayavka-mvp.md`, `docs/kartochka-uslugi-dizajn.md`, `docs/ui-maket-shapka-i-pervyj-ekran-static-first.md` |
+
+- GitHub Pages-прототип: **https://utemix-lab.github.io/vovaipetrova-core/**
+- Расширенная карта маршрутов и фасетов описана в `docs/kontentmodel-i-marshruty.md`.
 
 ## Структура
 
