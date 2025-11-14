@@ -1,0 +1,3158 @@
+{
+  "generatedAt": "2025-11-14T11:39:42.595Z",
+  "totals": {
+    "pages": 154,
+    "statuses": {
+      "ready": 24,
+      "draft": 105,
+      "review": 25
+    },
+    "issues": {
+      "external": 104,
+      "service": 21,
+      "internal-missing": 7,
+      "unknown": 2
+    }
+  },
+  "tags": [
+    {
+      "name": "Автоматизация",
+      "count": 31
+    },
+    {
+      "name": "Проектирование",
+      "count": 15
+    },
+    {
+      "name": "Дизайн",
+      "count": 12
+    },
+    {
+      "name": "Контент",
+      "count": 10
+    },
+    {
+      "name": "UX",
+      "count": 9
+    },
+    {
+      "name": "Кодинг",
+      "count": 9
+    },
+    {
+      "name": "База_знаний",
+      "count": 9
+    },
+    {
+      "name": "Генерация_Видео",
+      "count": 7
+    },
+    {
+      "name": "Видео",
+      "count": 6
+    },
+    {
+      "name": "Навигация",
+      "count": 6
+    },
+    {
+      "name": "Монтаж",
+      "count": 5
+    },
+    {
+      "name": "Айдентика",
+      "count": 4
+    },
+    {
+      "name": "Процесс",
+      "count": 4
+    },
+    {
+      "name": "Референсы",
+      "count": 3
+    },
+    {
+      "name": "Adobe",
+      "count": 3
+    },
+    {
+      "name": "Публикация",
+      "count": 3
+    },
+    {
+      "name": "Сайт",
+      "count": 3
+    },
+    {
+      "name": "OpenAI",
+      "count": 2
+    },
+    {
+      "name": "Портфолио",
+      "count": 2
+    },
+    {
+      "name": "Обучение",
+      "count": 2
+    },
+    {
+      "name": "ComfyUI",
+      "count": 2
+    },
+    {
+      "name": "Артефакты",
+      "count": 2
+    },
+    {
+      "name": "Теги",
+      "count": 1
+    },
+    {
+      "name": "Figma",
+      "count": 1
+    },
+    {
+      "name": "Хэштегов",
+      "count": 1
+    },
+    {
+      "name": "Экспорт",
+      "count": 1
+    },
+    {
+      "name": "Adobe_Photoshop",
+      "count": 1
+    },
+    {
+      "name": "Stable_Diffusion",
+      "count": 1
+    }
+  ],
+  "issuesPerPage": [
+    {
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "title": "UI макет — шапка и первый экран (Static First)",
+      "status": "ready",
+      "tags": [
+        "Figma",
+        "UX"
+      ],
+      "issues": {
+        "external": 22,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 22,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 24
+    },
+    {
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "title": "UI макет — шапка и первый экран (Static First)",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 22,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 22,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 24
+    },
+    {
+      "slug": "prototype-a80bcc",
+      "title": "prototype",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 20,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 20,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 22
+    },
+    {
+      "slug": "prototype",
+      "title": "prototype",
+      "status": "draft",
+      "tags": [
+        "Навигация",
+        "Процесс",
+        "Экспорт"
+      ],
+      "issues": {
+        "external": 20,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 20,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 21
+    },
+    {
+      "slug": "notion-brain-108a7f",
+      "title": "notion-brain",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 7,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 8,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 17
+    },
+    {
+      "slug": "notion-brain",
+      "title": "notion-brain",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 4,
+        "internal-missing": 1,
+        "unknown": 0
+      },
+      "issues_total": 6,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 14
+    },
+    {
+      "slug": "vova-i-petrova-ef2871",
+      "title": "Вова и Петрова",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 2,
+        "internal-missing": 1,
+        "unknown": 1
+      },
+      "issues_total": 5,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 11
+    },
+    {
+      "slug": "sintaksis-i-razmetka-markdown-wordpress-60cc6c",
+      "title": "Синтаксис и разметка — Markdown → WordPress",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 2,
+        "service": 0,
+        "internal-missing": 1,
+        "unknown": 0
+      },
+      "issues_total": 3,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 7
+    },
+    {
+      "slug": "sintaksis-i-razmetka-markdown-wordpress",
+      "title": "Синтаксис и разметка — Markdown → WordPress",
+      "status": "review",
+      "tags": [
+        "Автоматизация",
+        "Генерация_Видео",
+        "Дизайн",
+        "Референсы",
+        "Adobe"
+      ],
+      "issues": {
+        "external": 2,
+        "service": 0,
+        "internal-missing": 1,
+        "unknown": 0
+      },
+      "issues_total": 3,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 6
+    },
+    {
+      "slug": "uslugi",
+      "title": "Услуги",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Видео",
+        "Генерация_Видео",
+        "Дизайн",
+        "Проектирование"
+      ],
+      "issues": {
+        "external": 1,
+        "service": 1,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 2,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 5
+    },
+    {
+      "slug": "uslugi-e38e09",
+      "title": "Услуги",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 1,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 2,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 5
+    },
+    {
+      "slug": "instrukcii-dlya-notion-ai-vovaipetrova-28ce52",
+      "title": "Инструкции для Notion AI — vova_i_petrova",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 1,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 5
+    },
+    {
+      "slug": "spec-normalize-i-politika-imyon",
+      "title": "Spec — Normalize и политика имён",
+      "status": "review",
+      "tags": [
+        "Автоматизация",
+        "Кодинг",
+        "Хэштегов"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 1,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 5
+    },
+    {
+      "slug": "indeks-sajta-4b85d7",
+      "title": "Индекс сайта",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 1,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 2,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 4
+    },
+    {
+      "slug": "arhitektura-i-komponenty-486a0b",
+      "title": "Архитектура и компоненты",
+      "status": "ready",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 1
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 4
+    },
+    {
+      "slug": "artefakty-korzina-i-zayavka-mvp",
+      "title": "Артефакты — корзина и заявка (MVP)",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Дизайн",
+        "UX"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 1,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 4
+    },
+    {
+      "slug": "instrukcii-dlya-notion-ai-vovaipetrova",
+      "title": "Инструкции для Notion AI — vova_i_petrova",
+      "status": "review",
+      "tags": [
+        "Автоматизация",
+        "Кодинг",
+        "Проектирование"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 1,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 4
+    },
+    {
+      "slug": "kartochka-uslugi-dizajn",
+      "title": "Карточка услуги: Дизайн",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Дизайн",
+        "UX"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 1,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 4
+    },
+    {
+      "slug": "kartochka-uslugi-videoprodakshn",
+      "title": "Карточка услуги: Видеопродакшн",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Видео",
+        "Дизайн"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 1,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 4
+    },
+    {
+      "slug": "indeks-sajta",
+      "title": "Индекс сайта",
+      "status": "draft",
+      "tags": [
+        "Генерация_Видео",
+        "Adobe",
+        "Adobe_Photoshop"
+      ],
+      "issues": {
+        "external": 1,
+        "service": 1,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 2,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 3
+    },
+    {
+      "slug": "artefakty-korzina-i-zayavka-mvp-925151",
+      "title": "Артефакты — корзина и заявка (MVP)",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 1,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 3
+    },
+    {
+      "slug": "comfyui-obzor-i-bystryj-start",
+      "title": "ComfyUI — обзор и быстрый старт",
+      "status": "ready",
+      "tags": [
+        "ComfyUI",
+        "Stable_Diffusion"
+      ],
+      "issues": {
+        "external": 1,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 3
+    },
+    {
+      "slug": "tekushie-zadachi-4ab1b1",
+      "title": "Текущие задачи",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "adr-tegi-i-fasety-b1150c",
+      "title": "ADR — Теги и фасеты",
+      "status": "ready",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 3
+    },
+    {
+      "slug": "adr-zhurnal-reshenij-b34c2e",
+      "title": "[ADR] Журнал решений",
+      "status": "ready",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 3
+    },
+    {
+      "slug": "comfyui-obzor-i-bystryj-start-5a18c5",
+      "title": "ComfyUI — обзор и быстрый старт",
+      "status": "ready",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 3
+    },
+    {
+      "slug": "eksport-v-github-rukovodstvo-i-shablony-007c56",
+      "title": "Р­РєСЃРїРѕСЂС‚ РІ GitHub вЂ” СЂСѓРєРѕРІРѕРґСЃС‚РІРѕ Рё С€Р°Р±Р»РѕРЅС‹",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "kartochka-uslugi-proektirovanie-cad3d",
+      "title": "Карточка услуги: Проектирование (CAD/3D)",
+      "status": "ready",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 3
+    },
+    {
+      "slug": "spec-normalize-i-politika-imyon-c9023c",
+      "title": "Spec — Normalize и политика имён",
+      "status": "ready",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 3
+    },
+    {
+      "slug": "template-adr",
+      "title": "TEMPLATE — ADR",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "template-adr-237529",
+      "title": "TEMPLATE — ADR",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "template-task-spec",
+      "title": "TEMPLATE — Task spec",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "template-task-spec-bfe53d",
+      "title": "TEMPLATE — Task spec",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "template-vision",
+      "title": "TEMPLATE — Vision",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "template-vision-e2acba",
+      "title": "TEMPLATE — Vision",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "template-zadacha-dlya-ispolnitelya-cursoraider",
+      "title": "TEMPLATE — Задача для исполнителя (Cursor/Aider)",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "template-zadacha-dlya-ispolnitelya-cursoraider-82545d",
+      "title": "TEMPLATE — Задача для исполнителя (Cursor/Aider)",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "think-tank-kompaktnoe-yadro-1d36dd",
+      "title": "Think Tank — компактное ядро",
+      "status": "ready",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 3
+    },
+    {
+      "slug": "vasya",
+      "title": "Вася",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Видео",
+        "Дизайн"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "vasya-a127c4",
+      "title": "Вася",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "vision-igrovaya-navigaciya-i-roli-v1-103cfe",
+      "title": "Vision — Игровая навигация и роли (V1)",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "vision-strategiya-marketing-autentichnost-tretij-put-onepager-09a168",
+      "title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "vova",
+      "title": "Вова",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Видео",
+        "Дизайн",
+        "Референсы"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "vova-9804f8",
+      "title": "Вова",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 3
+    },
+    {
+      "slug": "koncepciya-portov-interfejsy-do-realizacii-9b9fb5",
+      "title": "Концепция «портов» — интерфейсы до реализации",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "shablon-kartochka-proizvoditelya",
+      "title": "Шаблон: Карточка производителя",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "shablon-kartochka-proizvoditelya-7ce17e",
+      "title": "Шаблон: Карточка производителя",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "shablon-kartochka-strany",
+      "title": "Шаблон: Карточка страны",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "shablon-kartochka-strany-f062b2",
+      "title": "Шаблон: Карточка страны",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "tekushie-zadachi",
+      "title": "Текущие задачи",
+      "status": "draft",
+      "tags": [
+        "Контент",
+        "Навигация",
+        "Процесс"
+      ],
+      "issues": {
+        "external": 1,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "adr-source-of-truth-i-zerkalirovanie-f649b1",
+      "title": "ADR — Source of truth и зеркалирование",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "adr-source-of-truth-mirroring",
+      "title": "ADR — Source of truth и зеркалирование",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Кодинг",
+        "Проектирование"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "adr-tags-and-facets",
+      "title": "ADR — Политика тегов и фасетов",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Кодинг",
+        "Проектирование"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "adr-tegi-i-fasety-f3195c",
+      "title": "ADR — Теги и фасеты",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "ancy-b786fe",
+      "title": "Ancy",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "cadrik-b04be9",
+      "title": "CADрик",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "context-map-yaml",
+      "title": "context-map.yaml",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "context-map-yaml-64b43e",
+      "title": "context-map.yaml",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "context-map-yaml-da0108",
+      "title": "context-map.yaml",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "dinozavrik-7e5f67",
+      "title": "Динозаврик",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "dizzy-8844f5",
+      "title": "Dizzy",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "hyugo-c8aa97",
+      "title": "Хьюго",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "ii-7e98b8",
+      "title": "ИИ",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "instructions-ispolniteli-cursoraider-7f55e8",
+      "title": "Instructions — Исполнители (Cursor/Aider)",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "instructions-ispolniteli-cursoraider-acae4b",
+      "title": "Instructions — Исполнители (Cursor/Aider)",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "kartochka-instrumenta-shablon",
+      "title": "Карточка инструмента — шаблон",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "kartochka-instrumenta-shablon-e0b872",
+      "title": "Карточка инструмента — шаблон",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "kartochka-uslugi-dizajn-9e4fbf",
+      "title": "Карточка услуги: Дизайн",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "kartochka-uslugi-proektirovanie-cad3d-9622f6",
+      "title": "Карточка услуги: Проектирование (CAD/3D)",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "kartochka-uslugi-videoprodakshn-f80343",
+      "title": "Карточка услуги: Видеопродакшн",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "kontentmodel-i-marshruty",
+      "title": "Контент‑модель и маршруты",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Проектирование",
+        "UX"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "navigaciya-polzovatelskaya",
+      "title": "Навигация (пользовательская)",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Дизайн",
+        "UX"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "navigaciya-tehnicheskaya",
+      "title": "Навигация (техническая)",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Проектирование",
+        "UX"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "nej-705e63",
+      "title": "Нэй",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "petrova-6ab5c2",
+      "title": "Петрова",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "playbook-roli-511083",
+      "title": "Playbook — Роли",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "pochemu-eto-srabotaet-cennost-938a63",
+      "title": "Почему это сработает — ценность",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "readme-notion-brain",
+      "title": "README (notion-brain)",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "readme-notion-brain-193a47",
+      "title": "README (notion-brain)",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "readme-notion-brain-d26e74",
+      "title": "README (notion-brain)",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "runa-c42971",
+      "title": "Руна",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "spec-content-linter-i-scaffold-chernovik",
+      "title": "Spec — Content linter и scaffold (черновик)",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Кодинг"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "spec-front-matter-i-slugi-1491ff",
+      "title": "Spec — Front matter и слуги",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "spec-front-matter-i-slugi-91237c",
+      "title": "Spec — Front matter и слуги",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "spec-normalize-i-politika-imyon-ff0378",
+      "title": "Spec — Normalize и политика имён",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "sut-proekta-one-liner-f9aa4d",
+      "title": "Суть проекта — One-liner",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "taksonomiya-i-tegi",
+      "title": "Таксономия и теги",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Видео",
+        "Дизайн",
+        "Проектирование",
+        "OpenAI"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "template-pr-cheklist",
+      "title": "TEMPLATE — PR чек‑лист",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "template-pr-cheklist-3a6077",
+      "title": "TEMPLATE — PR чек‑лист",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "teststrategiya-i-kachestvo-0728dd",
+      "title": "Тест‑стратегия и качество",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "think-tank-kompaktnoe-yadro",
+      "title": "Think Tank — компактное ядро",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Проектирование",
+        "UX"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "vision-igrovaya-navigaciya-i-roli-v1",
+      "title": "Vision — Игровая навигация и роли (V1)",
+      "status": "review",
+      "tags": [
+        "Автоматизация",
+        "Дизайн",
+        "Проектирование"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "vision-strategiya-marketing-autentichnost-tretij-put-onepager",
+      "title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)",
+      "status": "review",
+      "tags": [
+        "Автоматизация",
+        "Дизайн",
+        "Проектирование",
+        "Референсы",
+        "Теги"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 2
+    },
+    {
+      "slug": "vova-i-petrova",
+      "title": "Вова и Петрова",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Дизайн",
+        "Проектирование"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 2
+    },
+    {
+      "slug": "koncepciya-portov-interfejsy-do-realizacii",
+      "title": "Концепция «портов» — интерфейсы до реализации",
+      "status": "draft",
+      "tags": [
+        "Автоматизация",
+        "Кодинг",
+        "Проектирование"
+      ],
+      "issues": {
+        "external": 1,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 1,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "adr-source-of-truth-i-zerkalirovanie",
+      "title": "ADR — Source of truth и зеркалирование",
+      "status": "draft",
+      "tags": [
+        "Контент",
+        "Навигация",
+        "Публикация"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "adr-tegi-i-fasety",
+      "title": "ADR — Теги и фасеты",
+      "status": "draft",
+      "tags": [
+        "Adobe"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "ancy",
+      "title": "Ancy",
+      "status": "draft",
+      "tags": [
+        "База_знаний",
+        "Контент"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "api-reestr-i-specifikacii-711159",
+      "title": "[API] Реестр и спецификации",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "arhitektura-proekta-komponenty-bb23c3",
+      "title": "Архитектура проекта — компоненты",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "baza-znanij-koren-8cd215",
+      "title": "База знаний — корень",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "data-model-dannyh-214280",
+      "title": "[DATA] Модель данных",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "dinozavrik",
+      "title": "Динозаврик",
+      "status": "draft",
+      "tags": [
+        "Видео",
+        "Контент"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "dizzy",
+      "title": "Dizzy",
+      "status": "draft",
+      "tags": [
+        "Айдентика",
+        "Генерация_Видео"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "dorozhnaya-karta-etapy-8d0cea",
+      "title": "Дорожная карта (этапы)",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "dorozhnaya-karta-i-beklog-1b53af",
+      "title": "Дорожная карта и бэклог",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "eksport-v-github-rukovodstvo-i-shablony",
+      "title": "Экспорт в GitHub — руководство и шаблоны",
+      "status": "review",
+      "tags": [
+        "Автоматизация",
+        "Кодинг",
+        "Проектирование"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "glossarij-terminov-c32542",
+      "title": "Глоссарий терминов",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "hyugo",
+      "title": "Хьюго",
+      "status": "draft",
+      "tags": [
+        "Автоматизация",
+        "База_знаний",
+        "Контент"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "ii",
+      "title": "ИИ",
+      "status": "draft",
+      "tags": [
+        "Автоматизация",
+        "Контент",
+        "OpenAI"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "indeks-i-tldr-11ee74",
+      "title": "Индекс и TL;DR",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "instructions-ispolniteli-cursoraider",
+      "title": "Instructions — Исполнители (Cursor/Aider)",
+      "status": "draft",
+      "tags": [
+        "Контент",
+        "Навигация",
+        "Процесс"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "integracii-s-socsetyami-aa8cb5",
+      "title": "Интеграции с соцсетями",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "kontentmodel-i-marshruty-7c779a",
+      "title": "Контент‑модель и маршруты",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "kontentpajplajn-eksporta-b05ec3",
+      "title": "Контент‑пайплайн экспорта",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "metriki-uspeha-d5c625",
+      "title": "Метрики успеха",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "monetizaciya-i-urovni-dostupa-726e1d",
+      "title": "Монетизация и уровни доступа",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "navigaciya-polzovatelskaya-4dd66e",
+      "title": "Навигация (пользовательская)",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "navigaciya-tehnicheskaya-9213d8",
+      "title": "Навигация (техническая)",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "nej",
+      "title": "Нэй",
+      "status": "draft",
+      "tags": [
+        "Автоматизация",
+        "Генерация_Видео",
+        "ComfyUI"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "okruzheniya-i-deploj-6cd51f",
+      "title": "Окружения и деплой",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "opisanie-literaturnaya-versiya-8dfedb",
+      "title": "Описание — литературная версия",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "petrova",
+      "title": "Петрова",
+      "status": "draft",
+      "tags": [
+        "Айдентика",
+        "Генерация_Видео"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "playbook-roli",
+      "title": "Playbook — Роли",
+      "status": "draft",
+      "tags": [
+        "Контент",
+        "Навигация",
+        "Процесс"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "pochemu-eto-srabotaet-cennost",
+      "title": "Почему это сработает — ценность",
+      "status": "draft",
+      "tags": [
+        "Монтаж"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "portfolio-koren-ac02dd",
+      "title": "Портфолио — корень",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "portfolio-struktura-4545fd",
+      "title": "Портфолио — структура",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "process-obsudili-razlozhili-svyazali-5af71f",
+      "title": "Процесс: Обсудили → Разложили → Связали",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "runa",
+      "title": "Руна",
+      "status": "draft",
+      "tags": [
+        "Автоматизация",
+        "Контент",
+        "Навигация"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "spec-content-linter-i-scaffold-chernovik-6329bc",
+      "title": "Spec — Content linter и scaffold (черновик)",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "spec-front-matter-i-slugi",
+      "title": "Spec — Front matter и слуги",
+      "status": "draft",
+      "tags": [
+        "UX"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "sut-proekta-one-liner",
+      "title": "Суть проекта — One-liner",
+      "status": "draft",
+      "tags": [
+        "База_знаний",
+        "Монтаж"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 1
+    },
+    {
+      "slug": "taksonomiya-i-tegi-26693f",
+      "title": "Таксономия и теги",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "tehnicheskij-stek-i-infrastruktura-7fa814",
+      "title": "Технический стек и инфраструктура",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "teststrategiya-i-kachestvo",
+      "title": "Тест‑стратегия и качество",
+      "status": "review",
+      "tags": [
+        "Автоматизация",
+        "Кодинг",
+        "Проектирование"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "think-tank-vitrina-processa-cfb19b",
+      "title": "Think Tank — витрина процесса",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 1
+    },
+    {
+      "slug": "arhitektura-i-komponenty",
+      "title": "Архитектура и компоненты",
+      "status": "draft",
+      "tags": [
+        "Автоматизация",
+        "Кодинг",
+        "Проектирование"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "arhitektura-proekta-komponenty",
+      "title": "Архитектура проекта — компоненты",
+      "status": "draft",
+      "tags": [
+        "База_знаний"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "baza-znanij-koren",
+      "title": "База знаний — корень",
+      "status": "draft",
+      "tags": [
+        "Автоматизация",
+        "База_знаний",
+        "Обучение"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "dorozhnaya-karta-etapy",
+      "title": "Дорожная карта (этапы)",
+      "status": "draft",
+      "tags": [
+        "Артефакты"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "dorozhnaya-karta-i-beklog",
+      "title": "Дорожная карта и бэклог",
+      "status": "draft",
+      "tags": [
+        "Артефакты"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "glossarij-terminov",
+      "title": "Глоссарий терминов",
+      "status": "draft",
+      "tags": [
+        "База_знаний"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "indeks-i-tldr",
+      "title": "Индекс и TL;DR",
+      "status": "draft",
+      "tags": [
+        "База_знаний",
+        "Сайт"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "integracii-s-socsetyami",
+      "title": "Интеграции с соцсетями",
+      "status": "draft",
+      "tags": [
+        "Автоматизация",
+        "Контент",
+        "Публикация"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "kontentpajplajn-eksporta",
+      "title": "Контент‑пайплайн экспорта",
+      "status": "draft",
+      "tags": [
+        "База_знаний",
+        "Сайт"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "metriki-uspeha",
+      "title": "Метрики успеха",
+      "status": "draft",
+      "tags": [
+        "Автоматизация"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "monetizaciya-i-urovni-dostupa",
+      "title": "Монетизация и уровни доступа",
+      "status": "draft",
+      "tags": [
+        "База_знаний"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "okruzheniya-i-deploj",
+      "title": "Окружения и деплой",
+      "status": "draft",
+      "tags": [
+        "Монтаж"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "opisanie-literaturnaya-versiya",
+      "title": "Описание — литературная версия",
+      "status": "draft",
+      "tags": [
+        "Обучение",
+        "Сайт",
+        "UX"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "portfolio-koren",
+      "title": "Портфолио — корень",
+      "status": "draft",
+      "tags": [
+        "Портфолио"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "portfolio-struktura",
+      "title": "Портфолио — структура",
+      "status": "draft",
+      "tags": [
+        "Генерация_Видео",
+        "Портфолио",
+        "Публикация"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "process-obsudili-razlozhili-svyazali",
+      "title": "Процесс: Обсудили → Разложили → Связали",
+      "status": "draft",
+      "tags": [
+        "Монтаж"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "tehnicheskij-stek-i-infrastruktura",
+      "title": "Технический стек и инфраструктура",
+      "status": "draft",
+      "tags": [
+        "Айдентика"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    },
+    {
+      "slug": "think-tank-vitrina-processa",
+      "title": "Think Tank — витрина процесса",
+      "status": "draft",
+      "tags": [
+        "Айдентика",
+        "Монтаж"
+      ],
+      "issues": {
+        "external": 0,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 0,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 0
+    }
+  ],
+  "topProblems": [
+    {
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "title": "UI макет — шапка и первый экран (Static First)",
+      "status": "ready",
+      "tags": [
+        "Figma",
+        "UX"
+      ],
+      "issues": {
+        "external": 22,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 22,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 24
+    },
+    {
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "title": "UI макет — шапка и первый экран (Static First)",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 22,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 22,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 24
+    },
+    {
+      "slug": "prototype-a80bcc",
+      "title": "prototype",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 20,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 20,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 22
+    },
+    {
+      "slug": "prototype",
+      "title": "prototype",
+      "status": "draft",
+      "tags": [
+        "Навигация",
+        "Процесс",
+        "Экспорт"
+      ],
+      "issues": {
+        "external": 20,
+        "service": 0,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 20,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": false,
+      "score": 21
+    },
+    {
+      "slug": "notion-brain-108a7f",
+      "title": "notion-brain",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 7,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 8,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 17
+    },
+    {
+      "slug": "notion-brain",
+      "title": "notion-brain",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 4,
+        "internal-missing": 1,
+        "unknown": 0
+      },
+      "issues_total": 6,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 14
+    },
+    {
+      "slug": "vova-i-petrova-ef2871",
+      "title": "Вова и Петрова",
+      "status": "draft",
+      "tags": [],
+      "issues": {
+        "external": 1,
+        "service": 2,
+        "internal-missing": 1,
+        "unknown": 1
+      },
+      "issues_total": 5,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": false,
+      "score": 11
+    },
+    {
+      "slug": "sintaksis-i-razmetka-markdown-wordpress-60cc6c",
+      "title": "Синтаксис и разметка — Markdown → WordPress",
+      "status": "review",
+      "tags": [],
+      "issues": {
+        "external": 2,
+        "service": 0,
+        "internal-missing": 1,
+        "unknown": 0
+      },
+      "issues_total": 3,
+      "summary_missing": false,
+      "tags_missing": true,
+      "has_related_block": true,
+      "score": 7
+    },
+    {
+      "slug": "sintaksis-i-razmetka-markdown-wordpress",
+      "title": "Синтаксис и разметка — Markdown → WordPress",
+      "status": "review",
+      "tags": [
+        "Автоматизация",
+        "Генерация_Видео",
+        "Дизайн",
+        "Референсы",
+        "Adobe"
+      ],
+      "issues": {
+        "external": 2,
+        "service": 0,
+        "internal-missing": 1,
+        "unknown": 0
+      },
+      "issues_total": 3,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 6
+    },
+    {
+      "slug": "uslugi",
+      "title": "Услуги",
+      "status": "ready",
+      "tags": [
+        "Автоматизация",
+        "Видео",
+        "Генерация_Видео",
+        "Дизайн",
+        "Проектирование"
+      ],
+      "issues": {
+        "external": 1,
+        "service": 1,
+        "internal-missing": 0,
+        "unknown": 0
+      },
+      "issues_total": 2,
+      "summary_missing": false,
+      "tags_missing": false,
+      "has_related_block": true,
+      "score": 5
+    }
+  ]
+}

@@ -1,32 +1,19 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from "fs";
 import path from "path";
-import { globSync } from "glob";
-import YAML from "yaml";
+import { writePagesReport } from "../scripts/report-pages.mjs";
+import { writeBrokenLinksReport } from "../scripts/report-broken-internal-links.mjs";
+import { buildStats } from "../scripts/report-stats.mjs";
 
 const DOCS_ROOT = "docs";
 const OUTPUT_DIR = "prototype";
 const DATA_DIR = path.join(OUTPUT_DIR, "data");
 const PAGES_DIR = path.join(OUTPUT_DIR, "page");
 const OUTPUT_JSON = path.join(DATA_DIR, "pages.json");
+const BROKEN_OUTPUT = path.join(DATA_DIR, "broken-links.json");
+const STATS_OUTPUT = path.join(DATA_DIR, "stats.json");
 const LINK_MAP_SOURCE = path.join(OUTPUT_DIR, "link-map.json");
 const LINK_MAP_OUTPUT = path.join(DATA_DIR, "link-map.json");
 const PAGE_TEMPLATE_PATH = path.join(OUTPUT_DIR, "page.html");
-
-function toPosix(filePath) {
-  return filePath.replace(/\\/g, "/");
-}
-
-function readFrontMatter(raw) {
-  if (!raw.startsWith("---")) return {};
-  const match = raw.match(/^---\s*\n([\s\S]*?)\n---/);
-  if (!match) return {};
-  try {
-    return YAML.parse(match[1]) || {};
-  } catch (error) {
-    console.warn("⚠️  Failed to parse front matter:", error.message);
-    return {};
-  }
-}
 
 function ensureDirs() {
   mkdirSync(DATA_DIR, { recursive: true });
@@ -63,56 +50,22 @@ function loadLinkMap() {
 function buildIndex() {
   ensureDirs();
   const linkMap = loadLinkMap();
-  const files = globSync(`${DOCS_ROOT}/**/*.md`, { nodir: true }).sort();
-  const pages = [];
-
-  for (const file of files) {
-    const raw = readFileSync(file, "utf8");
-    const fm = readFrontMatter(raw);
-    const serviceValue =
-      typeof fm.service === "string"
-        ? fm.service.trim().toLowerCase()
-        : fm.service === true
-        ? "true"
-        : "";
-    if (serviceValue === "true") continue;
-
-    const title = fm.title || path.parse(file).name;
-    const slug = fm.slug || path.parse(file).name;
-    const status = String(fm.status || "draft").trim().toLowerCase();
-    const summary =
-      typeof fm.summary === "string"
-        ? fm.summary.replace(/\r/g, "").trim()
-        : Array.isArray(fm.summary)
-        ? fm.summary.join(" ").replace(/\r/g, "").trim()
-        : "";
-    const tags = Array.isArray(fm.tags)
-      ? fm.tags
-          .map((tag) => String(tag || "").trim())
-          .filter(Boolean)
-      : [];
-    const machineTags = Array.isArray(fm.machine_tags)
-      ? fm.machine_tags
-          .map((tag) => String(tag || "").trim())
-          .filter(Boolean)
-      : [];
-
-    pages.push({
-      title,
-      slug,
-      status,
-      summary,
-      tags,
-      machine_tags: machineTags,
-      url: toPosix(file)
-    });
-  }
-
-  writeFileSync(OUTPUT_JSON, JSON.stringify(pages, null, 2), "utf8");
+  const pages = writePagesReport({ docsRoot: DOCS_ROOT, outputPath: OUTPUT_JSON });
+  writeBrokenLinksReport({
+    docsRoot: DOCS_ROOT,
+    outputPath: BROKEN_OUTPUT,
+    pages
+  });
+  buildStats({
+    pagesPath: OUTPUT_JSON,
+    brokenPath: BROKEN_OUTPUT,
+    outputPath: STATS_OUTPUT
+  });
   writeFileSync(LINK_MAP_OUTPUT, JSON.stringify(linkMap, null, 2), "utf8");
 
   const templateRaw = readFileSync(PAGE_TEMPLATE_PATH, "utf8");
-  for (const page of pages) {
+  const visiblePages = pages.filter((page) => page.service !== true);
+  for (const page of visiblePages) {
     const html = templateRaw
       .replace(/__SLUG__/g, page.slug)
       .replace(/__PAGE_TITLE__/g, escapeHtml(page.title || page.slug));
@@ -121,7 +74,7 @@ function buildIndex() {
   }
 
   console.log(
-    `Generated ${pages.length} entries → ${OUTPUT_JSON} and individual pages in ${PAGES_DIR}`
+    `Generated ${visiblePages.length} entries → ${OUTPUT_JSON} and individual pages in ${PAGES_DIR}`
   );
 }
 

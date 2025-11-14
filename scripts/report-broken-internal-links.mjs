@@ -2,6 +2,8 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { globSync } from "glob";
 import path from "path";
 import YAML from "yaml";
+import { fileURLToPath } from "url";
+import { collectPages } from "./report-pages.mjs";
 
 const DOCS_ROOT = "docs";
 const OUTPUT_PATH = "prototype/data/broken-links.json";
@@ -16,12 +18,12 @@ function readFrontMatter(raw) {
   return { data, content };
 }
 
-function loadLinkMap() {
-  if (!existsSync(LINK_MAP_PATH)) {
+function loadLinkMap(linkMapPath = LINK_MAP_PATH) {
+  if (!existsSync(linkMapPath)) {
     return { exact: {}, patterns: [] };
   }
   try {
-    const raw = readFileSync(LINK_MAP_PATH, "utf8");
+    const raw = readFileSync(linkMapPath, "utf8");
     const parsed = JSON.parse(raw);
     return {
       exact: parsed?.exact || {},
@@ -33,29 +35,31 @@ function loadLinkMap() {
   }
 }
 
-function buildSlugMaps(docs) {
+function buildSlugMaps(pages) {
   const canonicalMap = new Map();
   const canonicalSet = new Set();
   const serviceSet = new Set();
 
-  docs.forEach((doc) => {
-    const slug = doc.slug;
-    const normalizedPath = doc.path.replace(/\\/g, "/").replace(/^\.\//, "");
-    if (doc.service) {
+  pages.forEach((page) => {
+    const slug = page.slug;
+    const normalizedPath = page.url
+      .replace(/\\+/g, "/")
+      .replace(/^\.\//, "")
+      .replace(/^docs\//, "");
+
+    if (page.service) {
       serviceSet.add(slug);
+      serviceSet.add(`${slug}.md`);
       serviceSet.add(normalizedPath);
-      serviceSet.add(normalizedPath.replace(/^docs\//, ""));
       return;
     }
+
     canonicalSet.add(slug);
     canonicalMap.set(slug.toLowerCase(), slug);
     canonicalMap.set(`${slug}.md`.toLowerCase(), slug);
-    canonicalMap.set(
-      normalizedPath.replace(/^docs\//, "").toLowerCase(),
-      slug
-    );
     canonicalMap.set(normalizedPath.toLowerCase(), slug);
   });
+
   return { canonicalMap, canonicalSet, serviceSet };
 }
 
@@ -90,7 +94,7 @@ function resolveReference(reference, maps, linkMap) {
   for (const candidate of candidates) {
     const slug = maps.canonicalMap.get(candidate);
     if (slug) {
-      return { status: "ok", slug };
+      return { kind: "ok", slug };
     }
   }
 
@@ -101,9 +105,11 @@ function resolveReference(reference, maps, linkMap) {
         linkMap.exact[`docs/${candidate}`] ||
         linkMap.exact[`${candidate}.md`];
       if (mapped) {
-        if (maps.canonicalSet.has(mapped)) return { status: "ok", slug: mapped };
-        if (maps.serviceSet.has(mapped)) return { status: "service", slug: mapped };
-        return { status: "mapped", slug: mapped };
+        if (maps.canonicalSet.has(mapped)) return { kind: "ok", slug: mapped };
+        if (maps.serviceSet.has(mapped)) {
+          return { kind: "service", slug: mapped };
+        }
+        return { kind: "unknown", slug: mapped, reason: "mapped_target_unknown" };
       }
     }
   }
@@ -125,23 +131,23 @@ function resolveReference(reference, maps, linkMap) {
             ? candidate.replace(regex, pattern.replacement)
             : candidate.replace(regex, "");
         if (maps.canonicalSet.has(replacement)) {
-          return { status: "ok", slug: replacement };
+          return { kind: "ok", slug: replacement };
         }
         if (maps.serviceSet.has(replacement)) {
-          return { status: "service", slug: replacement };
+          return { kind: "service", slug: replacement };
         }
-        return { status: "mapped", slug: replacement };
+        return { kind: "unknown", slug: replacement, reason: "pattern_mapped_unknown" };
       }
     }
   }
 
   for (const candidate of candidates) {
     if (maps.serviceSet.has(candidate)) {
-      return { status: "service", slug: candidate };
+      return { kind: "service", slug: candidate };
     }
   }
 
-  return { status: "missing" };
+  return { kind: "internal-missing", reason: "missing_target" };
 }
 
 function extractLinks(content) {
@@ -156,64 +162,126 @@ function extractLinks(content) {
   return matches;
 }
 
-function main() {
-  const files = globSync(`${DOCS_ROOT}/**/*.md`, { nodir: true });
-  const docs = files.map((file) => {
-    const raw = readFileSync(file, "utf8");
-    const { data, content } = readFrontMatter(raw);
-    const slug = data?.slug || path.parse(file).name;
-    const service =
-      data?.service === true ||
-      (typeof data?.service === "string" &&
-        data.service.toLowerCase().trim() === "true");
-    return {
-      path: file.replace(/\\/g, "/"),
-      slug,
-      service,
-      content
-    };
-  });
-
-  const linkMap = loadLinkMap();
-  const maps = buildSlugMaps(docs);
-  const broken = [];
-
-  docs.forEach((doc) => {
-    const links = extractLinks(doc.content);
-    links.forEach((link) => {
-      const href = link.href.trim();
-      if (!href || href.startsWith("http") || href.startsWith("mailto:")) {
-        return;
-      }
-      if (href.startsWith("#")) return;
-      const result = resolveReference(href, maps, linkMap);
-      if (result.status === "ok") return;
-      if (result.status === "mapped" && maps.canonicalSet.has(result.slug)) {
-        return;
-      }
-      let reason = result.status;
-      if (reason === "mapped") reason = "unknown_target";
-      broken.push({
-        file: doc.path.replace(/^docs\//, ""),
-        link: href,
-        reason,
-        resolved_to: result.slug || null
-      });
-    });
-  });
-
-  const report = {
-    generatedAt: new Date().toISOString(),
-    totalFiles: docs.length,
-    brokenCount: broken.length,
-    issues: broken
-  };
-  mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
-  writeFileSync(OUTPUT_PATH, JSON.stringify(report, null, 2), "utf8");
-  console.log(
-    `Broken links report saved to ${OUTPUT_PATH} (issues: ${broken.length})`
+function isExternalHref(href) {
+  const lower = href.toLowerCase();
+  return (
+    lower.startsWith("http://") ||
+    lower.startsWith("https://") ||
+    lower.startsWith("mailto:") ||
+    lower.startsWith("file://") ||
+    lower.startsWith("/") ||
+    lower.endsWith(".csv")
   );
 }
 
-main();
+function classifyLink(href, maps, linkMap) {
+  if (!href || href.startsWith("#")) return null;
+  if (isExternalHref(href)) {
+    return { kind: "external", reason: "external_link" };
+  }
+
+  const result = resolveReference(href, maps, linkMap);
+  if (result.kind === "ok") return null;
+  if (result.kind === "service") {
+    return { kind: "service", reason: "points_to_service", target: result.slug };
+  }
+
+  return {
+    kind: result.kind || "unknown",
+    reason: result.reason || "unresolved",
+    target: result.slug || null
+  };
+}
+
+export function generateBrokenLinks({
+  docsRoot = DOCS_ROOT,
+  linkMapPath = LINK_MAP_PATH,
+  pages
+} = {}) {
+  const pageList = pages || collectPages({ docsRoot });
+  const maps = buildSlugMaps(pageList);
+  const linkMap = loadLinkMap(linkMapPath);
+  const files = globSync(`${docsRoot}/**/*.md`, { nodir: true });
+  const issues = [];
+  const totals = {
+    external: 0,
+    service: 0,
+    "internal-missing": 0,
+    unknown: 0
+  };
+
+  const metaByPath = new Map(
+    pageList.map((page) => [page.url.replace(/\\+/g, "/"), page])
+  );
+
+  for (const file of files) {
+    const normalizedPath = file.replace(/\\+/g, "/");
+    const relPath = normalizedPath.replace(/^docs\//, "");
+    const sourceMeta = metaByPath.get(normalizedPath) || {
+      slug: path.parse(file).name
+    };
+
+    const raw = readFileSync(file, "utf8");
+    const { content } = readFrontMatter(raw);
+    const links = extractLinks(content || "");
+
+    for (const link of links) {
+      const href = (link.href || "").trim();
+      const classification = classifyLink(href, maps, linkMap);
+      if (!classification) continue;
+      totals[classification.kind] += 1;
+      issues.push({
+        file: relPath,
+        slug: sourceMeta.slug,
+        href,
+        kind: classification.kind,
+        reason: classification.reason,
+        target: classification.target || null
+      });
+    }
+  }
+
+  issues.sort((a, b) => {
+    const slugCompare =
+      a.slug.localeCompare(b.slug, "ru", { sensitivity: "base" });
+    if (slugCompare !== 0) return slugCompare;
+    return a.href.localeCompare(b.href);
+  });
+
+  return { issues, totals, pagesCount: pageList.length };
+}
+
+export function writeBrokenLinksReport({
+  docsRoot = DOCS_ROOT,
+  linkMapPath = LINK_MAP_PATH,
+  outputPath = OUTPUT_PATH,
+  pages
+} = {}) {
+  const report = generateBrokenLinks({ docsRoot, linkMapPath, pages });
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    totalFiles: report.pagesCount,
+    brokenCount: report.issues.length,
+    totals: report.totals,
+    issues: report.issues
+  };
+  mkdirSync(path.dirname(outputPath), { recursive: true });
+  writeFileSync(outputPath, JSON.stringify(payload, null, 2), "utf8");
+  console.log(
+    `Broken links report saved to ${outputPath} (issues: ${report.issues.length})`
+  );
+  return payload;
+}
+
+const __filename = fileURLToPath(import.meta.url);
+const directRun = process.argv[1] && path.resolve(process.argv[1]) === __filename;
+
+if (directRun) {
+  try {
+    writeBrokenLinksReport();
+  } catch (error) {
+    console.error("Failed to build broken links report:", error);
+    process.exit(1);
+  }
+}
 

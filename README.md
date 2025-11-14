@@ -61,6 +61,11 @@ npm run lint:docs
 
 # Строгий режим: missing tags = ошибки
 npm run lint:docs:strict
+
+# Отчёты для прототипа
+npm run report:pages   # актуализирует prototype/data/pages.json
+npm run report:broken  # собирает broken-links.json с классификацией проблем
+npm run report:stats   # агрегаты, score и топ проблемных страниц
 ```
 
 ## Процесс работы

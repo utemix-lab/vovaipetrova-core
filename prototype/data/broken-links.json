@@ -1,229 +1,1085 @@
 {
-  "generatedAt": "2025-11-13T21:07:22.703Z",
+  "generatedAt": "2025-11-14T11:39:42.587Z",
   "totalFiles": 154,
-  "brokenCount": 37,
+  "brokenCount": 134,
+  "totals": {
+    "external": 104,
+    "service": 21,
+    "internal-missing": 7,
+    "unknown": 2
+  },
   "issues": [
     {
-      "file": "vova-i-petrova-ef2871.md",
-      "link": "База знаний dcec31887b6145d78d9096d911a951cb.csv",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "vova-i-petrova-ef2871.md",
-      "link": "Персонажи (Агенты",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "vova-i-petrova-ef2871.md",
-      "link": "notion-brain-108a7f.md",
-      "reason": "service",
-      "resolved_to": "notion-brain"
-    },
-    {
-      "file": "vova-i-petrova-ef2871.md",
-      "link": "context-mapyaml-64b43e.md",
-      "reason": "unknown_target",
-      "resolved_to": "context-mapyaml"
-    },
-    {
-      "file": "vova-i-petrova-ef2871.md",
-      "link": "readme-notion-brain.md",
-      "reason": "service",
-      "resolved_to": "readme-notion-brain.md"
-    },
-    {
-      "file": "uslugi.md",
-      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
-      "reason": "service",
-      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
-    },
-    {
-      "file": "uslugi-e38e09.md",
-      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
-      "reason": "service",
-      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
-    },
-    {
-      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
-      "link": "file://",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
-      "link": "file://",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "spec-normalize-i-politika-imyon.md",
-      "link": "../README.md",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
-      "link": "URL",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
-      "link": "/kb/flux",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
-      "link": "/nav/user",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
-      "link": "URL",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
-      "link": "/kb/flux",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
-      "link": "/nav/user",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "notion-brain.md",
-      "link": "context-mapyaml.md",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "notion-brain.md",
-      "link": "readme-notion-brain.md",
-      "reason": "service",
-      "resolved_to": "readme-notion-brain.md"
-    },
-    {
-      "file": "notion-brain.md",
-      "link": "template-adr.md",
-      "reason": "service",
-      "resolved_to": "template-adr.md"
-    },
-    {
-      "file": "notion-brain.md",
-      "link": "template-zadacha-dlya-ispolnitelya-cursoraider.md",
-      "reason": "service",
-      "resolved_to": "template-zadacha-dlya-ispolnitelya-cursoraider.md"
-    },
-    {
-      "file": "notion-brain.md",
-      "link": "template-pr-cheklist.md",
-      "reason": "service",
-      "resolved_to": "template-pr-cheklist.md"
-    },
-    {
-      "file": "notion-brain-108a7f.md",
-      "link": "context-map-yaml-64b43e.md",
-      "reason": "service",
-      "resolved_to": "context-map-yaml"
-    },
-    {
-      "file": "notion-brain-108a7f.md",
-      "link": "readme-notion-brain.md",
-      "reason": "service",
-      "resolved_to": "readme-notion-brain.md"
-    },
-    {
-      "file": "notion-brain-108a7f.md",
-      "link": "template-adr-237529.md",
-      "reason": "service",
-      "resolved_to": "template-adr"
-    },
-    {
-      "file": "notion-brain-108a7f.md",
-      "link": "template-zadacha-dlya-ispolnitelya-cursoraider.md",
-      "reason": "service",
-      "resolved_to": "template-zadacha-dlya-ispolnitelya-cursoraider.md"
-    },
-    {
-      "file": "notion-brain-108a7f.md",
-      "link": "template-pr-cheklist-3a6077.md",
-      "reason": "service",
-      "resolved_to": "template-pr-cheklist"
-    },
-    {
-      "file": "notion-brain-108a7f.md",
-      "link": "template-vision-e2acba.md",
-      "reason": "service",
-      "resolved_to": "template-vision"
-    },
-    {
-      "file": "notion-brain-108a7f.md",
-      "link": "template-task-spec-bfe53d.md",
-      "reason": "service",
-      "resolved_to": "template-task-spec"
-    },
-    {
-      "file": "kartochka-uslugi-videoprodakshn.md",
-      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
-      "reason": "service",
-      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
-    },
-    {
-      "file": "kartochka-uslugi-dizajn.md",
-      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
-      "reason": "service",
-      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
-    },
-    {
-      "file": "instrukcii-dlya-notion-ai-vovaipetrova.md",
-      "link": "../README.md",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "instrukcii-dlya-notion-ai-vovaipetrova-28ce52.md",
-      "link": "../README.md",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "indeks-sajta.md",
-      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
-      "reason": "service",
-      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
-    },
-    {
-      "file": "indeks-sajta-4b85d7.md",
-      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
-      "reason": "service",
-      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
+      "file": "arhitektura-i-komponenty-486a0b.md",
+      "slug": "arhitektura-i-komponenty-486a0b",
+      "href": "api-reestr-i-specifikacii-711159.md",
+      "kind": "unknown",
+      "reason": "pattern_mapped_unknown",
+      "target": "api-reestr-i-specifikacii"
     },
     {
       "file": "artefakty-korzina-i-zayavka-mvp.md",
-      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
-      "reason": "service",
-      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
+      "slug": "artefakty-korzina-i-zayavka-mvp",
+      "href": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "kartochka-uslugi-proektirovanie-cad3d.md"
     },
     {
       "file": "artefakty-korzina-i-zayavka-mvp-925151.md",
-      "link": "kartochka-uslugi-proektirovanie-cad3d.md",
-      "reason": "service",
-      "resolved_to": "kartochka-uslugi-proektirovanie-cad3d.md"
+      "slug": "artefakty-korzina-i-zayavka-mvp-925151",
+      "href": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "kartochka-uslugi-proektirovanie-cad3d.md"
     },
     {
-      "file": "arhitektura-i-komponenty-486a0b.md",
-      "link": "api-reestr-i-specifikacii-711159.md",
-      "reason": "unknown_target",
-      "resolved_to": "api-reestr-i-specifikacii"
+      "file": "comfyui-obzor-i-bystryj-start.md",
+      "slug": "comfyui-obzor-i-bystryj-start",
+      "href": "https://github.com/comfyanonymous/ComfyUI",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "indeks-sajta.md",
+      "slug": "indeks-sajta",
+      "href": "https://www.notion.so/docs-README-9d53eff69e904162a6b887f8d9592c7c?pvs=21",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "indeks-sajta.md",
+      "slug": "indeks-sajta",
+      "href": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "indeks-sajta-4b85d7.md",
+      "slug": "indeks-sajta-4b85d7",
+      "href": "https://www.notion.so/docs-README-9d53eff69e904162a6b887f8d9592c7c?pvs=21",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "indeks-sajta-4b85d7.md",
+      "slug": "indeks-sajta-4b85d7",
+      "href": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "instrukcii-dlya-notion-ai-vovaipetrova.md",
+      "slug": "instrukcii-dlya-notion-ai-vovaipetrova",
+      "href": "../README.md",
+      "kind": "internal-missing",
+      "reason": "missing_target",
+      "target": null
+    },
+    {
+      "file": "instrukcii-dlya-notion-ai-vovaipetrova-28ce52.md",
+      "slug": "instrukcii-dlya-notion-ai-vovaipetrova-28ce52",
+      "href": "../README.md",
+      "kind": "internal-missing",
+      "reason": "missing_target",
+      "target": null
+    },
+    {
+      "file": "kartochka-uslugi-dizajn.md",
+      "slug": "kartochka-uslugi-dizajn",
+      "href": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "kartochka-uslugi-videoprodakshn.md",
+      "slug": "kartochka-uslugi-videoprodakshn",
+      "href": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "koncepciya-portov-interfejsy-do-realizacii.md",
+      "slug": "koncepciya-portov-interfejsy-do-realizacii",
+      "href": "https://api.openrouter.ai",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "koncepciya-portov-interfejsy-do-realizacii-9b9fb5.md",
+      "slug": "koncepciya-portov-interfejsy-do-realizacii-9b9fb5",
+      "href": "https://api.openrouter.ai",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "notion-brain.md",
+      "slug": "notion-brain",
+      "href": "context-mapyaml.md",
+      "kind": "internal-missing",
+      "reason": "missing_target",
+      "target": null
+    },
+    {
+      "file": "notion-brain.md",
+      "slug": "notion-brain",
+      "href": "https://www.notion.so/README-GitHub-98c47949f1244855b37edba741b2ada9?pvs=21",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "notion-brain.md",
+      "slug": "notion-brain",
+      "href": "readme-notion-brain.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "readme-notion-brain.md"
+    },
+    {
+      "file": "notion-brain.md",
+      "slug": "notion-brain",
+      "href": "template-adr.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "template-adr.md"
+    },
+    {
+      "file": "notion-brain.md",
+      "slug": "notion-brain",
+      "href": "template-pr-cheklist.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "template-pr-cheklist.md"
+    },
+    {
+      "file": "notion-brain.md",
+      "slug": "notion-brain",
+      "href": "template-zadacha-dlya-ispolnitelya-cursoraider.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "template-zadacha-dlya-ispolnitelya-cursoraider.md"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "slug": "notion-brain-108a7f",
+      "href": "context-map-yaml-64b43e.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "context-map-yaml"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "slug": "notion-brain-108a7f",
+      "href": "https://www.notion.so/README-GitHub-98c47949f1244855b37edba741b2ada9?pvs=21",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "slug": "notion-brain-108a7f",
+      "href": "readme-notion-brain.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "readme-notion-brain.md"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "slug": "notion-brain-108a7f",
+      "href": "template-adr-237529.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "template-adr"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "slug": "notion-brain-108a7f",
+      "href": "template-pr-cheklist-3a6077.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "template-pr-cheklist"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "slug": "notion-brain-108a7f",
+      "href": "template-task-spec-bfe53d.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "template-task-spec"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "slug": "notion-brain-108a7f",
+      "href": "template-vision-e2acba.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "template-vision"
+    },
+    {
+      "file": "notion-brain-108a7f.md",
+      "slug": "notion-brain-108a7f",
+      "href": "template-zadacha-dlya-ispolnitelya-cursoraider.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "template-zadacha-dlya-ispolnitelya-cursoraider.md"
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://drawer.open",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://e.target",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://it.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://state.artifacts.items.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://state.menu",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://state.menu.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://state.roles.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://state.services",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://state.services.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://svc.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://svc.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "https://www.notion.so/0b7377b4b3dc4b6ba237a19156c3a518\">UI",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "https://www.notion.so/0b7377b4b3dc4b6ba237a19156c3a518\">UI",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype.md",
+      "slug": "prototype",
+      "href": "https://www.notion.so/98c47949f1244855b37edba741b2ada9\">README",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://drawer.open",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://e.target",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://it.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://state.artifacts.items.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://state.menu",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://state.menu.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://state.roles.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://state.services",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://state.services.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://svc.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://svc.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "https://www.notion.so/0b7377b4b3dc4b6ba237a19156c3a518\">UI",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "https://www.notion.so/0b7377b4b3dc4b6ba237a19156c3a518\">UI",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "prototype-a80bcc.md",
+      "slug": "prototype-a80bcc",
+      "href": "https://www.notion.so/98c47949f1244855b37edba741b2ada9\">README",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "shablon-kartochka-proizvoditelya.md",
+      "slug": "shablon-kartochka-proizvoditelya",
+      "href": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg\">Заглушка</image>",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "shablon-kartochka-proizvoditelya-7ce17e.md",
+      "slug": "shablon-kartochka-proizvoditelya-7ce17e",
+      "href": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg\">Заглушка</image>",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "shablon-kartochka-strany.md",
+      "slug": "shablon-kartochka-strany",
+      "href": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg\">Заглушка</image>",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "shablon-kartochka-strany-f062b2.md",
+      "slug": "shablon-kartochka-strany-f062b2",
+      "href": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg\">Заглушка</image>",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
+      "slug": "sintaksis-i-razmetka-markdown-wordpress",
+      "href": "/kb/flux",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
+      "slug": "sintaksis-i-razmetka-markdown-wordpress",
+      "href": "/nav/user",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
+      "slug": "sintaksis-i-razmetka-markdown-wordpress",
+      "href": "URL",
+      "kind": "internal-missing",
+      "reason": "missing_target",
+      "target": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
+      "slug": "sintaksis-i-razmetka-markdown-wordpress-60cc6c",
+      "href": "/kb/flux",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
+      "slug": "sintaksis-i-razmetka-markdown-wordpress-60cc6c",
+      "href": "/nav/user",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
+      "slug": "sintaksis-i-razmetka-markdown-wordpress-60cc6c",
+      "href": "URL",
+      "kind": "internal-missing",
+      "reason": "missing_target",
+      "target": null
+    },
+    {
+      "file": "spec-normalize-i-politika-imyon.md",
+      "slug": "spec-normalize-i-politika-imyon",
+      "href": "../README.md",
+      "kind": "internal-missing",
+      "reason": "missing_target",
+      "target": null
+    },
+    {
+      "file": "tekushie-zadachi.md",
+      "slug": "tekushie-zadachi",
+      "href": "https://www.notion.so/README-GitHub-98c47949f1244855b37edba741b2ada9?pvs=21",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "tekushie-zadachi-4ab1b1.md",
+      "slug": "tekushie-zadachi-4ab1b1",
+      "href": "https://www.notion.so/README-GitHub-98c47949f1244855b37edba741b2ada9?pvs=21",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "file://",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://drawer.open",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://e.target",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://Image.new",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://img.save",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://it.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://state.artifacts.items.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://state.menu",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://state.menu.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://state.roles.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://state.services",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://state.services.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://svc.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://svc.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "file://",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://drawer.open",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://e.target",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://Image.new",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://img.save",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://it.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://r.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://state.artifacts.items.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://state.menu",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://state.menu.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://state.roles.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://state.services",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://state.services.map",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://svc.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://svc.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+      "href": "http://x.id",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "uslugi.md",
+      "slug": "uslugi",
+      "href": "https://www.notion.so/docs-README-9d53eff69e904162a6b887f8d9592c7c?pvs=21",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "uslugi.md",
+      "slug": "uslugi",
+      "href": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "uslugi-e38e09.md",
+      "slug": "uslugi-e38e09",
+      "href": "https://www.notion.so/docs-README-9d53eff69e904162a6b887f8d9592c7c?pvs=21",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "uslugi-e38e09.md",
+      "slug": "uslugi-e38e09",
+      "href": "kartochka-uslugi-proektirovanie-cad3d.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "kartochka-uslugi-proektirovanie-cad3d.md"
+    },
+    {
+      "file": "vova-i-petrova-ef2871.md",
+      "slug": "vova-i-petrova-ef2871",
+      "href": "context-mapyaml-64b43e.md",
+      "kind": "unknown",
+      "reason": "pattern_mapped_unknown",
+      "target": "context-mapyaml"
+    },
+    {
+      "file": "vova-i-petrova-ef2871.md",
+      "slug": "vova-i-petrova-ef2871",
+      "href": "notion-brain-108a7f.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "notion-brain"
+    },
+    {
+      "file": "vova-i-petrova-ef2871.md",
+      "slug": "vova-i-petrova-ef2871",
+      "href": "readme-notion-brain.md",
+      "kind": "service",
+      "reason": "points_to_service",
+      "target": "readme-notion-brain.md"
+    },
+    {
+      "file": "vova-i-petrova-ef2871.md",
+      "slug": "vova-i-petrova-ef2871",
+      "href": "База знаний dcec31887b6145d78d9096d911a951cb.csv",
+      "kind": "external",
+      "reason": "external_link",
+      "target": null
+    },
+    {
+      "file": "vova-i-petrova-ef2871.md",
+      "slug": "vova-i-petrova-ef2871",
+      "href": "Персонажи (Агенты",
+      "kind": "internal-missing",
+      "reason": "missing_target",
+      "target": null
     }
   ]
 }

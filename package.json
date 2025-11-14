@@ -17,7 +17,10 @@
     "check:import": "node scripts/check-import-safety.mjs",
     "unpack:notion": "node scripts/unpack-notion-export.mjs",
     "scaffold:article": "node scripts/scaffold.mjs --type=article",
-    "scaffold:adr": "node scripts/scaffold.mjs --type=adr"
+    "scaffold:adr": "node scripts/scaffold.mjs --type=adr",
+    "report:pages": "node scripts/report-pages.mjs",
+    "report:broken": "node scripts/report-broken-internal-links.mjs",
+    "report:stats": "node scripts/report-stats.mjs"
   },
   "repository": {
     "type": "git",
