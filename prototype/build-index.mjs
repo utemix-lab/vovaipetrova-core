@@ -75,7 +75,7 @@ function buildIndex() {
         : fm.service === true
         ? "true"
         : "";
-    if (serviceValue === "true") continue;
+    const isService = serviceValue === "true";
 
     const title = fm.title || path.parse(file).name;
     const slug = fm.slug || path.parse(file).name;
@@ -104,7 +104,8 @@ function buildIndex() {
       summary,
       tags,
       machine_tags: machineTags,
-      url: toPosix(file)
+      url: toPosix(file),
+      service: isService
     });
   }
 

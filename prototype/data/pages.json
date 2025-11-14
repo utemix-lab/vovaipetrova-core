@@ -1,6 +1,16 @@
 [
   {
     "title": "ADR — Source of truth и зеркалирование",
+    "slug": "adr-source-of-truth-i-zerkalirovanie-f649b1",
+    "status": "draft",
+    "summary": "Источник истины — Notion. Репозиторий — зеркало для исполнения и публикации. Ранний этап требует скорости вносить массовые правки и фиксировать архитектуру Нужны предпросмотры (Pages) и истории измвЂ¦",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/adr-source-of-truth-i-zerkalirovanie-f649b1.md",
+    "service": true
+  },
+  {
+    "title": "ADR — Source of truth и зеркалирование",
     "slug": "adr-source-of-truth-i-zerkalirovanie",
     "status": "draft",
     "summary": "Источник истины — Notion. Репозиторий — зеркало для исполнения и публикации. Ранний этап требует скорости вносить массовые правки и фиксировать архитектуру Нужны предпросмотры (Pages) и истории измвЂ¦",
@@ -15,7 +25,8 @@
       "product/site",
       "theme/ux"
     ],
-    "url": "docs/adr-source-of-truth-i-zerkalirovanie.md"
+    "url": "docs/adr-source-of-truth-i-zerkalirovanie.md",
+    "service": false
   },
   {
     "title": "ADR — Source of truth и зеркалирование",
@@ -34,7 +45,8 @@
       "theme/dev",
       "theme/graphics"
     ],
-    "url": "docs/adr-source-of-truth-mirroring.md"
+    "url": "docs/adr-source-of-truth-mirroring.md",
+    "service": false
   },
   {
     "title": "ADR — Политика тегов и фасетов",
@@ -53,7 +65,28 @@
       "theme/dev",
       "theme/graphics"
     ],
-    "url": "docs/adr-tags-and-facets.md"
+    "url": "docs/adr-tags-and-facets.md",
+    "service": false
+  },
+  {
+    "title": "ADR — Теги и фасеты",
+    "slug": "adr-tegi-i-fasety-b1150c",
+    "status": "ready",
+    "summary": "Утверждаем фасетную модель тегов: видимые хэштеги, машинотеги и aliases для автоматической нормализации.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/adr-tegi-i-fasety-b1150c.md",
+    "service": true
+  },
+  {
+    "title": "ADR — Теги и фасеты",
+    "slug": "adr-tegi-i-fasety-f3195c",
+    "status": "draft",
+    "summary": "# ADR — Теги и фасеты",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/adr-tegi-i-fasety-f3195c.md",
+    "service": true
   },
   {
     "title": "ADR — Теги и фасеты",
@@ -66,7 +99,28 @@
     "machine_tags": [
       "producer/adobe"
     ],
-    "url": "docs/adr-tegi-i-fasety.md"
+    "url": "docs/adr-tegi-i-fasety.md",
+    "service": false
+  },
+  {
+    "title": "[ADR] Журнал решений",
+    "slug": "adr-zhurnal-reshenij-b34c2e",
+    "status": "ready",
+    "summary": "Корневой реестр архитектурных решений: формат записей, статусы и ссылки на связанные артефакты.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/adr-zhurnal-reshenij-b34c2e.md",
+    "service": true
+  },
+  {
+    "title": "Ancy",
+    "slug": "ancy-b786fe",
+    "status": "draft",
+    "summary": "Архетип: Гость Голос и тон: Вдумчивый, философичный, системный Слои: Игровой, Театральный, Технический",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/ancy-b786fe.md",
+    "service": true
   },
   {
     "title": "Ancy",
@@ -80,7 +134,28 @@
     "machine_tags": [
       "product/kb"
     ],
-    "url": "docs/ancy.md"
+    "url": "docs/ancy.md",
+    "service": false
+  },
+  {
+    "title": "[API] Реестр и спецификации",
+    "slug": "api-reestr-i-specifikacii-711159",
+    "status": "draft",
+    "summary": "Реестр сервисов и спецификации API. api: REST API для контента и генерации gen: эндпоинты очереди генерации",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/api-reestr-i-specifikacii-711159.md",
+    "service": true
+  },
+  {
+    "title": "Архитектура и компоненты",
+    "slug": "arhitektura-i-komponenty-486a0b",
+    "status": "ready",
+    "summary": "Верхнеуровневая схема платформы: ключевые подсистемы, их обязанности и интерфейсы.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/arhitektura-i-komponenty-486a0b.md",
+    "service": true
   },
   {
     "title": "Архитектура и компоненты",
@@ -99,7 +174,18 @@
       "theme/dev",
       "theme/graphics"
     ],
-    "url": "docs/arhitektura-i-komponenty.md"
+    "url": "docs/arhitektura-i-komponenty.md",
+    "service": false
+  },
+  {
+    "title": "Архитектура проекта — компоненты",
+    "slug": "arhitektura-proekta-komponenty-bb23c3",
+    "status": "draft",
+    "summary": "1) База знаний Формат исходных материалов: Markdown/YAML Структура: теги, граф связей",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/arhitektura-proekta-komponenty-bb23c3.md",
+    "service": true
   },
   {
     "title": "Архитектура проекта — компоненты",
@@ -112,7 +198,18 @@
     "machine_tags": [
       "product/kb"
     ],
-    "url": "docs/arhitektura-proekta-komponenty.md"
+    "url": "docs/arhitektura-proekta-komponenty.md",
+    "service": false
+  },
+  {
+    "title": "Артефакты — корзина и заявка (MVP)",
+    "slug": "artefakty-korzina-i-zayavka-mvp-925151",
+    "status": "draft",
+    "summary": "Быстрый старт: добавьте услугу в артефакты Игровая витрина с роль‑ориентированным UI и «корзиной артефактов». Пользователь собирает примеры работ и пунктов услуг, прикладывает к заявке. В заявке — вЂ¦",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/artefakty-korzina-i-zayavka-mvp-925151.md",
+    "service": true
   },
   {
     "title": "Артефакты — корзина и заявка (MVP)",
@@ -132,7 +229,18 @@
       "theme/graphics",
       "theme/ux"
     ],
-    "url": "docs/artefakty-korzina-i-zayavka-mvp.md"
+    "url": "docs/artefakty-korzina-i-zayavka-mvp.md",
+    "service": false
+  },
+  {
+    "title": "База знаний — корень",
+    "slug": "baza-znanij-koren-8cd215",
+    "status": "draft",
+    "summary": "Центральный узел для тысяч страниц по инструментам и технологиям. Карточки инструментов по шаблону Рубрики и теги для фильтрации",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/baza-znanij-koren-8cd215.md",
+    "service": true
   },
   {
     "title": "База знаний — корень",
@@ -149,7 +257,28 @@
       "product/kb",
       "theme/automation"
     ],
-    "url": "docs/baza-znanij-koren.md"
+    "url": "docs/baza-znanij-koren.md",
+    "service": false
+  },
+  {
+    "title": "CADрик",
+    "slug": "cadrik-b04be9",
+    "status": "draft",
+    "summary": "Архетип: CAD/3D (Cadric) Голос и тон: Дотошный инженер, любит схемы и TDD‑мышление Слои: Игровой, Театральный, Технический",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/cadrik-b04be9.md",
+    "service": true
+  },
+  {
+    "title": "ComfyUI — обзор и быстрый старт",
+    "slug": "comfyui-obzor-i-bystryj-start-5a18c5",
+    "status": "ready",
+    "summary": "Шпаргалка по настройке пайплайнов ComfyUI: пресеты, интеграции и контроль качества рендеров.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/comfyui-obzor-i-bystryj-start-5a18c5.md",
+    "service": true
   },
   {
     "title": "ComfyUI — обзор и быстрый старт",
@@ -164,7 +293,58 @@
       "tool/graphics",
       "tool/stable-diffusion"
     ],
-    "url": "docs/comfyui-obzor-i-bystryj-start.md"
+    "url": "docs/comfyui-obzor-i-bystryj-start.md",
+    "service": false
+  },
+  {
+    "title": "context-map.yaml",
+    "slug": "context-map-yaml-64b43e",
+    "status": "draft",
+    "summary": "```yaml facets: theme: [theme/ml, theme/nlp, theme/graphics, theme/ux, theme/automation]",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/context-map-yaml-64b43e.md",
+    "service": true
+  },
+  {
+    "title": "context-map.yaml",
+    "slug": "context-map-yaml-da0108",
+    "status": "draft",
+    "summary": "# context-map.yaml",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/context-map-yaml-da0108.md",
+    "service": true
+  },
+  {
+    "title": "context-map.yaml",
+    "slug": "context-map-yaml",
+    "status": "draft",
+    "summary": "```yaml facets: theme: [theme/ml, theme/nlp, theme/graphics, theme/ux, theme/automation]",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/context-map-yaml.md",
+    "service": true
+  },
+  {
+    "title": "[DATA] Модель данных",
+    "slug": "data-model-dannyh-214280",
+    "status": "draft",
+    "summary": "Модель данных, схемы и миграции. Таблица/Коллекция: поля, типы, индексы MIG‑0001: описание, дата, up/down",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/data-model-dannyh-214280.md",
+    "service": true
+  },
+  {
+    "title": "Динозаврик",
+    "slug": "dinozavrik-7e5f67",
+    "status": "draft",
+    "summary": "Архетип: Гость Голос и тон: Забавный прокрастинатор; приносит «интересные штуки» Слои: Игровой, Театральный, Технический",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/dinozavrik-7e5f67.md",
+    "service": true
   },
   {
     "title": "Динозаврик",
@@ -180,7 +360,18 @@
       "product/services",
       "theme/graphics"
     ],
-    "url": "docs/dinozavrik.md"
+    "url": "docs/dinozavrik.md",
+    "service": false
+  },
+  {
+    "title": "Dizzy",
+    "slug": "dizzy-8844f5",
+    "status": "draft",
+    "summary": "Архетип: Дизайн‑системы (Dizzy) Голос и тон: Игровой, меняющий облики; креативный перфекционист Слои: Игровой, Театральный, Технический",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/dizzy-8844f5.md",
+    "service": true
   },
   {
     "title": "Dizzy",
@@ -196,7 +387,18 @@
       "theme/branding",
       "theme/graphics"
     ],
-    "url": "docs/dizzy.md"
+    "url": "docs/dizzy.md",
+    "service": false
+  },
+  {
+    "title": "Дорожная карта (этапы)",
+    "slug": "dorozhnaya-karta-etapy-8d0cea",
+    "status": "draft",
+    "summary": "[x]  Letta + MCP‑серверы [x]  Структура Core Memory [x]  GitHub think‑tank",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/dorozhnaya-karta-etapy-8d0cea.md",
+    "service": true
   },
   {
     "title": "Дорожная карта (этапы)",
@@ -209,7 +411,18 @@
     "machine_tags": [
       "product/artifacts"
     ],
-    "url": "docs/dorozhnaya-karta-etapy.md"
+    "url": "docs/dorozhnaya-karta-etapy.md",
+    "service": false
+  },
+  {
+    "title": "Дорожная карта и бэклог",
+    "slug": "dorozhnaya-karta-i-beklog-1b53af",
+    "status": "draft",
+    "summary": "Этапы, эпики и приоритеты работ. Этап 1: цели, критерии готовности Эпик → задачи → связи с компонентами",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/dorozhnaya-karta-i-beklog-1b53af.md",
+    "service": true
   },
   {
     "title": "Дорожная карта и бэклог",
@@ -222,7 +435,18 @@
     "machine_tags": [
       "product/artifacts"
     ],
-    "url": "docs/dorozhnaya-karta-i-beklog.md"
+    "url": "docs/dorozhnaya-karta-i-beklog.md",
+    "service": false
+  },
+  {
+    "title": "Р­РєСЃРїРѕСЂС‚ РІ GitHub вЂ” СЂСѓРєРѕРІРѕРґСЃС‚РІРѕ Рё С€Р°Р±Р»РѕРЅС‹",
+    "slug": "eksport-v-github-rukovodstvo-i-shablony-007c56",
+    "status": "review",
+    "summary": "РџСЂР°РєС‚РёС‡РµСЃРєРѕРµ СЂСѓРєРѕРІРѕРґСЃС‚РІРѕ РїРѕ СЌРєСЃРїРѕСЂС‚Сѓ Notion в†’ GitHub: СЃС‚СЂСѓРєС‚СѓСЂР°, СЃРєСЂРёРїС‚С‹ Рё Р°РІС‚РѕРјР°С‚РёР·Р°С†РёСЏ.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/eksport-v-github-rukovodstvo-i-shablony-007c56.md",
+    "service": true
   },
   {
     "title": "Экспорт в GitHub — руководство и шаблоны",
@@ -241,7 +465,18 @@
       "theme/dev",
       "theme/graphics"
     ],
-    "url": "docs/eksport-v-github-rukovodstvo-i-shablony.md"
+    "url": "docs/eksport-v-github-rukovodstvo-i-shablony.md",
+    "service": false
+  },
+  {
+    "title": "Глоссарий терминов",
+    "slug": "glossarij-terminov-c32542",
+    "status": "draft",
+    "summary": "Ключевые термины и сокращения проекта. Термин: определение Аббр.: расшифровка",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/glossarij-terminov-c32542.md",
+    "service": true
   },
   {
     "title": "Глоссарий терминов",
@@ -254,7 +489,18 @@
     "machine_tags": [
       "product/kb"
     ],
-    "url": "docs/glossarij-terminov.md"
+    "url": "docs/glossarij-terminov.md",
+    "service": false
+  },
+  {
+    "title": "Хьюго",
+    "slug": "hyugo-c8aa97",
+    "status": "draft",
+    "summary": "Архетип: Парсинг/Обогащение (Hugo) Голос и тон: Рациональный, педантичный, добродушный робот‑заяц Слои: Игровой, Театральный, Технический",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/hyugo-c8aa97.md",
+    "service": true
   },
   {
     "title": "Хьюго",
@@ -270,7 +516,18 @@
       "product/kb",
       "theme/automation"
     ],
-    "url": "docs/hyugo.md"
+    "url": "docs/hyugo.md",
+    "service": false
+  },
+  {
+    "title": "ИИ",
+    "slug": "ii-7e98b8",
+    "status": "draft",
+    "summary": "Архетип: ИИ (метаагент) Голос и тон: Лёгкая надменность к автору, юмор к коллегам, уважение к аудитории Слои: Игровой, Театральный, Технический",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/ii-7e98b8.md",
+    "service": true
   },
   {
     "title": "ИИ",
@@ -287,7 +544,18 @@
       "product/kb",
       "theme/automation"
     ],
-    "url": "docs/ii.md"
+    "url": "docs/ii.md",
+    "service": false
+  },
+  {
+    "title": "Индекс и TL;DR",
+    "slug": "indeks-i-tldr-11ee74",
+    "status": "draft",
+    "summary": "Проект «Вова и Петрова» — творческо‑технологическая экосистема: виртуальные персонажи + «невидимый ИИ» + база знаний о нейросетях. Цель: личный инструмент и публичный ресурс с экспортом контента в вЂ¦",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/indeks-i-tldr-11ee74.md",
+    "service": true
   },
   {
     "title": "Индекс и TL;DR",
@@ -302,7 +570,18 @@
       "product/kb",
       "product/site"
     ],
-    "url": "docs/indeks-i-tldr.md"
+    "url": "docs/indeks-i-tldr.md",
+    "service": false
+  },
+  {
+    "title": "Индекс сайта",
+    "slug": "indeks-sajta-4b85d7",
+    "status": "draft",
+    "summary": "--- --- Формат slug: theme/ml, tool/stable-diffusion, role/client",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/indeks-sajta-4b85d7.md",
+    "service": true
   },
   {
     "title": "Индекс сайта",
@@ -319,7 +598,28 @@
       "theme/graphics",
       "tool/adobe-photoshop"
     ],
-    "url": "docs/indeks-sajta.md"
+    "url": "docs/indeks-sajta.md",
+    "service": false
+  },
+  {
+    "title": "Instructions — Исполнители (Cursor/Aider)",
+    "slug": "instructions-ispolniteli-cursoraider-7f55e8",
+    "status": "draft",
+    "summary": "# Instructions — Исполнители (Cursor/Aider)",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/instructions-ispolniteli-cursoraider-7f55e8.md",
+    "service": true
+  },
+  {
+    "title": "Instructions — Исполнители (Cursor/Aider)",
+    "slug": "instructions-ispolniteli-cursoraider-acae4b",
+    "status": "draft",
+    "summary": "1) Прочитайте папку notion-brain/ (ADR, Specs, context-map.yaml) 2) Вносите изменения ТОЛЬКО в: docs/ (контентные .md)",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/instructions-ispolniteli-cursoraider-acae4b.md",
+    "service": true
   },
   {
     "title": "Instructions — Исполнители (Cursor/Aider)",
@@ -337,7 +637,18 @@
       "product/site",
       "theme/ux"
     ],
-    "url": "docs/instructions-ispolniteli-cursoraider.md"
+    "url": "docs/instructions-ispolniteli-cursoraider.md",
+    "service": false
+  },
+  {
+    "title": "Инструкции для Notion AI — vova_i_petrova",
+    "slug": "instrukcii-dlya-notion-ai-vovaipetrova-28ce52",
+    "status": "review",
+    "summary": "Как Notion AI синхронизируется с GitHub: экспорт, структуры и страховка на случай сброса сессии.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/instrukcii-dlya-notion-ai-vovaipetrova-28ce52.md",
+    "service": true
   },
   {
     "title": "Инструкции для Notion AI — vova_i_petrova",
@@ -356,7 +667,18 @@
       "theme/dev",
       "theme/graphics"
     ],
-    "url": "docs/instrukcii-dlya-notion-ai-vovaipetrova.md"
+    "url": "docs/instrukcii-dlya-notion-ai-vovaipetrova.md",
+    "service": false
+  },
+  {
+    "title": "Интеграции с соцсетями",
+    "slug": "integracii-s-socsetyami-aa8cb5",
+    "status": "draft",
+    "summary": "План интеграций и точки подключения. Списком + ссылки Что автоматизируем сейчас, что вручную",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/integracii-s-socsetyami-aa8cb5.md",
+    "service": true
   },
   {
     "title": "Интеграции с соцсетями",
@@ -373,7 +695,38 @@
       "product/kb",
       "theme/automation"
     ],
-    "url": "docs/integracii-s-socsetyami.md"
+    "url": "docs/integracii-s-socsetyami.md",
+    "service": false
+  },
+  {
+    "title": "Карточка инструмента — шаблон",
+    "slug": "kartochka-instrumenta-shablon-e0b872",
+    "status": "draft",
+    "summary": "Кто это? Для чего? Когда использовать? Альтернативы. Название инструмента Тип: SaaS / Open‑source / Desktop / Плагин",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/kartochka-instrumenta-shablon-e0b872.md",
+    "service": true
+  },
+  {
+    "title": "Карточка инструмента — шаблон",
+    "slug": "kartochka-instrumenta-shablon",
+    "status": "draft",
+    "summary": "Кто это? Для чего? Когда использовать? Альтернативы. Название инструмента Тип: SaaS / Open‑source / Desktop / Плагин",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/kartochka-instrumenta-shablon.md",
+    "service": true
+  },
+  {
+    "title": "Карточка услуги: Дизайн",
+    "slug": "kartochka-uslugi-dizajn-9e4fbf",
+    "status": "draft",
+    "summary": ", role/client Графдизайн и айдентика: концепт → макеты → гайд → экспорт ассетов. Логотип/знак, палитра, типографика",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/kartochka-uslugi-dizajn-9e4fbf.md",
+    "service": true
   },
   {
     "title": "Карточка услуги: Дизайн",
@@ -392,7 +745,38 @@
       "theme/graphics",
       "theme/ux"
     ],
-    "url": "docs/kartochka-uslugi-dizajn.md"
+    "url": "docs/kartochka-uslugi-dizajn.md",
+    "service": false
+  },
+  {
+    "title": "Карточка услуги: Проектирование (CAD/3D)",
+    "slug": "kartochka-uslugi-proektirovanie-cad3d-9622f6",
+    "status": "draft",
+    "summary": ", role/client Проектирование предметов/помещений: эскиз → 3D/чертежи → визуализация → техпак. Моделирование, чертежи, визуализация",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/kartochka-uslugi-proektirovanie-cad3d-9622f6.md",
+    "service": true
+  },
+  {
+    "title": "Карточка услуги: Проектирование (CAD/3D)",
+    "slug": "kartochka-uslugi-proektirovanie-cad3d",
+    "status": "ready",
+    "summary": "Проектирование предметов и пространств: эскиз → 3D → чертежи → визуализации и техпак.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/kartochka-uslugi-proektirovanie-cad3d.md",
+    "service": true
+  },
+  {
+    "title": "Карточка услуги: Видеопродакшн",
+    "slug": "kartochka-uslugi-videoprodakshn-f80343",
+    "status": "draft",
+    "summary": ", role/client Полный цикл: бриф → препродакшн → продакшн → пост → публикация. Сценарий, раскадровка, подготовка съёмки",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/kartochka-uslugi-videoprodakshn-f80343.md",
+    "service": true
   },
   {
     "title": "Карточка услуги: Видеопродакшн",
@@ -410,7 +794,18 @@
       "theme/automation",
       "theme/graphics"
     ],
-    "url": "docs/kartochka-uslugi-videoprodakshn.md"
+    "url": "docs/kartochka-uslugi-videoprodakshn.md",
+    "service": false
+  },
+  {
+    "title": "Концепция «портов» — интерфейсы до реализации",
+    "slug": "koncepciya-portov-interfejsy-do-realizacii-9b9fb5",
+    "status": "draft",
+    "summary": "Проектируем точки подключения заранее через переменные окружения и конфиги. ```json {",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/koncepciya-portov-interfejsy-do-realizacii-9b9fb5.md",
+    "service": true
   },
   {
     "title": "Концепция «портов» — интерфейсы до реализации",
@@ -429,7 +824,18 @@
       "theme/dev",
       "theme/graphics"
     ],
-    "url": "docs/koncepciya-portov-interfejsy-do-realizacii.md"
+    "url": "docs/koncepciya-portov-interfejsy-do-realizacii.md",
+    "service": false
+  },
+  {
+    "title": "Контент‑модель и маршруты",
+    "slug": "kontentmodel-i-marshruty-7c779a",
+    "status": "draft",
+    "summary": "Контент‑модель сайта, страницы и маршруты. /artifacts — список артефактов (гость/аккаунт), фильтры по типу и фасетам /artifacts/picker — шторка/страница выбора из контента",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/kontentmodel-i-marshruty-7c779a.md",
+    "service": true
   },
   {
     "title": "Контент‑модель и маршруты",
@@ -449,7 +855,18 @@
       "theme/graphics",
       "theme/ux"
     ],
-    "url": "docs/kontentmodel-i-marshruty.md"
+    "url": "docs/kontentmodel-i-marshruty.md",
+    "service": false
+  },
+  {
+    "title": "Контент‑пайплайн экспорта",
+    "slug": "kontentpajplajn-eksporta-b05ec3",
+    "status": "draft",
+    "summary": "Из базы знаний формируем публикации для соцсетей. YouTube, Instagram, Telegram, VK, X Пост, шорт/сториз, ролик 3–5 мин, лонгрид",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/kontentpajplajn-eksporta-b05ec3.md",
+    "service": true
   },
   {
     "title": "Контент‑пайплайн экспорта",
@@ -464,7 +881,18 @@
       "product/kb",
       "product/site"
     ],
-    "url": "docs/kontentpajplajn-eksporta.md"
+    "url": "docs/kontentpajplajn-eksporta.md",
+    "service": false
+  },
+  {
+    "title": "Метрики успеха",
+    "slug": "metriki-uspeha-d5c625",
+    "status": "draft",
+    "summary": "Скорость погружения в контекст < 1 мин Автоматизация публикаций ≥ 80% Покрытие актуальных технологий",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/metriki-uspeha-d5c625.md",
+    "service": true
   },
   {
     "title": "Метрики успеха",
@@ -477,7 +905,18 @@
     "machine_tags": [
       "theme/automation"
     ],
-    "url": "docs/metriki-uspeha.md"
+    "url": "docs/metriki-uspeha.md",
+    "service": false
+  },
+  {
+    "title": "Монетизация и уровни доступа",
+    "slug": "monetizaciya-i-urovni-dostupa-726e1d",
+    "status": "draft",
+    "summary": "Часть базы знаний Telegram‑боты Образовательный контент",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/monetizaciya-i-urovni-dostupa-726e1d.md",
+    "service": true
   },
   {
     "title": "Монетизация и уровни доступа",
@@ -490,7 +929,18 @@
     "machine_tags": [
       "product/kb"
     ],
-    "url": "docs/monetizaciya-i-urovni-dostupa.md"
+    "url": "docs/monetizaciya-i-urovni-dostupa.md",
+    "service": false
+  },
+  {
+    "title": "Навигация (пользовательская)",
+    "slug": "navigaciya-polzovatelskaya-4dd66e",
+    "status": "draft",
+    "summary": "Как пользоваться сайтом. Уровни навигации и способы поиска. Рубрики и подрубрики Теги задач и технологий",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/navigaciya-polzovatelskaya-4dd66e.md",
+    "service": true
   },
   {
     "title": "Навигация (пользовательская)",
@@ -510,7 +960,18 @@
       "theme/graphics",
       "theme/ux"
     ],
-    "url": "docs/navigaciya-polzovatelskaya.md"
+    "url": "docs/navigaciya-polzovatelskaya.md",
+    "service": false
+  },
+  {
+    "title": "Навигация (техническая)",
+    "slug": "navigaciya-tehnicheskaya-9213d8",
+    "status": "draft",
+    "summary": "Технический слой навигации: внутренняя таксономия, метки и правила, которые питают пользовательские фасеты и поиск. Контролируемый словарь слагифицированных меток Иерархии: тип → подтип, часть ↔ целое",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/navigaciya-tehnicheskaya-9213d8.md",
+    "service": true
   },
   {
     "title": "Навигация (техническая)",
@@ -531,7 +992,18 @@
       "theme/graphics",
       "theme/ux"
     ],
-    "url": "docs/navigaciya-tehnicheskaya.md"
+    "url": "docs/navigaciya-tehnicheskaya.md",
+    "service": false
+  },
+  {
+    "title": "Нэй",
+    "slug": "nej-705e63",
+    "status": "draft",
+    "summary": "Архетип: Графы (Nay) Голос и тон: Любопытный, азартный исследователь визуальных графов Слои: Игровой, Театральный, Технический",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/nej-705e63.md",
+    "service": true
   },
   {
     "title": "Нэй",
@@ -549,7 +1021,38 @@
       "tool/graphics",
       "tool/stable-diffusion"
     ],
-    "url": "docs/nej.md"
+    "url": "docs/nej.md",
+    "service": false
+  },
+  {
+    "title": "notion-brain",
+    "slug": "notion-brain-108a7f",
+    "status": "draft",
+    "summary": "Мини‑пакет архитектуры и правил проекта для исполнителей (Cursor/Aider/Windsurf) и GitHub Actions. Зеркалируется в репозиторий в папку notion-brain/. Содержит: ADR (решения), Specs (требования), InвЂ¦",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/notion-brain-108a7f.md",
+    "service": true
+  },
+  {
+    "title": "notion-brain",
+    "slug": "notion-brain",
+    "status": "draft",
+    "summary": "Мини‑пакет архитектуры и правил проекта для исполнителей (Cursor/Aider/Windsurf) и GitHub Actions. Зеркалируется в репозиторий в папку notion-brain/. Содержит: ADR (решения), Specs (требования), InвЂ¦",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/notion-brain.md",
+    "service": true
+  },
+  {
+    "title": "Окружения и деплой",
+    "slug": "okruzheniya-i-deploj-6cd51f",
+    "status": "draft",
+    "summary": "Окружения, конфиги и процессы деплоя. Dev: локально Docker Compose Staging: VPS Docker Compose, автодеплой из main",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/okruzheniya-i-deploj-6cd51f.md",
+    "service": true
   },
   {
     "title": "Окружения и деплой",
@@ -563,7 +1066,18 @@
       "action/build",
       "product/services"
     ],
-    "url": "docs/okruzheniya-i-deploj.md"
+    "url": "docs/okruzheniya-i-deploj.md",
+    "service": false
+  },
+  {
+    "title": "Описание — литературная версия",
+    "slug": "opisanie-literaturnaya-versiya-8dfedb",
+    "status": "draft",
+    "summary": "Творческо‑технологический проект с виртуальными персонажами (Вова, Петрова) и «невидимым ИИ» как координатором. Цель: личный инструмент + публичная база знаний + сторителлинг о создании проекта и эвЂ¦",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/opisanie-literaturnaya-versiya-8dfedb.md",
+    "service": true
   },
   {
     "title": "Описание — литературная версия",
@@ -580,7 +1094,18 @@
       "product/site",
       "theme/ux"
     ],
-    "url": "docs/opisanie-literaturnaya-versiya.md"
+    "url": "docs/opisanie-literaturnaya-versiya.md",
+    "service": false
+  },
+  {
+    "title": "Петрова",
+    "slug": "petrova-6ab5c2",
+    "status": "draft",
+    "summary": "Архетип: Визуал/Дизайн (Petrova) Голос и тон: Тёплая и острая, художница‑аниматор Слои: Игровой, Театральный, Технический",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/petrova-6ab5c2.md",
+    "service": true
   },
   {
     "title": "Петрова",
@@ -596,7 +1121,18 @@
       "theme/branding",
       "theme/graphics"
     ],
-    "url": "docs/petrova.md"
+    "url": "docs/petrova.md",
+    "service": false
+  },
+  {
+    "title": "Playbook — Роли",
+    "slug": "playbook-roli-511083",
+    "status": "draft",
+    "summary": "Пишет Vision, ADR, Specs в notion-brain Формирует Task spec Читает notion-brain",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/playbook-roli-511083.md",
+    "service": true
   },
   {
     "title": "Playbook — Роли",
@@ -614,7 +1150,18 @@
       "product/site",
       "theme/ux"
     ],
-    "url": "docs/playbook-roli.md"
+    "url": "docs/playbook-roli.md",
+    "service": false
+  },
+  {
+    "title": "Почему это сработает — ценность",
+    "slug": "pochemu-eto-srabotaet-cennost-938a63",
+    "status": "draft",
+    "summary": "1) Антимаркетинг: честность и процесс 2) Open Source‑подход: доверие и рост сообщества 3) Post‑Digital: технологии как язык",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/pochemu-eto-srabotaet-cennost-938a63.md",
+    "service": true
   },
   {
     "title": "Почему это сработает — ценность",
@@ -628,7 +1175,18 @@
       "action/build",
       "product/services"
     ],
-    "url": "docs/pochemu-eto-srabotaet-cennost.md"
+    "url": "docs/pochemu-eto-srabotaet-cennost.md",
+    "service": false
+  },
+  {
+    "title": "Портфолио — корень",
+    "slug": "portfolio-koren-ac02dd",
+    "status": "draft",
+    "summary": "Кейсы: творческие, коммерческие, исследовательские, обучающие. На каждый кейс — отдельная страница по шаблону Ставим теги задач и технологий, связываем с инструментами",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/portfolio-koren-ac02dd.md",
+    "service": true
   },
   {
     "title": "Портфолио — корень",
@@ -641,7 +1199,18 @@
     "machine_tags": [
       "product/portfolio"
     ],
-    "url": "docs/portfolio-koren.md"
+    "url": "docs/portfolio-koren.md",
+    "service": false
+  },
+  {
+    "title": "Портфолио — структура",
+    "slug": "portfolio-struktura-4545fd",
+    "status": "draft",
+    "summary": "Как хранить и показывать кейсы и работы. Творческие, Коммерческие, Исследовательские, Обучающие Название, дата, роль, задача",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/portfolio-struktura-4545fd.md",
+    "service": true
   },
   {
     "title": "Портфолио — структура",
@@ -658,7 +1227,18 @@
       "product/portfolio",
       "theme/graphics"
     ],
-    "url": "docs/portfolio-struktura.md"
+    "url": "docs/portfolio-struktura.md",
+    "service": false
+  },
+  {
+    "title": "Процесс: Обсудили → Разложили → Связали",
+    "slug": "process-obsudili-razlozhili-svyazali-5af71f",
+    "status": "draft",
+    "summary": "Тема → Распределение по разделам → Взаимосвязанность Коротко: «Обсудили → Разложили → Связали» 1) Обсуждаем аспект и фиксируем 3–5 тезисов.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/process-obsudili-razlozhili-svyazali-5af71f.md",
+    "service": true
   },
   {
     "title": "Процесс: Обсудили → Разложили → Связали",
@@ -672,7 +1252,18 @@
       "action/build",
       "product/services"
     ],
-    "url": "docs/process-obsudili-razlozhili-svyazali.md"
+    "url": "docs/process-obsudili-razlozhili-svyazali.md",
+    "service": false
+  },
+  {
+    "title": "prototype",
+    "slug": "prototype-a80bcc",
+    "status": "draft",
+    "summary": "<aside> ✅ Памятка: перед пушем",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/prototype-a80bcc.md",
+    "service": true
   },
   {
     "title": "prototype",
@@ -689,7 +1280,48 @@
       "product/site",
       "theme/ux"
     ],
-    "url": "docs/prototype.md"
+    "url": "docs/prototype.md",
+    "service": false
+  },
+  {
+    "title": "README (notion-brain)",
+    "slug": "readme-notion-brain-193a47",
+    "status": "draft",
+    "summary": "# README (notion-brain)",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/readme-notion-brain-193a47.md",
+    "service": true
+  },
+  {
+    "title": "README (notion-brain)",
+    "slug": "readme-notion-brain-d26e74",
+    "status": "draft",
+    "summary": "Контекстный пакет для исполнителей и CI. Архитектура и правила без контента. ADR — ключевые решения Specs — форматы и требования",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/readme-notion-brain-d26e74.md",
+    "service": true
+  },
+  {
+    "title": "README (notion-brain)",
+    "slug": "readme-notion-brain",
+    "status": "draft",
+    "summary": "# README (notion-brain)",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/readme-notion-brain.md",
+    "service": true
+  },
+  {
+    "title": "Руна",
+    "slug": "runa-c42971",
+    "status": "draft",
+    "summary": "Архетип: Гость Голос и тон: Спокойная, точная, немного инопланетная ирония Слои: Игровой, Театральный, Технический",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/runa-c42971.md",
+    "service": true
   },
   {
     "title": "Руна",
@@ -707,7 +1339,58 @@
       "theme/automation",
       "theme/ux"
     ],
-    "url": "docs/runa.md"
+    "url": "docs/runa.md",
+    "service": false
+  },
+  {
+    "title": "Шаблон: Карточка производителя",
+    "slug": "shablon-kartochka-proizvoditelya-7ce17e",
+    "status": "draft",
+    "summary": "Название Тип: software | studio | label | festival | research | vendor Страна: country/xx",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/shablon-kartochka-proizvoditelya-7ce17e.md",
+    "service": true
+  },
+  {
+    "title": "Шаблон: Карточка производителя",
+    "slug": "shablon-kartochka-proizvoditelya",
+    "status": "draft",
+    "summary": "Название Тип: software | studio | label | festival | research | vendor Страна: country/xx",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/shablon-kartochka-proizvoditelya.md",
+    "service": true
+  },
+  {
+    "title": "Шаблон: Карточка страны",
+    "slug": "shablon-kartochka-strany-f062b2",
+    "status": "draft",
+    "summary": "Код: country/xx Краткое описание: 1–3 предложения, чем известна в контексте технологий/культуры Сетка логотипов → клики ведут на карточки производителей",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/shablon-kartochka-strany-f062b2.md",
+    "service": true
+  },
+  {
+    "title": "Шаблон: Карточка страны",
+    "slug": "shablon-kartochka-strany",
+    "status": "draft",
+    "summary": "Код: country/xx Краткое описание: 1–3 предложения, чем известна в контексте технологий/культуры Сетка логотипов → клики ведут на карточки производителей",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/shablon-kartochka-strany.md",
+    "service": true
+  },
+  {
+    "title": "Синтаксис и разметка — Markdown → WordPress",
+    "slug": "sintaksis-i-razmetka-markdown-wordpress-60cc6c",
+    "status": "review",
+    "summary": "Markdown-гайд для переноса материалов в WordPress с сохранением тегов и ссылок.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
+    "service": true
   },
   {
     "title": "Синтаксис и разметка — Markdown → WordPress",
@@ -730,7 +1413,18 @@
       "theme/ux",
       "tool/adobe-photoshop"
     ],
-    "url": "docs/sintaksis-i-razmetka-markdown-wordpress.md"
+    "url": "docs/sintaksis-i-razmetka-markdown-wordpress.md",
+    "service": false
+  },
+  {
+    "title": "Spec — Content linter и scaffold (черновик)",
+    "slug": "spec-content-linter-i-scaffold-chernovik-6329bc",
+    "status": "draft",
+    "summary": "Черновой план контент-линтера и генератора шаблонов для автоматизации импорта.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/spec-content-linter-i-scaffold-chernovik-6329bc.md",
+    "service": true
   },
   {
     "title": "Spec — Content linter и scaffold (черновик)",
@@ -746,7 +1440,28 @@
       "theme/automation",
       "theme/dev"
     ],
-    "url": "docs/spec-content-linter-i-scaffold-chernovik.md"
+    "url": "docs/spec-content-linter-i-scaffold-chernovik.md",
+    "service": false
+  },
+  {
+    "title": "Spec — Front matter и слуги",
+    "slug": "spec-front-matter-i-slugi-1491ff",
+    "status": "draft",
+    "summary": "# Spec — Front matter и слуги",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/spec-front-matter-i-slugi-1491ff.md",
+    "service": true
+  },
+  {
+    "title": "Spec — Front matter и слуги",
+    "slug": "spec-front-matter-i-slugi-91237c",
+    "status": "draft",
+    "summary": "``` --- title: Строка",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/spec-front-matter-i-slugi-91237c.md",
+    "service": true
   },
   {
     "title": "Spec — Front matter и слуги",
@@ -759,7 +1474,28 @@
     "machine_tags": [
       "theme/ux"
     ],
-    "url": "docs/spec-front-matter-i-slugi.md"
+    "url": "docs/spec-front-matter-i-slugi.md",
+    "service": false
+  },
+  {
+    "title": "Spec — Normalize и политика имён",
+    "slug": "spec-normalize-i-politika-imyon-c9023c",
+    "status": "ready",
+    "summary": "Правила нормализации экспорта из Notion: как работает скрипт и какие ограничения на slug.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/spec-normalize-i-politika-imyon-c9023c.md",
+    "service": true
+  },
+  {
+    "title": "Spec — Normalize и политика имён",
+    "slug": "spec-normalize-i-politika-imyon-ff0378",
+    "status": "draft",
+    "summary": "# Spec — Normalize и политика имён",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/spec-normalize-i-politika-imyon-ff0378.md",
+    "service": true
   },
   {
     "title": "Spec — Normalize и политика имён",
@@ -775,7 +1511,18 @@
       "theme/automation",
       "theme/dev"
     ],
-    "url": "docs/spec-normalize-i-politika-imyon.md"
+    "url": "docs/spec-normalize-i-politika-imyon.md",
+    "service": false
+  },
+  {
+    "title": "Суть проекта — One-liner",
+    "slug": "sut-proekta-one-liner-f9aa4d",
+    "status": "draft",
+    "summary": "Автоматизированная система сбора и структуризации знаний о нейросетях с театральным слоем, где AI‑персонажи создают контент о собственном создании. Уникальность: «рекурсивный театр» — процесс создавЂ¦",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/sut-proekta-one-liner-f9aa4d.md",
+    "service": true
   },
   {
     "title": "Суть проекта — One-liner",
@@ -791,7 +1538,18 @@
       "product/kb",
       "product/services"
     ],
-    "url": "docs/sut-proekta-one-liner.md"
+    "url": "docs/sut-proekta-one-liner.md",
+    "service": false
+  },
+  {
+    "title": "Таксономия и теги",
+    "slug": "taksonomiya-i-tegi-26693f",
+    "status": "draft",
+    "summary": "Единая система тегов и рубрик для навигации и фильтрации. 1) Рубрики: Инструменты, Технологии, Шаблоны, Практики, Проекты 2) Подрубрики (пример): Генерация изображений, Видео, Автоматизация, Код, ДвЂ¦",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/taksonomiya-i-tegi-26693f.md",
+    "service": true
   },
   {
     "title": "Таксономия и теги",
@@ -812,7 +1570,18 @@
       "theme/automation",
       "theme/graphics"
     ],
-    "url": "docs/taksonomiya-i-tegi.md"
+    "url": "docs/taksonomiya-i-tegi.md",
+    "service": false
+  },
+  {
+    "title": "Технический стек и инфраструктура",
+    "slug": "tehnicheskij-stek-i-infrastruktura-7fa814",
+    "status": "draft",
+    "summary": "AI‑платформа: Letta Cloud PRO, Claude Sonnet 4.5 MCP‑серверы: GitHub, Hugging Face, Apify, DeepWiki Хранилища: GitHub (core), локальный Obsidian vault, Think Tank ядро",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/tehnicheskij-stek-i-infrastruktura-7fa814.md",
+    "service": true
   },
   {
     "title": "Технический стек и инфраструктура",
@@ -826,7 +1595,18 @@
       "product/services",
       "theme/branding"
     ],
-    "url": "docs/tehnicheskij-stek-i-infrastruktura.md"
+    "url": "docs/tehnicheskij-stek-i-infrastruktura.md",
+    "service": false
+  },
+  {
+    "title": "Текущие задачи",
+    "slug": "tekushie-zadachi-4ab1b1",
+    "status": "draft",
+    "summary": "[ ]  Поднять GitHub Pages из /prototype (ручной деплой) [ ]  Импорт Notion → docs: починить распаковку (двойной ZIP), нормализатор [ ]  Настроить фильтр триггера деплоя (только prototype/)",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/tekushie-zadachi-4ab1b1.md",
+    "service": true
   },
   {
     "title": "Текущие задачи",
@@ -844,7 +1624,118 @@
       "product/site",
       "theme/ux"
     ],
-    "url": "docs/tekushie-zadachi.md"
+    "url": "docs/tekushie-zadachi.md",
+    "service": false
+  },
+  {
+    "title": "TEMPLATE — ADR",
+    "slug": "template-adr-237529",
+    "status": "review",
+    "summary": "Дублирующий шаблон ADR с разделами контекста, решений, последствий и статуса.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-adr-237529.md",
+    "service": true
+  },
+  {
+    "title": "TEMPLATE — ADR",
+    "slug": "template-adr",
+    "status": "review",
+    "summary": "Шаблон ADR: блоки контекста, решения, последствий и статуса с ссылками на связанные материалы.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-adr.md",
+    "service": true
+  },
+  {
+    "title": "TEMPLATE — PR чек‑лист",
+    "slug": "template-pr-cheklist-3a6077",
+    "status": "draft",
+    "summary": "[ ]  Только нужные пути затронуты (docs/**, prototype/**, .github/workflows/**, scripts/**) [ ]  Front matter валиден, нет пустых slug/summary [ ]  Нет кракозябр в именах файлов; slug → kebab-case",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-pr-cheklist-3a6077.md",
+    "service": true
+  },
+  {
+    "title": "TEMPLATE — PR чек‑лист",
+    "slug": "template-pr-cheklist",
+    "status": "draft",
+    "summary": "[ ]  Только нужные пути затронуты (docs/**, prototype/**, .github/workflows/**, scripts/**) [ ]  Front matter валиден, нет пустых slug/summary [ ]  Нет кракозябр в именах файлов; slug → kebab-case",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-pr-cheklist.md",
+    "service": true
+  },
+  {
+    "title": "TEMPLATE — Task spec",
+    "slug": "template-task-spec-bfe53d",
+    "status": "review",
+    "summary": "Дубликат шаблона технической задачи с путями правок, критериями и чек-листом.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-task-spec-bfe53d.md",
+    "service": true
+  },
+  {
+    "title": "TEMPLATE — Task spec",
+    "slug": "template-task-spec",
+    "status": "review",
+    "summary": "Шаблон постановки технической задачи с путями правок, требованиями и чек-листом приёмки.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-task-spec.md",
+    "service": true
+  },
+  {
+    "title": "TEMPLATE — Vision",
+    "slug": "template-vision-e2acba",
+    "status": "review",
+    "summary": "Альтернативный шаблон vision с блоками цели, метрик и контекста.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-vision-e2acba.md",
+    "service": true
+  },
+  {
+    "title": "TEMPLATE — Vision",
+    "slug": "template-vision",
+    "status": "review",
+    "summary": "Базовый шаблон продуктового vision: замысел, метрики, ограничения и материалы.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-vision.md",
+    "service": true
+  },
+  {
+    "title": "TEMPLATE — Задача для исполнителя (Cursor/Aider)",
+    "slug": "template-zadacha-dlya-ispolnitelya-cursoraider-82545d",
+    "status": "review",
+    "summary": "Дубликат шаблона задачи для Cursor/Aider с блоками контекста, требований и чек-листа.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-zadacha-dlya-ispolnitelya-cursoraider-82545d.md",
+    "service": true
+  },
+  {
+    "title": "TEMPLATE — Задача для исполнителя (Cursor/Aider)",
+    "slug": "template-zadacha-dlya-ispolnitelya-cursoraider",
+    "status": "review",
+    "summary": "Шаблон задачи для агентов Cursor/Aider: структура постановки, требования и чек-лист принятия.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-zadacha-dlya-ispolnitelya-cursoraider.md",
+    "service": true
+  },
+  {
+    "title": "Тест‑стратегия и качество",
+    "slug": "teststrategiya-i-kachestvo-0728dd",
+    "status": "review",
+    "summary": "Альтернативный вариант стратегии тестирования с перечислением видов проверок и критериев качества.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/teststrategiya-i-kachestvo-0728dd.md",
+    "service": true
   },
   {
     "title": "Тест‑стратегия и качество",
@@ -863,7 +1754,18 @@
       "theme/dev",
       "theme/graphics"
     ],
-    "url": "docs/teststrategiya-i-kachestvo.md"
+    "url": "docs/teststrategiya-i-kachestvo.md",
+    "service": false
+  },
+  {
+    "title": "Think Tank — компактное ядро",
+    "slug": "think-tank-kompaktnoe-yadro-1d36dd",
+    "status": "ready",
+    "summary": "Базовый набор артефактов Think Tank: что держим в Notion, что зеркалим в GitHub и как сохраняем контекст.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/think-tank-kompaktnoe-yadro-1d36dd.md",
+    "service": true
   },
   {
     "title": "Think Tank — компактное ядро",
@@ -884,7 +1786,18 @@
       "theme/graphics",
       "theme/ux"
     ],
-    "url": "docs/think-tank-kompaktnoe-yadro.md"
+    "url": "docs/think-tank-kompaktnoe-yadro.md",
+    "service": false
+  },
+  {
+    "title": "Think Tank — витрина процесса",
+    "slug": "think-tank-vitrina-processa-cfb19b",
+    "status": "draft",
+    "summary": "Витрина того, как строится проект: заметки, наброски, решения, эволюция. Выжимки из дневника проекта Черновики, наброски, эксперименты",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/think-tank-vitrina-processa-cfb19b.md",
+    "service": true
   },
   {
     "title": "Think Tank — витрина процесса",
@@ -900,7 +1813,18 @@
       "product/services",
       "theme/branding"
     ],
-    "url": "docs/think-tank-vitrina-processa.md"
+    "url": "docs/think-tank-vitrina-processa.md",
+    "service": false
+  },
+  {
+    "title": "UI макет — шапка и первый экран (Static First)",
+    "slug": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377",
+    "status": "review",
+    "summary": "Черновой вариант статического прототипа первого экрана с переключателем ролей и корзиной артефактов без серверной логики.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
+    "service": true
   },
   {
     "title": "UI макет — шапка и первый экран (Static First)",
@@ -915,7 +1839,18 @@
       "theme/ux",
       "tool/figma"
     ],
-    "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md"
+    "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md",
+    "service": false
+  },
+  {
+    "title": "Услуги",
+    "slug": "uslugi-e38e09",
+    "status": "review",
+    "summary": "Рабочий набросок каталога услуг: направления, процессы и чек-листы по видеопродакшну и дизайну.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/uslugi-e38e09.md",
+    "service": true
   },
   {
     "title": "Услуги",
@@ -937,7 +1872,18 @@
       "theme/graphics",
       "tool/adobe-photoshop"
     ],
-    "url": "docs/uslugi.md"
+    "url": "docs/uslugi.md",
+    "service": false
+  },
+  {
+    "title": "Вася",
+    "slug": "vasya-a127c4",
+    "status": "review",
+    "summary": "Дубликат профиля монтажёра «Васи» с описанием его ролей, форматов и инструментов.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/vasya-a127c4.md",
+    "service": true
   },
   {
     "title": "Вася",
@@ -954,7 +1900,18 @@
       "theme/automation",
       "theme/graphics"
     ],
-    "url": "docs/vasya.md"
+    "url": "docs/vasya.md",
+    "service": false
+  },
+  {
+    "title": "Vision — Игровая навигация и роли (V1)",
+    "slug": "vision-igrovaya-navigaciya-i-roli-v1-103cfe",
+    "status": "review",
+    "summary": "Альтернативный драфт игрового первого экрана с переключателями ролей и корзиной артефактов.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/vision-igrovaya-navigaciya-i-roli-v1-103cfe.md",
+    "service": true
   },
   {
     "title": "Vision — Игровая навигация и роли (V1)",
@@ -972,7 +1929,18 @@
       "theme/automation",
       "theme/graphics"
     ],
-    "url": "docs/vision-igrovaya-navigaciya-i-roli-v1.md"
+    "url": "docs/vision-igrovaya-navigaciya-i-roli-v1.md",
+    "service": false
+  },
+  {
+    "title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)",
+    "slug": "vision-strategiya-marketing-autentichnost-tretij-put-onepager-09a168",
+    "status": "review",
+    "summary": "Черновой конспект vision по балансировке маркетинга, аутентичности и третьего пути с метриками и рисками.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager-09a168.md",
+    "service": true
   },
   {
     "title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)",
@@ -993,7 +1961,28 @@
       "theme/graphics",
       "theme/references"
     ],
-    "url": "docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager.md"
+    "url": "docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager.md",
+    "service": false
+  },
+  {
+    "title": "Вова",
+    "slug": "vova-9804f8",
+    "status": "review",
+    "summary": "Дубликат профиля героя студии: музыкальный продюсер Вова с описанием его ролей и форматов.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/vova-9804f8.md",
+    "service": true
+  },
+  {
+    "title": "Вова и Петрова",
+    "slug": "vova-i-petrova-ef2871",
+    "status": "draft",
+    "summary": "<aside> 🧭 Каркас проекта. Это «ядро памяти» для быстрых погружений в контекст и стабильные якоря навигации.",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/vova-i-petrova-ef2871.md",
+    "service": true
   },
   {
     "title": "Вова и Петрова",
@@ -1011,7 +2000,8 @@
       "theme/automation",
       "theme/graphics"
     ],
-    "url": "docs/vova-i-petrova.md"
+    "url": "docs/vova-i-petrova.md",
+    "service": false
   },
   {
     "title": "Вова",
@@ -1030,6 +2020,7 @@
       "theme/graphics",
       "theme/references"
     ],
-    "url": "docs/vova.md"
+    "url": "docs/vova.md",
+    "service": false
   }
 ]

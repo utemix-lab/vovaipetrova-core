@@ -1,5 +1,13 @@
 {
-  "exact": {},
+  "exact": {
+    "notion-brain-108a7f": "notion-brain",
+    "context-mapyaml-64b43e": "context-map-yaml",
+    "context-map-yaml-64b43e": "context-map-yaml",
+    "template-adr-237529": "template-adr",
+    "template-pr-cheklist-3a6077": "template-pr-cheklist",
+    "template-vision-e2acba": "template-vision",
+    "template-task-spec-bfe53d": "template-task-spec"
+  },
   "patterns": [
     {
       "match": "^(?:docs/)?(.+?)-[0-9a-f]{6,}(?:\\.md)?$",
