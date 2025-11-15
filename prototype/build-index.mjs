@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from "fs";
 import path from "path";
 import { globSync } from "glob";
 import YAML from "yaml";
+import { execSync } from "child_process";
 
 const DOCS_ROOT = "docs";
 const OUTPUT_DIR = "prototype";
@@ -133,6 +134,14 @@ function buildIndex() {
   console.log(
     `Generated ${pages.length} entries → ${OUTPUT_JSON} and individual pages in ${PAGES_DIR}`
   );
+  
+  // Generate routes.json and stats.json
+  try {
+    execSync("node scripts/generate-routes-json.mjs", { stdio: "inherit" });
+    execSync("node scripts/generate-stats.mjs", { stdio: "inherit" });
+  } catch (error) {
+    console.warn("⚠️  Failed to generate routes.json or stats.json:", error.message);
+  }
 }
 
 buildIndex();

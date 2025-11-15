@@ -152,21 +152,89 @@ async function loadPages(basePath) {
   );
 }
 
+async function loadRoutes(basePath) {
+  try {
+    const response = await fetch(basePath);
+    if (!response.ok) throw new Error(`status ${response.status}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.warn('⚠️  Failed to load routes:', error.message);
+    return { routes: [] };
+  }
+}
+
+function buildRouteMap(routes) {
+  const map = new Map();
+  routes.routes.forEach(route => {
+    route.entries.forEach(entry => {
+      if (entry.status === 'ok') {
+        map.set(entry.slug, {
+          path: route.path,
+          title: route.title,
+          order: routes.routes.indexOf(route)
+        });
+      }
+    });
+  });
+  return map;
+}
+
+function sortByRoute(pages, routeMap) {
+  return pages.sort((a, b) => {
+    const routeA = routeMap.get(a.slug);
+    const routeB = routeMap.get(b.slug);
+    
+    if (!routeA && !routeB) {
+      return (a.title || a.slug).localeCompare(b.title || b.slug, "ru");
+    }
+    if (!routeA) return 1;
+    if (!routeB) return -1;
+    
+    if (routeA.order !== routeB.order) {
+      return routeA.order - routeB.order;
+    }
+    
+    return (a.title || a.slug).localeCompare(b.title || b.slug, "ru");
+  });
+}
+
+function sortByStatus(pages) {
+  const statusOrder = { ready: 0, review: 1, draft: 2 };
+  return pages.sort((a, b) => {
+    const statusA = statusOrder[a.status] ?? 3;
+    const statusB = statusOrder[b.status] ?? 3;
+    if (statusA !== statusB) return statusA - statusB;
+    return (a.title || a.slug).localeCompare(b.title || b.slug, "ru");
+  });
+}
+
 async function renderIndex() {
   const cardsContainer = document.getElementById("cards");
   const emptyState = document.getElementById("empty-state");
   const storiesContainer = document.getElementById("stories-list");
   const storiesEmpty = document.getElementById("stories-empty");
+  const issuesContainer = document.getElementById("issues-list");
+  const issuesEmpty = document.getElementById("issues-empty");
   const searchInput = document.getElementById("search-input");
   const filterButtons = Array.from(
     document.querySelectorAll(".filter-button")
+  );
+  const sortButtons = Array.from(
+    document.querySelectorAll(".sort-button")
   );
   const viewButtons = Array.from(document.querySelectorAll(".view-button"));
   const controls = document.querySelector(".controls");
   const docsPanel = document.getElementById("docs-panel");
   const storiesPanel = document.getElementById("stories-panel");
+  const issuesPanel = document.getElementById("issues-panel");
 
-  const pages = await loadPages("data/pages.json");
+  const [pages, routes] = await Promise.all([
+    loadPages("data/pages.json"),
+    loadRoutes("data/routes.json")
+  ]);
+  const routeMap = buildRouteMap(routes);
+  
   const visiblePages = pages.filter((page) => page.service !== true);
   const storyPages = visiblePages
     .filter(isStoryPage)
@@ -179,11 +247,20 @@ async function renderIndex() {
   const docPages = visiblePages.filter((page) => !isStoryPage(page));
   let currentStatus = "all";
   let currentSearch = "";
+  let currentSort = "route"; // По умолчанию сортировка по route
   let activePanel = "docs";
 
   function renderDocs() {
     cardsContainer.innerHTML = "";
-    const filtered = docPages.filter(byStatus(currentStatus, currentSearch));
+    let filtered = docPages.filter(byStatus(currentStatus, currentSearch));
+    
+    // Применяем сортировку
+    if (currentSort === "route") {
+      filtered = sortByRoute([...filtered], routeMap);
+    } else {
+      filtered = sortByStatus([...filtered]);
+    }
+    
     if (filtered.length === 0) {
       emptyState.classList.remove("hidden");
       return;
@@ -208,15 +285,76 @@ async function renderIndex() {
     storiesContainer.appendChild(fragment);
   }
 
+  async function renderIssues() {
+    issuesContainer.innerHTML = "";
+    try {
+      const response = await fetch("data/stats.json");
+      if (!response.ok) throw new Error(`status ${response.status}`);
+      const stats = await response.json();
+      
+      if (!stats.topProblems || stats.topProblems.length === 0) {
+        issuesEmpty.classList.remove("hidden");
+        return;
+      }
+      issuesEmpty.classList.add("hidden");
+      
+      const fragment = document.createDocumentFragment();
+      stats.topProblems.forEach((problem) => {
+        const card = document.createElement("article");
+        card.className = "card card--issue";
+        
+        const titleLink = document.createElement("a");
+        titleLink.className = "card__title";
+        titleLink.href = `page/${problem.slug}.html`;
+        titleLink.textContent = problem.title || problem.slug;
+        card.appendChild(titleLink);
+        
+        const meta = document.createElement("div");
+        meta.className = "card__meta";
+        meta.innerHTML = `
+          <span class="issue-score">Score: ${problem.score}</span>
+          <span class="issue-count">Issues: ${problem.issues_total}</span>
+        `;
+        card.appendChild(meta);
+        
+        const details = document.createElement("div");
+        details.className = "issue-details";
+        if (problem.issues_internal_missing > 0) {
+          details.innerHTML += `<span class="issue-badge issue-badge--internal">Internal missing: ${problem.issues_internal_missing}</span>`;
+        }
+        if (problem.issues_service > 0) {
+          details.innerHTML += `<span class="issue-badge issue-badge--service">Service: ${problem.issues_service}</span>`;
+        }
+        if (problem.issues_unknown > 0) {
+          details.innerHTML += `<span class="issue-badge issue-badge--unknown">Unknown: ${problem.issues_unknown}</span>`;
+        }
+        card.appendChild(details);
+        
+        fragment.appendChild(card);
+      });
+      issuesContainer.appendChild(fragment);
+    } catch (error) {
+      console.warn("⚠️  Failed to load issues:", error.message);
+      issuesEmpty.classList.remove("hidden");
+    }
+  }
+
   function setActivePanel(panel) {
     activePanel = panel;
     if (panel === "stories") {
       docsPanel.classList.add("hidden");
       storiesPanel.classList.remove("hidden");
+      issuesPanel.classList.add("hidden");
+      controls?.classList.add("hidden");
+    } else if (panel === "issues") {
+      docsPanel.classList.add("hidden");
+      storiesPanel.classList.add("hidden");
+      issuesPanel.classList.remove("hidden");
       controls?.classList.add("hidden");
     } else {
       docsPanel.classList.remove("hidden");
       storiesPanel.classList.add("hidden");
+      issuesPanel.classList.add("hidden");
       controls?.classList.remove("hidden");
     }
     viewButtons.forEach((button) => {
@@ -229,6 +367,15 @@ async function renderIndex() {
       filterButtons.forEach((btn) => btn.classList.remove("is-active"));
       button.classList.add("is-active");
       currentStatus = button.dataset.status;
+      renderDocs();
+    });
+  });
+
+  sortButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      sortButtons.forEach((btn) => btn.classList.remove("is-active"));
+      button.classList.add("is-active");
+      currentSort = button.dataset.sort;
       renderDocs();
     });
   });
@@ -248,6 +395,9 @@ async function renderIndex() {
       const targetPanel = button.dataset.panel;
       if (!targetPanel || targetPanel === activePanel) return;
       setActivePanel(targetPanel);
+      if (targetPanel === "issues") {
+        renderIssues();
+      }
     });
   });
 

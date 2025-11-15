@@ -141,6 +141,36 @@ body[data-view="index"] {
   box-shadow: var(--shadow);
 }
 
+.sorts {
+  display: inline-flex;
+  padding: 0.25rem;
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 999px;
+  gap: 0.25rem;
+}
+
+.sort-button {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.sort-button:hover {
+  background: rgba(148, 163, 184, 0.2);
+  color: var(--text);
+}
+
+.sort-button.is-active {
+  background: var(--card-bg);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
 .search {
   display: flex;
   flex-direction: column;
@@ -251,6 +281,65 @@ body[data-view="index"] {
   text-decoration: none;
   font-weight: 600;
   color: rgba(59, 130, 246, 0.95);
+}
+
+.issues-intro {
+  margin: 1rem 0 0.5rem;
+  max-width: 720px;
+  color: var(--muted);
+}
+
+.card--issue {
+  border-left: 3px solid var(--review);
+}
+
+.card__meta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.issue-score {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.issue-count {
+  color: var(--muted);
+}
+
+.issue-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.issue-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.issue-badge--internal {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.issue-badge--service {
+  background: rgba(251, 191, 36, 0.1);
+  color: #d97706;
+}
+
+.issue-badge--unknown {
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--muted);
 }
 
 .story-banner {

@@ -1,145 +1,287 @@
 version: 1
-updated: 2025-11-14
+updated: 2025-11-15
 routes:
-  - path: "/"
-    title: "Главная"
-    description: "индексы и быстрый ответ на вопрос «Что это?»"
+  - path: /
+    title: Главная
+    description: индексы и быстрый ответ на вопрос «Что это?»
     entries:
       - slug: vova-i-petrova
         doc: docs/vova-i-petrova.md
         status: ok
-        notes: "общий манифест и позиционирование"
+        notes: общий манифест и позиционирование
       - slug: indeks-i-tldr
         doc: docs/indeks-i-tldr.md
         status: ok
-        notes: "укороченное оглавление"
+        notes: укороченное оглавление
       - slug: sut-proekta-one-liner
         doc: docs/sut-proekta-one-liner.md
         status: ok
-        notes: "одно предложение о проекте"
+        notes: одно предложение о проекте
       - slug: indeks-sajta
         doc: docs/indeks-sajta.md
         status: ok
-        notes: "быстрые ссылки и CTA"
-
-  - path: "/project"
-    title: "Проект"
-    description: "архитектура, дорожная карта и контрольные точки"
+        notes: быстрые ссылки и CTA
+      - slug: opisanie-literaturnaya-versiya
+        doc: docs/opisanie-literaturnaya-versiya.md
+        status: ok
+        notes: "Творческо‑технологический проект с виртуальными персонажами "
+  - path: /project
+    title: Проект
+    description: архитектура, дорожная карта и контрольные точки
     entries:
       - slug: arhitektura-proekta-komponenty
         doc: docs/arhitektura-proekta-komponenty.md
         status: ok
-        notes: "структура ядра и сервисов"
+        notes: структура ядра и сервисов
       - slug: dorozhnaya-karta-etapy
         doc: docs/dorozhnaya-karta-etapy.md
         status: ok
-        notes: "основные этапы"
+        notes: основные этапы
       - slug: dorozhnaya-karta-i-beklog
         doc: docs/dorozhnaya-karta-i-beklog.md
         status: ok
-        notes: "операционный бэклог"
+        notes: операционный бэклог
       - slug: process-obsudili-razlozhili-svyazali
         doc: docs/process-obsudili-razlozhili-svyazali.md
         status: ok
-        notes: "рабочий процесс"
+        notes: рабочий процесс
       - slug: vision-strategiya-marketing-autentichnost-tretij-put-onepager
         doc: docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager.md
         status: ok
-        notes: "визуализация и стратегический скоуп"
-
-  - path: "/think-tank"
-    title: "Think Tank"
-    description: "ядро решений, ADR и эволюция"
+        notes: визуализация и стратегический скоуп
+      - slug: arhitektura-i-komponenty
+        doc: docs/arhitektura-i-komponenty.md
+        status: ok
+        notes: Верхнеуровневая архитектура и список компонентов. Контуры си
+      - slug: artefakty-korzina-i-zayavka-mvp
+        doc: docs/artefakty-korzina-i-zayavka-mvp.md
+        status: ok
+        notes: Игровая витрина, где клиент собирает услуги и кейсы в корзин
+      - slug: eksport-v-github-rukovodstvo-i-shablony
+        doc: docs/eksport-v-github-rukovodstvo-i-shablony.md
+        status: ok
+        notes: "Как выгружать контент из Notion в GitHub: структура репозито"
+      - slug: instructions-ispolniteli-cursoraider
+        doc: docs/instructions-ispolniteli-cursoraider.md
+        status: ok
+        notes: "# Instructions — Исполнители (Cursor/Aider)"
+      - slug: instrukcii-dlya-notion-ai-vovaipetrova
+        doc: docs/instrukcii-dlya-notion-ai-vovaipetrova.md
+        status: ok
+        notes: "Памятка для Notion AI: где находится источник истины и как с"
+      - slug: koncepciya-portov-interfejsy-do-realizacii
+        doc: docs/koncepciya-portov-interfejsy-do-realizacii.md
+        status: ok
+        notes: Проектируем точки подключения заранее через переменные окруж
+      - slug: metriki-uspeha
+        doc: docs/metriki-uspeha.md
+        status: ok
+        notes: Скорость погружения в контекст < 1 мин Автоматизация публика
+      - slug: nej
+        doc: docs/nej.md
+        status: ok
+        notes: "Архетип: Графы (Nay) Голос и тон: Любопытный, азартный иссле"
+      - slug: okruzheniya-i-deploj
+        doc: docs/okruzheniya-i-deploj.md
+        status: ok
+        notes: "Окружения, конфиги и процессы деплоя. Dev: локально Docker C"
+      - slug: playbook-roli
+        doc: docs/playbook-roli.md
+        status: ok
+        notes: "Пишет Vision, ADR, Specs в notion-brain Формирует Task spec "
+      - slug: pochemu-eto-srabotaet-cennost
+        doc: docs/pochemu-eto-srabotaet-cennost.md
+        status: ok
+        notes: "1) Антимаркетинг: честность и процесс 2) Open Source‑подход:"
+      - slug: prototype
+        doc: docs/prototype.md
+        status: ok
+        notes: "<aside> ✅ Памятка: перед пушем"
+      - slug: tekushie-zadachi
+        doc: docs/tekushie-zadachi.md
+        status: ok
+        notes: "[ ]  Поднять GitHub Pages из /prototype (ручной деплой) [ ] "
+      - slug: teststrategiya-i-kachestvo
+        doc: docs/teststrategiya-i-kachestvo.md
+        status: ok
+        notes: "Черновик стратегии тестирования: типы проверок, политики кач"
+      - slug: uslugi
+        doc: docs/uslugi.md
+        status: ok
+        notes: "Каталог услуг студии: что делаем, как выстраиваем процессы и"
+      - slug: vision-igrovaya-navigaciya-i-roli-v1
+        doc: docs/vision-igrovaya-navigaciya-i-roli-v1.md
+        status: ok
+        notes: Концепция игрового первого экрана с переключением ролей и ко
+  - path: /think-tank
+    title: Think Tank
+    description: ядро решений, ADR и эволюция
     entries:
       - slug: think-tank-kompaktnoe-yadro
         doc: docs/think-tank-kompaktnoe-yadro.md
         status: ok
-        notes: "описание компактного ядра"
+        notes: описание компактного ядра
       - slug: think-tank-vitrina-processa
         doc: docs/think-tank-vitrina-processa.md
         status: ok
-        notes: "как показываем ход мыслей"
+        notes: как показываем ход мыслей
       - slug: adr-source-of-truth-mirroring
         doc: docs/adr-source-of-truth-mirroring.md
         status: ok
-        notes: "ключевой ADR про зеркалирование"
+        notes: ключевой ADR про зеркалирование
       - slug: adr-tags-and-facets
         doc: docs/adr-tags-and-facets.md
         status: ok
-        notes: "правила тегов и фасетов"
+        notes: правила тегов и фасетов
       - slug: adr-zhurnal-reshenij-b34c2e
         doc: docs/adr-zhurnal-reshenij-b34c2e.md
+        status: missing
+        notes: журнал решений (черновик)
+      - slug: adr-source-of-truth-i-zerkalirovanie
+        doc: docs/adr-source-of-truth-i-zerkalirovanie.md
         status: ok
-        notes: "журнал решений (черновик)"
-
-  - path: "/kb"
-    title: "Knowledge Base"
-    description: "контентная модель, фасеты, правила импорта"
+        notes: Источник истины — Notion. Репозиторий — зеркало для исполнен
+      - slug: integracii-s-socsetyami
+        doc: docs/integracii-s-socsetyami.md
+        status: ok
+        notes: План интеграций и точки подключения. Списком + ссылки Что ав
+  - path: /kb
+    title: Knowledge Base
+    description: контентная модель, фасеты, правила импорта
     entries:
       - slug: baza-znanij-koren
         doc: docs/baza-znanij-koren.md
         status: ok
-        notes: "структура базы знаний"
+        notes: структура базы знаний
       - slug: kontentmodel-i-marshruty
         doc: docs/kontentmodel-i-marshruty.md
         status: ok
-        notes: "маршруты и типы контента"
+        notes: маршруты и типы контента
       - slug: taksonomiya-i-tegi
         doc: docs/taksonomiya-i-tegi.md
         status: ok
-        notes: "видимые теги"
+        notes: видимые теги
       - slug: spec-content-linter-i-scaffold-chernovik
         doc: docs/spec-content-linter-i-scaffold-chernovik.md
         status: ok
-        notes: "линтер и scaffold"
+        notes: линтер и scaffold
       - slug: spec-normalize-i-politika-imyon
         doc: docs/spec-normalize-i-politika-imyon.md
         status: ok
-        notes: "нормализация и правила имен"
-
-  - path: "/portfolio"
-    title: "Портфолио и услуги"
-    description: "кейсы, карточки услуг и требования к артефактам"
+        notes: нормализация и правила имен
+      - slug: adr-tegi-i-fasety
+        doc: docs/adr-tegi-i-fasety.md
+        status: ok
+        notes: "Фасеты: theme/*, action/*, product/*, tool/*, role/*, countr"
+      - slug: ancy
+        doc: docs/ancy.md
+        status: ok
+        notes: "Архетип: Гость Голос и тон: Вдумчивый, философичный, системн"
+      - slug: comfyui-obzor-i-bystryj-start
+        doc: docs/comfyui-obzor-i-bystryj-start.md
+        status: ok
+        notes: "Объясняем, зачем нужен ComfyUI, как собрать первый пайплайн "
+      - slug: dinozavrik
+        doc: docs/dinozavrik.md
+        status: ok
+        notes: "Архетип: Гость Голос и тон: Забавный прокрастинатор; приноси"
+      - slug: glossarij-terminov
+        doc: docs/glossarij-terminov.md
+        status: ok
+        notes: "Ключевые термины и сокращения проекта. Термин: определение А"
+      - slug: hyugo
+        doc: docs/hyugo.md
+        status: ok
+        notes: "Архетип: Парсинг/Обогащение (Hugo) Голос и тон: Рациональный"
+      - slug: ii
+        doc: docs/ii.md
+        status: ok
+        notes: "Архетип: ИИ (метаагент) Голос и тон: Лёгкая надменность к ав"
+      - slug: kontentpajplajn-eksporta
+        doc: docs/kontentpajplajn-eksporta.md
+        status: ok
+        notes: Из базы знаний формируем публикации для соцсетей. YouTube, I
+      - slug: monetizaciya-i-urovni-dostupa
+        doc: docs/monetizaciya-i-urovni-dostupa.md
+        status: ok
+        notes: Часть базы знаний Telegram‑боты Образовательный контент
+      - slug: runa
+        doc: docs/runa.md
+        status: ok
+        notes: "Архетип: Гость Голос и тон: Спокойная, точная, немного инопл"
+      - slug: sintaksis-i-razmetka-markdown-wordpress
+        doc: docs/sintaksis-i-razmetka-markdown-wordpress.md
+        status: ok
+        notes: "Памятка по Markdown: как готовить тексты для импорта в WordP"
+  - path: /portfolio
+    title: Портфолио и услуги
+    description: кейсы, карточки услуг и требования к артефактам
     entries:
       - slug: portfolio-koren
         doc: docs/portfolio-koren.md
         status: ok
-        notes: "общее описание портфолио"
+        notes: общее описание портфолио
       - slug: portfolio-struktura
         doc: docs/portfolio-struktura.md
         status: ok
-        notes: "структура витрины"
+        notes: структура витрины
       - slug: kartochka-uslugi-dizajn
         doc: docs/kartochka-uslugi-dizajn.md
         status: ok
-        notes: "пример услуги (дизайн)"
+        notes: пример услуги (дизайн)
       - slug: kartochka-uslugi-videoprodakshn
         doc: docs/kartochka-uslugi-videoprodakshn.md
         status: ok
-        notes: "пример услуги (видео)"
+        notes: пример услуги (видео)
       - slug: case-library
         doc: docs/case-library.md
         status: missing
-        notes: "нужен свод реальных кейсов"
-
-  - path: "/nav"
-    title: "Навигация"
-    description: "режимы навигации и индексы"
+        notes: нужен свод реальных кейсов
+      - slug: dizzy
+        doc: docs/dizzy.md
+        status: ok
+        notes: "Архетип: Дизайн‑системы (Dizzy) Голос и тон: Игровой, меняющ"
+      - slug: petrova
+        doc: docs/petrova.md
+        status: ok
+        notes: "Архетип: Визуал/Дизайн (Petrova) Голос и тон: Тёплая и остра"
+      - slug: tehnicheskij-stek-i-infrastruktura
+        doc: docs/tehnicheskij-stek-i-infrastruktura.md
+        status: ok
+        notes: "AI‑платформа: Letta Cloud PRO, Claude Sonnet 4.5 MCP‑серверы"
+      - slug: vasya
+        doc: docs/vasya.md
+        status: ok
+        notes: "Портрет персонажа «Васи»: монтажёр и моушн-дизайнер с описан"
+      - slug: vova
+        doc: docs/vova.md
+        status: ok
+        notes: "Профиль героя студии: музыкальный продюсер Вова с его ролями"
+  - path: /nav
+    title: Навигация
+    description: режимы навигации и индексы
     entries:
       - slug: navigaciya-polzovatelskaya
         doc: docs/navigaciya-polzovatelskaya.md
         status: ok
-        notes: "пользовательский взгляд"
+        notes: пользовательский взгляд
       - slug: navigaciya-tehnicheskaya
         doc: docs/navigaciya-tehnicheskaya.md
         status: ok
-        notes: "техническая карта"
+        notes: техническая карта
       - slug: indeks-sajta
         doc: docs/indeks-sajta.md
         status: ok
-        notes: "поисковый индекс"
+        notes: поисковый индекс
       - slug: kontentmodel-i-marshruty
         doc: docs/kontentmodel-i-marshruty.md
         status: ok
-        notes: "связь разделов с контентными маршрутами"
-
+        notes: связь разделов с контентными маршрутами
+      - slug: spec-front-matter-i-slugi
+        doc: docs/spec-front-matter-i-slugi.md
+        status: ok
+        notes: "# Spec — Front matter и слуги"
+      - slug: ui-maket-shapka-i-pervyj-ekran-static-first
+        doc: docs/ui-maket-shapka-i-pervyj-ekran-static-first.md
+        status: ok
+        notes: Статический прототип первого экрана с переключением ролей, к
