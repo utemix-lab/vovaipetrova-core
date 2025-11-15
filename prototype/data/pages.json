@@ -1773,7 +1773,7 @@
   {
     "title": "Исток: зачем вообще собирать истории",
     "slug": "01-zarozhdenie-idei",
-    "status": "draft",
+    "status": "ready",
     "summary": "Как команда решила вынести процесс и моторику проекта в отдельную ветку Stories.",
     "tags": [
       "Story"
@@ -1853,8 +1853,8 @@
   {
     "title": "Версия v1.0: фиксируем контентное ядро",
     "slug": "06-v1-0-content-ready",
-    "status": "draft",
-    "summary": "Как мы дошли до релиза v1.0-content-ready и что попало в этот срез.",
+    "status": "ready",
+    "summary": "Как дошли до релиза v1.0-content-ready и что попало в этот срез.",
     "tags": [
       "Story"
     ],
