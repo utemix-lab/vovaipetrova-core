@@ -6,7 +6,7 @@ tags:
   - Story
 machine_tags:
   - content/story
-status: draft
+status: ready
 last_edited_time: 2025-11-14T09:50:00.000Z
 ---
 
