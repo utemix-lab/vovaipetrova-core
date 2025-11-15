@@ -259,12 +259,21 @@ async function renderIndex() {
       return (a.title || a.slug).localeCompare(b.title || b.slug, "ru");
     });
   const docPages = visiblePages.filter((page) => !isStoryPage(page));
+  // Читаем параметры из URL или localStorage
+  const urlParams = new URLSearchParams(window.location.search);
+  const hash = window.location.hash.replace("#", "");
+  
   let currentStatus = "all";
   let currentSearch = "";
-  let currentSort = localStorage.getItem("explorer-sort") || "route"; // Сохранение сортировки
-  let currentTagFilter = null;
-  let readyOnly = localStorage.getItem("explorer-ready-only") === "true";
-  let activePanel = "docs";
+  let currentSort = urlParams.get("sort") || localStorage.getItem("explorer-sort") || "route";
+  let currentTagFilter = urlParams.get("tag") || localStorage.getItem("explorer-tag-filter") || null;
+  let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
+  let activePanel = hash.includes("stories") ? "stories" : hash.includes("issues") ? "issues" : "docs";
+  
+  // Сохраняем в localStorage
+  if (urlParams.get("sort")) localStorage.setItem("explorer-sort", currentSort);
+  if (urlParams.get("tag")) localStorage.setItem("explorer-tag-filter", currentTagFilter);
+  if (urlParams.get("ready")) localStorage.setItem("explorer-ready-only", readyOnly ? "true" : "false");
 
   function renderDocs() {
     cardsContainer.innerHTML = "";
@@ -303,6 +312,11 @@ async function renderIndex() {
           e.preventDefault();
           e.stopPropagation();
           currentTagFilter = currentTagFilter === chip.dataset.tag ? null : chip.dataset.tag;
+          if (currentTagFilter) {
+            localStorage.setItem("explorer-tag-filter", currentTagFilter);
+          } else {
+            localStorage.removeItem("explorer-tag-filter");
+          }
           renderDocs();
           updateTagFilterUI();
         });
@@ -701,6 +715,25 @@ async function renderPage() {
   }
 
   document.title = `Документ — ${entry.title || entry.slug}`;
+  
+  // Настройка кнопки "Back to list" с сохранением сортировки и фильтров
+  const backToList = document.getElementById("back-to-list");
+  if (backToList) {
+    const sort = localStorage.getItem("explorer-sort") || "route";
+    const readyOnly = localStorage.getItem("explorer-ready-only") === "true";
+    const tagFilter = localStorage.getItem("explorer-tag-filter");
+    const panel = isStoryPage(entry) ? "stories" : "docs";
+    
+    let href = `../index.html#${panel}-panel`;
+    const params = new URLSearchParams();
+    if (sort !== "route") params.set("sort", sort);
+    if (readyOnly) params.set("ready", "1");
+    if (tagFilter) params.set("tag", tagFilter);
+    if (params.toString()) href += `?${params.toString()}`;
+    
+    backToList.href = href;
+  }
+  
   const breadcrumbCurrent = document.getElementById("breadcrumb-current");
   if (isStoryPage(entry)) {
     breadcrumbCurrent.innerHTML = `
