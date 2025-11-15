@@ -1,7 +1,9 @@
 ---
-title: "tags.yaml и фасетная таксономия"
+title: tags.yaml и фасетная таксономия
 slug: 006-tags-yaml-i-fasetnaya-taksonomiya
-summary: "Создание системы фасетов и маппинга видимых тегов на машинотеги через tags.yaml."
+summary: >-
+  Создание системы фасетов и маппинга видимых тегов на машинотеги через
+  tags.yaml.
 tags:
   - Story
 machine_tags:

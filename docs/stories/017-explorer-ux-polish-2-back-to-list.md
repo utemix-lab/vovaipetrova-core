@@ -1,7 +1,9 @@
 ---
-title: "Explorer UX polish 2: back-to-list и визуальные улучшения"
+title: 'Explorer UX polish 2: back-to-list и визуальные улучшения'
 slug: 017-explorer-ux-polish-2-back-to-list
-summary: "Дополировка Explorer: back-to-list, визуальные улучшения, обновление диагностики."
+summary: >-
+  Дополировка Explorer: back-to-list, визуальные улучшения, обновление
+  диагностики.
 tags:
   - Story
 machine_tags:

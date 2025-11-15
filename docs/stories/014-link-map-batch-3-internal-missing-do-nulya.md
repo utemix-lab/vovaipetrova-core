@@ -1,7 +1,9 @@
 ---
-title: "Link-map batch-3: internal-missing до нуля"
+title: 'Link-map batch-3: internal-missing до нуля'
 slug: 014-link-map-batch-3-internal-missing-do-nulya
-summary: "Доведение internal-missing до нуля через расширение правил link-map и исправление парсера."
+summary: >-
+  Доведение internal-missing до нуля через расширение правил link-map и
+  исправление парсера.
 tags:
   - Story
 machine_tags:

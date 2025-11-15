@@ -1,7 +1,7 @@
 ---
-title: "Fix links и нормализация ссылок"
+title: Fix links и нормализация ссылок
 slug: 007-fix-links-i-normalizaciya-ssylok
-summary: "Автоматизация исправления ссылок из Notion в нормализованные по slug."
+summary: Автоматизация исправления ссылок из Notion в нормализованные по slug.
 tags:
   - Story
 machine_tags:

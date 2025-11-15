@@ -1,7 +1,9 @@
 ---
-title: "Site IA v1.1 и routes.yml"
+title: Site IA v1.1 и routes.yml
 slug: 011-site-ia-v1-1-i-routes-yml
-summary: "Обновление информационной архитектуры сайта через routes.yml с маппингом на docs/."
+summary: >-
+  Обновление информационной архитектуры сайта через routes.yml с маппингом на
+  docs/.
 tags:
   - Story
 machine_tags:

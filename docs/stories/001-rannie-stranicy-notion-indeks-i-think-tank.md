@@ -1,7 +1,9 @@
 ---
-title: "Ранние страницы Notion: Индекс и Think Tank"
+title: 'Ранние страницы Notion: Индекс и Think Tank'
 slug: 001-rannie-stranicy-notion-indeks-i-think-tank
-summary: "Формирование начальной структуры проекта в Notion: индексные страницы и компактное ядро Think Tank."
+summary: >-
+  Формирование начальной структуры проекта в Notion: индексные страницы и
+  компактное ядро Think Tank.
 tags:
   - Story
 machine_tags:

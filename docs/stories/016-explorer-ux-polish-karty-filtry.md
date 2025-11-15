@@ -1,7 +1,9 @@
 ---
-title: "Explorer UX polish: карты, фильтры, breadcrumbs"
+title: 'Explorer UX polish: карты, фильтры, breadcrumbs'
 slug: 016-explorer-ux-polish-karty-filtry
-summary: "Улучшение UX Explorer: карточки с summary, фильтры по статусу и тегам, breadcrumbs."
+summary: >-
+  Улучшение UX Explorer: карточки с summary, фильтры по статусу и тегам,
+  breadcrumbs.
 tags:
   - Story
 machine_tags:

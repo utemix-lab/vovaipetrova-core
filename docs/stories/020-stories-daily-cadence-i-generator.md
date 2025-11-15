@@ -1,7 +1,9 @@
 ---
-title: "Stories: daily cadence и генератор"
+title: 'Stories: daily cadence и генератор'
 slug: 020-stories-daily-cadence-i-generator
-summary: "Автоматизация создания Stories через daily генератор на основе CHANGELOG и артефактов."
+summary: >-
+  Автоматизация создания Stories через daily генератор на основе CHANGELOG и
+  артефактов.
 tags:
   - Story
 machine_tags:

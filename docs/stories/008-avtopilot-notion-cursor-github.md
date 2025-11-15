@@ -1,7 +1,7 @@
 ---
-title: "Автопилот: Notion ↔ Cursor ↔ GitHub"
+title: 'Автопилот: Notion ↔ Cursor ↔ GitHub'
 slug: 008-avtopilot-notion-cursor-github
-summary: "Автоматизация полного цикла от задачи в Briefs до merge в main через Cursor."
+summary: Автоматизация полного цикла от задачи в Briefs до merge в main через Cursor.
 tags:
   - Story
 machine_tags:

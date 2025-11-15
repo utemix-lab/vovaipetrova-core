@@ -1,7 +1,7 @@
 ---
-title: "Link-map batch-1: первые правила сопоставления"
+title: 'Link-map batch-1: первые правила сопоставления'
 slug: 012-link-map-batch-1-pervye-pravila
-summary: "Создание системы правил сопоставления проблемных ссылок через link-map.json."
+summary: Создание системы правил сопоставления проблемных ссылок через link-map.json.
 tags:
   - Story
 machine_tags:

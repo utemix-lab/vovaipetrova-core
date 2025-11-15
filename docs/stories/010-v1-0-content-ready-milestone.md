@@ -1,7 +1,9 @@
 ---
-title: "v1.0-content-ready: фиксация контентного ядра"
+title: 'v1.0-content-ready: фиксация контентного ядра'
 slug: 010-v1-0-content-ready-milestone
-summary: "Достижение milestone v1.0-content-ready с фиксацией 24 страниц в статусе ready."
+summary: >-
+  Достижение milestone v1.0-content-ready с фиксацией 24 страниц в статусе
+  ready.
 tags:
   - Story
 machine_tags:

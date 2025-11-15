@@ -1,7 +1,7 @@
 ---
-title: "Diagnostics и issues view"
+title: Diagnostics и issues view
 slug: 015-diagnostics-i-issues-view
-summary: "Создание системы диагностики проблемных ссылок и issues view в Explorer."
+summary: Создание системы диагностики проблемных ссылок и issues view в Explorer.
 tags:
   - Story
 machine_tags:

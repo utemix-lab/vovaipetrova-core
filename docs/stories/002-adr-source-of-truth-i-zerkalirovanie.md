@@ -1,7 +1,9 @@
 ---
-title: "ADR: Source of truth и зеркалирование"
+title: 'ADR: Source of truth и зеркалирование'
 slug: 002-adr-source-of-truth-i-zerkalirovanie
-summary: "Архитектурное решение о разделении ролей: Notion как источник истины, GitHub как зеркало."
+summary: >-
+  Архитектурное решение о разделении ролей: Notion как источник истины, GitHub
+  как зеркало.
 tags:
   - Story
 machine_tags:

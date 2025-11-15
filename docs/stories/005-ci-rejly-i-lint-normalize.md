@@ -1,7 +1,7 @@
 ---
-title: "CI, рейлы и линт: normalize"
+title: 'CI, рейлы и линт: normalize'
 slug: 005-ci-rejly-i-lint-normalize
-summary: "Внедрение автоматической нормализации контента через CI и скрипт normalize."
+summary: Внедрение автоматической нормализации контента через CI и скрипт normalize.
 tags:
   - Story
 machine_tags:

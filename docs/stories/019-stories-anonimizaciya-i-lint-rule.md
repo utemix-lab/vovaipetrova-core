@@ -1,7 +1,9 @@
 ---
-title: "Stories: анонимизация и lint-rule"
+title: 'Stories: анонимизация и lint-rule'
 slug: 019-stories-anonimizaciya-i-lint-rule
-summary: "Внедрение правил анонимизации для Stories и lint-правила для проверки персоналий."
+summary: >-
+  Внедрение правил анонимизации для Stories и lint-правила для проверки
+  персоналий.
 tags:
   - Story
 machine_tags:

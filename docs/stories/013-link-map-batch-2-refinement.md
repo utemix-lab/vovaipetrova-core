@@ -1,7 +1,7 @@
 ---
-title: "Link-map batch-2: refinement правил"
+title: 'Link-map batch-2: refinement правил'
 slug: 013-link-map-batch-2-refinement
-summary: "Расширение правил link-map для обработки следующего набора проблемных ссылок."
+summary: Расширение правил link-map для обработки следующего набора проблемных ссылок.
 tags:
   - Story
 machine_tags:

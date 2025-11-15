@@ -1,7 +1,7 @@
 ---
-title: "Старт импорта: Notion → GitHub"
+title: 'Старт импорта: Notion → GitHub'
 slug: 004-start-importa-notion-v-github
-summary: "Первые шаги автоматизации экспорта из Notion в репозиторий через ZIP-архивы."
+summary: Первые шаги автоматизации экспорта из Notion в репозиторий через ZIP-архивы.
 tags:
   - Story
 machine_tags:

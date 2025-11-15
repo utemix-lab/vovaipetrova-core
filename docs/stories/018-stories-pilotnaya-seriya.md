@@ -1,7 +1,7 @@
 ---
-title: "Stories: пилотная серия"
+title: 'Stories: пилотная серия'
 slug: 018-stories-pilotnaya-seriya
-summary: "Создание пилотной серии Stories из 6-8 эпизодов с шаблоном и структурой."
+summary: Создание пилотной серии Stories из 6-8 эпизодов с шаблоном и структурой.
 tags:
   - Story
 machine_tags:

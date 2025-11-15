@@ -1,7 +1,9 @@
 ---
-title: "Explorer и Labs: отделение от Think Tank"
+title: 'Explorer и Labs: отделение от Think Tank'
 slug: 009-explorer-i-labs-otdelenie-ot-think-tank
-summary: "Разделение Explorer/Labs как публичной витрины от Think Tank как внутренней архитектуры."
+summary: >-
+  Разделение Explorer/Labs как публичной витрины от Think Tank как внутренней
+  архитектуры.
 tags:
   - Story
 machine_tags:
