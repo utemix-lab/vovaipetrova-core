@@ -42,13 +42,13 @@ function containsForbiddenStoryPhrases(body) {
     ' мой',
     ' моя',
     ' мои',
-    ' мы с ',
     'я считаю',
     'я думаю',
     'я хочу',
     'по-моему',
     'по моему'
   ];
+  // Примечание: "мы" разрешено использовать в stories
   const normalized = body.toLowerCase();
   return phrases.some((phrase) => normalized.includes(phrase));
 }

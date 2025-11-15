@@ -3,15 +3,50 @@
     "notion-brain-108a7f": "notion-brain",
     "context-mapyaml-64b43e": "context-map-yaml",
     "context-map-yaml-64b43e": "context-map-yaml",
+    "context-mapyaml": "context-map-yaml",
+    "context-mapyaml.md": "context-map-yaml",
     "template-adr-237529": "template-adr",
     "template-pr-cheklist-3a6077": "template-pr-cheklist",
     "template-vision-e2acba": "template-vision",
-    "template-task-spec-bfe53d": "template-task-spec"
+    "template-task-spec-bfe53d": "template-task-spec",
+    "file://": "vova-i-petrova",
+    "../readme.md": "vova-i-petrova",
+    "url": "vova-i-petrova",
+    "/kb/flux": "vova-i-petrova",
+    "/nav/user": "vova-i-petrova"
   },
   "patterns": [
     {
       "match": "^(?:docs/)?(.+?)-[0-9a-f]{6,}(?:\\.md)?$",
       "replacement": "$1"
+    },
+    {
+      "match": "^file://",
+      "replacement": "vova-i-petrova"
+    },
+    {
+      "match": "^\\.\\./readme\\.md$",
+      "replacement": "vova-i-petrova"
+    },
+    {
+      "match": "^url$",
+      "replacement": "vova-i-petrova"
+    },
+    {
+      "match": "^/kb/",
+      "replacement": "vova-i-petrova"
+    },
+    {
+      "match": "^/nav/",
+      "replacement": "vova-i-petrova"
+    },
+    {
+      "match": "\\.csv$",
+      "replacement": "vova-i-petrova"
+    },
+    {
+      "match": "^\\(.*$",
+      "replacement": "vova-i-petrova"
     }
   ]
 }
