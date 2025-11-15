@@ -26,7 +26,7 @@ TL;DR
 
 **Что получилось.** В инструкциях Cursor прописано: зелёный CI — сразу merge, затем обновить карточку Briefs (Deliverables, PR link, Status=Done). Полный цикл — от Ready до Done — занимает пару часов без простоя.
 
-**Тех-вставка.** Токен, лежащий в `C:\Users\utemix\.cursor\secrets.json`, имеет права push и merge. Мы задокументировали sanity-check в PR: API `/branches/main/protection` возвращает 404 без admin scope, поэтому подтверждаем текстом, что включён только Docs CI.
+**Тех-вставка.** Токен, лежащий в `C:\Users\<user>\.cursor\secrets.json`, имеет права push и merge. Мы задокументировали sanity-check в PR: API `/branches/main/protection` возвращает 404 без admin scope, поэтому подтверждаем текстом, что включён только Docs CI.
 
 **Что дальше.** Когда рутина снята, можно заняться витриной. Следующий эпизод — как Explorer отделили от Think Tank, чтобы показать истории наружу.
 

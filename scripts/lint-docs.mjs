@@ -139,11 +139,63 @@ function lintFile(file) {
     );
   }
 
+  // PII check for docs/ and stories/
+  const piiCheck = containsPII(body);
+  if (piiCheck.found) {
+    const message = `warn: PII detected (${piiCheck.kind}): ${piiCheck.match.substring(0, 50)}... Use <user>, <email>, or <phone> instead`;
+    if (isStory) {
+      errors.push(message); // Blocking for stories
+    } else {
+      warnings.push(message); // Warning for other docs
+    }
+  }
+
   return {
     errors,
     warnings,
     status: status ? String(status).toLowerCase() : null
   };
+}
+
+function containsPII(body) {
+  const patterns = [
+    {
+      name: 'windows_user_path',
+      regex: /[A-Za-z]:\\Users\\([A-Za-z0-9._ -]+)/g
+    },
+    {
+      name: 'unix_home_path',
+      regex: /\/(?:home|Users)\/([A-Za-z0-9.-]+)/g
+    },
+    {
+      name: 'email',
+      regex: /[A-Za-z0-9.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g
+    },
+    {
+      name: 'phone',
+      regex: /\+?\d{1,3}[\s\-()]\d{2,4}[\s\-()]\d{2,4}[\s\-()]?\d{2,4}/g
+    }
+  ];
+  
+  for (const pattern of patterns) {
+    const regex = new RegExp(pattern.regex.source, pattern.regex.flags);
+    let match;
+    while ((match = regex.exec(body)) !== null) {
+      // Skip matches in code blocks (```...```)
+      const beforeMatch = body.substring(0, match.index);
+      const codeBlockCount = (beforeMatch.match(/```/g) || []).length;
+      if (codeBlockCount % 2 === 1) continue; // Inside code block
+      
+      // Skip if already sanitized
+      if (match[0].includes('<user>') || match[0].includes('<email>') || match[0].includes('<phone>')) {
+        continue;
+      }
+      
+      return { found: true, kind: pattern.name, match: match[0] };
+    }
+  }
+  
+  return { found: false };
 }
 
 function main() {

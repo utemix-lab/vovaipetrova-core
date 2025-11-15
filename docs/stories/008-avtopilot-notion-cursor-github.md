@@ -26,7 +26,7 @@ TL;DR
 
 **Что получилось.** В инструкциях Cursor прописано: зелёный CI — сразу merge, затем обновить карточку Briefs через Notion API. Полный цикл — от Ready до Done — занимает пару часов без простоя. Токен с правами push и merge хранится в secrets.json, sanity-check фиксируется в PR описании.
 
-**Тех-вставка.** Токен лежит в `C:\Users\utemix\.cursor\secrets.json` с правами push и merge. API `/branches/main/protection` возвращает 404 без admin scope, поэтому подтверждаем текстом, что включён только Docs CI. Обновление Briefs происходит через Notion API с указанием Deliverables, PR link и Status=Done.
+**Тех-вставка.** Токен лежит в `C:\Users\<user>\.cursor\secrets.json` с правами push и merge. API `/branches/main/protection` возвращает 404 без admin scope, поэтому подтверждаем текстом, что включён только Docs CI. Обновление Briefs происходит через Notion API с указанием Deliverables, PR link и Status=Done.
 
 **Что дальше.** После настройки автопилота следующий шаг — усиление автоматизации и расширение возможностей. Это позволит автоматизировать больше рутинных задач и ускорить цикл разработки.
 
