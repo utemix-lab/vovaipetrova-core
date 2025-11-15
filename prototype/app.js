@@ -4,6 +4,12 @@ const STATUS_META = {
   draft: { label: "draft", emoji: "⚪", className: "status-draft" }
 };
 
+function escapeHtml(value) {
+  const div = document.createElement("div");
+  div.textContent = value;
+  return div.innerHTML;
+}
+
 const VIEW = document.body.dataset.view;
 const LINK_MAP_CACHE = {};
 
@@ -75,9 +81,10 @@ function createCard(page) {
   if (page.summary) {
     const summary = document.createElement("p");
     summary.className = "card__summary";
+    const maxLength = 130;
     summary.textContent =
-      page.summary.length > 140
-        ? `${page.summary.slice(0, 137).trim()}…`
+      page.summary.length > maxLength
+        ? `${page.summary.slice(0, maxLength - 3).trim()}…`
         : page.summary;
     card.appendChild(summary);
   }
@@ -86,9 +93,12 @@ function createCard(page) {
     const tags = document.createElement("div");
     tags.className = "tag-list";
     for (const tag of page.tags) {
-      const chip = document.createElement("span");
-      chip.className = "tag-chip";
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "tag-chip tag-chip--clickable";
       chip.textContent = tag;
+      chip.dataset.tag = tag;
+      chip.setAttribute("aria-label", `Фильтр по тегу: ${tag}`);
       tags.appendChild(chip);
     }
     card.appendChild(tags);
@@ -125,7 +135,11 @@ function createStoryCard(page) {
   if (page.summary) {
     const summary = document.createElement("p");
     summary.className = "story-card__summary";
-    summary.textContent = page.summary;
+    const maxLength = 130;
+    summary.textContent =
+      page.summary.length > maxLength
+        ? `${page.summary.slice(0, maxLength - 3).trim()}…`
+        : page.summary;
     card.appendChild(summary);
   }
 
@@ -247,12 +261,26 @@ async function renderIndex() {
   const docPages = visiblePages.filter((page) => !isStoryPage(page));
   let currentStatus = "all";
   let currentSearch = "";
-  let currentSort = "route"; // По умолчанию сортировка по route
+  let currentSort = localStorage.getItem("explorer-sort") || "route"; // Сохранение сортировки
+  let currentTagFilter = null;
+  let readyOnly = localStorage.getItem("explorer-ready-only") === "true";
   let activePanel = "docs";
 
   function renderDocs() {
     cardsContainer.innerHTML = "";
     let filtered = docPages.filter(byStatus(currentStatus, currentSearch));
+    
+    // Фильтр "Ready only"
+    if (readyOnly) {
+      filtered = filtered.filter((page) => page.status === "ready");
+    }
+    
+    // Фильтр по тегу
+    if (currentTagFilter) {
+      filtered = filtered.filter((page) =>
+        page.tags?.some((tag) => tag.toLowerCase() === currentTagFilter.toLowerCase())
+      );
+    }
     
     // Применяем сортировку
     if (currentSort === "route") {
@@ -268,9 +296,29 @@ async function renderIndex() {
     emptyState.classList.add("hidden");
     const fragment = document.createDocumentFragment();
     for (const page of filtered) {
-      fragment.appendChild(createCard(page));
+      const card = createCard(page);
+      // Добавляем обработчики кликов на теги
+      card.querySelectorAll(".tag-chip--clickable").forEach((chip) => {
+        chip.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          currentTagFilter = currentTagFilter === chip.dataset.tag ? null : chip.dataset.tag;
+          renderDocs();
+          updateTagFilterUI();
+        });
+      });
+      fragment.appendChild(card);
     }
     cardsContainer.appendChild(fragment);
+  }
+  
+  function updateTagFilterUI() {
+    document.querySelectorAll(".tag-chip--clickable").forEach((chip) => {
+      chip.classList.toggle(
+        "tag-chip--active",
+        currentTagFilter && chip.dataset.tag.toLowerCase() === currentTagFilter.toLowerCase()
+      );
+    });
   }
 
   function renderStories() {
@@ -376,9 +424,35 @@ async function renderIndex() {
       sortButtons.forEach((btn) => btn.classList.remove("is-active"));
       button.classList.add("is-active");
       currentSort = button.dataset.sort;
+      localStorage.setItem("explorer-sort", currentSort);
       renderDocs();
     });
   });
+  
+  // Восстанавливаем активную кнопку сортировки
+  const activeSortButton = sortButtons.find((btn) => btn.dataset.sort === currentSort);
+  if (activeSortButton) {
+    sortButtons.forEach((btn) => btn.classList.remove("is-active"));
+    activeSortButton.classList.add("is-active");
+  }
+  
+  // Toggle "Ready only"
+  const readyOnlyToggle = document.createElement("label");
+  readyOnlyToggle.className = "ready-only-toggle";
+  readyOnlyToggle.innerHTML = `
+    <input type="checkbox" ${readyOnly ? "checked" : ""} />
+    <span>Ready only</span>
+  `;
+  const checkbox = readyOnlyToggle.querySelector("input");
+  checkbox.addEventListener("change", (e) => {
+    readyOnly = e.target.checked;
+    localStorage.setItem("explorer-ready-only", readyOnly ? "true" : "false");
+    renderDocs();
+  });
+  const filtersGroup = document.querySelector(".filters");
+  if (filtersGroup) {
+    filtersGroup.parentNode.insertBefore(readyOnlyToggle, filtersGroup.nextSibling);
+  }
 
   let searchTimeout;
   searchInput.addEventListener("input", (event) => {
@@ -627,8 +701,16 @@ async function renderPage() {
   }
 
   document.title = `Документ — ${entry.title || entry.slug}`;
-  document.getElementById("breadcrumb-current").textContent =
-    entry.title || entry.slug;
+  const breadcrumbCurrent = document.getElementById("breadcrumb-current");
+  if (isStoryPage(entry)) {
+    breadcrumbCurrent.innerHTML = `
+      <a href="../index.html#stories-panel">Stories</a>
+      <span aria-hidden="true"> › </span>
+      <span>${escapeHtml(entry.title || entry.slug)}</span>
+    `;
+  } else {
+    breadcrumbCurrent.textContent = entry.title || entry.slug;
+  }
   document.getElementById("page-heading").textContent =
     entry.title || entry.slug;
   document.getElementById("page-summary").textContent =
