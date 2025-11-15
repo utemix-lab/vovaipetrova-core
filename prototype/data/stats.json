@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-11-15T20:53:48.887Z",
+  "generatedAt": "2025-11-15T22:52:20.151Z",
   "totals": {
     "pages": 63,
     "statuses": {
@@ -7,8 +7,8 @@
       "review": 7,
       "draft": 39
     },
-    "issues_total": 2,
-    "issues_internal_missing": 0,
+    "issues_total": 3,
+    "issues_internal_missing": 1,
     "issues_service": 0,
     "issues_external": 0,
     "issues_unknown": 2

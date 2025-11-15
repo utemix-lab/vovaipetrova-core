@@ -1771,6 +1771,150 @@
     "story_order": null
   },
   {
+    "title": "Ранние страницы Notion: Индекс и Think Tank",
+    "slug": "001-rannie-stranicy-notion-indeks-i-think-tank",
+    "status": "ready",
+    "summary": "Формирование начальной структуры проекта в Notion: индексные страницы и компактное ядро Think Tank.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/001-rannie-stranicy-notion-indeks-i-think-tank.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "ADR: Source of truth и зеркалирование",
+    "slug": "002-adr-source-of-truth-i-zerkalirovanie",
+    "status": "ready",
+    "summary": "Архитектурное решение о разделении ролей: Notion как источник истины, GitHub как зеркало.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/002-adr-source-of-truth-i-zerkalirovanie.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Контент-модель и маршруты",
+    "slug": "003-kontentmodel-i-marshruty",
+    "status": "ready",
+    "summary": "Определение структуры страниц сайта, связей и маршрутов с учётом ролей пользователей.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/003-kontentmodel-i-marshruty.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Старт импорта: Notion → GitHub",
+    "slug": "004-start-importa-notion-v-github",
+    "status": "ready",
+    "summary": "Первые шаги автоматизации экспорта из Notion в репозиторий через ZIP-архивы.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/004-start-importa-notion-v-github.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "CI, рейлы и линт: normalize",
+    "slug": "005-ci-rejly-i-lint-normalize",
+    "status": "ready",
+    "summary": "Внедрение автоматической нормализации контента через CI и скрипт normalize.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/005-ci-rejly-i-lint-normalize.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "tags.yaml и фасетная таксономия",
+    "slug": "006-tags-yaml-i-fasetnaya-taksonomiya",
+    "status": "ready",
+    "summary": "Создание системы фасетов и маппинга видимых тегов на машинотеги через tags.yaml.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/006-tags-yaml-i-fasetnaya-taksonomiya.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Fix links и нормализация ссылок",
+    "slug": "007-fix-links-i-normalizaciya-ssylok",
+    "status": "ready",
+    "summary": "Автоматизация исправления ссылок из Notion в нормализованные по slug.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/007-fix-links-i-normalizaciya-ssylok.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Автопилот: Notion ↔ Cursor ↔ GitHub",
+    "slug": "008-avtopilot-notion-cursor-github",
+    "status": "ready",
+    "summary": "Автоматизация полного цикла от задачи в Briefs до merge в main через Cursor.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/008-avtopilot-notion-cursor-github.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Explorer и Labs: отделение от Think Tank",
+    "slug": "009-explorer-i-labs-otdelenie-ot-think-tank",
+    "status": "ready",
+    "summary": "Разделение Explorer/Labs как публичной витрины от Think Tank как внутренней архитектуры.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/009-explorer-i-labs-otdelenie-ot-think-tank.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
     "title": "Исток: зачем вообще собирать истории",
     "slug": "01-zarozhdenie-idei",
     "status": "ready",
@@ -1787,6 +1931,166 @@
     "story_order": 1
   },
   {
+    "title": "v1.0-content-ready: фиксация контентного ядра",
+    "slug": "010-v1-0-content-ready-milestone",
+    "status": "ready",
+    "summary": "Достижение milestone v1.0-content-ready с фиксацией 24 страниц в статусе ready.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/010-v1-0-content-ready-milestone.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Site IA v1.1 и routes.yml",
+    "slug": "011-site-ia-v1-1-i-routes-yml",
+    "status": "ready",
+    "summary": "Обновление информационной архитектуры сайта через routes.yml с маппингом на docs/.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/011-site-ia-v1-1-i-routes-yml.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Link-map batch-1: первые правила сопоставления",
+    "slug": "012-link-map-batch-1-pervye-pravila",
+    "status": "draft",
+    "summary": "Создание системы правил сопоставления проблемных ссылок через link-map.json.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/012-link-map-batch-1-pervye-pravila.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Link-map batch-2: refinement правил",
+    "slug": "013-link-map-batch-2-refinement",
+    "status": "draft",
+    "summary": "Расширение правил link-map для обработки следующего набора проблемных ссылок.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/013-link-map-batch-2-refinement.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Link-map batch-3: internal-missing до нуля",
+    "slug": "014-link-map-batch-3-internal-missing-do-nulya",
+    "status": "draft",
+    "summary": "Доведение internal-missing до нуля через расширение правил link-map и исправление парсера.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/014-link-map-batch-3-internal-missing-do-nulya.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Diagnostics и issues view",
+    "slug": "015-diagnostics-i-issues-view",
+    "status": "draft",
+    "summary": "Создание системы диагностики проблемных ссылок и issues view в Explorer.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/015-diagnostics-i-issues-view.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Explorer UX polish: карты, фильтры, breadcrumbs",
+    "slug": "016-explorer-ux-polish-karty-filtry",
+    "status": "draft",
+    "summary": "Улучшение UX Explorer: карточки с summary, фильтры по статусу и тегам, breadcrumbs.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/016-explorer-ux-polish-karty-filtry.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Explorer UX polish 2: back-to-list и визуальные улучшения",
+    "slug": "017-explorer-ux-polish-2-back-to-list",
+    "status": "draft",
+    "summary": "Дополировка Explorer: back-to-list, визуальные улучшения, обновление диагностики.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/017-explorer-ux-polish-2-back-to-list.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Stories: пилотная серия",
+    "slug": "018-stories-pilotnaya-seriya",
+    "status": "draft",
+    "summary": "Создание пилотной серии Stories из 6-8 эпизодов с шаблоном и структурой.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/018-stories-pilotnaya-seriya.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
+    "title": "Stories: анонимизация и lint-rule",
+    "slug": "019-stories-anonimizaciya-i-lint-rule",
+    "status": "draft",
+    "summary": "Внедрение правил анонимизации для Stories и lint-правила для проверки персоналий.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/019-stories-anonimizaciya-i-lint-rule.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
+  },
+  {
     "title": "Почему Notion остаётся источником истины",
     "slug": "02-pochemu-notion-source-of-truth",
     "status": "draft",
@@ -1801,6 +2105,22 @@
     "service": false,
     "collection": "stories",
     "story_order": 2
+  },
+  {
+    "title": "Stories: daily cadence и генератор",
+    "slug": "020-stories-daily-cadence-i-generator",
+    "status": "draft",
+    "summary": "Автоматизация создания Stories через daily генератор на основе CHANGELOG и артефактов.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/020-stories-daily-cadence-i-generator.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
   },
   {
     "title": "Импорт и безопасность: как мы перестали бояться ZIP",
@@ -1899,12 +2219,16 @@
     "story_order": 8
   },
   {
-    "title": "stories-v10-content-ready-2025-11-12",
+    "title": "Stories · v1.0-content-ready — 2025-11-12",
     "slug": "stories-v10-content-ready-2025-11-12",
     "status": "draft",
-    "summary": "",
-    "tags": [],
-    "machine_tags": [],
+    "summary": "Черновик автогенератора Stories: синхронизация CHANGELOG, ADR и ProtoLabs.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
     "url": "docs/stories/stories-v10-content-ready-2025-11-12.md",
     "service": false,
     "collection": "stories",

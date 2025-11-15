@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2025-11-15T20:53:45.157Z",
-  "totalFiles": 165,
-  "brokenCount": 2,
+  "generatedAt": "2025-11-15T22:52:16.940Z",
+  "totalFiles": 185,
+  "brokenCount": 3,
   "issues": [
     {
       "file": "vova-i-petrova-ef2871.md",
@@ -14,6 +14,12 @@
       "link": "api-reestr-i-specifikacii-711159.md",
       "reason": "unknown_target",
       "resolved_to": "api-reestr-i-specifikacii"
+    },
+    {
+      "file": "stories/007-fix-links-i-normalizaciya-ssylok.md",
+      "link": "ссылка",
+      "reason": "missing",
+      "resolved_to": null
     }
   ]
 }
