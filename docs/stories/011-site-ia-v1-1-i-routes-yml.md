@@ -8,7 +8,7 @@ tags:
   - Story
 machine_tags:
   - content/story
-status: draft
+status: review
 last_edited_time: null
 ---
 
