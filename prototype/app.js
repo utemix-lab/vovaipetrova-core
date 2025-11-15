@@ -503,7 +503,7 @@ async function renderIndex() {
 
   renderDocs();
   renderStories();
-  setActivePanel("docs");
+  setActivePanel(activePanel);
 }
 
 function applyStatusBadge(element, status) {
