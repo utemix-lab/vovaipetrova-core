@@ -1075,13 +1075,13 @@
     "story_order": null
   },
   {
-    "title": "README",
-    "slug": "README",
+    "title": "navigaciya-shema-razdelov-i-marshrutov",
+    "slug": "navigaciya-shema-razdelov-i-marshrutov",
     "status": "draft",
     "summary": "",
     "tags": [],
     "machine_tags": [],
-    "url": "docs/nav/README.md",
+    "url": "docs/nav/navigaciya-shema-razdelov-i-marshrutov.md",
     "service": false,
     "collection": null,
     "story_order": null
