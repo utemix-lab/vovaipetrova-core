@@ -1075,6 +1075,30 @@
     "story_order": null
   },
   {
+    "title": "README",
+    "slug": "README",
+    "status": "draft",
+    "summary": "",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/nav/README.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
+  },
+  {
+    "title": "site-ia-nav",
+    "slug": "site-ia-nav",
+    "status": "draft",
+    "summary": "",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/nav/site-ia-nav.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
+  },
+  {
     "title": "Навигация (пользовательская)",
     "slug": "navigaciya-polzovatelskaya-4dd66e",
     "status": "draft",
@@ -1873,6 +1897,18 @@
     "service": false,
     "collection": "stories",
     "story_order": 8
+  },
+  {
+    "title": "stories-v10-content-ready-2025-11-12",
+    "slug": "stories-v10-content-ready-2025-11-12",
+    "status": "draft",
+    "summary": "",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/stories/stories-v10-content-ready-2025-11-12.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null
   },
   {
     "title": "Суть проекта — One-liner",

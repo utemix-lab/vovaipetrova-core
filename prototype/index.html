@@ -28,6 +28,14 @@
             Draft
           </button>
         </div>
+        <div class="sorts" role="group" aria-label="Сортировка">
+          <button type="button" class="sort-button is-active" data-sort="route">
+            By route
+          </button>
+          <button type="button" class="sort-button" data-sort="status">
+            By status
+          </button>
+        </div>
         <label class="search">
           <span class="search__label">Поиск</span>
           <input
@@ -45,6 +53,9 @@
         </button>
         <button type="button" class="view-button" data-panel="stories">
           Stories
+        </button>
+        <button type="button" class="view-button" data-panel="issues">
+          Issues
         </button>
       </div>
     </header>
@@ -66,6 +77,16 @@
         <div id="stories-empty" class="empty-state hidden">
           <h2>Stories скоро появятся</h2>
           <p>Добавьте файлы в <code>docs/stories/</code>, и Explorer покажет их здесь.</p>
+        </div>
+      </section>
+      <section id="issues-panel" class="hidden" aria-live="polite">
+        <p class="issues-intro">
+          Проблемные страницы с наибольшим количеством неработающих ссылок. Отсортированы по score (internal-missing × 3 + service × 2 + unknown × 1).
+        </p>
+        <section id="issues-list" class="cards-grid"></section>
+        <div id="issues-empty" class="empty-state hidden">
+          <h2>Проблем не найдено</h2>
+          <p>Все ссылки работают корректно.</p>
         </div>
       </section>
     </main>

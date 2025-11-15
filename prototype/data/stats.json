@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2025-11-15T19:26:06.668Z",
+  "totals": {
+    "pages": 63,
+    "statuses": {
+      "ready": 17,
+      "review": 7,
+      "draft": 39
+    },
+    "issues_total": 15,
+    "issues_internal_missing": 14,
+    "issues_service": 0,
+    "issues_external": 0,
+    "issues_unknown": 1
+  },
+  "topProblems": [
+    {
+      "slug": "sintaksis-i-razmetka-markdown-wordpress",
+      "title": "Синтаксис и разметка — Markdown → WordPress",
+      "issues_total": 3,
+      "issues_internal_missing": 3,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 9
+    },
+    {
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "title": "UI макет — шапка и первый экран (Static First)",
+      "issues_total": 1,
+      "issues_internal_missing": 1,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 3
+    },
+    {
+      "slug": "spec-normalize-i-politika-imyon",
+      "title": "Spec — Normalize и политика имён",
+      "issues_total": 1,
+      "issues_internal_missing": 1,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 3
+    },
+    {
+      "slug": "instrukcii-dlya-notion-ai-vovaipetrova",
+      "title": "Инструкции для Notion AI — vova_i_petrova",
+      "issues_total": 1,
+      "issues_internal_missing": 1,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 3
+    }
+  ],
+  "issuesPerPage": [
+    {
+      "slug": "sintaksis-i-razmetka-markdown-wordpress",
+      "title": "Синтаксис и разметка — Markdown → WordPress",
+      "issues_total": 3,
+      "issues_internal_missing": 3,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 9
+    },
+    {
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "title": "UI макет — шапка и первый экран (Static First)",
+      "issues_total": 1,
+      "issues_internal_missing": 1,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 3
+    },
+    {
+      "slug": "spec-normalize-i-politika-imyon",
+      "title": "Spec — Normalize и политика имён",
+      "issues_total": 1,
+      "issues_internal_missing": 1,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 3
+    },
+    {
+      "slug": "instrukcii-dlya-notion-ai-vovaipetrova",
+      "title": "Инструкции для Notion AI — vova_i_petrova",
+      "issues_total": 1,
+      "issues_internal_missing": 1,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 3
+    }
+  ]
+}
