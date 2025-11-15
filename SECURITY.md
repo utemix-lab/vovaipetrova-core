@@ -7,7 +7,7 @@ on top of `main` and flow into production through the regular Docs CI pipeline.
 
 ## Reporting a Vulnerability
 
-- Email: `security@utemix.ru`
+- Email: `<email>` (use GitHub Security Advisories for private reports)
 - GitHub Security Advisories: open a private advisory under
   [utemix-lab/vovaipetrova-core](https://github.com/utemix-lab/vovaipetrova-core/security/advisories/new)
 

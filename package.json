@@ -18,7 +18,10 @@
     "unpack:notion": "node scripts/unpack-notion-export.mjs",
     "scaffold:article": "node scripts/scaffold.mjs --type=article",
     "scaffold:adr": "node scripts/scaffold.mjs --type=adr",
-    "story:generate": "node scripts/generate-stories.mjs"
+    "story:generate": "node scripts/generate-stories.mjs",
+    "pii:scan": "node scripts/pii-scan.mjs",
+    "pii:sanitize": "node scripts/pii-sanitize.mjs",
+    "pii:sanitize:apply": "node scripts/pii-sanitize.mjs --apply"
   },
   "repository": {
     "type": "git",
