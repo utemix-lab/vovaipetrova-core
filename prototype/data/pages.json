@@ -1075,13 +1075,13 @@
     "story_order": null
   },
   {
-    "title": "README",
-    "slug": "README",
+    "title": "navigaciya-shema-razdelov-i-marshrutov",
+    "slug": "navigaciya-shema-razdelov-i-marshrutov",
     "status": "draft",
     "summary": "",
     "tags": [],
     "machine_tags": [],
-    "url": "docs/nav/README.md",
+    "url": "docs/nav/navigaciya-shema-razdelov-i-marshrutov.md",
     "service": false,
     "collection": null,
     "story_order": null
@@ -1854,7 +1854,7 @@
     "title": "Версия v1.0: фиксируем контентное ядро",
     "slug": "06-v1-0-content-ready",
     "status": "ready",
-    "summary": "Как мы дошли до релиза v1.0-content-ready и что попало в этот срез.",
+    "summary": "Как дошли до релиза v1.0-content-ready и что попало в этот срез.",
     "tags": [
       "Story"
     ],
