@@ -16,6 +16,14 @@
 - GitHub Pages-прототип: **https://utemix-lab.github.io/vovaipetrova-core/**
 - Расширенная карта маршрутов и фасетов описана в `docs/kontentmodel-i-marshruty.md`.
 
+## Stories
+
+Хроника проекта в формате коротких эпизодов (700–1200 знаков). Каждый эпизод фиксирует ключевые вехи развития проекта в структуре «что произошло → зачем → что получилось → тех-вставка → что дальше».
+
+- **Лента Stories**: [https://utemix-lab.github.io/vovaipetrova-core/#stories-panel](https://utemix-lab.github.io/vovaipetrova-core/#stories-panel)
+- Эпизоды хранятся в `docs/stories/` с front matter (`status: draft/review/ready`)
+- Шаблон для новых эпизодов: `templates/story.md`
+
 ## Структура
 
 - `docs/` — все документы в Markdown с front matter (title, slug, tags, machine_tags)

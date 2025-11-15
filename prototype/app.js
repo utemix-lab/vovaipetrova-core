@@ -403,21 +403,25 @@ async function renderIndex() {
 
   function setActivePanel(panel) {
     activePanel = panel;
+    const storiesBanner = document.getElementById("stories-banner");
     if (panel === "stories") {
       docsPanel.classList.add("hidden");
       storiesPanel.classList.remove("hidden");
       issuesPanel.classList.add("hidden");
       controls?.classList.add("hidden");
+      if (storiesBanner) storiesBanner.classList.add("hidden");
     } else if (panel === "issues") {
       docsPanel.classList.add("hidden");
       storiesPanel.classList.add("hidden");
       issuesPanel.classList.remove("hidden");
       controls?.classList.add("hidden");
+      if (storiesBanner) storiesBanner.classList.add("hidden");
     } else {
       docsPanel.classList.remove("hidden");
       storiesPanel.classList.add("hidden");
       issuesPanel.classList.add("hidden");
       controls?.classList.remove("hidden");
+      if (storiesBanner) storiesBanner.classList.remove("hidden");
     }
     viewButtons.forEach((button) => {
       button.classList.toggle("is-active", button.dataset.panel === panel);
@@ -489,9 +493,17 @@ async function renderIndex() {
     });
   });
 
+  // Обработчик для баннера Stories
+  const storiesBannerButton = document.querySelector(".stories-banner__button");
+  if (storiesBannerButton) {
+    storiesBannerButton.addEventListener("click", () => {
+      setActivePanel("stories");
+    });
+  }
+
   renderDocs();
   renderStories();
-  setActivePanel("docs");
+  setActivePanel(activePanel);
 }
 
 function applyStatusBadge(element, status) {
