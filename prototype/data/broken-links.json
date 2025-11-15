@@ -1,91 +1,13 @@
 {
-  "generatedAt": "2025-11-14T08:34:03.414Z",
-  "totalFiles": 154,
-  "brokenCount": 15,
+  "generatedAt": "2025-11-15T20:38:28.172Z",
+  "totalFiles": 165,
+  "brokenCount": 2,
   "issues": [
     {
       "file": "vova-i-petrova-ef2871.md",
       "link": "База знаний dcec31887b6145d78d9096d911a951cb.csv",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "vova-i-petrova-ef2871.md",
-      "link": "Персонажи (Агенты",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "ui-maket-shapka-i-pervyj-ekran-static-first.md",
-      "link": "file://",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
-      "link": "file://",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "spec-normalize-i-politika-imyon.md",
-      "link": "../README.md",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
-      "link": "URL",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
-      "link": "/kb/flux",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress.md",
-      "link": "/nav/user",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
-      "link": "URL",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
-      "link": "/kb/flux",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
-      "link": "/nav/user",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "notion-brain.md",
-      "link": "context-mapyaml.md",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "instrukcii-dlya-notion-ai-vovaipetrova.md",
-      "link": "../README.md",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "instrukcii-dlya-notion-ai-vovaipetrova-28ce52.md",
-      "link": "../README.md",
-      "reason": "missing",
-      "resolved_to": null
+      "reason": "unknown_target",
+      "resolved_to": "база знаний dcec31887b6145d78d9096d911a951cbvova-i-petrova"
     },
     {
       "file": "arhitektura-i-komponenty-486a0b.md",

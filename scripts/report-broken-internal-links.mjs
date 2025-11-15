@@ -1,19 +1,20 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { globSync } from "glob";
 import path from "path";
-import YAML from "yaml";
+import matter from "gray-matter";
 
 const DOCS_ROOT = "docs";
 const OUTPUT_PATH = "prototype/data/broken-links.json";
 const LINK_MAP_PATH = "prototype/link-map.json";
 
 function readFrontMatter(raw) {
-  if (!raw.startsWith("---")) return { data: {}, content: raw };
-  const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
-  if (!match) return { data: {}, content: raw };
-  const data = YAML.parse(match[1]) || {};
-  const content = raw.slice(match[0].length);
-  return { data, content };
+  try {
+    const parsed = matter(raw);
+    return { data: parsed.data || {}, content: parsed.content };
+  } catch (error) {
+    console.warn("⚠️  Failed to parse front matter, using empty data:", error.message);
+    return { data: {}, content: raw };
+  }
 }
 
 function loadLinkMap() {

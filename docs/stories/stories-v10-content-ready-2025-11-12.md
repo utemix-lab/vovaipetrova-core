@@ -7,7 +7,7 @@ tags:
 machine_tags:
   - content/story
 status: draft
-last_edited_time: ''
+last_edited_time: null
 ---
 # Stories · v1.0-content-ready — 2025-11-12
 
