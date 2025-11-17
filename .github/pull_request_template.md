@@ -4,6 +4,8 @@
 
 **Связанная задача**: {Ссылка на Notion Briefs или GitHub Issue}
 
+**Lane Label**: {Добавьте соответствующий label при создании PR: `lane:docs`, `lane:infra`, `lane:stories`, `lane:characters`, `lane:qa`, `lane:refactor`, `lane:fix`, `lane:feat`}
+
 ## Deliverables
 
 **Executor**: {Имя агента или исполнителя, например: Cursor, CodeGPT Docs Agent}  
@@ -47,3 +49,4 @@
 - [ ] Only .github/ **or docs/** modified
 - [ ] Deliverables секция заполнена в PR описании
 - [ ] Все пункты из Briefs отмечены как Completed или объяснено, почему нет
+- [ ] Добавлен соответствующий lane label (`lane:*`) для автоматической проверки конфликтов
