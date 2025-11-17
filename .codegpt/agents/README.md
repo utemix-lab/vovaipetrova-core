@@ -28,7 +28,7 @@
 **Ограничения**:
 - Работает только с `docs/**/*.md`
 - Не меняет `scripts/`, `.github/workflows/`
-- Следует правилам из `docs/PROTOCOL.md`
+- Следует правилам из `docs/protocol-kontraktnaya-model-dlya-agentov.md`
 
 ### Refactor Agent
 **Назначение**: Рефакторинг кода и структуры
@@ -73,7 +73,7 @@
    Прочитай `/.codegpt/context.md` для понимания структуры проекта.
 
    ## Правила работы
-   - Следуй `docs/PROTOCOL.md` для контрактной модели
+   - Следуй `docs/protocol-kontraktnaya-model-dlya-agentov.md` для контрактной модели
    - Проверяй соответствие `CONTRIBUTING.md` для процесса
    - Используй соответствующие шаблоны из `templates/`
 
@@ -118,11 +118,11 @@ codegpt --agent docs-agent --task "Создать новую статью"
 - **Один агент = одна специализация**: не смешивайте роли
 - **Явные ограничения**: всегда указывайте, что агент НЕ должен делать
 - **Примеры**: добавляйте примеры задач для лучшего понимания
-- **Обновление**: синхронизируйте промпты с изменениями в `PROTOCOL.md` и `context.md`
+- **Обновление**: синхронизируйте промпты с изменениями в `protocol-kontraktnaya-model-dlya-agentov.md` и `context.md`
 
 ## Связано с
 
-- `docs/PROTOCOL.md` — контрактная модель для агентов
+- `docs/protocol-kontraktnaya-model-dlya-agentov.md` — контрактная модель для агентов
 - `/.codegpt/context.md` — контекст проекта
 - `CONTRIBUTING.md` — процесс работы с репозиторием
 

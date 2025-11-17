@@ -17,7 +17,7 @@ machine_tags: []
 
 ### Контекст проекта
 - `/.codegpt/context.md` — общий контекст (источник истины, ветви, линтеры, CI, lanes)
-- `docs/PROTOCOL.md` — этот документ (правила работы)
+- `docs/protocol-kontraktnaya-model-dlya-agentov.md` — этот документ (правила работы)
 - `CONTRIBUTING.md` — процесс работы с репозиторием
 - `README.md` — структура и команды
 
@@ -26,8 +26,49 @@ machine_tags: []
 ### Обязательные артефакты
 1. **Ветка**: `{type}/{short-description}` (например, `chore/stories-pause-note`)
 2. **Коммиты**: Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`)
-3. **Pull Request**: с описанием изменений и ссылкой на задачу в Briefs
-4. **Deliverables**: соответствие списку из Briefs
+3. **Pull Request**: с описанием изменений, ссылкой на задачу в Briefs и секцией Deliverables
+4. **Deliverables**: соответствие списку из Briefs, оформленное по стандартному шаблону
+
+### Формат Deliverables в PR
+
+Каждый PR должен содержать секцию `## Deliverables` со следующей структурой:
+
+```markdown
+## Deliverables
+
+**Executor**: {Имя агента или исполнителя}  
+**Status**: ✅ Completed | ⏳ In Progress | ❌ Blocked  
+**Task**: {Ссылка на задачу в Notion Briefs или Issue}
+
+### Completed
+- [x] {Пункт 1 из списка Deliverables}
+- [x] {Пункт 2 из списка Deliverables}
+
+### Changes
+- {Описание изменений 1}
+- {Описание изменений 2}
+
+### Files Changed
+- `path/to/file1.md` — {описание изменений}
+- `path/to/file2.js` — {описание изменений}
+
+### PRs Created
+- #{номер} — {название PR} (если создавались связанные PR)
+
+### Metrics
+- {Метрика 1, если применимо}
+- {Метрика 2, если применимо}
+
+### Problems Encountered
+- {Проблема 1, если была}
+- {Проблема 2, если была}
+
+### Proposals
+- {Предложение по улучшению, если есть}
+```
+
+**Обязательные поля**: Executor, Status, Task, Completed  
+**Опциональные поля**: Changes, Files Changed, PRs Created, Metrics, Problems Encountered, Proposals
 
 ### Формат коммитов
 ```
@@ -94,7 +135,7 @@ machine_tags: []
 ## Процесс работы агента
 
 1. **Чтение задачи**: получить Brief из Notion или Issue
-2. **Подготовка**: прочитать контекст (`/.codegpt/context.md`, `PROTOCOL.md`)
+2. **Подготовка**: прочитать контекст (`/.codegpt/context.md`, `docs/protocol-kontraktnaya-model-dlya-agentov.md`)
 3. **Выполнение**: создать ветку, внести изменения, проверить локально
 4. **Проверка**: `normalize:dry`, `lint:docs`, соответствие Deliverables
 5. **PR**: создать Pull Request с описанием
@@ -106,5 +147,5 @@ machine_tags: []
 
 - `CONTRIBUTING.md` — процесс работы с репозиторием
 - `/.codegpt/context.md` — контекст проекта
-- `docs/rfcs/template.md` — шаблон для RFC (для крупных изменений)
+- `docs/rfcs/rfc-xxxx-nazvanie-rfc.md` — шаблон для RFC (для крупных изменений)
 
