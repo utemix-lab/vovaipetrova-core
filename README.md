@@ -18,6 +18,8 @@
 
 ## Stories
 
+**Статус: paused pending RFC v2** (через двусторонний шлюз). Новая форма будет внедряться через RFC → Pilot → Rollout.
+
 Хроника проекта в формате коротких эпизодов (700–1200 знаков). Каждый эпизод фиксирует ключевые вехи развития проекта в структуре «что произошло → зачем → что получилось → тех-вставка → что дальше».
 
 - **Лента Stories**: [https://utemix-lab.github.io/vovaipetrova-core/#stories-panel](https://utemix-lab.github.io/vovaipetrova-core/#stories-panel)
@@ -195,7 +197,7 @@ machine_tags: [theme/ux, product/services]  # скрытые фасеты
 
 1. Скопируйте `.env.example` в `.env` и заполните API ключи:
    - `GITHUB_TOKEN` — токен GitHub API ([получить](https://github.com/settings/tokens))
-   - `NOTION_API_KEY` — ключ Notion API ([получить](https://www.notion.so/my-integrations))
+   - `NOTION_API_KEY` — ключ Notion API ([получить](https://www.notion.so/my-integrations)) - начинается с `secret_` (старый) или `ntn_` (новый формат)
 
 2. Настройте CodeGPT в VS Code/Cursor:
    - Откройте `vscode-settings.example.json` как пример
