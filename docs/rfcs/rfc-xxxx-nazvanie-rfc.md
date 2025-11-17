@@ -1,3 +1,10 @@
+---
+title: 'RFC-XXXX: {Название RFC}'
+slug: rfc-xxxx-nazvanie-rfc
+summary: '# RFC-XXXX: {Название RFC}'
+tags: []
+machine_tags: []
+---
 # RFC-XXXX: {Название RFC}
 
 **Статус**: Proposed | Accepted | Rejected | Deprecated  
