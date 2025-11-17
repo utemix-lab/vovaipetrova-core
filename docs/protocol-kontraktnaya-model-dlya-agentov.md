@@ -147,5 +147,5 @@ machine_tags: []
 
 - `CONTRIBUTING.md` — процесс работы с репозиторием
 - `/.codegpt/context.md` — контекст проекта
-- `docs/rfcs/template.md` — шаблон для RFC (для крупных изменений)
+- `docs/rfcs/rfc-xxxx-nazvanie-rfc.md` — шаблон для RFC (для крупных изменений)
 
