@@ -493,13 +493,7 @@ async function renderIndex() {
     });
   });
 
-  // Обработчик для баннера Stories
-  const storiesBannerButton = document.querySelector(".stories-banner__button");
-  if (storiesBannerButton) {
-    storiesBannerButton.addEventListener("click", () => {
-      setActivePanel("stories");
-    });
-  }
+  // Баннер Stories теперь информационный, без кнопки
 
   renderDocs();
   renderStories();
