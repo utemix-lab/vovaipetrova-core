@@ -19,8 +19,49 @@
 ### Обязательные артефакты
 1. **Ветка**: `{type}/{short-description}` (например, `chore/stories-pause-note`)
 2. **Коммиты**: Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`)
-3. **Pull Request**: с описанием изменений и ссылкой на задачу в Briefs
-4. **Deliverables**: соответствие списку из Briefs
+3. **Pull Request**: с описанием изменений, ссылкой на задачу в Briefs и секцией Deliverables
+4. **Deliverables**: соответствие списку из Briefs, оформленное по стандартному шаблону
+
+### Формат Deliverables в PR
+
+Каждый PR должен содержать секцию `## Deliverables` со следующей структурой:
+
+```markdown
+## Deliverables
+
+**Executor**: {Имя агента или исполнителя}  
+**Status**: ✅ Completed | ⏳ In Progress | ❌ Blocked  
+**Task**: {Ссылка на задачу в Notion Briefs или Issue}
+
+### Completed
+- [x] {Пункт 1 из списка Deliverables}
+- [x] {Пункт 2 из списка Deliverables}
+
+### Changes
+- {Описание изменений 1}
+- {Описание изменений 2}
+
+### Files Changed
+- `path/to/file1.md` — {описание изменений}
+- `path/to/file2.js` — {описание изменений}
+
+### PRs Created
+- #{номер} — {название PR} (если создавались связанные PR)
+
+### Metrics
+- {Метрика 1, если применимо}
+- {Метрика 2, если применимо}
+
+### Problems Encountered
+- {Проблема 1, если была}
+- {Проблема 2, если была}
+
+### Proposals
+- {Предложение по улучшению, если есть}
+```
+
+**Обязательные поля**: Executor, Status, Task, Completed  
+**Опциональные поля**: Changes, Files Changed, PRs Created, Metrics, Problems Encountered, Proposals
 
 ### Формат коммитов
 ```
