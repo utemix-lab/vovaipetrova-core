@@ -18,7 +18,7 @@ vovaipetrova-core/
 │   ├── stories/            # Хроника проекта (эпизоды)
 │   ├── nav/                # Навигация и теги
 │   ├── rfcs/               # RFC (Request for Comments)
-│   └── PROTOCOL.md         # Контрактная модель для агентов
+│   └── protocol-kontraktnaya-model-dlya-agentov.md  # Контрактная модель для агентов
 ├── prototype/              # Explorer UI (GitHub Pages)
 │   ├── index.html          # Главная страница
 │   ├── app.js              # Логика Explorer
@@ -144,7 +144,7 @@ service: true  # только для служебных файлов
 
 ## Связанные документы
 
-- `docs/PROTOCOL.md` — контрактная модель для агентов
+- `docs/protocol-kontraktnaya-model-dlya-agentov.md` — контрактная модель для агентов
 - `CONTRIBUTING.md` — процесс работы с репозиторием
 - `README.md` — структура и команды
 - `docs/rfcs/template.md` — шаблон для RFC

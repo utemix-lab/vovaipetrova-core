@@ -17,7 +17,7 @@ machine_tags: []
 
 ### Контекст проекта
 - `/.codegpt/context.md` — общий контекст (источник истины, ветви, линтеры, CI, lanes)
-- `docs/PROTOCOL.md` — этот документ (правила работы)
+- `docs/protocol-kontraktnaya-model-dlya-agentov.md` — этот документ (правила работы)
 - `CONTRIBUTING.md` — процесс работы с репозиторием
 - `README.md` — структура и команды
 
@@ -135,7 +135,7 @@ machine_tags: []
 ## Процесс работы агента
 
 1. **Чтение задачи**: получить Brief из Notion или Issue
-2. **Подготовка**: прочитать контекст (`/.codegpt/context.md`, `PROTOCOL.md`)
+2. **Подготовка**: прочитать контекст (`/.codegpt/context.md`, `docs/protocol-kontraktnaya-model-dlya-agentov.md`)
 3. **Выполнение**: создать ветку, внести изменения, проверить локально
 4. **Проверка**: `normalize:dry`, `lint:docs`, соответствие Deliverables
 5. **PR**: создать Pull Request с описанием
