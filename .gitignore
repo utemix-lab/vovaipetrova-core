@@ -12,6 +12,9 @@ out/
 .env
 .env.local
 .env.*.local
+.env.example
+codegpt.config.json
+vscode-settings.example.json
 
 # IDE
 .vscode/

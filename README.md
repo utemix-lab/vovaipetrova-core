@@ -83,6 +83,10 @@ npm run lint:docs
 
 # Строгий режим: missing tags = ошибки
 npm run lint:docs:strict
+
+# CodeGPT интеграция (требует настройки .env)
+npm run codegpt:github:list-prs  # Список открытых PR
+npm run codegpt:notion:search     # Поиск в Notion
 ```
 
 ## Процесс работы
@@ -183,8 +187,37 @@ machine_tags: [theme/ux, product/services]  # скрытые фасеты
    ```
 3. Запусти `npm run normalize`
 
+## CodeGPT интеграция
+
+Настройка CodeGPT для работы с Notion и GitHub через их API (аналог MCP серверов).
+
+### Быстрая настройка
+
+1. Скопируйте `.env.example` в `.env` и заполните API ключи:
+   - `GITHUB_TOKEN` — токен GitHub API ([получить](https://github.com/settings/tokens))
+   - `NOTION_API_KEY` — ключ Notion API ([получить](https://www.notion.so/my-integrations))
+
+2. Настройте CodeGPT в VS Code/Cursor:
+   - Откройте `vscode-settings.example.json` как пример
+   - Скопируйте настройки в `.vscode/settings.json` (создайте папку, если нужно)
+   - Или используйте настройки CodeGPT в UI расширения
+
+3. Используйте скрипты:
+   ```bash
+   npm run codegpt:github:list-prs  # Список PR
+   npm run codegpt:notion:search     # Поиск в Notion
+   ```
+
+### Доступные скрипты
+
+- **GitHub**: создание/обновление PR, получение issues
+- **Notion**: поиск страниц, получение/обновление страниц
+
+Полная инструкция: [`docs/codegpt-setup.md`](docs/codegpt-setup.md)
+
 ## Источник истины
 
 - **Notion** → думает, структурирует идеи
 - **GitHub** → хранит машиночитаемую версию
 - **Cursor/LLM** → читает и работает с документами
+- **CodeGPT** → интеграция через API для автоматизации
