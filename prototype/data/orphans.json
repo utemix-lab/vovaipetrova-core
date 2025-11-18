@@ -1,29 +1,11 @@
 {
-  "updated": "2025-11-18T16:12:30.611Z",
+  "updated": "2025-11-18T18:28:24.423Z",
   "orphans": [
-    {
-      "slug": "codegpt-setup",
-      "title": "Настройка CodeGPT для работы с Notion и GitHub",
-      "url": "docs/codegpt-setup.md",
-      "status": "draft"
-    },
-    {
-      "slug": "protocol-kontraktnaya-model-dlya-agentov",
-      "title": "Protocol — Контрактная модель для агентов",
-      "url": "docs/protocol-kontraktnaya-model-dlya-agentov.md",
-      "status": "draft"
-    },
     {
       "slug": "rfc-xxxx-nazvanie-rfc",
       "title": "RFC-XXXX: {Название RFC}",
       "url": "docs/rfcs/rfc-xxxx-nazvanie-rfc.md",
       "status": "draft"
-    },
-    {
-      "slug": "routes-yml-how-to",
-      "title": "Как работать с routes.yml",
-      "url": "docs/nav/routes-yml-how-to.md",
-      "status": "ready"
     }
   ]
 }
