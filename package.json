@@ -25,7 +25,8 @@
     "fix:pr-encoding": "node scripts/fix-pr-encoding.mjs",
     "diagnostics:snapshot": "node prototype/build-index.mjs && node scripts/report-broken-internal-links.mjs && node scripts/generate-stats.mjs",
     "diagnostics:summary": "node scripts/generate-pr-diagnostics-summary.mjs",
-    "diagnostics:check-regression": "node scripts/check-link-regression.mjs"
+    "diagnostics:check-regression": "node scripts/check-link-regression.mjs",
+    "routes:check": "node scripts/check-routes-consistency.mjs"
   },
   "repository": {
     "type": "git",

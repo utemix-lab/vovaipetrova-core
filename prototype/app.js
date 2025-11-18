@@ -230,6 +230,8 @@ async function renderIndex() {
   const storiesEmpty = document.getElementById("stories-empty");
   const issuesContainer = document.getElementById("issues-list");
   const issuesEmpty = document.getElementById("issues-empty");
+  const orphansContainer = document.getElementById("orphans-list");
+  const orphansEmpty = document.getElementById("orphans-empty");
   const searchInput = document.getElementById("search-input");
   const filterButtons = Array.from(
     document.querySelectorAll(".filter-button")
@@ -242,6 +244,7 @@ async function renderIndex() {
   const docsPanel = document.getElementById("docs-panel");
   const storiesPanel = document.getElementById("stories-panel");
   const issuesPanel = document.getElementById("issues-panel");
+  const orphansPanel = document.getElementById("orphans-panel");
 
   const [pages, routes] = await Promise.all([
     loadPages("data/pages.json"),
@@ -274,7 +277,7 @@ async function renderIndex() {
   let currentSort = urlParams.get("sort") || localStorage.getItem("explorer-sort") || "route";
   let currentTagFilter = tagFromHash || urlParams.get("tag") || localStorage.getItem("explorer-tag-filter") || null;
   let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
-  let activePanel = hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : "docs";
+  let activePanel = hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : "docs";
   
   // Сохраняем в localStorage
   if (urlParams.get("status")) localStorage.setItem("explorer-status", currentStatus);
@@ -300,12 +303,12 @@ async function renderIndex() {
       params.set("search", encodeURIComponent(currentSearch));
     }
     
-    // Формируем hash: если есть тег, то #tags/<tag>, иначе используем текущий hash без тега
+    // Формируем hash: приоритет тега, затем панель
     let newHash = "";
     if (currentTagFilter) {
       newHash = `tags/${encodeURIComponent(currentTagFilter)}`;
-    } else {
-      newHash = hashWithoutTag;
+    } else if (activePanel !== "docs") {
+      newHash = activePanel; // stories, issues, orphans
     }
     
     const queryString = params.toString();
@@ -467,6 +470,38 @@ async function renderIndex() {
     }
   }
 
+  async function renderOrphans() {
+    orphansContainer.innerHTML = "";
+    try {
+      const response = await fetch("data/orphans.json");
+      if (!response.ok) throw new Error(`status ${response.status}`);
+      const orphansData = await response.json();
+      
+      if (!orphansData.orphans || orphansData.orphans.length === 0) {
+        orphansEmpty.classList.remove("hidden");
+        return;
+      }
+      orphansEmpty.classList.add("hidden");
+      
+      const fragment = document.createDocumentFragment();
+      orphansData.orphans.forEach((orphan) => {
+        const card = createCard({
+          slug: orphan.slug,
+          title: orphan.title,
+          status: orphan.status,
+          url: orphan.url,
+          summary: null,
+          tags: []
+        });
+        fragment.appendChild(card);
+      });
+      orphansContainer.appendChild(fragment);
+    } catch (error) {
+      console.warn("⚠️  Failed to load orphans:", error.message);
+      orphansEmpty.classList.remove("hidden");
+    }
+  }
+
   function setActivePanel(panel) {
     activePanel = panel;
     const storiesBanner = document.getElementById("stories-banner");
@@ -474,18 +509,28 @@ async function renderIndex() {
       docsPanel.classList.add("hidden");
       storiesPanel.classList.remove("hidden");
       issuesPanel.classList.add("hidden");
+      orphansPanel.classList.add("hidden");
       controls?.classList.add("hidden");
       if (storiesBanner) storiesBanner.classList.add("hidden");
     } else if (panel === "issues") {
       docsPanel.classList.add("hidden");
       storiesPanel.classList.add("hidden");
       issuesPanel.classList.remove("hidden");
+      orphansPanel.classList.add("hidden");
+      controls?.classList.add("hidden");
+      if (storiesBanner) storiesBanner.classList.add("hidden");
+    } else if (panel === "orphans") {
+      docsPanel.classList.add("hidden");
+      storiesPanel.classList.add("hidden");
+      issuesPanel.classList.add("hidden");
+      orphansPanel.classList.remove("hidden");
       controls?.classList.add("hidden");
       if (storiesBanner) storiesBanner.classList.add("hidden");
     } else {
       docsPanel.classList.remove("hidden");
       storiesPanel.classList.add("hidden");
       issuesPanel.classList.add("hidden");
+      orphansPanel.classList.add("hidden");
       controls?.classList.remove("hidden");
       if (storiesBanner) storiesBanner.classList.remove("hidden");
     }
@@ -607,8 +652,11 @@ async function renderIndex() {
       const targetPanel = button.dataset.panel;
       if (!targetPanel || targetPanel === activePanel) return;
       setActivePanel(targetPanel);
+      updateURL();
       if (targetPanel === "issues") {
         renderIssues();
+      } else if (targetPanel === "orphans") {
+        renderOrphans();
       }
     });
   });
@@ -618,6 +666,9 @@ async function renderIndex() {
   renderDocs();
   renderStories();
   setActivePanel(activePanel);
+  if (activePanel === "orphans") {
+    renderOrphans();
+  }
 }
 
 function applyStatusBadge(element, status) {

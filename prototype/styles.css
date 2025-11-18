@@ -440,7 +440,8 @@ body[data-view="index"] {
   border-radius: 4px;
 }
 
-.issues-intro {
+.issues-intro,
+.orphans-intro {
   margin: 1rem 0 0.5rem;
   max-width: 720px;
   color: var(--muted);
