@@ -259,21 +259,82 @@ async function renderIndex() {
       return (a.title || a.slug).localeCompare(b.title || b.slug, "ru");
     });
   const docPages = visiblePages.filter((page) => !isStoryPage(page));
+  
+  // Проверяем, находимся ли мы на странице тега (через hash #tags/<tag>)
+  const hash = window.location.hash.replace("#", "");
+  const hashMatch = hash.match(/^tags\/(.+)$/);
+  const tagFromHash = hashMatch ? decodeURIComponent(hashMatch[1]) : null;
+  const hashWithoutTag = hash.replace(/^tags\/.+$/, "");
+  
   // Читаем параметры из URL или localStorage
   const urlParams = new URLSearchParams(window.location.search);
-  const hash = window.location.hash.replace("#", "");
   
-  let currentStatus = "all";
-  let currentSearch = "";
+  let currentStatus = urlParams.get("status") || localStorage.getItem("explorer-status") || "all";
+  let currentSearch = urlParams.get("search") || "";
   let currentSort = urlParams.get("sort") || localStorage.getItem("explorer-sort") || "route";
-  let currentTagFilter = urlParams.get("tag") || localStorage.getItem("explorer-tag-filter") || null;
+  let currentTagFilter = tagFromHash || urlParams.get("tag") || localStorage.getItem("explorer-tag-filter") || null;
   let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
-  let activePanel = hash.includes("stories") ? "stories" : hash.includes("issues") ? "issues" : "docs";
+  let activePanel = hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : "docs";
   
   // Сохраняем в localStorage
+  if (urlParams.get("status")) localStorage.setItem("explorer-status", currentStatus);
   if (urlParams.get("sort")) localStorage.setItem("explorer-sort", currentSort);
-  if (urlParams.get("tag")) localStorage.setItem("explorer-tag-filter", currentTagFilter);
+  if (urlParams.get("tag") || tagFromHash) localStorage.setItem("explorer-tag-filter", currentTagFilter);
   if (urlParams.get("ready")) localStorage.setItem("explorer-ready-only", readyOnly ? "true" : "false");
+  
+  // Функция для обновления URL без перезагрузки страницы
+  function updateURL() {
+    const params = new URLSearchParams();
+    
+    if (currentStatus !== "all") {
+      params.set("status", currentStatus);
+    }
+    if (currentSort !== "route") {
+      params.set("sort", currentSort);
+    }
+    // Тег храним в hash, а не в query параметрах
+    if (readyOnly) {
+      params.set("ready", "1");
+    }
+    if (currentSearch) {
+      params.set("search", encodeURIComponent(currentSearch));
+    }
+    
+    // Формируем hash: если есть тег, то #tags/<tag>, иначе используем текущий hash без тега
+    let newHash = "";
+    if (currentTagFilter) {
+      newHash = `tags/${encodeURIComponent(currentTagFilter)}`;
+    } else {
+      newHash = hashWithoutTag;
+    }
+    
+    const queryString = params.toString();
+    const newURL = queryString 
+      ? `${window.location.pathname}?${queryString}${newHash ? `#${newHash}` : ""}`
+      : `${window.location.pathname}${newHash ? `#${newHash}` : ""}`;
+    
+    window.history.pushState({}, "", newURL);
+  }
+  
+  // Функция для копирования текущего URL
+  function copyCurrentURL() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      // Визуальная обратная связь
+      const button = document.getElementById("copy-link-button");
+      if (button) {
+        const originalText = button.textContent;
+        button.textContent = "Скопировано!";
+        button.style.opacity = "0.7";
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.opacity = "1";
+        }, 2000);
+      }
+    }).catch((err) => {
+      console.warn("Не удалось скопировать URL:", err);
+    });
+  }
 
   function renderDocs() {
     cardsContainer.innerHTML = "";
@@ -300,6 +361,7 @@ async function renderIndex() {
     
     if (filtered.length === 0) {
       emptyState.classList.remove("hidden");
+      cardsContainer.innerHTML = "";
       return;
     }
     emptyState.classList.add("hidden");
@@ -311,12 +373,16 @@ async function renderIndex() {
         chip.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
-          currentTagFilter = currentTagFilter === chip.dataset.tag ? null : chip.dataset.tag;
-          if (currentTagFilter) {
-            localStorage.setItem("explorer-tag-filter", currentTagFilter);
-          } else {
+          const tagValue = chip.dataset.tag;
+          // При клике на тег переключаем фильтр или убираем его
+          if (currentTagFilter === tagValue) {
+            currentTagFilter = null;
             localStorage.removeItem("explorer-tag-filter");
+          } else {
+            currentTagFilter = tagValue;
+            localStorage.setItem("explorer-tag-filter", currentTagFilter);
           }
+          updateURL();
           renderDocs();
           updateTagFilterUI();
         });
@@ -433,9 +499,18 @@ async function renderIndex() {
       filterButtons.forEach((btn) => btn.classList.remove("is-active"));
       button.classList.add("is-active");
       currentStatus = button.dataset.status;
+      localStorage.setItem("explorer-status", currentStatus);
+      updateURL();
       renderDocs();
     });
   });
+  
+  // Восстанавливаем активную кнопку фильтра
+  const activeFilterButton = filterButtons.find((btn) => btn.dataset.status === currentStatus);
+  if (activeFilterButton) {
+    filterButtons.forEach((btn) => btn.classList.remove("is-active"));
+    activeFilterButton.classList.add("is-active");
+  }
 
   sortButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -443,6 +518,7 @@ async function renderIndex() {
       button.classList.add("is-active");
       currentSort = button.dataset.sort;
       localStorage.setItem("explorer-sort", currentSort);
+      updateURL();
       renderDocs();
     });
   });
@@ -465,19 +541,63 @@ async function renderIndex() {
   checkbox.addEventListener("change", (e) => {
     readyOnly = e.target.checked;
     localStorage.setItem("explorer-ready-only", readyOnly ? "true" : "false");
+    updateURL();
     renderDocs();
   });
+  
+  // Добавляем tooltip для Ready only
+  readyOnlyToggle.title = "Показать только страницы со статусом ready";
   const filtersGroup = document.querySelector(".filters");
   if (filtersGroup) {
     filtersGroup.parentNode.insertBefore(readyOnlyToggle, filtersGroup.nextSibling);
   }
+  
+  // Добавляем кнопку "Copy link"
+  const copyLinkButton = document.createElement("button");
+  copyLinkButton.id = "copy-link-button";
+  copyLinkButton.type = "button";
+  copyLinkButton.className = "copy-link-button";
+  copyLinkButton.textContent = "Copy link";
+  copyLinkButton.title = "Скопировать ссылку с текущими фильтрами";
+  copyLinkButton.addEventListener("click", copyCurrentURL);
+  const controlsContainer = document.querySelector(".controls");
+  if (controlsContainer) {
+    controlsContainer.appendChild(copyLinkButton);
+  }
+  
+  // Если мы на странице тега, добавляем breadcrumbs и заголовок
+  if (tagFromHash) {
+    const content = document.querySelector(".content");
+    if (content) {
+      const breadcrumbs = document.createElement("nav");
+      breadcrumbs.className = "breadcrumbs";
+      breadcrumbs.setAttribute("aria-label", "Навигационная цепочка");
+      const baseURL = `${window.location.pathname}${window.location.search}`;
+      breadcrumbs.innerHTML = `
+        <a href="${baseURL}" class="breadcrumbs__link">Главная</a>
+        <span class="breadcrumbs__separator">→</span>
+        <span class="breadcrumbs__current">Тег: ${escapeHtml(tagFromHash)}</span>
+      `;
+      content.insertBefore(breadcrumbs, content.firstChild);
+      
+      // Обновляем заголовок страницы
+      document.title = `Тег: ${tagFromHash} — Vova & Petrova Docs`;
+    }
+  }
 
+  // Восстанавливаем значение поиска из URL
+  if (currentSearch) {
+    searchInput.value = currentSearch;
+  }
+  
+  // Обработчик поиска
   let searchTimeout;
   searchInput.addEventListener("input", (event) => {
     const value = event.target.value.trim();
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
       currentSearch = value;
+      updateURL();
       renderDocs();
     }, 150);
   });
