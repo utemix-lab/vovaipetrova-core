@@ -4,7 +4,7 @@
  * Использование: node scripts/check-link-regression.mjs <pr-number>
  */
 
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync, existsSync, writeFileSync, unlinkSync } from 'fs';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -93,31 +93,52 @@ function checkRegression() {
     process.exit(0);
   }
 
-  // Формируем комментарий
-  const issuesList = brokenLinks?.issues
-    ?.filter(i => i.reason === 'missing' && !i.link.startsWith('http'))
+  // Формируем детальный список проблемных ссылок
+  const internalIssues = brokenLinks?.issues
+    ?.filter(i => i.reason === 'missing' && !i.link.startsWith('http')) || [];
+  
+  // Группируем по файлам для лучшей читаемости
+  const issuesByFile = {};
+  internalIssues.forEach(issue => {
+    if (!issuesByFile[issue.file]) {
+      issuesByFile[issue.file] = [];
+    }
+    issuesByFile[issue.file].push(issue.link);
+  });
+
+  const issuesList = Object.entries(issuesByFile)
     .slice(0, 10)
-    .map(i => `- \`${i.file}\`: ${i.link}`)
-    .join('\n') || '';
+    .map(([file, links]) => {
+      const linksList = links.slice(0, 3).map(link => `  - \`${link}\``).join('\n');
+      const moreLinks = links.length > 3 ? `\n  - _... and ${links.length - 3} more_` : '';
+      return `- **\`${file}\`**:\n${linksList}${moreLinks}`;
+    })
+    .join('\n\n') || '';
+
+  const totalFiles = Object.keys(issuesByFile).length;
+  const hasMore = totalFiles > 10;
 
   const comment = [
     '## ⚠️ Link Regression Detected',
     '',
-    `Found **${internalMissing}** internal-missing link(s).`,
+    `Found **${internalMissing}** internal-missing link(s) across **${totalFiles}** file(s).`,
     '',
     '### Affected files:',
     issuesList.length > 0 ? issuesList : '- No details available',
-    issuesList.length >= 10 ? '\n_... and more_' : '',
+    hasMore ? `\n_... and ${totalFiles - 10} more file(s)_` : '',
     '',
-    'Please fix broken links before merging.',
+    '**Action required:** Please fix broken links before merging.',
     '',
     `_Generated at ${new Date().toISOString()}_`
   ].join('\n');
 
-  // Добавляем комментарий
+  // Добавляем комментарий (используем файл для избежания проблем с экранированием)
   try {
+    const tmpFile = join(__dirname, '../tmp-pr-comment.txt');
+    writeFileSync(tmpFile, comment, 'utf8');
+    
     execSync(
-      `gh pr comment ${prNumber} --repo ${repo} --body "${comment.replace(/"/g, '\\"')}"`,
+      `gh pr comment ${prNumber} --repo ${repo} --body-file "${tmpFile}"`,
       {
         stdio: 'inherit',
         encoding: 'utf-8',
@@ -125,8 +146,16 @@ function checkRegression() {
       }
     );
     console.log('✅ Comment added to PR');
+    
+    // Удаляем временный файл
+    try {
+      unlinkSync(tmpFile);
+    } catch (e) {
+      // Игнорируем ошибки удаления
+    }
   } catch (error) {
     console.error('⚠️  Failed to add comment:', error.message);
+    // Не выходим с ошибкой, чтобы не блокировать CI
   }
 
   // Добавляем label
