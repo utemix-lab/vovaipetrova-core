@@ -63,19 +63,49 @@ function getOpenPRsWithLabel(laneLabel) {
   }
 }
 
-function extractLaneLabels(prBody) {
-  if (!prBody) return [];
+function getPRLabels(prNumber) {
+  if (!GITHUB_TOKEN) {
+    console.warn('⚠️ GITHUB_TOKEN не установлен, пропускаем получение labels');
+    return [];
+  }
+
+  try {
+    // Получаем labels напрямую из GitHub API через gh CLI
+    const command = `gh pr view ${prNumber} --repo ${GITHUB_REPO} --json labels --jq '.labels[].name'`;
+    const output = execSync(command, {
+      encoding: 'utf-8',
+      env: { ...process.env, GITHUB_TOKEN }
+    });
+    
+    const labels = output.trim().split('\n').filter(Boolean);
+    return labels.map(l => l.toLowerCase());
+  } catch (error) {
+    console.warn(`⚠️ Не удалось получить labels из GitHub API: ${error.message}`);
+    return [];
+  }
+}
+
+function extractLaneLabels(prBody, prNumber) {
+  const laneLabels = new Set();
   
-  const laneLabels = [];
-  // Ищем labels в формате lane:*
-  const labelRegex = /lane:(docs|infra|stories|characters|qa|refactor|fix|feat)/gi;
-  const matches = prBody.match(labelRegex);
-  if (matches) {
-    laneLabels.push(...matches.map(m => m.toLowerCase()));
+  // Сначала пытаемся получить labels из GitHub API
+  const apiLabels = getPRLabels(prNumber);
+  apiLabels.forEach(label => {
+    if (label.startsWith('lane:')) {
+      laneLabels.add(label.toLowerCase());
+    }
+  });
+  
+  // Также проверяем PR body на случай, если labels ещё не добавлены
+  if (prBody) {
+    const labelRegex = /lane:(docs|infra|stories|characters|qa|refactor|fix|feat|prototype|content)/gi;
+    const matches = prBody.match(labelRegex);
+    if (matches) {
+      matches.forEach(m => laneLabels.add(m.toLowerCase()));
+    }
   }
   
-  // Также проверяем labels через GitHub API, если доступен gh CLI
-  return [...new Set(laneLabels)]; // Убираем дубликаты
+  return Array.from(laneLabels);
 }
 
 function main() {
@@ -89,11 +119,19 @@ function main() {
     process.exit(0);
   }
 
-  // Извлекаем lane labels из PR body
-  const laneLabels = extractLaneLabels(prBody);
+  // Проверяем, нужно ли пропустить проверку для автоматических веток
+  const branchName = process.env.GITHUB_HEAD_REF || '';
+  if (branchName.startsWith('notion-sync/')) {
+    console.log(`ℹ️  Ветка ${branchName} — автоматический импорт, пропускаем проверку lanes`);
+    process.exit(0);
+  }
+
+  // Извлекаем lane labels из GitHub API и PR body
+  const laneLabels = extractLaneLabels(prBody, prNumber);
   
   if (laneLabels.length === 0) {
-    console.log('✅ Нет lane labels в PR, проверка не требуется');
+    console.log('⚠️  Нет lane labels в PR. Рекомендуется добавить соответствующий label `lane:*` для проверки конфликтов.');
+    console.log('   Проверка не блокирует PR, но рекомендуется добавить label.');
     process.exit(0);
   }
 
