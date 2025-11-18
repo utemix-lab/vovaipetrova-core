@@ -1,0 +1,61 @@
+name: Diagnostics Snapshot v3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "prototype/**"
+      - "scripts/**"
+      - ".github/workflows/diagnostics-snapshot.yml"
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate diagnostics snapshot
+        run: |
+          echo "📊 Generating diagnostics snapshot..."
+          node prototype/build-index.mjs
+          node scripts/report-broken-internal-links.mjs
+          node scripts/generate-stats.mjs
+          echo "✅ Diagnostics snapshot generated"
+
+      - name: Check for changes
+        id: check-changes
+        run: |
+          if git diff --quiet prototype/data/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes in diagnostics files"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Diagnostics files updated"
+          fi
+
+      - name: Commit diagnostics snapshot
+        if: steps.check-changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add prototype/data/*.json
+          git commit -m "chore: update diagnostics snapshot v3
+
+          - Auto-generated after merge to main
+          - Updated pages.json, broken-links.json, stats.json"
+          git push
+
