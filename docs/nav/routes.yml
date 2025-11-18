@@ -297,3 +297,7 @@ routes:
         doc: docs/nav/routes-yml-how-to.md
         status: ok
         notes: Краткая инструкция по добавлению разделов и страниц в routes.yml для отображения в Explorer
+      - slug: orphans-how-to
+        doc: docs/nav/orphans-how-to.md
+        status: ok
+        notes: Инструкция по работе со страницами без маршрутов в routes.yml (orphan pages)
