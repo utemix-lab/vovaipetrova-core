@@ -1,0 +1,6 @@
+chore: stories pause note (pending RFC v2)
+
+- Добавлена заметка о статусе paused в README раздел Stories
+- Заменен баннер в Explorer на информационную плашку
+- Убрана кнопка из баннера, добавлена ссылка на README
+

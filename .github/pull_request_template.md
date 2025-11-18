@@ -42,6 +42,7 @@
 
 ## Чек-лист проверки
 
+### Общие проверки
 - [ ] Front matter present in changed .md files
 - [ ] slug = filename
 - [ ] Links are relative (no percent-encoding)
@@ -50,3 +51,15 @@
 - [ ] Deliverables секция заполнена в PR описании
 - [ ] Все пункты из Briefs отмечены как Completed или объяснено, почему нет
 - [ ] Добавлен соответствующий lane label (`lane:*`) для автоматической проверки конфликтов
+
+### Прототип (если изменялись prototype/ или docs/)
+- [ ] Rebuild diagnostics выполнен (`npm run diagnostics:snapshot`)
+- [ ] Проверено обновление `prototype/data/pages.json`
+- [ ] Проверено обновление `prototype/data/orphans.json` (если изменялись routes.yml)
+- [ ] Проверено обновление `prototype/data/stats.json`
+- [ ] Проверено обновление `prototype/data/broken-links.json`
+
+### Lanes policy
+- [ ] Добавлен соответствующий `lane:*` label к PR
+- [ ] Проверка one-PR-per-lane пройдена (CI должен быть зелёным)
+- [ ] Нет конфликтов с другими открытыми PR в той же lane

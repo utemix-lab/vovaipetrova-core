@@ -1,0 +1,8 @@
+chore: lanes guardrails (branch/label policy + optional check)
+
+- Добавлен скрипт scripts/check-lanes.mjs для проверки политики "один PR на lane"
+- Добавлена проверка в CI (не блокирующая)
+- Обновлена документация в PROTOCOL.md с описанием системы labels lane:*
+- Обновлён PR template с информацией о lane labels
+- Обновлён .codegpt/context.md с информацией о labels
+

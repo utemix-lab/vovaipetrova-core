@@ -1,0 +1,47 @@
+## Deliverables
+
+**Executor:** Cursor
+**Status:** Ready
+**Task:** Routes consistency check + Orphans view
+
+### Что сделано
+
+1. **Скрипт проверки соответствия** (`scripts/check-routes-consistency.mjs`):
+   - Читает `docs/nav/routes.yml` и извлекает все пути из полей `doc:`
+   - Сравнивает с `prototype/data/pages.json`
+   - Находит страницы без маршрутов (кроме `service:true`)
+   - Генерирует `prototype/data/orphans.json` с отчетом
+
+2. **Вкладка Orphans в Explorer**:
+   - Добавлена кнопка "Orphans" в view-toggle
+   - Добавлена панель `orphans-panel` с описанием
+   - Реализована функция `renderOrphans()` для загрузки и отображения сирот
+   - Обновлена логика `setActivePanel()` и URL hash для поддержки `#orphans`
+
+3. **Интеграция в CI**:
+   - Добавлен npm script `routes:check` в `package.json`
+   - Интегрирован в `docs-ci.yml` и `diagnostics-snapshot.yml` (неблокирующая проверка)
+   - `orphans.json` автоматически обновляется при генерации диагностик
+
+### Результаты
+
+- Найдено 5 сиротских страниц (все в статусе draft):
+  - codegpt-setup.md
+  - navigaciya-shema-razdelov-i-marshrutov.md
+  - protocol-kontraktnaya-model-dlya-agentov.md
+  - rfc-xxxx-nazvanie-rfc.md
+  - site-ia-nav.md
+
+### Файлы
+
+- `scripts/check-routes-consistency.mjs` (новый)
+- `prototype/index.html` (добавлена кнопка и панель Orphans)
+- `prototype/app.js` (логика рендеринга Orphans)
+- `prototype/styles.css` (стили для orphans-intro)
+- `package.json` (npm script routes:check)
+- `.github/workflows/docs-ci.yml` (интеграция проверки)
+- `.github/workflows/diagnostics-snapshot.yml` (генерация orphans.json)
+- `prototype/data/orphans.json` (отчет о сиротах)
+
+**Lane:** infra
+

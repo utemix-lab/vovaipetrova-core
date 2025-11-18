@@ -1,0 +1,6 @@
+chore: standard Deliverables + PR template
+
+- Добавлен шаблон Deliverables в docs/PROTOCOL.md
+- Обновлен .github/pull_request_template.md с секцией Deliverables
+- Добавлена проверка наличия секции Deliverables в CI
+

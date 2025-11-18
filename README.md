@@ -30,6 +30,7 @@
 
 - `docs/` — все документы в Markdown с front matter (title, slug, tags, machine_tags)
 - `docs/nav/tags.yaml` — маппинг видимых тегов → машинотегов (фасеты)
+- `docs/nav/routes.yml` — карта маршрутов сайта и навигационная структура ([как работать с routes.yml](docs/nav/routes-yml-how-to.md))
 - `scripts/` — инструменты нормализации и линтинга
 
 ## Статистика контента (v1.0)

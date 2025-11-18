@@ -1,0 +1,13 @@
+Добавлен scaffold для мульти-агентного протокола работы с репозиторием.
+
+## Что добавлено
+
+- **docs/PROTOCOL.md** — контрактная модель для агентов (вход/выход, запреты, QA-ворота, Lanes policy)
+- **docs/rfcs/template.md** — шаблон RFC (Problem, Proposal, Impact, Migration, Pilot, Rollout, Rollback)
+- **.codegpt/context.md** — контекст проекта (источник истины, ветви, линтеры, CI, lanes)
+- **.codegpt/agents/README.md** — инструкция по добавлению промптов агентов (Docs/Refactor/Creative)
+
+## Цель
+
+Зафиксировать в репозитории контрактную модель и заготовки для CodeGPT-агентов.
+

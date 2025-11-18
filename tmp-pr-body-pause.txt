@@ -1,0 +1,12 @@
+Добавлена заметка о паузе Stories до появления RFC v2.
+
+## Изменения
+
+- README.md: Добавлена заметка "Статус: paused pending RFC v2" в раздел Stories
+- prototype/index.html: Заменен баннер на информационную плашку "Stories paused — ждём RFC v2"
+- prototype/app.js: Убран обработчик кнопки баннера
+- prototype/styles.css: Обновлены стили для ссылки в баннере
+
+## Цель
+
+Явно пометить ветку Stories как paused до появления RFC v2.
