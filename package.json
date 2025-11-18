@@ -21,7 +21,8 @@
     "story:generate": "node scripts/generate-stories.mjs",
     "pii:scan": "node scripts/pii-scan.mjs",
     "pii:sanitize": "node scripts/pii-sanitize.mjs",
-    "pii:sanitize:apply": "node scripts/pii-sanitize.mjs --apply"
+    "pii:sanitize:apply": "node scripts/pii-sanitize.mjs --apply",
+    "fix:pr-encoding": "node scripts/fix-pr-encoding.mjs"
   },
   "repository": {
     "type": "git",
