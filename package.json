@@ -26,7 +26,9 @@
     "diagnostics:snapshot": "node prototype/build-index.mjs && node scripts/report-broken-internal-links.mjs && node scripts/generate-stats.mjs",
     "diagnostics:summary": "node scripts/generate-pr-diagnostics-summary.mjs",
     "diagnostics:check-regression": "node scripts/check-link-regression.mjs",
-    "routes:check": "node scripts/check-routes-consistency.mjs"
+    "routes:check": "node scripts/check-routes-consistency.mjs",
+    "check:lanes": "node scripts/check-lanes.mjs",
+    "check:pr-size": "node scripts/check-pr-size.mjs"
   },
   "repository": {
     "type": "git",
