@@ -1,0 +1,7 @@
+chore: repo scaffold for multi-agent protocol
+
+- Добавлен docs/PROTOCOL.md - контрактная модель для агентов
+- Добавлен docs/rfcs/template.md - шаблон RFC
+- Добавлен .codegpt/context.md - контекст проекта
+- Добавлен .codegpt/agents/README.md - инструкция по добавлению промптов
+

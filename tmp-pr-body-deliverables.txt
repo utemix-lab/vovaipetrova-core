@@ -1,0 +1,29 @@
+Стандартизирован формат отчёта Deliverables и добавлена автоматическая проверка в PR.
+
+## Изменения
+
+- **docs/PROTOCOL.md**: Добавлен раздел "Формат Deliverables в PR" с описанием структуры секции Deliverables
+- **.github/pull_request_template.md**: Обновлён шаблон PR с полной секцией Deliverables (Executor, Status, Task, Completed, Changes, Files Changed, PRs Created, Metrics, Problems Encountered, Proposals)
+- **.github/workflows/docs-ci.yml**: Добавлена опциональная проверка наличия секции Deliverables в теле PR
+
+## Deliverables
+
+**Executor**: Cursor  
+**Status**: ✅ Completed  
+**Task**: https://www.notion.so/a6fcdb58183b40b79e156189ea5ce770
+
+### Completed
+- [x] Описать шаблон Deliverables в docs/PROTOCOL.md
+- [x] Добавить .github/pull_request_template.md с секцией Deliverables
+- [x] Добавить лёгкую проверку в CI: наличие секции Deliverables в теле PR
+
+### Changes
+- Добавлен стандартный формат отчёта Deliverables в PROTOCOL.md
+- Обновлён PR template с полной структурой секции Deliverables
+- Добавлена проверка в CI (не блокирующая, только предупреждения)
+
+### Files Changed
+- `docs/PROTOCOL.md` — добавлен раздел "Формат Deliverables в PR"
+- `.github/pull_request_template.md` — обновлён шаблон с секцией Deliverables
+- `.github/workflows/docs-ci.yml` — добавлен шаг проверки Deliverables
+

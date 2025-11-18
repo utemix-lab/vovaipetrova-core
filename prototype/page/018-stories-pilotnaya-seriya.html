@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Документ — Stories: пилотная серия</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      window.__PAGE_SLUG__ = "018-stories-pilotnaya-seriya";
+    </script>
+    <script defer src="../app.js"></script>
+  </head>
+  <body data-view="page">
+    <header class="page-header">
+      <nav class="breadcrumbs">
+        <a href="../index.html" id="back-to-list" class="back-to-list">← Back to list</a>
+        <span aria-hidden="true" class="breadcrumb-separator">›</span>
+        <span id="breadcrumb-current">Загрузка…</span>
+      </nav>
+      <div id="story-banner" class="story-banner hidden">
+        <span class="story-banner__label">Stories</span>
+        <a
+          id="story-banner-link"
+          class="story-banner__link"
+          href="../index.html#stories-panel"
+          >Все эпизоды</a
+        >
+      </div>
+      <h1 id="page-heading" class="page-title">Загрузка…</h1>
+      <div class="page-meta">
+        <span id="page-status" class="status-badge status-draft">draft</span>
+        <div id="page-tags" class="tag-list"></div>
+      </div>
+    </header>
+    <main class="page-layout">
+      <aside class="page-sidebar">
+        <section class="sidebar-section">
+          <h2 class="sidebar-title">Сводка</h2>
+          <p id="page-summary" class="sidebar-summary">Загрузка…</p>
+        </section>
+        <section id="related-block" class="sidebar-section hidden">
+          <h2 class="sidebar-title">Связано с…</h2>
+          <div id="related-content"></div>
+        </section>
+      </aside>
+      <article id="page-content" class="page-content" aria-live="polite">
+        <p>Загрузка документа…</p>
+      </article>
+    </main>
+  </body>
+</html>
+

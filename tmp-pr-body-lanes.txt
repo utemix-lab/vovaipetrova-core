@@ -1,0 +1,46 @@
+Введена политика "один PR на lane" для предотвращения конфликтов через систему labels и автоматическую проверку в CI.
+
+## Изменения
+
+- **scripts/check-lanes.mjs** (новый файл): Скрипт для проверки наличия других открытых PR с тем же label `lane:*`
+- **.github/workflows/docs-ci.yml**: Добавлен шаг "Check Lanes Policy" (не блокирующий)
+- **docs/protocol-kontraktnaya-model-dlya-agentov.md**: Добавлен раздел о системе labels `lane:*` и маппинге префиксов веток → labels
+- **.github/pull_request_template.md**: Добавлена секция с информацией о lane labels
+- **.codegpt/context.md**: Обновлена информация о ветвлении с описанием lane labels
+
+## Deliverables
+
+**Executor**: Cursor  
+**Status**: ✅ Completed  
+**Task**: https://www.notion.so/1eff01a747714057a72ad2b46b0acce2
+
+### Completed
+- [x] Договориться о префиксах веток: lane/docs, lane/infra, lane/stories, lane/characters, lane/qa (реализовано через labels)
+- [x] PR label policy: lane:docs | lane:infra | ... (документировано)
+- [x] GitHub Actions check (optional): если открыт PR с тем же label lane:* → новый PR вешает comment "ожидайте закрытия активного" (реализовано через предупреждение в CI)
+- [x] Добавить раздел в docs/protocol-kontraktnaya-model-dlya-agentov.md и Briefs справку
+
+### Changes
+- Создан скрипт проверки lanes через GitHub API
+- Добавлена автоматическая проверка в CI (не блокирующая)
+- Обновлена документация с описанием системы labels
+
+### Files Changed
+- `scripts/check-lanes.mjs` — новый скрипт для проверки конфликтов lanes
+- `.github/workflows/docs-ci.yml` — добавлен шаг проверки lanes
+- `docs/protocol-kontraktnaya-model-dlya-agentov.md` — добавлен раздел о lane labels
+- `.github/pull_request_template.md` — добавлена информация о lane labels
+- `.codegpt/context.md` — обновлена информация о ветвлении
+
+### Lane Labels
+Используются labels формата `lane:*`:
+- `lane:docs` — работа с документацией
+- `lane:infra` — инфраструктура (`chore/*`)
+- `lane:stories` — эпизоды Stories
+- `lane:characters` — работа с персонажами
+- `lane:qa` — проверки качества
+- `lane:refactor` — рефакторинг
+- `lane:fix` — исправления
+- `lane:feat` — новые возможности
+
+**Примечание**: Labels нужно создать вручную в настройках репозитория GitHub (Settings → Labels).
