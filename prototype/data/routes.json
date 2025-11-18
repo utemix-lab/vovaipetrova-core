@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2025-11-15",
+  "updated": "2025-11-18",
   "routes": [
     {
       "path": "/",
@@ -103,6 +103,12 @@
           "doc": "docs/instrukcii-dlya-notion-ai-vovaipetrova.md",
           "status": "ok",
           "notes": "Памятка для Notion AI: где находится источник истины и как с"
+        },
+        {
+          "slug": "codegpt-setup",
+          "doc": "docs/codegpt-setup.md",
+          "status": "ok",
+          "notes": "Инструкция по настройке CodeGPT для интеграции с Notion и GitHub через API"
         },
         {
           "slug": "koncepciya-portov-interfejsy-do-realizacii",
@@ -218,6 +224,12 @@
           "doc": "docs/integracii-s-socsetyami.md",
           "status": "ok",
           "notes": "План интеграций и точки подключения. Списком + ссылки Что ав"
+        },
+        {
+          "slug": "protocol-kontraktnaya-model-dlya-agentov",
+          "doc": "docs/protocol-kontraktnaya-model-dlya-agentov.md",
+          "status": "ok",
+          "notes": "Контрактная модель определяет правила взаимодействия агентов с репозиторием"
         }
       ]
     },
@@ -431,6 +443,12 @@
           "doc": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md",
           "status": "ok",
           "notes": "Статический прототип первого экрана с переключением ролей, к"
+        },
+        {
+          "slug": "routes-yml-how-to",
+          "doc": "docs/nav/routes-yml-how-to.md",
+          "status": "ok",
+          "notes": "Краткая инструкция по добавлению разделов и страниц в routes.yml для отображения в Explorer"
         }
       ]
     }
