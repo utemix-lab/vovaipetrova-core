@@ -57,6 +57,9 @@
         <button type="button" class="view-button" data-panel="issues">
           Issues
         </button>
+        <button type="button" class="view-button" data-panel="orphans">
+          Orphans
+        </button>
       </div>
     </header>
     <main class="content">
@@ -95,6 +98,16 @@
         <div id="issues-empty" class="empty-state hidden">
           <h2>Проблем не найдено</h2>
           <p>Все ссылки работают корректно.</p>
+        </div>
+      </section>
+      <section id="orphans-panel" class="hidden" aria-live="polite">
+        <p class="orphans-intro">
+          Страницы без маршрутов в routes.yml (кроме служебных с service:true). Эти страницы не включены в навигационную структуру сайта.
+        </p>
+        <section id="orphans-list" class="cards-grid"></section>
+        <div id="orphans-empty" class="empty-state hidden">
+          <h2>Сирот не найдено</h2>
+          <p>Все страницы имеют маршруты в routes.yml.</p>
         </div>
       </section>
     </main>

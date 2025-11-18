@@ -34,6 +34,7 @@ jobs:
           node prototype/build-index.mjs
           node scripts/report-broken-internal-links.mjs
           node scripts/generate-stats.mjs
+          node scripts/check-routes-consistency.mjs || echo "⚠️ Routes check found orphans (non-blocking)"
           echo "✅ Diagnostics snapshot generated"
 
       - name: Check for changes
@@ -56,6 +57,6 @@ jobs:
           git commit -m "chore: update diagnostics snapshot v3
 
           - Auto-generated after merge to main
-          - Updated pages.json, broken-links.json, stats.json"
+          - Updated pages.json, broken-links.json, stats.json, orphans.json"
           git push
 

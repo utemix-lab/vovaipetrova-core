@@ -1,0 +1,35 @@
+{
+  "updated": "2025-11-18T15:28:50.643Z",
+  "orphans": [
+    {
+      "slug": "codegpt-setup",
+      "title": "Настройка CodeGPT для работы с Notion и GitHub",
+      "url": "docs/codegpt-setup.md",
+      "status": "draft"
+    },
+    {
+      "slug": "navigaciya-shema-razdelov-i-marshrutov",
+      "title": "navigaciya-shema-razdelov-i-marshrutov",
+      "url": "docs/nav/navigaciya-shema-razdelov-i-marshrutov.md",
+      "status": "draft"
+    },
+    {
+      "slug": "protocol-kontraktnaya-model-dlya-agentov",
+      "title": "protocol-kontraktnaya-model-dlya-agentov",
+      "url": "docs/protocol-kontraktnaya-model-dlya-agentov.md",
+      "status": "draft"
+    },
+    {
+      "slug": "rfc-xxxx-nazvanie-rfc",
+      "title": "rfc-xxxx-nazvanie-rfc",
+      "url": "docs/rfcs/rfc-xxxx-nazvanie-rfc.md",
+      "status": "draft"
+    },
+    {
+      "slug": "site-ia-nav",
+      "title": "site-ia-nav",
+      "url": "docs/nav/site-ia-nav.md",
+      "status": "draft"
+    }
+  ]
+}
