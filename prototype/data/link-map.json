@@ -11,6 +11,7 @@
     "template-task-spec-bfe53d": "template-task-spec",
     "file://": "vova-i-petrova",
     "../readme.md": "vova-i-petrova",
+    "readme.md": "vova-i-petrova",
     "url": "vova-i-petrova",
     "/kb/flux": "vova-i-petrova",
     "/nav/user": "vova-i-petrova"
@@ -26,6 +27,14 @@
     },
     {
       "match": "^\\.\\./readme\\.md$",
+      "replacement": "vova-i-petrova"
+    },
+    {
+      "match": "^readme\\.md$",
+      "replacement": "vova-i-petrova"
+    },
+    {
+      "match": "^персонажи.*агенты",
       "replacement": "vova-i-petrova"
     },
     {

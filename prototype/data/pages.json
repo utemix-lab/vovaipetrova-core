@@ -311,6 +311,24 @@
     "story_order": null
   },
   {
+    "title": "Настройка CodeGPT для работы с Notion и GitHub",
+    "slug": "codegpt-setup",
+    "status": "draft",
+    "summary": "Инструкция по настройке CodeGPT для интеграции с Notion и GitHub через API",
+    "tags": [
+      "Автоматизация",
+      "Кодинг"
+    ],
+    "machine_tags": [
+      "theme/automation",
+      "theme/dev"
+    ],
+    "url": "docs/codegpt-setup.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
+  },
+  {
     "title": "ComfyUI — обзор и быстрый старт",
     "slug": "comfyui-obzor-i-bystryj-start-5a18c5",
     "status": "ready",
@@ -1075,26 +1093,26 @@
     "story_order": null
   },
   {
-    "title": "navigaciya-shema-razdelov-i-marshrutov",
+    "title": "Навигация — схема разделов и маршрутов",
     "slug": "navigaciya-shema-razdelov-i-marshrutov",
     "status": "draft",
-    "summary": "",
+    "summary": "# Навигация — схема разделов и маршрутов",
     "tags": [],
     "machine_tags": [],
     "url": "docs/nav/navigaciya-shema-razdelov-i-marshrutov.md",
-    "service": false,
+    "service": true,
     "collection": null,
     "story_order": null
   },
   {
-    "title": "site-ia-nav",
+    "title": "Site IA / nav",
     "slug": "site-ia-nav",
     "status": "draft",
-    "summary": "",
+    "summary": "# Site IA / nav",
     "tags": [],
     "machine_tags": [],
     "url": "docs/nav/site-ia-nav.md",
-    "service": false,
+    "service": true,
     "collection": null,
     "story_order": null
   },
@@ -1470,6 +1488,18 @@
     "story_order": null
   },
   {
+    "title": "Protocol — Контрактная модель для агентов",
+    "slug": "protocol-kontraktnaya-model-dlya-agentov",
+    "status": "draft",
+    "summary": "# Protocol — Контрактная модель для агентов",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/protocol-kontraktnaya-model-dlya-agentov.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
+  },
+  {
     "title": "prototype",
     "slug": "prototype-a80bcc",
     "status": "draft",
@@ -1534,6 +1564,18 @@
     "machine_tags": [],
     "url": "docs/readme-notion-brain.md",
     "service": true,
+    "collection": null,
+    "story_order": null
+  },
+  {
+    "title": "RFC-XXXX: {Название RFC}",
+    "slug": "rfc-xxxx-nazvanie-rfc",
+    "status": "draft",
+    "summary": "# RFC-XXXX: {Название RFC}",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/rfcs/rfc-xxxx-nazvanie-rfc.md",
+    "service": false,
     "collection": null,
     "story_order": null
   },
