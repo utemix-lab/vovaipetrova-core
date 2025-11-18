@@ -613,7 +613,7 @@ async function renderIndex() {
   // Если мы на странице тега, добавляем breadcrumbs и заголовок
   if (tagFromHash) {
     const content = document.querySelector(".content");
-    if (content) {
+    if (content && !content.querySelector(".breadcrumbs")) {
       const breadcrumbs = document.createElement("nav");
       breadcrumbs.className = "breadcrumbs";
       breadcrumbs.setAttribute("aria-label", "Навигационная цепочка");
