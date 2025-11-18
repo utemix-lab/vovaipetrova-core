@@ -1,5 +1,5 @@
 {
-  "updated": "2025-11-18T15:35:31.980Z",
+  "updated": "2025-11-18T16:12:30.611Z",
   "orphans": [
     {
       "slug": "codegpt-setup",
@@ -18,6 +18,12 @@
       "title": "RFC-XXXX: {Название RFC}",
       "url": "docs/rfcs/rfc-xxxx-nazvanie-rfc.md",
       "status": "draft"
+    },
+    {
+      "slug": "routes-yml-how-to",
+      "title": "Как работать с routes.yml",
+      "url": "docs/nav/routes-yml-how-to.md",
+      "status": "ready"
     }
   ]
 }

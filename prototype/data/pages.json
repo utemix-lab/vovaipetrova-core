@@ -1105,6 +1105,25 @@
     "story_order": null
   },
   {
+    "title": "Как работать с routes.yml",
+    "slug": "routes-yml-how-to",
+    "status": "ready",
+    "summary": "Краткая инструкция по добавлению разделов и страниц в routes.yml для отображения в Explorer",
+    "tags": [
+      "Навигация",
+      "Документация"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/site",
+      "theme/ux"
+    ],
+    "url": "docs/nav/routes-yml-how-to.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
+  },
+  {
     "title": "Site IA / nav",
     "slug": "site-ia-nav",
     "status": "draft",
