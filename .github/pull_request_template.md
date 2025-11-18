@@ -59,6 +59,12 @@
 - [ ] Проверено обновление `prototype/data/stats.json`
 - [ ] Проверено обновление `prototype/data/broken-links.json`
 
+### Orphan pages (если добавлялись новые страницы в docs/)
+- [ ] Проверен список orphan страниц (`npm run routes:check`)
+- [ ] Новые страницы добавлены в `routes.yml` (если они не служебные)
+- [ ] Или страницы помечены как `service: true` в front matter (если они служебные)
+- [ ] Проверено отображение в Explorer → Orphans view (должно быть пусто для публичных страниц)
+
 ### Lanes policy
 - [ ] Добавлен соответствующий `lane:*` label к PR
 - [ ] Проверка one-PR-per-lane пройдена (CI должен быть зелёным)

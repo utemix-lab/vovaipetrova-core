@@ -118,7 +118,7 @@ node scripts/generate-routes-json.mjs
 
 ## Проверка консистентности
 
-Используйте скрипт проверки для поиска страниц без маршрутов:
+Используйте скрипт проверки для поиска страниц без маршрутов (orphan pages):
 
 ```bash
 npm run routes:check
@@ -129,6 +129,8 @@ npm run routes:check
 - Исключает страницы с `service: true`
 - Генерирует `prototype/data/orphans.json`
 - Отображает список "сирот" в Explorer на вкладке "Orphans"
+
+**Подробнее:** см. [orphans-how-to.md](./orphans-how-to.md) — инструкция по работе с orphan страницами.
 
 ## Отображение в Explorer
 
