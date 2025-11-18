@@ -22,7 +22,10 @@
     "pii:scan": "node scripts/pii-scan.mjs",
     "pii:sanitize": "node scripts/pii-sanitize.mjs",
     "pii:sanitize:apply": "node scripts/pii-sanitize.mjs --apply",
-    "fix:pr-encoding": "node scripts/fix-pr-encoding.mjs"
+    "fix:pr-encoding": "node scripts/fix-pr-encoding.mjs",
+    "diagnostics:snapshot": "node prototype/build-index.mjs && node scripts/report-broken-internal-links.mjs && node scripts/generate-stats.mjs",
+    "diagnostics:summary": "node scripts/generate-pr-diagnostics-summary.mjs",
+    "diagnostics:check-regression": "node scripts/check-link-regression.mjs"
   },
   "repository": {
     "type": "git",
