@@ -16,6 +16,10 @@ const STATS_JSON = join(__dirname, '../prototype/data/stats.json');
 function generateSummary() {
   if (!existsSync(STATS_JSON)) {
     console.error(`⚠️  ${STATS_JSON} not found. Run diagnostics first.`);
+    // В CI это не должно блокировать, возвращаем пустую строку
+    if (process.env.CI) {
+      return '';
+    }
     process.exit(1);
   }
 
@@ -28,13 +32,22 @@ function generateSummary() {
     const issuesTotal = totals.issues_total || 0;
     const internalMissing = totals.issues_internal_missing || 0;
     const pagesTotal = totals.pages || 0;
+    const draftCount = statuses.draft || 0;
     
+    // Вычисляем процент готовности
+    const readyPercent = pagesTotal > 0 ? Math.round((readyCount / pagesTotal) * 100) : 0;
+    
+    // Формируем более информативную сводку
     const summary = [
       '## 📊 Diagnostics Snapshot',
       '',
-      `- **Ready pages:** ${readyCount} / ${pagesTotal}`,
+      `### Content Status`,
+      `- **Ready pages:** ${readyCount} / ${pagesTotal} (${readyPercent}%)`,
+      `- **Draft pages:** ${draftCount}`,
+      '',
+      `### Issues`,
       `- **Total issues:** ${issuesTotal}`,
-      `- **Internal missing:** ${internalMissing}`,
+      `- **Internal missing:** ${internalMissing}${internalMissing > 0 ? ' ⚠️' : ' ✅'}`,
       '',
       `_Generated at ${stats.generatedAt || new Date().toISOString()}_`
     ].join('\n');
@@ -43,6 +56,10 @@ function generateSummary() {
     return summary;
   } catch (error) {
     console.error(`⚠️  Failed to read ${STATS_JSON}:`, error.message);
+    // В CI не блокируем, возвращаем пустую строку
+    if (process.env.CI) {
+      return '';
+    }
     process.exit(1);
   }
 }
