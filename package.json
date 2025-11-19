@@ -28,7 +28,8 @@
     "diagnostics:check-regression": "node scripts/check-link-regression.mjs",
     "routes:check": "node scripts/check-routes-consistency.mjs",
     "check:lanes": "node scripts/check-lanes.mjs",
-    "check:pr-size": "node scripts/check-pr-size.mjs"
+    "check:pr-size": "node scripts/check-pr-size.mjs",
+    "test:guardrails": "node scripts/test-guardrails.mjs"
   },
   "repository": {
     "type": "git",
