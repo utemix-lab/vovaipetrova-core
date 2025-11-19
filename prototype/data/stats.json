@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2025-11-18T19:47:57.060Z",
+  "generatedAt": "2025-11-19T19:56:02.021Z",
   "totals": {
-    "pages": 66,
+    "pages": 69,
     "statuses": {
       "ready": 19,
       "review": 7,
-      "draft": 40
+      "draft": 43
     },
-    "issues_total": 2,
+    "issues_total": 0,
     "issues_internal_missing": 0,
     "issues_service": 0,
     "issues_external": 0,
-    "issues_unknown": 2
+    "issues_unknown": 0
   },
   "topProblems": [],
   "issuesPerPage": []
