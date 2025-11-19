@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2025-11-19T19:56:02.021Z",
+  "generatedAt": "2025-11-19T19:58:19.953Z",
   "totals": {
-    "pages": 69,
+    "pages": 66,
     "statuses": {
       "ready": 19,
       "review": 7,
-      "draft": 43
+      "draft": 40
     },
     "issues_total": 0,
     "issues_internal_missing": 0,
