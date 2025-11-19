@@ -7,6 +7,11 @@ import { resolve, dirname } from 'path';
 const ROOT = 'docs';
 const STRICT = process.argv.includes('--strict');
 
+// Пороги для lint проверок
+const SUMMARY_MAX_LENGTH = 300; // Максимальная длина summary
+const CONTENT_MAX_LENGTH = 50000; // Максимальная длина контента (предупреждение)
+const CONTENT_CRITICAL_LENGTH = 100000; // Критическая длина контента (ошибка)
+
 function findDuplicateSlugs(files) {
   const slugToFiles = new Map();
   for (const f of files) {
@@ -68,8 +73,15 @@ function lintFile(file) {
   if (!fm.title) errors.push('missing title');
   if (!fm.slug) errors.push('missing slug');
   if (!isService) {
-    if (!fm.summary || String(fm.summary).trim().length === 0) {
-      warnings.push('warn: missing summary');
+    const summary = fm.summary ? String(fm.summary).trim() : '';
+    if (summary.length === 0) {
+      if (STRICT) {
+        errors.push('missing summary (required for non-service pages)');
+      } else {
+        warnings.push('warn: missing summary');
+      }
+    } else if (summary.length > SUMMARY_MAX_LENGTH) {
+      warnings.push(`warn: summary too long (${summary.length} chars, max ${SUMMARY_MAX_LENGTH})`);
     }
   }
   if (!isService) {
@@ -137,6 +149,16 @@ function lintFile(file) {
     warnings.push(
       'warn: Истории ведём от нейтрального автора; используйте «автор» или безличные формулировки'
     );
+  }
+
+  // Проверка длины контента
+  if (!isService) {
+    const contentLength = body.trim().length;
+    if (contentLength > CONTENT_CRITICAL_LENGTH) {
+      errors.push(`content too long (${contentLength} chars, critical limit ${CONTENT_CRITICAL_LENGTH})`);
+    } else if (contentLength > CONTENT_MAX_LENGTH) {
+      warnings.push(`warn: content very long (${contentLength} chars, recommended max ${CONTENT_MAX_LENGTH})`);
+    }
   }
 
   // PII check for docs/ and stories/

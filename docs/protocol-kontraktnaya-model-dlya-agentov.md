@@ -103,8 +103,10 @@ machine_tags: []
 ### Перед созданием PR
 1. ✅ Запустить `npm run normalize:dry` — проверить изменения
 2. ✅ Запустить `npm run lint:docs` — проверить качество контента
-3. ✅ Проверить соответствие Deliverables из Briefs
-4. ✅ Убедиться, что ветка соответствует Lanes policy (один PR на lane)
+3. ✅ Запустить `npm run check:pr-size` — проверить размер PR
+4. ✅ Запустить `npm run check:lanes` — проверить соответствие Lanes policy
+5. ✅ Проверить соответствие Deliverables из Briefs
+6. ✅ Убедиться, что ветка соответствует Lanes policy (один PR на lane)
 
 ### В PR
 1. ✅ Описание изменений соответствует Brief
@@ -177,6 +179,52 @@ CI автоматически проверяет размер PR для упро
 **Команды:**
 - `npm run check:pr-size` — локальная проверка размера PR
 - `npm run check:lanes` — локальная проверка lanes policy
+- `node scripts/test-guardrails.mjs` — тестирование guardrails (эмуляция нарушений)
+
+### Content Lint Thresholds
+
+Линтер проверяет качество контента с настраиваемыми порогами:
+
+**Пороги для summary:**
+- Пустой summary → предупреждение (ошибка в строгом режиме `--strict`)
+- Длина summary > 300 символов → предупреждение
+
+**Пороги для контента:**
+- Длина контента > 50,000 символов → предупреждение
+- Длина контента > 100,000 символов → ошибка (блокирует)
+
+**Проверки PII (персональные данные):**
+- Пути пользователей (`C:\Users\...`, `/home/...`) → ошибка для stories, предупреждение для других
+- Email адреса → ошибка для stories, предупреждение для других
+- Телефонные номера → ошибка для stories, предупреждение для других
+
+**Команды:**
+- `npm run lint:docs` — стандартная проверка (предупреждения не блокируют)
+- `npm run lint:docs:strict` — строгая проверка (предупреждения блокируют)
+
+### Тестирование Guardrails
+
+Для проверки корректности работы guardrails используется скрипт `scripts/test-guardrails.mjs`:
+
+**Тесты:**
+- `--test-lanes` — тестирование Lanes Policy (one-PR-per-lane)
+- `--test-size` — тестирование Size Guard
+- `--test-lint` — тестирование Lint Thresholds
+
+**Пример использования:**
+```bash
+# Запустить все тесты
+node scripts/test-guardrails.mjs
+
+# Запустить только тест lanes
+node scripts/test-guardrails.mjs --test-lanes
+
+# Запустить тесты size и lint
+node scripts/test-guardrails.mjs --test-size --test-lint
+```
+
+**Тестовые файлы с плохими примерами:**
+- `test-guardrails/bad-examples/` — примеры нарушений для проверки линтера
 
 ## Процесс работы агента
 
