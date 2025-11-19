@@ -38,26 +38,45 @@ function buildSlugMaps(docs) {
   const canonicalMap = new Map();
   const canonicalSet = new Set();
   const serviceSet = new Set();
+  const serviceMap = new Map(); // Добавляем мапу для service файлов
 
   docs.forEach((doc) => {
     const slug = doc.slug;
     const normalizedPath = doc.path.replace(/\\/g, "/").replace(/^\.\//, "");
+    const pathWithoutDocs = normalizedPath.replace(/^docs\//, "");
+    const fileName = path.parse(normalizedPath).name;
+    
     if (doc.service) {
       serviceSet.add(slug);
       serviceSet.add(normalizedPath);
-      serviceSet.add(normalizedPath.replace(/^docs\//, ""));
+      serviceSet.add(pathWithoutDocs);
+      // Добавляем в serviceMap для резолвинга
+      serviceMap.set(slug.toLowerCase(), slug);
+      serviceMap.set(`${slug}.md`.toLowerCase(), slug);
+      serviceMap.set(pathWithoutDocs.toLowerCase(), slug);
+      serviceMap.set(fileName.toLowerCase(), slug);
+      // Также добавляем варианты без хеша
+      const withoutHash = fileName.replace(/-[0-9a-f]{6,}$/i, "");
+      if (withoutHash !== fileName) {
+        serviceMap.set(withoutHash.toLowerCase(), slug);
+        serviceMap.set(`${withoutHash}.md`.toLowerCase(), slug);
+      }
       return;
     }
     canonicalSet.add(slug);
     canonicalMap.set(slug.toLowerCase(), slug);
     canonicalMap.set(`${slug}.md`.toLowerCase(), slug);
-    canonicalMap.set(
-      normalizedPath.replace(/^docs\//, "").toLowerCase(),
-      slug
-    );
+    canonicalMap.set(pathWithoutDocs.toLowerCase(), slug);
     canonicalMap.set(normalizedPath.toLowerCase(), slug);
+    canonicalMap.set(fileName.toLowerCase(), slug);
+    // Также добавляем варианты без хеша
+    const withoutHash = fileName.replace(/-[0-9a-f]{6,}$/i, "");
+    if (withoutHash !== fileName) {
+      canonicalMap.set(withoutHash.toLowerCase(), slug);
+      canonicalMap.set(`${withoutHash}.md`.toLowerCase(), slug);
+    }
   });
-  return { canonicalMap, canonicalSet, serviceSet };
+  return { canonicalMap, canonicalSet, serviceSet, serviceMap };
 }
 
 function normalizeReferenceCandidates(reference) {
@@ -71,44 +90,82 @@ function normalizeReferenceCandidates(reference) {
     results.push(normalized);
   };
 
-  const base = reference
+  // Удаляем якоря и query-параметры для проверки
+  const withoutAnchor = reference.split('#')[0].split('?')[0];
+  const base = withoutAnchor
     .replace(/^(\.\/)+/, "")
     .replace(/^(\.\.\/)+/, "")
     .replace(/^docs\//, "");
 
   add(base);
-  if (base.endsWith(".md")) add(base.replace(/\.md$/i, ""));
+  
+  // Обработка расширений файлов
+  if (base.endsWith(".md")) {
+    add(base.replace(/\.md$/i, ""));
+  }
+  if (base.endsWith(".csv")) {
+    add(base.replace(/\.csv$/i, ""));
+  }
+  
+  // Обработка хешей в именах файлов
   const withoutHashMd = base.replace(/-[0-9a-f]{6,}\.md$/i, ".md");
   add(withoutHashMd);
-  if (withoutHashMd.endsWith(".md")) add(withoutHashMd.replace(/\.md$/i, ""));
-  add(base.replace(/-[0-9a-f]{6,}$/i, ""));
+  if (withoutHashMd.endsWith(".md")) {
+    add(withoutHashMd.replace(/\.md$/i, ""));
+  }
+  
+  const withoutHashCsv = base.replace(/-[0-9a-f]{6,}\.csv$/i, ".csv");
+  add(withoutHashCsv);
+  if (withoutHashCsv.endsWith(".csv")) {
+    add(withoutHashCsv.replace(/\.csv$/i, ""));
+  }
+  
+  // Вариант без хеша и расширения
+  add(base.replace(/-[0-9a-f]{6,}(\.(md|csv))?$/i, "$1").replace(/\.(md|csv)$/i, ""));
 
   return results;
 }
 
 function resolveReference(reference, maps, linkMap) {
   const candidates = normalizeReferenceCandidates(reference);
+  
+  // Сначала проверяем canonical файлы
   for (const candidate of candidates) {
     const slug = maps.canonicalMap.get(candidate);
     if (slug) {
       return { status: "ok", slug };
     }
   }
+  
+  // Затем проверяем service файлы
+  for (const candidate of candidates) {
+    const slug = maps.serviceMap?.get(candidate);
+    if (slug) {
+      return { status: "service", slug };
+    }
+  }
 
+  // Проверяем link-map exact mappings
   if (linkMap.exact) {
     for (const candidate of candidates) {
       const mapped =
         linkMap.exact[candidate] ||
         linkMap.exact[`docs/${candidate}`] ||
-        linkMap.exact[`${candidate}.md`];
+        linkMap.exact[`${candidate}.md`] ||
+        linkMap.exact[`${candidate}.csv`];
       if (mapped) {
         if (maps.canonicalSet.has(mapped)) return { status: "ok", slug: mapped };
         if (maps.serviceSet.has(mapped)) return { status: "service", slug: mapped };
+        // Проверяем, существует ли mapped в serviceMap
+        if (maps.serviceMap?.has(mapped.toLowerCase())) {
+          return { status: "service", slug: maps.serviceMap.get(mapped.toLowerCase()) };
+        }
         return { status: "mapped", slug: mapped };
       }
     }
   }
 
+  // Проверяем link-map patterns
   if (Array.isArray(linkMap.patterns)) {
     for (const pattern of linkMap.patterns) {
       if (!pattern?.match) continue;
@@ -131,11 +188,16 @@ function resolveReference(reference, maps, linkMap) {
         if (maps.serviceSet.has(replacement)) {
           return { status: "service", slug: replacement };
         }
+        // Проверяем serviceMap
+        if (maps.serviceMap?.has(replacement.toLowerCase())) {
+          return { status: "service", slug: maps.serviceMap.get(replacement.toLowerCase()) };
+        }
         return { status: "mapped", slug: replacement };
       }
     }
   }
 
+  // Последняя проверка serviceSet напрямую
   for (const candidate of candidates) {
     if (maps.serviceSet.has(candidate)) {
       return { status: "service", slug: candidate };

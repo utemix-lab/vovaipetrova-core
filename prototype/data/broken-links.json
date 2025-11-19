@@ -1,19 +1,6 @@
 {
-  "generatedAt": "2025-11-19T19:53:53.743Z",
-  "totalFiles": 190,
-  "brokenCount": 2,
-  "issues": [
-    {
-      "file": "vova-i-petrova-ef2871.md",
-      "link": "База знаний dcec31887b6145d78d9096d911a951cb.csv",
-      "reason": "unknown_target",
-      "resolved_to": "база знаний dcec31887b6145d78d9096d911a951cbvova-i-petrova"
-    },
-    {
-      "file": "arhitektura-i-komponenty-486a0b.md",
-      "link": "api-reestr-i-specifikacii-711159.md",
-      "reason": "unknown_target",
-      "resolved_to": "api-reestr-i-specifikacii"
-    }
-  ]
+  "generatedAt": "2025-11-19T19:58:16.623Z",
+  "totalFiles": 191,
+  "brokenCount": 0,
+  "issues": []
 }

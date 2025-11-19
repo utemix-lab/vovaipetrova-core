@@ -14,7 +14,11 @@
     "readme.md": "vova-i-petrova",
     "url": "vova-i-petrova",
     "/kb/flux": "vova-i-petrova",
-    "/nav/user": "vova-i-petrova"
+    "/nav/user": "vova-i-petrova",
+    "api-reestr-i-specifikacii-711159.md": "api-reestr-i-specifikacii-711159",
+    "api-reestr-i-specifikacii-711159": "api-reestr-i-specifikacii-711159",
+    "база знаний dcec31887b6145d78d9096d911a951cb.csv": "baza-znanij-koren",
+    "база знаний dcec31887b6145d78d9096d911a951cb": "baza-znanij-koren"
   },
   "patterns": [
     {
