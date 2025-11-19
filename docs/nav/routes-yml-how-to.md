@@ -1,12 +1,15 @@
 ---
 title: Как работать с routes.yml
 slug: routes-yml-how-to
-summary: Краткая инструкция по добавлению разделов и страниц в routes.yml для отображения в Explorer
+summary: >-
+  Краткая инструкция по добавлению разделов и страниц в routes.yml для
+  отображения в Explorer
 tags:
-  - Навигация
   - Документация
+  - Навигация
 machine_tags:
   - action/build
+  - product/kb
   - product/site
   - theme/ux
 status: ready

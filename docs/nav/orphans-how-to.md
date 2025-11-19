@@ -7,6 +7,7 @@ tags:
   - Документация
 machine_tags:
   - action/build
+  - product/kb
   - product/site
   - theme/ux
 status: ready

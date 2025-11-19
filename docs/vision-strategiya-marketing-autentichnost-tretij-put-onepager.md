@@ -12,10 +12,12 @@ tags:
   - Теги
 machine_tags:
   - action/build
+  - product/kb
   - product/services
   - theme/automation
   - theme/graphics
   - theme/references
+  - theme/taxonomy
 status: review
 ---
 # Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)

@@ -90,6 +90,22 @@ aliases:
     - tool/aftereffects
   SketchUp:
     - tool/sketchup
+  Story:
+    - content/story
+  Stories:
+    - content/story
+  "Документация":
+    - product/kb
+    - action/build
+  "Теги":
+    - theme/taxonomy
+    - product/kb
+  "Хэштегов":
+    - theme/taxonomy
+    - product/kb
+  "Нормализация":
+    - action/build
+    - theme/dev
 
 canonical: {}
 
