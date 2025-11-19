@@ -87,6 +87,13 @@ npm run lint:docs
 # Строгий режим: missing tags = ошибки
 npm run lint:docs:strict
 
+# Проверка размера PR и lanes policy
+npm run check:pr-size  # Проверка размера PR
+npm run check:lanes    # Проверка lanes policy (one-PR-per-lane)
+
+# Тестирование guardrails
+npm run test:guardrails  # Эмуляция нарушений для проверки guardrails
+
 # CodeGPT интеграция (требует настройки .env)
 npm run codegpt:github:list-prs  # Список открытых PR
 npm run codegpt:notion:search     # Поиск в Notion
@@ -98,6 +105,9 @@ npm run codegpt:notion:search     # Поиск в Notion
 2. **Нормализация**: `npm run normalize` — добавляет front matter, переименовывает по slug
 3. **Исправление ссылок**: `npm run fix:links` — заменяет Notion-ссылки на нормализованные
 4. **Проверка**: `npm run lint:docs` — показывает предупреждения (не валит сборку)
+5. **Проверка перед PR**: `npm run check:pr-size` и `npm run check:lanes` — проверка размера и lanes policy
+
+Подробнее о процессе работы: [`docs/protocol-kontraktnaya-model-dlya-agentov.md`](docs/protocol-kontraktnaya-model-dlya-agentov.md)
 
 ### Автоматизация
 

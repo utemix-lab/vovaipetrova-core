@@ -12,6 +12,8 @@ machine_tags: []
 **Дата**: {YYYY-MM-DD}  
 **Связанные задачи**: {ссылки на Briefs/Issues}
 
+> **Примечание**: При реализации RFC следуйте процессу работы с репозиторием: создайте PR с секцией Deliverables, добавьте соответствующий `lane:*` label, убедитесь что CI зелёный. Подробнее: [`docs/protocol-kontraktnaya-model-dlya-agentov.md`](../protocol-kontraktnaya-model-dlya-agentov.md)
+
 ## Problem
 
 Опишите проблему или необходимость, которую решает этот RFC.

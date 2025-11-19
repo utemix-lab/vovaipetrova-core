@@ -231,11 +231,16 @@ node scripts/test-guardrails.mjs --test-size --test-lint
 1. **Чтение задачи**: получить Brief из Notion или Issue
 2. **Подготовка**: прочитать контекст (`/.codegpt/context.md`, `docs/protocol-kontraktnaya-model-dlya-agentov.md`)
 3. **Выполнение**: создать ветку, внести изменения, проверить локально
-4. **Проверка**: `normalize:dry`, `lint:docs`, соответствие Deliverables
-5. **PR**: создать Pull Request с описанием
-6. **Ожидание**: дождаться зелёного CI
+4. **Проверка перед PR**:
+   - `npm run normalize:dry` — проверить изменения нормализации
+   - `npm run lint:docs` — проверить качество контента
+   - `npm run check:pr-size` — проверить размер PR
+   - `npm run check:lanes` — проверить соответствие Lanes policy
+   - Проверить соответствие Deliverables из Briefs
+5. **PR**: создать Pull Request с описанием, секцией Deliverables и соответствующим `lane:*` label
+6. **Ожидание**: дождаться зелёного CI (`Docs CI` должен пройти)
 7. **Мердж**: после одобрения смерджить PR
-8. **Завершение**: обновить статус в Briefs, удалить ветку
+8. **Завершение**: обновить статус в Briefs, удалить ветку (если не `notion-sync/*`)
 
 ## Связано с
 
