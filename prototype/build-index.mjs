@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, statSync } from "fs";
 import path from "path";
 import { globSync } from "glob";
 import YAML from "yaml";
@@ -12,6 +12,7 @@ const OUTPUT_JSON = path.join(DATA_DIR, "pages.json");
 const LINK_MAP_SOURCE = path.join(OUTPUT_DIR, "link-map.json");
 const LINK_MAP_OUTPUT = path.join(DATA_DIR, "link-map.json");
 const PAGE_TEMPLATE_PATH = path.join(OUTPUT_DIR, "page.html");
+const BUILD_CACHE_PATH = path.join(DATA_DIR, ".build-cache.json");
 
 function toPosix(filePath) {
   return filePath.replace(/\\/g, "/");
@@ -31,7 +32,6 @@ function readFrontMatter(raw) {
 
 function ensureDirs() {
   mkdirSync(DATA_DIR, { recursive: true });
-  rmSync(PAGES_DIR, { recursive: true, force: true });
   mkdirSync(PAGES_DIR, { recursive: true });
 }
 
@@ -61,78 +61,184 @@ function loadLinkMap() {
   }
 }
 
+function loadBuildCache() {
+  if (!existsSync(BUILD_CACHE_PATH)) {
+    return {};
+  }
+  try {
+    const raw = readFileSync(BUILD_CACHE_PATH, "utf8");
+    return JSON.parse(raw) || {};
+  } catch (error) {
+    console.warn("⚠️  Failed to load build cache:", error.message);
+    return {};
+  }
+}
+
+function saveBuildCache(cache) {
+  try {
+    writeFileSync(BUILD_CACHE_PATH, JSON.stringify(cache, null, 2), "utf8");
+  } catch (error) {
+    console.warn("⚠️  Failed to save build cache:", error.message);
+  }
+}
+
+function getFileMtime(filePath) {
+  try {
+    const stats = statSync(filePath);
+    return stats.mtimeMs;
+  } catch (error) {
+    return 0;
+  }
+}
+
+function shouldRebuildFile(filePath, cache) {
+  const posixPath = toPosix(filePath);
+  const currentMtime = getFileMtime(filePath);
+  const cachedMtime = cache[posixPath];
+  
+  if (cachedMtime === undefined || cachedMtime !== currentMtime) {
+    return true;
+  }
+  return false;
+}
+
 function buildIndex() {
+  const startTime = Date.now();
+  const FORCE_REBUILD = process.argv.includes("--force");
+  
   ensureDirs();
   const linkMap = loadLinkMap();
+  const cache = FORCE_REBUILD ? {} : loadBuildCache();
   const files = globSync(`${DOCS_ROOT}/**/*.md`, { nodir: true }).sort();
-  const pages = [];
+  
+  // Load existing pages.json if it exists for incremental updates
+  let existingPages = [];
+  if (!FORCE_REBUILD && existsSync(OUTPUT_JSON)) {
+    try {
+      const existing = JSON.parse(readFileSync(OUTPUT_JSON, "utf8"));
+      existingPages = Array.isArray(existing) ? existing : [];
+    } catch (error) {
+      console.warn("⚠️  Failed to load existing pages.json:", error.message);
+    }
+  }
+  
+  const pagesMap = new Map();
+  // Pre-populate with existing pages
+  for (const page of existingPages) {
+    if (page.url) {
+      pagesMap.set(page.url, page);
+    }
+  }
+  
+  const newCache = {};
+  let processedCount = 0;
+  let skippedCount = 0;
+  let changedFiles = [];
 
   for (const file of files) {
-    const raw = readFileSync(file, "utf8");
-    const fm = readFrontMatter(raw);
     const relativePath = toPosix(file);
-    const isStory = /\/stories\//.test(relativePath);
-    const storyOrderMatch = path
-      .parse(file)
-      .name.match(/^(\d{1,2})-/);
-    const storyOrder = storyOrderMatch ? Number(storyOrderMatch[1]) : null;
-    const serviceValue =
-      typeof fm.service === "string"
-        ? fm.service.trim().toLowerCase()
-        : fm.service === true
-        ? "true"
-        : "";
-    const isService = serviceValue === "true";
+    const needsRebuild = FORCE_REBUILD || shouldRebuildFile(file, cache);
+    
+    if (needsRebuild) {
+      const raw = readFileSync(file, "utf8");
+      const fm = readFrontMatter(raw);
+      const isStory = /\/stories\//.test(relativePath);
+      const storyOrderMatch = path
+        .parse(file)
+        .name.match(/^(\d{1,2})-/);
+      const storyOrder = storyOrderMatch ? Number(storyOrderMatch[1]) : null;
+      const serviceValue =
+        typeof fm.service === "string"
+          ? fm.service.trim().toLowerCase()
+          : fm.service === true
+          ? "true"
+          : "";
+      const isService = serviceValue === "true";
 
-    const title = fm.title || path.parse(file).name;
-    const slug = fm.slug || path.parse(file).name;
-    const status = String(fm.status || "draft").trim().toLowerCase();
-    const summary =
-      typeof fm.summary === "string"
-        ? fm.summary.replace(/\r/g, "").trim()
-        : Array.isArray(fm.summary)
-        ? fm.summary.join(" ").replace(/\r/g, "").trim()
-        : "";
-    const tags = Array.isArray(fm.tags)
-      ? fm.tags
-          .map((tag) => String(tag || "").trim())
-          .filter(Boolean)
-      : [];
-    const machineTags = Array.isArray(fm.machine_tags)
-      ? fm.machine_tags
-          .map((tag) => String(tag || "").trim())
-          .filter(Boolean)
-      : [];
+      const title = fm.title || path.parse(file).name;
+      const slug = fm.slug || path.parse(file).name;
+      const status = String(fm.status || "draft").trim().toLowerCase();
+      const summary =
+        typeof fm.summary === "string"
+          ? fm.summary.replace(/\r/g, "").trim()
+          : Array.isArray(fm.summary)
+          ? fm.summary.join(" ").replace(/\r/g, "").trim()
+          : "";
+      const tags = Array.isArray(fm.tags)
+        ? fm.tags
+            .map((tag) => String(tag || "").trim())
+            .filter(Boolean)
+        : [];
+      const machineTags = Array.isArray(fm.machine_tags)
+        ? fm.machine_tags
+            .map((tag) => String(tag || "").trim())
+            .filter(Boolean)
+        : [];
 
-    pages.push({
-      title,
-      slug,
-      status,
-      summary,
-      tags,
-      machine_tags: machineTags,
-      url: relativePath,
-      service: isService,
-      collection: isStory ? "stories" : null,
-      story_order:
-        isStory && Number.isInteger(storyOrder) ? storyOrder : null
-    });
+      const page = {
+        title,
+        slug,
+        status,
+        summary,
+        tags,
+        machine_tags: machineTags,
+        url: relativePath,
+        service: isService,
+        collection: isStory ? "stories" : null,
+        story_order:
+          isStory && Number.isInteger(storyOrder) ? storyOrder : null
+      };
+      
+      pagesMap.set(relativePath, page);
+      processedCount++;
+      changedFiles.push(relativePath);
+    } else {
+      skippedCount++;
+    }
+    
+    // Update cache with current mtime
+    newCache[relativePath] = getFileMtime(file);
   }
-
+  
+  // Remove pages for files that no longer exist
+  const existingFiles = new Set(files.map(f => toPosix(f)));
+  for (const [url, page] of pagesMap.entries()) {
+    if (!existingFiles.has(url)) {
+      pagesMap.delete(url);
+      delete newCache[url];
+    }
+  }
+  
+  const pages = Array.from(pagesMap.values());
+  
+  // Always write pages.json (even if no changes, to ensure consistency)
   writeFileSync(OUTPUT_JSON, JSON.stringify(pages, null, 2), "utf8");
   writeFileSync(LINK_MAP_OUTPUT, JSON.stringify(linkMap, null, 2), "utf8");
-
+  
+  // Update HTML pages only for changed files
   const templateRaw = readFileSync(PAGE_TEMPLATE_PATH, "utf8");
-  for (const page of pages) {
-    const html = templateRaw
-      .replace(/__SLUG__/g, page.slug)
-      .replace(/__PAGE_TITLE__/g, escapeHtml(page.title || page.slug));
-    const outputPath = path.join(PAGES_DIR, `${page.slug}.html`);
-    writeFileSync(outputPath, html, "utf8");
+  if (FORCE_REBUILD || changedFiles.length > 0) {
+    for (const url of changedFiles) {
+      const page = pagesMap.get(url);
+      if (page) {
+        const html = templateRaw
+          .replace(/__SLUG__/g, page.slug)
+          .replace(/__PAGE_TITLE__/g, escapeHtml(page.title || page.slug));
+        const outputPath = path.join(PAGES_DIR, `${page.slug}.html`);
+        writeFileSync(outputPath, html, "utf8");
+      }
+    }
   }
-
+  
+  // Save cache
+  saveBuildCache(newCache);
+  
+  const duration = Date.now() - startTime;
   console.log(
     `Generated ${pages.length} entries → ${OUTPUT_JSON} and individual pages in ${PAGES_DIR}`
+  );
+  console.log(
+    `📊 Build stats: ${processedCount} processed, ${skippedCount} skipped (cache hit), ${duration}ms`
   );
   
   // Generate routes.json and stats.json

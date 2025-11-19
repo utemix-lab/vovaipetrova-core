@@ -38,6 +38,9 @@ tmp/
 temp/
 *.tmp
 
+# Build cache
+prototype/data/.build-cache.json
+
 # Notion exports (processed, can be removed after import)
 uploads/*.zip
 uploads/*.ZIP
