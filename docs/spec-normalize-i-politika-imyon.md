@@ -7,8 +7,10 @@ tags:
   - Кодинг
   - Хэштегов
 machine_tags:
+  - product/kb
   - theme/automation
   - theme/dev
+  - theme/taxonomy
 status: review
 ---
 # Spec — Normalize и политика имён

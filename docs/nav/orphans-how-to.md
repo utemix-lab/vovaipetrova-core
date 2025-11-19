@@ -3,10 +3,11 @@ title: Как работать с orphan страницами
 slug: orphans-how-to
 summary: Инструкция по работе со страницами без маршрутов в routes.yml (orphan pages)
 tags:
-  - Навигация
   - Документация
+  - Навигация
 machine_tags:
   - action/build
+  - product/kb
   - product/site
   - theme/ux
 status: ready
