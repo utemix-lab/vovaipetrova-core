@@ -28,7 +28,6 @@ deny_paths:
   - "package.json"
   - "package-lock.json"
   - "README.md"
-  - "MONUMENT.md"
   - ".gitignore"
 
 # Правила переименования по slug (если нужно)
