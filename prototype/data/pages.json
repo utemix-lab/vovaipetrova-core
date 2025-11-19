@@ -1528,10 +1528,10 @@
     "story_order": null
   },
   {
-    "title": "protocol-kontraktnaya-model-dlya-agentov",
+    "title": "Protocol — Контрактная модель для агентов",
     "slug": "protocol-kontraktnaya-model-dlya-agentov",
     "status": "draft",
-    "summary": "",
+    "summary": "# Protocol — Контрактная модель для агентов",
     "tags": [],
     "machine_tags": [],
     "url": "docs/protocol-kontraktnaya-model-dlya-agentov.md",
@@ -1608,10 +1608,10 @@
     "story_order": null
   },
   {
-    "title": "rfc-xxxx-nazvanie-rfc",
+    "title": "RFC-XXXX: {Название RFC}",
     "slug": "rfc-xxxx-nazvanie-rfc",
     "status": "draft",
-    "summary": "",
+    "summary": "# RFC-XXXX: {Название RFC}",
     "tags": [],
     "machine_tags": [],
     "url": "docs/rfcs/rfc-xxxx-nazvanie-rfc.md",
