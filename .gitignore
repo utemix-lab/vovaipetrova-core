@@ -50,6 +50,9 @@ test-adapters/
 # Test results
 tests/composer/results/
 
+# Guardrails test files
+test-guardrails-v2/
+
 # Notion exports (processed, can be removed after import)
 uploads/*.zip
 uploads/*.ZIP

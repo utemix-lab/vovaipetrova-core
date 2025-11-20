@@ -1,5 +1,5 @@
 ---
-title: TEMPLATE — Task spec
+title: "TEMPLATE — Task spec"
 slug: template-task-spec
 summary: >-
   Шаблон постановки технической задачи с путями правок, требованиями и

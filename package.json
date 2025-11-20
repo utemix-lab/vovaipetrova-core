@@ -36,7 +36,9 @@
     "test:adapters": "node scripts/adapters/test-file-operations.mjs",
     "cache:warmup": "node scripts/cache-warmup.mjs",
     "test:eval": "node tests/composer/eval-harness.mjs",
-    "test:eval:verbose": "node tests/composer/eval-harness.mjs --verbose"
+    "test:eval:verbose": "node tests/composer/eval-harness.mjs --verbose",
+    "guardrails:v2": "node scripts/guardrails-v2.mjs",
+    "guardrails:v2:verbose": "node scripts/guardrails-v2.mjs --verbose"
   },
   "repository": {
     "type": "git",
