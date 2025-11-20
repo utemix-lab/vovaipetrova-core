@@ -12,8 +12,52 @@ machine_tags: []
 ## Вход агента
 
 ### Источник задачи
-- **Notion Briefs**: карточка в статусе `Ready` с полями `Brief`, `Scope`, `Deliverables`
+- **Notion Briefs**: карточка в статусе `Ready` с полями `Brief`, `Scope`, `Deliverables`, `Executor`, `Lane`, `SLA`, `Requires Review`, `RFC Link`, `Upstream Source`
 - **GitHub Issues**: опционально, для трекинга и связи с PR
+
+#### Структура карточки Briefs
+
+**Обязательные поля:**
+- `Title` — название задачи
+- `Brief` — описание цели и требований
+- `Scope` — область изменений
+- `Deliverables` — список ожидаемых результатов
+- `Status` — статус задачи (`Ready`, `In Progress`, `Review`, `Done`, `Blocked`)
+- `Assignee` — исполнитель (агент или человек)
+
+**Новые поля (Briefs upgrade):**
+- `Executor` — исполнитель задачи:
+  - `Cursor` — задачи для Cursor AI
+  - `CodeGPT:Orchestrator` — задачи для CodeGPT Orchestrator
+  - `CodeGPT:Docs` — задачи для CodeGPT Docs Agent
+  - `CodeGPT:Refactor` — задачи для CodeGPT Refactor Agent
+  - `CodeGPT:Creative` — задачи для CodeGPT Creative Agent
+  - `Manual` — ручные задачи
+- `Lane` — дорожка разработки:
+  - `Infra` — инфраструктура
+  - `Docs` — документация
+  - `IA` — информационная архитектура
+  - `Content` — контент
+  - `Stories` — эпизоды Stories
+  - `Characters` — персонажи
+  - `QA` — проверки качества
+- `SLA` — дата и время, до которого должно быть завершено ревью PR
+- `Requires Review` — требуется ли ручное ревью для этой задачи
+- `RFC Link` — ссылка на RFC, связанный с этой задачей
+- `Upstream Source` — источник задачи:
+  - `Ideas & Proposals` — из идей и предложений
+  - `RFC` — из RFC
+  - `Incident` — из инцидента
+  - `Metrics` — из метрик
+- `Overdue` — формула, показывающая, просрочена ли задача (Yes/No)
+
+**Представления Briefs:**
+- `Ready for CodeGPT` — задачи со статусом `Ready` и `Executor`, начинающимся с `CodeGPT:`
+- `Pending Review` — задачи со статусом `Review` и `Requires Review = Yes`
+- `Overdue` — задачи с `Overdue = Yes`
+- `By Lane` — доска задач, сгруппированная по `Lane`
+
+**Подробнее:** см. [Briefs upgrade — инструкция по обновлению](./briefs-upgrade-how-to.md)
 
 ### Контекст проекта
 - `/.codegpt/context.md` — общий контекст (источник истины, ветви, линтеры, CI, lanes)
