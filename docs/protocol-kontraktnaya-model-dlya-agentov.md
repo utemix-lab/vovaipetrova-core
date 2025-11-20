@@ -554,9 +554,61 @@ writeFile('docs/new-page.md', content, {
 7. **Мердж**: после одобрения смерджить PR
 8. **Завершение**: обновить статус в Briefs, удалить ветку (если не `notion-sync/*`)
 
+## Release: процедура релиза GitHub Pages прототипа
+
+Для релиза прототипа на GitHub Pages используется единый чек-лист и процедура.
+
+### Preflight проверки
+
+**Перед релизом необходимо:**
+1. **CI статус**: Все проверки CI зелёные на ветке `main`
+2. **Diagnostics свежие**: `prototype/data/pages.json`, `stats.json`, `broken-links.json`, `orphans.json` обновлены
+3. **Prototype файлы готовы**: `index.html`, `styles.css`, `app.js`, `data/*.json` актуальны
+4. **Workflow готов**: `.github/workflows/pages.yml` на месте и настроен
+
+### Процедура релиза
+
+**Вариант A: Автоматический деплой (push в main)**
+- Изменения в `prototype/` или `docs/` автоматически запускают деплой
+- Workflow выполняется автоматически при push в `main`
+
+**Вариант B: Ручной запуск через GitHub Actions**
+1. Открыть Actions → "Deploy Pages (prototype)"
+2. Нажать "Run workflow"
+3. Выбрать ветку `main`
+4. Нажать "Run workflow"
+
+### Верификация
+
+После деплоя проверить:
+- ✅ Сайт доступен по URL: https://utemix-lab.github.io/vovaipetrova-core/
+- ✅ Основные функции работают (навигация, фильтры, поиск)
+- ✅ Нет ошибок в консоли браузера
+- ✅ Мобильная версия отображается корректно
+
+### Критерии успешного релиза
+
+✅ Workflow выполнен без ошибок  
+✅ Сайт доступен по URL  
+✅ Все функции работают  
+✅ Нет критических багов  
+✅ Производительность приемлемая (< 3 сек загрузка)
+
+### Процедура Rollback
+
+Если релиз неудачный:
+1. **Через GitHub Actions**: Перезапустить предыдущий успешный деплой
+2. **Через Git**: Создать revert коммит и запушить в `main`
+3. **Через GitHub Pages Settings**: Выбрать предыдущий коммит в настройках Pages
+
+**Время rollback:** обычно 2-5 минут
+
+**Подробнее:** см. [Release checklist — процедура релиза Pages прототипа](./release-checklist-pages-prototype.md)
+
 ## Связано с
 
 - `CONTRIBUTING.md` — процесс работы с репозиторием
 - `/.codegpt/context.md` — контекст проекта
 - `docs/rfcs/rfc-xxxx-nazvanie-rfc.md` — шаблон для RFC (для крупных изменений)
+- `docs/release-checklist-pages-prototype.md` — чек-лист и процедура релиза
 
