@@ -1,5 +1,5 @@
 {
-  "updated": "2025-11-20T17:49:13.046Z",
+  "updated": "2025-11-20T18:10:23.067Z",
   "orphans": [
     {
       "slug": "eval-harness-how-to",
@@ -11,24 +11,6 @@
       "slug": "rfc-xxxx-nazvanie-rfc",
       "title": "RFC-XXXX: {Название RFC}",
       "url": "docs/rfcs/rfc-xxxx-nazvanie-rfc.md",
-      "status": "draft"
-    },
-    {
-      "slug": "template-task-spec-example-1-docs",
-      "title": "template-task-spec-example-1-docs",
-      "url": "docs/template-task-spec-example-1-docs.md",
-      "status": "draft"
-    },
-    {
-      "slug": "template-task-spec-example-2-scripts",
-      "title": "template-task-spec-example-2-scripts",
-      "url": "docs/template-task-spec-example-2-scripts.md",
-      "status": "draft"
-    },
-    {
-      "slug": "template-task-spec-example-3-prototype",
-      "title": "template-task-spec-example-3-prototype",
-      "url": "docs/template-task-spec-example-3-prototype.md",
       "status": "draft"
     }
   ]
