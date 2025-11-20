@@ -1,5 +1,5 @@
 {
-  "updated": "2025-11-20T19:25:58.696Z",
+  "updated": "2025-11-20T19:59:41.642Z",
   "orphans": [
     {
       "slug": "eval-harness-how-to",
@@ -11,12 +11,6 @@
       "slug": "mcp-notion-api-compatibility-tracker",
       "title": "MCP Notion API Compatibility Tracker",
       "url": "docs/mcp-notion-api-compatibility-tracker.md",
-      "status": "draft"
-    },
-    {
-      "slug": "rfc-xxxx-nazvanie-rfc",
-      "title": "RFC-XXXX: {Название RFC}",
-      "url": "docs/rfcs/rfc-xxxx-nazvanie-rfc.md",
       "status": "draft"
     }
   ]

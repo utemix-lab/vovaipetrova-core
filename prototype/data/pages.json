@@ -1095,7 +1095,7 @@
   {
     "title": "Навигация — схема разделов и маршрутов",
     "slug": "navigaciya-shema-razdelov-i-marshrutov",
-    "status": "draft",
+    "status": "ready",
     "summary": "# Навигация — схема разделов и маршрутов",
     "tags": [],
     "machine_tags": [],
@@ -1147,7 +1147,7 @@
   {
     "title": "Site IA / nav",
     "slug": "site-ia-nav",
-    "status": "draft",
+    "status": "ready",
     "summary": "# Site IA / nav",
     "tags": [],
     "machine_tags": [],
@@ -1530,7 +1530,7 @@
   {
     "title": "Protocol — Контрактная модель для агентов",
     "slug": "protocol-kontraktnaya-model-dlya-agentov",
-    "status": "draft",
+    "status": "ready",
     "summary": "# Protocol — Контрактная модель для агентов",
     "tags": [],
     "machine_tags": [],
@@ -1615,7 +1615,7 @@
     "tags": [],
     "machine_tags": [],
     "url": "docs/rfcs/rfc-xxxx-nazvanie-rfc.md",
-    "service": false,
+    "service": true,
     "collection": null,
     "story_order": null
   },
@@ -3000,6 +3000,49 @@
       "theme/automation"
     ],
     "url": "docs/briefs-upgrade-how-to.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
+  },
+  {
+    "title": "Release checklist — процедура релиза Pages прототипа",
+    "slug": "release-checklist-pages-prototype",
+    "status": "ready",
+    "summary": "Чек-лист и процедура релиза GitHub Pages прототипа: preflight проверки, запуск деплоя, верификация, rollback",
+    "tags": [
+      "Документация",
+      "Процесс",
+      "Release"
+    ],
+    "machine_tags": [
+      "action/build",
+      "action/deploy",
+      "product/kb",
+      "product/site"
+    ],
+    "url": "docs/release-checklist-pages-prototype.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
+  },
+  {
+    "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
+    "slug": "backup-export-routine-notion-github",
+    "status": "ready",
+    "summary": "Чек-лист и процедура регулярного экспорта Notion в GitHub с базовыми проверками целостности",
+    "tags": [
+      "Документация",
+      "Процесс",
+      "Backup",
+      "XX"
+    ],
+    "machine_tags": [
+      "action/backup",
+      "action/build",
+      "action/export",
+      "product/kb"
+    ],
+    "url": "docs/backup-export-routine-notion-github.md",
     "service": false,
     "collection": null,
     "story_order": null

@@ -313,3 +313,7 @@ routes:
         doc: docs/backup-export-routine-notion-github.md
         status: ok
         notes: "Чек-лист и процедура регулярного экспорта Notion в GitHub с базовыми проверками целостности (sanity-check)"
+      - slug: release-checklist-pages-prototype
+        doc: docs/release-checklist-pages-prototype.md
+        status: ok
+        notes: "Чек-лист и процедура релиза GitHub Pages прототипа: preflight проверки, запуск деплоя, верификация, rollback"

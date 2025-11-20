@@ -1,6 +1,19 @@
 {
-  "generatedAt": "2025-11-20T19:25:58.506Z",
-  "totalFiles": 197,
-  "brokenCount": 0,
-  "issues": []
+  "generatedAt": "2025-11-20T19:59:46.017Z",
+  "totalFiles": 199,
+  "brokenCount": 2,
+  "issues": [
+    {
+      "file": "backup-export-routine-notion-github.md",
+      "link": "../CONTRIBUTING.md",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "backup-export-routine-notion-github.md",
+      "link": "../.github/workflows/notion-import.yml",
+      "reason": "missing",
+      "resolved_to": null
+    }
+  ]
 }
