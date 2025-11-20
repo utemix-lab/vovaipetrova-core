@@ -47,6 +47,9 @@ test-adapters/
 # Cache directories
 .cache/
 
+# Test results
+tests/composer/results/
+
 # Notion exports (processed, can be removed after import)
 uploads/*.zip
 uploads/*.ZIP

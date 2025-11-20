@@ -34,7 +34,9 @@
     "check:diff": "node scripts/check-diff.mjs",
     "check:diff:strict": "node scripts/check-diff.mjs --strict",
     "test:adapters": "node scripts/adapters/test-file-operations.mjs",
-    "cache:warmup": "node scripts/cache-warmup.mjs"
+    "cache:warmup": "node scripts/cache-warmup.mjs",
+    "test:eval": "node tests/composer/eval-harness.mjs",
+    "test:eval:verbose": "node tests/composer/eval-harness.mjs --verbose"
   },
   "repository": {
     "type": "git",
