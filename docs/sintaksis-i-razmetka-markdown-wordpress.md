@@ -1,5 +1,5 @@
 ---
-title: "Синтаксис и разметка — Markdown → WordPress"
+title: Синтаксис и разметка — Markdown → WordPress
 slug: sintaksis-i-razmetka-markdown-wordpress
 summary: >-
   Памятка по Markdown: как готовить тексты для импорта в WordPress и не ломать

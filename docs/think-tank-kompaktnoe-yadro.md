@@ -1,5 +1,5 @@
 ---
-title: "Think Tank — компактное ядро"
+title: Think Tank — компактное ядро
 slug: think-tank-kompaktnoe-yadro
 summary: >-
   Каркас Think Tank: четыре файла с контекстом, которые синхронизируют Notion и

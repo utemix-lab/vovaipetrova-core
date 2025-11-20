@@ -1,5 +1,5 @@
 ---
-title: "Playbook — Роли"
+title: Playbook — Роли
 slug: playbook-roli
 summary: >-
   Пишет Vision, ADR, Specs в notion-brain Формирует Task spec Читает

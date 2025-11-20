@@ -1,5 +1,5 @@
 ---
-title: "TEMPLATE — Task spec Example 1: Документация"
+title: 'TEMPLATE — Task spec Example 1: Документация'
 slug: template-task-spec-example-1-docs
 summary: Пример спецификации задачи для добавления новой страницы документации
 tags: []

@@ -1,5 +1,5 @@
 ---
-title: "Think Tank — витрина процесса"
+title: Think Tank — витрина процесса
 slug: think-tank-vitrina-processa
 summary: >-
   Витрина того, как строится проект: заметки, наброски, решения, эволюция.

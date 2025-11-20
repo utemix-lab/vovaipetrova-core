@@ -1,5 +1,5 @@
 ---
-title: "TEMPLATE — PR чек‑лист"
+title: TEMPLATE — PR чек‑лист
 slug: template-pr-cheklist-3a6077
 summary: >-
   [ ]  Только нужные пути затронуты (docs/**, prototype/**,

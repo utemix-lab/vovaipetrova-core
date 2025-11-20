@@ -1,5 +1,5 @@
 ---
-title: "TEMPLATE — ADR"
+title: TEMPLATE — ADR
 slug: template-adr-237529
 summary: 'Дублирующий шаблон ADR с разделами контекста, решений, последствий и статуса.'
 tags: []

@@ -1,5 +1,5 @@
 ---
-title: "ADR — Теги и фасеты"
+title: ADR — Теги и фасеты
 slug: adr-tegi-i-fasety-b1150c
 summary: >
   Утверждаем фасетную модель тегов: видимые хэштеги, машинотеги и aliases для

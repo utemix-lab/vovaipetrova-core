@@ -1,5 +1,5 @@
 ---
-title: "Protocol — Контрактная модель для агентов"
+title: Protocol — Контрактная модель для агентов
 slug: protocol-kontraktnaya-model-dlya-agentov
 summary: '# Protocol — Контрактная модель для агентов'
 tags: []

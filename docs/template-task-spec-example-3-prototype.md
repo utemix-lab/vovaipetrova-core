@@ -1,5 +1,5 @@
 ---
-title: "TEMPLATE — Task spec Example 3: Прототип UI"
+title: 'TEMPLATE — Task spec Example 3: Прототип UI'
 slug: template-task-spec-example-3-prototype
 summary: Пример спецификации задачи для улучшения UI прототипа
 tags: []

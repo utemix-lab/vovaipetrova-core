@@ -1,5 +1,5 @@
 ---
-title: "Spec — Normalize и политика имён"
+title: Spec — Normalize и политика имён
 slug: spec-normalize-i-politika-imyon
 summary: 'Правила нормализации экспорта Notion: фронт-маттер, slug и устойчивость путей.'
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "UI макет — шапка и первый экран (Static First)"
+title: UI макет — шапка и первый экран (Static First)
 slug: ui-maket-shapka-i-pervyj-ekran-static-first-0b7377
 summary: >-
   Черновой вариант статического прототипа первого экрана с переключателем ролей

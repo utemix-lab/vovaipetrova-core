@@ -1,5 +1,5 @@
 ---
-title: "Инструкции для Notion AI — vova_i_petrova"
+title: Инструкции для Notion AI — vova_i_petrova
 slug: instrukcii-dlya-notion-ai-vovaipetrova
 summary: >-
   Памятка для Notion AI: где находится источник истины и как синхронизировать

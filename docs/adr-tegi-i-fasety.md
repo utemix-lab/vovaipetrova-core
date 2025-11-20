@@ -1,5 +1,5 @@
 ---
-title: "ADR — Теги и фасеты"
+title: ADR — Теги и фасеты
 slug: adr-tegi-i-fasety
 summary: >-
   Фасеты: theme/*, action/*, product/*, tool/*, role/*, country/*, producer/*

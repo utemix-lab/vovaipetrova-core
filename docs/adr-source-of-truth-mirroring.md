@@ -1,5 +1,5 @@
 ---
-title: "ADR — Source of truth и зеркалирование"
+title: ADR — Source of truth и зеркалирование
 slug: adr-source-of-truth-mirroring
 summary: >-
   Закрепляем, что Notion остаётся авторским источником, а GitHub —

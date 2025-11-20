@@ -1,5 +1,5 @@
 ---
-title: "Экспорт в GitHub — руководство и шаблоны"
+title: Экспорт в GitHub — руководство и шаблоны
 slug: eksport-v-github-rukovodstvo-i-shablony
 summary: >-
   Как выгружать контент из Notion в GitHub: структура репозитория, скрипты и

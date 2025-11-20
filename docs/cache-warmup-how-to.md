@@ -1,7 +1,9 @@
 ---
-title: "Cache warmup — контекст и словари"
+title: Cache warmup — контекст и словари
 slug: cache-warmup-how-to
-summary: Инструкция по регенерации снапшотов контекста и словарей для ускорения работы Composer
+summary: >-
+  Инструкция по регенерации снапшотов контекста и словарей для ускорения работы
+  Composer
 tags: []
 machine_tags: []
 status: ready

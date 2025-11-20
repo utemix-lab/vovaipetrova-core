@@ -1,5 +1,5 @@
 ---
-title: "Архитектура проекта — компоненты"
+title: Архитектура проекта — компоненты
 slug: arhitektura-proekta-komponenty-bb23c3
 summary: >-
   1) База знаний Формат исходных материалов: Markdown/YAML Структура: теги, граф

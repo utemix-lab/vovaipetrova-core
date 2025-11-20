@@ -1,5 +1,5 @@
 ---
-title: "Vision — Игровая навигация и роли (V1)"
+title: Vision — Игровая навигация и роли (V1)
 slug: vision-igrovaya-navigaciya-i-roli-v1
 summary: >-
   Концепция игрового первого экрана с переключением ролей и корзиной артефактов

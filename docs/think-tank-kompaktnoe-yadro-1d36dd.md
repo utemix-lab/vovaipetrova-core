@@ -1,5 +1,5 @@
 ---
-title: "Think Tank — компактное ядро"
+title: Think Tank — компактное ядро
 slug: think-tank-kompaktnoe-yadro-1d36dd
 summary: >
   Базовый набор артефактов Think Tank: что держим в Notion, что зеркалим в

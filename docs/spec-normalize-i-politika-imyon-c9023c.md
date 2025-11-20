@@ -1,5 +1,5 @@
 ---
-title: "Spec — Normalize и политика имён"
+title: Spec — Normalize и политика имён
 slug: spec-normalize-i-politika-imyon-c9023c
 summary: >-
   Правила нормализации экспорта из Notion: как работает скрипт и какие
