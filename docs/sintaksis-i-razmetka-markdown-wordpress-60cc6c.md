@@ -1,5 +1,5 @@
 ---
-title: Синтаксис и разметка — Markdown → WordPress
+title: "Синтаксис и разметка — Markdown → WordPress"
 slug: sintaksis-i-razmetka-markdown-wordpress-60cc6c
 summary: >-
   Markdown-гайд для переноса материалов в WordPress с сохранением тегов и

@@ -1,5 +1,5 @@
 ---
-title: Суть проекта — One-liner
+title: "Суть проекта — One-liner"
 slug: sut-proekta-one-liner-f9aa4d
 summary: >-
   Автоматизированная система сбора и структуризации знаний о нейросетях с

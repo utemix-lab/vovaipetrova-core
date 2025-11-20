@@ -1,5 +1,5 @@
 ---
-title: TEMPLATE — Vision
+title: "TEMPLATE — Vision"
 slug: template-vision-e2acba
 summary: 'Альтернативный шаблон vision с блоками цели, метрик и контекста.'
 tags: []

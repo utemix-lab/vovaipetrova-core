@@ -1,5 +1,5 @@
 ---
-title: ComfyUI — обзор и быстрый старт
+title: "ComfyUI — обзор и быстрый старт"
 slug: comfyui-obzor-i-bystryj-start
 summary: >
   Объясняем, зачем нужен ComfyUI, как собрать первый пайплайн и какие ошибки

@@ -1,5 +1,5 @@
 ---
-title: ComfyUI — обзор и быстрый старт
+title: "ComfyUI — обзор и быстрый старт"
 slug: comfyui-obzor-i-bystryj-start-5a18c5
 summary: >
   Шпаргалка по настройке пайплайнов ComfyUI: пресеты, интеграции и контроль

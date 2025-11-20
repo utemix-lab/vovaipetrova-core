@@ -1,5 +1,5 @@
 ---
-title: Spec — Front matter и слуги
+title: "Spec — Front matter и слуги"
 slug: spec-front-matter-i-slugi-91237c
 summary: '``` --- title: Строка'
 status: draft

@@ -1,5 +1,5 @@
 ---
-title: Инструкции для Notion AI — vova_i_petrova
+title: "Инструкции для Notion AI — vova_i_petrova"
 slug: instrukcii-dlya-notion-ai-vovaipetrova-28ce52
 summary: >-
   Как Notion AI синхронизируется с GitHub: экспорт, структуры и страховка на

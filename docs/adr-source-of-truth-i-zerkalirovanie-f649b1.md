@@ -1,5 +1,5 @@
 ---
-title: ADR — Source of truth и зеркалирование
+title: "ADR — Source of truth и зеркалирование"
 slug: adr-source-of-truth-i-zerkalirovanie-f649b1
 summary: >-
   Источник истины — Notion. Репозиторий — зеркало для исполнения и публикации.

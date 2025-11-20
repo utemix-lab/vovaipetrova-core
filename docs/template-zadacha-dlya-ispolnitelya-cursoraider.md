@@ -1,5 +1,5 @@
 ---
-title: TEMPLATE — Задача для исполнителя (Cursor/Aider)
+title: "TEMPLATE — Задача для исполнителя (Cursor/Aider)"
 slug: template-zadacha-dlya-ispolnitelya-cursoraider
 summary: >-
   Шаблон задачи для агентов Cursor/Aider: структура постановки, требования и

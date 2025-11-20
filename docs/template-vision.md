@@ -1,5 +1,5 @@
 ---
-title: TEMPLATE — Vision
+title: "TEMPLATE — Vision"
 slug: template-vision
 summary: 'Базовый шаблон продуктового vision: замысел, метрики, ограничения и материалы.'
 tags: []

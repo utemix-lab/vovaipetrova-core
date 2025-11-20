@@ -1,5 +1,5 @@
 ---
-title: Eval harness — метрики качества и регрессии
+title: "Eval harness — метрики качества и регрессии"
 slug: eval-harness-how-to
 summary: Инструкция по использованию eval harness для проверки качества работы Composer и обнаружения регрессий
 tags: []

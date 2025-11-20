@@ -1,5 +1,5 @@
 ---
-title: TEMPLATE — ADR
+title: "TEMPLATE — ADR"
 slug: template-adr
 summary: >-
   Шаблон ADR: блоки контекста, решения, последствий и статуса с ссылками на

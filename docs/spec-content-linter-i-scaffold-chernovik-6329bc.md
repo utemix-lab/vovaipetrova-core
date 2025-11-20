@@ -1,5 +1,5 @@
 ---
-title: Spec — Content linter и scaffold (черновик)
+title: "Spec — Content linter и scaffold (черновик)"
 slug: spec-content-linter-i-scaffold-chernovik-6329bc
 summary: Черновой план контент-линтера и генератора шаблонов для автоматизации импорта.
 tags: []

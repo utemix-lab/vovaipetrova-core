@@ -1,5 +1,5 @@
 ---
-title: Навигация — схема разделов и маршрутов
+title: "Навигация — схема разделов и маршрутов"
 slug: navigaciya-shema-razdelov-i-marshrutov
 service: true
 summary: '# Навигация — схема разделов и маршрутов'

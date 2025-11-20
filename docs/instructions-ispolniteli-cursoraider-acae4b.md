@@ -1,5 +1,5 @@
 ---
-title: Instructions — Исполнители (Cursor/Aider)
+title: "Instructions — Исполнители (Cursor/Aider)"
 slug: instructions-ispolniteli-cursoraider-acae4b
 summary: >-
   1) Прочитайте папку notion-brain/ (ADR, Specs, context-map.yaml) 2) Вносите
