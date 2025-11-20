@@ -2940,5 +2940,17 @@
     "service": false,
     "collection": null,
     "story_order": null
+  },
+  {
+    "title": "Cache warmup — контекст и словари",
+    "slug": "cache-warmup-how-to",
+    "status": "ready",
+    "summary": "Инструкция по регенерации снапшотов контекста и словарей для ускорения работы Composer",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/cache-warmup-how-to.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
   }
 ]
