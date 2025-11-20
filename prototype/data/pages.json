@@ -2904,5 +2904,41 @@
     "service": false,
     "collection": null,
     "story_order": null
+  },
+  {
+    "title": "template-task-spec-example-1-docs",
+    "slug": "template-task-spec-example-1-docs",
+    "status": "draft",
+    "summary": "",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-task-spec-example-1-docs.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
+  },
+  {
+    "title": "template-task-spec-example-2-scripts",
+    "slug": "template-task-spec-example-2-scripts",
+    "status": "draft",
+    "summary": "",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-task-spec-example-2-scripts.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
+  },
+  {
+    "title": "template-task-spec-example-3-prototype",
+    "slug": "template-task-spec-example-3-prototype",
+    "status": "draft",
+    "summary": "",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-task-spec-example-3-prototype.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
   }
 ]
