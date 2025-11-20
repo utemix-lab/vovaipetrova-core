@@ -248,6 +248,20 @@ function main() {
       if (!href || href.startsWith("http") || href.startsWith("mailto:")) {
         return;
       }
+      // Проверяем ссылки на файлы вне docs/ (например, ../CONTRIBUTING.md, ../.github/...)
+      if (href.startsWith("../")) {
+        const resolvedPath = path.resolve(path.dirname(doc.path), href);
+        const repoRoot = path.resolve(DOCS_ROOT, "..");
+        // Проверяем, что путь находится внутри репозитория
+        if (resolvedPath.startsWith(repoRoot)) {
+          const relativePath = path.relative(repoRoot, resolvedPath).replace(/\\/g, "/");
+          if (existsSync(resolvedPath)) {
+            // Файл существует вне docs/, не считаем его битым
+            return;
+          }
+        }
+      }
+      }
       if (href.startsWith("#")) return;
       const result = resolveReference(href, maps, linkMap);
       if (result.status === "ok") return;

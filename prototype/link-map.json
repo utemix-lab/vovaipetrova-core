@@ -18,7 +18,11 @@
     "api-reestr-i-specifikacii-711159.md": "api-reestr-i-specifikacii-711159",
     "api-reestr-i-specifikacii-711159": "api-reestr-i-specifikacii-711159",
     "база знаний dcec31887b6145d78d9096d911a951cb.csv": "baza-znanij-koren",
-    "база знаний dcec31887b6145d78d9096d911a951cb": "baza-znanij-koren"
+    "база знаний dcec31887b6145d78d9096d911a951cb": "baza-znanij-koren",
+    "../contributing.md": "contributing",
+    "../.github/workflows/notion-import.yml": "notion-import-workflow",
+    "contributing.md": "contributing",
+    ".github/workflows/notion-import.yml": "notion-import-workflow"
   },
   "patterns": [
     {
