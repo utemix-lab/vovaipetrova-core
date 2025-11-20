@@ -467,6 +467,12 @@
           "doc": "docs/briefs-upgrade-how-to.md",
           "status": "ok",
           "notes": "Инструкция по обновлению базы данных Briefs в Notion: добавление полей Executor, Lane, SLA, Requires Review, RFC Link, Upstream Source, создание представлений и формулы Overdue"
+        },
+        {
+          "slug": "release-checklist-pages-prototype",
+          "doc": "docs/release-checklist-pages-prototype.md",
+          "status": "ok",
+          "notes": "Чек-лист и процедура релиза GitHub Pages прототипа: preflight проверки, запуск деплоя, верификация, rollback"
         }
       ]
     }

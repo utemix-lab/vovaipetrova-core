@@ -3003,5 +3003,26 @@
     "service": false,
     "collection": null,
     "story_order": null
+  },
+  {
+    "title": "Release checklist — процедура релиза Pages прототипа",
+    "slug": "release-checklist-pages-prototype",
+    "status": "ready",
+    "summary": "Чек-лист и процедура релиза GitHub Pages прототипа: preflight проверки, запуск деплоя, верификация, rollback",
+    "tags": [
+      "Документация",
+      "Процесс",
+      "Release"
+    ],
+    "machine_tags": [
+      "action/build",
+      "action/deploy",
+      "product/kb",
+      "product/site"
+    ],
+    "url": "docs/release-checklist-pages-prototype.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
   }
 ]
