@@ -1,0 +1,27 @@
+chore: CI guardrails v2 - one-PR-per-lane + size guard - finalize
+
+Задача уже реализована, финализация:
+
+✅ One-PR-per-lane check:
+- Скрипт scripts/check-lanes.mjs проверяет конфликты lanes
+- Добавляет комментарий и label "lane-blocked" при конфликтах
+- Удаляет label при разрешении конфликтов
+- Интегрирован в .github/workflows/docs-ci.yml
+- Label "lane-blocked" создан
+
+✅ Size guard v2:
+- Скрипт scripts/check-pr-size.mjs проверяет размер PR
+- Динамические пороги через guardrails-v2.mjs по типам задач
+- Добавляет комментарий при превышении лимитов
+- Интегрирован в .github/workflows/docs-ci.yml через guardrails-v2
+
+✅ Документация:
+- Обновлён docs/protocol-kontraktnaya-model-dlya-agentov.md
+- Описаны Lanes Policy и Size Guard v2
+- Добавлены команды npm run check:lanes и npm run check:pr-size
+
+Acceptance criteria выполнены:
+- Проверки работают
+- Комментарии добавляются автоматически
+- CI зелёный
+
