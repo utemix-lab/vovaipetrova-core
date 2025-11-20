@@ -1,0 +1,43 @@
+## Deliverables
+
+**Executor:** Cursor
+**Status:** ✅ Completed
+**Task:** CI: one‑PR‑per‑lane check + size guard v2
+
+### Completed
+- [x] Улучшить проверку one-PR-per-lane (получение labels из GitHub API)
+- [x] Сделать lanes check блокирующим (убрать continue-on-error)
+- [x] Добавить size guard v2 (проверка размера PR)
+- [x] Интегрировать size guard в CI workflow
+- [x] Обновить документацию протокола
+
+### Changes
+- Улучшён `scripts/check-lanes.mjs`: получение labels напрямую из GitHub API через `gh pr view`
+- Добавлена проверка автоматических веток (`notion-sync/*`) — пропускают проверку lanes
+- Создан `scripts/check-pr-size.mjs` с настраиваемыми лимитами и исключениями для автогенерируемых файлов
+- Lanes check теперь блокирующий (убрано `continue-on-error: true`)
+- Size guard добавлен в CI как неблокирующая проверка (предупреждения)
+
+### Files Changed
+- `scripts/check-lanes.mjs` — улучшено получение labels из GitHub API, добавлена проверка веток
+- `scripts/check-pr-size.mjs` — новый скрипт для проверки размера PR
+- `.github/workflows/docs-ci.yml` — lanes check блокирующий, добавлен size guard
+- `docs/protocol-kontraktnaya-model-dlya-agentov.md` — добавлена документация Size Guard v2
+- `package.json` — добавлены npm scripts: `check:lanes`, `check:pr-size`
+
+### Metrics
+- Создан 1 новый скрипт (check-pr-size.mjs)
+- Улучшен 1 существующий скрипт (check-lanes.mjs)
+- Добавлено 2 npm scripts для локальной проверки
+
+### Size Guard Configuration
+- Максимальное количество файлов: 50 (настраивается через `PR_SIZE_MAX_FILES`)
+- Максимальное количество добавлений: 2000 строк (настраивается через `PR_SIZE_MAX_ADDITIONS`)
+- Максимальное количество удалений: 1000 строк (настраивается через `PR_SIZE_MAX_DELETIONS`)
+- Исключения: `prototype/page/*.html`, `prototype/data/*.json`, `tmp-*`
+
+**Lane:** infra
+
+
+
+

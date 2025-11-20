@@ -1,0 +1,17 @@
+feat: Cache warmup - контекст и словари для Composer
+
+- Создан скрипт cache-warmup (scripts/cache-warmup.mjs):
+  * Генерация компактных снапшотов глоссария и тегов
+  * Быстрые справки по маршрутам и link-map
+  * Поддержка tags.yaml, routes.yml, link-map.json, glossary, context-map
+- Добавлена документация (docs/cache-warmup-how-to.md):
+  * Инструкция по регенерации снапшотов
+  * Примеры использования в скриптах
+  * Интеграция в процесс работы агента
+- Интегрировано в PROTOCOL.md:
+  * Упоминание .cache/context-snapshot.json и .cache/quick-reference.json
+  * Инструкция по использованию для ускорения первых ответов
+- Добавлена команда npm run cache:warmup
+- Добавлена ссылка на документацию в routes.yml
+- Добавлен .cache/ в .gitignore
+

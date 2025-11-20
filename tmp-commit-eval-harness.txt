@@ -1,0 +1,17 @@
+feat: Eval harness - метрики качества и регрессии для Composer
+
+- Создан eval harness (tests/composer/eval-harness.mjs):
+  * Набор эталонных задач: tags, link-map, routes, lint, diff-size
+  * Метрики: точность, объём диффа, время выполнения
+  * Генерация отчётов для PR
+- Интегрирован в CI (.github/workflows/docs-ci.yml):
+  * Автоматический запуск на PR к правилам и шаблонам
+  * Публикация результатов как комментарий в PR
+  * Падение при регрессе качества (не блокирует мердж)
+- Добавлена документация (docs/eval-harness-how-to.md):
+  * Инструкция по использованию eval harness
+  * Описание тестов и метрик
+  * Пороги качества и обнаружение регрессий
+- Добавлены команды npm run test:eval и npm run test:eval:verbose
+- Добавлен tests/composer/results/ в .gitignore
+

@@ -50,6 +50,9 @@ test-adapters/
 # Test results
 tests/composer/results/
 
+# Telemetry data
+.telemetry/
+
 # Guardrails test files
 test-guardrails-v2/
 

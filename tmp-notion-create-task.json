@@ -1,0 +1,9 @@
+{
+  "title": "routes: adopt orphans (batch-2)",
+  "properties": {
+    "Assignee": "Cursor",
+    "Status": "In progress",
+    "Brief": "Goal: Добавить страницы-сироты из orphans.json в routes.yml для отображения в Explorer.\n\nScope:\n- docs/nav/routes.yml\n- prototype/data/routes.json\n- prototype/data/orphans.json\n\nTasks:\n1) Добавить codegpt-setup.md в раздел /project\n2) Добавить protocol-kontraktnaya-model-dlya-agentov.md в раздел /think-tank\n3) Добавить routes-yml-how-to.md в раздел /nav\n4) Обновить routes.json и orphans.json\n\nDeliverables:\n- [x] 3 страницы добавлены в routes.yml\n- [x] routes.json обновлён\n- [x] orphans.json обновлён (остался только шаблон RFC)\n\nPR Link: https://github.com/utemix-lab/vovaipetrova-core/pull/69"
+  }
+}
+

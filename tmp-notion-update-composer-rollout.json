@@ -1,0 +1,6 @@
+{
+  "Status": "Review",
+  "PR Link": "https://github.com/utemix-lab/vovaipetrova-core/pull/81",
+  "Deliverables": "✅ Включена политика one-PR-per-lane для задач Composer (lane:composer)\n✅ Настроены очереди ревью и SLA в PROTOCOL.md:\n  - Composer Queue: максимум 1 активный PR, SLA 24 часа\n  - Стандартные очереди: до 2-3 активных PR, SLA 48 часов\n  - Статусы в Briefs: Ready → In Progress → Review → Done\n✅ Проверена совместимость с существующими guardrails\n\nPR: https://github.com/utemix-lab/vovaipetrova-core/pull/81"
+}
+

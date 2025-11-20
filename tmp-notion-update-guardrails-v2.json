@@ -1,0 +1,6 @@
+{
+  "Status": "Review",
+  "PR Link": "https://github.com/utemix-lab/vovaipetrova-core/pull/86",
+  "Deliverables": "✅ Size‑guard с порогами по типам задач\n✅ PII‑scrub для имён/почт/путей\n✅ Чёрный список путей (forbidden‑paths)\n\nPR: https://github.com/utemix-lab/vovaipetrova-core/pull/86"
+}
+

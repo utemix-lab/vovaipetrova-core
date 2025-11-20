@@ -1,0 +1,47 @@
+{
+  "coverage": {
+    "total": 196,
+    "covered": 163,
+    "percentage": 83
+  },
+  "missingAliases": [
+    {
+      "tag": "Story",
+      "files_count": 29,
+      "files": [
+        "docs\\stories\\stories-v10-content-ready-2025-11-12.md",
+        "docs\\stories\\08-site-ia-v1-i-vitrina.md",
+        "docs\\stories\\07-protolabs-i-issues-view.md",
+        "docs\\stories\\06-v1-0-content-ready.md",
+        "docs\\stories\\05-explorer-vs-think-tank.md",
+        "docs\\stories\\04-avtopilot-notion-cursor-github.md",
+        "docs\\stories\\03-import-i-bezopasnost.md",
+        "docs\\stories\\020-stories-daily-cadence-i-generator.md",
+        "docs\\stories\\02-pochemu-notion-source-of-truth.md",
+        "docs\\stories\\019-stories-anonimizaciya-i-lint-rule.md"
+      ]
+    },
+    {
+      "tag": "Документация",
+      "files_count": 2,
+      "files": [
+        "docs\\nav\\routes-yml-how-to.md",
+        "docs\\nav\\orphans-how-to.md"
+      ]
+    },
+    {
+      "tag": "Теги",
+      "files_count": 1,
+      "files": [
+        "docs\\vision-strategiya-marketing-autentichnost-tretij-put-onepager.md"
+      ]
+    },
+    {
+      "tag": "Хэштегов",
+      "files_count": 1,
+      "files": [
+        "docs\\spec-normalize-i-politika-imyon.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+fix: link-map coverage finale - internal-missing = 0, edge cases
+
+- Улучшена обработка edge-cases в report-broken-internal-links.mjs:
+  - Добавлена поддержка якорей (#anchor) и query-параметров (?param)
+  - Улучшена обработка CSV файлов
+  - Добавлена поддержка service файлов через serviceMap
+  - Улучшена нормализация ссылок с хешами
+- Обновлены правила в link-map.json:
+  - Добавлены exact mappings для api-reestr-i-specifikacii-711159
+  - Добавлены mappings для CSV файлов "База знаний"
+- Результаты:
+  - internal-missing: 0 (было 2)
+  - issues_total: 0 (было 2)
+  - Все internal ссылки корректно резолвятся
+

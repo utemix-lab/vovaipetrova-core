@@ -1,0 +1,27 @@
+## Deliverables
+
+**Executor:** Cursor
+**Status:** ✅ Completed
+**Task:** Docs: PR template update + routes.yml how‑to
+
+### Completed
+- [x] PR template: добавить секцию Deliverables и чек‑лист для прототипа (rebuild diagnostics, pages.json) и lanes
+- [x] How‑to: краткая инструкция «как добавить раздел в routes.yml и отобразить в Explorer»
+
+### Changes
+- Обновлён `.github/pull_request_template.md` с расширенным чек-листом проверки
+- Создан `docs/nav/routes-yml-how-to.md` с практической инструкцией по работе с routes.yml
+- Добавлена ссылка на how-to в `README.md`
+
+### Files Changed
+- `.github/pull_request_template.md` — добавлены секции "Прототип" и "Lanes policy" в чек-лист проверки
+- `docs/nav/routes-yml-how-to.md` — новый файл с инструкцией по работе с routes.yml
+- `README.md` — добавлена ссылка на routes-yml-how-to.md в разделе "Структура"
+
+### Metrics
+- Создан 1 новый документ (routes-yml-how-to.md)
+- Обновлён 1 шаблон (PR template)
+- Добавлено 2 новых раздела в чек-лист проверки
+
+**Lane:** docs
+

@@ -1,0 +1,8 @@
+ci: guardrails v2 - verify one-PR-per-lane + tune size-guard
+
+- check-lanes.mjs: добавлен комментарий в PR и label lane-blocked при конфликтах
+- check-pr-size.mjs: добавлен комментарий в PR при превышении лимитов размера
+- docs-ci.yml: обновлены переменные окружения для обоих скриптов
+- Lane check теперь блокирующий (exit 1 при конфликтах)
+- Size check остаётся неблокирующим (continue-on-error: true)
+

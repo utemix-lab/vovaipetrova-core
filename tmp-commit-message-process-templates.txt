@@ -1,0 +1,13 @@
+docs: process templates finale - PR/RFC/PROTOCOL актуализация
+
+- Актуализирован PR template: добавлены проверки guardrails и content quality
+- Обновлён RFC template: добавлена ссылка на PROTOCOL.md
+- Синхронизирован PROTOCOL.md: обновлён процесс работы агента с проверками
+- Обновлён README: добавлены новые команды (check:pr-size, check:lanes, test:guardrails)
+
+Deliverables:
+- PR template актуализирован по итогам последних PR
+- RFC template обновлён на основе опыта
+- PROTOCOL.md синхронизирован с реальными процессами
+- README проверен на актуальность (ссылки, процессы)
+
