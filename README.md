@@ -109,6 +109,20 @@ npm run codegpt:notion:search     # Поиск в Notion
 
 Подробнее о процессе работы: [`docs/protocol-kontraktnaya-model-dlya-agentov.md`](docs/protocol-kontraktnaya-model-dlya-agentov.md)
 
+## Release
+
+**Релиз GitHub Pages прототипа:**
+
+Чек-лист и процедура релиза описаны в [`docs/release-checklist-pages-prototype.md`](docs/release-checklist-pages-prototype.md).
+
+**Быстрый релиз (< 5 минут):**
+1. Убедиться, что CI зелёный на `main`
+2. Выполнить `npm run diagnostics:snapshot` (если были изменения в docs/)
+3. Запустить workflow "Deploy Pages (prototype)" через GitHub Actions
+4. Проверить URL: https://utemix-lab.github.io/vovaipetrova-core/
+
+**Процедура rollback:** см. [Release checklist](docs/release-checklist-pages-prototype.md#процедура-rollback)
+
 ### Автоматизация
 
 **GitHub Actions** для безопасной работы с документами:
