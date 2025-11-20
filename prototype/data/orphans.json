@@ -1,6 +1,12 @@
 {
-  "updated": "2025-11-20T17:39:26.900Z",
+  "updated": "2025-11-20T17:49:13.046Z",
   "orphans": [
+    {
+      "slug": "eval-harness-how-to",
+      "title": "Eval harness — метрики качества и регрессии",
+      "url": "docs/eval-harness-how-to.md",
+      "status": "ready"
+    },
     {
       "slug": "rfc-xxxx-nazvanie-rfc",
       "title": "RFC-XXXX: {Название RFC}",
