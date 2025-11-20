@@ -1,5 +1,5 @@
 ---
-title: TEMPLATE — Task spec Example 2: Скрипты
+title: "TEMPLATE — Task spec Example 2: Скрипты"
 slug: template-task-spec-example-2-scripts
 summary: Пример спецификации задачи для создания нового скрипта утилиты
 tags: []
