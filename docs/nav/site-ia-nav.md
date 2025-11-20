@@ -5,6 +5,7 @@ service: true
 summary: '# Site IA / nav'
 tags: []
 machine_tags: []
+status: ready
 ---
 # Site IA / nav
 
