@@ -245,7 +245,7 @@ git pull origin main
 
 - [Protocol — Контрактная модель для агентов](./protocol-kontraktnaya-model-dlya-agentov.md) — общий процесс работы
 - [Diagnostics snapshot v3 + link-map monitor](./protocol-kontraktnaya-model-dlya-agentov.md#diagnostics-snapshot-v3) — проверка diagnostics
-- [GitHub Actions workflow](../.github/workflows/pages.yml) — конфигурация деплоя
+- GitHub Actions workflow: `.github/workflows/pages.yml` — конфигурация деплоя
 
 ## Чек-лист быстрого релиза
 
