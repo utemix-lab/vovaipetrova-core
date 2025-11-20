@@ -5,6 +5,7 @@ service: true
 summary: '# Навигация — схема разделов и маршрутов'
 tags: []
 machine_tags: []
+status: ready
 ---
 # Навигация — схема разделов и маршрутов
 

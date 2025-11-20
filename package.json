@@ -41,7 +41,8 @@
     "guardrails:v2": "node scripts/guardrails-v2.mjs",
     "guardrails:v2:verbose": "node scripts/guardrails-v2.mjs --verbose",
     "telemetry:collect": "node scripts/telemetry.mjs",
-    "telemetry:report": "node scripts/generate-telemetry-report.mjs"
+    "telemetry:report": "node scripts/generate-telemetry-report.mjs",
+    "sanity:check": "node scripts/sanity-check.mjs"
   },
   "repository": {
     "type": "git",

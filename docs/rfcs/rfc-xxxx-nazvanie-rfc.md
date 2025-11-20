@@ -4,6 +4,8 @@ slug: rfc-xxxx-nazvanie-rfc
 summary: '# RFC-XXXX: {Название RFC}'
 tags: []
 machine_tags: []
+status: draft
+service: true
 ---
 # RFC-XXXX: {Название RFC}
 

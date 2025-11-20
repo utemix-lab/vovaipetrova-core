@@ -249,6 +249,18 @@ function main() {
         return;
       }
       if (href.startsWith("#")) return;
+      // Проверяем ссылки на файлы вне docs/ (например, ../CONTRIBUTING.md, ../.github/...)
+      if (href.startsWith("../")) {
+        const resolvedPath = path.resolve(path.dirname(doc.path), href);
+        const repoRoot = path.resolve(DOCS_ROOT, "..");
+        // Проверяем, что путь находится внутри репозитория
+        if (resolvedPath.startsWith(repoRoot)) {
+          if (existsSync(resolvedPath)) {
+            // Файл существует вне docs/, не считаем его битым
+            return;
+          }
+        }
+      }
       const result = resolveReference(href, maps, linkMap);
       if (result.status === "ok") return;
       if (result.status === "service") return;

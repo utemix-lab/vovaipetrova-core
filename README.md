@@ -109,6 +109,26 @@ npm run codegpt:notion:search     # Поиск в Notion
 
 Подробнее о процессе работы: [`docs/protocol-kontraktnaya-model-dlya-agentov.md`](docs/protocol-kontraktnaya-model-dlya-agentov.md)
 
+## Export: Backup/Export рутина Notion → GitHub
+
+**Регулярный экспорт и проверки целостности:**
+
+Чек-лист и процедура экспорта описаны в [`docs/backup-export-routine-notion-github.md`](docs/backup-export-routine-notion-github.md).
+
+**Быстрый экспорт (< 20 минут):**
+1. Экспорт из Notion (Markdown & CSV, include subpages)
+2. ZIP скопирован в `uploads/notion_export.zip`
+3. Запущен workflow "Notion Import (Safe PR)" через GitHub Actions
+4. Sanity-check выполнен (`npm run sanity:check`)
+5. PR проверен и готов к мержу
+
+**Sanity-check включает:**
+- Наличие ключевых узлов (Think Tank, Briefs, документация)
+- Валидность front matter
+- Актуальность индексов (routes.yml, tags.yaml)
+- Целостность ссылок (internal-missing = 0)
+- Отсутствие критических ошибок линтинга
+
 ## Release
 
 **Релиз GitHub Pages прототипа:**

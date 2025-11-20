@@ -1,18 +1,40 @@
 {
-  "generatedAt": "2025-11-20T19:47:29.955Z",
+  "generatedAt": "2025-11-20T19:59:46.145Z",
   "totals": {
     "pages": 71,
     "statuses": {
-      "ready": 23,
+      "ready": 25,
       "review": 7,
-      "draft": 41
+      "draft": 39
     },
-    "issues_total": 0,
-    "issues_internal_missing": 0,
+    "issues_total": 2,
+    "issues_internal_missing": 2,
     "issues_service": 0,
     "issues_external": 0,
     "issues_unknown": 0
   },
-  "topProblems": [],
-  "issuesPerPage": []
+  "topProblems": [
+    {
+      "slug": "backup-export-routine-notion-github",
+      "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
+      "issues_total": 2,
+      "issues_internal_missing": 2,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 6
+    }
+  ],
+  "issuesPerPage": [
+    {
+      "slug": "backup-export-routine-notion-github",
+      "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
+      "issues_total": 2,
+      "issues_internal_missing": 2,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 6
+    }
+  ]
 }

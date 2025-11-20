@@ -4,6 +4,7 @@ slug: protocol-kontraktnaya-model-dlya-agentov
 summary: '# Protocol — Контрактная модель для агентов'
 tags: []
 machine_tags: []
+status: ready
 ---
 # Protocol — Контрактная модель для агентов
 

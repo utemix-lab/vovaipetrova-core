@@ -309,6 +309,10 @@ routes:
         doc: docs/briefs-upgrade-how-to.md
         status: ok
         notes: "Инструкция по обновлению базы данных Briefs в Notion: добавление полей Executor, Lane, SLA, Requires Review, RFC Link, Upstream Source, создание представлений и формулы Overdue"
+      - slug: backup-export-routine-notion-github
+        doc: docs/backup-export-routine-notion-github.md
+        status: ok
+        notes: "Чек-лист и процедура регулярного экспорта Notion в GitHub с базовыми проверками целостности (sanity-check)"
       - slug: release-checklist-pages-prototype
         doc: docs/release-checklist-pages-prototype.md
         status: ok
