@@ -29,6 +29,7 @@
     "routes:check": "node scripts/check-routes-consistency.mjs",
     "check:lanes": "node scripts/check-lanes.mjs",
     "check:pr-size": "node scripts/check-pr-size.mjs",
+    "check:deliverables": "node scripts/check-deliverables.mjs",
     "test:guardrails": "node scripts/test-guardrails.mjs",
     "verify:stats": "node scripts/verify-stats-accuracy.mjs",
     "check:diff": "node scripts/check-diff.mjs",
