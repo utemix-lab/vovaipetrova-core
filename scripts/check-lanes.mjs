@@ -98,7 +98,7 @@ function extractLaneLabels(prBody, prNumber) {
   
   // Также проверяем PR body на случай, если labels ещё не добавлены
   if (prBody) {
-    const labelRegex = /lane:(docs|infra|stories|characters|qa|refactor|fix|feat|prototype|content)/gi;
+    const labelRegex = /lane:(docs|infra|stories|characters|qa|refactor|fix|feat|prototype|content|composer)/gi;
     const matches = prBody.match(labelRegex);
     if (matches) {
       matches.forEach(m => laneLabels.add(m.toLowerCase()));
