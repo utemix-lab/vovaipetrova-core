@@ -2964,5 +2964,25 @@
     "service": false,
     "collection": null,
     "story_order": null
+  },
+  {
+    "title": "MCP Notion API Compatibility Tracker",
+    "slug": "mcp-notion-api-compatibility-tracker",
+    "status": "draft",
+    "summary": "Отслеживание совместимости MCP серверов с Notion API версии 2025-09-03",
+    "tags": [
+      "Автоматизация",
+      "Кодинг"
+    ],
+    "machine_tags": [
+      "action/monitor",
+      "product/services",
+      "theme/automation",
+      "theme/dev"
+    ],
+    "url": "docs/mcp-notion-api-compatibility-tracker.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
   }
 ]
