@@ -461,6 +461,12 @@
           "doc": "docs/cache-warmup-how-to.md",
           "status": "ok",
           "notes": "Инструкция по регенерации снапшотов контекста и словарей для ускорения работы Composer"
+        },
+        {
+          "slug": "briefs-upgrade-how-to",
+          "doc": "docs/briefs-upgrade-how-to.md",
+          "status": "ok",
+          "notes": "Инструкция по обновлению базы данных Briefs в Notion: добавление полей Executor, Lane, SLA, Requires Review, RFC Link, Upstream Source, создание представлений и формулы Overdue"
         }
       ]
     }

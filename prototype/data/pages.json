@@ -2984,5 +2984,24 @@
     "service": false,
     "collection": null,
     "story_order": null
+  },
+  {
+    "title": "Briefs upgrade — инструкция по обновлению полей, представлений, SLA и очередей ревью",
+    "slug": "briefs-upgrade-how-to",
+    "status": "ready",
+    "summary": "Инструкция по обновлению базы данных Briefs в Notion: добавление полей Executor, Lane, SLA, Requires Review, RFC Link, Upstream Source, создание представлений и формулы Overdue",
+    "tags": [
+      "Документация",
+      "Процесс"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/kb",
+      "theme/automation"
+    ],
+    "url": "docs/briefs-upgrade-how-to.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
   }
 ]
