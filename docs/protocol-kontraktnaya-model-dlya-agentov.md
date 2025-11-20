@@ -20,6 +20,8 @@ machine_tags: []
 - `docs/protocol-kontraktnaya-model-dlya-agentov.md` — этот документ (правила работы)
 - `CONTRIBUTING.md` — процесс работы с репозиторием
 - `README.md` — структура и команды
+- `.cache/context-snapshot.json` — снапшот контекста и словарей (генерируется через `npm run cache:warmup`)
+- `.cache/quick-reference.json` — быстрые справки по тегам, маршрутам, link-map (для ускорения первых ответов)
 
 ## Выход агента
 

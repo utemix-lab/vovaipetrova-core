@@ -44,6 +44,9 @@ prototype/data/.build-cache.json
 # Test directories
 test-adapters/
 
+# Cache directories
+.cache/
+
 # Notion exports (processed, can be removed after import)
 uploads/*.zip
 uploads/*.ZIP
