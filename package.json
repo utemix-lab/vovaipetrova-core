@@ -33,7 +33,8 @@
     "verify:stats": "node scripts/verify-stats-accuracy.mjs",
     "check:diff": "node scripts/check-diff.mjs",
     "check:diff:strict": "node scripts/check-diff.mjs --strict",
-    "test:adapters": "node scripts/adapters/test-file-operations.mjs"
+    "test:adapters": "node scripts/adapters/test-file-operations.mjs",
+    "cache:warmup": "node scripts/cache-warmup.mjs"
   },
   "repository": {
     "type": "git",

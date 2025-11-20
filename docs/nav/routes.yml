@@ -301,3 +301,7 @@ routes:
         doc: docs/nav/orphans-how-to.md
         status: ok
         notes: Инструкция по работе со страницами без маршрутов в routes.yml (orphan pages)
+      - slug: cache-warmup-how-to
+        doc: docs/cache-warmup-how-to.md
+        status: ok
+        notes: Инструкция по регенерации снапшотов контекста и словарей для ускорения работы Composer
