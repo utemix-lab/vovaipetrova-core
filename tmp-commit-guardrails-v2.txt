@@ -1,0 +1,18 @@
+feat: Guardrails v2 - size-guard, PII-scrub, forbidden-paths
+
+- Создан guardrails v2 (scripts/guardrails-v2.mjs):
+  * Size-guard с порогами по типам задач (composer, docs, scripts, prototype)
+  * PII-scrub с расширенной детекцией (пути, email, телефоны, имена, API ключи)
+  * Forbidden-paths проверка (защита критических файлов)
+- Интегрирован в CI (.github/workflows/docs-ci.yml):
+  * Автоматический запуск на PR
+  * Публикация отчёта как комментарий в PR
+  * Блокировка при нарушениях
+- Обновлена документация (docs/protocol-kontraktnaya-model-dlya-agentov.md):
+  * Описание Guardrails v2 с порогами по типам задач
+  * Список forbidden-paths
+  * Расширенные PII паттерны
+- Добавлены команды npm run guardrails:v2 и npm run guardrails:v2:verbose
+- Добавлены тестовые файлы для проверки нарушений (test-guardrails-v2/)
+- Добавлен test-guardrails-v2/ в .gitignore
+

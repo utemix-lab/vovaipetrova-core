@@ -1,0 +1,8 @@
+{
+  "title": "feat: Adapters - файловые операции и дифф-патчи для Composer",
+  "body": "## Описание изменений\n\nОбеспечены надёжные изменения в docs/ и prototype/ через минимальные диффы и проверки.\n\n**Связанная задача**: [Composer] Adapters: файловые операции и дифф‑патчи\n\n**Lane Label**: `lane:composer`\n\n## Deliverables\n\n**Executor**: Cursor  \n**Status**: ✅ Completed  \n**Task**: https://www.notion.so/abe69a7a1e384ee0a54549c722a9e7b8\n\n### Completed\n- [x] Определены допустимые операции (append/replace/patch) и их проверки\n- [x] Введены обязательные dry-run и preview для Composer\n- [x] Созданы тесты на типовые кейсы (front matter, routes, link-map)\n\n### Changes\n- Создан адаптер файловых операций (`scripts/adapters/file-operations.mjs`)\n- Добавлена проверка диффов перед коммитом (`scripts/check-diff.mjs`)\n- Созданы тесты для адаптеров (`scripts/adapters/test-file-operations.mjs`)\n- Документированы политики в PROTOCOL.md\n\n### Files Changed\n- `scripts/adapters/file-operations.mjs` — адаптер файловых операций\n- `scripts/adapters/test-file-operations.mjs` — тесты адаптеров\n- `scripts/check-diff.mjs` — проверка диффов перед коммитом\n- `docs/protocol-kontraktnaya-model-dlya-agentov.md` — документация политик\n- `package.json` — добавлены команды `check:diff`, `check:diff:strict`, `test:adapters`\n- `.gitignore` — добавлен `test-adapters/`",
+  "head": "composer/adapters-file-operations",
+  "base": "main",
+  "labels": ["lane:composer"]
+}
+

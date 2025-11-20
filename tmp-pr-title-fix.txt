@@ -1,0 +1,2 @@
+feat: Prompts pack - task spec + safety rails для Composer
+

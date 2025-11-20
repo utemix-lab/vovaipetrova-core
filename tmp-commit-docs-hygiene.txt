@@ -1,0 +1,7 @@
+docs: PR template checklist + orphan how-to
+
+- Добавлен чеклист для работы с orphan страницами в PR template
+- Создана документация orphans-how-to.md
+- Обновлена routes-yml-how-to.md со ссылкой на новую документацию
+- Новая страница добавлена в routes.yml
+

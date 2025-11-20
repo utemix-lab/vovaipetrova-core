@@ -1,0 +1,11 @@
+feat(explorer): shareable filters, tag pages, mini UX polish 3
+
+- Shareable filters: кодирование сортировки/фильтров/тега в URL (query/hash)
+- Copy link button: копирование текущего URL с фильтрами
+- Tag pages: маршрут /tags/<tag> с автоприменённым фильтром и breadcrumbs
+- Mini UX polish 3:
+  - Улучшено выравнивание карточек (align-items: stretch)
+  - Оптимизированы отступы на мобильных устройствах
+  - Добавлен hover эффект для ready-only-toggle
+  - Исправлена проблема с дублированием breadcrumbs
+

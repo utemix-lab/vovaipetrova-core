@@ -1,0 +1,2 @@
+feat: stats accuracy check - верификация метрик snapshot
+

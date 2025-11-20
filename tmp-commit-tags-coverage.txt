@@ -1,0 +1,17 @@
+tags: coverage finale - aliases to 100%, re-normalize clean
+
+- Добавлены aliases для непокрытых тегов:
+  - Story/Stories → content/story (29 файлов)
+  - Документация → product/kb + action/build (2 файла)
+  - Теги → theme/taxonomy + product/kb (1 файл)
+  - Хэштегов → theme/taxonomy + product/kb (1 файл)
+  - Нормализация → action/build + theme/dev (1 файл)
+- Покрытие aliases: 83% → 100%
+- Re-normalize стабилен: после первого запуска обновлено 4 файла, после второго - 0 изменений
+- Добавлен скрипт scripts/analyze-tags-coverage.mjs для анализа покрытия
+
+Метрики:
+- Total tags: 196
+- Covered tags: 196
+- Coverage: 100%
+

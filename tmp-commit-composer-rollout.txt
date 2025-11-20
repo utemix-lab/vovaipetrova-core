@@ -1,0 +1,10 @@
+feat: Composer rollout v1 - one-lane policy + review queues
+
+- Добавлена поддержка lane:composer для изолированной дорожки задач Composer
+- Настроены очереди ревью и SLA в PROTOCOL.md:
+  * Composer Queue: максимум 1 активный PR, SLA 24 часа
+  * Стандартные очереди: до 2-3 активных PR, SLA 48 часов
+  * Статусы в Briefs: Ready → In Progress → Review → Done
+- Обновлён scripts/check-lanes.mjs для поддержки lane:composer
+- Проверена совместимость с существующими guardrails
+

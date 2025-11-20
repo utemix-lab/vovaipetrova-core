@@ -1,0 +1,6 @@
+{
+  "Status": "Done",
+  "PR Link": "https://github.com/utemix-lab/vovaipetrova-core/pull/78",
+  "Deliverables": "✅ Тест-кейсы для guardrails (scripts/test-guardrails.mjs)\n✅ Пороги lint настроены (summary max 300, content max 50k/100k)\n✅ Тестовые файлы с плохими примерами (test-guardrails/bad-examples/)\n✅ Обновлён PROTOCOL.md с документацией поведения\n\nPR: https://github.com/utemix-lab/vovaipetrova-core/pull/78"
+}
+

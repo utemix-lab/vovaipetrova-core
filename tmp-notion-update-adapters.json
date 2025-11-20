@@ -1,0 +1,6 @@
+{
+  "Status": "Review",
+  "PR Link": "https://github.com/utemix-lab/vovaipetrova-core/pull/83",
+  "Deliverables": "✅ Определены допустимые операции (append/replace/patch) и их проверки\n✅ Введены обязательные dry-run и preview для Composer\n✅ Созданы тесты на типовые кейсы (front matter, routes, link-map)\n\nPR: https://github.com/utemix-lab/vovaipetrova-core/pull/83"
+}
+

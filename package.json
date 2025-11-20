@@ -38,7 +38,9 @@
     "test:eval": "node tests/composer/eval-harness.mjs",
     "test:eval:verbose": "node tests/composer/eval-harness.mjs --verbose",
     "guardrails:v2": "node scripts/guardrails-v2.mjs",
-    "guardrails:v2:verbose": "node scripts/guardrails-v2.mjs --verbose"
+    "guardrails:v2:verbose": "node scripts/guardrails-v2.mjs --verbose",
+    "telemetry:collect": "node scripts/telemetry.mjs",
+    "telemetry:report": "node scripts/generate-telemetry-report.mjs"
   },
   "repository": {
     "type": "git",
