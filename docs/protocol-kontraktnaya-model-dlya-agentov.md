@@ -628,10 +628,36 @@ writeFile('docs/new-page.md', content, {
 
 **Подробнее:** см. [Release checklist — процедура релиза Pages прототипа](./release-checklist-pages-prototype.md)
 
+## Инциденты и ретроспективы
+
+При возникновении инцидентов (ошибки CI, проблемы с деплоем, критические баги) используйте шаблоны для фиксации и анализа:
+
+- **Шаблон инцидента**: [`docs/template-incident.md`](./template-incident.md) — минимальные поля для быстрого заполнения (< 3 минут)
+  - Поля: What/Impact/When/Why/Fixed/Follow-ups/Owner
+  - SLA реакции по уровням серьёзности
+  - Чек-лист проверки решения
+
+- **Шаблон ретроспективы**: [`docs/template-incident-retrospective.md`](./template-incident-retrospective.md) — короткая ретро для анализа и улучшений
+  - Что прошло хорошо / Что можно улучшить
+  - Действия по улучшению (немедленные, краткосрочные, долгосрочные)
+  - Уроки и метрики
+
+**Процесс:**
+1. При обнаружении инцидента → создать файл по шаблону `template-incident.md`
+2. После решения → заполнить разделы "Как исправлено" и "Последующие действия"
+3. В течение 48 часов → провести ретроспективу по шаблону `template-incident-retrospective.md`
+4. Добавить follow-up задачи в Briefs (если необходимо)
+
+**Интеграция:**
+- Ссылки на инциденты можно добавлять в PR описания (секция "Problems Encountered")
+- Инциденты могут быть источником задач в Briefs (`Upstream Source: Incident`)
+
 ## Связано с
 
 - `CONTRIBUTING.md` — процесс работы с репозиторием
 - `/.codegpt/context.md` — контекст проекта
 - `docs/rfcs/rfc-xxxx-nazvanie-rfc.md` — шаблон для RFC (для крупных изменений)
 - `docs/release-checklist-pages-prototype.md` — чек-лист и процедура релиза
+- `docs/template-incident.md` — шаблон фиксации инцидента
+- `docs/template-incident-retrospective.md` — шаблон ретроспективы инцидента
 

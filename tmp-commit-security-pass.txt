@@ -1,0 +1,43 @@
+security: актуализация PII-scrub правил и forbidden-paths
+
+- Обновлён список forbidden-paths в guardrails-v2.mjs:
+  - Добавлены codegpt.config.json, vscode-settings.example.json
+  - Добавлены tmp/, temp/, lint.log, STRUCTURE-REPORT.md
+  - Добавлены CHANGELOG.md, test-guardrails-v2/
+  - Уточнены комментарии для prototype/data/** и prototype/page/**
+
+- Обновлён список forbidden-paths в .import-map.yaml:
+  - Структурирован список по категориям
+  - Добавлены новые защищённые пути
+
+- Расширены правила PII-scrub в lint-docs.mjs:
+  - Добавлены паттерны для полных имён (русские и английские)
+  - Добавлены паттерны для компактных телефонных номеров
+  - Добавлены паттерны для кредитных карт
+  - Добавлены паттерны для AWS access keys
+  - Расширен список исключений для уменьшения ложных срабатываний
+
+- Расширены правила PII-scrub в guardrails-v2.mjs:
+  - Добавлены паттерны для Windows путей с Documents/Desktop/Downloads
+  - Улучшена обработка контекста для имён (только для stories)
+
+- Обновлён список FORBIDDEN_ALLOWED:
+  - Добавлен docs/protocol-kontraktnaya-model-dlya-agentov.md
+
+- Созданы новые тест-кейсы:
+  - pii-full-name.md (полные имена)
+  - pii-credit-card.md (номера кредитных карт)
+  - pii-aws-key.md (AWS access keys)
+  - forbidden-readme.md (ссылка на README.md)
+  - forbidden-env.md (ссылка на .env)
+
+- Улучшен test-security-violations.mjs:
+  - Добавлены описания для каждого теста
+  - Улучшена статистика результатов
+  - Расширен список тестовых файлов
+
+- Обновлена документация в PROTOCOL.md:
+  - Актуализированы правила PII-scrub
+  - Актуализированы правила forbidden-paths
+  - Добавлены новые паттерны и исключения
+
