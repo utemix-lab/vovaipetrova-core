@@ -323,6 +323,66 @@
           "notes": "Архетип: Парсинг/Обогащение (Hugo) Голос и тон: Рациональный"
         },
         {
+          "slug": "aliases",
+          "doc": "docs/kb/aliases.md",
+          "status": "ok",
+          "notes": "Синонимы и альтернативные названия для терминов, тегов и страниц"
+        },
+        {
+          "slug": "snapshot",
+          "doc": "docs/kb/snapshot.md",
+          "status": "ok",
+          "notes": "Моментальный снимок состояния данных для отслеживания метрик"
+        },
+        {
+          "slug": "link-map",
+          "doc": "docs/kb/link-map.md",
+          "status": "ok",
+          "notes": "Карта маппинга проблемных ссылок на канонические страницы"
+        },
+        {
+          "slug": "routes",
+          "doc": "docs/kb/routes.md",
+          "status": "ok",
+          "notes": "Маршруты навигации сайта, определённые в routes.yml"
+        },
+        {
+          "slug": "facets",
+          "doc": "docs/kb/facets.md",
+          "status": "ok",
+          "notes": "Фасетная модель навигации: темы, действия, продукты, технологии и роли"
+        },
+        {
+          "slug": "canonical-slug",
+          "doc": "docs/kb/canonical-slug.md",
+          "status": "ok",
+          "notes": "Канонический идентификатор страницы для стабильности ссылок"
+        },
+        {
+          "slug": "backlinks",
+          "doc": "docs/kb/backlinks.md",
+          "status": "ok",
+          "notes": "Входящие ссылки на страницу для навигации и понимания связей"
+        },
+        {
+          "slug": "autolink",
+          "doc": "docs/kb/autolink.md",
+          "status": "ok",
+          "notes": "Автоматическое преобразование упоминаний терминов в ссылки"
+        },
+        {
+          "slug": "machine-tags",
+          "doc": "docs/kb/machine-tags.md",
+          "status": "ok",
+          "notes": "Машиночитаемые теги для автоматической категоризации контента"
+        },
+        {
+          "slug": "tags",
+          "doc": "docs/kb/tags.md",
+          "status": "ok",
+          "notes": "Система тегов для категоризации контента: видимые теги и машинотеги"
+        },
+        {
           "slug": "ii",
           "doc": "docs/ii.md",
           "status": "ok",

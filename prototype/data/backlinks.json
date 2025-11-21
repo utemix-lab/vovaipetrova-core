@@ -175,6 +175,11 @@
   ],
   "orphans-how-to": [
     {
+      "slug": "routes",
+      "title": "Routes",
+      "url": "docs/kb/routes.md"
+    },
+    {
       "slug": "routes-yml-how-to",
       "title": "Как работать с routes.yml",
       "url": "docs/nav/routes-yml-how-to.md"
@@ -394,9 +399,29 @@
       "url": "docs/adr-tags-and-facets.md"
     },
     {
+      "slug": "aliases",
+      "title": "Aliases",
+      "url": "docs/kb/aliases.md"
+    },
+    {
       "slug": "comfyui-obzor-i-bystryj-start",
       "title": "ComfyUI — обзор и быстрый старт",
       "url": "docs/comfyui-obzor-i-bystryj-start.md"
+    },
+    {
+      "slug": "facets",
+      "title": "Facets",
+      "url": "docs/kb/facets.md"
+    },
+    {
+      "slug": "machine-tags",
+      "title": "Machine Tags",
+      "url": "docs/kb/machine-tags.md"
+    },
+    {
+      "slug": "tags",
+      "title": "Tags",
+      "url": "docs/kb/tags.md"
     },
     {
       "slug": "vova-i-petrova",
@@ -548,6 +573,159 @@
       "slug": "protocol-kontraktnaya-model-dlya-agentov",
       "title": "Protocol — Контрактная модель для агентов",
       "url": "docs/protocol-kontraktnaya-model-dlya-agentov.md"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "autolink",
+      "title": "Autolink",
+      "url": "docs/kb/autolink.md"
+    },
+    {
+      "slug": "canonical-slug",
+      "title": "Canonical Slug",
+      "url": "docs/kb/canonical-slug.md"
+    },
+    {
+      "slug": "facets",
+      "title": "Facets",
+      "url": "docs/kb/facets.md"
+    },
+    {
+      "slug": "machine-tags",
+      "title": "Machine Tags",
+      "url": "docs/kb/machine-tags.md"
+    },
+    {
+      "slug": "tags",
+      "title": "Tags",
+      "url": "docs/kb/tags.md"
+    }
+  ],
+  "autolink": [
+    {
+      "slug": "aliases",
+      "title": "Aliases",
+      "url": "docs/kb/aliases.md"
+    },
+    {
+      "slug": "canonical-slug",
+      "title": "Canonical Slug",
+      "url": "docs/kb/canonical-slug.md"
+    }
+  ],
+  "canonical-slug": [
+    {
+      "slug": "aliases",
+      "title": "Aliases",
+      "url": "docs/kb/aliases.md"
+    },
+    {
+      "slug": "autolink",
+      "title": "Autolink",
+      "url": "docs/kb/autolink.md"
+    },
+    {
+      "slug": "link-map",
+      "title": "Link-map",
+      "url": "docs/kb/link-map.md"
+    }
+  ],
+  "facets": [
+    {
+      "slug": "machine-tags",
+      "title": "Machine Tags",
+      "url": "docs/kb/machine-tags.md"
+    },
+    {
+      "slug": "tags",
+      "title": "Tags",
+      "url": "docs/kb/tags.md"
+    }
+  ],
+  "link-map": [
+    {
+      "slug": "backlinks",
+      "title": "Backlinks",
+      "url": "docs/kb/backlinks.md"
+    },
+    {
+      "slug": "canonical-slug",
+      "title": "Canonical Slug",
+      "url": "docs/kb/canonical-slug.md"
+    },
+    {
+      "slug": "routes",
+      "title": "Routes",
+      "url": "docs/kb/routes.md"
+    },
+    {
+      "slug": "snapshot",
+      "title": "Snapshot",
+      "url": "docs/kb/snapshot.md"
+    }
+  ],
+  "machine-tags": [
+    {
+      "slug": "tags",
+      "title": "Tags",
+      "url": "docs/kb/tags.md"
+    }
+  ],
+  "routes": [
+    {
+      "slug": "backlinks",
+      "title": "Backlinks",
+      "url": "docs/kb/backlinks.md"
+    },
+    {
+      "slug": "link-map",
+      "title": "Link-map",
+      "url": "docs/kb/link-map.md"
+    },
+    {
+      "slug": "snapshot",
+      "title": "Snapshot",
+      "url": "docs/kb/snapshot.md"
+    }
+  ],
+  "snapshot": [
+    {
+      "slug": "backlinks",
+      "title": "Backlinks",
+      "url": "docs/kb/backlinks.md"
+    },
+    {
+      "slug": "link-map",
+      "title": "Link-map",
+      "url": "docs/kb/link-map.md"
+    },
+    {
+      "slug": "routes",
+      "title": "Routes",
+      "url": "docs/kb/routes.md"
+    }
+  ],
+  "tags": [
+    {
+      "slug": "aliases",
+      "title": "Aliases",
+      "url": "docs/kb/aliases.md"
+    },
+    {
+      "slug": "autolink",
+      "title": "Autolink",
+      "url": "docs/kb/autolink.md"
+    },
+    {
+      "slug": "facets",
+      "title": "Facets",
+      "url": "docs/kb/facets.md"
+    },
+    {
+      "slug": "machine-tags",
+      "title": "Machine Tags",
+      "url": "docs/kb/machine-tags.md"
     }
   ]
 }

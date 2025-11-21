@@ -1,14 +1,19 @@
 {
-  "generatedAt": "2025-11-21T17:05:58.818Z",
-  "totalPages": 24,
+  "generatedAt": "2025-11-21T17:20:33.923Z",
+  "totalPages": 34,
   "letters": [
     "A",
     "B",
+    "C",
+    "F",
     "I",
+    "L",
+    "M",
     "N",
     "P",
     "R",
     "S",
+    "T",
     "V",
     "А",
     "Б",
@@ -30,15 +35,36 @@
         "url": "docs/adr-source-of-truth-i-zerkalirovanie.md",
         "summary": "Источник истины — Notion. Репозиторий — зеркало для исполнения и публикации. Ранний этап требует скорости вносить массовые правки и фиксировать архитектуру Нужны предпросмотры (Pages) и истории измвЂ¦",
         "status": "draft"
+      },
+      {
+        "slug": "snapshot",
+        "title": "Snapshot",
+        "url": "docs/kb/snapshot.md",
+        "summary": "Моментальный снимок состояния данных (diagnostics snapshot) для отслеживания метрик и проверки регрессий.",
+        "status": "ready"
       }
     ],
     "A": [
+      {
+        "slug": "aliases",
+        "title": "Aliases",
+        "url": "docs/kb/aliases.md",
+        "summary": "Синонимы и альтернативные названия для терминов, тегов и страниц. Используются для нормализации и автолинкинга.",
+        "status": "ready"
+      },
       {
         "slug": "ancy",
         "title": "Ancy",
         "url": "docs/ancy.md",
         "summary": "Архетип: Гость Голос и тон: Вдумчивый, философичный, системный Слои: Игровой, Театральный, Технический",
         "status": "draft"
+      },
+      {
+        "slug": "autolink",
+        "title": "Autolink",
+        "url": "docs/kb/autolink.md",
+        "summary": "Автоматическое преобразование упоминаний терминов в ссылки на соответствующие страницы. Использует slug/aliases map и безопасные правила линкинга.",
+        "status": "ready"
       }
     ],
     "А": [
@@ -206,6 +232,13 @@
     ],
     "B": [
       {
+        "slug": "backlinks",
+        "title": "Backlinks",
+        "url": "docs/kb/backlinks.md",
+        "summary": "Входящие ссылки на страницу — список всех страниц, которые ссылаются на текущую. Используется для навигации и понимания связей между документами.",
+        "status": "ready"
+      },
+      {
         "slug": "backup-export-routine-notion-github",
         "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
         "url": "docs/backup-export-routine-notion-github.md",
@@ -226,6 +259,58 @@
         "title": "Release checklist — процедура релиза Pages прототипа",
         "url": "docs/release-checklist-pages-prototype.md",
         "summary": "Чек-лист и процедура релиза GitHub Pages прототипа: preflight проверки, запуск деплоя, верификация, rollback",
+        "status": "ready"
+      },
+      {
+        "slug": "routes",
+        "title": "Routes",
+        "url": "docs/kb/routes.md",
+        "summary": "Маршруты навигации сайта, определённые в routes.yml. Связывают URL-пути с документами и определяют структуру сайта.",
+        "status": "ready"
+      }
+    ],
+    "C": [
+      {
+        "slug": "canonical-slug",
+        "title": "Canonical Slug",
+        "url": "docs/kb/canonical-slug.md",
+        "summary": "Канонический идентификатор страницы, используемый как основной способ ссылки на документ. Обеспечивает стабильность ссылок при переименованиях.",
+        "status": "ready"
+      }
+    ],
+    "F": [
+      {
+        "slug": "facets",
+        "title": "Facets",
+        "url": "docs/kb/facets.md",
+        "summary": "Фасетная модель навигации: темы, действия, продукты, технологии и роли. Используется для фильтрации и категоризации контента.",
+        "status": "ready"
+      }
+    ],
+    "L": [
+      {
+        "slug": "link-map",
+        "title": "Link-map",
+        "url": "docs/kb/link-map.md",
+        "summary": "Карта маппинга проблемных ссылок на канонические страницы. Используется для разрешения broken links и нормализации ссылок.",
+        "status": "ready"
+      }
+    ],
+    "M": [
+      {
+        "slug": "machine-tags",
+        "title": "Machine Tags",
+        "url": "docs/kb/machine-tags.md",
+        "summary": "Машиночитаемые теги для автоматической категоризации и фильтрации контента. Используются в фасетной модели навигации.",
+        "status": "ready"
+      }
+    ],
+    "T": [
+      {
+        "slug": "tags",
+        "title": "Tags",
+        "url": "docs/kb/tags.md",
+        "summary": "Система тегов для категоризации контента: видимые теги и машинотеги. Используется для навигации, фильтрации и поиска материалов.",
         "status": "ready"
       }
     ]
