@@ -49,6 +49,7 @@ test-adapters/
 
 # Test results
 tests/composer/results/
+tests/sandbox/results/
 
 # Telemetry data
 .telemetry/
