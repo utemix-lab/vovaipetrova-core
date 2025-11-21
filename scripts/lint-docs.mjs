@@ -180,6 +180,7 @@ function lintFile(file) {
 }
 
 function containsPII(body) {
+  // Обновлено: расширены паттерны PII для лучшего обнаружения (2025-11-20)
   const patterns = [
     {
       name: 'windows_user_path',
@@ -196,7 +197,73 @@ function containsPII(body) {
     {
       name: 'phone',
       regex: /\+?\d{1,3}[\s\-()]\d{2,4}[\s\-()]\d{2,4}[\s\-()]?\d{2,4}/g
+    },
+    {
+      name: 'phone_compact',
+      regex: /\b\d{10,15}\b/g // Компактный формат без разделителей (может быть ложным срабатыванием)
+    },
+    {
+      name: 'full_name_russian',
+      regex: /\b([А-ЯЁ][а-яё]+)\s+([А-ЯЁ][а-яё]+)\b/g // Полное имя на русском
+    },
+    {
+      name: 'full_name_english',
+      regex: /\b([A-Z][a-z]+)\s+([A-Z][a-z]+)\b/g // Полное имя на английском
+    },
+    {
+      name: 'api_key_pattern',
+      regex: /(?:api[_-]?key|secret|token|password|pwd)\s*[:=]\s*['"]?([A-Za-z0-9_-]{20,})['"]?/gi
+    },
+    {
+      name: 'github_token',
+      regex: /ghp_[A-Za-z0-9]{36}/g
+    },
+    {
+      name: 'notion_token',
+      regex: /(?:secret_|ntn_)[A-Za-z0-9_-]{32,}/g
+    },
+    {
+      name: 'aws_access_key',
+      regex: /AKIA[0-9A-Z]{16}/g
+    },
+    {
+      name: 'credit_card',
+      regex: /\b(?:\d{4}[-\s]?){3}\d{4}\b/g
+    },
+    {
+      name: 'ip_address',
+      regex: /\b(?:\d{1,3}\.){3}\d{1,3}\b/g // Может быть примером или версией
     }
+  ];
+  
+  // Исключения (уже санитизированные или примеры)
+  // Обновлено: расширен список исключений для уменьшения ложных срабатываний
+  const exclusions = [
+    /<user>/i,
+    /<email>/i,
+    /<phone>/i,
+    /<name>/i,
+    /<path>/i,
+    /placeholder/i,
+    /example/i,
+    /test@/i,
+    /test@example/i,
+    /user@example/i,
+    /admin@localhost/i,
+    /localhost/i,
+    /127\.0\.0\.1/i,
+    /0\.0\.0\.0/i,
+    /192\.168\./i, // Частные IP сети (обычно примеры)
+    /10\./i, // Частные IP сети
+    /172\.(1[6-9]|2[0-9]|3[01])\./i, // Частные IP сети
+    /john\.doe@example\.com/i,
+    /jane\.doe@example\.com/i,
+    /test@test\.com/i,
+    /v?\d+\.\d+\.\d+/i, // Версии типа 1.2.3
+    /[0-9a-f]{32,}/i, // Хеши (MD5, SHA256 и т.д.)
+    /github\.com/i,
+    /gitlab\.com/i,
+    /bitbucket\.org/i
   ];
   
   for (const pattern of patterns) {
@@ -208,12 +275,13 @@ function containsPII(body) {
       const codeBlockCount = (beforeMatch.match(/```/g) || []).length;
       if (codeBlockCount % 2 === 1) continue; // Inside code block
       
-      // Skip if already sanitized
-      if (match[0].includes('<user>') || match[0].includes('<email>') || match[0].includes('<phone>')) {
+      // Skip if already sanitized or in exclusions
+      const matchedText = match[0];
+      if (exclusions.some(exclusion => exclusion.test(matchedText))) {
         continue;
       }
       
-      return { found: true, kind: pattern.name, match: match[0] };
+      return { found: true, kind: pattern.name, match: matchedText };
     }
   }
   

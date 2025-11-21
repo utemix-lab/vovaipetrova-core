@@ -264,26 +264,45 @@ CI автоматически проверяет размер PR, наличие
 
 **PII-scrub (детекция персональных данных):**
 - Пути пользователей (`C:\Users\...`, `/home/...`) → ошибка
+- Пути пользователей с Documents/Desktop/Downloads → ошибка
 - Email адреса → ошибка
 - Телефонные номера → ошибка
-- Имена (только для stories) → предупреждение
+- Компактные телефонные номера (10-15 цифр) → предупреждение (может быть ложным срабатыванием)
+- Полные имена (русские и английские, только для stories) → предупреждение
 - API ключи/секреты → ошибка
+- GitHub токены (`ghp_...`) → ошибка
+- Notion токены (`secret_...`, `ntn_...`) → ошибка
+- AWS access keys (`AKIA...`) → ошибка
+- Номера кредитных карт → ошибка
+- IP адреса → предупреждение (может быть примером или версией)
+- MAC адреса → предупреждение (может быть примером в документации)
 
 **Forbidden-paths (запрещённые пути):**
 - `.env`, `.env.*` → ошибка
+- `codegpt.config.json`, `vscode-settings.example.json` → ошибка
 - `.git/`, `node_modules/`, `vendor/` → ошибка
+- `.cache/`, `.telemetry/`, `tmp/`, `temp/` → ошибка
 - `.github/workflows/*.yml` (кроме `docs-ci.yml`) → ошибка
-- `package.json`, `package-lock.json`, `composer.json`, `composer.lock` → ошибка
-- `README.md`, `.gitignore` → ошибка
+- `.github/PULL_REQUEST_TEMPLATE`, `.github/ISSUE_TEMPLATE` → ошибка
+- `package-lock.json`, `composer.json`, `composer.lock`, `yarn.lock`, `pnpm-lock.yaml` → ошибка
+- `README.md`, `CONTRIBUTING.md`, `LICENSE`, `SECURITY.md`, `CHANGELOG.md` → ошибка
+- `.gitignore`, `.gitattributes` → ошибка
 - `docs/.import-map.yaml`, `scripts/codegpt/*.mjs` → ошибка
 - `.codegpt/`, `notion-brain/` → ошибка
+- `prototype/data/**`, `prototype/page/**` → ошибка (автогенерируемые файлы)
+- `prototype/data/.build-cache.json` → ошибка (кэш сборки)
+- `test-guardrails-v2/`, `lint.log`, `STRUCTURE-REPORT.md` → ошибка (тестовые/временные файлы)
+- `package.json` → можно изменять (но проверяется через guardrails)
+- `.github/pull_request_template.md` → можно обновлять
+- `docs/protocol-kontraktnaya-model-dlya-agentov.md` → можно обновлять
 
 **Команды:**
 - `npm run guardrails:v2` — проверка guardrails v2
 - `npm run guardrails:v2:verbose` — подробный вывод
 - `npm run check:pr-size` — проверка размера PR (legacy)
 - `npm run check:lanes` — проверка lanes policy
-- `node scripts/test-guardrails.mjs` — тестирование guardrails (эмуляция нарушений)
+- `npm run test:guardrails` — тестирование guardrails (эмуляция нарушений)
+- `npm run test:security` — тестирование нарушений безопасности (PII, forbidden-paths)
 
 ### Content Lint Thresholds
 
@@ -301,6 +320,9 @@ CI автоматически проверяет размер PR, наличие
 - Пути пользователей (`C:\Users\...`, `/home/...`) → ошибка для stories, предупреждение для других
 - Email адреса → ошибка для stories, предупреждение для других
 - Телефонные номера → ошибка для stories, предупреждение для других
+- API ключи/секреты → ошибка
+- GitHub токены (`ghp_...`) → ошибка
+- Notion токены (`secret_...`, `ntn_...`) → ошибка
 
 **Команды:**
 - `npm run lint:docs` — стандартная проверка (предупреждения не блокируют)
