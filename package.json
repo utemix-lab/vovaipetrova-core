@@ -47,7 +47,8 @@
     "test:sandbox:forbidden-paths": "node scripts/test-forbidden-paths-sandbox.mjs",
     "smoke:check": "node scripts/checks/smoke-check-pages.mjs",
     "autolink": "node scripts/autolink.mjs",
-    "autolink:dry": "node scripts/autolink.mjs --dry"
+    "autolink:dry": "node scripts/autolink.mjs --dry",
+    "labels:create": "node scripts/create-github-labels.mjs"
   },
   "repository": {
     "type": "git",

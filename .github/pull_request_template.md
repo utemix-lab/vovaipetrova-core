@@ -4,7 +4,9 @@
 
 **Связанная задача**: {Ссылка на Notion Briefs или GitHub Issue}
 
-**Lane Label**: {Добавьте соответствующий label при создании PR: `lane:docs`, `lane:infra`, `lane:stories`, `lane:characters`, `lane:qa`, `lane:refactor`, `lane:fix`, `lane:feat`}
+**Lane Label**: {Добавьте соответствующий label при создании PR: `lane:docs`, `lane:infra`, `lane:stories`, `lane:characters`, `lane:qa`, `lane:refactor`, `lane:fix`, `lane:feat`, `lane:composer`, `lane:codegpt:orchestrator`, `lane:codegpt:docs`, `lane:codegpt:refactor`, `lane:codegpt:creative`}
+
+**Sequence Label**: {Если задача является частью последовательности, добавьте `seq:1`, `seq:2`, и т.д.}
 
 ## Deliverables
 
