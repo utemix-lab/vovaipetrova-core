@@ -1,14 +1,17 @@
 ---
 title: Routes
 slug: routes
-summary: Маршруты навигации сайта, определённые в routes.yml. Связывают URL-пути с документами и определяют структуру сайта.
+summary: >-
+  Маршруты навигации сайта, определённые в routes.yml. Связывают URL-пути с
+  документами и определяют структуру сайта.
 status: ready
 tags:
-  - Навигация
   - База_знаний
+  - Навигация
 machine_tags:
   - action/build
   - product/kb
+  - product/site
   - theme/ux
 ---
 

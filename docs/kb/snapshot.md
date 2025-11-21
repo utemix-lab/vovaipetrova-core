@@ -1,7 +1,9 @@
 ---
 title: Snapshot
 slug: snapshot
-summary: Моментальный снимок состояния данных (diagnostics snapshot) для отслеживания метрик и проверки регрессий.
+summary: >-
+  Моментальный снимок состояния данных (diagnostics snapshot) для отслеживания
+  метрик и проверки регрессий.
 status: ready
 tags:
   - Автоматизация

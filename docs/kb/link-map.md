@@ -1,7 +1,9 @@
 ---
 title: Link-map
 slug: link-map
-summary: Карта маппинга проблемных ссылок на канонические страницы. Используется для разрешения broken links и нормализации ссылок.
+summary: >-
+  Карта маппинга проблемных ссылок на канонические страницы. Используется для
+  разрешения broken links и нормализации ссылок.
 status: ready
 tags:
   - Автоматизация
@@ -10,7 +12,9 @@ tags:
 machine_tags:
   - action/build
   - product/kb
+  - product/site
   - theme/automation
+  - theme/ux
 ---
 
 # Link-map
