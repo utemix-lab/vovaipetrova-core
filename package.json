@@ -44,7 +44,8 @@
     "telemetry:collect": "node scripts/telemetry.mjs",
     "telemetry:report": "node scripts/generate-telemetry-report.mjs",
     "sanity:check": "node scripts/sanity-check.mjs",
-    "test:sandbox:forbidden-paths": "node scripts/test-forbidden-paths-sandbox.mjs"
+    "test:sandbox:forbidden-paths": "node scripts/test-forbidden-paths-sandbox.mjs",
+    "smoke:check": "node scripts/checks/smoke-check-pages.mjs"
   },
   "repository": {
     "type": "git",

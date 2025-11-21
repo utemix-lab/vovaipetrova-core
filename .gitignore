@@ -50,6 +50,7 @@ test-adapters/
 # Test results
 tests/composer/results/
 tests/sandbox/results/
+tests/smoke-checks/results/
 
 # Telemetry data
 .telemetry/
