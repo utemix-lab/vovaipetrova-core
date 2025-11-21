@@ -3288,9 +3288,9 @@
       "Кодинг"
     ],
     "machine_tags": [
+      "action/build",
       "theme/automation",
-      "theme/dev",
-      "action/build"
+      "theme/dev"
     ],
     "url": "docs/codegpt-rollout-roadmap.md",
     "service": false,
