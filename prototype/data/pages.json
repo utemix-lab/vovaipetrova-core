@@ -3070,5 +3070,17 @@
     "service": true,
     "collection": null,
     "story_order": null
+  },
+  {
+    "title": "State snapshot — текущее состояние",
+    "slug": "state-snapshot-current-state",
+    "status": "ready",
+    "summary": "Текущее состояние проекта: активные ветки работ, цели цикла, DoD и журнал операционных событий",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/state-snapshot-current-state.md",
+    "service": true,
+    "collection": null,
+    "story_order": null
   }
 ]
