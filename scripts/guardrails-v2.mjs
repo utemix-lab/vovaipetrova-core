@@ -23,6 +23,12 @@ const SIZE_LIMITS = {
     maxDeletions: 200,
     criticalMultiplier: 1.5 // Критическое превышение на 50%
   },
+  'codegpt': {
+    maxFiles: 25,
+    maxAdditions: 800,
+    maxDeletions: 300,
+    criticalMultiplier: 1.5 // CodeGPT задачи могут быть немного больше, чем Composer
+  },
   'docs': {
     maxFiles: 30,
     maxAdditions: 1000,
@@ -291,14 +297,24 @@ const PII_EXCLUSIONS = [
 ];
 
 /**
- * Определяет тип задачи по изменённым файлам
+ * Определяет тип задачи по изменённым файлам и PR labels
  */
-function detectTaskType(changedFiles) {
+function detectTaskType(changedFiles, prLabels = []) {
+  // Проверяем PR labels для определения типа задачи
+  const codegptLabels = prLabels.filter(l => l.startsWith('lane:codegpt:'));
+  if (codegptLabels.length > 0) return 'codegpt';
+  
   const composerFiles = changedFiles.filter(f => f.startsWith('composer/') || f.includes('composer'));
+  const codegptFiles = changedFiles.filter(f => 
+    f.startsWith('.codegpt/') || 
+    f.includes('codegpt') || 
+    f.startsWith('scripts/codegpt/')
+  );
   const docsFiles = changedFiles.filter(f => f.startsWith('docs/'));
   const scriptsFiles = changedFiles.filter(f => f.startsWith('scripts/'));
   const prototypeFiles = changedFiles.filter(f => f.startsWith('prototype/'));
   
+  if (codegptFiles.length > 0) return 'codegpt';
   if (composerFiles.length > 0) return 'composer';
   if (docsFiles.length > 0 && docsFiles.length > scriptsFiles.length) return 'docs';
   if (scriptsFiles.length > 0) return 'scripts';
@@ -569,16 +585,49 @@ function generateReport(sizeCheck, forbiddenCheck, piiCheck) {
   return report;
 }
 
+/**
+ * Получает PR labels через GitHub API
+ */
+function getPRLabels() {
+  const prNumber = process.env.GITHUB_PR_NUMBER;
+  const repo = process.env.GITHUB_REPO || 'utemix-lab/vovaipetrova-core';
+  const token = process.env.GITHUB_TOKEN;
+  
+  if (!prNumber || !token) {
+    return [];
+  }
+  
+  try {
+    const command = `gh api repos/${repo}/pulls/${prNumber} --jq '.labels[].name'`;
+    const output = execSync(command, { 
+      encoding: 'utf-8',
+      stdio: 'pipe',
+      env: { ...process.env, GITHUB_TOKEN: token }
+    });
+    
+    return output.trim().split('\n').filter(Boolean);
+  } catch (error) {
+    if (VERBOSE) {
+      console.warn('⚠️  Failed to get PR labels:', error.message);
+    }
+    return [];
+  }
+}
+
 function main() {
   console.log('🛡️  Guardrails v2: size-guard, PII-scrub, forbidden-paths\n');
   
   // Получаем статистику изменений
   const stats = getDiffStats(BASE_REF);
-  const taskType = detectTaskType(stats.changedFiles);
+  const prLabels = getPRLabels();
+  const taskType = detectTaskType(stats.changedFiles, prLabels);
   
   if (VERBOSE) {
     console.log(`📊 Changed files: ${stats.totalFiles}`);
     console.log(`📊 Additions: ${stats.totalAdditions}, Deletions: ${stats.totalDeletions}`);
+    if (prLabels.length > 0) {
+      console.log(`📊 PR labels: ${prLabels.join(', ')}`);
+    }
     console.log(`📊 Detected task type: ${taskType}\n`);
   }
   
