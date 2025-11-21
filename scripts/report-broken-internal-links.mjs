@@ -209,10 +209,22 @@ function resolveReference(reference, maps, linkMap) {
 
 function extractLinks(content) {
   const matches = [];
+  
+  // Удаляем code blocks перед парсингом ссылок
+  // Обрабатываем fenced code blocks (```...```)
+  let processedContent = content.replace(/```[\s\S]*?```/g, (match) => {
+    return ' '.repeat(match.length); // Заменяем на пробелы той же длины
+  });
+  
+  // Обрабатываем inline code (`...`)
+  processedContent = processedContent.replace(/`[^`\n]*`/g, (match) => {
+    return ' '.repeat(match.length); // Заменаем на пробелы той же длины
+  });
+  
   const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
   let match;
-  while ((match = regex.exec(content)) !== null) {
-    const preceding = content[match.index - 1];
+  while ((match = regex.exec(processedContent)) !== null) {
+    const preceding = processedContent[match.index - 1];
     if (preceding === "!") continue; // skip images
     matches.push({ text: match[1], href: match[2] });
   }
