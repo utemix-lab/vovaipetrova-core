@@ -1,0 +1,553 @@
+{
+  "adr-source-of-truth-i-zerkalirovanie": [
+    {
+      "slug": "vision-strategiya-marketing-autentichnost-tretij-put-onepager",
+      "title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)",
+      "url": "docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager.md"
+    }
+  ],
+  "arhitektura-i-komponenty": [
+    {
+      "slug": "think-tank-vitrina-processa",
+      "title": "Think Tank — витрина процесса",
+      "url": "docs/think-tank-vitrina-processa.md"
+    }
+  ],
+  "artefakty-korzina-i-zayavka-mvp": [
+    {
+      "slug": "think-tank-kompaktnoe-yadro",
+      "title": "Think Tank — компактное ядро",
+      "url": "docs/think-tank-kompaktnoe-yadro.md"
+    },
+    {
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "title": "UI макет — шапка и первый экран (Static First)",
+      "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md"
+    },
+    {
+      "slug": "kartochka-uslugi-videoprodakshn",
+      "title": "Карточка услуги: Видеопродакшн",
+      "url": "docs/kartochka-uslugi-videoprodakshn.md"
+    },
+    {
+      "slug": "kartochka-uslugi-dizajn",
+      "title": "Карточка услуги: Дизайн",
+      "url": "docs/kartochka-uslugi-dizajn.md"
+    },
+    {
+      "slug": "kontentmodel-i-marshruty",
+      "title": "Контент‑модель и маршруты",
+      "url": "docs/kontentmodel-i-marshruty.md"
+    },
+    {
+      "slug": "navigaciya-polzovatelskaya",
+      "title": "Навигация (пользовательская)",
+      "url": "docs/navigaciya-polzovatelskaya.md"
+    },
+    {
+      "slug": "navigaciya-tehnicheskaya",
+      "title": "Навигация (техническая)",
+      "url": "docs/navigaciya-tehnicheskaya.md"
+    },
+    {
+      "slug": "sintaksis-i-razmetka-markdown-wordpress",
+      "title": "Синтаксис и разметка — Markdown → WordPress",
+      "url": "docs/sintaksis-i-razmetka-markdown-wordpress.md"
+    },
+    {
+      "slug": "uslugi",
+      "title": "Услуги",
+      "url": "docs/uslugi.md"
+    }
+  ],
+  "baza-znanij-koren": [
+    {
+      "slug": "navigaciya-polzovatelskaya",
+      "title": "Навигация (пользовательская)",
+      "url": "docs/navigaciya-polzovatelskaya.md"
+    }
+  ],
+  "eksport-v-github-rukovodstvo-i-shablony": [
+    {
+      "slug": "backup-export-routine-notion-github",
+      "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
+      "url": "docs/backup-export-routine-notion-github.md"
+    }
+  ],
+  "indeks-i-tldr": [
+    {
+      "slug": "think-tank-kompaktnoe-yadro",
+      "title": "Think Tank — компактное ядро",
+      "url": "docs/think-tank-kompaktnoe-yadro.md"
+    }
+  ],
+  "indeks-sajta": [
+    {
+      "slug": "think-tank-kompaktnoe-yadro",
+      "title": "Think Tank — компактное ядро",
+      "url": "docs/think-tank-kompaktnoe-yadro.md"
+    },
+    {
+      "slug": "navigaciya-polzovatelskaya",
+      "title": "Навигация (пользовательская)",
+      "url": "docs/navigaciya-polzovatelskaya.md"
+    },
+    {
+      "slug": "navigaciya-tehnicheskaya",
+      "title": "Навигация (техническая)",
+      "url": "docs/navigaciya-tehnicheskaya.md"
+    }
+  ],
+  "instrukcii-dlya-notion-ai-vovaipetrova": [
+    {
+      "slug": "eksport-v-github-rukovodstvo-i-shablony",
+      "title": "Экспорт в GitHub — руководство и шаблоны",
+      "url": "docs/eksport-v-github-rukovodstvo-i-shablony.md"
+    }
+  ],
+  "kartochka-uslugi-dizajn": [
+    {
+      "slug": "kartochka-uslugi-videoprodakshn",
+      "title": "Карточка услуги: Видеопродакшн",
+      "url": "docs/kartochka-uslugi-videoprodakshn.md"
+    },
+    {
+      "slug": "uslugi",
+      "title": "Услуги",
+      "url": "docs/uslugi.md"
+    }
+  ],
+  "kartochka-uslugi-videoprodakshn": [
+    {
+      "slug": "kartochka-uslugi-dizajn",
+      "title": "Карточка услуги: Дизайн",
+      "url": "docs/kartochka-uslugi-dizajn.md"
+    },
+    {
+      "slug": "uslugi",
+      "title": "Услуги",
+      "url": "docs/uslugi.md"
+    }
+  ],
+  "kontentmodel-i-marshruty": [
+    {
+      "slug": "think-tank-kompaktnoe-yadro",
+      "title": "Think Tank — компактное ядро",
+      "url": "docs/think-tank-kompaktnoe-yadro.md"
+    },
+    {
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "title": "UI макет — шапка и первый экран (Static First)",
+      "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md"
+    },
+    {
+      "slug": "artefakty-korzina-i-zayavka-mvp",
+      "title": "Артефакты — корзина и заявка (MVP)",
+      "url": "docs/artefakty-korzina-i-zayavka-mvp.md"
+    },
+    {
+      "slug": "navigaciya-polzovatelskaya",
+      "title": "Навигация (пользовательская)",
+      "url": "docs/navigaciya-polzovatelskaya.md"
+    },
+    {
+      "slug": "navigaciya-tehnicheskaya",
+      "title": "Навигация (техническая)",
+      "url": "docs/navigaciya-tehnicheskaya.md"
+    },
+    {
+      "slug": "taksonomiya-i-tegi",
+      "title": "Таксономия и теги",
+      "url": "docs/taksonomiya-i-tegi.md"
+    },
+    {
+      "slug": "uslugi",
+      "title": "Услуги",
+      "url": "docs/uslugi.md"
+    }
+  ],
+  "kontentpajplajn-eksporta": [
+    {
+      "slug": "sintaksis-i-razmetka-markdown-wordpress",
+      "title": "Синтаксис и разметка — Markdown → WordPress",
+      "url": "docs/sintaksis-i-razmetka-markdown-wordpress.md"
+    }
+  ],
+  "orphans-how-to": [
+    {
+      "slug": "routes-yml-how-to",
+      "title": "Как работать с routes.yml",
+      "url": "docs/nav/routes-yml-how-to.md"
+    }
+  ],
+  "routes-yml-how-to": [
+    {
+      "slug": "orphans-how-to",
+      "title": "Как работать с orphan страницами",
+      "url": "docs/nav/orphans-how-to.md"
+    }
+  ],
+  "navigaciya-polzovatelskaya": [
+    {
+      "slug": "think-tank-kompaktnoe-yadro",
+      "title": "Think Tank — компактное ядро",
+      "url": "docs/think-tank-kompaktnoe-yadro.md"
+    },
+    {
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "title": "UI макет — шапка и первый экран (Static First)",
+      "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md"
+    },
+    {
+      "slug": "artefakty-korzina-i-zayavka-mvp",
+      "title": "Артефакты — корзина и заявка (MVP)",
+      "url": "docs/artefakty-korzina-i-zayavka-mvp.md"
+    },
+    {
+      "slug": "baza-znanij-koren",
+      "title": "База знаний — корень",
+      "url": "docs/baza-znanij-koren.md"
+    },
+    {
+      "slug": "indeks-sajta",
+      "title": "Индекс сайта",
+      "url": "docs/indeks-sajta.md"
+    },
+    {
+      "slug": "kartochka-uslugi-dizajn",
+      "title": "Карточка услуги: Дизайн",
+      "url": "docs/kartochka-uslugi-dizajn.md"
+    },
+    {
+      "slug": "kontentmodel-i-marshruty",
+      "title": "Контент‑модель и маршруты",
+      "url": "docs/kontentmodel-i-marshruty.md"
+    },
+    {
+      "slug": "navigaciya-tehnicheskaya",
+      "title": "Навигация (техническая)",
+      "url": "docs/navigaciya-tehnicheskaya.md"
+    },
+    {
+      "slug": "opisanie-literaturnaya-versiya",
+      "title": "Описание — литературная версия",
+      "url": "docs/opisanie-literaturnaya-versiya.md"
+    },
+    {
+      "slug": "portfolio-struktura",
+      "title": "Портфолио — структура",
+      "url": "docs/portfolio-struktura.md"
+    },
+    {
+      "slug": "process-obsudili-razlozhili-svyazali",
+      "title": "Процесс: Обсудили → Разложили → Связали",
+      "url": "docs/process-obsudili-razlozhili-svyazali.md"
+    },
+    {
+      "slug": "uslugi",
+      "title": "Услуги",
+      "url": "docs/uslugi.md"
+    }
+  ],
+  "navigaciya-tehnicheskaya": [
+    {
+      "slug": "adr-tegi-i-fasety",
+      "title": "ADR — Теги и фасеты",
+      "url": "docs/adr-tegi-i-fasety.md"
+    },
+    {
+      "slug": "think-tank-kompaktnoe-yadro",
+      "title": "Think Tank — компактное ядро",
+      "url": "docs/think-tank-kompaktnoe-yadro.md"
+    },
+    {
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "title": "UI макет — шапка и первый экран (Static First)",
+      "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md"
+    },
+    {
+      "slug": "artefakty-korzina-i-zayavka-mvp",
+      "title": "Артефакты — корзина и заявка (MVP)",
+      "url": "docs/artefakty-korzina-i-zayavka-mvp.md"
+    },
+    {
+      "slug": "indeks-sajta",
+      "title": "Индекс сайта",
+      "url": "docs/indeks-sajta.md"
+    },
+    {
+      "slug": "kontentmodel-i-marshruty",
+      "title": "Контент‑модель и маршруты",
+      "url": "docs/kontentmodel-i-marshruty.md"
+    },
+    {
+      "slug": "navigaciya-polzovatelskaya",
+      "title": "Навигация (пользовательская)",
+      "url": "docs/navigaciya-polzovatelskaya.md"
+    },
+    {
+      "slug": "sintaksis-i-razmetka-markdown-wordpress",
+      "title": "Синтаксис и разметка — Markdown → WordPress",
+      "url": "docs/sintaksis-i-razmetka-markdown-wordpress.md"
+    }
+  ],
+  "opisanie-literaturnaya-versiya": [
+    {
+      "slug": "navigaciya-polzovatelskaya",
+      "title": "Навигация (пользовательская)",
+      "url": "docs/navigaciya-polzovatelskaya.md"
+    }
+  ],
+  "portfolio-struktura": [
+    {
+      "slug": "kartochka-uslugi-videoprodakshn",
+      "title": "Карточка услуги: Видеопродакшн",
+      "url": "docs/kartochka-uslugi-videoprodakshn.md"
+    },
+    {
+      "slug": "kartochka-uslugi-dizajn",
+      "title": "Карточка услуги: Дизайн",
+      "url": "docs/kartochka-uslugi-dizajn.md"
+    },
+    {
+      "slug": "navigaciya-polzovatelskaya",
+      "title": "Навигация (пользовательская)",
+      "url": "docs/navigaciya-polzovatelskaya.md"
+    }
+  ],
+  "process-obsudili-razlozhili-svyazali": [
+    {
+      "slug": "spec-content-linter-i-scaffold-chernovik",
+      "title": "Spec — Content linter и scaffold (черновик)",
+      "url": "docs/spec-content-linter-i-scaffold-chernovik.md"
+    },
+    {
+      "slug": "think-tank-kompaktnoe-yadro",
+      "title": "Think Tank — компактное ядро",
+      "url": "docs/think-tank-kompaktnoe-yadro.md"
+    },
+    {
+      "slug": "vova-i-petrova",
+      "title": "Вова и Петрова",
+      "url": "docs/vova-i-petrova.md"
+    }
+  ],
+  "protocol-kontraktnaya-model-dlya-agentov": [
+    {
+      "slug": "backup-export-routine-notion-github",
+      "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
+      "url": "docs/backup-export-routine-notion-github.md"
+    },
+    {
+      "slug": "briefs-upgrade-how-to",
+      "title": "Briefs upgrade — инструкция по обновлению полей, представлений, SLA и очередей ревью",
+      "url": "docs/briefs-upgrade-how-to.md"
+    },
+    {
+      "slug": "release-checklist-pages-prototype",
+      "title": "Release checklist — процедура релиза Pages прототипа",
+      "url": "docs/release-checklist-pages-prototype.md"
+    }
+  ],
+  "sintaksis-i-razmetka-markdown-wordpress": [
+    {
+      "slug": "adr-tegi-i-fasety",
+      "title": "ADR — Теги и фасеты",
+      "url": "docs/adr-tegi-i-fasety.md"
+    }
+  ],
+  "spec-content-linter-i-scaffold-chernovik": [
+    {
+      "slug": "teststrategiya-i-kachestvo",
+      "title": "Тест‑стратегия и качество",
+      "url": "docs/teststrategiya-i-kachestvo.md"
+    }
+  ],
+  "spec-front-matter-i-slugi": [
+    {
+      "slug": "spec-normalize-i-politika-imyon",
+      "title": "Spec — Normalize и политика имён",
+      "url": "docs/spec-normalize-i-politika-imyon.md"
+    }
+  ],
+  "spec-normalize-i-politika-imyon": [
+    {
+      "slug": "spec-content-linter-i-scaffold-chernovik",
+      "title": "Spec — Content linter и scaffold (черновик)",
+      "url": "docs/spec-content-linter-i-scaffold-chernovik.md"
+    },
+    {
+      "slug": "teststrategiya-i-kachestvo",
+      "title": "Тест‑стратегия и качество",
+      "url": "docs/teststrategiya-i-kachestvo.md"
+    }
+  ],
+  "taksonomiya-i-tegi": [
+    {
+      "slug": "adr-source-of-truth-mirroring",
+      "title": "ADR — Source of truth и зеркалирование",
+      "url": "docs/adr-source-of-truth-mirroring.md"
+    },
+    {
+      "slug": "adr-tags-and-facets",
+      "title": "ADR — Политика тегов и фасетов",
+      "url": "docs/adr-tags-and-facets.md"
+    },
+    {
+      "slug": "comfyui-obzor-i-bystryj-start",
+      "title": "ComfyUI — обзор и быстрый старт",
+      "url": "docs/comfyui-obzor-i-bystryj-start.md"
+    },
+    {
+      "slug": "vova-i-petrova",
+      "title": "Вова и Петрова",
+      "url": "docs/vova-i-petrova.md"
+    },
+    {
+      "slug": "kartochka-uslugi-videoprodakshn",
+      "title": "Карточка услуги: Видеопродакшн",
+      "url": "docs/kartochka-uslugi-videoprodakshn.md"
+    },
+    {
+      "slug": "navigaciya-polzovatelskaya",
+      "title": "Навигация (пользовательская)",
+      "url": "docs/navigaciya-polzovatelskaya.md"
+    },
+    {
+      "slug": "uslugi",
+      "title": "Услуги",
+      "url": "docs/uslugi.md"
+    }
+  ],
+  "tehnicheskij-stek-i-infrastruktura": [
+    {
+      "slug": "mcp-notion-api-compatibility-tracker",
+      "title": "MCP Notion API Compatibility Tracker",
+      "url": "docs/mcp-notion-api-compatibility-tracker.md"
+    }
+  ],
+  "think-tank-kompaktnoe-yadro": [
+    {
+      "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
+      "title": "UI макет — шапка и первый экран (Static First)",
+      "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md"
+    },
+    {
+      "slug": "instrukcii-dlya-notion-ai-vovaipetrova",
+      "title": "Инструкции для Notion AI — vova_i_petrova",
+      "url": "docs/instrukcii-dlya-notion-ai-vovaipetrova.md"
+    },
+    {
+      "slug": "kontentmodel-i-marshruty",
+      "title": "Контент‑модель и маршруты",
+      "url": "docs/kontentmodel-i-marshruty.md"
+    },
+    {
+      "slug": "navigaciya-tehnicheskaya",
+      "title": "Навигация (техническая)",
+      "url": "docs/navigaciya-tehnicheskaya.md"
+    },
+    {
+      "slug": "eksport-v-github-rukovodstvo-i-shablony",
+      "title": "Экспорт в GitHub — руководство и шаблоны",
+      "url": "docs/eksport-v-github-rukovodstvo-i-shablony.md"
+    }
+  ],
+  "think-tank-vitrina-processa": [
+    {
+      "slug": "think-tank-kompaktnoe-yadro",
+      "title": "Think Tank — компактное ядро",
+      "url": "docs/think-tank-kompaktnoe-yadro.md"
+    }
+  ],
+  "ui-maket-shapka-i-pervyj-ekran-static-first": [
+    {
+      "slug": "kontentmodel-i-marshruty",
+      "title": "Контент‑модель и маршруты",
+      "url": "docs/kontentmodel-i-marshruty.md"
+    },
+    {
+      "slug": "tekushie-zadachi",
+      "title": "Текущие задачи",
+      "url": "docs/tekushie-zadachi.md"
+    }
+  ],
+  "uslugi": [
+    {
+      "slug": "adr-source-of-truth-mirroring",
+      "title": "ADR — Source of truth и зеркалирование",
+      "url": "docs/adr-source-of-truth-mirroring.md"
+    },
+    {
+      "slug": "comfyui-obzor-i-bystryj-start",
+      "title": "ComfyUI — обзор и быстрый старт",
+      "url": "docs/comfyui-obzor-i-bystryj-start.md"
+    },
+    {
+      "slug": "think-tank-kompaktnoe-yadro",
+      "title": "Think Tank — компактное ядро",
+      "url": "docs/think-tank-kompaktnoe-yadro.md"
+    },
+    {
+      "slug": "artefakty-korzina-i-zayavka-mvp",
+      "title": "Артефакты — корзина и заявка (MVP)",
+      "url": "docs/artefakty-korzina-i-zayavka-mvp.md"
+    },
+    {
+      "slug": "vova-i-petrova",
+      "title": "Вова и Петрова",
+      "url": "docs/vova-i-petrova.md"
+    },
+    {
+      "slug": "navigaciya-tehnicheskaya",
+      "title": "Навигация (техническая)",
+      "url": "docs/navigaciya-tehnicheskaya.md"
+    },
+    {
+      "slug": "taksonomiya-i-tegi",
+      "title": "Таксономия и теги",
+      "url": "docs/taksonomiya-i-tegi.md"
+    }
+  ],
+  "vova-i-petrova": [
+    {
+      "slug": "adr-source-of-truth-mirroring",
+      "title": "ADR — Source of truth и зеркалирование",
+      "url": "docs/adr-source-of-truth-mirroring.md"
+    },
+    {
+      "slug": "adr-tags-and-facets",
+      "title": "ADR — Политика тегов и фасетов",
+      "url": "docs/adr-tags-and-facets.md"
+    },
+    {
+      "slug": "comfyui-obzor-i-bystryj-start",
+      "title": "ComfyUI — обзор и быстрый старт",
+      "url": "docs/comfyui-obzor-i-bystryj-start.md"
+    },
+    {
+      "slug": "taksonomiya-i-tegi",
+      "title": "Таксономия и теги",
+      "url": "docs/taksonomiya-i-tegi.md"
+    },
+    {
+      "slug": "uslugi",
+      "title": "Услуги",
+      "url": "docs/uslugi.md"
+    }
+  ],
+  "briefs-upgrade-how-to": [
+    {
+      "slug": "protocol-kontraktnaya-model-dlya-agentov",
+      "title": "Protocol — Контрактная модель для агентов",
+      "url": "docs/protocol-kontraktnaya-model-dlya-agentov.md"
+    }
+  ],
+  "release-checklist-pages-prototype": [
+    {
+      "slug": "protocol-kontraktnaya-model-dlya-agentov",
+      "title": "Protocol — Контрактная модель для агентов",
+      "url": "docs/protocol-kontraktnaya-model-dlya-agentov.md"
+    }
+  ]
+}

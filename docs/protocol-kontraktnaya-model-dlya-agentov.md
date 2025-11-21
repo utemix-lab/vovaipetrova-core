@@ -722,24 +722,26 @@ node scripts/autolink.mjs --file docs/some-file.md
 ### Примеры before/after
 
 **Before:**
-```markdown
+````markdown
 Мы используем Flux для генерации видео. Также работаем с Adobe Photoshop.
-```
+````
 
 **After:**
-```markdown
-Мы используем [Flux](flux.md) для генерации видео. Также работаем с [Adobe Photoshop](adobe-photoshop.md).
-```
+````markdown
+Мы используем [Flux](flux-example.md) для генерации видео. Также работаем с [Adobe Photoshop](adobe-photoshop-example.md).
+````
 
 **Игнорирование в code:**
-```markdown
+````markdown
 В коде используется `Flux` для обработки.  <!-- не будет автолинком -->
-```
+````
 
 **Игнорирование в ссылках:**
-```markdown
+````markdown
 См. [документацию по Flux](https://example.com/flux).  <!-- не будет автолинком -->
-```
+````
+
+**Примечание:** В примерах выше используются вымышленные имена файлов (`flux-example.md`, `adobe-photoshop-example.md`) для демонстрации формата. В реальном использовании автолинк будет создавать ссылки на существующие страницы из `pages.json`.
 
 ### Технические детали
 

@@ -466,9 +466,10 @@ body[data-view="index"] {
     padding: 1.25rem;
   }
 
-  .stories-intro,
-  .issues-intro,
-  .orphans-intro {
+.stories-intro,
+.issues-intro,
+.orphans-intro,
+.kb-index-intro {
     font-size: 0.9rem;
     margin: 0.75rem 0 0.5rem;
   }
@@ -560,7 +561,8 @@ body[data-view="index"] {
 }
 
 .issues-intro,
-.orphans-intro {
+.orphans-intro,
+.kb-index-intro {
   margin: 1rem 0 0.5rem;
   max-width: 720px;
   color: var(--muted);
@@ -872,6 +874,76 @@ body[data-view="index"] {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.sidebar-section {
+  margin-bottom: 1.5rem;
+}
+
+.backlinks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+}
+
+.backlinks-list li {
+  margin-bottom: 0.5rem;
+}
+
+.backlinks-list a {
+  color: rgba(59, 130, 246, 0.95);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.backlinks-list a:hover {
+  color: rgba(59, 130, 246, 1);
+  text-decoration: underline;
+}
+
+.kb-index-letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.kb-index-letter {
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.kb-index-letter:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-1px);
+}
+
+.kb-index-letter.is-active {
+  background: rgba(99, 102, 241, 0.3);
+  border-color: rgba(99, 102, 241, 0.5);
+  color: rgba(99, 102, 241, 1);
+}
+
+.kb-index-letter-heading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--text);
+}
+
+.kb-index-content {
+  margin-top: 1rem;
 }
 
 .sidebar-section {

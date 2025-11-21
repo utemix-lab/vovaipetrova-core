@@ -241,12 +241,14 @@ function buildIndex() {
     `📊 Build stats: ${processedCount} processed, ${skippedCount} skipped (cache hit), ${duration}ms`
   );
   
-  // Generate routes.json and stats.json
+  // Generate routes.json, stats.json, backlinks, and KB index
   try {
     execSync("node scripts/generate-routes-json.mjs", { stdio: "inherit" });
     execSync("node scripts/generate-stats.mjs", { stdio: "inherit" });
+    execSync("node scripts/generate-backlinks.mjs", { stdio: "inherit" });
+    execSync("node scripts/generate-kb-index.mjs", { stdio: "inherit" });
   } catch (error) {
-    console.warn("⚠️  Failed to generate routes.json or stats.json:", error.message);
+    console.warn("⚠️  Failed to generate auxiliary files:", error.message);
   }
 }
 
