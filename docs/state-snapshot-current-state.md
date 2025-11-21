@@ -1,7 +1,9 @@
 ---
 title: State snapshot — текущее состояние
 slug: state-snapshot-current-state
-summary: "Текущее состояние проекта: активные ветки работ, цели цикла, DoD и журнал операционных событий"
+summary: >-
+  Текущее состояние проекта: активные ветки работ, цели цикла, DoD и журнал
+  операционных событий
 tags: []
 machine_tags: []
 status: ready
