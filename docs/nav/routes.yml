@@ -73,6 +73,10 @@ routes:
         doc: docs/codegpt-setup.md
         status: ok
         notes: Инструкция по настройке CodeGPT для интеграции с Notion и GitHub через API
+      - slug: codegpt-rollout-roadmap
+        doc: docs/codegpt-rollout-roadmap.md
+        status: draft
+        notes: "Дорожная карта и структурированный пакет задач для полноценного rollout CodeGPT агентов"
       - slug: koncepciya-portov-interfejsy-do-realizacii
         doc: docs/koncepciya-portov-interfejsy-do-realizacii.md
         status: ok

@@ -34,6 +34,11 @@ vovaipetrova-core/
 └── .codegpt/              # Конфигурация для CodeGPT
     ├── context.md         # Этот файл
     └── agents/            # Промпты агентов
+        ├── README.md       # Описание агентов
+        ├── orchestrator.md # CodeGPT:Orchestrator
+        ├── docs.md         # CodeGPT:Docs
+        ├── refactor.md     # CodeGPT:Refactor
+        └── creative.md     # CodeGPT:Creative
 ```
 
 ## Ветви (Branches)
@@ -157,9 +162,41 @@ service: true  # только для служебных файлов
 - ❌ Не мерджить PR без зелёного CI
 - ❌ Не создавать несколько PR из одной ветки (Lanes policy)
 
+## CodeGPT Агенты
+
+Проект использует специализированных CodeGPT агентов для автоматизации задач:
+
+### Типы агентов
+
+1. **CodeGPT:Orchestrator** — координация задач, планирование, приоритизация
+2. **CodeGPT:Docs** — работа с документацией, создание и обновление docs
+3. **CodeGPT:Refactor** — рефакторинг кода, улучшение архитектуры
+4. **CodeGPT:Creative** — творческие задачи, контент, дизайн
+
+### Промпты агентов
+
+Промпты для каждого агента находятся в `.codegpt/agents/`:
+- `orchestrator.md` — промпт для CodeGPT:Orchestrator
+- `docs.md` — промпт для CodeGPT:Docs
+- `refactor.md` — промпт для CodeGPT:Refactor
+- `creative.md` — промпт для CodeGPT:Creative
+
+### Использование агентов
+
+1. Создайте задачу в Briefs с соответствующим `Executor` (например, `CodeGPT:Docs`)
+2. Установите статус `Ready`
+3. Агент найдёт задачу в представлении `Ready for CodeGPT`
+4. Агент выполнит задачу согласно промпту и создаст PR
+
+### Roadmap
+
+Дорожная карта rollout агентов: `docs/codegpt-rollout-roadmap.md`
+
 ## Связанные документы
 
 - `docs/protocol-kontraktnaya-model-dlya-agentov.md` — контрактная модель для агентов
+- `docs/codegpt-rollout-roadmap.md` — roadmap rollout CodeGPT агентов
+- `docs/codegpt-setup.md` — инструкция по настройке CodeGPT
 - `CONTRIBUTING.md` — процесс работы с репозиторием
 - `README.md` — структура и команды
 - `docs/rfcs/template.md` — шаблон для RFC
