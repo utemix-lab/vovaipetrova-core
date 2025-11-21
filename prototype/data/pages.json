@@ -3046,5 +3046,29 @@
     "service": false,
     "collection": null,
     "story_order": null
+  },
+  {
+    "title": "TEMPLATE — Incident Retrospective",
+    "slug": "template-incident-retrospective",
+    "status": "review",
+    "summary": "Шаблон короткой ретроспективы инцидента для анализа и улучшений",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-incident-retrospective.md",
+    "service": true,
+    "collection": null,
+    "story_order": null
+  },
+  {
+    "title": "TEMPLATE — Incident Log",
+    "slug": "template-incident",
+    "status": "review",
+    "summary": "Шаблон фиксации инцидента с минимальными полями для быстрого заполнения",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/template-incident.md",
+    "service": true,
+    "collection": null,
+    "story_order": null
   }
 ]
