@@ -1,0 +1,233 @@
+{
+  "generatedAt": "2025-11-21T16:43:36.249Z",
+  "totalPages": 24,
+  "letters": [
+    "A",
+    "B",
+    "I",
+    "N",
+    "P",
+    "R",
+    "S",
+    "V",
+    "А",
+    "Б",
+    "Г",
+    "Д",
+    "И",
+    "К",
+    "М",
+    "Р",
+    "С",
+    "Т",
+    "Х"
+  ],
+  "index": {
+    "S": [
+      {
+        "slug": "adr-source-of-truth-i-zerkalirovanie",
+        "title": "ADR — Source of truth и зеркалирование",
+        "url": "docs/adr-source-of-truth-i-zerkalirovanie.md",
+        "summary": "Источник истины — Notion. Репозиторий — зеркало для исполнения и публикации. Ранний этап требует скорости вносить массовые правки и фиксировать архитектуру Нужны предпросмотры (Pages) и истории измвЂ¦",
+        "status": "draft"
+      }
+    ],
+    "A": [
+      {
+        "slug": "ancy",
+        "title": "Ancy",
+        "url": "docs/ancy.md",
+        "summary": "Архетип: Гость Голос и тон: Вдумчивый, философичный, системный Слои: Игровой, Театральный, Технический",
+        "status": "draft"
+      }
+    ],
+    "А": [
+      {
+        "slug": "arhitektura-proekta-komponenty",
+        "title": "Архитектура проекта — компоненты",
+        "url": "docs/arhitektura-proekta-komponenty.md",
+        "summary": "1) База знаний Формат исходных материалов: Markdown/YAML Структура: теги, граф связей",
+        "status": "draft"
+      }
+    ],
+    "Б": [
+      {
+        "slug": "baza-znanij-koren",
+        "title": "База знаний — корень",
+        "url": "docs/baza-znanij-koren.md",
+        "summary": "Центральный узел для тысяч страниц по инструментам и технологиям. Карточки инструментов по шаблону Рубрики и теги для фильтрации",
+        "status": "draft"
+      }
+    ],
+    "Д": [
+      {
+        "slug": "dinozavrik",
+        "title": "Динозаврик",
+        "url": "docs/dinozavrik.md",
+        "summary": "Архетип: Гость Голос и тон: Забавный прокрастинатор; приносит «интересные штуки» Слои: Игровой, Театральный, Технический",
+        "status": "draft"
+      }
+    ],
+    "Г": [
+      {
+        "slug": "glossarij-terminov",
+        "title": "Глоссарий терминов",
+        "url": "docs/glossarij-terminov.md",
+        "summary": "Ключевые термины и сокращения проекта. Термин: определение Аббр.: расшифровка",
+        "status": "draft"
+      }
+    ],
+    "Х": [
+      {
+        "slug": "hyugo",
+        "title": "Хьюго",
+        "url": "docs/hyugo.md",
+        "summary": "Архетип: Парсинг/Обогащение (Hugo) Голос и тон: Рациональный, педантичный, добродушный робот‑заяц Слои: Игровой, Театральный, Технический",
+        "status": "draft"
+      }
+    ],
+    "И": [
+      {
+        "slug": "ii",
+        "title": "ИИ",
+        "url": "docs/ii.md",
+        "summary": "Архетип: ИИ (метаагент) Голос и тон: Лёгкая надменность к автору, юмор к коллегам, уважение к аудитории Слои: Игровой, Театральный, Технический",
+        "status": "draft"
+      },
+      {
+        "slug": "indeks-i-tldr",
+        "title": "Индекс и TL;DR",
+        "url": "docs/indeks-i-tldr.md",
+        "summary": "Проект «Вова и Петрова» — творческо‑технологическая экосистема: виртуальные персонажи + «невидимый ИИ» + база знаний о нейросетях. Цель: личный инструмент и публичный ресурс с экспортом контента в вЂ¦",
+        "status": "draft"
+      },
+      {
+        "slug": "integracii-s-socsetyami",
+        "title": "Интеграции с соцсетями",
+        "url": "docs/integracii-s-socsetyami.md",
+        "summary": "План интеграций и точки подключения. Списком + ссылки Что автоматизируем сейчас, что вручную",
+        "status": "draft"
+      }
+    ],
+    "I": [
+      {
+        "slug": "instructions-ispolniteli-cursoraider",
+        "title": "Instructions — Исполнители (Cursor/Aider)",
+        "url": "docs/instructions-ispolniteli-cursoraider.md",
+        "summary": "# Instructions — Исполнители (Cursor/Aider)",
+        "status": "draft"
+      }
+    ],
+    "К": [
+      {
+        "slug": "orphans-how-to",
+        "title": "Как работать с orphan страницами",
+        "url": "docs/nav/orphans-how-to.md",
+        "summary": "Инструкция по работе со страницами без маршрутов в routes.yml (orphan pages)",
+        "status": "ready"
+      },
+      {
+        "slug": "routes-yml-how-to",
+        "title": "Как работать с routes.yml",
+        "url": "docs/nav/routes-yml-how-to.md",
+        "summary": "Краткая инструкция по добавлению разделов и страниц в routes.yml для отображения в Explorer",
+        "status": "ready"
+      },
+      {
+        "slug": "kontentpajplajn-eksporta",
+        "title": "Контент‑пайплайн экспорта",
+        "url": "docs/kontentpajplajn-eksporta.md",
+        "summary": "Из базы знаний формируем публикации для соцсетей. YouTube, Instagram, Telegram, VK, X Пост, шорт/сториз, ролик 3–5 мин, лонгрид",
+        "status": "draft"
+      }
+    ],
+    "М": [
+      {
+        "slug": "monetizaciya-i-urovni-dostupa",
+        "title": "Монетизация и уровни доступа",
+        "url": "docs/monetizaciya-i-urovni-dostupa.md",
+        "summary": "Часть базы знаний Telegram‑боты Образовательный контент",
+        "status": "draft"
+      }
+    ],
+    "P": [
+      {
+        "slug": "playbook-roli",
+        "title": "Playbook — Роли",
+        "url": "docs/playbook-roli.md",
+        "summary": "Пишет Vision, ADR, Specs в notion-brain Формирует Task spec Читает notion-brain",
+        "status": "draft"
+      }
+    ],
+    "Р": [
+      {
+        "slug": "runa",
+        "title": "Руна",
+        "url": "docs/runa.md",
+        "summary": "Архетип: Гость Голос и тон: Спокойная, точная, немного инопланетная ирония Слои: Игровой, Театральный, Технический",
+        "status": "draft"
+      }
+    ],
+    "N": [
+      {
+        "slug": "spec-normalize-i-politika-imyon",
+        "title": "Spec — Normalize и политика имён",
+        "url": "docs/spec-normalize-i-politika-imyon.md",
+        "summary": "Правила нормализации экспорта Notion: фронт-маттер, slug и устойчивость путей.",
+        "status": "review"
+      }
+    ],
+    "С": [
+      {
+        "slug": "sut-proekta-one-liner",
+        "title": "Суть проекта — One-liner",
+        "url": "docs/sut-proekta-one-liner.md",
+        "summary": "Автоматизированная система сбора и структуризации знаний о нейросетях с театральным слоем, где AI‑персонажи создают контент о собственном создании. Уникальность: «рекурсивный театр» — процесс создавЂ¦",
+        "status": "draft"
+      }
+    ],
+    "Т": [
+      {
+        "slug": "tekushie-zadachi",
+        "title": "Текущие задачи",
+        "url": "docs/tekushie-zadachi.md",
+        "summary": "[ ]  Поднять GitHub Pages из /prototype (ручной деплой) [ ]  Импорт Notion → docs: починить распаковку (двойной ZIP), нормализатор [ ]  Настроить фильтр триггера деплоя (только prototype/)",
+        "status": "draft"
+      }
+    ],
+    "V": [
+      {
+        "slug": "vision-strategiya-marketing-autentichnost-tretij-put-onepager",
+        "title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)",
+        "url": "docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager.md",
+        "summary": "Видение продукта: баланс маркетинга, аутентичности и третьего пути с метриками, рисками и дорожной картой.",
+        "status": "review"
+      }
+    ],
+    "B": [
+      {
+        "slug": "backup-export-routine-notion-github",
+        "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
+        "url": "docs/backup-export-routine-notion-github.md",
+        "summary": "Чек-лист и процедура регулярного экспорта Notion в GitHub с базовыми проверками целостности",
+        "status": "ready"
+      },
+      {
+        "slug": "briefs-upgrade-how-to",
+        "title": "Briefs upgrade — инструкция по обновлению полей, представлений, SLA и очередей ревью",
+        "url": "docs/briefs-upgrade-how-to.md",
+        "summary": "Инструкция по обновлению базы данных Briefs в Notion: добавление полей Executor, Lane, SLA, Requires Review, RFC Link, Upstream Source, создание представлений и формулы Overdue",
+        "status": "ready"
+      }
+    ],
+    "R": [
+      {
+        "slug": "release-checklist-pages-prototype",
+        "title": "Release checklist — процедура релиза Pages прототипа",
+        "url": "docs/release-checklist-pages-prototype.md",
+        "summary": "Чек-лист и процедура релиза GitHub Pages прототипа: preflight проверки, запуск деплоя, верификация, rollback",
+        "status": "ready"
+      }
+    ]
+  }
+}

@@ -60,6 +60,9 @@
         <button type="button" class="view-button" data-panel="orphans">
           Orphans
         </button>
+        <button type="button" class="view-button" data-panel="kb-index">
+          KB Index
+        </button>
       </div>
     </header>
     <main class="content">
@@ -108,6 +111,18 @@
         <div id="orphans-empty" class="empty-state hidden">
           <h2>Сирот не найдено</h2>
           <p>Все страницы имеют маршруты в routes.yml.</p>
+        </div>
+      </section>
+      <section id="kb-index-panel" class="panel hidden" aria-live="polite">
+        <div class="kb-index-intro">
+          <h2>Алфавитный индекс KB</h2>
+          <p>Навигация по страницам базы знаний, сгруппированным по первой букве.</p>
+        </div>
+        <div id="kb-index-letters" class="kb-index-letters"></div>
+        <div id="kb-index-content" class="kb-index-content"></div>
+        <div id="kb-index-empty" class="empty-state hidden">
+          <h2>Индекс пуст</h2>
+          <p>Нет страниц KB для отображения.</p>
         </div>
       </section>
     </main>

@@ -245,6 +245,10 @@ async function renderIndex() {
   const storiesPanel = document.getElementById("stories-panel");
   const issuesPanel = document.getElementById("issues-panel");
   const orphansPanel = document.getElementById("orphans-panel");
+  const kbIndexPanel = document.getElementById("kb-index-panel");
+  const kbIndexLetters = document.getElementById("kb-index-letters");
+  const kbIndexContent = document.getElementById("kb-index-content");
+  const kbIndexEmpty = document.getElementById("kb-index-empty");
 
   const [pages, routes] = await Promise.all([
     loadPages("data/pages.json"),
@@ -277,7 +281,7 @@ async function renderIndex() {
   let currentSort = urlParams.get("sort") || localStorage.getItem("explorer-sort") || "route";
   let currentTagFilter = tagFromHash || urlParams.get("tag") || localStorage.getItem("explorer-tag-filter") || null;
   let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
-  let activePanel = hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : "docs";
+  let activePanel = hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
   
   // Сохраняем в localStorage
   if (urlParams.get("status")) localStorage.setItem("explorer-status", currentStatus);
@@ -524,6 +528,15 @@ async function renderIndex() {
       storiesPanel.classList.add("hidden");
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.remove("hidden");
+      if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
+      controls?.classList.add("hidden");
+      if (storiesBanner) storiesBanner.classList.add("hidden");
+    } else if (panel === "kb-index") {
+      docsPanel.classList.add("hidden");
+      storiesPanel.classList.add("hidden");
+      issuesPanel.classList.add("hidden");
+      orphansPanel.classList.add("hidden");
+      if (kbIndexPanel) kbIndexPanel.classList.remove("hidden");
       controls?.classList.add("hidden");
       if (storiesBanner) storiesBanner.classList.add("hidden");
     } else {
@@ -531,6 +544,7 @@ async function renderIndex() {
       storiesPanel.classList.add("hidden");
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
+      if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
       controls?.classList.remove("hidden");
       if (storiesBanner) storiesBanner.classList.remove("hidden");
     }
@@ -663,11 +677,94 @@ async function renderIndex() {
 
   // Баннер Stories теперь информационный, без кнопки
 
+  async function renderKBIndex() {
+    if (!kbIndexLetters || !kbIndexContent) return;
+    
+    kbIndexLetters.innerHTML = "";
+    kbIndexContent.innerHTML = "";
+    
+    try {
+      const response = await fetch("data/kb-index.json");
+      if (!response.ok) throw new Error(`status ${response.status}`);
+      const kbIndex = await response.json();
+      
+      if (!kbIndex.letters || kbIndex.letters.length === 0) {
+        if (kbIndexEmpty) kbIndexEmpty.classList.remove("hidden");
+        return;
+      }
+      if (kbIndexEmpty) kbIndexEmpty.classList.add("hidden");
+      
+      // Рендерим навигацию по буквам
+      const lettersFragment = document.createDocumentFragment();
+      kbIndex.letters.forEach(letter => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "kb-index-letter";
+        button.textContent = letter;
+        button.dataset.letter = letter;
+        button.addEventListener("click", () => {
+          // Убираем активность с других кнопок
+          kbIndexLetters.querySelectorAll(".kb-index-letter").forEach(btn => {
+            btn.classList.remove("is-active");
+          });
+          button.classList.add("is-active");
+          
+          // Показываем страницы для выбранной буквы
+          renderKBIndexLetter(letter, kbIndex.index[letter]);
+        });
+        lettersFragment.appendChild(button);
+      });
+      kbIndexLetters.appendChild(lettersFragment);
+      
+      // По умолчанию показываем первую букву
+      if (kbIndex.letters.length > 0) {
+        const firstLetter = kbIndex.letters[0];
+        const firstButton = kbIndexLetters.querySelector(`[data-letter="${firstLetter}"]`);
+        if (firstButton) {
+          firstButton.classList.add("is-active");
+          renderKBIndexLetter(firstLetter, kbIndex.index[firstLetter]);
+        }
+      }
+    } catch (error) {
+      console.warn("⚠️  Failed to load KB index:", error.message);
+      if (kbIndexEmpty) kbIndexEmpty.classList.remove("hidden");
+    }
+  }
+
+  function renderKBIndexLetter(letter, pages) {
+    if (!kbIndexContent) return;
+    
+    kbIndexContent.innerHTML = "";
+    
+    const heading = document.createElement("h2");
+    heading.className = "kb-index-letter-heading";
+    heading.textContent = `Буква "${letter}" (${pages.length} страниц)`;
+    kbIndexContent.appendChild(heading);
+    
+    const fragment = document.createDocumentFragment();
+    pages.forEach(page => {
+      const card = createCard({
+        slug: page.slug,
+        title: page.title,
+        status: page.status,
+        url: page.url,
+        summary: page.summary,
+        tags: []
+      });
+      fragment.appendChild(card);
+    });
+    kbIndexContent.appendChild(fragment);
+  }
+
   renderDocs();
   renderStories();
   setActivePanel(activePanel);
   if (activePanel === "orphans") {
     renderOrphans();
+  } else if (activePanel === "kb-index") {
+    renderKBIndex().catch((error) => {
+      console.error("Failed to render KB index:", error);
+    });
   }
 }
 
@@ -976,6 +1073,36 @@ async function renderPage() {
     relatedTarget.appendChild(list);
     rewriteInternalLinks(relatedTarget, pages, linkMap);
     relatedBlock.classList.remove("hidden");
+  }
+  
+  // Загружаем и отображаем backlinks
+  try {
+    const backlinksResponse = await fetch("../data/backlinks.json");
+    if (backlinksResponse.ok) {
+      const backlinks = await backlinksResponse.json();
+      const pageBacklinks = backlinks[slug.toLowerCase()];
+      if (pageBacklinks && pageBacklinks.length > 0) {
+        const backlinksBlock = document.getElementById("backlinks-block");
+        const backlinksContent = document.getElementById("backlinks-content");
+        const list = document.createElement("ul");
+        list.className = "backlinks-list";
+        
+        pageBacklinks.forEach(backlink => {
+          const item = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = `../page/${backlink.slug}.html`;
+          link.textContent = backlink.title;
+          item.appendChild(link);
+          list.appendChild(item);
+        });
+        
+        backlinksContent.innerHTML = "";
+        backlinksContent.appendChild(list);
+        backlinksBlock.classList.remove("hidden");
+      }
+    }
+  } catch (error) {
+    console.warn("Failed to load backlinks:", error);
   }
 }
 
