@@ -162,7 +162,7 @@ function lintFile(file) {
   }
 
   // PII check for docs/ and stories/
-  const piiCheck = containsPII(body);
+  const piiCheck = containsPII(body, file);
   if (piiCheck.found) {
     const message = `warn: PII detected (${piiCheck.kind}): ${piiCheck.match.substring(0, 50)}... Use <user>, <email>, or <phone> instead`;
     if (isStory) {
@@ -179,7 +179,7 @@ function lintFile(file) {
   };
 }
 
-function containsPII(body) {
+function containsPII(body, filePath = '') {
   // Обновлено: расширены паттерны PII для лучшего обнаружения (2025-11-20)
   const patterns = [
     {
@@ -208,7 +208,29 @@ function containsPII(body) {
     },
     {
       name: 'full_name_english',
-      regex: /\b([A-Z][a-z]+)\s+([A-Z][a-z]+)\b/g // Полное имя на английском
+      regex: /\b([A-Z][a-z]{2,})\s+([A-Z][a-z]{2,})\b/g, // Полное имя на английском (минимум 3 символа в каждом слове)
+      // Исключаем технические термины и названия продуктов
+      excludePatterns: [
+        /Think Tank/i,
+        /After Effects/i,
+        /Static First/i,
+        /Docker Compose/i,
+        /Stable Diffusion/i,
+        /Frame Interpolation/i,
+        /Notion Integrations/i,
+        /Adobe Character/i,
+        /Knowledge Base/i,
+        /Open Source/i,
+        /Core Memory/i,
+        /Issues View/i,
+        /Notion Import/i,
+        /Docs Path/i,
+        /Eval Harness/i,
+        /Compatibility Tracker/i,
+        /Requires Review/i,
+        /Deploy Pages/i,
+        /Hugging Face/i
+      ]
     },
     {
       name: 'api_key_pattern',
@@ -263,7 +285,40 @@ function containsPII(body) {
     /[0-9a-f]{32,}/i, // Хеши (MD5, SHA256 и т.д.)
     /github\.com/i,
     /gitlab\.com/i,
-    /bitbucket\.org/i
+    /bitbucket\.org/i,
+    // Примеры путей в документации (с многоточием или в примерах кода)
+    /C:\\Users\\.{2,}/i, // C:\Users\...
+    /\/home\/\.{2,}/i, // /home/...
+    // Исключения для технических терминов, которые могут быть приняты за имена
+    /Think Tank/i,
+    /After Effects/i,
+    /Static First/i,
+    /Docker Compose/i,
+    /Stable Diffusion/i,
+    /Frame Interpolation/i,
+    /Notion Integrations/i,
+    /Adobe Character/i,
+    /Knowledge Base/i,
+    /Open Source/i,
+    /Core Memory/i,
+    /Issues View/i,
+    /Notion Import/i,
+    /Docs Path/i,
+    /Eval Harness/i,
+    /Compatibility Tracker/i,
+    /Requires Review/i,
+    /Deploy Pages/i,
+    /Hugging Face/i,
+    /Safety Rails/i,
+    /Setup Node/i,
+    /Pull Request/i,
+    /Model Context/i,
+    /Save Prompt/i,
+    /Internal Integration/i,
+    /Upstream Source/i,
+    /Explorer/i,
+    /Letta Cloud/i,
+    /Protocol Servers/i
   ];
   
   for (const pattern of patterns) {
@@ -281,6 +336,11 @@ function containsPII(body) {
         continue;
       }
       
+      // Проверяем исключения для конкретного паттерна (например, для full_name_english)
+      if (pattern.excludePatterns && pattern.excludePatterns.some(exclude => exclude.test(matchedText))) {
+        continue;
+      }
+      
       return { found: true, kind: pattern.name, match: matchedText };
     }
   }
@@ -289,7 +349,11 @@ function containsPII(body) {
 }
 
 function main() {
-  const files = globSync(`${ROOT}/**/*.md`, { nodir: true });
+  const files = globSync(`${ROOT}/**/*.md`, { nodir: true })
+    .filter(f => {
+      // Исключаем тестовые файлы с намеренными нарушениями
+      return !f.includes('test-guardrails/bad-examples/');
+    });
   let totalIssues = 0;
   let draftCount = 0;
   for (const f of files) {
