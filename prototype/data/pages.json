@@ -3094,6 +3094,7 @@
     ],
     "machine_tags": [
       "product/kb",
+      "product/site",
       "theme/ux"
     ],
     "url": "docs/kb/aliases.md",
@@ -3131,6 +3132,7 @@
     ],
     "machine_tags": [
       "product/kb",
+      "product/site",
       "theme/ux"
     ],
     "url": "docs/kb/backlinks.md",
@@ -3149,6 +3151,7 @@
     ],
     "machine_tags": [
       "product/kb",
+      "product/site",
       "theme/ux"
     ],
     "url": "docs/kb/canonical-slug.md",
@@ -3162,12 +3165,13 @@
     "status": "ready",
     "summary": "Фасетная модель навигации: темы, действия, продукты, технологии и роли. Используется для фильтрации и категоризации контента.",
     "tags": [
-      "Навигация",
-      "База_знаний"
+      "База_знаний",
+      "Навигация"
     ],
     "machine_tags": [
       "action/build",
       "product/kb",
+      "product/site",
       "theme/ux"
     ],
     "url": "docs/kb/facets.md",
@@ -3188,7 +3192,9 @@
     "machine_tags": [
       "action/build",
       "product/kb",
-      "theme/automation"
+      "product/site",
+      "theme/automation",
+      "theme/ux"
     ],
     "url": "docs/kb/link-map.md",
     "service": false,
@@ -3201,11 +3207,12 @@
     "status": "ready",
     "summary": "Машиночитаемые теги для автоматической категоризации и фильтрации контента. Используются в фасетной модели навигации.",
     "tags": [
-      "Навигация",
-      "База_знаний"
+      "База_знаний",
+      "Навигация"
     ],
     "machine_tags": [
       "product/kb",
+      "product/site",
       "theme/ux"
     ],
     "url": "docs/kb/machine-tags.md",
@@ -3219,12 +3226,13 @@
     "status": "ready",
     "summary": "Маршруты навигации сайта, определённые в routes.yml. Связывают URL-пути с документами и определяют структуру сайта.",
     "tags": [
-      "Навигация",
-      "База_знаний"
+      "База_знаний",
+      "Навигация"
     ],
     "machine_tags": [
       "action/build",
       "product/kb",
+      "product/site",
       "theme/ux"
     ],
     "url": "docs/kb/routes.md",
@@ -3257,14 +3265,34 @@
     "status": "ready",
     "summary": "Система тегов для категоризации контента: видимые теги и машинотеги. Используется для навигации, фильтрации и поиска материалов.",
     "tags": [
-      "Навигация",
-      "База_знаний"
+      "База_знаний",
+      "Навигация"
     ],
     "machine_tags": [
       "product/kb",
+      "product/site",
       "theme/ux"
     ],
     "url": "docs/kb/tags.md",
+    "service": false,
+    "collection": null,
+    "story_order": null
+  },
+  {
+    "title": "CODEGPT Rollout — Roadmap и пакет задач",
+    "slug": "codegpt-rollout-roadmap",
+    "status": "draft",
+    "summary": "Дорожная карта и структурированный пакет задач для полноценного rollout CodeGPT агентов в проект.",
+    "tags": [
+      "Автоматизация",
+      "Кодинг"
+    ],
+    "machine_tags": [
+      "theme/automation",
+      "theme/dev",
+      "action/build"
+    ],
+    "url": "docs/codegpt-rollout-roadmap.md",
     "service": false,
     "collection": null,
     "story_order": null
