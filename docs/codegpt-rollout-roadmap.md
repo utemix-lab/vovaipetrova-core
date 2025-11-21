@@ -1,15 +1,17 @@
 ---
 title: CODEGPT Rollout — Roadmap и пакет задач
 slug: codegpt-rollout-roadmap
-summary: Дорожная карта и структурированный пакет задач для полноценного rollout CodeGPT агентов в проект.
+summary: >-
+  Дорожная карта и структурированный пакет задач для полноценного rollout
+  CodeGPT агентов в проект.
 status: draft
 tags:
   - Автоматизация
   - Кодинг
 machine_tags:
+  - action/build
   - theme/automation
   - theme/dev
-  - action/build
 ---
 
 # CODEGPT Rollout — Roadmap и пакет задач
