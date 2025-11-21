@@ -153,6 +153,14 @@ routes:
         doc: docs/protocol-kontraktnaya-model-dlya-agentov.md
         status: ok
         notes: Контрактная модель определяет правила взаимодействия агентов с репозиторием
+      - slug: template-incident
+        doc: docs/template-incident.md
+        status: ok
+        notes: Шаблон фиксации инцидента с минимальными полями для быстрого заполнения
+      - slug: template-incident-retrospective
+        doc: docs/template-incident-retrospective.md
+        status: ok
+        notes: Шаблон короткой ретроспективы инцидента для анализа и улучшений
   - path: /kb
     title: Knowledge Base
     description: контентная модель, фасеты, правила импорта
