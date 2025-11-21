@@ -1,0 +1,9 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://github.com/utemix-lab/vovaipetrova-core/blob/main/docs/protocol-kontraktnaya-model-dlya-agentov.md
+    about: Read the protocol and guidelines for agents
+  - name: Notion Briefs
+    url: https://www.notion.so/
+    about: Check Notion Briefs for task management
+
