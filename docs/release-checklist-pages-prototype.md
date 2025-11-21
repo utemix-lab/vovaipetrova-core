@@ -118,6 +118,7 @@ git pull origin main
 - [ ] Получить URL из GitHub Actions (шаг `deployment.outputs.page_url`)
 - [ ] Или открыть Settings → Pages → View site
 - [ ] Проверить доступность сайта
+- [ ] **Автоматические smoke checks** выполняются автоматически после деплоя (3 проверки: `/`, `/data/pages.json`, `/data/stats.json`)
 - [ ] Проверить основные сценарии:
   - [ ] Главная страница загружается
   - [ ] Навигация работает (Docs, Stories, Issues, Orphans)
@@ -128,6 +129,8 @@ git pull origin main
   - [ ] Мобильная версия отображается корректно
 
 **URL прототипа:** https://utemix-lab.github.io/vovaipetrova-core/
+
+**Smoke checks:** Автоматически выполняются после деплоя через `scripts/checks/smoke-check-pages.mjs`. Отчёт сохраняется в артефакты CI.
 
 ## Критерии успешного релиза
 

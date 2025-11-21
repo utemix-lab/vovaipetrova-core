@@ -43,3 +43,30 @@ jobs:
 
       - id: deployment
         uses: actions/deploy-pages@v4.0.0
+
+      - name: Wait for Pages deployment
+        run: |
+          echo "⏳ Waiting for Pages deployment to propagate..."
+          sleep 30
+
+      - name: Run smoke checks
+        id: smoke-checks
+        env:
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          if [ ! -f scripts/checks/smoke-check-pages.mjs ]; then
+            echo "⚠️ smoke-check-pages.mjs not found, skipping"
+            exit 0
+          fi
+          node scripts/checks/smoke-check-pages.mjs "$PAGES_URL"
+        continue-on-error: false
+
+      - name: Upload smoke check artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-smoke-check-report
+          path: |
+            tests/smoke-checks/results/pages-smoke-check-report.md
+          retention-days: 30
+        continue-on-error: true
