@@ -161,6 +161,10 @@ routes:
         doc: docs/template-incident-retrospective.md
         status: ok
         notes: Шаблон короткой ретроспективы инцидента для анализа и улучшений
+      - slug: state-snapshot-current-state
+        doc: docs/state-snapshot-current-state.md
+        status: ok
+        notes: "Текущее состояние проекта: активные ветки работ, цели цикла, DoD и журнал операционных событий (Ops-log)"
   - path: /kb
     title: Knowledge Base
     description: контентная модель, фасеты, правила импорта
