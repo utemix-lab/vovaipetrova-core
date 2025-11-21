@@ -63,6 +63,7 @@ status: ready
 ### Контекст проекта
 - `/.codegpt/context.md` — общий контекст (источник истины, ветви, линтеры, CI, lanes)
 - `docs/protocol-kontraktnaya-model-dlya-agentov.md` — этот документ (правила работы)
+- `docs/state-snapshot-current-state.md` — текущее состояние проекта и Ops-log (журнал операционных событий)
 - `CONTRIBUTING.md` — процесс работы с репозиторием
 - `README.md` — структура и команды
 - `.cache/context-snapshot.json` — снапшот контекста и словарей (генерируется через `npm run cache:warmup`)
