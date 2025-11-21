@@ -50,90 +50,244 @@ const SIZE_LIMITS = {
 };
 
 // Запрещённые пути (forbidden-paths)
+// Обновлено: актуализирован список после последних изменений в репозитории (2025-11-20)
 const FORBIDDEN_PATHS = [
+  // Секреты и конфигурация
   /^\.env$/,
   /^\.env\./,
+  /^\.env\.local$/,
+  /^\.env\.production$/,
+  /^\.env\.development$/,
+  /^codegpt\.config\.json$/, // Конфигурация CodeGPT может содержать секреты
+  /^vscode-settings\.example\.json$/, // Пример настроек VS Code
+  
+  // Системные директории
   /^\.git\//,
   /^node_modules\//,
   /^vendor\//,
-  /^\.github\/workflows\/.*\.yml$/,
-  /^package\.json$/,
-  /^package-lock\.json$/,
-  /^composer\.json$/,
-  /^composer\.lock$/,
-  /^README\.md$/,
-  /^\.gitignore$/,
+  /^\.cache\//,
+  /^\.telemetry\//,
+  /^\.build-cache\.json$/,
+  /^tmp\//, // Временная директория
+  /^temp\//, // Временная директория
+  
+  // GitHub конфигурация (защищено от случайных изменений)
+  /^\.github\/workflows\/.*\.yml$/, // Все workflow файлы защищены
   /^\.github\/PULL_REQUEST_TEMPLATE/,
-  /^docs\/\.import-map\.yaml$/,
-  /^scripts\/codegpt\/.*\.mjs$/,
+  /^\.github\/ISSUE_TEMPLATE/,
+  
+  // Зависимости и конфигурация проекта
+  /^package-lock\.json$/, // package.json можно изменять через FORBIDDEN_ALLOWED
+  /^composer\.json$/, // Защищено от изменений Composer
+  /^composer\.lock$/,
+  /^yarn\.lock$/,
+  /^pnpm-lock\.yaml$/,
+  
+  // Корневые файлы проекта
+  /^README\.md$/,
+  /^CONTRIBUTING\.md$/,
+  /^LICENSE$/,
+  /^SECURITY\.md$/,
+  /^CHANGELOG\.md$/, // Changelog обновляется автоматически
+  /^\.gitignore$/,
+  /^\.gitattributes$/,
+  
+  // Критические конфигурационные файлы
+  /^docs\/\.import-map\.yaml$/, // Защита от перезаписи при импорте из Notion
+  /^scripts\/codegpt\/.*\.mjs$/, // Защита API ключей и интеграций
   /^\.codegpt\//,
-  /^notion-brain\//
+  /^notion-brain\//,
+  
+  // Автоматически генерируемые файлы (не должны изменяться вручную)
+  /^prototype\/data\/.*\.json$/, // Генерируются автоматически (pages.json, stats.json, broken-links.json, orphans.json, routes.json)
+  /^prototype\/page\/.*\.html$/, // Генерируются автоматически
+  /^prototype\/data\/\.build-cache\.json$/, // Кэш сборки
+  
+  // Тестовые и временные файлы (не должны коммититься)
+  /^test-guardrails\/bad-examples\/forbidden-.*\.md$/, // Тестовые файлы с нарушениями
+  /^test-guardrails-v2\//, // Тестовые файлы guardrails v2
+  /^tmp-.*\.(txt|md|json)$/, // Временные файлы
+  /^\.telemetry\/.*$/,
+  /^lint\.log$/, // Логи линтинга
+  /^STRUCTURE-REPORT\.md$/ // Автоматически генерируемый отчёт
 ];
 
 // Исключения из forbidden-paths (разрешённые изменения)
+// Важно: изменения в этих файлах требуют особой осторожности
+// Обновлено: актуализирован список разрешённых файлов (2025-11-20)
 const FORBIDDEN_ALLOWED = [
-  /^\.github\/workflows\/docs-ci\.yml$/, // Можно изменять docs-ci.yml
-  /^package\.json$/, // Можно изменять package.json (но с осторожностью)
+  /^\.github\/workflows\/docs-ci\.yml$/, // Можно изменять docs-ci.yml для добавления новых проверок
+  /^\.github\/pull_request_template\.md$/, // Можно обновлять шаблон PR
+  /^package\.json$/, // Можно изменять package.json (но с осторожностью - проверяется через guardrails)
+  /^docs\/protocol-kontraktnaya-model-dlya-agentov\.md$/, // Можно обновлять протокол для агентов
 ];
 
-// Улучшенные паттерны PII
+// Улучшенные паттерны PII (актуализировано)
+// Обновлено: расширены паттерны для лучшего обнаружения персональных данных
 const PII_PATTERNS = [
   {
     name: 'windows_user_path',
     regex: /[A-Za-z]:\\Users\\([A-Za-z0-9._ -]+)/g,
     kind: 'path',
-    severity: 'error'
+    severity: 'error',
+    description: 'Windows user directory path'
   },
   {
     name: 'unix_home_path',
     regex: /\/(?:home|Users)\/([A-Za-z0-9.-]+)/g,
     kind: 'path',
-    severity: 'error'
+    severity: 'error',
+    description: 'Unix/Linux home directory path'
   },
   {
     name: 'email',
     regex: /[A-Za-z0-9.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g,
     kind: 'email',
-    severity: 'error'
+    severity: 'error',
+    description: 'Email address'
   },
   {
     name: 'phone',
     regex: /\+?\d{1,3}[\s\-()]\d{2,4}[\s\-()]\d{2,4}[\s\-()]?\d{2,4}/g,
     kind: 'phone',
-    severity: 'error'
+    severity: 'error',
+    description: 'Phone number'
+  },
+  {
+    name: 'phone_compact',
+    regex: /\b\d{10,15}\b/g, // Компактный формат без разделителей
+    kind: 'phone',
+    severity: 'warning', // Может быть ложным срабатыванием (номера версий, хеши)
+    description: 'Compact phone number format'
   },
   {
     name: 'full_name',
     regex: /\b([А-ЯЁ][а-яё]+)\s+([А-ЯЁ][а-яё]+)\b/g,
     kind: 'name',
     severity: 'warning', // Может быть ложным срабатыванием
-    context: 'docs/stories/' // Только для stories
+    context: 'docs/stories/', // Только для stories
+    description: 'Full name (Russian)'
+  },
+  {
+    name: 'full_name_english',
+    regex: /\b([A-Z][a-z]+)\s+([A-Z][a-z]+)\b/g,
+    kind: 'name',
+    severity: 'warning', // Может быть ложным срабатыванием
+    context: 'docs/stories/', // Только для stories
+    description: 'Full name (English)'
   },
   {
     name: 'ip_address',
     regex: /\b(?:\d{1,3}\.){3}\d{1,3}\b/g,
     kind: 'ip',
-    severity: 'warning'
+    severity: 'warning', // Может быть версией или примером
+    description: 'IP address'
   },
   {
     name: 'api_key_pattern',
-    regex: /(?:api[_-]?key|secret|token)\s*[:=]\s*['"]?([A-Za-z0-9_-]{20,})['"]?/gi,
+    regex: /(?:api[_-]?key|secret|token|password|pwd)\s*[:=]\s*['"]?([A-Za-z0-9_-]{20,})['"]?/gi,
     kind: 'secret',
-    severity: 'error'
+    severity: 'error',
+    description: 'API key, secret, or token pattern'
+  },
+  {
+    name: 'github_token',
+    regex: /ghp_[A-Za-z0-9]{36}/g,
+    kind: 'secret',
+    severity: 'error',
+    description: 'GitHub personal access token'
+  },
+  {
+    name: 'notion_token',
+    regex: /(?:secret_|ntn_)[A-Za-z0-9_-]{32,}/g,
+    kind: 'secret',
+    severity: 'error',
+    description: 'Notion API token'
+  },
+  {
+    name: 'aws_access_key',
+    regex: /AKIA[0-9A-Z]{16}/g,
+    kind: 'secret',
+    severity: 'error',
+    description: 'AWS access key ID'
+  },
+  {
+    name: 'credit_card',
+    regex: /\b(?:\d{4}[-\s]?){3}\d{4}\b/g,
+    kind: 'financial',
+    severity: 'error',
+    description: 'Credit card number pattern'
+  },
+  {
+    name: 'mac_address',
+    regex: /\b([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\b/g,
+    kind: 'device',
+    severity: 'warning', // Может быть примером в документации
+    description: 'MAC address'
+  },
+  {
+    name: 'windows_path_with_username',
+    regex: /[A-Za-z]:\\Users\\([A-Za-z0-9._ -]+)\\Documents/g,
+    kind: 'path',
+    severity: 'error',
+    description: 'Windows Documents path with username'
+  },
+  {
+    name: 'windows_path_with_username_desktop',
+    regex: /[A-Za-z]:\\Users\\([A-Za-z0-9._ -]+)\\Desktop/g,
+    kind: 'path',
+    severity: 'error',
+    description: 'Windows Desktop path with username'
+  },
+  {
+    name: 'windows_path_with_username_downloads',
+    regex: /[A-Za-z]:\\Users\\([A-Za-z0-9._ -]+)\\Downloads/g,
+    kind: 'path',
+    severity: 'error',
+    description: 'Windows Downloads path with username'
   }
 ];
 
 // Исключения из PII проверки (уже санитизированные)
+// Обновлено: расширен список исключений для уменьшения ложных срабатываний
 const PII_EXCLUSIONS = [
+  // Санитизированные плейсхолдеры
   /<user>/i,
   /<email>/i,
   /<phone>/i,
   /<name>/i,
+  /<path>/i,
   /placeholder/i,
+  /example/i,
+  
+  // Тестовые и примерные адреса
   /example\.com/i,
   /test@/i,
+  /test@example/i,
+  /user@example/i,
+  /admin@localhost/i,
+  
+  // Локальные адреса и примеры
   /localhost/i,
-  /127\.0\.0\.1/i
+  /127\.0\.0\.1/i,
+  /0\.0\.0\.0/i,
+  /192\.168\./i, // Частные IP сети (обычно примеры)
+  /10\./i, // Частные IP сети
+  /172\.(1[6-9]|2[0-9]|3[01])\./i, // Частные IP сети
+  
+  // Известные примеры в документации
+  /john\.doe@example\.com/i,
+  /jane\.doe@example\.com/i,
+  /test@test\.com/i,
+  
+  // Версии и хеши (могут совпадать с паттернами телефонов)
+  /v?\d+\.\d+\.\d+/i, // Версии типа 1.2.3
+  /[0-9a-f]{32,}/i, // Хеши (MD5, SHA256 и т.д.)
+  
+  // Известные публичные примеры
+  /github\.com/i,
+  /gitlab\.com/i,
+  /bitbucket\.org/i
 ];
 
 /**

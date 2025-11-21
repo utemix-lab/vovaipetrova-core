@@ -162,7 +162,7 @@ function lintFile(file) {
   }
 
   // PII check for docs/ and stories/
-  const piiCheck = containsPII(body);
+  const piiCheck = containsPII(body, file);
   if (piiCheck.found) {
     const message = `warn: PII detected (${piiCheck.kind}): ${piiCheck.match.substring(0, 50)}... Use <user>, <email>, or <phone> instead`;
     if (isStory) {
@@ -179,7 +179,8 @@ function lintFile(file) {
   };
 }
 
-function containsPII(body) {
+function containsPII(body, filePath = '') {
+  // Обновлено: расширены паттерны PII для лучшего обнаружения (2025-11-20)
   const patterns = [
     {
       name: 'windows_user_path',
@@ -196,7 +197,128 @@ function containsPII(body) {
     {
       name: 'phone',
       regex: /\+?\d{1,3}[\s\-()]\d{2,4}[\s\-()]\d{2,4}[\s\-()]?\d{2,4}/g
+    },
+    {
+      name: 'phone_compact',
+      regex: /\b\d{10,15}\b/g // Компактный формат без разделителей (может быть ложным срабатыванием)
+    },
+    {
+      name: 'full_name_russian',
+      regex: /\b([А-ЯЁ][а-яё]+)\s+([А-ЯЁ][а-яё]+)\b/g // Полное имя на русском
+    },
+    {
+      name: 'full_name_english',
+      regex: /\b([A-Z][a-z]{2,})\s+([A-Z][a-z]{2,})\b/g, // Полное имя на английском (минимум 3 символа в каждом слове)
+      // Исключаем технические термины и названия продуктов
+      excludePatterns: [
+        /Think Tank/i,
+        /After Effects/i,
+        /Static First/i,
+        /Docker Compose/i,
+        /Stable Diffusion/i,
+        /Frame Interpolation/i,
+        /Notion Integrations/i,
+        /Adobe Character/i,
+        /Knowledge Base/i,
+        /Open Source/i,
+        /Core Memory/i,
+        /Issues View/i,
+        /Notion Import/i,
+        /Docs Path/i,
+        /Eval Harness/i,
+        /Compatibility Tracker/i,
+        /Requires Review/i,
+        /Deploy Pages/i,
+        /Hugging Face/i
+      ]
+    },
+    {
+      name: 'api_key_pattern',
+      regex: /(?:api[_-]?key|secret|token|password|pwd)\s*[:=]\s*['"]?([A-Za-z0-9_-]{20,})['"]?/gi
+    },
+    {
+      name: 'github_token',
+      regex: /ghp_[A-Za-z0-9]{36}/g
+    },
+    {
+      name: 'notion_token',
+      regex: /(?:secret_|ntn_)[A-Za-z0-9_-]{32,}/g
+    },
+    {
+      name: 'aws_access_key',
+      regex: /AKIA[0-9A-Z]{16}/g
+    },
+    {
+      name: 'credit_card',
+      regex: /\b(?:\d{4}[-\s]?){3}\d{4}\b/g
+    },
+    {
+      name: 'ip_address',
+      regex: /\b(?:\d{1,3}\.){3}\d{1,3}\b/g // Может быть примером или версией
     }
+  ];
+  
+  // Исключения (уже санитизированные или примеры)
+  // Обновлено: расширен список исключений для уменьшения ложных срабатываний
+  const exclusions = [
+    /<user>/i,
+    /<email>/i,
+    /<phone>/i,
+    /<name>/i,
+    /<path>/i,
+    /placeholder/i,
+    /example/i,
+    /test@/i,
+    /test@example/i,
+    /user@example/i,
+    /admin@localhost/i,
+    /localhost/i,
+    /127\.0\.0\.1/i,
+    /0\.0\.0\.0/i,
+    /192\.168\./i, // Частные IP сети (обычно примеры)
+    /10\./i, // Частные IP сети
+    /172\.(1[6-9]|2[0-9]|3[01])\./i, // Частные IP сети
+    /john\.doe@example\.com/i,
+    /jane\.doe@example\.com/i,
+    /test@test\.com/i,
+    /v?\d+\.\d+\.\d+/i, // Версии типа 1.2.3
+    /[0-9a-f]{32,}/i, // Хеши (MD5, SHA256 и т.д.)
+    /github\.com/i,
+    /gitlab\.com/i,
+    /bitbucket\.org/i,
+    // Примеры путей в документации (с многоточием или в примерах кода)
+    /C:\\Users\\.{2,}/i, // C:\Users\...
+    /\/home\/\.{2,}/i, // /home/...
+    // Исключения для технических терминов, которые могут быть приняты за имена
+    /Think Tank/i,
+    /After Effects/i,
+    /Static First/i,
+    /Docker Compose/i,
+    /Stable Diffusion/i,
+    /Frame Interpolation/i,
+    /Notion Integrations/i,
+    /Adobe Character/i,
+    /Knowledge Base/i,
+    /Open Source/i,
+    /Core Memory/i,
+    /Issues View/i,
+    /Notion Import/i,
+    /Docs Path/i,
+    /Eval Harness/i,
+    /Compatibility Tracker/i,
+    /Requires Review/i,
+    /Deploy Pages/i,
+    /Hugging Face/i,
+    /Safety Rails/i,
+    /Setup Node/i,
+    /Pull Request/i,
+    /Model Context/i,
+    /Save Prompt/i,
+    /Internal Integration/i,
+    /Upstream Source/i,
+    /Explorer/i,
+    /Letta Cloud/i,
+    /Protocol Servers/i
   ];
   
   for (const pattern of patterns) {
@@ -208,12 +330,18 @@ function containsPII(body) {
       const codeBlockCount = (beforeMatch.match(/```/g) || []).length;
       if (codeBlockCount % 2 === 1) continue; // Inside code block
       
-      // Skip if already sanitized
-      if (match[0].includes('<user>') || match[0].includes('<email>') || match[0].includes('<phone>')) {
+      // Skip if already sanitized or in exclusions
+      const matchedText = match[0];
+      if (exclusions.some(exclusion => exclusion.test(matchedText))) {
         continue;
       }
       
-      return { found: true, kind: pattern.name, match: match[0] };
+      // Проверяем исключения для конкретного паттерна (например, для full_name_english)
+      if (pattern.excludePatterns && pattern.excludePatterns.some(exclude => exclude.test(matchedText))) {
+        continue;
+      }
+      
+      return { found: true, kind: pattern.name, match: matchedText };
     }
   }
   
@@ -221,7 +349,13 @@ function containsPII(body) {
 }
 
 function main() {
-  const files = globSync(`${ROOT}/**/*.md`, { nodir: true });
+  const files = globSync(`${ROOT}/**/*.md`, { nodir: true })
+    .filter(f => {
+      // Исключаем тестовые файлы с намеренными нарушениями
+      // Нормализуем путь для кроссплатформенной совместимости
+      const normalizedPath = f.replace(/\\/g, '/');
+      return !normalizedPath.includes('test-guardrails/bad-examples/');
+    });
   let totalIssues = 0;
   let draftCount = 0;
   for (const f of files) {

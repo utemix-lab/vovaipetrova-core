@@ -22,13 +22,60 @@ allowed_paths:
   - "docs/nav/**"
 
 # Запрещённые зоны (нельзя перезаписывать)
+# Обновлено: актуализирован список после последних изменений (2025-11-20)
 deny_paths:
+  # Скрипты и автоматизация
   - "scripts/**"
+  - "scripts/codegpt/**"
+  
+  # GitHub конфигурация
   - ".github/**"
+  
+  # Зависимости и конфигурация проекта
   - "package.json"
   - "package-lock.json"
+  - "composer.json"
+  - "composer.lock"
+  - "yarn.lock"
+  - "pnpm-lock.yaml"
+  
+  # Корневые файлы проекта
   - "README.md"
+  - "CONTRIBUTING.md"
+  - "LICENSE"
+  - "SECURITY.md"
+  - "CHANGELOG.md"
   - ".gitignore"
+  - ".gitattributes"
+  
+  # Секреты и конфигурация
+  - ".env"
+  - ".env.*"
+  - "codegpt.config.json"
+  - "vscode-settings.example.json"
+  
+  # Системные директории
+  - "node_modules/**"
+  - "vendor/**"
+  - ".cache/**"
+  - ".telemetry/**"
+  - "tmp/**"
+  - "temp/**"
+  
+  # Автоматически генерируемые файлы
+  - "prototype/data/**"
+  - "prototype/page/**"
+  - "prototype/data/.build-cache.json"
+  
+  # Критические конфигурационные файлы
+  - "docs/.import-map.yaml"
+  - ".codegpt/**"
+  - "notion-brain/**"
+  
+  # Тестовые и временные файлы
+  - "test-guardrails-v2/**"
+  - "lint.log"
+  - "STRUCTURE-REPORT.md"
 
 # Правила переименования по slug (если нужно)
 slug_overrides:

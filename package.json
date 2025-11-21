@@ -31,6 +31,7 @@
     "check:pr-size": "node scripts/check-pr-size.mjs",
     "check:deliverables": "node scripts/check-deliverables.mjs",
     "test:guardrails": "node scripts/test-guardrails.mjs",
+    "test:security": "node test-guardrails/test-security-violations.mjs",
     "verify:stats": "node scripts/verify-stats-accuracy.mjs",
     "check:diff": "node scripts/check-diff.mjs",
     "check:diff:strict": "node scripts/check-diff.mjs --strict",
