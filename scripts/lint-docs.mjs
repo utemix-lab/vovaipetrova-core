@@ -352,7 +352,9 @@ function main() {
   const files = globSync(`${ROOT}/**/*.md`, { nodir: true })
     .filter(f => {
       // Исключаем тестовые файлы с намеренными нарушениями
-      return !f.includes('test-guardrails/bad-examples/');
+      // Нормализуем путь для кроссплатформенной совместимости
+      const normalizedPath = f.replace(/\\/g, '/');
+      return !normalizedPath.includes('test-guardrails/bad-examples/');
     });
   let totalIssues = 0;
   let draftCount = 0;
