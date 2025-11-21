@@ -255,6 +255,8 @@ routes:
         notes: Машиночитаемые теги для автоматической категоризации контента
       - slug: tags
         doc: docs/kb/tags.md
+      - title: CodeGPT Kickoff Tasks
+        doc: docs/codegpt-kickoff-tasks-kb-content.md
         status: ok
         notes: "Система тегов для категоризации контента: видимые теги и машинотеги"
       - slug: ii
