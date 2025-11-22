@@ -265,6 +265,7 @@ CI автоматически проверяет размер PR, наличие
 
 **Size Guard с порогами по типам задач:**
 - **Composer задачи**: 20 файлов, 500 добавлений, 200 удалений
+- **CodeGPT задачи**: 25 файлов, 800 добавлений, 300 удалений
 - **Docs задачи**: 30 файлов, 1000 добавлений, 500 удалений
 - **Scripts задачи**: 15 файлов, 800 добавлений, 300 удалений
 - **Prototype задачи**: 25 файлов, 1200 добавлений, 600 удалений
@@ -315,6 +316,8 @@ CI автоматически проверяет размер PR, наличие
 - `npm run check:lanes` — проверка lanes policy
 - `npm run test:guardrails` — тестирование guardrails (эмуляция нарушений)
 - `npm run test:security` — тестирование нарушений безопасности (PII, forbidden-paths)
+- `npm run test:sandbox:forbidden-paths` — sandbox тест для forbidden-paths
+- `npm run test:sandbox:codegpt-guardrails` — sandbox тест для CodeGPT guardrails
 
 ### Content Lint Thresholds
 
