@@ -1,9 +1,41 @@
-﻿{
+{
   "files.autoSave": "onFocusChange",
   "editor.formatOnSave": true,
   "editor.wordWrap": "on",
   "editor.detectIndentation": true,
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
-  "editor.renderWhitespace": "selection"
+  "editor.renderWhitespace": "selection",
+  
+  // CodeGPT настройки для работы с локальным репозиторием
+  "codegpt.workspaceRoot": "${workspaceFolder}",
+  "codegpt.includeFiles": [
+    "docs/**/*.md",
+    "scripts/**/*.mjs",
+    "package.json",
+    "README.md",
+    "codegpt.config.json"
+  ],
+  "codegpt.excludeFiles": [
+    "node_modules/**",
+    ".git/**",
+    "tmp/**",
+    "*.log"
+  ],
+  
+  // Переменные окружения для скриптов CodeGPT
+  "codegpt.env": {
+    "GITHUB_TOKEN": "${env:GITHUB_TOKEN}",
+    "NOTION_API_KEY": "${env:NOTION_API_KEY}",
+    "GITHUB_REPO": "utemix-lab/vovaipetrova-core",
+    "PROJECT_ROOT": "${workspaceFolder}"
+  },
+  
+  // Настройки для чтения файлов через терминал
+  "codegpt.terminal": {
+    "cwd": "${workspaceFolder}",
+    "shell": {
+      "windows": "powershell.exe"
+    }
+  }
 }
