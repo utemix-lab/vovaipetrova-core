@@ -261,6 +261,21 @@ function main() {
         return;
       }
       if (href.startsWith("#")) return;
+      
+      // Проверяем ссылки на JSON файлы (например, ./models/story.schema.json)
+      // Эти файлы не имеют slug, поэтому проверяем их существование напрямую
+      if (href.endsWith('.json') || href.endsWith('.yaml') || href.endsWith('.yml')) {
+        const resolvedPath = path.resolve(path.dirname(doc.path), href);
+        const repoRoot = path.resolve(DOCS_ROOT, "..");
+        // Проверяем, что путь находится внутри репозитория
+        if (resolvedPath.startsWith(repoRoot)) {
+          if (existsSync(resolvedPath)) {
+            // JSON/YAML файл существует, не считаем его битым
+            return;
+          }
+        }
+      }
+      
       // Проверяем ссылки на файлы вне docs/ (например, ../CONTRIBUTING.md, ../.github/...)
       if (href.startsWith("../")) {
         const resolvedPath = path.resolve(path.dirname(doc.path), href);
