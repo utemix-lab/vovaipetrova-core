@@ -263,6 +263,6 @@ Gateway может быть вызван из Notion Briefs через workflow:
 
 - [CONCEPT.stories-dual.md](./stories/CONCEPT.stories-dual.md) — формат dual-story
 - [CONCEPT.md](./stories/CONCEPT.md) — общая концепция Stories
-- [JSON Schema для Story](../stories/models/story.schema.json) — схема для валидации front matter
-- [JSON Schema для Gateway Payload](../stories/models/gateway-payload.schema.json) — схема для валидации payload
+- [JSON Schema для Story](./stories/models/story.schema.json) — схема для валидации front matter
+- [JSON Schema для Gateway Payload](./stories/models/gateway-payload.schema.json) — схема для валидации payload
 
