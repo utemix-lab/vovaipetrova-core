@@ -200,4 +200,3 @@ main().catch(error => {
   log(`❌ Ошибка: ${error.message}`);
   process.exit(1);
 });
-
