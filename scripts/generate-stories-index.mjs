@@ -206,7 +206,7 @@ function generateStoriesIndex(pages) {
   
   return {
     generatedAt: new Date().toISOString(),
-    totalStories: stories.length,
+    totalStories: storiesBySlug.size,
     groups: sortedGroups,
     index: indexByGroup
   };

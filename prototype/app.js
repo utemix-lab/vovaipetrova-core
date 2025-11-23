@@ -33,7 +33,9 @@ function getStoryOrder(page) {
     if (!Number.isNaN(parsed)) return parsed;
   }
   if (page.slug) {
-    const match = page.slug.match(/^(\d{1,2})/);
+    // Извлекаем номер эпизода из начала slug (001-, 002-, и т.д.)
+    // Используем /^(\d{1,3})-/ для согласованности с generate-stories-index.mjs
+    const match = page.slug.match(/^(\d{1,3})-/);
     if (match) return Number(match[1]);
   }
   return null;
