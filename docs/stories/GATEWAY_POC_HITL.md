@@ -1,7 +1,8 @@
 ---
 title: Gateway PoC — HITL (seed_text)
 slug: gateway-poc-hitl
-summary: PoC: seed_text → human-in-the-loop flow for Author Gateway
+summary: >-
+  PoC: seed_text → human-in-the-loop flow for Author Gateway
 tags: [Story]
 machine_tags: [content/story]
 status: draft
