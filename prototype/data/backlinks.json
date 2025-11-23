@@ -69,6 +69,11 @@
   ],
   "codegpt-setup": [
     {
+      "slug": "codegpt-kickoff-tasks-kb-content",
+      "title": "CodeGPT Kickoff — набор первых задач (KB/Content)",
+      "url": "docs/codegpt-kickoff-tasks-kb-content.md"
+    },
+    {
       "slug": "codegpt-rollout-roadmap",
       "title": "CODEGPT Rollout — Roadmap и пакет задач",
       "url": "docs/codegpt-rollout-roadmap.md"
@@ -354,6 +359,11 @@
       "slug": "briefs-upgrade-how-to",
       "title": "Briefs upgrade — инструкция по обновлению полей, представлений, SLA и очередей ревью",
       "url": "docs/briefs-upgrade-how-to.md"
+    },
+    {
+      "slug": "codegpt-kickoff-tasks-kb-content",
+      "title": "CodeGPT Kickoff — набор первых задач (KB/Content)",
+      "url": "docs/codegpt-kickoff-tasks-kb-content.md"
     },
     {
       "slug": "codegpt-rollout-roadmap",
@@ -743,6 +753,13 @@
       "slug": "machine-tags",
       "title": "Machine Tags",
       "url": "docs/kb/machine-tags.md"
+    }
+  ],
+  "codegpt-rollout-roadmap": [
+    {
+      "slug": "codegpt-kickoff-tasks-kb-content",
+      "title": "CodeGPT Kickoff — набор первых задач (KB/Content)",
+      "url": "docs/codegpt-kickoff-tasks-kb-content.md"
     }
   ]
 }

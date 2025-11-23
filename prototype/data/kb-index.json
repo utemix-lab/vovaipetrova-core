@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2025-11-21T18:12:45.134Z",
-  "totalPages": 34,
+  "generatedAt": "2025-11-21T18:37:40.293Z",
+  "totalPages": 35,
   "letters": [
     "A",
     "B",
@@ -275,6 +275,13 @@
         "title": "Canonical Slug",
         "url": "docs/kb/canonical-slug.md",
         "summary": "Канонический идентификатор страницы, используемый как основной способ ссылки на документ. Обеспечивает стабильность ссылок при переименованиях.",
+        "status": "ready"
+      },
+      {
+        "slug": "codegpt-kickoff-tasks-kb-content",
+        "title": "CodeGPT Kickoff — набор первых задач (KB/Content)",
+        "url": "docs/codegpt-kickoff-tasks-kb-content.md",
+        "summary": "Набор первых задач для CodeGPT агентов по работе с Knowledge Base и контентом. Задачи структурированы по типам агентов и приоритетам.",
         "status": "ready"
       }
     ],

@@ -384,9 +384,13 @@
         },
         {
           "slug": "tags",
-          "doc": "docs/kb/tags.md",
+          "doc": "docs/kb/tags.md"
+        },
+        {
+          "slug": "codegpt-kickoff-tasks-kb-content",
+          "doc": "docs/codegpt-kickoff-tasks-kb-content.md",
           "status": "ok",
-          "notes": "Система тегов для категоризации контента: видимые теги и машинотеги"
+          "notes": "Набор первых задач для CodeGPT агентов по работе с Knowledge Base и контентом"
         },
         {
           "slug": "ii",
