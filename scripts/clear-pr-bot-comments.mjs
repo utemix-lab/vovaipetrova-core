@@ -26,6 +26,16 @@ const BOT_AUTHORS = [
   'github-actions',
 ];
 
+/**
+ * Проверяет, является ли автор комментария ботом
+ */
+function isBotAuthor(author) {
+  if (!author) return false;
+  const authorLower = author.toLowerCase();
+  return BOT_AUTHORS.some(bot => authorLower.includes(bot.toLowerCase())) ||
+         /bot|actions/i.test(author);
+}
+
 function log(message) {
   console.log(`[clear-bot-comments] ${message}`);
 }
@@ -59,7 +69,7 @@ function getPRComments(prNumber) {
     // Фильтруем комментарии от ботов в JavaScript
     return comments.filter(comment => {
       const author = comment.author?.login || '';
-      return /bot|actions/i.test(author);
+      return isBotAuthor(author);
     }).map(comment => ({
       id: comment.id,
       author: comment.author?.login || '',
@@ -101,7 +111,7 @@ function getReviewComments(prNumber) {
     // Фильтруем комментарии от ботов в JavaScript
     return comments.filter(comment => {
       const user = comment.user?.login || '';
-      return /bot|actions/i.test(user);
+      return isBotAuthor(user);
     }).map(comment => ({
       id: comment.id,
       user: comment.user?.login || '',
@@ -190,4 +200,3 @@ main().catch(error => {
   log(`❌ Ошибка: ${error.message}`);
   process.exit(1);
 });
-
