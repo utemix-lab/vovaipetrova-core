@@ -64,8 +64,8 @@ function parseArgs() {
   const args = {
     pr: null,
     base: 'main',
-    dryRun: DRY_RUN,
-    noIssues: NO_ISSUES
+    dryRun: false,
+    noIssues: false
   };
 
   for (const arg of process.argv.slice(2)) {
