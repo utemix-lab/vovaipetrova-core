@@ -267,8 +267,11 @@ function main() {
       if (href.endsWith('.json') || href.endsWith('.yaml') || href.endsWith('.yml')) {
         const resolvedPath = path.resolve(path.dirname(doc.path), href);
         const repoRoot = path.resolve(DOCS_ROOT, "..");
+        const normalizedRepoRoot = repoRoot.endsWith(path.sep)
+          ? repoRoot
+          : `${repoRoot}${path.sep}`;
         // Проверяем, что путь находится внутри репозитория
-        if (resolvedPath.startsWith(repoRoot)) {
+        if (resolvedPath.startsWith(normalizedRepoRoot) || resolvedPath === repoRoot) {
           if (existsSync(resolvedPath)) {
             // JSON/YAML файл существует, не считаем его битым
             return;
