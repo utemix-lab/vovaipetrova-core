@@ -272,6 +272,15 @@ function main() {
           if (existsSync(resolvedPath)) {
             // JSON/YAML файл существует, не считаем его битым
             return;
+          } else {
+            // JSON/YAML файл не существует, помечаем как broken без slug resolution
+            broken.push({
+              file: doc.path.replace(/^docs\//, ""),
+              link: href,
+              reason: "missing",
+              resolved_to: null
+            });
+            return;
           }
         }
       }

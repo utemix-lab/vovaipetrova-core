@@ -24,8 +24,6 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO || 'utemix-lab/vovaipetrova-core';
 const CANDIDATES_OUTPUT = 'candidates_kb.json';
 const STORIES_DIR = 'docs/stories';
-const DRY_RUN = process.argv.includes('--dry-run');
-const NO_ISSUES = process.argv.includes('--no-issues');
 
 // Минимальная длина термина (в символах)
 const MIN_TERM_LENGTH = 3;
@@ -113,7 +111,11 @@ function getChangedStoriesFiles(prNumber, baseRef) {
     file.endsWith('.md') &&
     !file.includes('CONCEPT') &&
     !file.includes('README') &&
-    !file.includes('SHARED_CONTEXT')
+    !file.includes('SHARED_CONTEXT') &&
+    !file.includes('REVIEW') &&
+    !file.includes('GITHUB_INSTRUCTIONS') &&
+    !file.includes('OPUS4_ROLE') &&
+    !file.includes('QUICK_START')
   );
 }
 
@@ -246,8 +248,8 @@ function termExistsInKB(slug) {
 /**
  * Создает GitHub Issue для термина
  */
-async function createIssueForTerm(term, slug, context) {
-  if (NO_ISSUES || DRY_RUN) {
+async function createIssueForTerm(term, slug, context, args) {
+  if (args.noIssues || args.dryRun) {
     log(`[DRY] Would create issue: "KB: добавить термин ${slug}"`);
     return null;
   }
@@ -311,6 +313,10 @@ async function main() {
   }
 
   log(`Найдено ${changedFiles.length} измененных файлов Stories`);
+
+  if (args.dryRun) {
+    log('[DRY RUN] Режим тестирования - файлы и Issues не будут созданы');
+  }
 
   // Извлекаем термины из каждого файла
   const allTerms = new Map(); // term -> { count, files, slug }
@@ -378,7 +384,7 @@ async function main() {
     candidates
   };
 
-  if (!DRY_RUN) {
+  if (!args.dryRun) {
     writeFileSync(CANDIDATES_OUTPUT, JSON.stringify(output, null, 2), 'utf8');
     log(`✅ Сохранено в ${CANDIDATES_OUTPUT}`);
   } else {
@@ -386,7 +392,7 @@ async function main() {
   }
 
   // Создаем Issues для каждого термина
-  if (!NO_ISSUES) {
+  if (!args.noIssues) {
     log('Создание GitHub Issues...');
     let created = 0;
     let skipped = 0;
@@ -401,7 +407,7 @@ async function main() {
       const issueUrl = await createIssueForTerm(candidate.term, candidate.slug, {
         prNumber: args.pr,
         files: candidate.files
-      });
+      }, args);
 
       if (issueUrl) {
         candidate.issue_url = issueUrl;
@@ -415,7 +421,7 @@ async function main() {
     log(`✅ Создано ${created} Issues, пропущено ${skipped} (низкая частота)`);
 
     // Обновляем candidates_kb.json с URL Issues
-    if (!DRY_RUN && created > 0) {
+    if (!args.dryRun && created > 0) {
       writeFileSync(CANDIDATES_OUTPUT, JSON.stringify(output, null, 2), 'utf8');
     }
   }
