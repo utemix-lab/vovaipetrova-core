@@ -735,7 +735,6 @@ notion_update_page({
   } 
 })
 ```
-
 **Настройка MCP для Copilot:**
 - См. `COPILOT-NOTION-SETUP.md` для настройки MCP сервера
 - См. `docs/NOTION-ACCESS-SETUP.md` для настройки доступа к страницам Notion
