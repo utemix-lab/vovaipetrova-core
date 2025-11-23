@@ -249,6 +249,10 @@ async function renderIndex() {
   const kbIndexLetters = document.getElementById("kb-index-letters");
   const kbIndexContent = document.getElementById("kb-index-content");
   const kbIndexEmpty = document.getElementById("kb-index-empty");
+  const storiesIndexPanel = document.getElementById("stories-index-panel");
+  const storiesIndexGroups = document.getElementById("stories-index-groups");
+  const storiesIndexContent = document.getElementById("stories-index-content");
+  const storiesIndexEmpty = document.getElementById("stories-index-empty");
 
   const [pages, routes] = await Promise.all([
     loadPages("data/pages.json"),
@@ -281,7 +285,7 @@ async function renderIndex() {
   let currentSort = urlParams.get("sort") || localStorage.getItem("explorer-sort") || "route";
   let currentTagFilter = tagFromHash || urlParams.get("tag") || localStorage.getItem("explorer-tag-filter") || null;
   let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
-  let activePanel = hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
+  let activePanel = hashWithoutTag.includes("stories-index") ? "stories-index" : hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
   
   // Сохраняем в localStorage
   if (urlParams.get("status")) localStorage.setItem("explorer-status", currentStatus);
@@ -537,6 +541,16 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.remove("hidden");
+      if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
+      controls?.classList.add("hidden");
+      if (storiesBanner) storiesBanner.classList.add("hidden");
+    } else if (panel === "stories-index") {
+      docsPanel.classList.add("hidden");
+      storiesPanel.classList.add("hidden");
+      issuesPanel.classList.add("hidden");
+      orphansPanel.classList.add("hidden");
+      if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
+      if (storiesIndexPanel) storiesIndexPanel.classList.remove("hidden");
       controls?.classList.add("hidden");
       if (storiesBanner) storiesBanner.classList.add("hidden");
     } else {
@@ -545,6 +559,7 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
+      if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
       controls?.classList.remove("hidden");
       if (storiesBanner) storiesBanner.classList.remove("hidden");
     }
@@ -671,6 +686,14 @@ async function renderIndex() {
         renderIssues();
       } else if (targetPanel === "orphans") {
         renderOrphans();
+      } else if (targetPanel === "kb-index") {
+        renderKBIndex().catch((error) => {
+          console.error("Failed to render KB index:", error);
+        });
+      } else if (targetPanel === "stories-index") {
+        renderStoriesIndex().catch((error) => {
+          console.error("Failed to render Stories index:", error);
+        });
       }
     });
   });
@@ -756,6 +779,125 @@ async function renderIndex() {
     kbIndexContent.appendChild(fragment);
   }
 
+  async function renderStoriesIndex() {
+    if (!storiesIndexGroups || !storiesIndexContent) return;
+    
+    storiesIndexGroups.innerHTML = "";
+    storiesIndexContent.innerHTML = "";
+    
+    try {
+      const response = await fetch("data/stories-index.json");
+      if (!response.ok) throw new Error(`status ${response.status}`);
+      const storiesIndex = await response.json();
+      
+      if (!storiesIndex.groups || storiesIndex.groups.length === 0) {
+        if (storiesIndexEmpty) storiesIndexEmpty.classList.remove("hidden");
+        return;
+      }
+      if (storiesIndexEmpty) storiesIndexEmpty.classList.add("hidden");
+      
+      // Рендерим навигацию по группам
+      const groupsFragment = document.createDocumentFragment();
+      storiesIndex.groups.forEach(group => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "stories-index-group";
+        // Форматируем название группы
+        let groupLabel = group;
+        if (group.match(/^\d{4}-\d{2}$/)) {
+          // Группа по дате (YYYY-MM)
+          const [year, month] = group.split('-');
+          const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 
+                             'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+          const monthName = monthNames[parseInt(month) - 1] || month;
+          groupLabel = `${monthName} ${year}`;
+        } else if (group.startsWith('episodes-')) {
+          // Группа по batch'ам эпизодов
+          const match = group.match(/episodes-(\d+)-(\d+)/);
+          if (match) {
+            const start = parseInt(match[1]);
+            const end = parseInt(match[2]);
+            groupLabel = `Эпизоды ${start}-${end}`;
+          }
+        } else if (group === 'other') {
+          groupLabel = 'Прочее';
+        }
+        button.textContent = groupLabel;
+        button.dataset.group = group;
+        button.addEventListener("click", () => {
+          // Убираем активность с других кнопок
+          storiesIndexGroups.querySelectorAll(".stories-index-group").forEach(btn => {
+            btn.classList.remove("is-active");
+          });
+          button.classList.add("is-active");
+          
+          // Показываем истории для выбранной группы
+          renderStoriesIndexGroup(group, storiesIndex.index[group]);
+        });
+        groupsFragment.appendChild(button);
+      });
+      storiesIndexGroups.appendChild(groupsFragment);
+      
+      // По умолчанию показываем первую группу
+      if (storiesIndex.groups.length > 0) {
+        const firstGroup = storiesIndex.groups[0];
+        const firstButton = storiesIndexGroups.querySelector(`[data-group="${firstGroup}"]`);
+        if (firstButton) {
+          firstButton.classList.add("is-active");
+          renderStoriesIndexGroup(firstGroup, storiesIndex.index[firstGroup]);
+        }
+      }
+    } catch (error) {
+      console.warn("⚠️  Failed to load Stories index:", error.message);
+      if (storiesIndexEmpty) storiesIndexEmpty.classList.remove("hidden");
+    }
+  }
+
+  function renderStoriesIndexGroup(group, stories) {
+    if (!storiesIndexContent) return;
+    
+    storiesIndexContent.innerHTML = "";
+    
+    // Форматируем заголовок группы
+    let groupHeading = group;
+    if (group.match(/^\d{4}-\d{2}$/)) {
+      const [year, month] = group.split('-');
+      const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 
+                         'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+      const monthName = monthNames[parseInt(month) - 1] || month;
+      groupHeading = `${monthName} ${year}`;
+    } else if (group.startsWith('episodes-')) {
+      const match = group.match(/episodes-(\d+)-(\d+)/);
+      if (match) {
+        const start = parseInt(match[1]);
+        const end = parseInt(match[2]);
+        groupHeading = `Эпизоды ${start}-${end}`;
+      }
+    } else if (group === 'other') {
+      groupHeading = 'Прочее';
+    }
+    
+    const heading = document.createElement("h2");
+    heading.className = "stories-index-group-heading";
+    heading.textContent = `${groupHeading} (${stories.length} ${stories.length === 1 ? 'история' : stories.length < 5 ? 'истории' : 'историй'})`;
+    storiesIndexContent.appendChild(heading);
+    
+    const fragment = document.createDocumentFragment();
+    stories.forEach(story => {
+      const card = createStoryCard({
+        slug: story.slug,
+        title: story.title,
+        status: story.status,
+        url: story.url,
+        summary: story.summary,
+        story_order: story.story_order,
+        story_type: story.story_type
+      });
+      fragment.appendChild(card);
+    });
+    storiesIndexContent.appendChild(fragment);
+  }
+
   renderDocs();
   renderStories();
   setActivePanel(activePanel);
@@ -764,6 +906,10 @@ async function renderIndex() {
   } else if (activePanel === "kb-index") {
     renderKBIndex().catch((error) => {
       console.error("Failed to render KB index:", error);
+    });
+  } else if (activePanel === "stories-index") {
+    renderStoriesIndex().catch((error) => {
+      console.error("Failed to render Stories index:", error);
     });
   }
 }

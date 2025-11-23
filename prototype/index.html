@@ -63,6 +63,9 @@
         <button type="button" class="view-button" data-panel="kb-index">
           KB Index
         </button>
+        <button type="button" class="view-button" data-panel="stories-index">
+          Stories Index
+        </button>
       </div>
     </header>
     <main class="content">
@@ -123,6 +126,18 @@
         <div id="kb-index-empty" class="empty-state hidden">
           <h2>Индекс пуст</h2>
           <p>Нет страниц KB для отображения.</p>
+        </div>
+      </section>
+      <section id="stories-index-panel" class="panel hidden" aria-live="polite">
+        <div class="stories-index-intro">
+          <h2>Индекс Stories</h2>
+          <p>Навигация по эпизодам Stories, сгруппированным по годам/месяцам или batch'ам эпизодов.</p>
+        </div>
+        <div id="stories-index-groups" class="stories-index-groups"></div>
+        <div id="stories-index-content" class="stories-index-content"></div>
+        <div id="stories-index-empty" class="empty-state hidden">
+          <h2>Индекс пуст</h2>
+          <p>Нет историй для отображения.</p>
         </div>
       </section>
     </main>
