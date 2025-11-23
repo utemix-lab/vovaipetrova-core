@@ -1,7 +1,8 @@
 ---
 title: Gateway PoC — auto (no seed)
 slug: gateway-poc-auto
-summary: PoC: no seed → auto flow for Author Gateway
+summary: >-
+  PoC: no seed → auto flow for Author Gateway
 tags: [Story]
 machine_tags: [content/story]
 status: draft
