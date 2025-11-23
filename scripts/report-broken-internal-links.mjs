@@ -299,7 +299,9 @@ function main() {
       
       // Проверяем ссылки на файлы вне docs/ (например, ../CONTRIBUTING.md, ../.github/...)
       if (href.startsWith("../")) {
-        const resolvedPath = path.resolve(path.dirname(doc.path), href);
+        // Убираем якорь и query-параметры для проверки существования файла
+        const hrefWithoutAnchor = href.split('#')[0].split('?')[0];
+        const resolvedPath = path.resolve(path.dirname(doc.path), hrefWithoutAnchor);
         const repoRoot = path.resolve(DOCS_ROOT, "..");
         const normalizedRepoRoot = repoRoot.endsWith(path.sep)
           ? repoRoot
