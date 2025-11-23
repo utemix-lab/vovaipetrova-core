@@ -141,7 +141,7 @@ function generateStoriesIndex(pages) {
     }
     
     // Извлекаем порядковый номер для сортировки
-    const order = getStoryOrder(story.slug) || 9999;
+    const order = getStoryOrder(story.slug) ?? 9999;
     const date = getStoryDate(story.slug);
     
     indexByGroup[group].push({
