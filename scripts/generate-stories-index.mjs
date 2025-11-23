@@ -101,10 +101,39 @@ function generateStoriesIndex(pages) {
     return false;
   });
   
-  // Группируем по группам
+  // Дедуплицируем истории по slug (оставляем лучшую версию)
+  const storiesBySlug = new Map();
+  stories.forEach(story => {
+    const slug = story.slug;
+    if (!slug) return;
+    
+    const existing = storiesBySlug.get(slug);
+    if (!existing) {
+      storiesBySlug.set(slug, story);
+    } else {
+      // Приоритет: ready > review > draft
+      const statusOrder = { ready: 0, review: 1, draft: 2 };
+      const existingStatus = statusOrder[existing.status] ?? 2;
+      const newStatus = statusOrder[story.status] ?? 2;
+      
+      // Если новая версия имеет лучший статус, заменяем
+      if (newStatus < existingStatus) {
+        storiesBySlug.set(slug, story);
+      } else if (newStatus === existingStatus) {
+        // При одинаковом статусе выбираем по дате (если есть) или оставляем существующую
+        const existingDate = getStoryDate(existing.slug);
+        const newDate = getStoryDate(story.slug);
+        if (newDate && (!existingDate || newDate > existingDate)) {
+          storiesBySlug.set(slug, story);
+        }
+      }
+    }
+  });
+  
+  // Группируем по группам (теперь без дубликатов)
   const indexByGroup = {};
   
-  stories.forEach(story => {
+  storiesBySlug.forEach(story => {
     const group = getStoryGroup(story);
     
     if (!indexByGroup[group]) {

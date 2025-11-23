@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-11-23T21:38:14.854Z",
+  "generatedAt": "2025-11-23T21:49:19.974Z",
   "totalStories": 43,
   "groups": [
     "2025-11",
@@ -410,16 +410,6 @@
         "slug": "stories-v10-content-ready-2025-11-12",
         "title": "Stories · v1.0-content-ready — 2025-11-12",
         "url": "docs/stories/stories-v10-content-ready-2025-11-12.md",
-        "summary": "Черновик автогенератора Stories: синхронизация CHANGELOG, ADR и ProtoLabs.",
-        "status": "draft",
-        "story_order": 9999,
-        "date": null,
-        "story_type": null
-      },
-      {
-        "slug": "stories-v10-content-ready-2025-11-12",
-        "title": "Stories · v1.0-content-ready — 2025-11-12",
-        "url": "docs/stories/2025-11-24-stories-v10-content-ready-2025-11-12.md",
         "summary": "Черновик автогенератора Stories: синхронизация CHANGELOG, ADR и ProtoLabs.",
         "status": "draft",
         "story_order": 9999,

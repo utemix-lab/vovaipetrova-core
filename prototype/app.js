@@ -518,6 +518,8 @@ async function renderIndex() {
       storiesPanel.classList.remove("hidden");
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
+      if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
+      if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
       controls?.classList.add("hidden");
       if (storiesBanner) storiesBanner.classList.add("hidden");
     } else if (panel === "issues") {
@@ -525,6 +527,8 @@ async function renderIndex() {
       storiesPanel.classList.add("hidden");
       issuesPanel.classList.remove("hidden");
       orphansPanel.classList.add("hidden");
+      if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
+      if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
       controls?.classList.add("hidden");
       if (storiesBanner) storiesBanner.classList.add("hidden");
     } else if (panel === "orphans") {
@@ -533,6 +537,7 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.remove("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
+      if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
       controls?.classList.add("hidden");
       if (storiesBanner) storiesBanner.classList.add("hidden");
     } else if (panel === "kb-index") {
