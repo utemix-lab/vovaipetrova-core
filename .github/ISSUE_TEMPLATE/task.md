@@ -16,6 +16,18 @@ assignees: ''
 - **RFC**: {Link to RFC, if applicable}
 - **Upstream Source**: {Ideas & Proposals | RFC | Incident | Metrics}
 
+## Two-stream Policy
+
+**Stream Type**:
+- [ ] Stream 1 (Notion → GitHub): Импорт из Notion (использовать workflow `notion-import.yml`)
+- [ ] Stream 2 (GitHub → Notion): Работа агента с синхронизацией статусов в Notion
+- [ ] Нет связи с Notion: Задача только в GitHub
+
+**Если Stream 2 (GitHub → Notion)**:
+- [ ] Задача создана в Notion Briefs (требуется синхронизация статусов)
+- [ ] Задача только в GitHub Issue (синхронизация не требуется)
+- [ ] Статус будет синхронизироваться: `Ready` → `In Progress` → `Review` → `Done`
+
 ## Scope
 
 - [ ] {Scope item 1}
