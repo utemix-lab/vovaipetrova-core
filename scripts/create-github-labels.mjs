@@ -88,28 +88,48 @@ function createLabel(label) {
   const { name, color, description } = label;
   
   try {
-    // Check if label exists
+    // Try to get existing label
     const checkCmd = `gh api repos/${GITHUB_REPO}/labels/${encodeURIComponent(name)} --jq .name 2>/dev/null || echo ""`;
-    const existing = execSync(checkCmd, { encoding: 'utf-8', stdio: 'pipe' }).trim();
+    let existing = '';
+    try {
+      existing = execSync(checkCmd, { encoding: 'utf-8', stdio: 'pipe' }).trim();
+    } catch (e) {
+      // Label doesn't exist, will create it
+      existing = '';
+    }
     
     if (existing) {
       // Update existing label
       console.log(`🔄 Updating label: ${name}`);
       execSync(
         `gh api repos/${GITHUB_REPO}/labels/${encodeURIComponent(name)} -X PATCH -f name="${name}" -f color="${color}" -f description="${description}"`,
-        { stdio: 'inherit' }
+        { stdio: 'pipe' }
       );
     } else {
       // Create new label
       console.log(`✨ Creating label: ${name}`);
       execSync(
         `gh api repos/${GITHUB_REPO}/labels -X POST -f name="${name}" -f color="${color}" -f description="${description}"`,
-        { stdio: 'inherit' }
+        { stdio: 'pipe' }
       );
     }
   } catch (error) {
-    console.error(`❌ Error processing label ${name}:`, error.message);
-    return false;
+    // If update failed, try to create
+    if (error.message.includes('404') || error.message.includes('Not Found')) {
+      try {
+        console.log(`✨ Creating label (retry): ${name}`);
+        execSync(
+          `gh api repos/${GITHUB_REPO}/labels -X POST -f name="${name}" -f color="${color}" -f description="${description}"`,
+          { stdio: 'pipe' }
+        );
+      } catch (createError) {
+        console.error(`❌ Error processing label ${name}:`, createError.message);
+        return false;
+      }
+    } else {
+      console.error(`❌ Error processing label ${name}:`, error.message);
+      return false;
+    }
   }
   
   return true;
