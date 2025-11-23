@@ -117,6 +117,8 @@ async function runHumanFirst() {
     'Заполните вручную структуру эпизода.',
     '',
   ].join('\n');
+  const storiesDir = path.join('docs', 'stories');
+  mkdirSync(storiesDir, { recursive: true });
   writeFileSync(filePath, fm, 'utf8');
   log(`Stub created: ${filePath}`);
 }
