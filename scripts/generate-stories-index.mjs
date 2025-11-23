@@ -86,9 +86,9 @@ function generateStoriesIndex(pages) {
       return true;
     }
     
-    // Проверяем machine_tags
+    // Проверяем machine_tags (case-insensitive, точное совпадение для согласованности с app.js)
     const machineTags = page.machine_tags || [];
-    if (machineTags.some(tag => tag === 'content/story' || tag.startsWith('content/story'))) {
+    if (machineTags.some(tag => tag.toLowerCase() === 'content/story')) {
       return true;
     }
     
