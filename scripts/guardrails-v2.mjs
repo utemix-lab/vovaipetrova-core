@@ -29,6 +29,12 @@ const SIZE_LIMITS = {
     maxDeletions: 300,
     criticalMultiplier: 1.5 // CodeGPT задачи могут быть немного больше, чем Composer
   },
+  'copilot': {
+    maxFiles: 30,
+    maxAdditions: 1000,
+    maxDeletions: 400,
+    criticalMultiplier: 1.5 // Copilot задачи могут быть больше, чем CodeGPT (больше документации и инфраструктуры)
+  },
   'docs': {
     maxFiles: 30,
     maxAdditions: 1000,
@@ -301,6 +307,9 @@ const PII_EXCLUSIONS = [
  */
 function detectTaskType(changedFiles, prLabels = []) {
   // Проверяем PR labels для определения типа задачи
+  const copilotLabels = prLabels.filter(l => l.startsWith('lane:copilot'));
+  if (copilotLabels.length > 0) return 'copilot';
+  
   const codegptLabels = prLabels.filter(l => l.startsWith('lane:codegpt:'));
   if (codegptLabels.length > 0) return 'codegpt';
   
@@ -310,10 +319,17 @@ function detectTaskType(changedFiles, prLabels = []) {
     f.includes('codegpt') || 
     f.startsWith('scripts/codegpt/')
   );
+  const copilotFiles = changedFiles.filter(f => 
+    f.includes('copilot') || 
+    f.includes('COPILOT') ||
+    f.startsWith('mcp-server-') ||
+    f.includes('mcp-server')
+  );
   const docsFiles = changedFiles.filter(f => f.startsWith('docs/'));
   const scriptsFiles = changedFiles.filter(f => f.startsWith('scripts/'));
   const prototypeFiles = changedFiles.filter(f => f.startsWith('prototype/'));
   
+  if (copilotFiles.length > 0) return 'copilot';
   if (codegptFiles.length > 0) return 'codegpt';
   if (composerFiles.length > 0) return 'composer';
   if (docsFiles.length > 0 && docsFiles.length > scriptsFiles.length) return 'docs';
