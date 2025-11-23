@@ -135,7 +135,7 @@ Stories интегрированы в Explorer:
 
 ### Вход агента
 
-- **Источник задачи**: Notion Briefs с полями `Brief`, `Scope`, `Deliverables`, `Executor`, `Lane`
+- **Источник задачи**: Notion (Briefs) с полями `Brief`, `Scope`, `Deliverables`, `Executor`, `Lane`
 - **Контекст проекта**: `docs/protocol-kontraktnaya-model-dlya-agentov.md`
 - **Шаблон**: `templates/story.md`
 
