@@ -84,9 +84,15 @@ status: ready
 ```markdown
 ## Deliverables
 
-**Executor**: {Имя агента или исполнителя}  
+**Executor**: {Имя агента или исполнителя, например: GitHub Copilot, CodeGPT Docs Agent, Cursor}  
 **Status**: ✅ Completed | ⏳ In Progress | ❌ Blocked  
 **Task**: {Ссылка на задачу в Notion Briefs или Issue}
+
+**Two-stream Sync Status**:
+- [ ] Статус в Notion обновлён на `In Progress` (при создании ветки)
+- [ ] Статус в Notion обновлён на `Review` (при создании PR)
+- [ ] Статус в Notion будет обновлён на `Done` (после мерджа)
+- [ ] Задача не из Notion (только GitHub Issue) — синхронизация не требуется
 
 ### Completed
 - [x] {Пункт 1 из списка Deliverables}
@@ -113,10 +119,17 @@ status: ready
 
 ### Proposals
 - {Предложение по улучшению, если есть}
+
+### Two-stream Notes
+{Если работа связана с Notion, укажите:}
+- **Notion Page ID**: {ID страницы задачи в Notion, если применимо}
+- **Sync Method**: {MCP / Scripts / Manual}
+- **Status Updated**: {Да/Нет — обновлён ли статус в Notion}
+- **Issues**: {Проблемы с синхронизацией, если были}
 ```
 
-**Обязательные поля**: Executor, Status, Task, Completed  
-**Опциональные поля**: Changes, Files Changed, PRs Created, Metrics, Problems Encountered, Proposals
+**Обязательные поля**: Executor, Status, Task, Completed, Two-stream Sync Status  
+**Опциональные поля**: Changes, Files Changed, PRs Created, Metrics, Problems Encountered, Proposals, Two-stream Notes
 
 ### Формат коммитов
 ```
@@ -623,20 +636,30 @@ writeFile('docs/new-page.md', content, {
 - **Ветки**: Любые ветки агентов (`chore/*`, `feat/*`, `docs/*`, и т.д.)
 - **Процесс**: Агент выполняет задачу → создаёт PR → после мерджа обновляет статус в Notion
 
-### Правила для CodeGPT агентов
+### Правила для агентов (CodeGPT, Copilot, Cursor)
 
 **При работе с Stream 1 (Notion → GitHub):**
 - ❌ **Не изменять** файлы, импортированные из Notion (`notion_page_id` присутствует)
 - ❌ **Не создавать** задачи в Notion для импортированного контента
 - ✅ **Использовать** workflow `notion-import.yml` для импорта
 - ✅ **Проверять** безопасность импорта через `check-import-safety.mjs`
+- ✅ **Распознавать** ветки `notion-sync/*` как односторонний импорт (не синхронизировать обратно)
 
 **При работе с Stream 2 (GitHub → Notion):**
 - ✅ **Обновлять** статусы задач в Notion после завершения работы
-- ✅ **Использовать** скрипты `scripts/codegpt/notion-update.mjs` для обновления статусов
+- ✅ **Использовать** скрипты `scripts/codegpt/notion-update.mjs` или MCP сервер для обновления статусов
 - ✅ **Синхронизировать** статусы: `Ready` → `In Progress` → `Review` → `Done`
 - ✅ **Добавлять** ссылку на PR в поле задачи (если доступно)
 - ❌ **Не создавать** дубликаты задач в Notion для работы, начатой в GitHub
+- ✅ **Проверять** статус задачи в Notion перед началом работы (если задача из Notion)
+- ✅ **Останавливать** работу, если задача в Notion переведена в `Blocked` или `Done`
+
+**Специфичные правила для Copilot:**
+- ✅ **Использовать** MCP сервер `mcp-server-notion.mjs` для работы с Notion API
+- ✅ **Проверять** доступ к страницам Notion перед использованием (см. `docs/NOTION-ACCESS-SETUP.md`)
+- ✅ **Использовать** инструменты MCP: `notion_search`, `notion_fetch`, `notion_update_page` для синхронизации
+- ✅ **Следовать** two-stream policy при работе с задачами из Notion Briefs
+- ❌ **Не работать** с файлами, имеющими `notion_page_id` в front matter (это импортированный контент)
 
 ### Синхронизация статусов
 
@@ -657,6 +680,8 @@ writeFile('docs/new-page.md', content, {
 - При блокировке → обновить статус в Notion на `Blocked`
 
 **Команды для синхронизации:**
+
+**Через скрипты (CodeGPT, Cursor):**
 ```bash
 # Обновить статус задачи в Notion
 node scripts/codegpt/notion-update.mjs <page-id> '{"Status":{"select":{"name":"In Progress"}}}'
@@ -664,6 +689,28 @@ node scripts/codegpt/notion-update.mjs <page-id> '{"Status":{"select":{"name":"I
 # Получить ID задачи из Briefs
 node scripts/codegpt/notion-search.mjs "Title задачи"
 ```
+
+**Через MCP (Copilot):**
+```javascript
+// Использовать MCP инструменты через Copilot
+// Поиск задачи
+notion_search({ query: "Title задачи" })
+
+// Получение задачи
+notion_fetch({ id: "page-id" })
+
+// Обновление статуса
+notion_update_page({ 
+  pageId: "page-id", 
+  properties: { 
+    Status: { select: { name: "In Progress" } } 
+  } 
+})
+```
+
+**Настройка MCP для Copilot:**
+- См. `COPILOT-NOTION-SETUP.md` для настройки MCP сервера
+- См. `docs/NOTION-ACCESS-SETUP.md` для настройки доступа к страницам Notion
 
 ### Исключения и особые случаи
 
@@ -686,25 +733,39 @@ node scripts/codegpt/notion-search.mjs "Title задачи"
 ## Процесс работы агента
 
 1. **Чтение задачи**: получить Brief из Notion или Issue
+   - Если задача из Notion: использовать MCP (`notion_fetch`) или скрипты (`notion-search.mjs`)
+   - Если задача из GitHub: прочитать Issue
 2. **Подготовка**: прочитать контекст (`/.codegpt/context.md`, `docs/protocol-kontraktnaya-model-dlya-agentov.md`)
-3. **Синхронизация статуса**: обновить статус в Notion на `In Progress` (если задача из Notion)
-4. **Выполнение**: создать ветку, внести изменения, проверить локально
+   - Для Copilot: прочитать `docs/stories/SHARED_CONTEXT.md` и `docs/stories/CONCEPT.md` (если работа со Stories)
+3. **Проверка two-stream**: определить тип потока
+   - Stream 1 (Notion → GitHub): проверить, что файлы не имеют `notion_page_id` (импортированный контент)
+   - Stream 2 (GitHub → Notion): проверить доступ к Notion через MCP или скрипты
+4. **Синхронизация статуса**: обновить статус в Notion на `In Progress` (если задача из Notion, Stream 2)
+   - Copilot: использовать MCP инструмент `notion_update_page`
+   - CodeGPT/Cursor: использовать скрипт `notion-update.mjs`
+5. **Выполнение**: создать ветку, внести изменения, проверить локально
    - Использовать адаптеры файловых операций для всех изменений
    - Обязательно использовать dry-run и preview перед записью
-5. **Проверка перед PR**:
+   - ❌ Не изменять файлы с `notion_page_id` (Stream 1, импортированный контент)
+6. **Проверка перед PR**:
    - `npm run normalize:dry` — проверить изменения нормализации
    - `npm run lint:docs` — проверить качество контента
    - `npm run check:diff` — проверить размер и формат диффов
    - `npm run check:pr-size` — проверить размер PR
    - `npm run check:lanes` — проверить соответствие Lanes policy
    - Проверить соответствие Deliverables из Briefs
-6. **PR**: создать Pull Request с описанием, секцией Deliverables и соответствующим `lane:*` label
-7. **Синхронизация статуса**: обновить статус в Notion на `Review` (если задача из Notion)
-8. **Ожидание**: дождаться зелёного CI (`Docs CI` должен пройти)
-9. **Мердж**: после одобрения смерджить PR
-10. **Завершение**: 
-    - Обновить статус в Notion на `Done` (если задача из Notion)
+7. **PR**: создать Pull Request с описанием, секцией Deliverables и соответствующим `lane:*` label
+   - Указать тип two-stream в описании PR
+   - Заполнить секцию "Two-stream Sync Status" в Deliverables
+8. **Синхронизация статуса**: обновить статус в Notion на `Review` (если задача из Notion, Stream 2)
+   - Copilot: использовать MCP инструмент `notion_update_page`
+   - CodeGPT/Cursor: использовать скрипт `notion-update.mjs`
+9. **Ожидание**: дождаться зелёного CI (`Docs CI` должен пройти)
+10. **Мердж**: после одобрения смерджить PR
+11. **Завершение**: 
+    - Обновить статус в Notion на `Done` (если задача из Notion, Stream 2)
     - Удалить ветку (если не `notion-sync/*`)
+    - Заполнить секцию "Two-stream Notes" в PR (если применимо)
 
 ## Release: процедура релиза GitHub Pages прототипа
 

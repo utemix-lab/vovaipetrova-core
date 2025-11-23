@@ -4,15 +4,26 @@
 
 **Связанная задача**: {Ссылка на Notion Briefs или GitHub Issue}
 
+**Two-stream Policy**: 
+- [ ] Stream 1 (Notion → GitHub): Импорт из Notion через workflow `notion-import.yml`
+- [ ] Stream 2 (GitHub → Notion): Работа агента с синхронизацией статусов в Notion
+- [ ] Нет связи с Notion: Задача только в GitHub (Issue)
+
 **Lane Label**: {Добавьте соответствующий label при создании PR: `lane:docs`, `lane:infra`, `lane:stories`, `lane:characters`, `lane:qa`, `lane:refactor`, `lane:fix`, `lane:feat`, `lane:composer`, `lane:codegpt:orchestrator`, `lane:codegpt:docs`, `lane:codegpt:refactor`, `lane:codegpt:creative`}
 
 **Sequence Label**: {Если задача является частью последовательности, добавьте `seq:1`, `seq:2`, и т.д.}
 
 ## Deliverables
 
-**Executor**: {Имя агента или исполнителя, например: Cursor, CodeGPT Docs Agent}  
+**Executor**: {Имя агента или исполнителя, например: Cursor, CodeGPT Docs Agent, GitHub Copilot}  
 **Status**: ✅ Completed | ⏳ In Progress | ❌ Blocked  
 **Task**: {Ссылка на задачу в Notion Briefs или Issue}
+
+**Two-stream Sync Status**:
+- [ ] Статус в Notion обновлён на `In Progress` (при создании ветки)
+- [ ] Статус в Notion обновлён на `Review` (при создании PR)
+- [ ] Статус в Notion будет обновлён на `Done` (после мерджа)
+- [ ] Задача не из Notion (только GitHub Issue) — синхронизация не требуется
 
 ### Completed
 - [ ] {Пункт 1 из списка Deliverables из Briefs}
@@ -39,6 +50,13 @@
 
 ### Proposals
 - {Предложение по улучшению, если есть, например: "Добавить автоматическую проверку Deliverables в CI"}
+
+### Two-stream Notes
+{Если работа связана с Notion, укажите:}
+- **Notion Page ID**: {ID страницы задачи в Notion, если применимо}
+- **Sync Method**: {MCP / Scripts / Manual}
+- **Status Updated**: {Да/Нет — обновлён ли статус в Notion}
+- **Issues**: {Проблемы с синхронизацией, если были}
 
 ---
 
