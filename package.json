@@ -47,10 +47,13 @@
     "test:sandbox:forbidden-paths": "node scripts/test-forbidden-paths-sandbox.mjs",
     "test:sandbox:codegpt-guardrails": "node scripts/test-codegpt-guardrails-sandbox.mjs",
     "test:sandbox:copilot-guardrails": "node scripts/test-copilot-guardrails-sandbox.mjs",
+    "notion:report": "node scripts/notion-report.mjs",
     "smoke:check": "node scripts/checks/smoke-check-pages.mjs",
     "autolink": "node scripts/autolink.mjs",
     "autolink:dry": "node scripts/autolink.mjs --dry",
-    "labels:create": "node scripts/create-github-labels.mjs"
+    "labels:create": "node scripts/create-github-labels.mjs",
+    "mcp:notion": "node mcp-server-notion.mjs",
+    "mcp:notion:test": "node mcp-server-notion.mjs"
   },
   "repository": {
     "type": "git",
@@ -71,9 +74,5 @@
     "slugify": "^1.6.6",
     "yaml": "^2.8.1",
     "yauzl": "^3.2.0"
-  },
-  "scripts": {
-    "mcp:notion": "node mcp-server-notion.mjs",
-    "mcp:notion:test": "node mcp-server-notion.mjs"
   }
 }
