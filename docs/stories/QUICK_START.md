@@ -1,3 +1,12 @@
+---
+title: Stories — Быстрый старт
+slug: stories-quick-start
+summary: Быстрый старт для работы со Stories эпизодами
+tags: [Story]
+machine_tags: [content/story]
+status: ready
+---
+
 # Stories — Быстрый старт
 
 ## Что создано
