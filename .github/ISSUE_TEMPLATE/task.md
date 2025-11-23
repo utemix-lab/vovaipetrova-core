@@ -43,6 +43,8 @@ assignees: ''
 ## Lane
 
 Select appropriate lane label:
+
+**Standard lanes:**
 - `lane:docs` — documentation work
 - `lane:infra` — infrastructure, workflows, scripts
 - `lane:feat` — new features
@@ -51,20 +53,32 @@ Select appropriate lane label:
 - `lane:stories` — Stories episodes
 - `lane:characters` — character work
 - `lane:qa` — quality assurance
-- `lane:composer` — Composer tasks
+- `lane:composer` — Composer tasks (isolated lane)
+
+**CodeGPT lanes:**
 - `lane:codegpt:orchestrator` — CodeGPT Orchestrator
 - `lane:codegpt:docs` — CodeGPT Docs Agent
 - `lane:codegpt:refactor` — CodeGPT Refactor Agent
 - `lane:codegpt:creative` — CodeGPT Creative Agent
 
+**Copilot lanes:**
+- `lane:copilot` — GitHub Copilot tasks (general)
+- `lane:copilot:docs` — Copilot documentation tasks
+- `lane:copilot:infra` — Copilot infrastructure tasks
+- `lane:copilot:stories` — Copilot Stories tasks
+- `lane:copilot:refactor` — Copilot refactoring tasks
+- `lane:copilot:feat` — Copilot feature tasks
+- `lane:copilot:fix` — Copilot bug fix tasks
+
 ## Sequence
 
 If this task is part of a sequence, add sequence label:
-- `seq:1`, `seq:2`, `seq:3`, etc.
+- `seq:1`, `seq:2`, `seq:3`, ..., `seq:15` (up to 15 steps)
 
 ## Executor
 
 - [ ] Cursor
+- [ ] GitHub Copilot
 - [ ] CodeGPT:Orchestrator
 - [ ] CodeGPT:Docs
 - [ ] CodeGPT:Refactor

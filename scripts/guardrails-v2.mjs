@@ -13,7 +13,7 @@ import { join } from 'path';
 import YAML from 'yaml';
 
 const VERBOSE = process.argv.includes('--verbose');
-const BASE_REF = process.argv.find(arg => arg.startsWith('--base='))?.split('=')[1] || 'main';
+const BASE_REF = process.argv.find(arg => arg.startsWith('--base='))?.split('=', 2)[1] || 'main';
 
 // Пороги size-guard по типам задач
 const SIZE_LIMITS = {
@@ -28,6 +28,12 @@ const SIZE_LIMITS = {
     maxAdditions: 800,
     maxDeletions: 300,
     criticalMultiplier: 1.5 // CodeGPT задачи могут быть немного больше, чем Composer
+  },
+  'copilot': {
+    maxFiles: 30,
+    maxAdditions: 1000,
+    maxDeletions: 400,
+    criticalMultiplier: 1.5 // Copilot задачи могут быть больше, чем CodeGPT (больше документации и инфраструктуры)
   },
   'docs': {
     maxFiles: 30,
@@ -56,7 +62,7 @@ const SIZE_LIMITS = {
 };
 
 // Запрещённые пути (forbidden-paths)
-// Обновлено: актуализирован список после последних изменений в репозитории (2025-11-20)
+// Обновлено: актуализирован список после последних изменений в репозитории (2025-11-23)
 const FORBIDDEN_PATHS = [
   // Секреты и конфигурация
   /^\.env$/,
@@ -113,9 +119,19 @@ const FORBIDDEN_PATHS = [
   /^test-guardrails\/bad-examples\/forbidden-.*\.md$/, // Тестовые файлы с нарушениями
   /^test-guardrails-v2\//, // Тестовые файлы guardrails v2
   /^tmp-.*\.(txt|md|json)$/, // Временные файлы
-  /^\.telemetry\/.*$/,
+  /^\.telemetry\/.*$/, // Телеметрия
   /^lint\.log$/, // Логи линтинга
-  /^STRUCTURE-REPORT\.md$/ // Автоматически генерируемый отчёт
+  /^STRUCTURE-REPORT\.md$/, // Автоматически генерируемый отчёт
+  
+  // Новые защищённые пути (2025-11-23)
+  /^uploads\//, // Загрузки (не должны коммититься)
+  /^\.vscode\/settings\.json$/, // VS Code настройки (могут содержать секреты)
+  /^\.idea\//, // IntelliJ IDEA настройки
+  /^\.DS_Store$/, // macOS системный файл
+  /^Thumbs\.db$/i, // Windows системный файл
+  /^\.envrc$/, // direnv конфигурация (может содержать секреты)
+  /^\.secrets$/, // Файлы с секретами
+  /^secrets\.(yaml|yml|json)$/i // Файлы с секретами
 ];
 
 // Исключения из forbidden-paths (разрешённые изменения)
@@ -255,7 +271,7 @@ const PII_PATTERNS = [
 ];
 
 // Исключения из PII проверки (уже санитизированные)
-// Обновлено: расширен список исключений для уменьшения ложных срабатываний
+// Обновлено: расширен список исключений для уменьшения ложных срабатываний (2025-11-23)
 const PII_EXCLUSIONS = [
   // Санитизированные плейсхолдеры
   /<user>/i,
@@ -263,8 +279,10 @@ const PII_EXCLUSIONS = [
   /<phone>/i,
   /<name>/i,
   /<path>/i,
+  /<user-path>/i,
   /placeholder/i,
   /example/i,
+  /\.\.\./i, // Многоточие как плейсхолдер
   
   // Тестовые и примерные адреса
   /example\.com/i,
@@ -272,6 +290,8 @@ const PII_EXCLUSIONS = [
   /test@example/i,
   /user@example/i,
   /admin@localhost/i,
+  /noreply@/i,
+  /no-reply@/i,
   
   // Локальные адреса и примеры
   /localhost/i,
@@ -285,40 +305,83 @@ const PII_EXCLUSIONS = [
   /john\.doe@example\.com/i,
   /jane\.doe@example\.com/i,
   /test@test\.com/i,
+  /email@example\.com/i,
+  /git@github\.com/i, // GitHub SSH URL
   
   // Версии и хеши (могут совпадать с паттернами телефонов)
   /v?\d+\.\d+\.\d+/i, // Версии типа 1.2.3
   /[0-9a-f]{32,}/i, // Хеши (MD5, SHA256 и т.д.)
+  /\d{4}-\d{2}-\d{2}/i, // Даты YYYY-MM-DD
   
   // Известные публичные примеры
   /github\.com/i,
   /gitlab\.com/i,
-  /bitbucket\.org/i
+  /bitbucket\.org/i,
+  
+  // Известные домены для примеров
+  /example\.org/i,
+  /example\.net/i,
+  /test\.com/i
 ];
 
 /**
  * Определяет тип задачи по изменённым файлам и PR labels
+ * Обновлено: улучшена логика определения типа задачи (2025-11-23)
  */
 function detectTaskType(changedFiles, prLabels = []) {
-  // Проверяем PR labels для определения типа задачи
-  const codegptLabels = prLabels.filter(l => l.startsWith('lane:codegpt:'));
+  // Проверяем PR labels для определения типа задачи (приоритет)
+  const copilotLabels = prLabels.filter(l => l.startsWith('lane:copilot') || l.includes('copilot'));
+  if (copilotLabels.length > 0) return 'copilot';
+  
+  const codegptLabels = prLabels.filter(l => l.startsWith('lane:codegpt') || l.includes('codegpt'));
   if (codegptLabels.length > 0) return 'codegpt';
   
-  const composerFiles = changedFiles.filter(f => f.startsWith('composer/') || f.includes('composer'));
+  const composerLabels = prLabels.filter(l => l.includes('composer'));
+  if (composerLabels.length > 0) return 'composer';
+  
+  // Анализ файлов (если labels не помогли)
+  const composerFiles = changedFiles.filter(f => 
+    f.startsWith('composer/') || 
+    f.includes('composer') ||
+    f.includes('eval-harness')
+  );
   const codegptFiles = changedFiles.filter(f => 
     f.startsWith('.codegpt/') || 
     f.includes('codegpt') || 
     f.startsWith('scripts/codegpt/')
   );
+  const copilotFiles = changedFiles.filter(f => 
+    f.includes('copilot') || 
+    f.includes('COPILOT') ||
+    f.startsWith('mcp-server-') ||
+    f.includes('mcp-server') ||
+    f.includes('mcp-')
+  );
   const docsFiles = changedFiles.filter(f => f.startsWith('docs/'));
   const scriptsFiles = changedFiles.filter(f => f.startsWith('scripts/'));
   const prototypeFiles = changedFiles.filter(f => f.startsWith('prototype/'));
+  const workflowsFiles = changedFiles.filter(f => f.startsWith('.github/workflows/'));
   
+  // Определение по приоритету
+  if (copilotFiles.length > 0) return 'copilot';
   if (codegptFiles.length > 0) return 'codegpt';
   if (composerFiles.length > 0) return 'composer';
-  if (docsFiles.length > 0 && docsFiles.length > scriptsFiles.length) return 'docs';
-  if (scriptsFiles.length > 0) return 'scripts';
-  if (prototypeFiles.length > 0) return 'prototype';
+  
+  // Для docs, scripts, prototype - учитываем соотношение
+  if (docsFiles.length > 0 && docsFiles.length >= scriptsFiles.length && docsFiles.length >= prototypeFiles.length) {
+    return 'docs';
+  }
+  if (scriptsFiles.length > 0 && scriptsFiles.length >= prototypeFiles.length) {
+    return 'scripts';
+  }
+  if (prototypeFiles.length > 0) {
+    return 'prototype';
+  }
+  
+  // Если только workflows - считаем инфраструктурой (copilot)
+  if (workflowsFiles.length > 0 && changedFiles.length === workflowsFiles.length) {
+    return 'copilot';
+  }
   
   return 'default';
 }
@@ -446,6 +509,7 @@ function checkForbiddenPaths(changedFiles) {
 
 /**
  * Проверка PII в изменённых файлах
+ * Обновлено: улучшена обработка code blocks и комментариев (2025-11-23)
  */
 function checkPII(changedFiles) {
   const violations = [];
@@ -453,15 +517,32 @@ function checkPII(changedFiles) {
   
   for (const file of changedFiles) {
     // Проверяем только текстовые файлы
-    if (!file.match(/\.(md|txt|json|yaml|yml|js|mjs|ts)$/)) continue;
+    if (!file.match(/\.(md|txt|json|yaml|yml|js|mjs|ts|html|css)$/)) continue;
     if (!existsSync(file)) continue;
     
     try {
       const content = readFileSync(file, 'utf8');
       
-      // Пропускаем код блоки и уже санитизированные значения
-      const codeBlockRegex = /```[\s\S]*?```/g;
-      const sanitizedContent = content.replace(codeBlockRegex, '');
+      // Улучшенная обработка code blocks: удаляем fenced code blocks и inline code
+      let sanitizedContent = content;
+      
+      // Удаляем fenced code blocks (```...```)
+      sanitizedContent = sanitizedContent.replace(/```[\s\S]*?```/g, '');
+      
+      // Удаляем inline code (`...`)
+      sanitizedContent = sanitizedContent.replace(/`[^`\n]*`/g, '');
+      
+      // Удаляем HTML комментарии (<!-- ... -->)
+      sanitizedContent = sanitizedContent.replace(/<!--[\s\S]*?-->/g, '');
+      
+      // Удаляем JS/TS комментарии (// ... и /* ... */)
+      sanitizedContent = sanitizedContent.replace(/\/\/.*$/gm, '');
+      sanitizedContent = sanitizedContent.replace(/\/\*[\s\S]*?\*\//g, '');
+      
+      // Удаляем YAML комментарии (# ...)
+      if (file.match(/\.(yaml|yml)$/)) {
+        sanitizedContent = sanitizedContent.replace(/#.*$/gm, '');
+      }
       
       for (const pattern of PII_PATTERNS) {
         const matches = [...sanitizedContent.matchAll(pattern.regex)];
@@ -477,6 +558,14 @@ function checkPII(changedFiles) {
           // Проверяем контекст (для некоторых паттернов)
           if (pattern.context && !file.includes(pattern.context)) {
             continue;
+          }
+          
+          // Дополнительная проверка: пропускаем если это часть URL или пути в примерах
+          if (matchedText.includes('://') || matchedText.includes('www.')) {
+            // Может быть частью примера URL
+            if (matchedText.includes('example.com') || matchedText.includes('localhost')) {
+              continue;
+            }
           }
           
           const issue = {
@@ -506,18 +595,28 @@ function checkPII(changedFiles) {
 
 /**
  * Генерация отчёта
+ * Обновлено: улучшена детализация и форматирование (2025-11-23)
  */
-function generateReport(sizeCheck, forbiddenCheck, piiCheck) {
-  let report = '## Guardrails v2 Report\n\n';
+function generateReport(sizeCheck, forbiddenCheck, piiCheck, stats) {
+  let report = '## 🛡️ Guardrails v2 Report\n\n';
+  report += `_Generated at ${new Date().toISOString()}_\n\n`;
   
   // Size-guard
-  report += `### Size Guard (Task Type: ${sizeCheck.taskType})\n\n`;
-  report += `**Limits:** ${sizeCheck.limits.maxFiles} files, ${sizeCheck.limits.maxAdditions} additions, ${sizeCheck.limits.maxDeletions} deletions\n\n`;
+  report += `### 📊 Size Guard (Task Type: \`${sizeCheck.taskType}\`)\n\n`;
+  report += `**Limits:**\n`;
+  report += `- Files: ${sizeCheck.limits.maxFiles} (critical: ${Math.ceil(sizeCheck.limits.maxFiles * sizeCheck.limits.criticalMultiplier)})\n`;
+  report += `- Additions: ${sizeCheck.limits.maxAdditions} (critical: ${Math.ceil(sizeCheck.limits.maxAdditions * sizeCheck.limits.criticalMultiplier)})\n`;
+  report += `- Deletions: ${sizeCheck.limits.maxDeletions} (critical: ${Math.ceil(sizeCheck.limits.maxDeletions * sizeCheck.limits.criticalMultiplier)})\n\n`;
+  
+  report += `**Current stats:**\n`;
+  report += `- Files changed: ${stats.totalFiles}\n`;
+  report += `- Additions: ${stats.totalAdditions}\n`;
+  report += `- Deletions: ${stats.totalDeletions}\n\n`;
   
   if (sizeCheck.violations.length > 0) {
     report += '❌ **Violations (blocking):**\n';
     for (const violation of sizeCheck.violations) {
-      report += `- ${violation.message}\n`;
+      report += `- \`${violation.type}\`: ${violation.message}\n`;
     }
     report += '\n';
   }
@@ -525,7 +624,7 @@ function generateReport(sizeCheck, forbiddenCheck, piiCheck) {
   if (sizeCheck.warnings.length > 0) {
     report += '⚠️  **Warnings:**\n';
     for (const warning of sizeCheck.warnings) {
-      report += `- ${warning.message}\n`;
+      report += `- \`${warning.type}\`: ${warning.message}\n`;
     }
     report += '\n';
   }
@@ -535,31 +634,60 @@ function generateReport(sizeCheck, forbiddenCheck, piiCheck) {
   }
   
   // Forbidden-paths
-  report += '### Forbidden Paths\n\n';
+  report += '### 🚫 Forbidden Paths\n\n';
   if (forbiddenCheck.length > 0) {
     report += '❌ **Violations (blocking):**\n';
     for (const violation of forbiddenCheck) {
-      report += `- ${violation.message}\n`;
+      report += `- \`${violation.file}\`: ${violation.message}\n`;
     }
     report += '\n';
+    report += '**Action required:** Remove these files from your changes or request an exception.\n\n';
   } else {
     report += '✅ **No forbidden paths detected**\n\n';
   }
   
   // PII-scrub
-  report += '### PII Detection\n\n';
+  report += '### 🔒 PII Detection\n\n';
   if (piiCheck.violations.length > 0) {
     report += '❌ **PII Violations (blocking):**\n';
+    // Группируем по файлам для лучшей читаемости
+    const violationsByFile = {};
     for (const violation of piiCheck.violations) {
-      report += `- **${violation.file}**: ${violation.kind} detected: "${violation.match}"\n`;
+      if (!violationsByFile[violation.file]) {
+        violationsByFile[violation.file] = [];
+      }
+      violationsByFile[violation.file].push(violation);
+    }
+    
+    for (const [file, violations] of Object.entries(violationsByFile)) {
+      report += `- **\`${file}\`**:\n`;
+      for (const violation of violations) {
+        report += `  - ${violation.kind} (${violation.pattern}): \`${violation.match}\`\n`;
+      }
     }
     report += '\n';
+    report += '**Action required:** Sanitize PII data before committing. Use placeholders like `<user>`, `<email>`, `<path>`.\n\n';
   }
   
   if (piiCheck.warnings.length > 0) {
     report += '⚠️  **PII Warnings:**\n';
+    // Группируем по файлам
+    const warningsByFile = {};
     for (const warning of piiCheck.warnings) {
-      report += `- **${warning.file}**: ${warning.kind} detected: "${warning.match}"\n`;
+      if (!warningsByFile[warning.file]) {
+        warningsByFile[warning.file] = [];
+      }
+      warningsByFile[warning.file].push(warning);
+    }
+    
+    for (const [file, warnings] of Object.entries(warningsByFile)) {
+      report += `- **\`${file}\`**:\n`;
+      for (const warning of warnings.slice(0, 5)) { // Ограничиваем вывод
+        report += `  - ${warning.kind} (${warning.pattern}): \`${warning.match}\`\n`;
+      }
+      if (warnings.length > 5) {
+        report += `  - _... and ${warnings.length - 5} more_\n`;
+      }
     }
     report += '\n';
   }
@@ -572,14 +700,19 @@ function generateReport(sizeCheck, forbiddenCheck, piiCheck) {
   const totalViolations = sizeCheck.violations.length + forbiddenCheck.length + piiCheck.violations.length;
   const totalWarnings = sizeCheck.warnings.length + piiCheck.warnings.length;
   
-  report += '### Summary\n\n';
-  report += `- **Violations:** ${totalViolations} (blocking)\n`;
-  report += `- **Warnings:** ${totalWarnings} (non-blocking)\n\n`;
+  report += '### 📋 Summary\n\n';
+  report += `- **Total violations:** ${totalViolations} ${totalViolations > 0 ? '❌' : '✅'} (blocking)\n`;
+  report += `- **Total warnings:** ${totalWarnings} ${totalWarnings > 0 ? '⚠️' : ''} (non-blocking)\n\n`;
   
   if (totalViolations > 0) {
-    report += '❌ **Guardrails failed!** Please fix violations before merging.\n';
+    report += '❌ **Guardrails failed!** Please fix violations before merging.\n\n';
+    report += '**Next steps:**\n';
+    report += '1. Review violations above\n';
+    report += '2. Fix size-guard issues by splitting PR or requesting limit increase\n';
+    report += '3. Remove forbidden paths from changes\n';
+    report += '4. Sanitize PII data using placeholders\n';
   } else {
-    report += '✅ **All guardrails passed!**\n';
+    report += '✅ **All guardrails passed!** Ready for review.\n';
   }
   
   return report;
@@ -637,7 +770,7 @@ function main() {
   const piiCheck = checkPII(stats.changedFiles);
   
   // Генерация отчёта
-  const report = generateReport(sizeCheck, forbiddenCheck, piiCheck);
+  const report = generateReport(sizeCheck, forbiddenCheck, piiCheck, stats);
   console.log(report);
   
   // Вывод в консоль

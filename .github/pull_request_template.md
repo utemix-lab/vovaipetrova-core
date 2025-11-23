@@ -2,6 +2,8 @@
 
 {Краткое описание того, что было сделано}
 
+**Важно**: Описание PR должно быть на **русском языке**. Это правило проекта для единообразия и удобства команды.
+
 **Связанная задача**: {Ссылка на Notion Briefs или GitHub Issue}
 
 **Two-stream Policy**: 
@@ -9,9 +11,15 @@
 - [ ] Stream 2 (GitHub → Notion): Работа агента с синхронизацией статусов в Notion
 - [ ] Нет связи с Notion: Задача только в GitHub (Issue)
 
-**Lane Label**: {Добавьте соответствующий label при создании PR: `lane:docs`, `lane:infra`, `lane:stories`, `lane:characters`, `lane:qa`, `lane:refactor`, `lane:fix`, `lane:feat`, `lane:composer`, `lane:codegpt:orchestrator`, `lane:codegpt:docs`, `lane:codegpt:refactor`, `lane:codegpt:creative`}
+**Lane Label**: {Добавьте соответствующий label при создании PR}
 
-**Sequence Label**: {Если задача является частью последовательности, добавьте `seq:1`, `seq:2`, и т.д.}
+**Standard lanes**: `lane:docs`, `lane:infra`, `lane:stories`, `lane:characters`, `lane:qa`, `lane:refactor`, `lane:fix`, `lane:feat`, `lane:composer`
+
+**CodeGPT lanes**: `lane:codegpt:orchestrator`, `lane:codegpt:docs`, `lane:codegpt:refactor`, `lane:codegpt:creative`
+
+**Copilot lanes**: `lane:copilot`, `lane:copilot:docs`, `lane:copilot:infra`, `lane:copilot:stories`, `lane:copilot:refactor`, `lane:copilot:feat`, `lane:copilot:fix`
+
+**Sequence Label**: {Если задача является частью последовательности, добавьте `seq:1`, `seq:2`, `seq:3`, и т.д. (до `seq:15`)}
 
 ## Deliverables
 
@@ -61,6 +69,9 @@
 ---
 
 ## Чек-лист проверки
+
+### ⚠️ ОБЯЗАТЕЛЬНО ПЕРЕД ПРЕДСТАВЛЕНИЕМ PR НА ПРОВЕРКУ
+- [ ] **Удалены старые комментарии ботов**: Выполнена команда `npm run pr:clear-bot-comments -- --pr=<номер>` для удаления всех старых комментариев от ботов (GitHub Actions, Cursor Bot). Это правило проекта: PR должен быть представлен на проверку только с актуальными комментариями, без старых исправленных ошибок.
 
 ### Общие проверки
 - [ ] Front matter present in changed .md files

@@ -1,3 +1,12 @@
+---
+title: Stories — Инструкции для работы
+slug: stories-readme
+summary: Инструкции для работы со Stories эпизодами для агентов и людей
+tags: [Story]
+machine_tags: [content/story]
+status: ready
+---
+
 # Stories — Инструкции для работы
 
 ## Быстрый старт

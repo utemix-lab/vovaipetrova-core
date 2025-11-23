@@ -1,6 +1,26 @@
 {
-  "generatedAt": "2025-11-21T18:12:45.259Z",
-  "totalFiles": 213,
-  "brokenCount": 0,
-  "issues": []
+  "version": "3.0",
+  "generatedAt": "2025-11-23T19:59:18.139Z",
+  "totalFiles": 235,
+  "brokenCount": 3,
+  "issues": [
+    {
+      "file": "CONCEPT.author-gateway.md",
+      "link": "../stories/models/story.schema.json",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "CONCEPT.author-gateway.md",
+      "link": "../stories/models/gateway-payload.schema.json",
+      "reason": "missing",
+      "resolved_to": null
+    },
+    {
+      "file": "stories/CONCEPT.stories-dual.md",
+      "link": "./models/story.schema.json",
+      "reason": "missing",
+      "resolved_to": null
+    }
+  ]
 }

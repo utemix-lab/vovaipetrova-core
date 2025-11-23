@@ -5,6 +5,7 @@ import path from "path";
 import { globSync } from "glob";
 import matter from "gray-matter";
 import slugify from "slugify";
+import { execSync } from "child_process";
 
 const STORIES_DIR = "docs/stories";
 const META_DIR = "tmp";
@@ -163,6 +164,19 @@ function buildStory({ date, changelog, adr, stats }) {
     `**Что получилось.** ${statsSentence} ${topProblemSentence}`
   );
 
+  // Добавляем image placeholders
+  const imagePlaceholders = [
+    "",
+    "## Изображения",
+    "",
+    "![Author Image](https://via.placeholder.com/800x450?text=author)",
+    "*Изображение автора (placeholder)*",
+    "",
+    "![Machine Image](https://via.placeholder.com/800x450?text=machine)",
+    "*Изображение машины/процесса (placeholder)*",
+    "",
+  ];
+
   parts.push(
     `**Тех-вставка.** Шаблон stories остаётся нейтральным по авторству; lint предупреждает при персоналиях. Черновик собирается автоматически из CHANGELOG, ADR и ProtoLabs stats, чтобы отвечать требованию 700–1200 знаков без ручного копипаста.`
   );
@@ -179,6 +193,7 @@ function buildStory({ date, changelog, adr, stats }) {
     ...tldr.map((item) => `- ${item}`),
     "",
     ...parts,
+    ...imagePlaceholders,
     "",
   ].join("\n");
 
@@ -235,6 +250,16 @@ function main() {
     "machine_tags: [content/story]",
     "status: draft",
     "last_edited_time: ''",
+  "author_image:",
+  '  url: "https://via.placeholder.com/800x450?text=author"',
+  '  status: "placeholder"',
+  '  uploaded_by: null',
+  '  uploaded_at: null',
+  "machine_image:",
+  '  url: "https://via.placeholder.com/800x450?text=machine"',
+  '  status: "placeholder"',
+  '  uploaded_by: null',
+  '  uploaded_at: null',
     "---",
     "",
   ].join("\n");
@@ -249,6 +274,40 @@ function main() {
     title,
     sources,
   });
+
+  // Отправляем отчёт в Notion (best-effort, не блокируем при ошибке)
+  try {
+    const reportPayload = {
+      title: `Stories Generator: ${filename}`,
+      message: `Создан новый черновик Stories: **${filename}**`,
+      executor: "Stories Generator",
+      status: "completed",
+      timestamp: new Date().toISOString(),
+      filename,
+      sources: sources.join(", "),
+      date: today,
+    };
+
+    const reportPath = path.join(META_DIR, "story-report.json");
+    mkdirSync(META_DIR, { recursive: true });
+    writeFileSync(reportPath, JSON.stringify(reportPayload, null, 2));
+
+    // Вызываем notion-report.mjs с автоматическим поиском страницы
+    try {
+      execSync(
+        `node scripts/notion-report.mjs --file "${reportPath}" --title "Stories Generator: ${filename}"`,
+        { stdio: "inherit", cwd: process.cwd() }
+      );
+      log("✅ Notion report sent successfully");
+    } catch (reportErr) {
+      log(`⚠️  Notion report failed (non-blocking): ${reportErr.message}`);
+      // Не фейлим весь процесс, если отправка отчёта не удалась
+    }
+  } catch (err) {
+    log(`⚠️  Report step error (non-blocking): ${err.message}`);
+    // Не фейлим весь процесс, если подготовка отчёта не удалась
+  }
+
   log(`Created ${filename}`);
 }
 

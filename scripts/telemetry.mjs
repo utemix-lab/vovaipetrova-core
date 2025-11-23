@@ -127,11 +127,11 @@ function getDiffMetrics() {
 function main() {
   const args = process.argv.slice(2);
   const stepArg = args.find(arg => arg.startsWith('--step='));
-  const stepName = stepArg ? stepArg.split('=')[1] : null;
+  const stepName = stepArg ? stepArg.split('=', 2)[1] : null;
   const isStart = args.includes('--start');
   const isEnd = args.includes('--end');
   const failArg = args.find(arg => arg.startsWith('--fail='));
-  const failReason = failArg ? failArg.split('=')[1] : null;
+  const failReason = failArg ? failArg.split('=', 2)[1] : null;
   const collectDiff = args.includes('--collect-diff');
   
   const metrics = loadMetrics();

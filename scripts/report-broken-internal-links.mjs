@@ -261,6 +261,39 @@ function main() {
         return;
       }
       if (href.startsWith("#")) return;
+      
+      // Проверяем ссылки на JSON файлы (например, ./models/story.schema.json)
+      // Эти файлы не имеют slug, поэтому проверяем их существование напрямую
+      if (href.endsWith('.json') || href.endsWith('.yaml') || href.endsWith('.yml')) {
+        const resolvedPath = path.resolve(path.dirname(doc.path), href);
+        const repoRoot = path.resolve(DOCS_ROOT, "..");
+        // Проверяем, что путь находится внутри репозитория
+        if (resolvedPath.startsWith(repoRoot)) {
+          if (existsSync(resolvedPath)) {
+            // JSON/YAML файл существует, не считаем его битым
+            return;
+          } else {
+            // JSON/YAML файл не существует, помечаем как broken без slug resolution
+            broken.push({
+              file: doc.path.replace(/^docs\//, ""),
+              link: href,
+              reason: "missing",
+              resolved_to: null
+            });
+            return;
+          }
+        } else {
+          // JSON/YAML файл находится вне репозитория, помечаем как broken
+          broken.push({
+            file: doc.path.replace(/^docs\//, ""),
+            link: href,
+            reason: "outside_repo",
+            resolved_to: null
+          });
+          return;
+        }
+      }
+      
       // Проверяем ссылки на файлы вне docs/ (например, ../CONTRIBUTING.md, ../.github/...)
       if (href.startsWith("../")) {
         const resolvedPath = path.resolve(path.dirname(doc.path), href);
@@ -291,6 +324,7 @@ function main() {
   });
 
   const report = {
+    version: '3.0',
     generatedAt: new Date().toISOString(),
     totalFiles: docs.length,
     brokenCount: broken.length,

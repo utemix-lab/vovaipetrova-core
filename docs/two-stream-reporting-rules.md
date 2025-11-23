@@ -109,7 +109,7 @@ status: ready
 - **Issues**: Нет проблем
 ```
 
-## Правила для разных агентов
+## Правила для агентов
 
 ### GitHub Copilot
 
@@ -131,6 +131,9 @@ notion_update_page({
   } 
 })
 ```
+**Настройка MCP:**
+- См. [COPILOT-NOTION-SETUP.md](../COPILOT-NOTION-SETUP.md) для настройки MCP сервера
+- См. [NOTION-ACCESS-SETUP.md](NOTION-ACCESS-SETUP.md) для настройки доступа к страницам Notion
 
 ### CodeGPT / Cursor
 
@@ -159,7 +162,7 @@ node scripts/codegpt/notion-update.mjs <page-id> '{"Status":{"select":{"name":"I
 ### Проблема: Не могу обновить статус в Notion
 
 **Причины:**
-- Нет доступа к странице в Notion (см. `docs/NOTION-ACCESS-SETUP.md`)
+- Нет доступа к странице в Notion (см. [NOTION-ACCESS-SETUP.md](NOTION-ACCESS-SETUP.md))
 - Неправильный токен API
 - Страница не существует
 

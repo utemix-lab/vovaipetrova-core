@@ -229,6 +229,7 @@ function containsPII(body, filePath = '') {
         /Compatibility Tracker/i,
         /Requires Review/i,
         /Deploy Pages/i,
+        /Notion Briefs/i,
         /Hugging Face/i
       ]
     },

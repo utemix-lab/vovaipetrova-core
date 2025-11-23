@@ -85,7 +85,7 @@ status: ready
 ### Запрещено
 
 - ❌ Использовать первое лицо с именами реальных людей
-- ❌ Указывать пути пользователей (`C:\Users\...`)
+- ❌ Указывать пути пользователей (например: `C:\Users\...`, `/home/...`)
 - ❌ Указывать email, телефоны, адреса реальных людей
 - ❌ Создавать файлы без front matter
 - ❌ Менять slug существующих файлов без миграции
@@ -131,6 +131,17 @@ Stories интегрированы в Explorer:
 - Статусы: `draft`, `review`, `ready`
 - PR с меткой `content/story` или `auto:story`
 
+## Recent tool additions
+
+The following helper scripts and Notion-report integration have been added to support the Stories pipeline:
+
+- `scripts/notion-report.mjs` — minimal reporter to post JSON summaries to the "Copilot — Отчёты" Notion page (created/maintained by Cursor). Use it with `--file` or `--payload`.
+- `scripts/generate-stories.mjs` — generator updated to include `author_image` and `machine_image` placeholders in front matter and to create a small `tmp/story-meta.json` after generation; it now attempts a best-effort call to `scripts/notion-report.mjs` to publish a minimal report.
+- `scripts/author-gateway.mjs` — `author-gateway` (PoC; modes: auto / hitl / human-first) to orchestrate generation and optionally forward a minimal report to Notion.
+- `scripts/add-image-to-episode.mjs` — helper to update `author_image` or `machine_image` front matter for a story by file or slug (sets url, status, uploaded_by, uploaded_at).
+
+These additions are intended to avoid duplicated work: the generator and Notion reporter handle minimal reporting, while the gateway and image helper support human workflows (HitL and manual illustration).
+
 ## Контекст для агентов
 
 ### Вход агента
@@ -161,4 +172,102 @@ Stories интегрированы в Explorer:
 - [Protocol — Контрактная модель для агентов](../protocol-kontraktnaya-model-dlya-agentov.md)
 - [Шаблон story.md](../../templates/story.md)
 - [README](../../README.md)
+
+## Концепция, значимость и план (фиксируем для истории и восстановления контекста)
+
+### Краткая концепция
+
+Stories — это репозиторный канал публикации кратких эпизодов о прогрессе проекта. Цель — перевести необработанные deliverables и технические заметки в читабельные, проверяемые и индексируемые эпизоды, которые можно ревьювить через Pull Request и отображать в витрине Explorer.
+
+Ключевые принципы:
+
+- единый источник правды — GitHub (с синхронизацией из Notion при необходимости);
+- нейтральный автор — ничего персонального (анонимизация);
+- минимальная автоматическая телеметрия и отчётность (Notion minimal report) для мониторинга.
+
+### Почему это важно
+
+- Обеспечивает регулярную, асинхронную историю прогресса проекта;
+- Делает достижения и проблемы видимыми для заинтересованных команд;
+- Позволяет сочетать автоматический генератор (ежедневные черновики) и человеческое редактирование (HitL);
+- Улучшает связность между ADR, CHANGELOG и практическими результатами.
+
+### План действий (high-level)
+
+1. Поддерживать шаблон `templates/story.md` и генератор `scripts/generate-stories.mjs`.
+2. Поддерживать минимальный Notion‑репортер `scripts/notion-report.mjs` для заметок о генерации.
+3. Использовать `scripts/author-gateway.mjs` как PoC для режимов auto / hitl / human-first.
+4. Использовать `scripts/add-image-to-episode.mjs` для добавления иллюстраций в front matter пост‑факту.
+5. PR workflow: draft PR → локальные проверки (normalize + lint + pii) → ревью → merge (manual by humans).
+
+### Что зафиксировано в текущем PR
+
+- Ветка/PR: feature work in `feat/author-gateway` — PR #130 ("feat(stories): author gateway + image helper (PoC)").
+- Основные файлы: `scripts/notion-report.mjs`, `scripts/generate-stories.mjs`, `scripts/author-gateway.mjs`, `scripts/add-image-to-episode.mjs`, `templates/story.md`, `docs/stories/*`.
+
+## Инструкции «тёплого старта» — как быстро войти в контекст, если сессия прервана
+
+Ниже — компактный чеклист и команды, которые помогут быстро восстановить состояние и продолжить работу.
+
+### Получить код и ветки
+
+```powershell
+cd <repo-root>
+git fetch origin --prune
+git checkout feat/author-gateway || git checkout -b feat/author-gateway origin/feat/author-gateway
+git pull --rebase origin feat/author-gateway
+```
+
+### Быстрая проверка состояния PR
+
+- Откройте [PR #130](https://github.com/utemix-lab/vovaipetrova-core/pull/130) и проверьте статус CI, комментарии ботов и последние коммиты.
+
+### Среда и секреты
+
+- Для работы с Notion нужен ключ в окружении: `NOTION_API_KEY` — хранится в локальном `.env` (корень репозитория) или в переменных CI.
+- (Опционально) ID страницы отчётов: `NOTION_COPILOT_REPORTS_PAGE_ID`.
+
+### Быстрые команды для локальной валидации
+
+```powershell
+npm run normalize:dry    # посмотреть что normalize бы сделал
+npm run lint:docs        # линтер контента
+npm run pii:scan         # проверка PII
+npm run story:generate   # запустить генератор локально (создаст файл в docs/stories/)
+node scripts/notion-report.mjs --file tmp/story-report.json --title "Smoke report"
+```
+
+### Где смотреть ключевые артефакты
+
+- Логи и временные метаданные генератора: `tmp/story-meta.json`, `tmp/story-report.json`.
+- Сгенерированные эпизоды: `docs/stories/YYYY-MM-DD-*.md`.
+- Скрипты: `scripts/*.mjs` — ключевые: `generate-stories`, `notion-report`, `author-gateway`, `add-image-to-episode`.
+
+### Восстановление состояния ветки / конфликтов
+
+Если при мердже есть конфликты, выполните:
+
+```powershell
+git fetch origin
+git checkout feat/author-gateway
+git merge origin/main
+# разрешите конфликты в указанных файлах (обычно: scripts/notion-report.mjs, scripts/generate-stories.mjs)
+git add <resolved-files>
+git commit
+git push origin feat/author-gateway
+```
+
+### Короткий чеклист для ассистента при восстановлении сессии
+
+- Проверить `CONTRIBUTING.md` и `docs/stories/SHARED_CONTEXT.md` на политику языка и правила.
+- Проверить ветку и PR (#130), CI статусы и последние комментарии ботов.
+- Запустить `npm run lint:docs` и `npm run normalize:dry`.
+- Запустить `node scripts/generate-stories.mjs` локально и проверить, что `docs/stories/` получает файлы.
+- При необходимости запустить `node scripts/notion-report.mjs --file tmp/story-report.json` (best-effort) и проверить Notion (если ключ доступен).
+
+## Контактные заметки
+
+Если что-то пошло не так с автоматикой или ботами (Cursor и пр.), сохраните лог и создайте issue в репозитории, указав: ветку, PR, шаг, где произошла ошибка и последние команды, которые вы запускали.
+
+---
 
