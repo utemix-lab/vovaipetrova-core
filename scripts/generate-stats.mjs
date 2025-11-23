@@ -69,6 +69,7 @@ function generateStats() {
   };
   
   const result = {
+    version: '3.0',
     generatedAt: new Date().toISOString(),
     totals,
     topProblems: problems.slice(0, 20), // Топ 20 проблемных страниц

@@ -15,6 +15,37 @@ import { execSync } from 'child_process';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import path from 'path';
 
+// queue helpers
+const QUEUE_PATH = path.join('tmp', 'ideas.json');
+
+function loadQueue() {
+  if (!existsSync(QUEUE_PATH)) return [];
+  try {
+    return JSON.parse(readFileSync(QUEUE_PATH, 'utf8')) || [];
+  } catch (err) {
+    log(`Failed to parse queue: ${err.message}`);
+    return [];
+  }
+}
+
+function saveQueue(q) {
+  try {
+    mkdirSync(path.dirname(QUEUE_PATH), { recursive: true });
+    writeFileSync(QUEUE_PATH, JSON.stringify(q, null, 2), 'utf8');
+  } catch (err) {
+    log(`Failed to save queue: ${err.message}`);
+  }
+}
+
+function popApprovedIdea() {
+  const q = loadQueue();
+  const idx = q.findIndex(x => x.status === 'approved');
+  if (idx === -1) return null;
+  const item = q.splice(idx, 1)[0];
+  saveQueue(q);
+  return item;
+}
+
 function parseArgs() {
   const out = { mode: 'auto' };
   for (const raw of process.argv.slice(2)) {
@@ -31,8 +62,20 @@ function log(msg) {
 
 async function runAuto(pageId) {
   log('Running generator (auto mode)...');
+  // If there is an approved idea in the queue, pop it and expose to generator
+  const idea = popApprovedIdea();
+  let env = { ...process.env };
+  if (idea) {
+    const tmpDir = 'tmp';
+    mkdirSync(tmpDir, { recursive: true });
+    const ideaPath = path.join(tmpDir, `idea-${Date.now()}.json`);
+    writeFileSync(ideaPath, JSON.stringify(idea, null, 2), 'utf8');
+    env.GATEWAY_IDEA_PATH = path.resolve(ideaPath);
+    log(`Using approved idea ${idea.id} -> ${ideaPath}`);
+  }
+
   try {
-    execSync('node scripts/generate-stories.mjs', { stdio: 'inherit' });
+    execSync('node scripts/generate-stories.mjs', { stdio: 'inherit', env });
   } catch (err) {
     log(`Generator failed: ${err.message}`);
     process.exit(1);
@@ -75,8 +118,19 @@ async function runAuto(pageId) {
 
 async function runHitl(pageId) {
   log('Human-in-the-loop mode: generating but awaiting human review.');
+  // If there's an approved idea, use it to seed generation but stop for review
+  const idea = popApprovedIdea();
+  let env = { ...process.env };
+  if (idea) {
+    const tmpDir = 'tmp';
+    mkdirSync(tmpDir, { recursive: true });
+    const ideaPath = path.join(tmpDir, `idea-${Date.now()}.json`);
+    writeFileSync(ideaPath, JSON.stringify(idea, null, 2), 'utf8');
+    env.GATEWAY_IDEA_PATH = path.resolve(ideaPath);
+    log(`Seeded generation with approved idea ${idea.id} -> ${ideaPath}`);
+  }
   try {
-    execSync('node scripts/generate-stories.mjs', { stdio: 'inherit' });
+    execSync('node scripts/generate-stories.mjs', { stdio: 'inherit', env });
   } catch (err) {
     log(`Generator failed: ${err.message}`);
     process.exit(1);
