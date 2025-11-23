@@ -946,6 +946,67 @@ body[data-view="index"] {
   margin-top: 1rem;
 }
 
+.stories-index-intro {
+  margin: 1rem 0 0.5rem;
+  max-width: 720px;
+  color: var(--muted);
+}
+
+.stories-index-intro h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: var(--text);
+}
+
+.stories-index-intro p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.stories-index-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.stories-index-group {
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stories-index-group:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-1px);
+}
+
+.stories-index-group.is-active {
+  background: rgba(99, 102, 241, 0.3);
+  border-color: rgba(99, 102, 241, 0.5);
+  color: rgba(99, 102, 241, 1);
+}
+
+.stories-index-group-heading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--text);
+}
+
+.stories-index-content {
+  margin-top: 1rem;
+}
+
 .sidebar-section {
   background: var(--card-bg);
   border-radius: 1.25rem;

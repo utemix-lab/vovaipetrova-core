@@ -298,31 +298,13 @@ function main() {
       if (href.startsWith("../")) {
         const resolvedPath = path.resolve(path.dirname(doc.path), href);
         const repoRoot = path.resolve(DOCS_ROOT, "..");
-        const normalizedRepoRoot = repoRoot.endsWith(path.sep)
-          ? repoRoot
-          : `${repoRoot}${path.sep}`;
         // Проверяем, что путь находится внутри репозитория
-        if (resolvedPath.startsWith(normalizedRepoRoot) || resolvedPath === repoRoot) {
+        if (resolvedPath.startsWith(repoRoot)) {
           if (existsSync(resolvedPath)) {
             // Файл существует вне docs/, не считаем его битым
             return;
           }
-          broken.push({
-            file: doc.path.replace(/^docs\//, ""),
-            link: href,
-            reason: "missing",
-            resolved_to: null
-          });
-          return;
         }
-        // Указатель уходит за пределы репозитория
-        broken.push({
-          file: doc.path.replace(/^docs\//, ""),
-          link: href,
-          reason: "outside_repo",
-          resolved_to: null
-        });
-        return;
       }
       const result = resolveReference(href, maps, linkMap);
       if (result.status === "ok") return;

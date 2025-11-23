@@ -15,7 +15,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { execSync } from 'child_process';
+import { execSync, spawnSync } from 'child_process';
 import path from 'path';
 import matter from 'gray-matter';
 import slugify from 'slugify';
@@ -24,16 +24,6 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO || 'utemix-lab/vovaipetrova-core';
 const CANDIDATES_OUTPUT = 'candidates_kb.json';
 const STORIES_DIR = 'docs/stories';
-
-function envBool(name, fallback = false) {
-  const value = process.env[name];
-  if (value == null || value === '') return fallback;
-  return ['1', 'true', 'yes', 'on'].includes(String(value).toLowerCase());
-}
-
-const DEFAULT_BASE_REF = process.env.EXTRACTOR_STORIES_BASE?.trim() || 'main';
-const DEFAULT_DRY_RUN = envBool('EXTRACTOR_STORIES_DRY_RUN');
-const DEFAULT_NO_ISSUES = envBool('EXTRACTOR_STORIES_NO_ISSUES');
 
 // Минимальная длина термина (в символах)
 const MIN_TERM_LENGTH = 3;
@@ -73,72 +63,20 @@ function log(message) {
 function parseArgs() {
   const args = {
     pr: null,
-    base: DEFAULT_BASE_REF,
-    dryRun: DEFAULT_DRY_RUN,
-    noIssues: DEFAULT_NO_ISSUES
+    base: 'main',
+    dryRun: false,
+    noIssues: false
   };
 
-  const argv = process.argv.slice(2);
-  const readNextValue = (index) => {
-    if (index + 1 >= argv.length) return null;
-    const next = argv[index + 1];
-    if (next?.startsWith('--')) return null;
-    return next;
-  };
-
-  const coerceBoolean = (value, fallbackTrue = true) => {
-    if (value == null) return fallbackTrue;
-    const normalized = String(value).toLowerCase();
-    if (['false', '0', 'no', 'off'].includes(normalized)) return false;
-    if (['true', '1', 'yes', 'on'].includes(normalized)) return true;
-    return fallbackTrue;
-  };
-
-  for (let i = 0; i < argv.length; i++) {
-    const arg = argv[i];
-
+  for (const arg of process.argv.slice(2)) {
     if (arg.startsWith('--pr=')) {
       args.pr = arg.split('=', 2)[1];
-      continue;
-    }
-    if (arg === '--pr') {
-      const value = readNextValue(i);
-      if (value) {
-        args.pr = value;
-        i++;
-      }
-      continue;
-    }
-
-    if (arg.startsWith('--base=')) {
+    } else if (arg.startsWith('--base=')) {
       args.base = arg.split('=', 2)[1];
-      continue;
-    }
-    if (arg === '--base') {
-      const value = readNextValue(i);
-      if (value) {
-        args.base = value;
-        i++;
-      }
-      continue;
-    }
-
-    if (arg === '--dry-run') {
+    } else if (arg === '--dry-run') {
       args.dryRun = true;
-      continue;
-    }
-    if (arg.startsWith('--dry-run=')) {
-      args.dryRun = coerceBoolean(arg.split('=', 2)[1], true);
-      continue;
-    }
-
-    if (arg === '--no-issues') {
+    } else if (arg === '--no-issues') {
       args.noIssues = true;
-      continue;
-    }
-    if (arg.startsWith('--no-issues=')) {
-      args.noIssues = coerceBoolean(arg.split('=', 2)[1], true);
-      continue;
     }
   }
 
