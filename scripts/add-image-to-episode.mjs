@@ -9,7 +9,7 @@
  *  node scripts/add-image-to-episode.mjs --slug=stories-v10-content-ready-2025-11-12 --slot=machine --url=... 
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
@@ -33,7 +33,7 @@ function findBySlug(slug) {
   const files = [];
   try {
     const dir = path.join('docs', 'stories');
-    const items = require('fs').readdirSync(dir);
+    const items = readdirSync(dir);
     for (const it of items) {
       if (it.endsWith('.md') && it.includes(slug)) files.push(path.join(dir, it));
     }
