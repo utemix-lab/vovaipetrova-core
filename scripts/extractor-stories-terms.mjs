@@ -15,7 +15,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { execSync } from 'child_process';
+import { execSync, spawnSync } from 'child_process';
 import path from 'path';
 import matter from 'gray-matter';
 import slugify from 'slugify';
@@ -64,8 +64,8 @@ function parseArgs() {
   const args = {
     pr: null,
     base: 'main',
-    dryRun: DRY_RUN,
-    noIssues: NO_ISSUES
+    dryRun: false,
+    noIssues: false
   };
 
   for (const arg of process.argv.slice(2)) {
@@ -279,17 +279,31 @@ async function createIssueForTerm(term, slug, context, args) {
       `_Автоматически создано из PR #${context.prNumber || 'N/A'}_`
     ].join('\n');
 
-    const [owner, repo] = GITHUB_REPO.split('/');
-    const command = `gh issue create --repo ${GITHUB_REPO} --title "${title}" --body "${body.replace(/"/g, '\\"')}" --label "kb,content/kb"`;
+    // Use spawnSync to avoid shell quoting issues with multiline body or backticks
+    // Call the 'gh' CLI directly with argument array so no shell interpolation occurs.
+    const ghArgs = [
+      'issue', 'create',
+      '--repo', GITHUB_REPO,
+      '--title', title,
+      '--body', body,
+      '--label', 'kb,content/kb'
+    ];
 
-    const output = execSync(command, {
+    const res = spawnSync('gh', ghArgs, {
       encoding: 'utf8',
       stdio: 'pipe',
       env: { ...process.env, GITHUB_TOKEN }
     });
 
+    if (res.error) {
+      throw res.error;
+    }
+    if (res.status !== 0) {
+      throw new Error(res.stderr || `gh exited with code ${res.status}`);
+    }
+
     log(`✅ Создан Issue для термина "${term}" (${slug})`);
-    return output.trim();
+    return (res.stdout || '').trim();
   } catch (error) {
     log(`⚠️  Не удалось создать Issue для термина "${term}": ${error.message}`);
     return null;
