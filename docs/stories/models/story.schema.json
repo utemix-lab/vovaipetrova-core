@@ -1,0 +1,229 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/utemix-lab/vovaipetrova-core/docs/stories/models/story.schema.json",
+  "title": "Story Front Matter Schema",
+  "description": "JSON Schema для валидации front matter эпизодов Stories",
+  "type": "object",
+  "required": ["title", "slug", "summary", "tags", "machine_tags", "status"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Название эпизода Stories",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "slug": {
+      "type": "string",
+      "description": "Kebab-case идентификатор эпизода (должен соответствовать имени файла)",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Краткая аннотация эпизода (1–2 предложения)",
+      "minLength": 10,
+      "maxLength": 300
+    },
+    "tags": {
+      "type": "array",
+      "description": "Массив пользовательских тегов",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "contains": {
+        "const": "Story"
+      }
+    },
+    "machine_tags": {
+      "type": "array",
+      "description": "Массив машинных тегов (для индексации и фильтрации)",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:/[a-z0-9]+)*$"
+      },
+      "minItems": 1,
+      "contains": {
+        "const": "content/story"
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "Статус эпизода",
+      "enum": ["draft", "review", "ready"],
+      "default": "draft"
+    },
+    "story_type": {
+      "type": "string",
+      "description": "Тип эпизода (для dual-story формата)",
+      "enum": ["standard", "dual"],
+      "default": "standard"
+    },
+    "notion_page_id": {
+      "type": ["string", "null"],
+      "description": "ID страницы в Notion (если эпизод синхронизирован с Notion)",
+      "pattern": "^[a-f0-9]{32}$|^$"
+    },
+    "last_edited_time": {
+      "type": ["string", "null"],
+      "description": "Время последнего редактирования (ISO 8601 или пустая строка)",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{3})?Z?$|^$"
+    },
+    "author_image": {
+      "type": "object",
+      "description": "Метаданные изображения авторской части",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL изображения",
+          "format": "uri"
+        },
+        "status": {
+          "type": "string",
+          "description": "Статус изображения",
+          "enum": ["placeholder", "uploaded", "generated"]
+        },
+        "uploaded_by": {
+          "type": ["string", "null"],
+          "description": "Имя пользователя, загрузившего изображение"
+        },
+        "uploaded_at": {
+          "type": ["string", "null"],
+          "description": "Время загрузки (ISO 8601)",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{3})?Z?$"
+        }
+      },
+      "required": ["url", "status"]
+    },
+    "machine_image": {
+      "type": "object",
+      "description": "Метаданные изображения машинной части",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL изображения",
+          "format": "uri"
+        },
+        "status": {
+          "type": "string",
+          "description": "Статус изображения",
+          "enum": ["placeholder", "uploaded", "generated"]
+        },
+        "uploaded_by": {
+          "type": ["string", "null"],
+          "description": "Имя пользователя, загрузившего изображение"
+        },
+        "uploaded_at": {
+          "type": ["string", "null"],
+          "description": "Время загрузки (ISO 8601)",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{3})?Z?$"
+        }
+      },
+      "required": ["url", "status"]
+    },
+    "author_block": {
+      "type": "object",
+      "description": "Метаданные авторского блока (для dual-story)",
+      "properties": {
+        "teaser": {
+          "type": "string",
+          "description": "Короткая аннотация авторской части для индексирования",
+          "maxLength": 200
+        }
+      }
+    },
+    "machine_report_refs": {
+      "type": "object",
+      "description": "Ссылки на PR, commits, issues (для dual-story)",
+      "properties": {
+        "prs": {
+          "type": "array",
+          "description": "Массив номеров PR",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "commits": {
+          "type": "array",
+          "description": "Массив хешей коммитов",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{7,40}$"
+          }
+        },
+        "issues": {
+          "type": "array",
+          "description": "Массив номеров issues",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "visuals": {
+      "type": "object",
+      "description": "Промпты и пути к изображениям",
+      "properties": {
+        "author_prompt": {
+          "type": "string",
+          "description": "Описание промпта для генерации изображения авторской части"
+        },
+        "report_prompt": {
+          "type": "string",
+          "description": "Описание промпта для генерации изображения машинного отчёта"
+        },
+        "assets": {
+          "type": "array",
+          "description": "Пути к сохранённым изображениям",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "description": "Связанные ADR и Briefs",
+      "properties": {
+        "related_adr": {
+          "type": "array",
+          "description": "Массив slug связанных ADR",
+          "items": {
+            "type": "string"
+          }
+        },
+        "related_brief": {
+          "type": "array",
+          "description": "Массив ID страниц Briefs в Notion",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Метрики влияния и изменений",
+      "properties": {
+        "impact_estimate": {
+          "type": "string",
+          "description": "Оценка влияния",
+          "enum": ["высокий", "средний", "низкий"]
+        },
+        "time_saved": {
+          "type": "integer",
+          "description": "Сэкономленное время в минутах",
+          "minimum": 0
+        },
+        "files_changed": {
+          "type": "integer",
+          "description": "Количество изменённых файлов",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
+
