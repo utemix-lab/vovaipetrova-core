@@ -275,5 +275,5 @@ Dual-story эпизоды интегрированы в Explorer через `pro
 - [Stories — Концепция и принципы](./CONCEPT.md) — общая концепция Stories
 - [CONCEPT — Opus4 notes](./CONCEPT.opus4-notes.md) — рабочие заметки по dual-story
 - [Шаблон story.md](../../templates/story.md) — шаблон для создания эпизодов
- - [JSON Schema для Story](./models/story.schema.json) — схема для валидации
+- [JSON Schema для Story](./models/story.schema.json) — схема для валидации
 
