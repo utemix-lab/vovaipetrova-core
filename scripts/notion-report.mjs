@@ -116,10 +116,10 @@ async function findCopilotReportsPage() {
     });
 
     if (searchResults2.results && searchResults2.results.length > 0) {
-      const page = searchResults2.results.find(p => 
-        p.object === 'page' && 
-        (p.properties?.title?.title?.[0]?.plain_text?.includes('Copilot') || 
-         p.properties?.title?.title?.[0]?.plain_text?.includes('Отчёты'))
+      const page = searchResults2.results.find(p =>
+        p.object === 'page' &&
+        (p.properties?.title?.title?.[0]?.plain_text?.includes('Copilot') ||
+          p.properties?.title?.title?.[0]?.plain_text?.includes('Отчёты'))
       );
       if (page) {
         console.log(`✅ Found page: ${page.id}`);
@@ -188,18 +188,7 @@ function formatReportAsBlocks(report) {
   });
 
   // Информация об отчёте
-  const infoLines = [];
   if (report.executor) {
-    infoLines.push(`**Executor**: ${report.executor}`);
-  }
-  if (report.status) {
-    infoLines.push(`**Status**: ${report.status}`);
-  }
-  if (report.timestamp) {
-    infoLines.push(`**Timestamp**: ${report.timestamp}`);
-  }
-
-  if (infoLines.length > 0) {
     blocks.push({
       object: 'block',
       type: 'paragraph',
@@ -208,7 +197,66 @@ function formatReportAsBlocks(report) {
           {
             type: 'text',
             text: {
-              content: infoLines.join('\n'),
+              content: 'Executor',
+            },
+            annotations: {
+              bold: true,
+            },
+          },
+          {
+            type: 'text',
+            text: {
+              content: `: ${report.executor}`,
+            },
+          },
+        ],
+      },
+    });
+  }
+  if (report.status) {
+    blocks.push({
+      object: 'block',
+      type: 'paragraph',
+      paragraph: {
+        rich_text: [
+          {
+            type: 'text',
+            text: {
+              content: 'Status',
+            },
+            annotations: {
+              bold: true,
+            },
+          },
+          {
+            type: 'text',
+            text: {
+              content: `: ${report.status}`,
+            },
+          },
+        ],
+      },
+    });
+  }
+  if (report.timestamp) {
+    blocks.push({
+      object: 'block',
+      type: 'paragraph',
+      paragraph: {
+        rich_text: [
+          {
+            type: 'text',
+            text: {
+              content: 'Timestamp',
+            },
+            annotations: {
+              bold: true,
+            },
+          },
+          {
+            type: 'text',
+            text: {
+              content: `: ${report.timestamp}`,
             },
           },
         ],
@@ -263,13 +311,13 @@ function parseArgs() {
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a.startsWith('--file=')) {
-      out.file = a.split('=')[1];
+      out.file = a.split('=', 2)[1];
     } else if (a.startsWith('--page-id=')) {
-      out.pageId = a.split('=')[1];
+      out.pageId = a.split('=', 2)[1];
     } else if (a.startsWith('--payload=')) {
-      out.payload = a.split('=')[1];
+      out.payload = a.split('=', 2)[1];
     } else if (a.startsWith('--title=')) {
-      out.title = a.split('=')[1];
+      out.title = a.split('=', 2)[1];
     } else if (a === '--file' && i + 1 < args.length) {
       out.file = args[++i];
     } else if (a === '--page-id' && i + 1 < args.length) {
