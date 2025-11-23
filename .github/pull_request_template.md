@@ -9,9 +9,15 @@
 - [ ] Stream 2 (GitHub → Notion): Работа агента с синхронизацией статусов в Notion
 - [ ] Нет связи с Notion: Задача только в GitHub (Issue)
 
-**Lane Label**: {Добавьте соответствующий label при создании PR: `lane:docs`, `lane:infra`, `lane:stories`, `lane:characters`, `lane:qa`, `lane:refactor`, `lane:fix`, `lane:feat`, `lane:composer`, `lane:codegpt:orchestrator`, `lane:codegpt:docs`, `lane:codegpt:refactor`, `lane:codegpt:creative`}
+**Lane Label**: {Добавьте соответствующий label при создании PR}
 
-**Sequence Label**: {Если задача является частью последовательности, добавьте `seq:1`, `seq:2`, и т.д.}
+**Standard lanes**: `lane:docs`, `lane:infra`, `lane:stories`, `lane:characters`, `lane:qa`, `lane:refactor`, `lane:fix`, `lane:feat`, `lane:composer`
+
+**CodeGPT lanes**: `lane:codegpt:orchestrator`, `lane:codegpt:docs`, `lane:codegpt:refactor`, `lane:codegpt:creative`
+
+**Copilot lanes**: `lane:copilot`, `lane:copilot:docs`, `lane:copilot:infra`, `lane:copilot:stories`, `lane:copilot:refactor`, `lane:copilot:feat`, `lane:copilot:fix`
+
+**Sequence Label**: {Если задача является частью последовательности, добавьте `seq:1`, `seq:2`, `seq:3`, и т.д. (до `seq:15`)}
 
 ## Deliverables
 

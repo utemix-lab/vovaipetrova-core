@@ -233,6 +233,7 @@ Safety Rails определяют жёсткие ограничения для �
 
 Для автоматической проверки политики "один PR на lane" используются GitHub labels формата `lane:*`:
 
+**Standard lanes:**
 - `lane:docs` — работа с документацией (`docs/*`, `docs/**`)
 - `lane:infra` — инфраструктура (`chore/*`, workflows, scripts)
 - `lane:stories` — эпизоды Stories (`docs/stories/**`)
@@ -242,26 +243,39 @@ Safety Rails определяют жёсткие ограничения для �
 - `lane:fix` — исправления и багфиксы
 - `lane:feat` — новые возможности
 - `lane:composer` — задачи, выполняемые через Composer (изолированная дорожка)
+
+**CodeGPT lanes:**
 - `lane:codegpt:orchestrator` — задачи для CodeGPT Orchestrator
 - `lane:codegpt:docs` — задачи для CodeGPT Docs Agent
 - `lane:codegpt:refactor` — задачи для CodeGPT Refactor Agent
 - `lane:codegpt:creative` — задачи для CodeGPT Creative Agent
 
+**Copilot lanes:**
+- `lane:copilot` — задачи GitHub Copilot (общие)
+- `lane:copilot:docs` — задачи Copilot по документации
+- `lane:copilot:infra` — задачи Copilot по инфраструктуре
+- `lane:copilot:stories` — задачи Copilot по Stories
+- `lane:copilot:refactor` — задачи Copilot по рефакторингу
+- `lane:copilot:feat` — задачи Copilot по новым возможностям
+- `lane:copilot:fix` — задачи Copilot по исправлениям
+
 **Маппинг префиксов веток → labels:**
-- `chore/*` → `lane:infra`
-- `feat/*` → `lane:feat`
-- `fix/*` → `lane:fix`
-- `docs/*` → `lane:docs`
-- `refactor/*` → `lane:refactor`
+- `chore/*` → `lane:infra` (или `lane:copilot:infra` для Copilot)
+- `feat/*` → `lane:feat` (или `lane:copilot:feat` для Copilot)
+- `fix/*` → `lane:fix` (или `lane:copilot:fix` для Copilot)
+- `docs/*` → `lane:docs` (или `lane:copilot:docs` для Copilot)
+- `refactor/*` → `lane:refactor` (или `lane:copilot:refactor` для Copilot)
 - `composer/*` → `lane:composer` (задачи Composer)
 - `codegpt/*` → `lane:codegpt:*` (задачи CodeGPT агентов, определяется по типу агента)
+- `copilot/*` → `lane:copilot:*` (задачи Copilot, определяется по типу задачи)
 - `notion-sync/*` → обычно без label (автоматика)
 
 **Sequence labels (`seq:*`):**
 - Используются для маркировки задач, которые являются частью последовательности
-- Формат: `seq:1`, `seq:2`, `seq:3`, и т.д.
+- Формат: `seq:1`, `seq:2`, `seq:3`, ..., `seq:15` (до 15 шагов)
 - Помогают отслеживать порядок выполнения связанных задач
-- Можно комбинировать с lane labels (например, `lane:docs` + `seq:1`)
+- Можно комбинировать с lane labels (например, `lane:copilot:docs` + `seq:1`)
+- Используются для задач, которые должны выполняться в определённом порядке
 
 ### Правила
 - Одна ветка = один PR = одна задача из Briefs
