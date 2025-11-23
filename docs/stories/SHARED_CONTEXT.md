@@ -131,6 +131,17 @@ Stories интегрированы в Explorer:
 - Статусы: `draft`, `review`, `ready`
 - PR с меткой `content/story` или `auto:story`
 
+## Recent tool additions
+
+The following helper scripts and Notion-report integration have been added to support the Stories pipeline:
+
+- `scripts/notion-report.mjs` — minimal reporter to post JSON summaries to the "Copilot — Отчёты" Notion page (created/maintained by Cursor). Use it with `--file` or `--payload`.
+- `scripts/generate-stories.mjs` — generator updated to include `author_image` and `machine_image` placeholders in front matter and to create a small `tmp/story-meta.json` after generation; it now attempts a best-effort call to `scripts/notion-report.mjs` to publish a minimal report.
+- `scripts/author-gateway.mjs` — Author Gateway PoC (auto / hitl / human-first modes) to orchestrate generation and optionally forward a report to Notion.
+- `scripts/add-image-to-episode.mjs` — helper to update `author_image` or `machine_image` front matter for a story by file or slug (sets url, status, uploaded_by, uploaded_at).
+
+These additions are intended to avoid duplicated work: the generator and Notion reporter handle minimal reporting, while the gateway and image helper support human workflows (HitL and manual illustration).
+
 ## Контекст для агентов
 
 ### Вход агента
