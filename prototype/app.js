@@ -47,6 +47,36 @@ function formatStoryOrder(page) {
   return null;
 }
 
+/**
+ * Правильная русская плюрализация для слова "история"
+ * Правила: 1, 21, 31... → "история"; 2-4, 22-24... → "истории"; 0, 5-9, 10-20, 25-30... → "историй"
+ * Особые случаи: 11-14 всегда используют "историй"
+ */
+function pluralizeStory(count) {
+  if (count === 0) return 'историй';
+  
+  const lastDigit = count % 10;
+  const lastTwoDigits = count % 100;
+  
+  // Особые случаи: 11-14 всегда используют "историй"
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+    return 'историй';
+  }
+  
+  // 1, 21, 31, 41... → "история"
+  if (lastDigit === 1) {
+    return 'история';
+  }
+  
+  // 2-4, 22-24, 32-34... → "истории"
+  if (lastDigit >= 2 && lastDigit <= 4) {
+    return 'истории';
+  }
+  
+  // 0, 5-9, 10, 20, 25-30... → "историй"
+  return 'историй';
+}
+
 function byStatus(status, searchTerm) {
   return (page) => {
     const matchesStatus =
@@ -884,7 +914,7 @@ async function renderIndex() {
     
     const heading = document.createElement("h2");
     heading.className = "stories-index-group-heading";
-    heading.textContent = `${groupHeading} (${stories.length} ${stories.length === 1 ? 'история' : stories.length < 5 ? 'истории' : 'историй'})`;
+    heading.textContent = `${groupHeading} (${stories.length} ${pluralizeStory(stories.length)})`;
     storiesIndexContent.appendChild(heading);
     
     const fragment = document.createDocumentFragment();
