@@ -18,9 +18,9 @@ import path from 'path';
 function parseArgs() {
   const out = { mode: 'auto' };
   for (const raw of process.argv.slice(2)) {
-    if (raw.startsWith('--mode=')) out.mode = raw.split('=')[1];
-    else if (raw.startsWith('--page-id=')) out.pageId = raw.split('=')[1];
-    else if (raw.startsWith('--notion-page=')) out.pageId = raw.split('=')[1];
+    if (raw.startsWith('--mode=')) out.mode = raw.split('=', 2)[1];
+    else if (raw.startsWith('--page-id=')) out.pageId = raw.split('=', 2)[1];
+    else if (raw.startsWith('--notion-page=')) out.pageId = raw.split('=', 2)[1];
   }
   return out;
 }

@@ -13,7 +13,7 @@ import { join } from 'path';
 import YAML from 'yaml';
 
 const VERBOSE = process.argv.includes('--verbose');
-const BASE_REF = process.argv.find(arg => arg.startsWith('--base='))?.split('=')[1] || 'main';
+const BASE_REF = process.argv.find(arg => arg.startsWith('--base='))?.split('=', 2)[1] || 'main';
 
 // Пороги size-guard по типам задач
 const SIZE_LIMITS = {

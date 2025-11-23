@@ -18,11 +18,11 @@ function parseArgs() {
   const out = {};
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
-    if (a.startsWith('--file=')) out.file = a.split('=')[1];
-    else if (a.startsWith('--slug=')) out.slug = a.split('=')[1];
-    else if (a.startsWith('--slot=')) out.slot = a.split('=')[1];
-    else if (a.startsWith('--url=')) out.url = a.split('=')[1];
-    else if (a.startsWith('--uploaded-by=')) out.uploaded_by = a.split('=')[1];
+    if (a.startsWith('--file=')) out.file = a.split('=', 2)[1];
+    else if (a.startsWith('--slug=')) out.slug = a.split('=', 2)[1];
+    else if (a.startsWith('--slot=')) out.slot = a.split('=', 2)[1];
+    else if (a.startsWith('--url=')) out.url = a.split('=', 2)[1];
+    else if (a.startsWith('--uploaded-by=')) out.uploaded_by = a.split('=', 2)[1];
   }
   return out;
 }

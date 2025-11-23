@@ -263,13 +263,13 @@ function parseArgs() {
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a.startsWith('--file=')) {
-      out.file = a.split('=')[1];
+      out.file = a.split('=', 2)[1];
     } else if (a.startsWith('--page-id=')) {
-      out.pageId = a.split('=')[1];
+      out.pageId = a.split('=', 2)[1];
     } else if (a.startsWith('--payload=')) {
-      out.payload = a.split('=')[1];
+      out.payload = a.split('=', 2)[1];
     } else if (a.startsWith('--title=')) {
-      out.title = a.split('=')[1];
+      out.title = a.split('=', 2)[1];
     } else if (a === '--file' && i + 1 < args.length) {
       out.file = args[++i];
     } else if (a === '--page-id' && i + 1 < args.length) {
