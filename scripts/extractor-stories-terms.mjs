@@ -25,6 +25,16 @@ const GITHUB_REPO = process.env.GITHUB_REPO || 'utemix-lab/vovaipetrova-core';
 const CANDIDATES_OUTPUT = 'candidates_kb.json';
 const STORIES_DIR = 'docs/stories';
 
+function envBool(name, fallback = false) {
+  const value = process.env[name];
+  if (value == null || value === '') return fallback;
+  return ['1', 'true', 'yes', 'on'].includes(String(value).toLowerCase());
+}
+
+const DEFAULT_BASE_REF = process.env.EXTRACTOR_STORIES_BASE?.trim() || 'main';
+const DEFAULT_DRY_RUN = envBool('EXTRACTOR_STORIES_DRY_RUN');
+const DEFAULT_NO_ISSUES = envBool('EXTRACTOR_STORIES_NO_ISSUES');
+
 // Минимальная длина термина (в символах)
 const MIN_TERM_LENGTH = 3;
 // Максимальная длина термина (в символах)
@@ -63,20 +73,72 @@ function log(message) {
 function parseArgs() {
   const args = {
     pr: null,
-    base: 'main',
-    dryRun: DRY_RUN,
-    noIssues: NO_ISSUES
+    base: DEFAULT_BASE_REF,
+    dryRun: DEFAULT_DRY_RUN,
+    noIssues: DEFAULT_NO_ISSUES
   };
 
-  for (const arg of process.argv.slice(2)) {
+  const argv = process.argv.slice(2);
+  const readNextValue = (index) => {
+    if (index + 1 >= argv.length) return null;
+    const next = argv[index + 1];
+    if (next?.startsWith('--')) return null;
+    return next;
+  };
+
+  const coerceBoolean = (value, fallbackTrue = true) => {
+    if (value == null) return fallbackTrue;
+    const normalized = String(value).toLowerCase();
+    if (['false', '0', 'no', 'off'].includes(normalized)) return false;
+    if (['true', '1', 'yes', 'on'].includes(normalized)) return true;
+    return fallbackTrue;
+  };
+
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+
     if (arg.startsWith('--pr=')) {
       args.pr = arg.split('=', 2)[1];
-    } else if (arg.startsWith('--base=')) {
+      continue;
+    }
+    if (arg === '--pr') {
+      const value = readNextValue(i);
+      if (value) {
+        args.pr = value;
+        i++;
+      }
+      continue;
+    }
+
+    if (arg.startsWith('--base=')) {
       args.base = arg.split('=', 2)[1];
-    } else if (arg === '--dry-run') {
+      continue;
+    }
+    if (arg === '--base') {
+      const value = readNextValue(i);
+      if (value) {
+        args.base = value;
+        i++;
+      }
+      continue;
+    }
+
+    if (arg === '--dry-run') {
       args.dryRun = true;
-    } else if (arg === '--no-issues') {
+      continue;
+    }
+    if (arg.startsWith('--dry-run=')) {
+      args.dryRun = coerceBoolean(arg.split('=', 2)[1], true);
+      continue;
+    }
+
+    if (arg === '--no-issues') {
       args.noIssues = true;
+      continue;
+    }
+    if (arg.startsWith('--no-issues=')) {
+      args.noIssues = coerceBoolean(arg.split('=', 2)[1], true);
+      continue;
     }
   }
 
@@ -279,17 +341,31 @@ async function createIssueForTerm(term, slug, context, args) {
       `_Автоматически создано из PR #${context.prNumber || 'N/A'}_`
     ].join('\n');
 
-    const [owner, repo] = GITHUB_REPO.split('/');
-    const command = `gh issue create --repo ${GITHUB_REPO} --title "${title}" --body "${body.replace(/"/g, '\\"')}" --label "kb,content/kb"`;
+    // Use spawnSync to avoid shell quoting issues with multiline body or backticks
+    // Call the 'gh' CLI directly with argument array so no shell interpolation occurs.
+    const ghArgs = [
+      'issue', 'create',
+      '--repo', GITHUB_REPO,
+      '--title', title,
+      '--body', body,
+      '--label', 'kb,content/kb'
+    ];
 
-    const output = execSync(command, {
+    const res = spawnSync('gh', ghArgs, {
       encoding: 'utf8',
       stdio: 'pipe',
       env: { ...process.env, GITHUB_TOKEN }
     });
 
+    if (res.error) {
+      throw res.error;
+    }
+    if (res.status !== 0) {
+      throw new Error(res.stderr || `gh exited with code ${res.status}`);
+    }
+
     log(`✅ Создан Issue для термина "${term}" (${slug})`);
-    return output.trim();
+    return (res.stdout || '').trim();
   } catch (error) {
     log(`⚠️  Не удалось создать Issue для термина "${term}": ${error.message}`);
     return null;
