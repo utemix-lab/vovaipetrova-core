@@ -131,29 +131,11 @@ notion_update_page({
   } 
 })
 ```
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/main
 **Настройка MCP:**
 - См. [COPILOT-NOTION-SETUP.md](../COPILOT-NOTION-SETUP.md) для настройки MCP сервера
 - См. [NOTION-ACCESS-SETUP.md](NOTION-ACCESS-SETUP.md) для настройки доступа к страницам Notion
 
-<<<<<<< HEAD
-### CodeGPT / Cursor
-
-**Использование скриптов:**
-- Использовать скрипты `scripts/codegpt/notion-*.mjs`
-- Указывать `Sync Method: Scripts` в отчёте
-
-**Пример использования:**
-```bash
-# Обновление статуса
-node scripts/codegpt/notion-update.mjs <page-id> '{"Status":{"select":{"name":"In Progress"}}}'
-```
-
-=======
->>>>>>> origin/main
 ## Проверка перед PR
 
 Перед созданием PR убедитесь:
