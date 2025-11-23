@@ -291,6 +291,7 @@ function main() {
   });
 
   const report = {
+    version: '3.0',
     generatedAt: new Date().toISOString(),
     totalFiles: docs.length,
     brokenCount: broken.length,

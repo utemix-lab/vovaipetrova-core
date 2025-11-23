@@ -31,10 +31,7 @@ jobs:
       - name: Generate diagnostics snapshot
         run: |
           echo "📊 Generating diagnostics snapshot..."
-          node prototype/build-index.mjs
-          node scripts/report-broken-internal-links.mjs
-          node scripts/generate-stats.mjs
-          node scripts/check-routes-consistency.mjs || echo "⚠️ Routes check found orphans (non-blocking)"
+          npm run diagnostics:snapshot
           echo "✅ Diagnostics snapshot generated"
 
       - name: Check for changes

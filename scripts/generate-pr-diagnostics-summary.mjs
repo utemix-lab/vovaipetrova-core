@@ -28,11 +28,15 @@ function generateSummary() {
     const totals = stats.totals || {};
     const statuses = totals.statuses || {};
     
+    // Проверяем версию для обратной совместимости
+    const version = stats.version || '2.0';
+    
     const readyCount = statuses.ready || 0;
     const issuesTotal = totals.issues_total || 0;
     const internalMissing = totals.issues_internal_missing || 0;
     const pagesTotal = totals.pages || 0;
     const draftCount = statuses.draft || 0;
+    const reviewCount = statuses.review || 0;
     
     // Вычисляем процент готовности
     const readyPercent = pagesTotal > 0 ? Math.round((readyCount / pagesTotal) * 100) : 0;
@@ -41,8 +45,11 @@ function generateSummary() {
     const summary = [
       '## 📊 Diagnostics Snapshot',
       '',
+      `**Version:** ${version}`,
+      '',
       `### Content Status`,
       `- **Ready pages:** ${readyCount} / ${pagesTotal} (${readyPercent}%)`,
+      `- **Review pages:** ${reviewCount}`,
       `- **Draft pages:** ${draftCount}`,
       '',
       `### Issues`,

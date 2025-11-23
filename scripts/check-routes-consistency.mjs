@@ -104,6 +104,7 @@ function main() {
     const orphans = findOrphans();
     
     const output = {
+      version: '3.0',
       updated: new Date().toISOString(),
       orphans: orphans
     };
