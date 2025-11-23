@@ -159,7 +159,7 @@ node scripts/codegpt/notion-update.mjs <page-id> '{"Status":{"select":{"name":"I
 ### Проблема: Не могу обновить статус в Notion
 
 **Причины:**
-- Нет доступа к странице в Notion (см. `docs/NOTION-ACCESS-SETUP.md`)
+- Нет доступа к странице в Notion (см. [NOTION-ACCESS-SETUP.md](NOTION-ACCESS-SETUP.md))
 - Неправильный токен API
 - Страница не существует
 
