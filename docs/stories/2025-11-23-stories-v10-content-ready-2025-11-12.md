@@ -1,6 +1,6 @@
 ---
 title: "Stories · v1.0-content-ready — 2025-11-12"
-slug: "stories-v10-content-ready-2025-11-12"
+slug: "2025-11-23-stories-v10-content-ready-2025-11-12"
 summary: "Черновик автогенератора Stories: синхронизация CHANGELOG, ADR и ProtoLabs."
 tags: [Story]
 machine_tags: [content/story]
