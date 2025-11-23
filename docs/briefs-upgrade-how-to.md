@@ -35,6 +35,7 @@ status: ready
 **Название**: `Executor`  
 **Опции**:
 - `Cursor`
+- `Copilot`
 - `CodeGPT:Orchestrator`
 - `CodeGPT:Docs`
 - `CodeGPT:Refactor`
