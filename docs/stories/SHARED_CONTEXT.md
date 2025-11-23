@@ -85,7 +85,11 @@ status: ready
 ### Запрещено
 
 - ❌ Использовать первое лицо с именами реальных людей
+<<<<<<< HEAD
 - ❌ Указывать пути пользователей (например: `C:\Users\...`, `/home/...`)
+=======
+- ❌ Указывать пути пользователей (например: `<user-path>`)
+>>>>>>> origin/main
 - ❌ Указывать email, телефоны, адреса реальных людей
 - ❌ Создавать файлы без front matter
 - ❌ Менять slug существующих файлов без миграции
@@ -146,14 +150,22 @@ These additions are intended to avoid duplicated work: the generator and Notion 
 
 ### Вход агента
 
+<<<<<<< HEAD
 - **Источник задачи**: Notion Briefs с полями `Brief`, `Scope`, `Deliverables`, `Executor`, `Lane`
+=======
+- **Источник задачи**: Notion (Briefs) с полями `Brief`, `Scope`, `Deliverables`, `Executor`, `Lane`
+>>>>>>> origin/main
 - **Контекст проекта**: `docs/protocol-kontraktnaya-model-dlya-agentov.md`
 - **Шаблон**: `templates/story.md`
 
 ### Выход агента
 
 - **Ветка**: `{type}/{short-description}` (например, `chore/stories-concept`)
+<<<<<<< HEAD
 - **Коммиты**: Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`)
+=======
+- **Коммиты**: conventional commits style (`feat:`, `fix:`, `chore:`, `docs:`)
+>>>>>>> origin/main
 - **PR**: с описанием изменений и секцией Deliverables
 - **Файлы**: в `docs/stories/` с правильным front matter
 
