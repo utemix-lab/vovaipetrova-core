@@ -7,15 +7,15 @@ machine_tags: [content/story]
 status: draft
 last_edited_time: ''
 author_image:
-	url: "https://via.placeholder.com/800x450?text=author"
-	status: "placeholder"
-	uploaded_by: null
-	uploaded_at: null
+  url: "https://via.placeholder.com/800x450?text=author"
+  status: "placeholder"
+  uploaded_by: null
+  uploaded_at: null
 machine_image:
-	url: "https://via.placeholder.com/800x450?text=machine"
-	status: "placeholder"
-	uploaded_by: null
-	uploaded_at: null
+  url: "https://via.placeholder.com/800x450?text=machine"
+  status: "placeholder"
+  uploaded_by: null
+  uploaded_at: null
 ---
 
 # TITLE
