@@ -161,7 +161,14 @@ if(and(or(prop("Status") == "Ready", prop("Status") == "In progress", prop("Stat
 3. Добавьте фильтры:
    - `Status` is `Review`
    - `Requires Review` is `Checked`
-4. Сохраните представление
+4. Настройте сортировку:
+   - Sort by: `SLA` (ascending), затем по `Overdue` (descending)
+5. Сохраните представление
+
+**Рекомендации по UX:**
+- Видимые поля: `Title`, `Status`, `SLA`, `Overdue`, `Lane`, `Executor`, `Created time`, `Last edited time`
+- Дополнительные фильтры: `Overdue = Yes` (для выделения просроченных ревью)
+- Подробнее: см. [Briefs UX — доводки представлений](./briefs-ux-improvements.md)
 
 ### 3.3. Overdue
 
@@ -192,6 +199,33 @@ if(and(or(prop("Status") == "Ready", prop("Status") == "In progress", prop("Stat
 4. Настройте сортировку:
    - Sort by: `SLA` (ascending)
 5. Сохраните представление
+
+**Рекомендации по UX:**
+- Видимые поля: `Title`, `Status`, `SLA`, `Executor`, `Overdue`
+- Фильтры: исключить `Status = Done` и `Status = Cancelled`
+- Подробнее: см. [Briefs UX — доводки представлений](./briefs-ux-improvements.md)
+
+### 3.5. Ready for Copilot
+
+**Название**: `Ready for Copilot`  
+**Тип**: Table  
+**Фильтры**:
+- `Status` is `Ready`
+- `Executor` is `Cursor` OR `Executor` contains `Copilot`
+
+**Инструкция**:
+1. Создайте новое представление типа `Table`
+2. Назовите его `Ready for Copilot`
+3. Добавьте фильтры:
+   - `Status` is `Ready`
+   - `Executor` is `Cursor` OR `Executor` contains `Copilot`
+4. Настройте сортировку:
+   - Sort by: `SLA` (ascending)
+5. Сохраните представление
+
+**Рекомендации по UX:**
+- Видимые поля: `Title`, `Status`, `Executor`, `Lane`, `SLA`, `Created time`, `Upstream Source`
+- Подробнее: см. [Briefs UX — доводки представлений](./briefs-ux-improvements.md)
 
 ## Шаг 4: Заполнение данных для существующих задач
 
@@ -236,4 +270,5 @@ if(and(or(prop("Status") == "Ready", prop("Status") == "In progress", prop("Stat
 
 - [Protocol — Контрактная модель для агентов](./protocol-kontraktnaya-model-dlya-agentov.md) — описание процесса работы с агентами
 - [Очереди ревью и SLA](./protocol-kontraktnaya-model-dlya-agentov.md#очереди-ревью-и-sla) — описание SLA и очередей ревью
+- [Briefs UX — доводки представлений](./briefs-ux-improvements.md) — рекомендации по улучшению UX представлений
 

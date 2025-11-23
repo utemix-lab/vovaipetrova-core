@@ -443,7 +443,15 @@ CI автоматически проверяет размер PR, наличие
 - Использование: быстрый доступ к задачам для CodeGPT агентов
 - Доступ: представление `Ready for CodeGPT` в Briefs
 
-**Подробнее:** см. [Briefs upgrade — инструкция по обновлению](./briefs-upgrade-how-to.md) для настройки представлений и формулы Overdue.
+**Ready for Copilot:**
+- Показывает задачи, готовые для выполнения через Cursor/Copilot агентов
+- Фильтры: `Status = Ready` AND (`Executor = Cursor` OR `Executor` contains `Copilot`)
+- Использование: быстрый доступ к задачам для Cursor/Copilot агентов
+- Доступ: представление `Ready for Copilot` в Briefs
+
+**Подробнее:** 
+- [Briefs upgrade — инструкция по обновлению](./briefs-upgrade-how-to.md) — настройка представлений и формулы Overdue
+- [Briefs UX — доводки представлений](./briefs-ux-improvements.md) — рекомендации по улучшению UX представлений
 
 #### Статусы в Briefs
 
@@ -654,12 +662,12 @@ writeFile('docs/new-page.md', content, {
 
 **Stream 2: GitHub → Notion (синхронизация)**
 - **Направление**: GitHub → Notion
-- **Тип**: Ручная/автоматическая синхронизация через CodeGPT агентов
+- **Тип**: Ручная/автоматическая синхронизация через Copilot агентов
 - **Использование**: Обновление статусов задач, синхронизация прогресса, обратная связь
 - **Ветки**: Любые ветки агентов (`chore/*`, `feat/*`, `docs/*`, и т.д.)
 - **Процесс**: Агент выполняет задачу → создаёт PR → после мерджа обновляет статус в Notion
 
-### Правила для агентов (CodeGPT, Copilot, Cursor)
+### Правила для агентов (Copilot)
 
 **При работе с Stream 1 (Notion → GitHub):**
 - ❌ **Не изменять** файлы, импортированные из Notion (`notion_page_id` присутствует)
@@ -670,7 +678,7 @@ writeFile('docs/new-page.md', content, {
 
 **При работе с Stream 2 (GitHub → Notion):**
 - ✅ **Обновлять** статусы задач в Notion после завершения работы
-- ✅ **Использовать** скрипты `scripts/codegpt/notion-update.mjs` или MCP сервер для обновления статусов
+- ✅ **Использовать** MCP сервер для обновления статусов через Copilot
 - ✅ **Синхронизировать** статусы: `Ready` → `In Progress` → `Review` → `Done`
 - ✅ **Добавлять** ссылку на PR в поле задачи (если доступно)
 - ❌ **Не создавать** дубликаты задач в Notion для работы, начатой в GitHub
@@ -703,15 +711,6 @@ writeFile('docs/new-page.md', content, {
 - При блокировке → обновить статус в Notion на `Blocked`
 
 **Команды для синхронизации:**
-
-**Через скрипты (CodeGPT, Cursor):**
-```bash
-# Обновить статус задачи в Notion
-node scripts/codegpt/notion-update.mjs <page-id> '{"Status":{"select":{"name":"In Progress"}}}'
-
-# Получить ID задачи из Briefs
-node scripts/codegpt/notion-search.mjs "Title задачи"
-```
 
 **Через MCP (Copilot):**
 ```javascript
@@ -756,16 +755,15 @@ notion_update_page({
 ## Процесс работы агента
 
 1. **Чтение задачи**: получить Brief из Notion или Issue
-   - Если задача из Notion: использовать MCP (`notion_fetch`) или скрипты (`notion-search.mjs`)
+   - Если задача из Notion: использовать MCP (`notion_fetch`)
    - Если задача из GitHub: прочитать Issue
-2. **Подготовка**: прочитать контекст (`/.codegpt/context.md`, `docs/protocol-kontraktnaya-model-dlya-agentov.md`)
+2. **Подготовка**: прочитать контекст (`docs/protocol-kontraktnaya-model-dlya-agentov.md`)
    - Для Copilot: прочитать `docs/stories/SHARED_CONTEXT.md` и `docs/stories/CONCEPT.md` (если работа со Stories)
 3. **Проверка two-stream**: определить тип потока
    - Stream 1 (Notion → GitHub): проверить, что файлы не имеют `notion_page_id` (импортированный контент)
-   - Stream 2 (GitHub → Notion): проверить доступ к Notion через MCP или скрипты
+   - Stream 2 (GitHub → Notion): проверить доступ к Notion через MCP
 4. **Синхронизация статуса**: обновить статус в Notion на `In Progress` (если задача из Notion, Stream 2)
    - Copilot: использовать MCP инструмент `notion_update_page`
-   - CodeGPT/Cursor: использовать скрипт `notion-update.mjs`
 5. **Выполнение**: создать ветку, внести изменения, проверить локально
    - Использовать адаптеры файловых операций для всех изменений
    - Обязательно использовать dry-run и preview перед записью
@@ -782,7 +780,6 @@ notion_update_page({
    - Заполнить секцию "Two-stream Sync Status" в Deliverables
 8. **Синхронизация статуса**: обновить статус в Notion на `Review` (если задача из Notion, Stream 2)
    - Copilot: использовать MCP инструмент `notion_update_page`
-   - CodeGPT/Cursor: использовать скрипт `notion-update.mjs`
 9. **Ожидание**: дождаться зелёного CI (`Docs CI` должен пройти)
 10. **Мердж**: после одобрения смерджить PR
 11. **Завершение**: 

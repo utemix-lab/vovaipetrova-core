@@ -109,7 +109,7 @@ status: ready
 - **Issues**: Нет проблем
 ```
 
-## Правила для разных агентов
+## Правила для агентов
 
 ### GitHub Copilot
 
@@ -132,17 +132,9 @@ notion_update_page({
 })
 ```
 
-### CodeGPT / Cursor
-
-**Использование скриптов:**
-- Использовать скрипты `scripts/codegpt/notion-*.mjs`
-- Указывать `Sync Method: Scripts` в отчёте
-
-**Пример использования:**
-```bash
-# Обновление статуса
-node scripts/codegpt/notion-update.mjs <page-id> '{"Status":{"select":{"name":"In Progress"}}}'
-```
+**Настройка MCP:**
+- См. [COPILOT-NOTION-SETUP.md](../COPILOT-NOTION-SETUP.md) для настройки MCP сервера
+- См. [NOTION-ACCESS-SETUP.md](NOTION-ACCESS-SETUP.md) для настройки доступа к страницам Notion
 
 ## Проверка перед PR
 
