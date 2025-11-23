@@ -202,7 +202,7 @@ Stories — это репозиторный канал публикации кр
 
 ### Что зафиксировано в текущем PR
 
-- Ветка/PR: feature work in `feat/author-gateway` — PR #130 ("feat(stories): Author Gateway + image helper (PoC)").
+- Ветка/PR: feature work in `feat/author-gateway` — PR #130 ("feat(stories): author gateway + image helper (PoC)").
 - Основные файлы: `scripts/notion-report.mjs`, `scripts/generate-stories.mjs`, `scripts/author-gateway.mjs`, `scripts/add-image-to-episode.mjs`, `templates/story.md`, `docs/stories/*`.
 
 ## Инструкции «тёплого старта» — как быстро войти в контекст, если сессия прервана
