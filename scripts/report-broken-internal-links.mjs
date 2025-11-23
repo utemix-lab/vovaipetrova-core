@@ -282,6 +282,15 @@ function main() {
             });
             return;
           }
+        } else {
+          // JSON/YAML файл находится вне репозитория, помечаем как broken
+          broken.push({
+            file: doc.path.replace(/^docs\//, ""),
+            link: href,
+            reason: "outside_repo",
+            resolved_to: null
+          });
+          return;
         }
       }
       
