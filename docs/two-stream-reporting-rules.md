@@ -75,7 +75,6 @@ status: ready
 **Task**: Notion Export (автоматический импорт)
 
 **Two-stream Sync Status**:
-- [x] Задача не из Notion (только GitHub Issue) — синхронизация не требуется
 - [x] Ветка `notion-sync/*` — односторонний импорт (не синхронизируется обратно)
 
 ### Two-stream Notes
@@ -145,7 +144,7 @@ notion_update_page({
 **Правило:**
 - Если задача из Notion Briefs → Stream 2 (GitHub → Notion)
 - Если импорт контента из Notion → Stream 1 (Notion → GitHub)
-- Если задача только в GitHub Issue → Нет связи с Notion
+- Если не удаётся получить задачу из Notion через MCP → уведомить автора о проблеме с связью
 
 ## Связанные документы
 
