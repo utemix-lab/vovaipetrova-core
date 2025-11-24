@@ -283,6 +283,7 @@ npm run sanity:check
 
 ## Связанные документы
 
+- **[Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md)** — единый источник истины для синхронизации между Notion и GitHub
 - [CONTRIBUTING.md](../CONTRIBUTING.md) — базовый цикл Notion → GitHub
 - [Protocol — Контрактная модель для агентов](./protocol-kontraktnaya-model-dlya-agentov.md) — общий процесс работы
 - [Экспорт в GitHub — руководство и шаблоны](./eksport-v-github-rukovodstvo-i-shablony.md) — детальное руководство

@@ -169,6 +169,7 @@ notion_update_page({
 
 ## Связанные документы
 
+- **[Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md)** — единый источник истины для синхронизации между Notion и GitHub
 - [Protocol — Контрактная модель для агентов](protocol-kontraktnaya-model-dlya-agentov.md)
 - [NOTION-ACCESS-SETUP.md](NOTION-ACCESS-SETUP.md) — настройка доступа к Notion
 - [COPILOT-NOTION-SETUP.md](../COPILOT-NOTION-SETUP.md) — настройка MCP для Copilot

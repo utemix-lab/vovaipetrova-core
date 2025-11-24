@@ -168,6 +168,7 @@ These additions are intended to avoid duplicated work: the generator and Notion 
 
 ## Связанные документы
 
+- **[Single Source Playbook — «священный документ» (Notion↔Repo)](../SINGLE-SOURCE-PLAYBOOK.md)** — единый источник истины для синхронизации между Notion и GitHub
 - [CONCEPT.md](CONCEPT.md) — концепция Stories
 - [Protocol — Контрактная модель для агентов](../protocol-kontraktnaya-model-dlya-agentov.md)
 - [Шаблон story.md](../../templates/story.md)

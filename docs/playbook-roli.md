@@ -40,3 +40,7 @@ Vision → ADR → Spec → Task spec → Scaffold → PR → Normalize CI → P
 ### Правила коммитов
 
 - feat/fix/chore + контекст; батчи до ~50 файлов для контента
+
+### Связано с…
+
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub

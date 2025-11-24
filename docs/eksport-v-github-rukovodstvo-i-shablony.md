@@ -208,6 +208,7 @@ jobs:
 
 ### Связано с…
 
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub
 - [Spec — Normalize и политика имён](spec-normalize-i-politika-imyon-c9023c.md)
 - [Инструкции для Notion AI — vova_i_petrova](instrukcii-dlya-notion-ai-vovaipetrova.md)
 - [Think Tank — компактное ядро](think-tank-kompaktnoe-yadro.md)
