@@ -200,6 +200,10 @@ function extractTerms(text) {
   return Array.from(terms);
 }
 
+function escapeRegexForTerm(term) {
+  return term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 /**
  * Создает slug для термина
  */
@@ -261,7 +265,7 @@ async function createIssueForTerm(term, slug, context, args) {
 
   try {
     const title = `KB: добавить термин ${slug}`;
-    const body = [
+    const bodyArr = [
       `## Термин: ${term}`,
       '',
       `**Slug**: \`${slug}\``,
@@ -269,15 +273,28 @@ async function createIssueForTerm(term, slug, context, args) {
       '**Контекст появления**:',
       `Термин найден в файлах Stories:`,
       ...context.files.map(f => `- \`${f}\``),
-      '',
-      '**Действия**:',
-      '- [ ] Создать страницу KB для термина',
-      '- [ ] Добавить определение',
-      '- [ ] Добавить примеры использования',
-      '- [ ] Связать с другими терминами (если применимо)',
-      '',
-      `_Автоматически создано из PR #${context.prNumber || 'N/A'}_`
-    ].join('\n');
+      ''
+    ];
+
+    if (context.contexts && context.contexts.length > 0) {
+      bodyArr.push('**Примеры контекста (1-2):**');
+      for (const snippet of (context.contexts || [])) {
+        // Добавляем как блок-цитату, экранируя лишние символы
+        const safe = snippet.replace(/\n/g, ' ');
+        bodyArr.push('> ' + safe);
+        bodyArr.push('');
+      }
+    }
+
+    bodyArr.push('**Действия**:');
+    bodyArr.push('- [ ] Создать страницу KB для термина');
+    bodyArr.push('- [ ] Добавить определение');
+    bodyArr.push('- [ ] Добавить примеры использования');
+    bodyArr.push('- [ ] Связать с другими терминами (если применимо)');
+    bodyArr.push('');
+    bodyArr.push(`_Автоматически создано из PR #${context.prNumber || 'N/A'}_`);
+
+    const body = bodyArr.join('\n');
 
     // Use spawnSync to avoid shell quoting issues with multiline body or backticks
     // Call the 'gh' CLI directly with argument array so no shell interpolation occurs.
@@ -357,7 +374,8 @@ async function main() {
           term,
           slug,
           count: 0,
-          files: []
+          files: [],
+          contexts: [] // массив строк с примерами контекста
         });
       }
 
@@ -366,17 +384,46 @@ async function main() {
       if (!entry.files.includes(file)) {
         entry.files.push(file);
       }
+
+      // Собираем 1-2 цитаты контекста для термина из текста файла
+      try {
+        const lower = text.toLowerCase();
+        const termLower = term.toLowerCase();
+        let startPos = 0;
+        let found = 0;
+        while (found < 2) {
+          const idx = lower.indexOf(termLower, startPos);
+          if (idx === -1) break;
+          const snippetStart = Math.max(0, idx - 80);
+          const snippetEnd = Math.min(text.length, idx + term.length + 80);
+          let snippet = text.substring(snippetStart, snippetEnd).replace(/\s+/g, ' ').trim();
+          // Добавим многоточия, если обрезали текст
+          if (snippetStart > 0) snippet = '…' + snippet;
+          if (snippetEnd < text.length) snippet = snippet + '…';
+          // Сформатируем цитату: ограничим длину и экранируем бэктики
+          snippet = snippet.replace(/`/g, "'" );
+          // Дедупликация простым contains
+          if (!entry.contexts.includes(snippet)) {
+            entry.contexts.push(snippet);
+            found++;
+          }
+          startPos = idx + termLower.length;
+        }
+      } catch (e) {
+        // не критично
+      }
     }
   }
 
   // Сортируем термины по частоте появления
   const candidates = Array.from(allTerms.values())
     .sort((a, b) => b.count - a.count)
-    .map(({ term, slug, count, files }) => ({
+    .map(({ term, slug, count, files, contexts }) => ({
       term,
       slug,
       frequency: count,
       files: files.slice(0, 5), // Ограничиваем количество файлов
+      contexts: (contexts || []).slice(0, 2), // 1-2 примера контекста
       created_at: new Date().toISOString(),
       pr_number: args.pr || null
     }));
@@ -420,7 +467,8 @@ async function main() {
 
       const issueUrl = await createIssueForTerm(candidate.term, candidate.slug, {
         prNumber: args.pr,
-        files: candidate.files
+        files: candidate.files,
+        contexts: candidate.contexts || []
       }, args);
 
       if (issueUrl) {

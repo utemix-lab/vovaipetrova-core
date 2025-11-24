@@ -62,3 +62,12 @@ test-guardrails-v2/
 uploads/*.zip
 uploads/*.ZIP
 
+# Gateway watcher processed files
+inbox/author/.processed/
+inbox/author/*.md
+!inbox/author/.gitkeep
+
+# Temporary PR body files
+tmp-pr-body-*.md
+tmp-pr-body-*.txt
+
