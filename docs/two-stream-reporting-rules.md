@@ -24,13 +24,11 @@ status: ready
 1. **Two-stream Policy** — тип потока:
    - Stream 1 (Notion → GitHub): Импорт из Notion
    - Stream 2 (GitHub → Notion): Работа агента с синхронизацией
-   - Нет связи с Notion: Задача только в GitHub
 
 2. **Two-stream Sync Status** — статус синхронизации:
    - Статус в Notion обновлён на `In Progress` (при создании ветки)
    - Статус в Notion обновлён на `Review` (при создании PR)
    - Статус в Notion будет обновлён на `Done` (после мерджа)
-   - Задача не из Notion — синхронизация не требуется
 
 3. **Two-stream Notes** — детали синхронизации (если применимо):
    - Notion Page ID
@@ -87,27 +85,9 @@ status: ready
 - **Issues**: Нет проблем
 ```
 
-#### Пример 3: Нет связи с Notion
+#### Важно: Все задачи из Notion Briefs
 
-```markdown
-## Two-stream Policy
-- [x] Нет связи с Notion: Задача только в GitHub (Issue)
-
-## Deliverables
-
-**Executor**: GitHub Copilot  
-**Status**: ✅ Completed  
-**Task**: [GitHub Issue #123](https://github.com/.../issues/123)
-
-**Two-stream Sync Status**:
-- [x] Задача не из Notion (только GitHub Issue) — синхронизация не требуется
-
-### Two-stream Notes
-- **Notion Page ID**: N/A
-- **Sync Method**: N/A
-- **Status Updated**: N/A
-- **Issues**: Нет проблем
-```
+**ОБЯЗАТЕЛЬНО**: Все задачи должны быть из Notion Briefs через MCP. Если не удаётся получить задачу из Notion (сбой связи, MCP, Wi-Fi и т.д.) — уведомить автора (пользователя) о проблеме с связью и не начинать работу. Сценарий должен быть один — всегда из Notion Briefs. Если связь не работает, автор починит её.
 
 ## Правила для агентов
 

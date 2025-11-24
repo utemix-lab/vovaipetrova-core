@@ -9,7 +9,6 @@
 **Two-stream Policy**: 
 - [ ] Stream 1 (Notion → GitHub): Импорт из Notion через workflow `notion-import.yml`
 - [ ] Stream 2 (GitHub → Notion): Работа агента с синхронизацией статусов в Notion
-- [ ] Нет связи с Notion: Задача только в GitHub (Issue)
 
 **Lane Label**: {Добавьте соответствующий label при создании PR}
 
@@ -31,7 +30,6 @@
 - [ ] Статус в Notion обновлён на `In Progress` (при создании ветки)
 - [ ] Статус в Notion обновлён на `Review` (при создании PR)
 - [ ] Статус в Notion будет обновлён на `Done` (после мерджа)
-- [ ] Задача не из Notion (только GitHub Issue) — синхронизация не требуется
 
 ### Completed
 - [ ] {Пункт 1 из списка Deliverables из Briefs}
