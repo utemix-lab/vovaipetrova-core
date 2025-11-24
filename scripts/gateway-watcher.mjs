@@ -361,12 +361,31 @@ function processFile(filePath, dryRun = false) {
     return { success: true, validation };
   }
   
+  // Проверяем, не существует ли уже идея с таким source_file
+  const queue = loadQueue();
+  const normalizedPath = filePath.replace(/\\/g, '/');
+  const existingIdea = queue.find(item => {
+    const existingPath = (item.source_file || '').replace(/\\/g, '/');
+    return existingPath === normalizedPath;
+  });
+  
+  if (existingIdea) {
+    log(`⚠️  Idea already exists in queue: ${existingIdea.id} (${existingIdea.title})`);
+    log(`   Skipping duplicate for ${fileName}`);
+    return { success: false, validation, reason: 'duplicate' };
+  }
+  
   // Создаём идею из файла
   const title = validation.frontMatter.title || fileName.replace(/\.md$/, '');
   const seedText = validation.body.substring(0, 500).trim(); // Первые 500 символов как seed_text
   
+  // Генерируем уникальный ID с использованием timestamp и случайного компонента для предотвращения коллизий
+  const timestamp = Date.now();
+  const randomSuffix = Math.random().toString(36).substring(2, 8);
+  const ideaId = `idea-${timestamp}-${randomSuffix}`;
+  
   const idea = {
-    id: `idea-${Date.now()}`,
+    id: ideaId,
     status: 'approved',
     title: title,
     seed_text: seedText,
@@ -377,7 +396,6 @@ function processFile(filePath, dryRun = false) {
   };
   
   // Добавляем в очередь
-  const queue = loadQueue();
   queue.push(idea);
   saveQueue(queue);
   
@@ -386,7 +404,8 @@ function processFile(filePath, dryRun = false) {
   // Перемещаем файл в .processed
   try {
     mkdirSync(PROCESSED_DIR, { recursive: true });
-    const processedPath = join(PROCESSED_DIR, `${Date.now()}-${fileName}`);
+    // Используем тот же ID для имени файла, чтобы избежать коллизий
+    const processedPath = join(PROCESSED_DIR, `${ideaId}-${fileName}`);
     writeFileSync(processedPath, readFileSync(filePath, 'utf8'), 'utf8');
     // Удаляем оригинальный файл (опционально, можно закомментировать для отладки)
     // unlinkSync(filePath);
