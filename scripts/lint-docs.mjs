@@ -214,6 +214,7 @@ function containsPII(body, filePath = '') {
         /Think Tank/i,
         /After Effects/i,
         /Single Source/i,
+        /Cursor Bugbot/i,
         /Static First/i,
         /Docker Compose/i,
         /Stable Diffusion/i,
@@ -259,7 +260,7 @@ function containsPII(body, filePath = '') {
       regex: /\b(?:\d{1,3}\.){3}\d{1,3}\b/g // Может быть примером или версией
     }
   ];
-  
+
   // Исключения (уже санитизированные или примеры)
   // Обновлено: расширен список исключений для уменьшения ложных срабатываний
   const exclusions = [
@@ -322,7 +323,7 @@ function containsPII(body, filePath = '') {
     /Letta Cloud/i,
     /Protocol Servers/i
   ];
-  
+
   for (const pattern of patterns) {
     const regex = new RegExp(pattern.regex.source, pattern.regex.flags);
     let match;
@@ -331,22 +332,22 @@ function containsPII(body, filePath = '') {
       const beforeMatch = body.substring(0, match.index);
       const codeBlockCount = (beforeMatch.match(/```/g) || []).length;
       if (codeBlockCount % 2 === 1) continue; // Inside code block
-      
+
       // Skip if already sanitized or in exclusions
       const matchedText = match[0];
       if (exclusions.some(exclusion => exclusion.test(matchedText))) {
         continue;
       }
-      
+
       // Проверяем исключения для конкретного паттерна (например, для full_name_english)
       if (pattern.excludePatterns && pattern.excludePatterns.some(exclude => exclude.test(matchedText))) {
         continue;
       }
-      
+
       return { found: true, kind: pattern.name, match: matchedText };
     }
   }
-  
+
   return { found: false };
 }
 
