@@ -107,7 +107,7 @@ npm run codegpt:notion:search     # Поиск в Notion
 4. **Проверка**: `npm run lint:docs` — показывает предупреждения (не валит сборку)
 5. **Проверка перед PR**: `npm run check:pr-size` и `npm run check:lanes` — проверка размера и lanes policy
 
-Подробнее о процессе работы: [`docs/protocol-kontraktnaya-model-dlya-agentov.md`](docs/protocol-kontraktnaya-model-dlya-agentov.md)
+Подробнее о процессе работы: [`docs/SINGLE-SOURCE-PLAYBOOK.md`](docs/SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 
 **📖 См. также:** [Single Source Playbook — «священный документ» (Notion↔Repo)](docs/SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub.
 

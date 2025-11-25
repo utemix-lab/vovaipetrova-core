@@ -7,14 +7,11 @@
 **Связанная задача**: {Ссылка на Notion Briefs или GitHub Issue}
 
 **Two-stream Policy**: 
-- [ ] Stream 1 (Notion → GitHub): Импорт из Notion через workflow `notion-import.yml`
 - [ ] Stream 2 (GitHub → Notion): Работа агента с синхронизацией статусов в Notion
 
 **Lane Label**: {Добавьте соответствующий label при создании PR}
 
 **Standard lanes**: `lane:docs`, `lane:infra`, `lane:stories`, `lane:characters`, `lane:qa`, `lane:refactor`, `lane:fix`, `lane:feat`, `lane:composer`
-
-**CodeGPT lanes**: `lane:codegpt:orchestrator`, `lane:codegpt:docs`, `lane:codegpt:refactor`, `lane:codegpt:creative`
 
 **Copilot lanes**: `lane:copilot`, `lane:copilot:docs`, `lane:copilot:infra`, `lane:copilot:stories`, `lane:copilot:refactor`, `lane:copilot:feat`, `lane:copilot:fix`
 
@@ -22,7 +19,7 @@
 
 ## Deliverables
 
-**Executor**: {Имя агента или исполнителя, например: Cursor, CodeGPT Docs Agent, GitHub Copilot}  
+**Executor**: {Имя агента или исполнителя, например: Cursor, GitHub Copilot}  
 **Status**: ✅ Completed | ⏳ In Progress | ❌ Blocked  
 **Task**: {Ссылка на задачу в Notion Briefs или Issue}
 

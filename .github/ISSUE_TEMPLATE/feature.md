@@ -35,7 +35,6 @@ Select appropriate lane label:
 - `lane:infra` — infrastructure, workflows, scripts
 - `lane:feat` — new features
 - `lane:refactor` — code refactoring
-- `lane:codegpt:*` — CodeGPT agent tasks
 
 ## Additional Context
 
