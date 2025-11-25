@@ -1,0 +1,41 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# All files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Markdown files
+[*.md]
+charset = utf-8
+trim_trailing_whitespace = false
+
+# JSON files
+[*.json]
+charset = utf-8
+
+# JavaScript/TypeScript files
+[*.{js,mjs,ts,tsx}]
+charset = utf-8
+
+# YAML files
+[*.{yml,yaml}]
+charset = utf-8
+
+# Shell scripts
+[*.{sh,bash}]
+charset = utf-8
+
+# PowerShell scripts
+[*.ps1]
+charset = utf-8
+
+# Python files
+[*.py]
+charset = utf-8
+

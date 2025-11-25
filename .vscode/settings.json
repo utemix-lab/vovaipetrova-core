@@ -1,41 +1,55 @@
 {
-  "files.autoSave": "onFocusChange",
-  "editor.formatOnSave": true,
-  "editor.wordWrap": "on",
-  "editor.detectIndentation": true,
-  "editor.tabSize": 4,
-  "editor.insertSpaces": true,
-  "editor.renderWhitespace": "selection",
+  // Кодировка файлов по умолчанию
+  "files.encoding": "utf8",
   
-  // CodeGPT настройки для работы с локальным репозиторием
-  "codegpt.workspaceRoot": "${workspaceFolder}",
-  "codegpt.includeFiles": [
-    "docs/**/*.md",
-    "scripts/**/*.mjs",
-    "package.json",
-    "README.md",
-    "codegpt.config.json"
-  ],
-  "codegpt.excludeFiles": [
-    "node_modules/**",
-    ".git/**",
-    "tmp/**",
-    "*.log"
-  ],
+  // Автоматически определять кодировку при открытии файла
+  "files.autoGuessEncoding": true,
   
-  // Переменные окружения для скриптов CodeGPT
-  "codegpt.env": {
-    "GITHUB_TOKEN": "${env:GITHUB_TOKEN}",
-    "NOTION_API_KEY": "${env:NOTION_API_KEY}",
-    "GITHUB_REPO": "utemix-lab/vovaipetrova-core",
-    "PROJECT_ROOT": "${workspaceFolder}"
+  // Кодировка для новых файлов
+  "files.defaultLanguage": "markdown",
+  
+  // Настройки для Markdown
+  "[markdown]": {
+    "files.encoding": "utf8",
+    "files.eol": "\n"
   },
   
-  // Настройки для чтения файлов через терминал
-  "codegpt.terminal": {
-    "cwd": "${workspaceFolder}",
-    "shell": {
-      "windows": "powershell.exe"
-    }
-  }
+  // Настройки для JSON
+  "[json]": {
+    "files.encoding": "utf8"
+  },
+  
+  // Настройки для JavaScript
+  "[javascript]": {
+    "files.encoding": "utf8"
+  },
+  
+  // Настройки для TypeScript
+  "[typescript]": {
+    "files.encoding": "utf8"
+  },
+  
+  // Настройки для YAML
+  "[yaml]": {
+    "files.encoding": "utf8"
+  },
+  
+  // Настройки для PowerShell
+  "[powershell]": {
+    "files.encoding": "utf8"
+  },
+  
+  // Настройки для Python
+  "[python]": {
+    "files.encoding": "utf8"
+  },
+  
+  // Удалять пробелы в конце строк при сохранении
+  "files.trimTrailingWhitespace": true,
+  
+  // Вставлять финальный перевод строки при сохранении
+  "files.insertFinalNewline": true,
+  
+  // Использовать EditorConfig для настроек форматирования
+  "editorconfig.generateAuto": false
 }
