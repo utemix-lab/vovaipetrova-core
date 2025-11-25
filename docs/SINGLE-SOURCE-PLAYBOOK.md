@@ -262,7 +262,7 @@ $utf8 = New-Object System.Text.UTF8Encoding $false
 
 ### Концепции
 
-- [CONCEPT.stories-dual](../stories/SHARED_CONTEXT.md) — двойной формат Stories
+- [CONCEPT.stories-dual](stories/SHARED_CONTEXT.md) — двойной формат Stories
 - [CONCEPT.author-gateway](GATEWAY-WATCHER.md) — Gateway Watcher для авторов
 
 ### Руководства
@@ -271,8 +271,7 @@ $utf8 = New-Object System.Text.UTF8Encoding $false
 - [UTF-8-SETUP.md](UTF-8-SETUP.md) — настройка UTF-8 кодировки в редакторах
 - [MCP Quickstart](../MCP-QUICKSTART.md) — быстрый старт с MCP сервером для работы с Notion
 - [Настройка Copilot с MCP](copilot-mcp-setup.md) — настройка GitHub Copilot для работы с Notion через MCP
-- [CI policy (draft vs ready)](.github/workflows/) — политика CI для draft/ready статусов
-- [KB policies](../stories/) — политики для Knowledge Base
+- [KB policies](stories/README.md) — политики для Knowledge Base
 
 ---
 
