@@ -213,6 +213,7 @@ function containsPII(body, filePath = '') {
       excludePatterns: [
         /Think Tank/i,
         /After Effects/i,
+        /Single Source/i,
         /Static First/i,
         /Docker Compose/i,
         /Stable Diffusion/i,
