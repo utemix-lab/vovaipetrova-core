@@ -14,3 +14,5 @@ machine_tags:
   - theme/ux
 ---
 # Instructions — Исполнители (Cursor/Aider)
+
+**📖 См. также:** [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub.

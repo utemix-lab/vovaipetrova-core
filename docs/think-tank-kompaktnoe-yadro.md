@@ -48,6 +48,7 @@ status: ready
 - Любые изменения ядра сопровождаем обновлением связей и TL;DR.
 
 ## Связано с…
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub
 - [Think Tank — витрина процесса](think-tank-vitrina-processa.md)
 - [Индекс и TL;DR](indeks-i-tldr.md)
 - [Навигация (техническая)](navigaciya-tehnicheskaya.md)
