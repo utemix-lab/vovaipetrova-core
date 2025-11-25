@@ -2,7 +2,7 @@
 /**
  * Sandbox test для проверки forbidden-paths
  * Запускает проверку на тестовых файлах в tests/sandbox/forbidden-paths/
- * 
+ *
  * Использование:
  *   node scripts/test-forbidden-paths-sandbox.mjs
  */
@@ -63,7 +63,7 @@ const FORBIDDEN_ALLOWED = [
   /^\.github\/workflows\/docs-ci\.yml$/,
   /^\.github\/pull_request_template\.md$/,
   /^package\.json$/,
-  /^docs\/protocol-kontraktnaya-model-dlya-agentov\.md$/,
+  /^docs\/SINGLE-SOURCE-PLAYBOOK\.md$/,
 ];
 
 /**
@@ -71,12 +71,12 @@ const FORBIDDEN_ALLOWED = [
  */
 function checkForbiddenPaths(changedFiles) {
   const violations = [];
-  
+
   for (const file of changedFiles) {
     // Проверяем, разрешён ли файл
     const isAllowed = FORBIDDEN_ALLOWED.some(pattern => pattern.test(file));
     if (isAllowed) continue;
-    
+
     // Проверяем, запрещён ли файл
     const isForbidden = FORBIDDEN_PATHS.some(pattern => pattern.test(file));
     if (isForbidden) {
@@ -86,7 +86,7 @@ function checkForbiddenPaths(changedFiles) {
       });
     }
   }
-  
+
   return violations;
 }
 
@@ -98,74 +98,74 @@ const SANDBOX_DIR = 'tests/sandbox/forbidden-paths';
 function collectFiles(dir, basePath = '') {
   const files = [];
   const entries = readdirSync(dir, { withFileTypes: true });
-  
+
   for (const entry of entries) {
     const fullPath = join(dir, entry.name);
     const relativePath = join(basePath, entry.name);
-    
+
     if (entry.isDirectory()) {
       files.push(...collectFiles(fullPath, relativePath));
     } else {
       files.push(relativePath);
     }
   }
-  
+
   return files;
 }
 
 function main() {
   console.log('🧪 Forbidden-paths sandbox test\n');
-  
+
   if (!existsSync(SANDBOX_DIR)) {
     console.error(`❌ Sandbox directory not found: ${SANDBOX_DIR}`);
     process.exit(1);
   }
-  
+
   // Собираем все тестовые файлы из sandbox
   const testFiles = collectFiles(SANDBOX_DIR);
-  
+
   if (testFiles.length === 0) {
     console.error(`❌ No test files found in ${SANDBOX_DIR}`);
     process.exit(1);
   }
-  
+
   console.log(`📁 Found ${testFiles.length} test file(s):`);
   testFiles.forEach(file => console.log(`   - ${file}`));
   console.log('');
-  
+
   // Нормализуем пути (заменяем обратные слэши на прямые для кроссплатформенности)
   // И убираем суффикс .test для проверки соответствия паттернам
-  const normalizedFiles = testFiles.map(file => 
+  const normalizedFiles = testFiles.map(file =>
     file.replace(/\\/g, '/').replace(/\.test$/, '')
   );
-  
+
   console.log('📝 Normalized file paths for checking:');
   normalizedFiles.forEach(file => console.log(`   - ${file}`));
   console.log('');
-  
+
   // Запускаем проверку forbidden-paths
   const violations = checkForbiddenPaths(normalizedFiles);
-  
+
   console.log('🔍 Checking forbidden-paths...\n');
-  
+
   if (violations.length === 0) {
     console.error('❌ FAIL: Expected violations but none were detected!');
     console.error('   This means the forbidden-paths check is not working correctly.');
     process.exit(1);
   }
-  
+
   console.log(`✅ PASS: Detected ${violations.length} violation(s) as expected:\n`);
   violations.forEach((violation, index) => {
     console.log(`   ${index + 1}. ${violation.file}`);
     console.log(`      ${violation.message}`);
   });
-  
+
   // Сохраняем отчёт в файл для артефактов CI
   const reportDir = 'tests/sandbox/results';
   if (!existsSync(reportDir)) {
     mkdirSync(reportDir, { recursive: true });
   }
-  
+
   const reportPath = join(reportDir, 'forbidden-paths-sandbox-report.md');
   let report = `# Forbidden-paths Sandbox Test Report\n\n`;
   report += `Generated: ${new Date().toISOString()}\n\n`;
@@ -178,7 +178,7 @@ function main() {
   });
   report += `## Conclusion\n\n`;
   report += `The forbidden-paths check is working correctly. All expected violations were detected.\n`;
-  
+
   writeFileSync(reportPath, report, 'utf8');
   console.log(`\n📄 Report saved to: ${reportPath}`);
   console.log('\n✅ Sandbox test passed: forbidden-paths check is working correctly');

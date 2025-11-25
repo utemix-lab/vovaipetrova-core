@@ -241,7 +241,7 @@ status: ready
 
 После внесения изменений обновить:
 - `docs/briefs-upgrade-how-to.md` — добавить инструкции по настройке новых представлений
-- `docs/protocol-kontraktnaya-model-dlya-agentov.md` — обновить описание представлений
+- `docs/SINGLE-SOURCE-PLAYBOOK.md` — обновить описание представлений (если необходимо)
 
 ## Инструкция по применению
 
@@ -295,6 +295,5 @@ status: ready
 ## Связанные документы
 
 - [Briefs upgrade — инструкция по обновлению](./briefs-upgrade-how-to.md) — базовая инструкция по настройке представлений
-- [Protocol — Контрактная модель для агентов](./protocol-kontraktnaya-model-dlya-agentov.md) — описание процесса работы с агентами
-- [Очереди ревью и SLA](./protocol-kontraktnaya-model-dlya-agentov.md#очереди-ревью-и-sla) — описание SLA и очередей ревью
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 

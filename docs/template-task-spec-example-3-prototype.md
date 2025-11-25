@@ -10,8 +10,8 @@ service: true
 
 # TEMPLATE — Task spec Example 3: Прототип UI
 
-**Тип задачи**: Улучшение UI прототипа  
-**Для**: Composer (Cursor AI Agent)  
+**Тип задачи**: Улучшение UI прототипа
+**Для**: Composer (Cursor AI Agent)
 **Дата**: 2025-11-20
 
 ---
@@ -83,5 +83,5 @@ service: true
 
 - **Spec**: `docs/prototype.md` — описание прототипа
 - **Примеры**: Существующие фильтры в `prototype/app.js` (поиск, сортировка)
-- **PROTOCOL**: `docs/protocol-kontraktnaya-model-dlya-agentov.md`
+- **PROTOCOL**: `docs/SINGLE-SOURCE-PLAYBOOK.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 

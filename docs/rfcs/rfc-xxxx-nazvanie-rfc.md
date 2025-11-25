@@ -9,12 +9,12 @@ service: true
 ---
 # RFC-XXXX: {Название RFC}
 
-**Статус**: Proposed | Accepted | Rejected | Deprecated  
-**Автор**: {Имя или агент}  
-**Дата**: {YYYY-MM-DD}  
+**Статус**: Proposed | Accepted | Rejected | Deprecated
+**Автор**: {Имя или агент}
+**Дата**: {YYYY-MM-DD}
 **Связанные задачи**: {ссылки на Briefs/Issues}
 
-> **Примечание**: При реализации RFC следуйте процессу работы с репозиторием: создайте PR с секцией Deliverables, добавьте соответствующий `lane:*` label, убедитесь что CI зелёный. Подробнее: [`docs/protocol-kontraktnaya-model-dlya-agentov.md`](../protocol-kontraktnaya-model-dlya-agentov.md)
+> **Примечание**: При реализации RFC следуйте процессу работы с репозиторием: создайте PR с секцией Deliverables, добавьте соответствующий `lane:*` label, убедитесь что CI зелёный. Подробнее: [`docs/SINGLE-SOURCE-PLAYBOOK.md`](../SINGLE-SOURCE-PLAYBOOK.md)
 
 ## Problem
 

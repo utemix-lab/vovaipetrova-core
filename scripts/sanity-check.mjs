@@ -2,7 +2,7 @@
 /**
  * Sanity-check для экспорта Notion → GitHub
  * Проверяет наличие ключевых узлов, валидность front matter, актуальность индексов, целостность ссылок
- * 
+ *
  * Использование:
  *   node scripts/sanity-check.mjs
  *   node scripts/sanity-check.mjs --check-key-nodes
@@ -33,7 +33,7 @@ const BROKEN_LINKS_JSON = join(__dirname, '../prototype/data/broken-links.json')
 const KEY_NODES = [
   'docs/think-tank-kompaktnoe-yadro.md',
   'docs/adr-source-of-truth-mirroring.md',
-  'docs/protocol-kontraktnaya-model-dlya-agentov.md',
+  'docs/SINGLE-SOURCE-PLAYBOOK.md',
   'docs/nav/routes.yml',
   'docs/nav/tags.yaml'
 ];
@@ -46,14 +46,14 @@ let checksPassed = 0;
 function checkKeyNodes() {
   console.log('\n🔍 Checking key nodes...');
   checksRun++;
-  
+
   const missing = [];
   for (const node of KEY_NODES) {
     if (!existsSync(join(__dirname, '..', node))) {
       missing.push(node);
     }
   }
-  
+
   if (missing.length > 0) {
     errors.push(`Missing key nodes: ${missing.join(', ')}`);
     console.log(`❌ Missing ${missing.length} key node(s):`);
@@ -67,16 +67,16 @@ function checkKeyNodes() {
 function checkFrontMatter() {
   console.log('\n🔍 Checking front matter validity...');
   checksRun++;
-  
+
   const files = globSync(`${DOCS_ROOT}/**/*.md`, { nodir: true });
   const invalid = [];
-  
+
   for (const file of files) {
     try {
       const content = readFileSync(file, 'utf8');
       const parsed = matter(content);
       const data = parsed.data || {};
-      
+
       const issues = [];
       if (!data.title || data.title.trim() === '') {
         issues.push('missing or empty title');
@@ -89,13 +89,13 @@ function checkFrontMatter() {
       } else if (!['draft', 'review', 'ready'].includes(data.status)) {
         issues.push(`invalid status: ${data.status}`);
       }
-      
+
       // Для файлов из Notion должны быть notion_page_id и last_edited_time
       // Но не все файлы могут быть из Notion, поэтому это предупреждение
       if (!data.notion_page_id && !data.service) {
         warnings.push(`${file}: missing notion_page_id (may not be from Notion)`);
       }
-      
+
       if (issues.length > 0) {
         invalid.push({ file, issues });
       }
@@ -103,7 +103,7 @@ function checkFrontMatter() {
       invalid.push({ file, issues: [`parse error: ${error.message}`] });
     }
   }
-  
+
   if (invalid.length > 0) {
     errors.push(`Invalid front matter in ${invalid.length} file(s)`);
     console.log(`❌ Found ${invalid.length} file(s) with invalid front matter:`);
@@ -122,9 +122,9 @@ function checkFrontMatter() {
 function checkIndices() {
   console.log('\n🔍 Checking indices...');
   checksRun++;
-  
+
   let hasErrors = false;
-  
+
   // Проверка routes.yml
   if (!existsSync(ROUTES_YML)) {
     errors.push('routes.yml not found');
@@ -141,7 +141,7 @@ function checkIndices() {
       console.log(`❌ routes.yml parse error: ${error.message}`);
     }
   }
-  
+
   // Проверка tags.yaml
   if (!existsSync(TAGS_YAML)) {
     errors.push('tags.yaml not found');
@@ -158,7 +158,7 @@ function checkIndices() {
       console.log(`❌ tags.yaml parse error: ${error.message}`);
     }
   }
-  
+
   // Проверка orphan pages (если скрипт доступен)
   try {
     execSync('npm run routes:check', { stdio: 'pipe', encoding: 'utf8' });
@@ -167,7 +167,7 @@ function checkIndices() {
     warnings.push('Routes consistency check failed or found orphans');
     console.log('⚠️  Routes consistency check failed (may have orphans)');
   }
-  
+
   if (!hasErrors) {
     checksPassed++;
   }
@@ -176,7 +176,7 @@ function checkIndices() {
 function checkLinks() {
   console.log('\n🔍 Checking link integrity...');
   checksRun++;
-  
+
   // Проверка broken-links.json
   if (!existsSync(BROKEN_LINKS_JSON)) {
     warnings.push('broken-links.json not found (run diagnostics:snapshot)');
@@ -187,7 +187,7 @@ function checkLinks() {
       const internalMissing = brokenLinks.issues?.filter(
         i => i.reason === 'missing' && !i.link.startsWith('http')
       ).length || 0;
-      
+
       if (internalMissing > 0) {
         errors.push(`Found ${internalMissing} internal-missing links`);
         console.log(`❌ Found ${internalMissing} internal-missing link(s)`);
@@ -199,7 +199,7 @@ function checkLinks() {
       console.log(`⚠️  broken-links.json parse error: ${error.message}`);
     }
   }
-  
+
   // Проверка stats.json
   if (!existsSync(STATS_JSON)) {
     warnings.push('stats.json not found (run diagnostics:snapshot)');
@@ -208,7 +208,7 @@ function checkLinks() {
     try {
       const stats = JSON.parse(readFileSync(STATS_JSON, 'utf8'));
       const internalMissing = stats.totals?.issues_internal_missing || 0;
-      
+
       if (internalMissing > 0) {
         errors.push(`Stats show ${internalMissing} internal-missing links`);
         console.log(`❌ Stats show ${internalMissing} internal-missing link(s)`);
@@ -220,7 +220,7 @@ function checkLinks() {
       console.log(`⚠️  stats.json parse error: ${error.message}`);
     }
   }
-  
+
   if (errors.filter(e => e.includes('internal-missing')).length === 0) {
     checksPassed++;
   }
@@ -229,7 +229,7 @@ function checkLinks() {
 function checkLint() {
   console.log('\n🔍 Checking linting...');
   checksRun++;
-  
+
   try {
     execSync('npm run lint:docs', { stdio: 'pipe', encoding: 'utf8' });
     console.log('✅ Linting passed');
@@ -237,7 +237,7 @@ function checkLint() {
   } catch (error) {
     const output = error.stdout || error.stderr || '';
     const hasErrors = output.includes('error') || output.includes('Error');
-    
+
     if (hasErrors) {
       errors.push('Linting found errors');
       console.log('❌ Linting found errors (check output above)');
@@ -252,9 +252,9 @@ function checkLint() {
 function main() {
   const args = process.argv.slice(2);
   const checkAll = args.length === 0;
-  
+
   console.log('🔍 Running sanity-check for Notion → GitHub export...\n');
-  
+
   if (checkAll || args.includes('--check-key-nodes')) {
     checkKeyNodes();
   }
@@ -270,7 +270,7 @@ function main() {
   if (checkAll || args.includes('--check-lint')) {
     checkLint();
   }
-  
+
   // Итоговый отчёт
   console.log('\n' + '='.repeat(60));
   console.log('📊 Sanity-check Summary');
@@ -279,7 +279,7 @@ function main() {
   console.log(`Checks passed: ${checksPassed}`);
   console.log(`Errors: ${errors.length}`);
   console.log(`Warnings: ${warnings.length}`);
-  
+
   if (warnings.length > 0) {
     console.log('\n⚠️  Warnings:');
     warnings.slice(0, 5).forEach(w => console.log(`   - ${w}`));
@@ -287,7 +287,7 @@ function main() {
       console.log(`   ... and ${warnings.length - 5} more`);
     }
   }
-  
+
   if (errors.length > 0) {
     console.log('\n❌ Errors:');
     errors.forEach(e => console.log(`   - ${e}`));

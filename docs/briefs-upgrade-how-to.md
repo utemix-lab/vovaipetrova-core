@@ -31,8 +31,8 @@ status: ready
 
 ### 1.1. Поле Executor (Select)
 
-**Тип**: Select  
-**Название**: `Executor`  
+**Тип**: Select
+**Название**: `Executor`
 **Опции**:
 - `Cursor`
 - `Copilot`
@@ -51,8 +51,8 @@ status: ready
 
 ### 1.2. Поле Lane (Select)
 
-**Тип**: Select  
-**Название**: `Lane`  
+**Тип**: Select
+**Название**: `Lane`
 **Опции**:
 - `Infra`
 - `Docs`
@@ -66,8 +66,8 @@ status: ready
 
 ### 1.3. Поле SLA (Date)
 
-**Тип**: Date  
-**Название**: `SLA`  
+**Тип**: Date
+**Название**: `SLA`
 **Описание**: Дата и время, до которого должно быть завершено ревью PR
 
 **Инструкция**:
@@ -77,8 +77,8 @@ status: ready
 
 ### 1.4. Поле Requires Review (Checkbox)
 
-**Тип**: Checkbox  
-**Название**: `Requires Review`  
+**Тип**: Checkbox
+**Название**: `Requires Review`
 **Описание**: Требуется ли ручное ревью для этой задачи
 
 **Инструкция**:
@@ -88,8 +88,8 @@ status: ready
 
 ### 1.5. Поле RFC Link (URL)
 
-**Тип**: URL  
-**Название**: `RFC Link`  
+**Тип**: URL
+**Название**: `RFC Link`
 **Описание**: Ссылка на RFC, связанный с этой задачей
 
 **Инструкция**:
@@ -99,8 +99,8 @@ status: ready
 
 ### 1.6. Поле Upstream Source (Select)
 
-**Тип**: Select  
-**Название**: `Upstream Source`  
+**Тип**: Select
+**Название**: `Upstream Source`
 **Опции**:
 - `Ideas & Proposals`
 - `RFC`
@@ -111,8 +111,8 @@ status: ready
 
 ## Шаг 2: Создание формулы Overdue
 
-**Тип**: Formula  
-**Название**: `Overdue`  
+**Тип**: Formula
+**Название**: `Overdue`
 **Формула**:
 ```
 if(prop("Status") == "Ready" or prop("Status") == "In progress" or prop("Status") == "Review", if(prop("SLA") != empty() and now() > prop("SLA"), "Yes", "No"), "No")
@@ -133,8 +133,8 @@ if(and(or(prop("Status") == "Ready", prop("Status") == "In progress", prop("Stat
 
 ### 3.1. Ready for CodeGPT
 
-**Название**: `Ready for CodeGPT`  
-**Тип**: Table  
+**Название**: `Ready for CodeGPT`
+**Тип**: Table
 **Фильтры**:
 - `Status` is `Ready`
 - `Executor` starts with `CodeGPT:`
@@ -150,8 +150,8 @@ if(and(or(prop("Status") == "Ready", prop("Status") == "In progress", prop("Stat
 
 ### 3.2. Pending Review
 
-**Название**: `Pending Review`  
-**Тип**: Table  
+**Название**: `Pending Review`
+**Тип**: Table
 **Фильтры**:
 - `Status` is `Review`
 - `Requires Review` is `Checked`
@@ -173,8 +173,8 @@ if(and(or(prop("Status") == "Ready", prop("Status") == "In progress", prop("Stat
 
 ### 3.3. Overdue
 
-**Название**: `Overdue`  
-**Тип**: Table  
+**Название**: `Overdue`
+**Тип**: Table
 **Фильтры**:
 - `Overdue` is `Yes`
 
@@ -187,9 +187,9 @@ if(and(or(prop("Status") == "Ready", prop("Status") == "In progress", prop("Stat
 
 ### 3.4. By Lane (Board)
 
-**Название**: `By Lane`  
-**Тип**: Board  
-**Группировка**: `Lane`  
+**Название**: `By Lane`
+**Тип**: Board
+**Группировка**: `Lane`
 **Сортировка**: по `SLA` (ascending)
 
 **Инструкция**:
@@ -208,8 +208,8 @@ if(and(or(prop("Status") == "Ready", prop("Status") == "In progress", prop("Stat
 
 ### 3.5. Ready for Copilot
 
-**Название**: `Ready for Copilot`  
-**Тип**: Table  
+**Название**: `Ready for Copilot`
+**Тип**: Table
 **Фильтры**:
 - `Status` is `Ready`
 - `Executor` is `Cursor` OR `Executor` contains `Copilot`
@@ -269,7 +269,6 @@ if(and(or(prop("Status") == "Ready", prop("Status") == "In progress", prop("Stat
 
 ## Связанные документы
 
-- [Protocol — Контрактная модель для агентов](./protocol-kontraktnaya-model-dlya-agentov.md) — описание процесса работы с агентами
-- [Очереди ревью и SLA](./protocol-kontraktnaya-model-dlya-agentov.md#очереди-ревью-и-sla) — описание SLA и очередей ревью
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [Briefs UX — доводки представлений](./briefs-ux-improvements.md) — рекомендации по улучшению UX представлений
 

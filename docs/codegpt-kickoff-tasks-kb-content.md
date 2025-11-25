@@ -56,8 +56,8 @@ machine_tags:
 - [ ] Исправлены все broken links
 - [ ] Все термины имеют статус `ready`
 
-**Executor**: `CodeGPT:Docs`  
-**Lane**: `Docs`  
+**Executor**: `CodeGPT:Docs`
+**Lane**: `Docs`
 **Estimated time**: 4-6 hours
 
 #### Task 2: Создание KB термина "Front Matter"
@@ -76,8 +76,8 @@ machine_tags:
 - [ ] Добавлены cross-references
 - [ ] Статус `ready`
 
-**Executor**: `CodeGPT:Docs`  
-**Lane**: `Docs`  
+**Executor**: `CodeGPT:Docs`
+**Lane**: `Docs`
 **Estimated time**: 2-3 hours
 
 ### P1 — Высокий приоритет
@@ -97,8 +97,8 @@ machine_tags:
 - [ ] Добавлены примеры и troubleshooting
 - [ ] Статус `ready`
 
-**Executor**: `CodeGPT:Docs`  
-**Lane**: `Docs`  
+**Executor**: `CodeGPT:Docs`
+**Lane**: `Docs`
 **Estimated time**: 2-3 hours
 
 #### Task 4: Создание KB термина "Normalize"
@@ -116,8 +116,8 @@ machine_tags:
 - [ ] Добавлен в `docs/nav/routes.yml`
 - [ ] Статус `ready`
 
-**Executor**: `CodeGPT:Docs`  
-**Lane**: `Docs`  
+**Executor**: `CodeGPT:Docs`
+**Lane**: `Docs`
 **Estimated time**: 2-3 hours
 
 ### P2 — Средний приоритет
@@ -137,8 +137,8 @@ machine_tags:
 - [ ] Добавлены примеры и troubleshooting
 - [ ] Статус `ready`
 
-**Executor**: `CodeGPT:Docs`  
-**Lane**: `Docs`  
+**Executor**: `CodeGPT:Docs`
+**Lane**: `Docs`
 **Estimated time**: 2-3 hours
 
 #### Task 6: Создание KB термина "Lint"
@@ -156,8 +156,8 @@ machine_tags:
 - [ ] Добавлен в `docs/nav/routes.yml`
 - [ ] Статус `ready`
 
-**Executor**: `CodeGPT:Docs`  
-**Lane**: `Docs`  
+**Executor**: `CodeGPT:Docs`
+**Lane**: `Docs`
 **Estimated time**: 2-3 hours
 
 ## Задачи для CodeGPT:Creative
@@ -178,8 +178,8 @@ machine_tags:
 - [ ] Добавлены примеры использования
 - [ ] Улучшена читаемость контента
 
-**Executor**: `CodeGPT:Creative`  
-**Lane**: `Content`  
+**Executor**: `CodeGPT:Creative`
+**Lane**: `Content`
 **Estimated time**: 3-4 hours
 
 ### P2 — Средний приоритет
@@ -198,8 +198,8 @@ machine_tags:
 - [ ] Добавлены недостающие ссылки
 - [ ] Улучшена структура "Связано с…"
 
-**Executor**: `CodeGPT:Creative`  
-**Lane**: `Content`  
+**Executor**: `CodeGPT:Creative`
+**Lane**: `Content`
 **Estimated time**: 2-3 hours
 
 ## Задачи для CodeGPT:Orchestrator
@@ -221,8 +221,8 @@ machine_tags:
 - [ ] Добавлены sequence labels
 - [ ] Обновлён roadmap
 
-**Executor**: `CodeGPT:Orchestrator`  
-**Lane**: `Infra`  
+**Executor**: `CodeGPT:Orchestrator`
+**Lane**: `Infra`
 **Estimated time**: 1-2 hours
 
 ## Итоговая таблица задач
@@ -239,7 +239,7 @@ machine_tags:
 | 8 | Улучшение cross-references в KB | CodeGPT:Creative | Content | P2 | Easy | 2-3h |
 | 9 | Планирование последовательности задач KB | CodeGPT:Orchestrator | Infra | P0 | Easy | 1-2h |
 
-**Всего задач**: 9  
+**Всего задач**: 9
 **Общее время**: 20-30 hours
 
 ## Рекомендации по выполнению
@@ -267,6 +267,6 @@ machine_tags:
 
 - [CodeGPT Rollout Roadmap](codegpt-rollout-roadmap.md) — общий roadmap
 - [CodeGPT Setup](codegpt-setup.md) — настройка агентов
-- [Protocol](protocol-kontraktnaya-model-dlya-agentov.md) — контрактная модель
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [Knowledge Base Index](/kb/) — индекс терминов KB
 

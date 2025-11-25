@@ -26,7 +26,7 @@ machine_tags:
 
 - ✅ Базовые скрипты интеграции (`scripts/codegpt/`)
 - ✅ Документация по настройке (`docs/codegpt-setup.md`)
-- ✅ Контрактная модель агентов (`docs/protocol-kontraktnaya-model-dlya-agentov.md`)
+- ✅ Контрактная модель агентов (`docs/SINGLE-SOURCE-PLAYBOOK.md`)
 - ✅ Представления в Briefs (`Ready for CodeGPT`)
 - ✅ Структура Executor с типами CodeGPT агентов
 
@@ -163,6 +163,6 @@ machine_tags:
 ## Связано с…
 
 - [CodeGPT Setup](codegpt-setup.md) — инструкция по настройке
-- [Protocol](protocol-kontraktnaya-model-dlya-agentov.md) — контрактная модель агентов
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [Briefs Upgrade](briefs-upgrade-how-to.md) — настройка Briefs для агентов
 
