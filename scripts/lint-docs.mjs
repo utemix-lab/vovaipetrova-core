@@ -215,6 +215,7 @@ function containsPII(body, filePath = '') {
         /After Effects/i,
         /Single Source/i,
         /Cursor Bugbot/i,
+        /Gateway Watcher/i,
         /Static First/i,
         /Docker Compose/i,
         /Stable Diffusion/i,
