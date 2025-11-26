@@ -125,7 +125,7 @@ npm run sanity:check
 
 - ✅ `docs/think-tank-kompaktnoe-yadro.md` — компактное ядро
 - ✅ `docs/adr-source-of-truth-mirroring.md` — ADR о зеркалировании
-- ✅ `docs/protocol-kontraktnaya-model-dlya-agentov.md` — протокол для агентов
+- ✅ `docs/SINGLE-SOURCE-PLAYBOOK.md` — единый источник истины для синхронизации между Notion и GitHub
 - ✅ `docs/nav/routes.yml` — карта маршрутов
 - ✅ `docs/nav/tags.yaml` — маппинг тегов
 
@@ -224,7 +224,7 @@ npm run sanity:check
 2. Или создать запись в ops-log (если используется):
    ```markdown
    ## 2025-11-20 — Notion Export
-   
+
    - Экспорт выполнен успешно
    - Sanity-check: ✅ пройден
    - Файлов импортировано: N
@@ -285,7 +285,7 @@ npm run sanity:check
 
 - **[Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md)** — единый источник истины для синхронизации между Notion и GitHub
 - [CONTRIBUTING.md](../CONTRIBUTING.md) — базовый цикл Notion → GitHub
-- [Protocol — Контрактная модель для агентов](./protocol-kontraktnaya-model-dlya-agentov.md) — общий процесс работы
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [Экспорт в GitHub — руководство и шаблоны](./eksport-v-github-rukovodstvo-i-shablony.md) — детальное руководство
 - [GitHub Actions workflow](../.github/workflows/notion-import.yml) — конфигурация импорта
 

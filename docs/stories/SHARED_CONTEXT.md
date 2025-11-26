@@ -34,7 +34,7 @@ status: ready
 ### Ключевые файлы
 
 - `README.md` — структура и команды проекта
-- `docs/protocol-kontraktnaya-model-dlya-agentov.md` — правила работы агентов
+- `docs/SINGLE-SOURCE-PLAYBOOK.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - `docs/nav/tags.yaml` — маппинг тегов → машинотегов
 - `docs/nav/routes.yml` — карта маршрутов сайта
 - `templates/story.md` — шаблон для новых эпизодов Stories
@@ -147,7 +147,7 @@ These additions are intended to avoid duplicated work: the generator and Notion 
 ### Вход агента
 
 - **Источник задачи**: Notion (Briefs) с полями `Brief`, `Scope`, `Deliverables`, `Executor`, `Lane`
-- **Контекст проекта**: `docs/protocol-kontraktnaya-model-dlya-agentov.md`
+- **Контекст проекта**: `docs/SINGLE-SOURCE-PLAYBOOK.md`
 - **Шаблон**: `templates/story.md`
 
 ### Выход агента
@@ -170,7 +170,7 @@ These additions are intended to avoid duplicated work: the generator and Notion 
 
 - **[Single Source Playbook — «священный документ» (Notion↔Repo)](../SINGLE-SOURCE-PLAYBOOK.md)** — единый источник истины для синхронизации между Notion и GitHub
 - [CONCEPT.md](CONCEPT.md) — концепция Stories
-- [Protocol — Контрактная модель для агентов](../protocol-kontraktnaya-model-dlya-agentov.md)
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](../SINGLE-SOURCE-PLAYBOOK.md)
 - [Шаблон story.md](../../templates/story.md)
 - [README](../../README.md)
 

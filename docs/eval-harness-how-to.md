@@ -165,7 +165,7 @@ class MyCustomTest extends EvalTest {
   constructor() {
     super('my-custom-test');
   }
-  
+
   async execute() {
     // Ваша логика проверки
     return {
@@ -197,7 +197,7 @@ class MyCustomTest extends EvalTest {
 
 - `tests/composer/eval-harness.mjs` — основной скрипт eval harness
 - `.github/workflows/docs-ci.yml` — интеграция в CI
-- `docs/protocol-kontraktnaya-model-dlya-agentov.md` — протокол работы агентов
+- `docs/SINGLE-SOURCE-PLAYBOOK.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - `scripts/test-guardrails.mjs` — тестирование guardrails
 - `scripts/verify-stats-accuracy.mjs` — верификация метрик
 

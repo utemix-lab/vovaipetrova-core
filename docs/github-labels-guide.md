@@ -206,6 +206,5 @@ node scripts/create-github-labels.mjs
 
 ## Связанные документы
 
-- [Protocol — Контрактная модель для агентов](protocol-kontraktnaya-model-dlya-agentov.md)
-- [Lanes Policy](protocol-kontraktnaya-model-dlya-agentov.md#lanes-policy)
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов (включая Lanes Policy)
 

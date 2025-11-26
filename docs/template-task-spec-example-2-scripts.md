@@ -10,8 +10,8 @@ service: true
 
 # TEMPLATE — Task spec Example 2: Скрипты
 
-**Тип задачи**: Создание нового скрипта утилиты  
-**Для**: Composer (Cursor AI Agent)  
+**Тип задачи**: Создание нового скрипта утилиты
+**Для**: Composer (Cursor AI Agent)
 **Дата**: 2025-11-20
 
 ---
@@ -76,5 +76,5 @@ service: true
 
 - **Spec**: `docs/spec-front-matter-i-slugi.md` — спецификация front matter
 - **Примеры**: `scripts/check-import-safety.mjs` — похожий скрипт проверки
-- **PROTOCOL**: `docs/protocol-kontraktnaya-model-dlya-agentov.md`
+- **PROTOCOL**: `docs/SINGLE-SOURCE-PLAYBOOK.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 

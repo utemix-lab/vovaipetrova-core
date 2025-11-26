@@ -10,7 +10,7 @@ Use for tracking work items, features, or improvements. Includes fields for:
 - Deliverables
 - Lane selection (docs, infra, feat, fix, etc.)
 - Sequence labels (for sequential tasks)
-- Executor selection (Cursor, CodeGPT agents, Manual)
+- Executor selection (Cursor, Copilot, Manual)
 
 ### Bug Report
 Use for reporting bugs or issues. Includes:
@@ -38,10 +38,6 @@ Use for suggesting new features or enhancements. Includes:
 - `lane:characters` — character work
 - `lane:qa` — quality assurance
 - `lane:composer` — Composer tasks
-- `lane:codegpt:orchestrator` — CodeGPT Orchestrator
-- `lane:codegpt:docs` — CodeGPT Docs Agent
-- `lane:codegpt:refactor` — CodeGPT Refactor Agent
-- `lane:codegpt:creative` — CodeGPT Creative Agent
 
 ### Sequence Labels
 - `seq:1` through `seq:10` — for marking sequential tasks

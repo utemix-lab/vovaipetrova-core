@@ -246,8 +246,7 @@ git pull origin main
 
 ## Связанные документы
 
-- [Protocol — Контрактная модель для агентов](./protocol-kontraktnaya-model-dlya-agentov.md) — общий процесс работы
-- [Diagnostics snapshot v3 + link-map monitor](./protocol-kontraktnaya-model-dlya-agentov.md#diagnostics-snapshot-v3) — проверка diagnostics
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - GitHub Actions workflow: `.github/workflows/pages.yml` — конфигурация деплоя
 
 ## Чек-лист быстрого релиза

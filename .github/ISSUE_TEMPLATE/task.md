@@ -19,13 +19,10 @@ assignees: ''
 ## Two-stream Policy
 
 **Stream Type**:
-- [ ] Stream 1 (Notion → GitHub): Импорт из Notion (использовать workflow `notion-import.yml`)
 - [ ] Stream 2 (GitHub → Notion): Работа агента с синхронизацией статусов в Notion
-- [ ] Нет связи с Notion: Задача только в GitHub
 
-**Если Stream 2 (GitHub → Notion)**:
+**Синхронизация статусов**:
 - [ ] Задача создана в Notion Briefs (требуется синхронизация статусов)
-- [ ] Задача только в GitHub Issue (синхронизация не требуется)
 - [ ] Статус будет синхронизироваться: `Ready` → `In Progress` → `Review` → `Done`
 
 ## Scope
@@ -55,12 +52,6 @@ Select appropriate lane label:
 - `lane:qa` — quality assurance
 - `lane:composer` — Composer tasks (isolated lane)
 
-**CodeGPT lanes:**
-- `lane:codegpt:orchestrator` — CodeGPT Orchestrator
-- `lane:codegpt:docs` — CodeGPT Docs Agent
-- `lane:codegpt:refactor` — CodeGPT Refactor Agent
-- `lane:codegpt:creative` — CodeGPT Creative Agent
-
 **Copilot lanes:**
 - `lane:copilot` — GitHub Copilot tasks (general)
 - `lane:copilot:docs` — Copilot documentation tasks
@@ -79,10 +70,6 @@ If this task is part of a sequence, add sequence label:
 
 - [ ] Cursor
 - [ ] GitHub Copilot
-- [ ] CodeGPT:Orchestrator
-- [ ] CodeGPT:Docs
-- [ ] CodeGPT:Refactor
-- [ ] CodeGPT:Creative
 - [ ] Manual
 
 ## Additional Context

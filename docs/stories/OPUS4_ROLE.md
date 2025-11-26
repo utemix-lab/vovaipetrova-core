@@ -171,6 +171,6 @@ OPUS4 — специализированный агент для работы с
 
 - [CONCEPT.md](CONCEPT.md) — концепция Stories
 - [SHARED_CONTEXT.md](SHARED_CONTEXT.md) — общий контекст
-- [Protocol — Контрактная модель для агентов](../protocol-kontraktnaya-model-dlya-agentov.md)
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](../SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [Шаблон story.md](../../templates/story.md)
 

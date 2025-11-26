@@ -155,7 +155,7 @@ Stories интегрированы в Explorer:
 - [CONCEPT.md](CONCEPT.md) — концепция Stories
 - [SHARED_CONTEXT.md](SHARED_CONTEXT.md) — общий контекст
 - [OPUS4_ROLE.md](OPUS4_ROLE.md) — роль агента
-- [Protocol — Контрактная модель для агентов](../protocol-kontraktnaya-model-dlya-agentov.md)
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](../SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [Шаблон story.md](../../templates/story.md)
 - [README проекта](../../README.md)
 

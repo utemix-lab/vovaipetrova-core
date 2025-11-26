@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Проверка наличия и корректности секции Deliverables в PR описании
- * 
+ *
  * Использование:
  *   node scripts/check-deliverables.mjs <PR_BODY_FILE>
  *   или
@@ -121,7 +121,7 @@ function printResult(result) {
   if (result.issues && result.issues.length > 0) {
     console.log('\n❌ Issues:');
     result.issues.forEach(i => console.log(`   - ${i}`));
-    console.log('\nConsider adding a Deliverables section according to docs/protocol-kontraktnaya-model-dlya-agentov.md');
+    console.log('\nConsider adding a Deliverables section according to docs/SINGLE-SOURCE-PLAYBOOK.md');
     process.exit(1);
   }
 
@@ -133,7 +133,7 @@ function printResult(result) {
   }
 }
 
-if (import.meta.url === `file://${process.argv[1]}` || 
+if (import.meta.url === `file://${process.argv[1]}` ||
     import.meta.url.endsWith('check-deliverables.mjs')) {
   main();
 }

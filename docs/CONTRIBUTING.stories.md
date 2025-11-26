@@ -296,7 +296,7 @@ npm run story:generate
 
 - [CONCEPT.stories-dual.md](./stories/CONCEPT.stories-dual.md) — спецификация dual-story формата
 - [SHARED_CONTEXT.md](./stories/SHARED_CONTEXT.md) — общий контекст для работы с Stories
-- [protocol-kontraktnaya-model-dlya-agentov.md](./protocol-kontraktnaya-model-dlya-agentov.md) — правила работы агентов
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [CONTRIBUTING.md](../CONTRIBUTING.md) — общий гайд по контрибуции
 - [templates/story.md](../templates/story.md) — шаблон для создания эпизодов
 
