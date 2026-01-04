@@ -469,6 +469,7 @@ body[data-view="index"] {
 .stories-intro,
 .issues-intro,
 .orphans-intro,
+.unresolved-terms-intro,
 .kb-index-intro {
     font-size: 0.9rem;
     margin: 0.75rem 0 0.5rem;

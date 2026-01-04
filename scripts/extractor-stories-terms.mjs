@@ -22,7 +22,7 @@ import slugify from 'slugify';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO || 'utemix-lab/vovaipetrova-core';
-const CANDIDATES_OUTPUT = 'candidates_kb.json';
+const CANDIDATES_OUTPUT = 'prototype/data/candidates_kb.json';
 const STORIES_DIR = 'docs/stories';
 
 // Минимальная длина термина (в символах)
@@ -446,6 +446,11 @@ async function main() {
   };
 
   if (!args.dryRun) {
+    // Убеждаемся, что директория существует
+    const outputDir = path.dirname(CANDIDATES_OUTPUT);
+    if (!existsSync(outputDir)) {
+      mkdirSync(outputDir, { recursive: true });
+    }
     writeFileSync(CANDIDATES_OUTPUT, JSON.stringify(output, null, 2), 'utf8');
     log(`✅ Сохранено в ${CANDIDATES_OUTPUT}`);
   } else {
