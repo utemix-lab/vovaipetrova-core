@@ -319,13 +319,15 @@ async function renderIndex() {
   let currentSearch = urlParams.get("search") || "";
   let currentSort = urlParams.get("sort") || localStorage.getItem("explorer-sort") || "route";
   let currentTagFilter = tagFromHash || urlParams.get("tag") || localStorage.getItem("explorer-tag-filter") || null;
+  let currentSeriesFilter = urlParams.get("series") || localStorage.getItem("explorer-series-filter") || null;
   let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
   let activePanel = hashWithoutTag.includes("stories-index") ? "stories-index" : hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("unresolved-terms") ? "unresolved-terms" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
-  
+
   // Сохраняем в localStorage
   if (urlParams.get("status")) localStorage.setItem("explorer-status", currentStatus);
   if (urlParams.get("sort")) localStorage.setItem("explorer-sort", currentSort);
   if (urlParams.get("tag") || tagFromHash) localStorage.setItem("explorer-tag-filter", currentTagFilter);
+  if (urlParams.get("series")) localStorage.setItem("explorer-series-filter", currentSeriesFilter);
   if (urlParams.get("ready")) localStorage.setItem("explorer-ready-only", readyOnly ? "true" : "false");
 
   // Функция для обновления URL без перезагрузки страницы
@@ -344,6 +346,9 @@ async function renderIndex() {
     }
     if (currentSearch) {
       params.set("search", encodeURIComponent(currentSearch));
+    }
+    if (currentSeriesFilter) {
+      params.set("series", encodeURIComponent(currentSeriesFilter));
     }
 
     // Формируем hash: приоритет тега, затем панель
@@ -449,13 +454,22 @@ async function renderIndex() {
 
   function renderStories() {
     storiesContainer.innerHTML = "";
-    if (!storyPages.length) {
+    let filteredStories = storyPages;
+    
+    // Фильтр по серии
+    if (currentSeriesFilter) {
+      filteredStories = filteredStories.filter((story) => 
+        story.series_id === currentSeriesFilter
+      );
+    }
+    
+    if (!filteredStories.length) {
       storiesEmpty.classList.remove("hidden");
       return;
     }
     storiesEmpty.classList.add("hidden");
     const fragment = document.createDocumentFragment();
-    storyPages.forEach((story) => fragment.appendChild(createStoryCard(story)));
+    filteredStories.forEach((story) => fragment.appendChild(createStoryCard(story)));
     storiesContainer.appendChild(fragment);
   }
 
@@ -557,7 +571,7 @@ async function renderIndex() {
         throw new Error(`status ${response.status}`);
       }
       const candidatesData = await response.json();
-      
+
       if (!candidatesData.candidates || candidatesData.candidates.length === 0) {
         unresolvedTermsEmpty.classList.remove("hidden");
         return;
@@ -565,13 +579,13 @@ async function renderIndex() {
       unresolvedTermsEmpty.classList.add("hidden");
 
       // Загружаем список существующих терминов KB для фильтрации
-      const kbPages = pages.filter(page => 
+      const kbPages = pages.filter(page =>
         (page.machine_tags || []).some(tag => tag.startsWith('product/kb'))
       );
       const existingSlugs = new Set(kbPages.map(page => page.slug));
 
       // Фильтруем только те термины, которых еще нет в KB
-      const unresolved = candidatesData.candidates.filter(candidate => 
+      const unresolved = candidatesData.candidates.filter(candidate =>
         !existingSlugs.has(candidate.slug)
       );
 
@@ -580,17 +594,17 @@ async function renderIndex() {
         return;
       }
       unresolvedTermsEmpty.classList.add("hidden");
-      
+
       const fragment = document.createDocumentFragment();
       unresolved.forEach((candidate) => {
         const card = document.createElement("div");
         card.className = "card";
-        
+
         const title = document.createElement("h3");
         title.className = "card__title";
         title.textContent = candidate.term;
         card.appendChild(title);
-        
+
         const details = document.createElement("div");
         details.className = "card__details";
         details.innerHTML = `
@@ -599,21 +613,21 @@ async function renderIndex() {
           ${candidate.issue_url ? `<a href="${candidate.issue_url}" target="_blank" class="term-issue-link">Issue →</a>` : ''}
         `;
         card.appendChild(details);
-        
+
         if (candidate.contexts && candidate.contexts.length > 0) {
           const context = document.createElement("div");
           context.className = "card__summary";
           context.innerHTML = `<p><em>${candidate.contexts[0].substring(0, 150)}${candidate.contexts[0].length > 150 ? '...' : ''}</em></p>`;
           card.appendChild(context);
         }
-        
+
         if (candidate.files && candidate.files.length > 0) {
           const files = document.createElement("div");
           files.className = "card__meta";
           files.innerHTML = `<small>Файлы: ${candidate.files.slice(0, 2).map(f => `<code>${f.split('/').pop()}</code>`).join(', ')}${candidate.files.length > 2 ? '...' : ''}</small>`;
           card.appendChild(files);
         }
-        
+
         fragment.appendChild(card);
       });
       unresolvedTermsContainer.appendChild(fragment);
@@ -1295,25 +1309,25 @@ async function renderPage() {
   const breadcrumbCurrent = document.getElementById("breadcrumb-current");
   if (isStoryPage(entry)) {
     let breadcrumbHTML = `<a href="../index.html#stories-panel">Stories</a>`;
-    
+
     // Если есть series_id, добавляем навигацию по серии
     if (entry.series_id) {
-      const seriesStories = pages.filter(page => 
-        isStoryPage(page) && 
-        page.series_id === entry.series_id && 
+      const seriesStories = pages.filter(page =>
+        isStoryPage(page) &&
+        page.series_id === entry.series_id &&
         page.slug !== entry.slug
       ).sort((a, b) => {
         const orderA = getStoryOrder(a) ?? 999;
         const orderB = getStoryOrder(b) ?? 999;
         return orderA - orderB;
       });
-      
+
       if (seriesStories.length > 0) {
         breadcrumbHTML += `<span aria-hidden="true"> › </span>`;
-        breadcrumbHTML += `<a href="../index.html#stories-panel?series=${encodeURIComponent(entry.series_id)}">Серия: ${escapeHtml(entry.series_id)}</a>`;
+        breadcrumbHTML += `<a href="../index.html?series=${encodeURIComponent(entry.series_id)}#stories-panel">Серия: ${escapeHtml(entry.series_id)}</a>`;
       }
     }
-    
+
     breadcrumbHTML += `<span aria-hidden="true"> › </span>`;
     breadcrumbHTML += `<span>${escapeHtml(entry.title || entry.slug)}</span>`;
     breadcrumbCurrent.innerHTML = breadcrumbHTML;
@@ -1379,9 +1393,9 @@ async function renderPage() {
 
   // Навигация по серии (другие эпизоды с тем же series_id)
   if (isStoryPage(entry) && entry.series_id) {
-    const seriesStories = pages.filter(page => 
-      isStoryPage(page) && 
-      page.series_id === entry.series_id && 
+    const seriesStories = pages.filter(page =>
+      isStoryPage(page) &&
+      page.series_id === entry.series_id &&
       page.slug !== entry.slug
     ).sort((a, b) => {
       const orderA = getStoryOrder(a) ?? 999;

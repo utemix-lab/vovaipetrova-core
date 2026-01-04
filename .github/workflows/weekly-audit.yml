@@ -1,0 +1,140 @@
+name: Weekly Audit Job
+
+on:
+  schedule:
+    # Запускается каждый понедельник в 09:00 UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Позволяет запускать вручную
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    continue-on-error: true # Не падает при ошибках, только собирает артефакты
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create reports directory
+        run: mkdir -p reports
+
+      # Link-map report
+      - name: Generate link-map report
+        id: linkmap
+        continue-on-error: true
+        run: |
+          echo "🔗 Generating link-map report..."
+          node scripts/report-broken-internal-links.mjs || echo "⚠️ Link-map report failed"
+          if [ -f "prototype/data/broken-links.json" ]; then
+            cp prototype/data/broken-links.json reports/link-map-report.json
+            echo "✅ Link-map report generated"
+          else
+            echo "⚠️ Link-map report file not found"
+          fi
+
+      # KB-linter report (используем lint-docs для KB)
+      - name: Generate KB-linter report
+        id: kblinter
+        continue-on-error: true
+        run: |
+          echo "📚 Generating KB-linter report..."
+          npm run lint:docs > reports/kb-linter-report.txt 2>&1 || echo "⚠️ KB-linter report completed with warnings"
+          echo "✅ KB-linter report generated"
+
+      # Stories-index report
+      - name: Generate stories-index report
+        id: storiesindex
+        continue-on-error: true
+        run: |
+          echo "📖 Generating stories-index report..."
+          node scripts/generate-stories-index.mjs || echo "⚠️ Stories-index report failed"
+          if [ -f "prototype/data/stories-index.json" ]; then
+            cp prototype/data/stories-index.json reports/stories-index-report.json
+            echo "✅ Stories-index report generated"
+          else
+            echo "⚠️ Stories-index report file not found"
+          fi
+
+      # Generate summary report
+      - name: Generate summary report
+        id: summary
+        continue-on-error: true
+        run: |
+          echo "📊 Generating summary report..."
+          cat > reports/summary.md << EOF
+          # Weekly Audit Report
+          
+          **Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          **Workflow Run:** ${{ github.run_id }}
+          **Workflow URL:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          
+          ## Reports Generated
+          
+          EOF
+          
+          if [ -f "reports/link-map-report.json" ]; then
+            echo "- ✅ Link-map report: link-map-report.json" >> reports/summary.md
+          else
+            echo "- ❌ Link-map report: Failed to generate" >> reports/summary.md
+          fi
+          
+          if [ -f "reports/kb-linter-report.txt" ]; then
+            echo "- ✅ KB-linter report: kb-linter-report.txt" >> reports/summary.md
+          else
+            echo "- ❌ KB-linter report: Failed to generate" >> reports/summary.md
+          fi
+          
+          if [ -f "reports/stories-index-report.json" ]; then
+            echo "- ✅ Stories-index report: stories-index-report.json" >> reports/summary.md
+          else
+            echo "- ❌ Stories-index report: Failed to generate" >> reports/summary.md
+          fi
+          
+          echo "" >> reports/summary.md
+          echo "## Artifact Download" >> reports/summary.md
+          echo "" >> reports/summary.md
+          echo "Download all reports from the workflow artifacts." >> reports/summary.md
+          
+          cat reports/summary.md
+
+      # Upload artifacts
+      - name: Upload audit reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: weekly-audit-reports-${{ github.run_id }}
+          path: reports/
+          retention-days: 30
+
+      # Add link to Notion Brief (через скрипт)
+      - name: Add report link to Notion Brief
+        id: notion
+        continue-on-error: true
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+        run: |
+          echo "📝 Adding report link to Notion Brief..."
+          if [ -f "scripts/add-audit-report-to-notion.mjs" ]; then
+            node scripts/add-audit-report-to-notion.mjs \
+              --run-id "$GITHUB_RUN_ID" \
+              --repo "$GITHUB_REPOSITORY" \
+              --server-url "$GITHUB_SERVER_URL" \
+              || echo "⚠️ Failed to add link to Notion Brief"
+          else
+            echo "⚠️ Script add-audit-report-to-notion.mjs not found, skipping Notion update"
+          fi
+
