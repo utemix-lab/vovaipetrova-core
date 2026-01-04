@@ -75,7 +75,7 @@ GITHUB_TOKEN=ghp_ваш_токен
         "R:\\vovaipetrova-core\\mcp-server-notion.mjs"
       ],
       "env": {
-        "NOTION_API_KEY": "ntn_ваш_токен_из_env"
+        "NOTION_API_KEY": "${NOTION_API_KEY}"
       }
     },
     "openrouter-file-access": {
@@ -92,9 +92,10 @@ GITHUB_TOKEN=ghp_ваш_токен
 }
 ```
 
-**Важно:**
+**Важно:** 
 - Замените путь `R:\\vovaipetrova-core` на ваш реальный путь, если отличается
-- Токен Notion уже есть в `.env`, но можно указать напрямую в конфигурации
+- Токен Notion уже есть в `.env`, используйте `${NOTION_API_KEY}` для автоматической подстановки
+- Альтернативно можно указать токен напрямую: `"NOTION_API_KEY": "ntn_ваш_токен"`
 - Для OpenRouter добавьте `OPENROUTER_API_KEY` в `.env`, если планируете использовать
 
 ### Шаг 4: Включите Agent Mode в Copilot
