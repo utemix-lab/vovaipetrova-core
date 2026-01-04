@@ -175,6 +175,14 @@ function buildIndex() {
             .filter(Boolean)
         : [];
 
+      // Extract series_id and related_stories for stories
+      const seriesId = isStory && fm.series_id ? String(fm.series_id).trim() : null;
+      const relatedStories = isStory && Array.isArray(fm.related_stories)
+        ? fm.related_stories
+            .map((ref) => String(ref || "").trim())
+            .filter(Boolean)
+        : [];
+
       const page = {
         title,
         slug,
@@ -186,7 +194,9 @@ function buildIndex() {
         service: isService,
         collection: isStory ? "stories" : null,
         story_order:
-          isStory && Number.isInteger(storyOrder) ? storyOrder : null
+          isStory && Number.isInteger(storyOrder) ? storyOrder : null,
+        series_id: seriesId || null,
+        related_stories: relatedStories.length > 0 ? relatedStories : null
       };
       
       pagesMap.set(relativePath, page);

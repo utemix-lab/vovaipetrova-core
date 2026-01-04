@@ -56,25 +56,25 @@ function formatStoryOrder(page) {
  */
 function pluralizeStory(count) {
   if (count === 0) return 'историй';
-  
+
   const lastDigit = count % 10;
   const lastTwoDigits = count % 100;
-  
+
   // Особые случаи: 11-14 всегда используют "историй"
   if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
     return 'историй';
   }
-  
+
   // 1, 21, 31, 41... → "история"
   if (lastDigit === 1) {
     return 'история';
   }
-  
+
   // 2-4, 22-24, 32-34... → "истории"
   if (lastDigit >= 2 && lastDigit <= 4) {
     return 'истории';
   }
-  
+
   // 0, 5-9, 10, 20, 25-30... → "историй"
   return 'историй';
 }
@@ -230,17 +230,17 @@ function sortByRoute(pages, routeMap) {
   return pages.sort((a, b) => {
     const routeA = routeMap.get(a.slug);
     const routeB = routeMap.get(b.slug);
-    
+
     if (!routeA && !routeB) {
       return (a.title || a.slug).localeCompare(b.title || b.slug, "ru");
     }
     if (!routeA) return 1;
     if (!routeB) return -1;
-    
+
     if (routeA.order !== routeB.order) {
       return routeA.order - routeB.order;
     }
-    
+
     return (a.title || a.slug).localeCompare(b.title || b.slug, "ru");
   });
 }
@@ -294,7 +294,7 @@ async function renderIndex() {
     loadRoutes("data/routes.json")
   ]);
   const routeMap = buildRouteMap(routes);
-  
+
   const visiblePages = pages.filter((page) => page.service !== true);
   const storyPages = visiblePages
     .filter(isStoryPage)
@@ -305,33 +305,33 @@ async function renderIndex() {
       return (a.title || a.slug).localeCompare(b.title || b.slug, "ru");
     });
   const docPages = visiblePages.filter((page) => !isStoryPage(page));
-  
+
   // Проверяем, находимся ли мы на странице тега (через hash #tags/<tag>)
   const hash = window.location.hash.replace("#", "");
   const hashMatch = hash.match(/^tags\/(.+)$/);
   const tagFromHash = hashMatch ? decodeURIComponent(hashMatch[1]) : null;
   const hashWithoutTag = hash.replace(/^tags\/.+$/, "");
-  
+
   // Читаем параметры из URL или localStorage
   const urlParams = new URLSearchParams(window.location.search);
-  
+
   let currentStatus = urlParams.get("status") || localStorage.getItem("explorer-status") || "all";
   let currentSearch = urlParams.get("search") || "";
   let currentSort = urlParams.get("sort") || localStorage.getItem("explorer-sort") || "route";
   let currentTagFilter = tagFromHash || urlParams.get("tag") || localStorage.getItem("explorer-tag-filter") || null;
   let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
   let activePanel = hashWithoutTag.includes("stories-index") ? "stories-index" : hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("unresolved-terms") ? "unresolved-terms" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
-  
+
   // Сохраняем в localStorage
   if (urlParams.get("status")) localStorage.setItem("explorer-status", currentStatus);
   if (urlParams.get("sort")) localStorage.setItem("explorer-sort", currentSort);
   if (urlParams.get("tag") || tagFromHash) localStorage.setItem("explorer-tag-filter", currentTagFilter);
   if (urlParams.get("ready")) localStorage.setItem("explorer-ready-only", readyOnly ? "true" : "false");
-  
+
   // Функция для обновления URL без перезагрузки страницы
   function updateURL() {
     const params = new URLSearchParams();
-    
+
     if (currentStatus !== "all") {
       params.set("status", currentStatus);
     }
@@ -345,7 +345,7 @@ async function renderIndex() {
     if (currentSearch) {
       params.set("search", encodeURIComponent(currentSearch));
     }
-    
+
     // Формируем hash: приоритет тега, затем панель
     let newHash = "";
     if (currentTagFilter) {
@@ -353,15 +353,15 @@ async function renderIndex() {
     } else if (activePanel !== "docs") {
       newHash = activePanel; // stories, issues, orphans, unresolved-terms, kb-index, stories-index
     }
-    
+
     const queryString = params.toString();
-    const newURL = queryString 
+    const newURL = queryString
       ? `${window.location.pathname}?${queryString}${newHash ? `#${newHash}` : ""}`
       : `${window.location.pathname}${newHash ? `#${newHash}` : ""}`;
-    
+
     window.history.pushState({}, "", newURL);
   }
-  
+
   // Функция для копирования текущего URL
   function copyCurrentURL() {
     const url = window.location.href;
@@ -385,26 +385,26 @@ async function renderIndex() {
   function renderDocs() {
     cardsContainer.innerHTML = "";
     let filtered = docPages.filter(byStatus(currentStatus, currentSearch));
-    
+
     // Фильтр "Ready only"
     if (readyOnly) {
       filtered = filtered.filter((page) => page.status === "ready");
     }
-    
+
     // Фильтр по тегу
     if (currentTagFilter) {
       filtered = filtered.filter((page) =>
         page.tags?.some((tag) => tag.toLowerCase() === currentTagFilter.toLowerCase())
       );
     }
-    
+
     // Применяем сортировку
     if (currentSort === "route") {
       filtered = sortByRoute([...filtered], routeMap);
     } else {
       filtered = sortByStatus([...filtered]);
     }
-    
+
     if (filtered.length === 0) {
       emptyState.classList.remove("hidden");
       cardsContainer.innerHTML = "";
@@ -437,7 +437,7 @@ async function renderIndex() {
     }
     cardsContainer.appendChild(fragment);
   }
-  
+
   function updateTagFilterUI() {
     document.querySelectorAll(".tag-chip--clickable").forEach((chip) => {
       chip.classList.toggle(
@@ -465,24 +465,24 @@ async function renderIndex() {
       const response = await fetch("data/stats.json");
       if (!response.ok) throw new Error(`status ${response.status}`);
       const stats = await response.json();
-      
+
       if (!stats.topProblems || stats.topProblems.length === 0) {
         issuesEmpty.classList.remove("hidden");
         return;
       }
       issuesEmpty.classList.add("hidden");
-      
+
       const fragment = document.createDocumentFragment();
       stats.topProblems.forEach((problem) => {
         const card = document.createElement("article");
         card.className = "card card--issue";
-        
+
         const titleLink = document.createElement("a");
         titleLink.className = "card__title";
         titleLink.href = `page/${problem.slug}.html`;
         titleLink.textContent = problem.title || problem.slug;
         card.appendChild(titleLink);
-        
+
         const meta = document.createElement("div");
         meta.className = "card__meta";
         meta.innerHTML = `
@@ -490,7 +490,7 @@ async function renderIndex() {
           <span class="issue-count">Issues: ${problem.issues_total}</span>
         `;
         card.appendChild(meta);
-        
+
         const details = document.createElement("div");
         details.className = "issue-details";
         if (problem.issues_internal_missing > 0) {
@@ -503,7 +503,7 @@ async function renderIndex() {
           details.innerHTML += `<span class="issue-badge issue-badge--unknown">Unknown: ${problem.issues_unknown}</span>`;
         }
         card.appendChild(details);
-        
+
         fragment.appendChild(card);
       });
       issuesContainer.appendChild(fragment);
@@ -519,13 +519,13 @@ async function renderIndex() {
       const response = await fetch("data/orphans.json");
       if (!response.ok) throw new Error(`status ${response.status}`);
       const orphansData = await response.json();
-      
+
       if (!orphansData.orphans || orphansData.orphans.length === 0) {
         orphansEmpty.classList.remove("hidden");
         return;
       }
       orphansEmpty.classList.add("hidden");
-      
+
       const fragment = document.createDocumentFragment();
       orphansData.orphans.forEach((orphan) => {
         const card = createCard({
@@ -557,7 +557,7 @@ async function renderIndex() {
         throw new Error(`status ${response.status}`);
       }
       const candidatesData = await response.json();
-      
+
       if (!candidatesData.candidates || candidatesData.candidates.length === 0) {
         unresolvedTermsEmpty.classList.remove("hidden");
         return;
@@ -565,13 +565,13 @@ async function renderIndex() {
       unresolvedTermsEmpty.classList.add("hidden");
 
       // Загружаем список существующих терминов KB для фильтрации
-      const kbPages = pages.filter(page => 
+      const kbPages = pages.filter(page =>
         (page.machine_tags || []).some(tag => tag.startsWith('product/kb'))
       );
       const existingSlugs = new Set(kbPages.map(page => page.slug));
 
       // Фильтруем только те термины, которых еще нет в KB
-      const unresolved = candidatesData.candidates.filter(candidate => 
+      const unresolved = candidatesData.candidates.filter(candidate =>
         !existingSlugs.has(candidate.slug)
       );
 
@@ -580,17 +580,17 @@ async function renderIndex() {
         return;
       }
       unresolvedTermsEmpty.classList.add("hidden");
-      
+
       const fragment = document.createDocumentFragment();
       unresolved.forEach((candidate) => {
         const card = document.createElement("div");
         card.className = "card";
-        
+
         const title = document.createElement("h3");
         title.className = "card__title";
         title.textContent = candidate.term;
         card.appendChild(title);
-        
+
         const details = document.createElement("div");
         details.className = "card__details";
         details.innerHTML = `
@@ -599,21 +599,21 @@ async function renderIndex() {
           ${candidate.issue_url ? `<a href="${candidate.issue_url}" target="_blank" class="term-issue-link">Issue →</a>` : ''}
         `;
         card.appendChild(details);
-        
+
         if (candidate.contexts && candidate.contexts.length > 0) {
           const context = document.createElement("div");
           context.className = "card__summary";
           context.innerHTML = `<p><em>${candidate.contexts[0].substring(0, 150)}${candidate.contexts[0].length > 150 ? '...' : ''}</em></p>`;
           card.appendChild(context);
         }
-        
+
         if (candidate.files && candidate.files.length > 0) {
           const files = document.createElement("div");
           files.className = "card__meta";
           files.innerHTML = `<small>Файлы: ${candidate.files.slice(0, 2).map(f => `<code>${f.split('/').pop()}</code>`).join(', ')}${candidate.files.length > 2 ? '...' : ''}</small>`;
           card.appendChild(files);
         }
-        
+
         fragment.appendChild(card);
       });
       unresolvedTermsContainer.appendChild(fragment);
@@ -712,7 +712,7 @@ async function renderIndex() {
       renderDocs();
     });
   });
-  
+
   // Восстанавливаем активную кнопку фильтра
   const activeFilterButton = filterButtons.find((btn) => btn.dataset.status === currentStatus);
   if (activeFilterButton) {
@@ -730,14 +730,14 @@ async function renderIndex() {
       renderDocs();
     });
   });
-  
+
   // Восстанавливаем активную кнопку сортировки
   const activeSortButton = sortButtons.find((btn) => btn.dataset.sort === currentSort);
   if (activeSortButton) {
     sortButtons.forEach((btn) => btn.classList.remove("is-active"));
     activeSortButton.classList.add("is-active");
   }
-  
+
   // Toggle "Ready only"
   const readyOnlyToggle = document.createElement("label");
   readyOnlyToggle.className = "ready-only-toggle";
@@ -752,14 +752,14 @@ async function renderIndex() {
     updateURL();
     renderDocs();
   });
-  
+
   // Добавляем tooltip для Ready only
   readyOnlyToggle.title = "Показать только страницы со статусом ready";
   const filtersGroup = document.querySelector(".filters");
   if (filtersGroup) {
     filtersGroup.parentNode.insertBefore(readyOnlyToggle, filtersGroup.nextSibling);
   }
-  
+
   // Добавляем кнопку "Copy link"
   const copyLinkButton = document.createElement("button");
   copyLinkButton.id = "copy-link-button";
@@ -772,7 +772,7 @@ async function renderIndex() {
   if (controlsContainer) {
     controlsContainer.appendChild(copyLinkButton);
   }
-  
+
   // Если мы на странице тега, добавляем breadcrumbs и заголовок
   if (tagFromHash) {
     const content = document.querySelector(".content");
@@ -787,7 +787,7 @@ async function renderIndex() {
         <span class="breadcrumbs__current">Тег: ${escapeHtml(tagFromHash)}</span>
       `;
       content.insertBefore(breadcrumbs, content.firstChild);
-      
+
       // Обновляем заголовок страницы
       document.title = `Тег: ${tagFromHash} — Vova & Petrova Docs`;
     }
@@ -797,7 +797,7 @@ async function renderIndex() {
   if (currentSearch) {
     searchInput.value = currentSearch;
   }
-  
+
   // Обработчик поиска
   let searchTimeout;
   searchInput.addEventListener("input", (event) => {
@@ -838,21 +838,21 @@ async function renderIndex() {
 
   async function renderKBIndex() {
     if (!kbIndexLetters || !kbIndexContent) return;
-    
+
     kbIndexLetters.innerHTML = "";
     kbIndexContent.innerHTML = "";
-    
+
     try {
       const response = await fetch("data/kb-index.json");
       if (!response.ok) throw new Error(`status ${response.status}`);
       const kbIndex = await response.json();
-      
+
       if (!kbIndex.letters || kbIndex.letters.length === 0) {
         if (kbIndexEmpty) kbIndexEmpty.classList.remove("hidden");
         return;
       }
       if (kbIndexEmpty) kbIndexEmpty.classList.add("hidden");
-      
+
       // Рендерим навигацию по буквам
       const lettersFragment = document.createDocumentFragment();
       kbIndex.letters.forEach(letter => {
@@ -867,14 +867,14 @@ async function renderIndex() {
             btn.classList.remove("is-active");
           });
           button.classList.add("is-active");
-          
+
           // Показываем страницы для выбранной буквы
           renderKBIndexLetter(letter, kbIndex.index[letter]);
         });
         lettersFragment.appendChild(button);
       });
       kbIndexLetters.appendChild(lettersFragment);
-      
+
       // По умолчанию показываем первую букву
       if (kbIndex.letters.length > 0) {
         const firstLetter = kbIndex.letters[0];
@@ -892,14 +892,14 @@ async function renderIndex() {
 
   function renderKBIndexLetter(letter, pages) {
     if (!kbIndexContent) return;
-    
+
     kbIndexContent.innerHTML = "";
-    
+
     const heading = document.createElement("h2");
     heading.className = "kb-index-letter-heading";
     heading.textContent = `Буква "${letter}" (${pages.length} страниц)`;
     kbIndexContent.appendChild(heading);
-    
+
     const fragment = document.createDocumentFragment();
     pages.forEach(page => {
       const card = createCard({
@@ -917,21 +917,21 @@ async function renderIndex() {
 
   async function renderStoriesIndex() {
     if (!storiesIndexGroups || !storiesIndexContent) return;
-    
+
     storiesIndexGroups.innerHTML = "";
     storiesIndexContent.innerHTML = "";
-    
+
     try {
       const response = await fetch("data/stories-index.json");
       if (!response.ok) throw new Error(`status ${response.status}`);
       const storiesIndex = await response.json();
-      
+
       if (!storiesIndex.groups || storiesIndex.groups.length === 0) {
         if (storiesIndexEmpty) storiesIndexEmpty.classList.remove("hidden");
         return;
       }
       if (storiesIndexEmpty) storiesIndexEmpty.classList.add("hidden");
-      
+
       // Рендерим навигацию по группам
       const groupsFragment = document.createDocumentFragment();
       storiesIndex.groups.forEach(group => {
@@ -943,7 +943,7 @@ async function renderIndex() {
         if (group.match(/^\d{4}-\d{2}$/)) {
           // Группа по дате (YYYY-MM)
           const [year, month] = group.split('-');
-          const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 
+          const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
                              'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
           const monthName = monthNames[parseInt(month) - 1] || month;
           groupLabel = `${monthName} ${year}`;
@@ -966,14 +966,14 @@ async function renderIndex() {
             btn.classList.remove("is-active");
           });
           button.classList.add("is-active");
-          
+
           // Показываем истории для выбранной группы
           renderStoriesIndexGroup(group, storiesIndex.index[group]);
         });
         groupsFragment.appendChild(button);
       });
       storiesIndexGroups.appendChild(groupsFragment);
-      
+
       // По умолчанию показываем первую группу
       if (storiesIndex.groups.length > 0) {
         const firstGroup = storiesIndex.groups[0];
@@ -991,14 +991,14 @@ async function renderIndex() {
 
   function renderStoriesIndexGroup(group, stories) {
     if (!storiesIndexContent) return;
-    
+
     storiesIndexContent.innerHTML = "";
-    
+
     // Форматируем заголовок группы
     let groupHeading = group;
     if (group.match(/^\d{4}-\d{2}$/)) {
       const [year, month] = group.split('-');
-      const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 
+      const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
                          'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
       const monthName = monthNames[parseInt(month) - 1] || month;
       groupHeading = `${monthName} ${year}`;
@@ -1012,12 +1012,12 @@ async function renderIndex() {
     } else if (group === 'other') {
       groupHeading = 'Прочее';
     }
-    
+
     const heading = document.createElement("h2");
     heading.className = "stories-index-group-heading";
     heading.textContent = `${groupHeading} (${stories.length} ${pluralizeStory(stories.length)})`;
     storiesIndexContent.appendChild(heading);
-    
+
     const fragment = document.createDocumentFragment();
     stories.forEach(story => {
       const card = createStoryCard({
@@ -1273,7 +1273,7 @@ async function renderPage() {
   }
 
   document.title = `Документ — ${entry.title || entry.slug}`;
-  
+
   // Настройка кнопки "Back to list" с сохранением сортировки и фильтров
   const backToList = document.getElementById("back-to-list");
   if (backToList) {
@@ -1281,24 +1281,42 @@ async function renderPage() {
     const readyOnly = localStorage.getItem("explorer-ready-only") === "true";
     const tagFilter = localStorage.getItem("explorer-tag-filter");
     const panel = isStoryPage(entry) ? "stories" : "docs";
-    
+
     let href = `../index.html#${panel}-panel`;
     const params = new URLSearchParams();
     if (sort !== "route") params.set("sort", sort);
     if (readyOnly) params.set("ready", "1");
     if (tagFilter) params.set("tag", tagFilter);
     if (params.toString()) href += `?${params.toString()}`;
-    
+
     backToList.href = href;
   }
-  
+
   const breadcrumbCurrent = document.getElementById("breadcrumb-current");
   if (isStoryPage(entry)) {
-    breadcrumbCurrent.innerHTML = `
-      <a href="../index.html#stories-panel">Stories</a>
-      <span aria-hidden="true"> › </span>
-      <span>${escapeHtml(entry.title || entry.slug)}</span>
-    `;
+    let breadcrumbHTML = `<a href="../index.html#stories-panel">Stories</a>`;
+    
+    // Если есть series_id, добавляем навигацию по серии
+    if (entry.series_id) {
+      const seriesStories = pages.filter(page => 
+        isStoryPage(page) && 
+        page.series_id === entry.series_id && 
+        page.slug !== entry.slug
+      ).sort((a, b) => {
+        const orderA = getStoryOrder(a) ?? 999;
+        const orderB = getStoryOrder(b) ?? 999;
+        return orderA - orderB;
+      });
+      
+      if (seriesStories.length > 0) {
+        breadcrumbHTML += `<span aria-hidden="true"> › </span>`;
+        breadcrumbHTML += `<a href="../index.html#stories-panel?series=${encodeURIComponent(entry.series_id)}">Серия: ${escapeHtml(entry.series_id)}</a>`;
+      }
+    }
+    
+    breadcrumbHTML += `<span aria-hidden="true"> › </span>`;
+    breadcrumbHTML += `<span>${escapeHtml(entry.title || entry.slug)}</span>`;
+    breadcrumbCurrent.innerHTML = breadcrumbHTML;
   } else {
     breadcrumbCurrent.textContent = entry.title || entry.slug;
   }
@@ -1358,7 +1376,79 @@ async function renderPage() {
     rewriteInternalLinks(relatedTarget, pages, linkMap);
     relatedBlock.classList.remove("hidden");
   }
-  
+
+  // Навигация по серии (другие эпизоды с тем же series_id)
+  if (isStoryPage(entry) && entry.series_id) {
+    const seriesStories = pages.filter(page => 
+      isStoryPage(page) && 
+      page.series_id === entry.series_id && 
+      page.slug !== entry.slug
+    ).sort((a, b) => {
+      const orderA = getStoryOrder(a) ?? 999;
+      const orderB = getStoryOrder(b) ?? 999;
+      return orderA - orderB;
+    });
+
+    if (seriesStories.length > 0) {
+      const seriesBlock = document.getElementById("series-block");
+      const seriesContent = document.getElementById("series-content");
+      if (seriesBlock && seriesContent) {
+        const list = document.createElement("ul");
+        list.className = "series-list";
+
+        seriesStories.forEach(story => {
+          const item = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = `../page/${story.slug}.html`;
+          link.textContent = story.title || story.slug;
+          if (story.story_order) {
+            const orderText = formatStoryOrder(story);
+            link.textContent = `${orderText ? `Эпизод ${orderText}: ` : ''}${link.textContent}`;
+          }
+          item.appendChild(link);
+          list.appendChild(item);
+        });
+
+        seriesContent.innerHTML = "";
+        seriesContent.appendChild(list);
+        seriesBlock.classList.remove("hidden");
+      }
+    }
+  }
+
+  // Навигация по related_stories
+  if (isStoryPage(entry) && entry.related_stories && Array.isArray(entry.related_stories) && entry.related_stories.length > 0) {
+    const relatedStoriesList = entry.related_stories
+      .map(ref => {
+        // ref может быть slug или полный путь
+        const slug = ref.includes('/') ? ref.split('/').pop().replace('.md', '') : ref;
+        return pages.find(page => page.slug === slug || page.url === ref);
+      })
+      .filter(Boolean);
+
+    if (relatedStoriesList.length > 0) {
+      const relatedStoriesBlock = document.getElementById("related-stories-block");
+      const relatedStoriesContent = document.getElementById("related-stories-content");
+      if (relatedStoriesBlock && relatedStoriesContent) {
+        const list = document.createElement("ul");
+        list.className = "related-stories-list";
+
+        relatedStoriesList.forEach(story => {
+          const item = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = `../page/${story.slug}.html`;
+          link.textContent = story.title || story.slug;
+          item.appendChild(link);
+          list.appendChild(item);
+        });
+
+        relatedStoriesContent.innerHTML = "";
+        relatedStoriesContent.appendChild(list);
+        relatedStoriesBlock.classList.remove("hidden");
+      }
+    }
+  }
+
   // Загружаем и отображаем backlinks
   try {
     const backlinksResponse = await fetch("../data/backlinks.json");
@@ -1370,7 +1460,7 @@ async function renderPage() {
         const backlinksContent = document.getElementById("backlinks-content");
         const list = document.createElement("ul");
         list.className = "backlinks-list";
-        
+
         pageBacklinks.forEach(backlink => {
           const item = document.createElement("li");
           const link = document.createElement("a");
@@ -1379,7 +1469,7 @@ async function renderPage() {
           item.appendChild(link);
           list.appendChild(item);
         });
-        
+
         backlinksContent.innerHTML = "";
         backlinksContent.appendChild(list);
         backlinksBlock.classList.remove("hidden");
