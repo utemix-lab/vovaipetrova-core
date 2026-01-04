@@ -321,7 +321,7 @@ async function renderIndex() {
   let currentTagFilter = tagFromHash || urlParams.get("tag") || localStorage.getItem("explorer-tag-filter") || null;
   let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
   let activePanel = hashWithoutTag.includes("stories-index") ? "stories-index" : hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("unresolved-terms") ? "unresolved-terms" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
-
+  
   // Сохраняем в localStorage
   if (urlParams.get("status")) localStorage.setItem("explorer-status", currentStatus);
   if (urlParams.get("sort")) localStorage.setItem("explorer-sort", currentSort);
@@ -557,7 +557,7 @@ async function renderIndex() {
         throw new Error(`status ${response.status}`);
       }
       const candidatesData = await response.json();
-
+      
       if (!candidatesData.candidates || candidatesData.candidates.length === 0) {
         unresolvedTermsEmpty.classList.remove("hidden");
         return;
@@ -565,13 +565,13 @@ async function renderIndex() {
       unresolvedTermsEmpty.classList.add("hidden");
 
       // Загружаем список существующих терминов KB для фильтрации
-      const kbPages = pages.filter(page =>
+      const kbPages = pages.filter(page => 
         (page.machine_tags || []).some(tag => tag.startsWith('product/kb'))
       );
       const existingSlugs = new Set(kbPages.map(page => page.slug));
 
       // Фильтруем только те термины, которых еще нет в KB
-      const unresolved = candidatesData.candidates.filter(candidate =>
+      const unresolved = candidatesData.candidates.filter(candidate => 
         !existingSlugs.has(candidate.slug)
       );
 
@@ -580,17 +580,17 @@ async function renderIndex() {
         return;
       }
       unresolvedTermsEmpty.classList.add("hidden");
-
+      
       const fragment = document.createDocumentFragment();
       unresolved.forEach((candidate) => {
         const card = document.createElement("div");
         card.className = "card";
-
+        
         const title = document.createElement("h3");
         title.className = "card__title";
         title.textContent = candidate.term;
         card.appendChild(title);
-
+        
         const details = document.createElement("div");
         details.className = "card__details";
         details.innerHTML = `
@@ -599,21 +599,21 @@ async function renderIndex() {
           ${candidate.issue_url ? `<a href="${candidate.issue_url}" target="_blank" class="term-issue-link">Issue →</a>` : ''}
         `;
         card.appendChild(details);
-
+        
         if (candidate.contexts && candidate.contexts.length > 0) {
           const context = document.createElement("div");
           context.className = "card__summary";
           context.innerHTML = `<p><em>${candidate.contexts[0].substring(0, 150)}${candidate.contexts[0].length > 150 ? '...' : ''}</em></p>`;
           card.appendChild(context);
         }
-
+        
         if (candidate.files && candidate.files.length > 0) {
           const files = document.createElement("div");
           files.className = "card__meta";
           files.innerHTML = `<small>Файлы: ${candidate.files.slice(0, 2).map(f => `<code>${f.split('/').pop()}</code>`).join(', ')}${candidate.files.length > 2 ? '...' : ''}</small>`;
           card.appendChild(files);
         }
-
+        
         fragment.appendChild(card);
       });
       unresolvedTermsContainer.appendChild(fragment);
