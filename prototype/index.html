@@ -66,6 +66,9 @@
         <button type="button" class="view-button" data-panel="stories-index">
           Stories Index
         </button>
+        <button type="button" class="view-button" data-panel="unresolved-terms">
+          Unresolved Terms
+        </button>
       </div>
     </header>
     <main class="content">
@@ -138,6 +141,16 @@
         <div id="stories-index-empty" class="empty-state hidden">
           <h2>Индекс пуст</h2>
           <p>Нет историй для отображения.</p>
+        </div>
+      </section>
+      <section id="unresolved-terms-panel" class="hidden" aria-live="polite">
+        <p class="unresolved-terms-intro">
+          Кандидаты терминов из PR Stories, которые еще не добавлены в KB. Эти термины были извлечены из измененных файлов Stories и требуют создания страниц в базе знаний.
+        </p>
+        <section id="unresolved-terms-list" class="cards-grid"></section>
+        <div id="unresolved-terms-empty" class="empty-state hidden">
+          <h2>Нерешенных терминов не найдено</h2>
+          <p>Все кандидаты терминов уже добавлены в KB или список пуст.</p>
         </div>
       </section>
     </main>
