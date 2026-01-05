@@ -8,6 +8,9 @@ status: draft
 story_type: dual
 series_id: "gateway-poc-2"
 series_order: 1
+visuals:
+  author_prompt: "surreal scene: blurred boundary between human and machine, long text flowing into code, soft focus, contemplative atmosphere"
+  report_prompt: "technical workflow: HITL process diagram, seed_text input, gateway system, episode generation, series connection"
 notion_page_id: ""
 last_edited_time: ""
 ---

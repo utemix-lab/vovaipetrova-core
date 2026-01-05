@@ -8,6 +8,9 @@ status: draft
 story_type: dual
 series_id: "gateway-poc-2"
 series_order: 2
+visuals:
+  author_prompt: "continuity visualization: connected narrative threads, series structure, evolving experiment, soft transitions between episodes"
+  report_prompt: "series completion diagram: two connected episodes, series_id linking, technical validation, workflow completion"
 notion_page_id: ""
 last_edited_time: ""
 ---
