@@ -6,6 +6,9 @@ tags: [Story, Seed]
 machine_tags: [content/story, pipeline/seed]
 status: draft
 story_type: dual
+visuals:
+  author_prompt: "abstract composition: overlapping forms representing structure and content, soft gradients, contemplative mood, muted colors"
+  report_prompt: "documentation layout: improved file structure, metadata fields, validation checklist, technical precision"
 notion_page_id: ""
 last_edited_time: ""
 ---

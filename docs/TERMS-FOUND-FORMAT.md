@@ -35,7 +35,7 @@ status: ready
 1. **Заголовок**: всегда `## Terms found`
 2. **Вводный текст**: "Термины извлечены из файлов Stories для добавления в KB:"
 3. **Список терминов**: маркированный список с форматированием `**Термин** (\`slug\`)`
-4. **Цитаты контекста**: 
+4. **Цитаты контекста**:
    - Отступ 2 пробела
    - Формат `> цитата`
    - Максимум 2 цитаты на термин
@@ -159,5 +159,5 @@ node scripts/generate-terms-found-block.mjs --max-terms=5 --max-contexts=1
 - [extractor-stories-terms.mjs](../../scripts/extractor-stories-terms.mjs) — скрипт для извлечения терминов
 - [generate-terms-found-block.mjs](../../scripts/generate-terms-found-block.mjs) — скрипт для генерации блока
 - [Single Source Playbook](SINGLE-SOURCE-PLAYBOOK.md) — правила работы с Stories
-- [CONTRIBUTING.stories.md](stories/CONTRIBUTING.stories.md) — гайд для авторов Stories
+- [CONTRIBUTING.stories.md](CONTRIBUTING.stories.md) — гайд для авторов Stories
 
