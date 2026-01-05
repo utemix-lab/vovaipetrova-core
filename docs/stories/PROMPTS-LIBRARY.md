@@ -1,5 +1,5 @@
 ---
-title: Prompts Library — Библиотека тонов для author_block
+title: Библиотека тонов для author_block
 slug: prompts-library
 summary: Короткий справочник тонов и голосов для написания авторских блоков в dual-story эпизодах.
 tags: [Story, Справочник]
@@ -7,7 +7,7 @@ machine_tags: [content/story, theme/reference]
 status: ready
 ---
 
-# Prompts Library — Библиотека тонов для author_block
+# Библиотека тонов для author_block
 
 Короткий справочник тонов и голосов для написания авторских блоков (`AUTHOR_BLOCK`) в dual-story эпизодах.
 

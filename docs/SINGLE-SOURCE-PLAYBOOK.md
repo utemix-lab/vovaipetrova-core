@@ -11,6 +11,8 @@ machine_tags:
   - product/services
   - theme/automation
   - theme/dev
+notion_page_id: "fee878a9-9503-4df5-9f10-572df92aaf06"
+last_edited_time: ""
 ---
 
 # Single Source Playbook — «священный документ» (Notion↔Repo)

@@ -53,6 +53,8 @@
     "pr:recheck": "node scripts/trigger-pr-recheck.mjs",
     "pr:rerun": "node scripts/pr-rerun.mjs",
     "terms:found": "node scripts/generate-terms-found-block.mjs",
+    "sync:playbook": "node scripts/sync-playbook-from-notion.mjs",
+    "sync:playbook:dry": "node scripts/sync-playbook-from-notion.mjs --dry-run",
     "test:sandbox:forbidden-paths": "node scripts/test-forbidden-paths-sandbox.mjs",
     "test:sandbox:codegpt-guardrails": "node scripts/test-codegpt-guardrails-sandbox.mjs",
     "test:sandbox:copilot-guardrails": "node scripts/test-copilot-guardrails-sandbox.mjs",
@@ -78,6 +80,7 @@
   "homepage": "https://github.com/utemix-lab/vovaipetrova-core#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
+    "@notionhq/client": "^2.2.15",
     "glob": "^12.0.0",
     "gray-matter": "^4.0.3",
     "slugify": "^1.6.6",
