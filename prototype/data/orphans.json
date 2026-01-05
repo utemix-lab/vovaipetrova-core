@@ -1,6 +1,37 @@
 {
-  "updated": "2025-11-21T18:37:40.625Z",
+  "version": "3.0",
+  "updated": "2026-01-05T11:16:54.243Z",
   "orphans": [
+    {
+      "slug": "briefs-ux-improvements",
+      "title": "Briefs UX — доводки представлений By Lane / Pending Review / Ready for Copilot",
+      "url": "docs/briefs-ux-improvements.md",
+      "status": "ready"
+    },
+    {
+      "slug": "concept-author-gateway",
+      "title": "CONCEPT — Author Gateway",
+      "url": "docs/CONCEPT.author-gateway.md",
+      "status": "ready"
+    },
+    {
+      "slug": "contributing-stories",
+      "title": "CONTRIBUTING — Гайд для авторов и редакторов Stories",
+      "url": "docs/CONTRIBUTING.stories.md",
+      "status": "ready"
+    },
+    {
+      "slug": "copilot-mcp-setup",
+      "title": "Настройка GitHub Copilot с MCP для Notion",
+      "url": "docs/copilot-mcp-setup.md",
+      "status": "draft"
+    },
+    {
+      "slug": "cursor-mcp-openrouter-setup",
+      "title": "Настройка MCP сервера с OpenRouter для Cursor",
+      "url": "docs/cursor-mcp-openrouter-setup.md",
+      "status": "draft"
+    },
     {
       "slug": "eval-harness-how-to",
       "title": "Eval harness — метрики качества и регрессии",
@@ -8,9 +39,51 @@
       "status": "ready"
     },
     {
+      "slug": "gateway-watcher",
+      "title": "Gateway Watcher — валидация контента из inbox/author",
+      "url": "docs/GATEWAY-WATCHER.md",
+      "status": "ready"
+    },
+    {
+      "slug": "github-labels-guide",
+      "title": "GitHub Labels — Руководство по использованию",
+      "url": "docs/github-labels-guide.md",
+      "status": "ready"
+    },
+    {
       "slug": "mcp-notion-api-compatibility-tracker",
       "title": "MCP Notion API Compatibility Tracker",
       "url": "docs/mcp-notion-api-compatibility-tracker.md",
+      "status": "draft"
+    },
+    {
+      "slug": "notion-access-setup",
+      "title": "Настройка доступа к страницам Notion для MCP",
+      "url": "docs/NOTION-ACCESS-SETUP.md",
+      "status": "ready"
+    },
+    {
+      "slug": "terms-found-format",
+      "title": "Terms found — формат блока в PR по Stories",
+      "url": "docs/TERMS-FOUND-FORMAT.md",
+      "status": "ready"
+    },
+    {
+      "slug": "utf-8-setup",
+      "title": "Настройка UTF-8 кодировки в редакторах",
+      "url": "docs/UTF-8-SETUP.md",
+      "status": "ready"
+    },
+    {
+      "slug": "voideditor-github-token-setup",
+      "title": "Настройка GitHub токена в Voideditor",
+      "url": "docs/voideditor-github-token-setup.md",
+      "status": "draft"
+    },
+    {
+      "slug": "voideditor-github-troubleshooting",
+      "title": "Troubleshooting Voideditor и GitHub",
+      "url": "docs/voideditor-github-troubleshooting.md",
       "status": "draft"
     }
   ]

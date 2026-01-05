@@ -9,7 +9,9 @@
     "url": "docs/adr-source-of-truth-i-zerkalirovanie-f649b1.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ADR — Source of truth и зеркалирование",
@@ -30,7 +32,9 @@
     "url": "docs/adr-source-of-truth-i-zerkalirovanie.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ADR — Source of truth и зеркалирование",
@@ -52,7 +56,9 @@
     "url": "docs/adr-source-of-truth-mirroring.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ADR — Политика тегов и фасетов",
@@ -74,7 +80,9 @@
     "url": "docs/adr-tags-and-facets.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ADR — Теги и фасеты",
@@ -86,7 +94,9 @@
     "url": "docs/adr-tegi-i-fasety-b1150c.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ADR — Теги и фасеты",
@@ -98,7 +108,9 @@
     "url": "docs/adr-tegi-i-fasety-f3195c.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ADR — Теги и фасеты",
@@ -114,7 +126,9 @@
     "url": "docs/adr-tegi-i-fasety.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "[ADR] Журнал решений",
@@ -126,7 +140,9 @@
     "url": "docs/adr-zhurnal-reshenij-b34c2e.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Ancy",
@@ -138,7 +154,9 @@
     "url": "docs/ancy-b786fe.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Ancy",
@@ -155,7 +173,9 @@
     "url": "docs/ancy.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "[API] Реестр и спецификации",
@@ -167,7 +187,9 @@
     "url": "docs/api-reestr-i-specifikacii-711159.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Архитектура и компоненты",
@@ -179,7 +201,9 @@
     "url": "docs/arhitektura-i-komponenty-486a0b.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Архитектура и компоненты",
@@ -201,7 +225,9 @@
     "url": "docs/arhitektura-i-komponenty.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Архитектура проекта — компоненты",
@@ -213,7 +239,9 @@
     "url": "docs/arhitektura-proekta-komponenty-bb23c3.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Архитектура проекта — компоненты",
@@ -229,7 +257,9 @@
     "url": "docs/arhitektura-proekta-komponenty.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Артефакты — корзина и заявка (MVP)",
@@ -241,7 +271,9 @@
     "url": "docs/artefakty-korzina-i-zayavka-mvp-925151.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Артефакты — корзина и заявка (MVP)",
@@ -264,7 +296,9 @@
     "url": "docs/artefakty-korzina-i-zayavka-mvp.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "База знаний — корень",
@@ -276,7 +310,9 @@
     "url": "docs/baza-znanij-koren-8cd215.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "База знаний — корень",
@@ -296,7 +332,9 @@
     "url": "docs/baza-znanij-koren.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "CADрик",
@@ -308,7 +346,9 @@
     "url": "docs/cadrik-b04be9.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Настройка CodeGPT для работы с Notion и GitHub",
@@ -326,7 +366,9 @@
     "url": "docs/codegpt-setup.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ComfyUI — обзор и быстрый старт",
@@ -338,7 +380,9 @@
     "url": "docs/comfyui-obzor-i-bystryj-start-5a18c5.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ComfyUI — обзор и быстрый старт",
@@ -356,7 +400,9 @@
     "url": "docs/comfyui-obzor-i-bystryj-start.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "context-map.yaml",
@@ -368,7 +414,9 @@
     "url": "docs/context-map-yaml-64b43e.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "context-map.yaml",
@@ -380,7 +428,9 @@
     "url": "docs/context-map-yaml-da0108.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "context-map.yaml",
@@ -392,7 +442,9 @@
     "url": "docs/context-map-yaml.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "[DATA] Модель данных",
@@ -404,7 +456,9 @@
     "url": "docs/data-model-dannyh-214280.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Динозаврик",
@@ -416,7 +470,9 @@
     "url": "docs/dinozavrik-7e5f67.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Динозаврик",
@@ -435,7 +491,9 @@
     "url": "docs/dinozavrik.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Dizzy",
@@ -447,7 +505,9 @@
     "url": "docs/dizzy-8844f5.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Dizzy",
@@ -466,7 +526,9 @@
     "url": "docs/dizzy.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Дорожная карта (этапы)",
@@ -478,7 +540,9 @@
     "url": "docs/dorozhnaya-karta-etapy-8d0cea.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Дорожная карта (этапы)",
@@ -494,7 +558,9 @@
     "url": "docs/dorozhnaya-karta-etapy.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Дорожная карта и бэклог",
@@ -506,7 +572,9 @@
     "url": "docs/dorozhnaya-karta-i-beklog-1b53af.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Дорожная карта и бэклог",
@@ -522,7 +590,9 @@
     "url": "docs/dorozhnaya-karta-i-beklog.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Р­РєСЃРїРѕСЂС‚ РІ GitHub вЂ” СЂСѓРєРѕРІРѕРґСЃС‚РІРѕ Рё С€Р°Р±Р»РѕРЅС‹",
@@ -534,7 +604,9 @@
     "url": "docs/eksport-v-github-rukovodstvo-i-shablony-007c56.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Экспорт в GitHub — руководство и шаблоны",
@@ -556,7 +628,9 @@
     "url": "docs/eksport-v-github-rukovodstvo-i-shablony.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Глоссарий терминов",
@@ -568,7 +642,9 @@
     "url": "docs/glossarij-terminov-c32542.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Глоссарий терминов",
@@ -584,7 +660,9 @@
     "url": "docs/glossarij-terminov.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Хьюго",
@@ -596,7 +674,9 @@
     "url": "docs/hyugo-c8aa97.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Хьюго",
@@ -615,7 +695,9 @@
     "url": "docs/hyugo.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ИИ",
@@ -627,7 +709,9 @@
     "url": "docs/ii-7e98b8.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ИИ",
@@ -647,7 +731,9 @@
     "url": "docs/ii.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Индекс и TL;DR",
@@ -659,7 +745,9 @@
     "url": "docs/indeks-i-tldr-11ee74.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Индекс и TL;DR",
@@ -677,7 +765,9 @@
     "url": "docs/indeks-i-tldr.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Индекс сайта",
@@ -689,7 +779,9 @@
     "url": "docs/indeks-sajta-4b85d7.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Индекс сайта",
@@ -709,7 +801,9 @@
     "url": "docs/indeks-sajta.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Instructions — Исполнители (Cursor/Aider)",
@@ -721,7 +815,9 @@
     "url": "docs/instructions-ispolniteli-cursoraider-7f55e8.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Instructions — Исполнители (Cursor/Aider)",
@@ -733,7 +829,9 @@
     "url": "docs/instructions-ispolniteli-cursoraider-acae4b.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Instructions — Исполнители (Cursor/Aider)",
@@ -754,7 +852,9 @@
     "url": "docs/instructions-ispolniteli-cursoraider.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Инструкции для Notion AI — vova_i_petrova",
@@ -766,7 +866,9 @@
     "url": "docs/instrukcii-dlya-notion-ai-vovaipetrova-28ce52.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Инструкции для Notion AI — vova_i_petrova",
@@ -788,7 +890,9 @@
     "url": "docs/instrukcii-dlya-notion-ai-vovaipetrova.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Интеграции с соцсетями",
@@ -800,7 +904,9 @@
     "url": "docs/integracii-s-socsetyami-aa8cb5.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Интеграции с соцсетями",
@@ -820,7 +926,9 @@
     "url": "docs/integracii-s-socsetyami.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Карточка инструмента — шаблон",
@@ -832,7 +940,9 @@
     "url": "docs/kartochka-instrumenta-shablon-e0b872.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Карточка инструмента — шаблон",
@@ -844,7 +954,9 @@
     "url": "docs/kartochka-instrumenta-shablon.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Карточка услуги: Дизайн",
@@ -856,7 +968,9 @@
     "url": "docs/kartochka-uslugi-dizajn-9e4fbf.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Карточка услуги: Дизайн",
@@ -878,7 +992,9 @@
     "url": "docs/kartochka-uslugi-dizajn.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Карточка услуги: Проектирование (CAD/3D)",
@@ -890,7 +1006,9 @@
     "url": "docs/kartochka-uslugi-proektirovanie-cad3d-9622f6.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Карточка услуги: Проектирование (CAD/3D)",
@@ -902,7 +1020,9 @@
     "url": "docs/kartochka-uslugi-proektirovanie-cad3d.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Карточка услуги: Видеопродакшн",
@@ -914,7 +1034,9 @@
     "url": "docs/kartochka-uslugi-videoprodakshn-f80343.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Карточка услуги: Видеопродакшн",
@@ -935,7 +1057,9 @@
     "url": "docs/kartochka-uslugi-videoprodakshn.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Концепция «портов» — интерфейсы до реализации",
@@ -947,7 +1071,9 @@
     "url": "docs/koncepciya-portov-interfejsy-do-realizacii-9b9fb5.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Концепция «портов» — интерфейсы до реализации",
@@ -969,7 +1095,9 @@
     "url": "docs/koncepciya-portov-interfejsy-do-realizacii.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Контент‑модель и маршруты",
@@ -981,7 +1109,9 @@
     "url": "docs/kontentmodel-i-marshruty-7c779a.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Контент‑модель и маршруты",
@@ -1004,7 +1134,9 @@
     "url": "docs/kontentmodel-i-marshruty.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Контент‑пайплайн экспорта",
@@ -1016,7 +1148,9 @@
     "url": "docs/kontentpajplajn-eksporta-b05ec3.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Контент‑пайплайн экспорта",
@@ -1034,7 +1168,9 @@
     "url": "docs/kontentpajplajn-eksporta.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Метрики успеха",
@@ -1046,7 +1182,9 @@
     "url": "docs/metriki-uspeha-d5c625.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Метрики успеха",
@@ -1062,7 +1200,9 @@
     "url": "docs/metriki-uspeha.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Монетизация и уровни доступа",
@@ -1074,7 +1214,9 @@
     "url": "docs/monetizaciya-i-urovni-dostupa-726e1d.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Монетизация и уровни доступа",
@@ -1090,7 +1232,9 @@
     "url": "docs/monetizaciya-i-urovni-dostupa.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Навигация — схема разделов и маршрутов",
@@ -1102,7 +1246,9 @@
     "url": "docs/nav/navigaciya-shema-razdelov-i-marshrutov.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Как работать с orphan страницами",
@@ -1122,7 +1268,9 @@
     "url": "docs/nav/orphans-how-to.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Как работать с routes.yml",
@@ -1142,7 +1290,9 @@
     "url": "docs/nav/routes-yml-how-to.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Site IA / nav",
@@ -1154,7 +1304,9 @@
     "url": "docs/nav/site-ia-nav.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Навигация (пользовательская)",
@@ -1166,7 +1318,9 @@
     "url": "docs/navigaciya-polzovatelskaya-4dd66e.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Навигация (пользовательская)",
@@ -1189,7 +1343,9 @@
     "url": "docs/navigaciya-polzovatelskaya.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Навигация (техническая)",
@@ -1201,7 +1357,9 @@
     "url": "docs/navigaciya-tehnicheskaya-9213d8.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Навигация (техническая)",
@@ -1225,7 +1383,9 @@
     "url": "docs/navigaciya-tehnicheskaya.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Нэй",
@@ -1237,7 +1397,9 @@
     "url": "docs/nej-705e63.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Нэй",
@@ -1258,7 +1420,9 @@
     "url": "docs/nej.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "notion-brain",
@@ -1270,7 +1434,9 @@
     "url": "docs/notion-brain-108a7f.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "notion-brain",
@@ -1282,7 +1448,9 @@
     "url": "docs/notion-brain.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Окружения и деплой",
@@ -1294,7 +1462,9 @@
     "url": "docs/okruzheniya-i-deploj-6cd51f.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Окружения и деплой",
@@ -1311,7 +1481,9 @@
     "url": "docs/okruzheniya-i-deploj.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Описание — литературная версия",
@@ -1323,7 +1495,9 @@
     "url": "docs/opisanie-literaturnaya-versiya-8dfedb.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Описание — литературная версия",
@@ -1343,7 +1517,9 @@
     "url": "docs/opisanie-literaturnaya-versiya.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Петрова",
@@ -1355,7 +1531,9 @@
     "url": "docs/petrova-6ab5c2.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Петрова",
@@ -1374,7 +1552,9 @@
     "url": "docs/petrova.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Playbook — Роли",
@@ -1386,7 +1566,9 @@
     "url": "docs/playbook-roli-511083.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Playbook — Роли",
@@ -1407,7 +1589,9 @@
     "url": "docs/playbook-roli.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Почему это сработает — ценность",
@@ -1419,7 +1603,9 @@
     "url": "docs/pochemu-eto-srabotaet-cennost-938a63.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Почему это сработает — ценность",
@@ -1436,7 +1622,9 @@
     "url": "docs/pochemu-eto-srabotaet-cennost.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Портфолио — корень",
@@ -1448,7 +1636,9 @@
     "url": "docs/portfolio-koren-ac02dd.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Портфолио — корень",
@@ -1464,7 +1654,9 @@
     "url": "docs/portfolio-koren.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Портфолио — структура",
@@ -1476,7 +1668,9 @@
     "url": "docs/portfolio-struktura-4545fd.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Портфолио — структура",
@@ -1496,7 +1690,9 @@
     "url": "docs/portfolio-struktura.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Процесс: Обсудили → Разложили → Связали",
@@ -1508,7 +1704,9 @@
     "url": "docs/process-obsudili-razlozhili-svyazali-5af71f.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Процесс: Обсудили → Разложили → Связали",
@@ -1525,19 +1723,9 @@
     "url": "docs/process-obsudili-razlozhili-svyazali.md",
     "service": false,
     "collection": null,
-    "story_order": null
-  },
-  {
-    "title": "Protocol — Контрактная модель для агентов",
-    "slug": "protocol-kontraktnaya-model-dlya-agentov",
-    "status": "ready",
-    "summary": "# Protocol — Контрактная модель для агентов",
-    "tags": [],
-    "machine_tags": [],
-    "url": "docs/protocol-kontraktnaya-model-dlya-agentov.md",
-    "service": false,
-    "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "prototype",
@@ -1549,7 +1737,9 @@
     "url": "docs/prototype-a80bcc.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "prototype",
@@ -1569,7 +1759,9 @@
     "url": "docs/prototype.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "README (notion-brain)",
@@ -1581,7 +1773,9 @@
     "url": "docs/readme-notion-brain-193a47.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "README (notion-brain)",
@@ -1593,7 +1787,9 @@
     "url": "docs/readme-notion-brain-d26e74.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "README (notion-brain)",
@@ -1605,7 +1801,9 @@
     "url": "docs/readme-notion-brain.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "RFC-XXXX: {Название RFC}",
@@ -1617,7 +1815,9 @@
     "url": "docs/rfcs/rfc-xxxx-nazvanie-rfc.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Руна",
@@ -1629,7 +1829,9 @@
     "url": "docs/runa-c42971.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Руна",
@@ -1650,7 +1852,9 @@
     "url": "docs/runa.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Шаблон: Карточка производителя",
@@ -1662,7 +1866,9 @@
     "url": "docs/shablon-kartochka-proizvoditelya-7ce17e.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Шаблон: Карточка производителя",
@@ -1674,7 +1880,9 @@
     "url": "docs/shablon-kartochka-proizvoditelya.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Шаблон: Карточка страны",
@@ -1686,7 +1894,9 @@
     "url": "docs/shablon-kartochka-strany-f062b2.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Шаблон: Карточка страны",
@@ -1698,7 +1908,9 @@
     "url": "docs/shablon-kartochka-strany.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Синтаксис и разметка — Markdown → WordPress",
@@ -1710,7 +1922,9 @@
     "url": "docs/sintaksis-i-razmetka-markdown-wordpress-60cc6c.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Синтаксис и разметка — Markdown → WordPress",
@@ -1736,7 +1950,9 @@
     "url": "docs/sintaksis-i-razmetka-markdown-wordpress.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Spec — Content linter и scaffold (черновик)",
@@ -1748,7 +1964,9 @@
     "url": "docs/spec-content-linter-i-scaffold-chernovik-6329bc.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Spec — Content linter и scaffold (черновик)",
@@ -1767,7 +1985,9 @@
     "url": "docs/spec-content-linter-i-scaffold-chernovik.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Spec — Front matter и слуги",
@@ -1779,7 +1999,9 @@
     "url": "docs/spec-front-matter-i-slugi-1491ff.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Spec — Front matter и слуги",
@@ -1791,7 +2013,9 @@
     "url": "docs/spec-front-matter-i-slugi-91237c.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Spec — Front matter и слуги",
@@ -1807,7 +2031,9 @@
     "url": "docs/spec-front-matter-i-slugi.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Spec — Normalize и политика имён",
@@ -1819,7 +2045,9 @@
     "url": "docs/spec-normalize-i-politika-imyon-c9023c.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Spec — Normalize и политика имён",
@@ -1831,7 +2059,9 @@
     "url": "docs/spec-normalize-i-politika-imyon-ff0378.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Spec — Normalize и политика имён",
@@ -1852,7 +2082,9 @@
     "url": "docs/spec-normalize-i-politika-imyon.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Ранние страницы Notion: Индекс и Think Tank",
@@ -1868,7 +2100,9 @@
     "url": "docs/stories/001-rannie-stranicy-notion-indeks-i-think-tank.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ADR: Source of truth и зеркалирование",
@@ -1884,7 +2118,9 @@
     "url": "docs/stories/002-adr-source-of-truth-i-zerkalirovanie.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Контент-модель и маршруты",
@@ -1900,7 +2136,9 @@
     "url": "docs/stories/003-kontentmodel-i-marshruty.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Старт импорта: Notion → GitHub",
@@ -1916,7 +2154,9 @@
     "url": "docs/stories/004-start-importa-notion-v-github.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "CI, рейлы и линт: normalize",
@@ -1932,7 +2172,9 @@
     "url": "docs/stories/005-ci-rejly-i-lint-normalize.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "tags.yaml и фасетная таксономия",
@@ -1948,7 +2190,9 @@
     "url": "docs/stories/006-tags-yaml-i-fasetnaya-taksonomiya.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Fix links и нормализация ссылок",
@@ -1964,7 +2208,9 @@
     "url": "docs/stories/007-fix-links-i-normalizaciya-ssylok.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Автопилот: Notion ↔ Cursor ↔ GitHub",
@@ -1980,7 +2226,9 @@
     "url": "docs/stories/008-avtopilot-notion-cursor-github.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Explorer и Labs: отделение от Think Tank",
@@ -1996,7 +2244,9 @@
     "url": "docs/stories/009-explorer-i-labs-otdelenie-ot-think-tank.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Исток: зачем вообще собирать истории",
@@ -2012,7 +2262,9 @@
     "url": "docs/stories/01-zarozhdenie-idei.md",
     "service": false,
     "collection": "stories",
-    "story_order": 1
+    "story_order": 1,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "v1.0-content-ready: фиксация контентного ядра",
@@ -2028,7 +2280,9 @@
     "url": "docs/stories/010-v1-0-content-ready-milestone.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Site IA v1.1 и routes.yml",
@@ -2044,7 +2298,9 @@
     "url": "docs/stories/011-site-ia-v1-1-i-routes-yml.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Link-map batch-1: первые правила сопоставления",
@@ -2060,7 +2316,9 @@
     "url": "docs/stories/012-link-map-batch-1-pervye-pravila.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Link-map batch-2: refinement правил",
@@ -2076,7 +2334,9 @@
     "url": "docs/stories/013-link-map-batch-2-refinement.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Link-map batch-3: internal-missing до нуля",
@@ -2092,7 +2352,9 @@
     "url": "docs/stories/014-link-map-batch-3-internal-missing-do-nulya.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Diagnostics и issues view",
@@ -2108,7 +2370,9 @@
     "url": "docs/stories/015-diagnostics-i-issues-view.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Explorer UX polish: карты, фильтры, breadcrumbs",
@@ -2124,7 +2388,9 @@
     "url": "docs/stories/016-explorer-ux-polish-karty-filtry.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Explorer UX polish 2: back-to-list и визуальные улучшения",
@@ -2140,7 +2406,9 @@
     "url": "docs/stories/017-explorer-ux-polish-2-back-to-list.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Stories: пилотная серия",
@@ -2156,7 +2424,9 @@
     "url": "docs/stories/018-stories-pilotnaya-seriya.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Stories: анонимизация и lint-rule",
@@ -2172,7 +2442,9 @@
     "url": "docs/stories/019-stories-anonimizaciya-i-lint-rule.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Почему Notion остаётся источником истины",
@@ -2188,7 +2460,9 @@
     "url": "docs/stories/02-pochemu-notion-source-of-truth.md",
     "service": false,
     "collection": "stories",
-    "story_order": 2
+    "story_order": 2,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Stories: daily cadence и генератор",
@@ -2204,7 +2478,9 @@
     "url": "docs/stories/020-stories-daily-cadence-i-generator.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Импорт и безопасность: как мы перестали бояться ZIP",
@@ -2220,7 +2496,9 @@
     "url": "docs/stories/03-import-i-bezopasnost.md",
     "service": false,
     "collection": "stories",
-    "story_order": 3
+    "story_order": 3,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Автопилот: Notion → Cursor → GitHub",
@@ -2236,7 +2514,9 @@
     "url": "docs/stories/04-avtopilot-notion-cursor-github.md",
     "service": false,
     "collection": "stories",
-    "story_order": 4
+    "story_order": 4,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Explorer против Think Tank: делим витрину и лабораторию",
@@ -2252,7 +2532,9 @@
     "url": "docs/stories/05-explorer-vs-think-tank.md",
     "service": false,
     "collection": "stories",
-    "story_order": 5
+    "story_order": 5,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Версия v1.0: фиксируем контентное ядро",
@@ -2268,7 +2550,9 @@
     "url": "docs/stories/06-v1-0-content-ready.md",
     "service": false,
     "collection": "stories",
-    "story_order": 6
+    "story_order": 6,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "ProtoLabs: диагностика и Issues View",
@@ -2284,7 +2568,9 @@
     "url": "docs/stories/07-protolabs-i-issues-view.md",
     "service": false,
     "collection": "stories",
-    "story_order": 7
+    "story_order": 7,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Site IA v1: готовим витрину",
@@ -2300,7 +2586,9 @@
     "url": "docs/stories/08-site-ia-v1-i-vitrina.md",
     "service": false,
     "collection": "stories",
-    "story_order": 8
+    "story_order": 8,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Stories · v1.0-content-ready — 2025-11-12",
@@ -2316,7 +2604,9 @@
     "url": "docs/stories/stories-v10-content-ready-2025-11-12.md",
     "service": false,
     "collection": "stories",
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Суть проекта — One-liner",
@@ -2328,7 +2618,9 @@
     "url": "docs/sut-proekta-one-liner-f9aa4d.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Суть проекта — One-liner",
@@ -2347,7 +2639,9 @@
     "url": "docs/sut-proekta-one-liner.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Таксономия и теги",
@@ -2359,7 +2653,9 @@
     "url": "docs/taksonomiya-i-tegi-26693f.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Таксономия и теги",
@@ -2383,7 +2679,9 @@
     "url": "docs/taksonomiya-i-tegi.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Технический стек и инфраструктура",
@@ -2395,7 +2693,9 @@
     "url": "docs/tehnicheskij-stek-i-infrastruktura-7fa814.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Технический стек и инфраструктура",
@@ -2412,7 +2712,9 @@
     "url": "docs/tehnicheskij-stek-i-infrastruktura.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Текущие задачи",
@@ -2424,7 +2726,9 @@
     "url": "docs/tekushie-zadachi-4ab1b1.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Текущие задачи",
@@ -2445,7 +2749,9 @@
     "url": "docs/tekushie-zadachi.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — ADR",
@@ -2457,7 +2763,9 @@
     "url": "docs/template-adr-237529.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — ADR",
@@ -2469,7 +2777,9 @@
     "url": "docs/template-adr.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — PR чек‑лист",
@@ -2481,7 +2791,9 @@
     "url": "docs/template-pr-cheklist-3a6077.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — PR чек‑лист",
@@ -2493,7 +2805,9 @@
     "url": "docs/template-pr-cheklist.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — Task spec",
@@ -2505,7 +2819,9 @@
     "url": "docs/template-task-spec-bfe53d.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — Task spec",
@@ -2517,7 +2833,9 @@
     "url": "docs/template-task-spec.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — Vision",
@@ -2529,7 +2847,9 @@
     "url": "docs/template-vision-e2acba.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — Vision",
@@ -2541,7 +2861,9 @@
     "url": "docs/template-vision.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — Задача для исполнителя (Cursor/Aider)",
@@ -2553,7 +2875,9 @@
     "url": "docs/template-zadacha-dlya-ispolnitelya-cursoraider-82545d.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — Задача для исполнителя (Cursor/Aider)",
@@ -2565,7 +2889,9 @@
     "url": "docs/template-zadacha-dlya-ispolnitelya-cursoraider.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Тест‑стратегия и качество",
@@ -2577,7 +2903,9 @@
     "url": "docs/teststrategiya-i-kachestvo-0728dd.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Тест‑стратегия и качество",
@@ -2599,7 +2927,9 @@
     "url": "docs/teststrategiya-i-kachestvo.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Think Tank — компактное ядро",
@@ -2611,7 +2941,9 @@
     "url": "docs/think-tank-kompaktnoe-yadro-1d36dd.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Think Tank — компактное ядро",
@@ -2635,7 +2967,9 @@
     "url": "docs/think-tank-kompaktnoe-yadro.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Think Tank — витрина процесса",
@@ -2647,7 +2981,9 @@
     "url": "docs/think-tank-vitrina-processa-cfb19b.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Think Tank — витрина процесса",
@@ -2666,7 +3002,9 @@
     "url": "docs/think-tank-vitrina-processa.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "UI макет — шапка и первый экран (Static First)",
@@ -2678,7 +3016,9 @@
     "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first-0b7377.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "UI макет — шапка и первый экран (Static First)",
@@ -2696,7 +3036,9 @@
     "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Услуги",
@@ -2708,7 +3050,9 @@
     "url": "docs/uslugi-e38e09.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Услуги",
@@ -2733,7 +3077,9 @@
     "url": "docs/uslugi.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Вася",
@@ -2745,7 +3091,9 @@
     "url": "docs/vasya-a127c4.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Вася",
@@ -2765,7 +3113,9 @@
     "url": "docs/vasya.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Vision — Игровая навигация и роли (V1)",
@@ -2777,7 +3127,9 @@
     "url": "docs/vision-igrovaya-navigaciya-i-roli-v1-103cfe.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Vision — Игровая навигация и роли (V1)",
@@ -2798,7 +3150,9 @@
     "url": "docs/vision-igrovaya-navigaciya-i-roli-v1.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)",
@@ -2810,7 +3164,9 @@
     "url": "docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager-09a168.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)",
@@ -2836,7 +3192,9 @@
     "url": "docs/vision-strategiya-marketing-autentichnost-tretij-put-onepager.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Вова",
@@ -2848,7 +3206,9 @@
     "url": "docs/vova-9804f8.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Вова и Петрова",
@@ -2860,7 +3220,9 @@
     "url": "docs/vova-i-petrova-ef2871.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Вова и Петрова",
@@ -2881,7 +3243,9 @@
     "url": "docs/vova-i-petrova.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Вова",
@@ -2903,7 +3267,9 @@
     "url": "docs/vova.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — Task spec Example 1: Документация",
@@ -2915,7 +3281,9 @@
     "url": "docs/template-task-spec-example-1-docs.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — Task spec Example 2: Скрипты",
@@ -2927,7 +3295,9 @@
     "url": "docs/template-task-spec-example-2-scripts.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — Task spec Example 3: Прототип UI",
@@ -2939,7 +3309,9 @@
     "url": "docs/template-task-spec-example-3-prototype.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Cache warmup — контекст и словари",
@@ -2951,7 +3323,9 @@
     "url": "docs/cache-warmup-how-to.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Eval harness — метрики качества и регрессии",
@@ -2963,7 +3337,9 @@
     "url": "docs/eval-harness-how-to.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "MCP Notion API Compatibility Tracker",
@@ -2983,7 +3359,9 @@
     "url": "docs/mcp-notion-api-compatibility-tracker.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Briefs upgrade — инструкция по обновлению полей, представлений, SLA и очередей ревью",
@@ -3002,7 +3380,9 @@
     "url": "docs/briefs-upgrade-how-to.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Release checklist — процедура релиза Pages прототипа",
@@ -3023,7 +3403,9 @@
     "url": "docs/release-checklist-pages-prototype.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
@@ -3045,7 +3427,9 @@
     "url": "docs/backup-export-routine-notion-github.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — Incident Retrospective",
@@ -3057,7 +3441,9 @@
     "url": "docs/template-incident-retrospective.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "TEMPLATE — Incident Log",
@@ -3069,7 +3455,9 @@
     "url": "docs/template-incident.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "State snapshot — текущее состояние",
@@ -3081,7 +3469,9 @@
     "url": "docs/state-snapshot-current-state.md",
     "service": true,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Aliases",
@@ -3100,7 +3490,9 @@
     "url": "docs/kb/aliases.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Autolink",
@@ -3119,7 +3511,9 @@
     "url": "docs/kb/autolink.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Backlinks",
@@ -3138,7 +3532,9 @@
     "url": "docs/kb/backlinks.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Canonical Slug",
@@ -3157,7 +3553,9 @@
     "url": "docs/kb/canonical-slug.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Facets",
@@ -3177,7 +3575,9 @@
     "url": "docs/kb/facets.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Link-map",
@@ -3199,7 +3599,9 @@
     "url": "docs/kb/link-map.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Machine Tags",
@@ -3218,7 +3620,9 @@
     "url": "docs/kb/machine-tags.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Routes",
@@ -3238,7 +3642,9 @@
     "url": "docs/kb/routes.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Snapshot",
@@ -3257,7 +3663,9 @@
     "url": "docs/kb/snapshot.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "Tags",
@@ -3276,7 +3684,9 @@
     "url": "docs/kb/tags.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "CODEGPT Rollout — Roadmap и пакет задач",
@@ -3295,7 +3705,9 @@
     "url": "docs/codegpt-rollout-roadmap.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   },
   {
     "title": "CodeGPT Kickoff — набор первых задач (KB/Content)",
@@ -3315,6 +3727,623 @@
     "url": "docs/codegpt-kickoff-tasks-kb-content.md",
     "service": false,
     "collection": null,
-    "story_order": null
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "CONCEPT — Author Gateway",
+    "slug": "concept-author-gateway",
+    "status": "ready",
+    "summary": "Концепция Author Gateway: система управления очередью идей и автоматической генерации Stories через единую точку входа",
+    "tags": [
+      "Story",
+      "Автоматизация",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "content/story",
+      "theme/automation",
+      "theme/design"
+    ],
+    "url": "docs/CONCEPT.author-gateway.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "CONTRIBUTING — Гайд для авторов и редакторов Stories",
+    "slug": "contributing-stories",
+    "status": "ready",
+    "summary": "Руководство по созданию и редактированию эпизодов Stories, включая dual-story формат и проверки качества",
+    "tags": [
+      "Story",
+      "Процесс"
+    ],
+    "machine_tags": [
+      "content/story",
+      "theme/process"
+    ],
+    "url": "docs/CONTRIBUTING.stories.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Gateway Watcher — валидация контента из inbox/author",
+    "slug": "gateway-watcher",
+    "status": "ready",
+    "summary": "Автоматическая валидация и обработка файлов из inbox/author с проверкой PII, длины и тона",
+    "tags": [
+      "Автоматизация",
+      "Валидация"
+    ],
+    "machine_tags": [
+      "action/build",
+      "theme/automation"
+    ],
+    "url": "docs/GATEWAY-WATCHER.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Настройка доступа к страницам Notion для MCP",
+    "slug": "notion-access-setup",
+    "status": "ready",
+    "summary": "Как настроить доступ интеграции Notion к страницам и базам данных",
+    "tags": [
+      "Автоматизация"
+    ],
+    "machine_tags": [
+      "theme/automation"
+    ],
+    "url": "docs/NOTION-ACCESS-SETUP.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
+    "slug": "single-source-playbook",
+    "status": "draft",
+    "summary": "Единый источник истины для синхронизации между Notion и GitHub репозиторием. Правила, процессы и чек-листы для поддержания консистентности.",
+    "tags": [
+      "Автоматизация",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/dev"
+    ],
+    "url": "docs/SINGLE-SOURCE-PLAYBOOK.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Terms found — формат блока в PR по Stories",
+    "slug": "terms-found-format",
+    "status": "ready",
+    "summary": "Стандартизированный формат блока \"Terms found\" для добавления в каждый PR по Stories.",
+    "tags": [
+      "Документация",
+      "Stories"
+    ],
+    "machine_tags": [
+      "theme/docs",
+      "content/story"
+    ],
+    "url": "docs/TERMS-FOUND-FORMAT.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Настройка UTF-8 кодировки в редакторах",
+    "slug": "utf-8-setup",
+    "status": "ready",
+    "summary": "Руководство по настройке UTF-8 кодировки в редакторах и Git для предотвращения моджибаке (искажённых символов) в файлах с русским текстом.",
+    "tags": [
+      "Документация",
+      "Инструменты"
+    ],
+    "machine_tags": [
+      "action/build",
+      "theme/dev"
+    ],
+    "url": "docs/UTF-8-SETUP.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Briefs UX — доводки представлений By Lane / Pending Review / Ready for Copilot",
+    "slug": "briefs-ux-improvements",
+    "status": "ready",
+    "summary": "Рекомендации по улучшению UX представлений Briefs: видимые поля, сортировка, группировка и фильтры для By Lane, Pending Review и Ready for Copilot",
+    "tags": [
+      "Документация",
+      "Процесс",
+      "UX"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/kb",
+      "theme/automation",
+      "theme/ux"
+    ],
+    "url": "docs/briefs-ux-improvements.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Настройка GitHub Copilot с MCP для Notion",
+    "slug": "copilot-mcp-setup",
+    "status": "draft",
+    "summary": "Как настроить GitHub Copilot для работы с Notion через MCP протокол",
+    "tags": [
+      "Автоматизация",
+      "Кодинг"
+    ],
+    "machine_tags": [
+      "theme/automation",
+      "theme/dev"
+    ],
+    "url": "docs/copilot-mcp-setup.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Настройка MCP сервера с OpenRouter для Cursor",
+    "slug": "cursor-mcp-openrouter-setup",
+    "status": "draft",
+    "summary": "Инструкция по настройке MCP сервера с OpenRouter для работы с локальными файлами в Cursor",
+    "tags": [
+      "Автоматизация",
+      "Кодинг"
+    ],
+    "machine_tags": [
+      "theme/automation",
+      "theme/dev"
+    ],
+    "url": "docs/cursor-mcp-openrouter-setup.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "GitHub Labels — Руководство по использованию",
+    "slug": "github-labels-guide",
+    "status": "ready",
+    "summary": "Руководство по использованию GitHub labels для организации работы и автоматической проверки",
+    "tags": [
+      "Автоматизация"
+    ],
+    "machine_tags": [
+      "theme/automation"
+    ],
+    "url": "docs/github-labels-guide.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Gateway PoC #2 — Эпизод 1: Длинный seed_text и HITL",
+    "slug": "gateway-poc-2-episode-1",
+    "status": "draft",
+    "summary": "Первый эпизод серии Gateway PoC #2: эксперимент с длинным seed_text в режиме HITL для генерации dual-story.",
+    "tags": [
+      "Story",
+      "Gateway",
+      "PoC"
+    ],
+    "machine_tags": [
+      "content/story",
+      "pipeline/gateway"
+    ],
+    "url": "docs/stories/2025-01-04-gateway-poc-2-episode-1.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": "gateway-poc-2",
+    "related_stories": null
+  },
+  {
+    "title": "Gateway PoC #2 — Эпизод 2: Развитие серии",
+    "slug": "gateway-poc-2-episode-2",
+    "status": "draft",
+    "summary": "Второй эпизод серии Gateway PoC #2: продолжение эксперимента с длинным seed_text и HITL режимом.",
+    "tags": [
+      "Story",
+      "Gateway",
+      "PoC"
+    ],
+    "machine_tags": [
+      "content/story",
+      "pipeline/gateway"
+    ],
+    "url": "docs/stories/2025-01-04-gateway-poc-2-episode-2.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": "gateway-poc-2",
+    "related_stories": null
+  },
+  {
+    "title": "Seed: Dual Story 001",
+    "slug": "seed-dual-story-001",
+    "status": "draft",
+    "summary": "Первые заготовки: авторский блок и машинный отчёт в одном файле.",
+    "tags": [
+      "Story",
+      "Seed"
+    ],
+    "machine_tags": [
+      "content/story",
+      "pipeline/seed"
+    ],
+    "url": "docs/stories/2025-11-23-seed-dual-story-001.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Seed: Dual Story 002",
+    "slug": "seed-dual-story-002",
+    "status": "draft",
+    "summary": "Второй эпизод dual-story: авторская рефлексия и машинный отчёт о развитии формата.",
+    "tags": [
+      "Story",
+      "Seed"
+    ],
+    "machine_tags": [
+      "content/story",
+      "pipeline/seed"
+    ],
+    "url": "docs/stories/2025-11-23-seed-dual-story-002.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Stories · v1.0-content-ready — 2025-11-12",
+    "slug": "2025-11-23-stories-v10-content-ready-2025-11-12",
+    "status": "draft",
+    "summary": "Черновик автогенератора Stories: синхронизация CHANGELOG, ADR и ProtoLabs.",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/2025-11-23-stories-v10-content-ready-2025-11-12.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Stories — Концепция и принципы",
+    "slug": "stories-concept",
+    "status": "ready",
+    "summary": "Концепция Stories как формата хроники проекта и принципы работы с эпизодами",
+    "tags": [
+      "Story",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "content/story",
+      "theme/design"
+    ],
+    "url": "docs/stories/CONCEPT.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "CONCEPT — Opus4 notes (draft)",
+    "slug": "concept-opus4-notes",
+    "status": "draft",
+    "summary": "Наброски концепции Stories v2 от OPUS4: двойная линия (author + machine), front matter spec и предложения по автоматизации.",
+    "tags": [
+      "Story",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "content/story",
+      "theme/design"
+    ],
+    "url": "docs/stories/CONCEPT.opus4-notes.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "CONCEPT — Dual-story формат (spec + пример)",
+    "slug": "concept-stories-dual",
+    "status": "ready",
+    "summary": "Спецификация формата dual-story: две параллельные линии (авторская рефлексия + машинный отчёт) в одном эпизоде Stories",
+    "tags": [
+      "Story",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "content/story",
+      "theme/design"
+    ],
+    "url": "docs/stories/CONCEPT.stories-dual.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Review: Gateway PoC — auto",
+    "slug": "gateway-poc-auto-review",
+    "status": "draft",
+    "summary": "Короткий чеклист для ревью PoC auto",
+    "tags": [
+      "Story",
+      "Review"
+    ],
+    "machine_tags": [
+      "pipeline/poc",
+      "review"
+    ],
+    "url": "docs/stories/GATEWAY_POC_AUTO.REVIEW.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Gateway PoC — auto (no seed)",
+    "slug": "gateway-poc-auto",
+    "status": "draft",
+    "summary": "PoC: no seed → auto flow for Author Gateway",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/GATEWAY_POC_AUTO.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Review: Gateway PoC — HITL",
+    "slug": "gateway-poc-hitl-review",
+    "status": "draft",
+    "summary": "Короткий чеклист для ревью PoC HITL",
+    "tags": [
+      "Story",
+      "Review"
+    ],
+    "machine_tags": [
+      "pipeline/poc",
+      "review"
+    ],
+    "url": "docs/stories/GATEWAY_POC_HITL.REVIEW.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Gateway PoC — HITL (seed_text)",
+    "slug": "gateway-poc-hitl",
+    "status": "draft",
+    "summary": "PoC: seed_text → human-in-the-loop flow for Author Gateway",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/GATEWAY_POC_HITL.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Stories — Инструкции для GitHub и агентов",
+    "slug": "stories-github-instructions",
+    "status": "ready",
+    "summary": "Инструкции для работы со Stories на GitHub и для AI-агентов",
+    "tags": [
+      "Story",
+      "Автоматизация"
+    ],
+    "machine_tags": [
+      "content/story",
+      "theme/automation"
+    ],
+    "url": "docs/stories/GITHUB_INSTRUCTIONS.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "OPUS4 — Роль агента для работы со Stories",
+    "slug": "opus4-role",
+    "status": "ready",
+    "summary": "Роль и инструкции для агента OPUS4 по работе со Stories",
+    "tags": [
+      "Story",
+      "Автоматизация"
+    ],
+    "machine_tags": [
+      "content/story",
+      "theme/automation"
+    ],
+    "url": "docs/stories/OPUS4_ROLE.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Библиотека тонов для author_block",
+    "slug": "prompts-library",
+    "status": "ready",
+    "summary": "Короткий справочник тонов и голосов для написания авторских блоков в dual-story эпизодах.",
+    "tags": [
+      "Story",
+      "Справочник"
+    ],
+    "machine_tags": [
+      "content/story",
+      "theme/reference"
+    ],
+    "url": "docs/stories/PROMPTS-LIBRARY.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Stories — Быстрый старт",
+    "slug": "stories-quick-start",
+    "status": "ready",
+    "summary": "Быстрый старт для работы со Stories эпизодами",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/QUICK_START.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Stories — Инструкции для работы",
+    "slug": "stories-readme",
+    "status": "ready",
+    "summary": "Инструкции для работы со Stories эпизодами для агентов и людей",
+    "tags": [
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story"
+    ],
+    "url": "docs/stories/README.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Stories — Общий контекст для работы",
+    "slug": "stories-shared-context",
+    "status": "ready",
+    "summary": "Общий контекст проекта для работы с Stories и агентами",
+    "tags": [
+      "Story",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "content/story",
+      "theme/design"
+    ],
+    "url": "docs/stories/SHARED_CONTEXT.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Настройка GitHub токена в Voideditor",
+    "slug": "voideditor-github-token-setup",
+    "status": "draft",
+    "summary": "Как настроить GitHub токен для Voideditor через системные настройки Git",
+    "tags": [
+      "Автоматизация",
+      "Кодинг"
+    ],
+    "machine_tags": [
+      "theme/automation",
+      "theme/dev"
+    ],
+    "url": "docs/voideditor-github-token-setup.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Troubleshooting Voideditor и GitHub",
+    "slug": "voideditor-github-troubleshooting",
+    "status": "draft",
+    "summary": "Решение проблем с интеграцией Voideditor и GitHub",
+    "tags": [
+      "Автоматизация",
+      "Кодинг"
+    ],
+    "machine_tags": [
+      "theme/automation",
+      "theme/dev"
+    ],
+    "url": "docs/voideditor-github-troubleshooting.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   }
 ]

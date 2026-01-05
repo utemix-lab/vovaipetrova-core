@@ -232,10 +232,10 @@
           "notes": "План интеграций и точки подключения. Списком + ссылки Что ав"
         },
         {
-          "slug": "protocol-kontraktnaya-model-dlya-agentov",
-          "doc": "docs/protocol-kontraktnaya-model-dlya-agentov.md",
+          "slug": "single-source-playbook",
+          "doc": "docs/SINGLE-SOURCE-PLAYBOOK.md",
           "status": "ok",
-          "notes": "Контрактная модель определяет правила взаимодействия агентов с репозиторием"
+          "notes": "Единый источник истины для синхронизации между Notion и GitHub, правила работы агентов"
         },
         {
           "slug": "template-incident",

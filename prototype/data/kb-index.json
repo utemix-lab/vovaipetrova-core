@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2025-11-21T18:37:40.293Z",
-  "totalPages": 35,
+  "generatedAt": "2026-01-05T11:16:53.776Z",
+  "totalPages": 36,
   "letters": [
     "A",
     "B",
@@ -250,6 +250,13 @@
         "title": "Briefs upgrade — инструкция по обновлению полей, представлений, SLA и очередей ревью",
         "url": "docs/briefs-upgrade-how-to.md",
         "summary": "Инструкция по обновлению базы данных Briefs в Notion: добавление полей Executor, Lane, SLA, Requires Review, RFC Link, Upstream Source, создание представлений и формулы Overdue",
+        "status": "ready"
+      },
+      {
+        "slug": "briefs-ux-improvements",
+        "title": "Briefs UX — доводки представлений By Lane / Pending Review / Ready for Copilot",
+        "url": "docs/briefs-ux-improvements.md",
+        "summary": "Рекомендации по улучшению UX представлений Briefs: видимые поля, сортировка, группировка и фильтры для By Lane, Pending Review и Ready for Copilot",
         "status": "ready"
       }
     ],
