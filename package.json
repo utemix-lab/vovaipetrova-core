@@ -34,6 +34,7 @@
     "check:lanes": "node scripts/check-lanes.mjs",
     "check:pr-size": "node scripts/check-pr-size.mjs",
     "check:deliverables": "node scripts/check-deliverables.mjs",
+    "check:branch-safety": "node scripts/check-branch-safety.mjs",
     "test:guardrails": "node scripts/test-guardrails.mjs",
     "test:security": "node test-guardrails/test-security-violations.mjs",
     "verify:stats": "node scripts/verify-stats-accuracy.mjs",
