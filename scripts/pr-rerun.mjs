@@ -121,6 +121,32 @@ function deleteComment(commentId, dryRun) {
 }
 
 /**
+ * Получает список workflow runs для PR
+ */
+function getWorkflowRuns(prNumber) {
+  try {
+    const prInfo = execSync(
+      `gh pr view ${prNumber} --repo ${GITHUB_REPO} --json headRefName,headRepository`,
+      { encoding: 'utf8', stdio: 'pipe' }
+    );
+    const prData = JSON.parse(prInfo);
+    const branch = prData.headRefName;
+    
+    // Получаем последние workflow runs для ветки
+    const runsCommand = `gh run list --branch ${branch} --repo ${GITHUB_REPO} --json databaseId,status,conclusion,workflowName --limit 20`;
+    const runsOutput = execSync(runsCommand, { encoding: 'utf8', stdio: 'pipe' });
+    const runs = JSON.parse(runsOutput || '[]');
+    
+    return runs.filter(run => 
+      run.status === 'completed' || run.status === 'in_progress' || run.status === 'queued'
+    );
+  } catch (error) {
+    log(`⚠️  Не удалось получить список workflow runs: ${error.message}`);
+    return [];
+  }
+}
+
+/**
  * Перезапускает CI проверки для PR
  */
 function rerunCI(prNumber, dryRun) {
@@ -130,7 +156,7 @@ function rerunCI(prNumber, dryRun) {
   }
 
   try {
-    // Получаем информацию о PR для получения workflow runs
+    // Получаем информацию о PR
     const prInfo = execSync(
       `gh pr view ${prNumber} --repo ${GITHUB_REPO} --json headRefName,headRepository`,
       { encoding: 'utf8', stdio: 'pipe' }
@@ -141,23 +167,44 @@ function rerunCI(prNumber, dryRun) {
 
     log(`Перезапуск CI проверок для ветки ${branch}...`);
     
-    // Перезапускаем все workflow runs для этой ветки
-    // Используем gh workflow run или создаем пустой коммит для триггера
-    // Самый простой способ - создать пустой коммит и запушить
+    // Получаем список workflow runs
+    const runs = getWorkflowRuns(prNumber);
     
-    // Альтернатива: использовать gh run rerun для конкретных runs
-    // Но проще всего - создать пустой коммит
-    log(`ℹ️  Для перезапуска CI создайте пустой коммит или используйте GitHub UI`);
-    log(`   Команда для создания пустого коммита:`);
-    log(`   git commit --allow-empty -m "chore: trigger CI re-run"`);
-    log(`   git push`);
+    if (runs.length === 0) {
+      log(`⚠️  Не найдено workflow runs для перезапуска.`);
+      log(`   Попробуйте создать пустой коммит для триггера CI:`);
+      log(`   git commit --allow-empty -m "chore: trigger CI re-run"`);
+      log(`   git push`);
+      return;
+    }
     
-    // Или можно использовать gh api для rerun конкретных runs
-    // Но это сложнее, так как нужно найти все runs для PR
+    // Перезапускаем каждый workflow run
+    let rerunCount = 0;
+    for (const run of runs) {
+      try {
+        const rerunCommand = `gh run rerun ${run.databaseId} --repo ${GITHUB_REPO}`;
+        execSync(rerunCommand, { encoding: 'utf8', stdio: 'pipe' });
+        log(`✅ Перезапущен workflow run ${run.databaseId} (${run.workflowName})`);
+        rerunCount++;
+      } catch (error) {
+        log(`⚠️  Не удалось перезапустить run ${run.databaseId}: ${error.message}`);
+      }
+    }
+    
+    if (rerunCount > 0) {
+      log(`✅ Перезапущено ${rerunCount} workflow run(s)`);
+    } else {
+      log(`⚠️  Не удалось перезапустить ни одного workflow run.`);
+      log(`   Попробуйте создать пустой коммит для триггера CI:`);
+      log(`   git commit --allow-empty -m "chore: trigger CI re-run"`);
+      log(`   git push`);
+    }
     
   } catch (error) {
     log(`⚠️  Не удалось перезапустить CI: ${error.message}`);
-    log(`   Используйте GitHub UI или создайте пустой коммит для перезапуска`);
+    log(`   Попробуйте создать пустой коммит для триггера CI:`);
+    log(`   git commit --allow-empty -m "chore: trigger CI re-run"`);
+    log(`   git push`);
   }
 }
 
