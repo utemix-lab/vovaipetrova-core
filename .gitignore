@@ -54,6 +54,7 @@ tests/smoke-checks/results/
 
 # Telemetry data
 .telemetry/
+.ci-metrics/
 
 # Guardrails test files
 test-guardrails-v2/
