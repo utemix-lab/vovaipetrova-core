@@ -280,6 +280,9 @@ async function renderIndex() {
   const issuesPanel = document.getElementById("issues-panel");
   const orphansPanel = document.getElementById("orphans-panel");
   const unresolvedTermsPanel = document.getElementById("unresolved-terms-panel");
+  const diagnosticsPanel = document.getElementById("diagnostics-panel");
+  const diagnosticsDashboard = document.getElementById("diagnostics-dashboard");
+  const diagnosticsEmpty = document.getElementById("diagnostics-empty");
   const kbIndexPanel = document.getElementById("kb-index-panel");
   const kbIndexLetters = document.getElementById("kb-index-letters");
   const kbIndexContent = document.getElementById("kb-index-content");
