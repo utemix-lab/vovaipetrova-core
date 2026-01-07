@@ -53,6 +53,7 @@
     "pr:clear-bot-comments": "node scripts/clear-pr-bot-comments.mjs",
     "pr:recheck": "node scripts/trigger-pr-recheck.mjs",
     "pr:rerun": "node scripts/pr-rerun.mjs",
+    "pr:rerun:v2": "node scripts/pr-rerun-v2.mjs",
     "terms:found": "node scripts/generate-terms-found-block.mjs",
     "sync:playbook": "node scripts/sync-playbook-from-notion.mjs",
     "sync:playbook:dry": "node scripts/sync-playbook-from-notion.mjs --dry-run",
