@@ -1,14 +1,20 @@
 #!/usr/bin/env node
 /**
- * Extractor Stories Terms: извлечение терминов из PR → candidates_kb.json → авто-задачи
- * 
+ * Extractor Stories Terms v2: улучшенное извлечение терминов из PR → candidates_kb.json → авто-задачи
+ *
+ * Версия 2 улучшения:
+ * - Морфология русского языка: извлечение терминов в разных падежах и формах
+ * - Улучшенные границы слов: более точное определение терминов
+ * - Лучшая фильтрация: исключение ложных срабатываний
+ * - Улучшенный контекст: более релевантные примеры использования
+ *
  * Извлекает потенциальные термины из измененных файлов Stories в PR и создает:
  * 1. Файл candidates_kb.json с кандидатами терминов
  * 2. GitHub Issues для каждого термина: "KB: добавить термин <slug>"
- * 
+ *
  * Использование:
- *   node scripts/extractor-stories-terms.mjs [--pr=<number>] [--base=main] [--dry-run] [--no-issues]
- * 
+ *   node scripts/extractor-stories-terms.mjs [--pr=<number>] [--base=main] [--dry-run] [--no-issues] [--no-morphology]
+ *
  * Переменные окружения:
  *   GITHUB_TOKEN - токен для доступа к GitHub API
  *   GITHUB_REPO - репозиторий (по умолчанию: utemix-lab/vovaipetrova-core)
@@ -24,6 +30,8 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO || 'utemix-lab/vovaipetrova-core';
 const CANDIDATES_OUTPUT = 'prototype/data/candidates_kb.json';
 const STORIES_DIR = 'docs/stories';
+const PAGES_JSON_PATH = 'prototype/data/pages.json';
+const KB_INDEX_PATH = 'prototype/data/kb-index.json';
 
 // Минимальная длина термина (в символах)
 const MIN_TERM_LENGTH = 3;
@@ -65,7 +73,8 @@ function parseArgs() {
     pr: null,
     base: 'main',
     dryRun: false,
-    noIssues: false
+    noIssues: false,
+    noMorphology: false
   };
 
   for (const arg of process.argv.slice(2)) {
@@ -77,6 +86,8 @@ function parseArgs() {
       args.dryRun = true;
     } else if (arg === '--no-issues') {
       args.noIssues = true;
+    } else if (arg === '--no-morphology') {
+      args.noMorphology = true;
     }
   }
 
@@ -106,8 +117,8 @@ function getChangedStoriesFiles(prNumber, baseRef) {
   }
 
   // Фильтруем только файлы Stories
-  return files.filter(file => 
-    file.startsWith(STORIES_DIR) && 
+  return files.filter(file =>
+    file.startsWith(STORIES_DIR) &&
     file.endsWith('.md') &&
     !file.includes('CONCEPT') &&
     !file.includes('README') &&
@@ -161,16 +172,266 @@ function extractTextFromStory(filePath) {
 }
 
 /**
- * Извлекает потенциальные термины из текста
+ * Проверяет, является ли слово русским
  */
-function extractTerms(text) {
+function isRussianWord(word) {
+  return /[\u0400-\u04FF]/u.test(word);
+}
+
+/**
+ * Проверяет, является ли символ согласной буквой
+ */
+function isConsonant(char) {
+  if (!char) return false;
+  const consonants = 'бвгджзйклмнпрстфхцчшщ';
+  return consonants.includes(char.toLowerCase());
+}
+
+/**
+ * Генерирует морфологические формы для русского слова (v2)
+ * Используется для нормализации терминов к именительному падежу
+ */
+function generateMorphologicalForms(word) {
+  if (!isRussianWord(word) || word.length < 3) {
+    return [word.toLowerCase()];
+  }
+
+  const forms = new Set([word.toLowerCase()]);
+  const lowerWord = word.toLowerCase();
+
+  // Родительный падеж
+  if (lowerWord.endsWith('а')) {
+    const beforeA = lowerWord[lowerWord.length - 2];
+    if (beforeA && 'гкхжчшщц'.includes(beforeA)) {
+      forms.add(lowerWord.slice(0, -1) + 'и');
+    } else {
+      forms.add(lowerWord.slice(0, -1) + 'ы');
+    }
+  } else if (lowerWord.endsWith('я')) {
+    forms.add(lowerWord.slice(0, -1) + 'и');
+  } else if (lowerWord.endsWith('ие')) {
+    forms.add(lowerWord.slice(0, -2) + 'ия');
+    forms.add(lowerWord.slice(0, -2) + 'ий');
+  } else if (lowerWord.endsWith('о')) {
+    forms.add(lowerWord.slice(0, -1) + 'а');
+  } else if (lowerWord.endsWith('е') && !lowerWord.endsWith('ие')) {
+    forms.add(lowerWord.slice(0, -1) + 'я');
+  } else if (lowerWord.endsWith('ь')) {
+    forms.add(lowerWord.slice(0, -1) + 'и');
+    forms.add(lowerWord.slice(0, -1) + 'ей');
+  } else if (lowerWord.endsWith('й')) {
+    forms.add(lowerWord.slice(0, -1) + 'я');
+    forms.add(lowerWord.slice(0, -1) + 'ев');
+  } else if (isConsonant(lowerWord[lowerWord.length - 1])) {
+    forms.add(lowerWord + 'а');
+    forms.add(lowerWord + 'ов');
+  }
+
+  // Дательный падеж
+  if (lowerWord.endsWith('а')) {
+    forms.add(lowerWord.slice(0, -1) + 'е');
+  } else if (lowerWord.endsWith('я')) {
+    forms.add(lowerWord.slice(0, -1) + 'и');
+  } else if (lowerWord.endsWith('ие')) {
+    forms.add(lowerWord.slice(0, -2) + 'ию');
+  } else if (lowerWord.endsWith('о')) {
+    forms.add(lowerWord.slice(0, -1) + 'у');
+  } else if (lowerWord.endsWith('е') && !lowerWord.endsWith('ие')) {
+    forms.add(lowerWord.slice(0, -1) + 'ю');
+  } else if (lowerWord.endsWith('ь')) {
+    forms.add(lowerWord.slice(0, -1) + 'и');
+  } else if (lowerWord.endsWith('й')) {
+    forms.add(lowerWord.slice(0, -1) + 'ю');
+  } else if (isConsonant(lowerWord[lowerWord.length - 1])) {
+    forms.add(lowerWord + 'у');
+  }
+
+  // Винительный падеж
+  if (lowerWord.endsWith('а')) {
+    forms.add(lowerWord.slice(0, -1) + 'у');
+  } else if (lowerWord.endsWith('я')) {
+    forms.add(lowerWord.slice(0, -1) + 'ю');
+  } else if (lowerWord.endsWith('й')) {
+    forms.add(lowerWord.slice(0, -1) + 'я');
+  }
+
+  // Творительный падеж
+  if (lowerWord.endsWith('а')) {
+    forms.add(lowerWord.slice(0, -1) + 'ой');
+    forms.add(lowerWord.slice(0, -1) + 'ою');
+  } else if (lowerWord.endsWith('я')) {
+    forms.add(lowerWord.slice(0, -1) + 'ей');
+    forms.add(lowerWord.slice(0, -1) + 'ёй');
+  } else if (lowerWord.endsWith('ие')) {
+    forms.add(lowerWord.slice(0, -2) + 'ием');
+  } else if (lowerWord.endsWith('о')) {
+    forms.add(lowerWord.slice(0, -1) + 'ом');
+  } else if (lowerWord.endsWith('е') && !lowerWord.endsWith('ие')) {
+    forms.add(lowerWord.slice(0, -1) + 'ем');
+  } else if (lowerWord.endsWith('ь')) {
+    forms.add(lowerWord.slice(0, -1) + 'ью');
+  } else if (lowerWord.endsWith('й')) {
+    forms.add(lowerWord.slice(0, -1) + 'ем');
+  } else if (isConsonant(lowerWord[lowerWord.length - 1])) {
+    forms.add(lowerWord + 'ом');
+  }
+
+  // Предложный падеж
+  if (lowerWord.endsWith('а')) {
+    forms.add(lowerWord.slice(0, -1) + 'е');
+  } else if (lowerWord.endsWith('я')) {
+    forms.add(lowerWord.slice(0, -1) + 'и');
+  } else if (lowerWord.endsWith('ие')) {
+    forms.add(lowerWord.slice(0, -2) + 'ии');
+  } else if (lowerWord.endsWith('о')) {
+    forms.add(lowerWord.slice(0, -1) + 'е');
+  } else if (lowerWord.endsWith('е') && !lowerWord.endsWith('ие')) {
+    forms.add(lowerWord.slice(0, -1) + 'е');
+  } else if (lowerWord.endsWith('ь')) {
+    forms.add(lowerWord.slice(0, -1) + 'и');
+  } else if (lowerWord.endsWith('й')) {
+    forms.add(lowerWord.slice(0, -1) + 'е');
+  } else if (isConsonant(lowerWord[lowerWord.length - 1])) {
+    forms.add(lowerWord + 'е');
+  }
+
+  // Множественное число
+  if (lowerWord.endsWith('а')) {
+    const beforeA = lowerWord[lowerWord.length - 2];
+    if (beforeA && 'гкхжчшщц'.includes(beforeA)) {
+      forms.add(lowerWord.slice(0, -1) + 'и');
+    } else {
+      forms.add(lowerWord.slice(0, -1) + 'ы');
+    }
+  } else if (lowerWord.endsWith('я')) {
+    forms.add(lowerWord.slice(0, -1) + 'и');
+  } else if (lowerWord.endsWith('о')) {
+    forms.add(lowerWord.slice(0, -1) + 'а');
+  } else if (lowerWord.endsWith('е')) {
+    forms.add(lowerWord.slice(0, -1) + 'я');
+  } else if (lowerWord.endsWith('ь')) {
+    forms.add(lowerWord.slice(0, -1) + 'и');
+  } else if (lowerWord.endsWith('й')) {
+    forms.add(lowerWord.slice(0, -1) + 'и');
+  } else if (isConsonant(lowerWord[lowerWord.length - 1])) {
+    forms.add(lowerWord + 'ы');
+  }
+
+  // Для составных терминов
+  if (lowerWord.includes(' ')) {
+    const parts = lowerWord.split(' ');
+    if (parts.length === 2) {
+      const [first, second] = parts;
+      const secondForms = generateMorphologicalForms(second);
+      secondForms.forEach(f2 => {
+        if (f2 !== second) {
+          forms.add(`${first} ${f2}`);
+        }
+      });
+      if (isRussianWord(first)) {
+        const firstForms = generateMorphologicalForms(first);
+        firstForms.forEach(f1 => {
+          if (f1 !== first) {
+            forms.add(`${f1} ${second}`);
+          }
+        });
+      }
+    }
+  }
+
+  return Array.from(forms);
+}
+
+/**
+ * Нормализует термин к именительному падежу (если возможно)
+ * Для русских слов пытается найти базовую форму
+ */
+function normalizeToNominative(term, existingKBTerms) {
+  const lowerTerm = term.toLowerCase();
+
+  // Если термин уже в именительном падеже (есть в KB), возвращаем его
+  if (existingKBTerms && existingKBTerms.has(lowerTerm)) {
+    return term;
+  }
+
+  // Для русских слов пытаемся найти базовую форму через морфологию
+  if (isRussianWord(term) && !term.includes('-') && !term.includes('_')) {
+    // Генерируем все возможные формы и проверяем, есть ли среди них каноническая
+    const forms = generateMorphologicalForms(term);
+    for (const form of forms) {
+      if (existingKBTerms && existingKBTerms.has(form)) {
+        // Нашли каноническую форму - возвращаем её
+        return form;
+      }
+    }
+  }
+
+  return term;
+}
+
+/**
+ * Загружает существующие термины из KB для нормализации
+ */
+function loadExistingKBTerms() {
   const terms = new Set();
 
+  try {
+    // Загружаем из pages.json
+    if (existsSync(PAGES_JSON_PATH)) {
+      const pages = JSON.parse(readFileSync(PAGES_JSON_PATH, 'utf8'));
+      if (Array.isArray(pages)) {
+        pages.forEach(page => {
+          if (page.service) return;
+          if ((page.machine_tags || []).some(tag => tag.startsWith('product/kb'))) {
+            if (page.slug) terms.add(page.slug.toLowerCase());
+            if (page.title) terms.add(page.title.toLowerCase());
+          }
+        });
+      }
+    }
+
+    // Загружаем из kb-index.json
+    if (existsSync(KB_INDEX_PATH)) {
+      const kbIndex = JSON.parse(readFileSync(KB_INDEX_PATH, 'utf8'));
+      if (kbIndex.index) {
+        for (const pages of Object.values(kbIndex.index)) {
+          pages.forEach(page => {
+            if (page.slug) terms.add(page.slug.toLowerCase());
+            if (page.title) terms.add(page.title.toLowerCase());
+          });
+        }
+      }
+    }
+  } catch (error) {
+    // Игнорируем ошибки загрузки
+  }
+
+  return terms;
+}
+
+/**
+ * Извлекает потенциальные термины из текста (v2 с улучшенными границами слов)
+ */
+function extractTerms(text, args, existingKBTerms) {
+  const terms = new Map(); // normalized term -> original term
+
+  // Улучшенные паттерны с более точными границами слов
+  const improvedPatterns = [
+    // Заглавные слова (TitleCase) - только если это начало слова
+    /\b(?<!['"`])([A-ZА-ЯЁ][a-zа-яё]{2,})\b(?!['"`])/g,
+    // Слова с дефисами (kebab-case)
+    /\b([a-zа-яё]+(?:-[a-zа-яё]+)+)\b/g,
+    // Слова с подчеркиваниями (snake_case)
+    /\b([a-zа-яё]+(?:_[a-zа-яё]+)+)\b/g,
+    // Аббревиатуры (2-5 заглавных букв, не в начале предложения)
+    /(?<!^|\s)([A-ZА-ЯЁ]{2,5})\b/g
+  ];
+
   // Применяем паттерны для поиска терминов
-  for (const pattern of TERM_PATTERNS) {
+  for (const pattern of improvedPatterns) {
     const matches = text.matchAll(pattern);
     for (const match of matches) {
-      const term = match[0];
+      const term = match[1] || match[0];
       const normalized = term.toLowerCase().trim();
 
       // Фильтруем по длине
@@ -193,11 +454,20 @@ function extractTerms(text) {
         continue;
       }
 
-      terms.add(term);
+      // Нормализуем к именительному падежу (для русских слов)
+      let normalizedTerm = normalized;
+      if (!args.noMorphology && isRussianWord(normalized) && existingKBTerms) {
+        normalizedTerm = normalizeToNominative(normalized, existingKBTerms);
+      }
+
+      // Сохраняем оригинальный термин и нормализованный
+      if (!terms.has(normalizedTerm)) {
+        terms.set(normalizedTerm, term);
+      }
     }
   }
 
-  return Array.from(terms);
+  return Array.from(terms.values());
 }
 
 function escapeRegexForTerm(term) {
@@ -276,6 +546,12 @@ async function createIssueForTerm(term, slug, context, args) {
       ''
     ];
 
+    if (context.originalForms && context.originalForms.length > 0 && context.originalForms.length > 1) {
+      bodyArr.push('**Найденные формы термина:**');
+      bodyArr.push(context.originalForms.map(f => `- \`${f}\``).join('\n'));
+      bodyArr.push('');
+    }
+
     if (context.contexts && context.contexts.length > 0) {
       bodyArr.push('**Примеры контекста (1-2):**');
       for (const snippet of (context.contexts || [])) {
@@ -349,8 +625,12 @@ async function main() {
     log('[DRY RUN] Режим тестирования - файлы и Issues не будут созданы');
   }
 
+  // Загружаем существующие термины KB для нормализации
+  const existingKBTerms = loadExistingKBTerms();
+  log(`Загружено ${existingKBTerms.size} существующих терминов из KB для нормализации`);
+
   // Извлекаем термины из каждого файла
-  const allTerms = new Map(); // term -> { count, files, slug }
+  const allTerms = new Map(); // normalized term -> { count, files, slug, originalForms }
 
   for (const file of changedFiles) {
     if (!existsSync(file)) {
@@ -359,55 +639,99 @@ async function main() {
     }
 
     const text = extractTextFromStory(file);
-    const terms = extractTerms(text);
+    const terms = extractTerms(text, args, existingKBTerms);
 
     for (const term of terms) {
+      const normalizedTerm = term.toLowerCase();
       const slug = createSlug(term);
-      
+
       // Пропускаем, если термин уже существует в KB
       if (termExistsInKB(slug)) {
         continue;
       }
 
-      if (!allTerms.has(term)) {
-        allTerms.set(term, {
-          term,
-          slug,
+      // Проверяем все морфологические формы для нормализации
+      let canonicalTerm = normalizedTerm;
+      if (!args.noMorphology && isRussianWord(normalizedTerm)) {
+        const morphForms = generateMorphologicalForms(normalizedTerm);
+        // Проверяем, есть ли каноническая форма среди существующих терминов
+        for (const form of morphForms) {
+          if (existingKBTerms.has(form)) {
+            canonicalTerm = form;
+            break;
+          }
+        }
+      }
+
+      // Используем канонический термин как ключ
+      if (!allTerms.has(canonicalTerm)) {
+        allTerms.set(canonicalTerm, {
+          term: canonicalTerm, // Каноническая форма
+          slug: createSlug(canonicalTerm),
           count: 0,
           files: [],
-          contexts: [] // массив строк с примерами контекста
+          contexts: [],
+          originalForms: new Set() // Все формы, в которых встречался термин
         });
       }
 
-      const entry = allTerms.get(term);
+      const entry = allTerms.get(canonicalTerm);
       entry.count++;
+      entry.originalForms.add(term); // Сохраняем оригинальную форму
       if (!entry.files.includes(file)) {
         entry.files.push(file);
       }
 
       // Собираем 1-2 цитаты контекста для термина из текста файла
+      // Ищем все формы термина (включая морфологические)
       try {
         const lower = text.toLowerCase();
-        const termLower = term.toLowerCase();
-        let startPos = 0;
+        const searchTerms = [term.toLowerCase(), canonicalTerm];
+
+        // Добавляем морфологические формы для поиска контекста
+        if (!args.noMorphology && isRussianWord(normalizedTerm)) {
+          const morphForms = generateMorphologicalForms(normalizedTerm);
+          searchTerms.push(...morphForms.slice(0, 5)); // Ограничиваем количество форм
+        }
+
         let found = 0;
-        while (found < 2) {
-          const idx = lower.indexOf(termLower, startPos);
-          if (idx === -1) break;
-          const snippetStart = Math.max(0, idx - 80);
-          const snippetEnd = Math.min(text.length, idx + term.length + 80);
-          let snippet = text.substring(snippetStart, snippetEnd).replace(/\s+/g, ' ').trim();
-          // Добавим многоточия, если обрезали текст
-          if (snippetStart > 0) snippet = '…' + snippet;
-          if (snippetEnd < text.length) snippet = snippet + '…';
-          // Сформатируем цитату: ограничим длину и экранируем бэктики
-          snippet = snippet.replace(/`/g, "'" );
-          // Дедупликация простым contains
-          if (!entry.contexts.includes(snippet)) {
-            entry.contexts.push(snippet);
-            found++;
+        for (const searchTerm of searchTerms) {
+          if (found >= 2) break;
+
+          let startPos = 0;
+          while (found < 2) {
+            const idx = lower.indexOf(searchTerm, startPos);
+            if (idx === -1) break;
+
+            // Проверяем границы слова
+            const before = idx > 0 ? text[idx - 1] : ' ';
+            const after = idx + searchTerm.length < text.length ? text[idx + searchTerm.length] : ' ';
+            const isWordBoundary = !/[a-zA-Zа-яёА-ЯЁ0-9]/.test(before) && !/[a-zA-Zа-яёА-ЯЁ0-9]/.test(after);
+
+            if (!isWordBoundary) {
+              startPos = idx + 1;
+              continue;
+            }
+
+            const snippetStart = Math.max(0, idx - 80);
+            const snippetEnd = Math.min(text.length, idx + searchTerm.length + 80);
+            let snippet = text.substring(snippetStart, snippetEnd).replace(/\s+/g, ' ').trim();
+
+            // Добавим многоточия, если обрезали текст
+            if (snippetStart > 0) snippet = '…' + snippet;
+            if (snippetEnd < text.length) snippet = snippet + '…';
+
+            // Сформатируем цитату: ограничим длину и экранируем бэктики
+            snippet = snippet.replace(/`/g, "'");
+
+            // Дедупликация
+            if (!entry.contexts.some(ctx => ctx.includes(searchTerm))) {
+              entry.contexts.push(snippet);
+              found++;
+            }
+
+            startPos = idx + searchTerm.length;
           }
-          startPos = idx + termLower.length;
         }
       } catch (e) {
         // не критично
@@ -418,12 +742,13 @@ async function main() {
   // Сортируем термины по частоте появления
   const candidates = Array.from(allTerms.values())
     .sort((a, b) => b.count - a.count)
-    .map(({ term, slug, count, files, contexts }) => ({
+    .map(({ term, slug, count, files, contexts, originalForms }) => ({
       term,
       slug,
       frequency: count,
       files: files.slice(0, 5), // Ограничиваем количество файлов
       contexts: (contexts || []).slice(0, 2), // 1-2 примера контекста
+      originalForms: Array.from(originalForms || []).slice(0, 5), // Формы, в которых встречался термин
       created_at: new Date().toISOString(),
       pr_number: args.pr || null
     }));
@@ -437,11 +762,16 @@ async function main() {
 
   // Сохраняем в candidates_kb.json
   const output = {
-    version: '1.0',
+    version: '2.0',
     generated_at: new Date().toISOString(),
     pr_number: args.pr || null,
     base_ref: args.base,
     total_candidates: candidates.length,
+    features: {
+      morphology: !args.noMorphology,
+      wordBoundaries: true,
+      normalization: true
+    },
     candidates
   };
 
@@ -473,7 +803,8 @@ async function main() {
       const issueUrl = await createIssueForTerm(candidate.term, candidate.slug, {
         prNumber: args.pr,
         files: candidate.files,
-        contexts: candidate.contexts || []
+        contexts: candidate.contexts || [],
+        originalForms: candidate.originalForms || []
       }, args);
 
       if (issueUrl) {
