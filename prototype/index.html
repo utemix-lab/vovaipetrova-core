@@ -69,13 +69,16 @@
         <button type="button" class="view-button" data-panel="unresolved-terms">
           Unresolved Terms
         </button>
+        <button type="button" class="view-button" data-panel="diagnostics">
+          Diagnostics
+        </button>
       </div>
     </header>
     <main class="content">
       <div id="stories-banner" class="stories-banner hidden">
         <div class="stories-banner__content">
           <span class="stories-banner__text">
-            Stories paused — ждём RFC v2 
+            Stories paused — ждём RFC v2
             <a href="https://github.com/utemix-lab/vovaipetrova-core#stories" class="stories-banner__link">(через RFC‑процесс)</a>
           </span>
         </div>
@@ -157,6 +160,13 @@
         <div id="unresolved-terms-empty" class="empty-state hidden">
           <h2>Нерешенных терминов не найдено</h2>
           <p>Все кандидаты терминов уже добавлены в KB или список пуст.</p>
+        </div>
+      </section>
+      <section id="diagnostics-panel" class="hidden" aria-live="polite">
+        <div id="diagnostics-dashboard" class="diagnostics-dashboard"></div>
+        <div id="diagnostics-empty" class="empty-state hidden">
+          <h2>Диагностические данные недоступны</h2>
+          <p>Не удалось загрузить данные диагностики. Проверьте наличие файла <code>data/stats.json</code>.</p>
         </div>
       </section>
     </main>
