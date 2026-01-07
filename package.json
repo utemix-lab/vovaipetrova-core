@@ -69,6 +69,8 @@
     "sitemap:generate": "node scripts/generate-sitemap.mjs",
     "ci:metrics:collect": "node scripts/collect-ci-metrics.mjs",
     "ci:metrics:report": "node scripts/generate-ci-metrics-report.mjs",
+    "flaky:detect": "node scripts/detect-flaky-tests.mjs",
+    "flaky:detect:report": "node scripts/generate-flaky-report.mjs",
     "labels:create": "node scripts/create-github-labels.mjs",
     "mcp:notion": "node mcp-server-notion.mjs",
     "mcp:notion:test": "node mcp-server-notion.mjs"
