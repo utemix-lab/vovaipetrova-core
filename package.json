@@ -66,6 +66,7 @@
     "backlinks:generate": "node scripts/generate-backlinks.mjs",
     "backlinks:watchdog": "node scripts/backlinks-watchdog.mjs",
     "backlinks:watchdog:strict": "node scripts/backlinks-watchdog.mjs --strict",
+    "sitemap:generate": "node scripts/generate-sitemap.mjs",
     "labels:create": "node scripts/create-github-labels.mjs",
     "mcp:notion": "node mcp-server-notion.mjs",
     "mcp:notion:test": "node mcp-server-notion.mjs"

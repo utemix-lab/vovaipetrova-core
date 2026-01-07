@@ -1,0 +1,17 @@
+# robots.txt for Vova & Petrova Docs Explorer
+# GitHub Pages: https://utemix-lab.github.io/vovaipetrova-core/
+
+User-agent: *
+Allow: /
+
+# Disallow service/internal pages
+Disallow: /page/*-*-*.html
+Disallow: /data/
+
+# Allow main Explorer and public pages
+Allow: /
+Allow: /page/*.html
+
+# Sitemap location
+Sitemap: https://utemix-lab.github.io/vovaipetrova-core/sitemap.xml
+
