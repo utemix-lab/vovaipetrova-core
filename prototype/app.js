@@ -833,6 +833,18 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
       if (unresolvedTermsPanel) unresolvedTermsPanel.classList.remove("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.add("hidden");
+      if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
+      if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
+      controls?.classList.add("hidden");
+      if (storiesBanner) storiesBanner.classList.add("hidden");
+    } else if (panel === "diagnostics") {
+      docsPanel.classList.add("hidden");
+      storiesPanel.classList.add("hidden");
+      issuesPanel.classList.add("hidden");
+      orphansPanel.classList.add("hidden");
+      if (unresolvedTermsPanel) unresolvedTermsPanel.classList.add("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.remove("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
       if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
       controls?.classList.add("hidden");
@@ -843,6 +855,7 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
       if (unresolvedTermsPanel) unresolvedTermsPanel.classList.add("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.add("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.remove("hidden");
       if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
       controls?.classList.add("hidden");
@@ -853,6 +866,7 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
       if (unresolvedTermsPanel) unresolvedTermsPanel.classList.add("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.add("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
       if (storiesIndexPanel) storiesIndexPanel.classList.remove("hidden");
       controls?.classList.add("hidden");
@@ -863,6 +877,7 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
       if (unresolvedTermsPanel) unresolvedTermsPanel.classList.add("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.add("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
       if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
       controls?.classList.remove("hidden");
