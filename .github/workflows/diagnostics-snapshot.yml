@@ -33,6 +33,11 @@ jobs:
           echo "📊 Generating diagnostics snapshot..."
           npm run diagnostics:snapshot
           echo "✅ Diagnostics snapshot generated"
+      - name: Generate backlinks index
+        run: |
+          echo "🔗 Generating backlinks index..."
+          npm run backlinks:generate
+          echo "✅ Backlinks index generated"
 
       - name: Check for changes
         id: check-changes
@@ -54,6 +59,6 @@ jobs:
           git commit -m "chore: update diagnostics snapshot v3
 
           - Auto-generated after merge to main
-          - Updated pages.json, broken-links.json, stats.json, orphans.json"
+          - Updated pages.json, broken-links.json, stats.json, orphans.json, backlinks.json"
           git push
 

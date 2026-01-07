@@ -63,6 +63,9 @@
     "smoke:check": "node scripts/checks/smoke-check-pages.mjs",
     "autolink": "node scripts/autolink.mjs",
     "autolink:dry": "node scripts/autolink.mjs --dry",
+    "backlinks:generate": "node scripts/generate-backlinks.mjs",
+    "backlinks:watchdog": "node scripts/backlinks-watchdog.mjs",
+    "backlinks:watchdog:strict": "node scripts/backlinks-watchdog.mjs --strict",
     "labels:create": "node scripts/create-github-labels.mjs",
     "mcp:notion": "node mcp-server-notion.mjs",
     "mcp:notion:test": "node mcp-server-notion.mjs"
