@@ -283,6 +283,7 @@ async function renderIndex() {
   const diagnosticsPanel = document.getElementById("diagnostics-panel");
   const diagnosticsDashboard = document.getElementById("diagnostics-dashboard");
   const diagnosticsEmpty = document.getElementById("diagnostics-empty");
+  const miniDashboard = document.getElementById("mini-dashboard");
   const kbIndexPanel = document.getElementById("kb-index-panel");
   const kbIndexLetters = document.getElementById("kb-index-letters");
   const kbIndexContent = document.getElementById("kb-index-content");
@@ -395,12 +396,79 @@ async function renderIndex() {
     });
   }
 
+  async function renderMiniDashboard() {
+    if (!miniDashboard) return;
+    
+    // Показываем мини-дашборд только на первой странице без фильтров
+    if (currentPage !== 1 || currentStatus !== "all" || currentSearch || currentTagFilter) {
+      miniDashboard.classList.add("hidden");
+      return;
+    }
+    
+    try {
+      const statsResponse = await fetch("data/stats.json").catch(() => null);
+      if (!statsResponse?.ok) {
+        miniDashboard.classList.add("hidden");
+        return;
+      }
+      
+      const stats = await statsResponse.json();
+      const totals = stats.totals || {};
+      const statuses = totals.statuses || {};
+      const readyPercent = totals.pages > 0 ? Math.round((statuses.ready / totals.pages) * 100) : 0;
+      
+      miniDashboard.innerHTML = `
+        <div class="mini-dashboard__content">
+          <h2 class="mini-dashboard__title">📊 Обзор</h2>
+          <div class="mini-dashboard__metrics">
+            <div class="mini-dashboard__metric">
+              <div class="mini-dashboard__metric-value">${totals.pages || 0}</div>
+              <div class="mini-dashboard__metric-label">Всего страниц</div>
+            </div>
+            <div class="mini-dashboard__metric mini-dashboard__metric--ready">
+              <div class="mini-dashboard__metric-value">${statuses.ready || 0}</div>
+              <div class="mini-dashboard__metric-label">Ready</div>
+            </div>
+            <div class="mini-dashboard__metric mini-dashboard__metric--review">
+              <div class="mini-dashboard__metric-value">${statuses.review || 0}</div>
+              <div class="mini-dashboard__metric-label">Review</div>
+            </div>
+            <div class="mini-dashboard__metric mini-dashboard__metric--draft">
+              <div class="mini-dashboard__metric-value">${statuses.draft || 0}</div>
+              <div class="mini-dashboard__metric-label">Draft</div>
+            </div>
+            ${totals.issues_total > 0 ? `
+            <div class="mini-dashboard__metric mini-dashboard__metric--issues">
+              <div class="mini-dashboard__metric-value">${totals.issues_total}</div>
+              <div class="mini-dashboard__metric-label">Проблем</div>
+            </div>
+            ` : ''}
+          </div>
+          <div class="mini-dashboard__progress">
+            <div class="mini-dashboard__progress-bar">
+              <div class="mini-dashboard__progress-fill" style="width: ${readyPercent}%"></div>
+            </div>
+            <div class="mini-dashboard__progress-text">${readyPercent}% готово</div>
+          </div>
+        </div>
+      `;
+      
+      miniDashboard.classList.remove("hidden");
+    } catch (error) {
+      console.warn("⚠️  Failed to load mini dashboard:", error.message);
+      miniDashboard.classList.add("hidden");
+    }
+  }
+
   function renderDocs() {
     cardsContainer.innerHTML = "";
     const paginationContainer = document.getElementById("pagination");
     const tagFilterInfo = document.getElementById("tag-filter-info");
     const tagFilterName = document.getElementById("tag-filter-name");
     const tagFilterClear = document.getElementById("tag-filter-clear");
+
+    // Рендерим мини-дашборд
+    renderMiniDashboard();
 
     let filtered = docPages.filter(byStatus(currentStatus, currentSearch));
 
@@ -964,6 +1032,12 @@ async function renderIndex() {
   function setActivePanel(panel) {
     activePanel = panel;
     const storiesBanner = document.getElementById("stories-banner");
+    
+    // Скрываем мини-дашборд при переключении панелей
+    if (miniDashboard && panel !== "docs") {
+      miniDashboard.classList.add("hidden");
+    }
+    
     if (panel === "stories") {
       docsPanel.classList.add("hidden");
       storiesPanel.classList.remove("hidden");
