@@ -81,7 +81,13 @@
         </div>
       </div>
       <section id="docs-panel">
+        <div id="tag-filter-info" class="tag-filter-info hidden">
+          <span class="tag-filter-info__label">Фильтр по тегу:</span>
+          <span id="tag-filter-name" class="tag-filter-info__tag"></span>
+          <button id="tag-filter-clear" class="tag-filter-info__clear" aria-label="Снять фильтр по тегу">×</button>
+        </div>
         <section id="cards" class="cards-grid" aria-live="polite"></section>
+        <div id="pagination" class="pagination hidden" role="navigation" aria-label="Пагинация"></div>
         <div id="empty-state" class="empty-state hidden">
           <h2>Ничего не найдено</h2>
           <p>Поменяйте фильтр или запрос поиска.</p>

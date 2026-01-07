@@ -320,7 +320,14 @@ async function renderIndex() {
   let currentSort = urlParams.get("sort") || localStorage.getItem("explorer-sort") || "route";
   let currentTagFilter = tagFromHash || urlParams.get("tag") || localStorage.getItem("explorer-tag-filter") || null;
   let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
+  let currentPage = parseInt(urlParams.get("page")) || 1;
+  const ITEMS_PER_PAGE = 30; // Количество элементов на странице
   let activePanel = hashWithoutTag.includes("stories-index") ? "stories-index" : hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("unresolved-terms") ? "unresolved-terms" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
+  
+  // Сбрасываем страницу при изменении фильтров (кроме явного указания page в URL)
+  if (!urlParams.get("page")) {
+    currentPage = 1;
+  }
   
   // Сохраняем в localStorage
   if (urlParams.get("status")) localStorage.setItem("explorer-status", currentStatus);
@@ -344,6 +351,9 @@ async function renderIndex() {
     }
     if (currentSearch) {
       params.set("search", encodeURIComponent(currentSearch));
+    }
+    if (currentPage > 1) {
+      params.set("page", currentPage.toString());
     }
 
     // Формируем hash: приоритет тега, затем панель
@@ -384,6 +394,11 @@ async function renderIndex() {
 
   function renderDocs() {
     cardsContainer.innerHTML = "";
+    const paginationContainer = document.getElementById("pagination");
+    const tagFilterInfo = document.getElementById("tag-filter-info");
+    const tagFilterName = document.getElementById("tag-filter-name");
+    const tagFilterClear = document.getElementById("tag-filter-clear");
+    
     let filtered = docPages.filter(byStatus(currentStatus, currentSearch));
 
     // Фильтр "Ready only"
@@ -405,14 +420,48 @@ async function renderIndex() {
       filtered = sortByStatus([...filtered]);
     }
 
+    const totalItems = filtered.length;
+    const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+    
+    // Сбрасываем страницу, если она больше общего количества страниц
+    if (currentPage > totalPages && totalPages > 0) {
+      currentPage = 1;
+      updateURL();
+    }
+
     if (filtered.length === 0) {
       emptyState.classList.remove("hidden");
       cardsContainer.innerHTML = "";
+      paginationContainer.classList.add("hidden");
+      tagFilterInfo.classList.add("hidden");
       return;
     }
+    
     emptyState.classList.add("hidden");
+    
+    // Показываем информацию о фильтре по тегу
+    if (currentTagFilter) {
+      tagFilterInfo.classList.remove("hidden");
+      tagFilterName.textContent = currentTagFilter;
+      tagFilterClear.onclick = () => {
+        currentTagFilter = null;
+        localStorage.removeItem("explorer-tag-filter");
+        currentPage = 1; // Сбрасываем на первую страницу при снятии фильтра
+        updateURL();
+        renderDocs();
+        updateTagFilterUI();
+      };
+    } else {
+      tagFilterInfo.classList.add("hidden");
+    }
+
+    // Пагинация: берём только элементы для текущей страницы
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const paginatedItems = filtered.slice(startIndex, endIndex);
+
     const fragment = document.createDocumentFragment();
-    for (const page of filtered) {
+    for (const page of paginatedItems) {
       const card = createCard(page);
       // Добавляем обработчики кликов на теги
       card.querySelectorAll(".tag-chip--clickable").forEach((chip) => {
@@ -428,6 +477,7 @@ async function renderIndex() {
             currentTagFilter = tagValue;
             localStorage.setItem("explorer-tag-filter", currentTagFilter);
           }
+          currentPage = 1; // Сбрасываем на первую страницу при изменении фильтра
           updateURL();
           renderDocs();
           updateTagFilterUI();
@@ -436,6 +486,126 @@ async function renderIndex() {
       fragment.appendChild(card);
     }
     cardsContainer.appendChild(fragment);
+
+    // Рендерим пагинацию
+    if (totalPages > 1) {
+      renderPagination(paginationContainer, currentPage, totalPages, totalItems);
+      paginationContainer.classList.remove("hidden");
+    } else {
+      paginationContainer.classList.add("hidden");
+    }
+  }
+
+  function renderPagination(container, currentPage, totalPages, totalItems) {
+    container.innerHTML = "";
+    
+    const info = document.createElement("div");
+    info.className = "pagination-info";
+    const startItem = (currentPage - 1) * ITEMS_PER_PAGE + 1;
+    const endItem = Math.min(currentPage * ITEMS_PER_PAGE, totalItems);
+    info.textContent = `Показано ${startItem}–${endItem} из ${totalItems}`;
+    container.appendChild(info);
+
+    const nav = document.createElement("nav");
+    nav.className = "pagination-nav";
+    nav.setAttribute("aria-label", "Навигация по страницам");
+
+    // Кнопка "Предыдущая"
+    const prevButton = document.createElement("button");
+    prevButton.className = "pagination-button";
+    prevButton.textContent = "← Предыдущая";
+    prevButton.disabled = currentPage === 1;
+    prevButton.onclick = () => {
+      if (currentPage > 1) {
+        currentPage--;
+        updateURL();
+        renderDocs();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
+    nav.appendChild(prevButton);
+
+    // Номера страниц
+    const pageNumbers = document.createElement("div");
+    pageNumbers.className = "pagination-numbers";
+    
+    // Показываем максимум 7 страниц вокруг текущей
+    let startPage = Math.max(1, currentPage - 3);
+    let endPage = Math.min(totalPages, currentPage + 3);
+    
+    // Если в начале, показываем больше справа
+    if (currentPage <= 4) {
+      endPage = Math.min(totalPages, 7);
+    }
+    // Если в конце, показываем больше слева
+    if (currentPage >= totalPages - 3) {
+      startPage = Math.max(1, totalPages - 6);
+    }
+
+    // Первая страница
+    if (startPage > 1) {
+      const firstBtn = createPageButton(1, currentPage);
+      pageNumbers.appendChild(firstBtn);
+      if (startPage > 2) {
+        const ellipsis = document.createElement("span");
+        ellipsis.className = "pagination-ellipsis";
+        ellipsis.textContent = "…";
+        pageNumbers.appendChild(ellipsis);
+      }
+    }
+
+    // Страницы в диапазоне
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.appendChild(createPageButton(i, currentPage));
+    }
+
+    // Последняя страница
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        const ellipsis = document.createElement("span");
+        ellipsis.className = "pagination-ellipsis";
+        ellipsis.textContent = "…";
+        pageNumbers.appendChild(ellipsis);
+      }
+      const lastBtn = createPageButton(totalPages, currentPage);
+      pageNumbers.appendChild(lastBtn);
+    }
+
+    nav.appendChild(pageNumbers);
+
+    // Кнопка "Следующая"
+    const nextButton = document.createElement("button");
+    nextButton.className = "pagination-button";
+    nextButton.textContent = "Следующая →";
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.onclick = () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updateURL();
+        renderDocs();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
+    nav.appendChild(nextButton);
+
+    container.appendChild(nav);
+  }
+
+  function createPageButton(pageNum, currentPage) {
+    const button = document.createElement("button");
+    button.className = "pagination-number";
+    if (pageNum === currentPage) {
+      button.classList.add("is-active");
+      button.setAttribute("aria-current", "page");
+    }
+    button.textContent = pageNum.toString();
+    button.onclick = () => {
+      currentPage = pageNum;
+      updateURL();
+      renderDocs();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    return button;
   }
 
   function updateTagFilterUI() {
@@ -707,6 +877,7 @@ async function renderIndex() {
       filterButtons.forEach((btn) => btn.classList.remove("is-active"));
       button.classList.add("is-active");
       currentStatus = button.dataset.status;
+      currentPage = 1; // Сбрасываем на первую страницу при изменении фильтра
       localStorage.setItem("explorer-status", currentStatus);
       updateURL();
       renderDocs();
@@ -725,6 +896,7 @@ async function renderIndex() {
       sortButtons.forEach((btn) => btn.classList.remove("is-active"));
       button.classList.add("is-active");
       currentSort = button.dataset.sort;
+      currentPage = 1; // Сбрасываем на первую страницу при изменении сортировки
       localStorage.setItem("explorer-sort", currentSort);
       updateURL();
       renderDocs();
@@ -748,6 +920,7 @@ async function renderIndex() {
   const checkbox = readyOnlyToggle.querySelector("input");
   checkbox.addEventListener("change", (e) => {
     readyOnly = e.target.checked;
+    currentPage = 1; // Сбрасываем на первую страницу при изменении фильтра Ready only
     localStorage.setItem("explorer-ready-only", readyOnly ? "true" : "false");
     updateURL();
     renderDocs();
@@ -805,6 +978,7 @@ async function renderIndex() {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
       currentSearch = value;
+      currentPage = 1; // Сбрасываем на первую страницу при изменении поиска
       updateURL();
       renderDocs();
     }, 150);
