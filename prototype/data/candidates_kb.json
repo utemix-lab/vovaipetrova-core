@@ -1,0 +1,217 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-01-04T23:05:29.963Z",
+  "pr_number": null,
+  "base_ref": "main",
+  "total_candidates": 15,
+  "candidates": [
+    {
+      "term": "Draft",
+      "slug": "draft",
+      "frequency": 2,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md",
+        "docs/stories/2025-11-23-seed-dual-story-002.md"
+      ],
+      "contexts": [
+        "…орого эпизода серии, проверка на отсутствие PII, извлечение терминов и создание Draft PR для каждого эпизода отдельно.",
+        "…орской части, проверка на отсутствие PII, извлечение терминов для KB и создание Draft PR с меткой lane:stories."
+      ],
+      "created_at": "2026-01-04T23:05:29.962Z",
+      "pr_number": null
+    },
+    {
+      "term": "dual-story",
+      "slug": "dual-story",
+      "frequency": 2,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md",
+        "docs/stories/2025-11-23-seed-dual-story-002.md"
+      ],
+      "contexts": [
+        "…ным seed_text для Gateway PoC #2 - Режим HITL (Human-in-the-Loop) для генерации dual-story - Первый эпизод серии из двух эпизодов - Проверка работы author-gateway с расши…",
+        "…эпизодов для демонстрации возможностей системы. Что получилось: Первый эпизод dual-story формата с AUTHOR_BLOCK и MACHINE_REPORT, готовый для дальнейшей доработки. Эпиз…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "PII",
+      "slug": "pii",
+      "frequency": 2,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md",
+        "docs/stories/2025-11-23-seed-dual-story-002.md"
+      ],
+      "contexts": [
+        "…и эпизодов. Что дальше: Создание второго эпизода серии, проверка на отсутствие PII, извлечение терминов и создание Draft PR для каждого эпизода отдельно.",
+        "…формата. Что дальше: Ручная доработка авторской части, проверка на отсутствие PII, извлечение терминов для KB и создание Draft PR с меткой lane:stories."
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "Gateway",
+      "slug": "gateway",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md"
+      ],
+      "contexts": [
+        "# TL;DR - Эксперимент с длинным seed_text для Gateway PoC #2 - Режим HITL (Human-in-the-Loop) для генерации dual-story - Первый эпизо…",
+        "…ации dual-story - Первый эпизод серии из двух эпизодов - Проверка работы author-gateway с расширенным контекстом Когда контекст становится длиннее, границы между ав…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "Human",
+      "slug": "human",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md"
+      ],
+      "contexts": [
+        "# TL;DR - Эксперимент с длинным seed_text для Gateway PoC #2 - Режим HITL (Human-in-the-Loop) для генерации dual-story - Первый эпизод серии из двух эпизодов -…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "Loop",
+      "slug": "loop",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md"
+      ],
+      "contexts": [
+        "…- Эксперимент с длинным seed_text для Gateway PoC #2 - Режим HITL (Human-in-the-Loop) для генерации dual-story - Первый эпизод серии из двух эпизодов - Проверка раб…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "Front",
+      "slug": "front",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md"
+      ],
+      "contexts": [
+        "…аметры: seed_text (длинный), режим HITL, expand_to: 2 (серия из двух эпизодов). Front matter включает series_id и series_order для связи эпизодов. Что дальше: Созда…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "in-the",
+      "slug": "in-the",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md"
+      ],
+      "contexts": [
+        "…TL;DR - Эксперимент с длинным seed_text для Gateway PoC #2 - Режим HITL (Human-in-the-Loop) для генерации dual-story - Первый эпизод серии из двух эпизодов - Проверк…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "author-gateway",
+      "slug": "author-gateway",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md"
+      ],
+      "contexts": [
+        "…я генерации dual-story - Первый эпизод серии из двух эпизодов - Проверка работы author-gateway с расширенным контекстом Когда контекст становится длиннее, границы между ав…",
+        "…име HITL. Эпизод является частью серии из двух эпизодов, демонстрирующей работу author-gateway с расширенным контекстом. Зачем это делали: Проверить работу author-gateway с…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "seed_text",
+      "slug": "seedtext",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md"
+      ],
+      "contexts": [
+        "# TL;DR - Эксперимент с длинным seed_text для Gateway PoC #2 - Режим HITL (Human-in-the-Loop) для генерации dual-story -…",
+        "…иннее, границы между автоматизацией и человеческим выбором размываются. Длинный seed_text — это не просто больше слов, это попытка передать сложность мысли, которая не у…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "series_id",
+      "slug": "seriesid",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md"
+      ],
+      "contexts": [
+        "…EPORT, готовый для дальнейшей доработки. Эпизод связан со вторым эпизодом через series_id и series_order. Тех-вставка: Эпизод создан вручную с использованием формата du…",
+        "…нный), режим HITL, expand_to: 2 (серия из двух эпизодов). Front matter включает series_id и series_order для связи эпизодов. Что дальше: Создание второго эпизода серии,…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "series_order",
+      "slug": "seriesorder",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md"
+      ],
+      "contexts": [
+        "…ый для дальнейшей доработки. Эпизод связан со вторым эпизодом через series_id и series_order. Тех-вставка: Эпизод создан вручную с использованием формата dual-story. Парам…",
+        "…HITL, expand_to: 2 (серия из двух эпизодов). Front matter включает series_id и series_order для связи эпизодов. Что дальше: Создание второго эпизода серии, проверка на от…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "expand_to",
+      "slug": "expandto",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md"
+      ],
+      "contexts": [
+        "…использованием формата dual-story. Параметры: seed_text (длинный), режим HITL, expand_to: 2 (серия из двух эпизодов). Front matter включает series_id и series_order для…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "HITL",
+      "slug": "hitl",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-01-04-gateway-poc-2-episode-1.md"
+      ],
+      "contexts": [
+        "# TL;DR - Эксперимент с длинным seed_text для Gateway PoC #2 - Режим HITL (Human-in-the-Loop) для генерации dual-story - Первый эпизод серии из двух эпиз…",
+        "…ытка передать сложность мысли, которая не укладывается в короткие формулировки. HITL режим здесь становится мостом: машина предлагает варианты, человек выбирает нап…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    },
+    {
+      "term": "Dual",
+      "slug": "dual",
+      "frequency": 1,
+      "files": [
+        "docs/stories/2025-11-23-seed-dual-story-002.md"
+      ],
+      "contexts": [
+        "# TL;DR - Авторская заготовка: размышления о развитии формата dual-story - Машинный отчёт: метаданные и структура второго эпизода - Цель: продолжи…",
+        "…чёт: метаданные и структура второго эпизода - Цель: продолжить развитие формата dual-story с улучшенной структурой Когда формат начинает жить собственной жизнью,…"
+      ],
+      "created_at": "2026-01-04T23:05:29.963Z",
+      "pr_number": null
+    }
+  ]
+}
