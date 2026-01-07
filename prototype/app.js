@@ -280,6 +280,9 @@ async function renderIndex() {
   const issuesPanel = document.getElementById("issues-panel");
   const orphansPanel = document.getElementById("orphans-panel");
   const unresolvedTermsPanel = document.getElementById("unresolved-terms-panel");
+  const diagnosticsPanel = document.getElementById("diagnostics-panel");
+  const diagnosticsDashboard = document.getElementById("diagnostics-dashboard");
+  const diagnosticsEmpty = document.getElementById("diagnostics-empty");
   const kbIndexPanel = document.getElementById("kb-index-panel");
   const kbIndexLetters = document.getElementById("kb-index-letters");
   const kbIndexContent = document.getElementById("kb-index-content");
@@ -322,13 +325,13 @@ async function renderIndex() {
   let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
   let currentPage = parseInt(urlParams.get("page")) || 1;
   const ITEMS_PER_PAGE = 30; // Количество элементов на странице
-  let activePanel = hashWithoutTag.includes("stories-index") ? "stories-index" : hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("unresolved-terms") ? "unresolved-terms" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
-  
+  let activePanel = hashWithoutTag.includes("stories-index") ? "stories-index" : hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("unresolved-terms") ? "unresolved-terms" : hashWithoutTag.includes("diagnostics") ? "diagnostics" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
+
   // Сбрасываем страницу при изменении фильтров (кроме явного указания page в URL)
   if (!urlParams.get("page")) {
     currentPage = 1;
   }
-  
+
   // Сохраняем в localStorage
   if (urlParams.get("status")) localStorage.setItem("explorer-status", currentStatus);
   if (urlParams.get("sort")) localStorage.setItem("explorer-sort", currentSort);
@@ -398,7 +401,7 @@ async function renderIndex() {
     const tagFilterInfo = document.getElementById("tag-filter-info");
     const tagFilterName = document.getElementById("tag-filter-name");
     const tagFilterClear = document.getElementById("tag-filter-clear");
-    
+
     let filtered = docPages.filter(byStatus(currentStatus, currentSearch));
 
     // Фильтр "Ready only"
@@ -422,7 +425,7 @@ async function renderIndex() {
 
     const totalItems = filtered.length;
     const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-    
+
     // Сбрасываем страницу, если она больше общего количества страниц
     if (currentPage > totalPages && totalPages > 0) {
       currentPage = 1;
@@ -436,9 +439,9 @@ async function renderIndex() {
       tagFilterInfo.classList.add("hidden");
       return;
     }
-    
+
     emptyState.classList.add("hidden");
-    
+
     // Показываем информацию о фильтре по тегу
     if (currentTagFilter) {
       tagFilterInfo.classList.remove("hidden");
@@ -498,7 +501,7 @@ async function renderIndex() {
 
   function renderPagination(container, currentPage, totalPages, totalItems) {
     container.innerHTML = "";
-    
+
     const info = document.createElement("div");
     info.className = "pagination-info";
     const startItem = (currentPage - 1) * ITEMS_PER_PAGE + 1;
@@ -528,11 +531,11 @@ async function renderIndex() {
     // Номера страниц
     const pageNumbers = document.createElement("div");
     pageNumbers.className = "pagination-numbers";
-    
+
     // Показываем максимум 7 страниц вокруг текущей
     let startPage = Math.max(1, currentPage - 3);
     let endPage = Math.min(totalPages, currentPage + 3);
-    
+
     // Если в начале, показываем больше справа
     if (currentPage <= 4) {
       endPage = Math.min(totalPages, 7);
@@ -715,6 +718,171 @@ async function renderIndex() {
     }
   }
 
+  async function renderDiagnostics() {
+    if (!diagnosticsDashboard) return;
+    
+    diagnosticsDashboard.innerHTML = "";
+    
+    try {
+      const [statsResponse, pagesResponse, orphansResponse] = await Promise.all([
+        fetch("data/stats.json").catch(() => null),
+        fetch("data/pages.json").catch(() => null),
+        fetch("data/orphans.json").catch(() => null)
+      ]);
+      
+      const stats = statsResponse?.ok ? await statsResponse.json() : null;
+      const pages = pagesResponse?.ok ? await pagesResponse.json() : null;
+      const orphans = orphansResponse?.ok ? await orphansResponse.json() : null;
+      
+      if (!stats) {
+        if (diagnosticsEmpty) diagnosticsEmpty.classList.remove("hidden");
+        return;
+      }
+      
+      if (diagnosticsEmpty) diagnosticsEmpty.classList.add("hidden");
+      
+      // Основные метрики
+      const metricsSection = document.createElement("div");
+      metricsSection.className = "diagnostics-metrics";
+      
+      const totals = stats.totals || {};
+      const statuses = totals.statuses || {};
+      
+      metricsSection.innerHTML = `
+        <h2 class="diagnostics-section-title">📊 Основные метрики</h2>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">${totals.pages || 0}</div>
+            <div class="metric-label">Всего страниц</div>
+          </div>
+          <div class="metric-card metric-card--ready">
+            <div class="metric-value">${statuses.ready || 0}</div>
+            <div class="metric-label">Ready</div>
+          </div>
+          <div class="metric-card metric-card--review">
+            <div class="metric-value">${statuses.review || 0}</div>
+            <div class="metric-label">Review</div>
+          </div>
+          <div class="metric-card metric-card--draft">
+            <div class="metric-value">${statuses.draft || 0}</div>
+            <div class="metric-label">Draft</div>
+          </div>
+        </div>
+      `;
+      
+      diagnosticsDashboard.appendChild(metricsSection);
+      
+      // Проблемы и issues
+      const issuesSection = document.createElement("div");
+      issuesSection.className = "diagnostics-issues";
+      
+      const issuesTotal = totals.issues_total || 0;
+      const issuesBreakdown = {
+        internal: totals.issues_internal_missing || 0,
+        service: totals.issues_service || 0,
+        external: totals.issues_external || 0,
+        unknown: totals.issues_unknown || 0
+      };
+      
+      issuesSection.innerHTML = `
+        <h2 class="diagnostics-section-title">🔍 Проблемы со ссылками</h2>
+        <div class="metrics-grid">
+          <div class="metric-card metric-card--issues">
+            <div class="metric-value">${issuesTotal}</div>
+            <div class="metric-label">Всего проблем</div>
+          </div>
+          ${issuesBreakdown.internal > 0 ? `
+          <div class="metric-card metric-card--warning">
+            <div class="metric-value">${issuesBreakdown.internal}</div>
+            <div class="metric-label">Internal missing</div>
+          </div>
+          ` : ''}
+          ${issuesBreakdown.service > 0 ? `
+          <div class="metric-card metric-card--warning">
+            <div class="metric-value">${issuesBreakdown.service}</div>
+            <div class="metric-label">Service links</div>
+          </div>
+          ` : ''}
+          ${issuesBreakdown.external > 0 ? `
+          <div class="metric-card">
+            <div class="metric-value">${issuesBreakdown.external}</div>
+            <div class="metric-label">External</div>
+          </div>
+          ` : ''}
+          ${issuesBreakdown.unknown > 0 ? `
+          <div class="metric-card metric-card--warning">
+            <div class="metric-value">${issuesBreakdown.unknown}</div>
+            <div class="metric-label">Unknown</div>
+          </div>
+          ` : ''}
+        </div>
+      `;
+      
+      diagnosticsDashboard.appendChild(issuesSection);
+      
+      // Сиротские страницы
+      if (orphans && orphans.orphans && orphans.orphans.length > 0) {
+        const orphansSection = document.createElement("div");
+        orphansSection.className = "diagnostics-orphans";
+        
+        orphansSection.innerHTML = `
+          <h2 class="diagnostics-section-title">📄 Сиротские страницы</h2>
+          <div class="metric-card metric-card--warning">
+            <div class="metric-value">${orphans.orphans.length}</div>
+            <div class="metric-label">Страниц без маршрутов</div>
+          </div>
+        `;
+        
+        diagnosticsDashboard.appendChild(orphansSection);
+      }
+      
+      // Статистика по статусам (процент ready)
+      if (totals.pages > 0) {
+        const readyPercent = Math.round((statuses.ready / totals.pages) * 100);
+        const progressSection = document.createElement("div");
+        progressSection.className = "diagnostics-progress";
+        
+        progressSection.innerHTML = `
+          <h2 class="diagnostics-section-title">📈 Прогресс готовности</h2>
+          <div class="progress-bar">
+            <div class="progress-bar__fill" style="width: ${readyPercent}%"></div>
+          </div>
+          <div class="progress-text">${readyPercent}% страниц в статусе Ready</div>
+        `;
+        
+        diagnosticsDashboard.appendChild(progressSection);
+      }
+      
+      // Информация о генерации
+      if (stats.generatedAt) {
+        const infoSection = document.createElement("div");
+        infoSection.className = "diagnostics-info";
+        
+        const generatedDate = new Date(stats.generatedAt);
+        const formattedDate = generatedDate.toLocaleString('ru-RU', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+        
+        infoSection.innerHTML = `
+          <div class="diagnostics-meta">
+            <span>Обновлено: ${formattedDate}</span>
+            ${stats.version ? `<span>Версия: ${stats.version}</span>` : ''}
+          </div>
+        `;
+        
+        diagnosticsDashboard.appendChild(infoSection);
+      }
+      
+    } catch (error) {
+      console.warn("⚠️  Failed to load diagnostics:", error.message);
+      if (diagnosticsEmpty) diagnosticsEmpty.classList.remove("hidden");
+    }
+  }
+
   async function renderUnresolvedTerms() {
     unresolvedTermsContainer.innerHTML = "";
     try {
@@ -727,7 +895,7 @@ async function renderIndex() {
         throw new Error(`status ${response.status}`);
       }
       const candidatesData = await response.json();
-      
+
       if (!candidatesData.candidates || candidatesData.candidates.length === 0) {
         unresolvedTermsEmpty.classList.remove("hidden");
         return;
@@ -735,13 +903,13 @@ async function renderIndex() {
       unresolvedTermsEmpty.classList.add("hidden");
 
       // Загружаем список существующих терминов KB для фильтрации
-      const kbPages = pages.filter(page => 
+      const kbPages = pages.filter(page =>
         (page.machine_tags || []).some(tag => tag.startsWith('product/kb'))
       );
       const existingSlugs = new Set(kbPages.map(page => page.slug));
 
       // Фильтруем только те термины, которых еще нет в KB
-      const unresolved = candidatesData.candidates.filter(candidate => 
+      const unresolved = candidatesData.candidates.filter(candidate =>
         !existingSlugs.has(candidate.slug)
       );
 
@@ -750,17 +918,17 @@ async function renderIndex() {
         return;
       }
       unresolvedTermsEmpty.classList.add("hidden");
-      
+
       const fragment = document.createDocumentFragment();
       unresolved.forEach((candidate) => {
         const card = document.createElement("div");
         card.className = "card";
-        
+
         const title = document.createElement("h3");
         title.className = "card__title";
         title.textContent = candidate.term;
         card.appendChild(title);
-        
+
         const details = document.createElement("div");
         details.className = "card__details";
         details.innerHTML = `
@@ -769,21 +937,21 @@ async function renderIndex() {
           ${candidate.issue_url ? `<a href="${candidate.issue_url}" target="_blank" class="term-issue-link">Issue →</a>` : ''}
         `;
         card.appendChild(details);
-        
+
         if (candidate.contexts && candidate.contexts.length > 0) {
           const context = document.createElement("div");
           context.className = "card__summary";
           context.innerHTML = `<p><em>${candidate.contexts[0].substring(0, 150)}${candidate.contexts[0].length > 150 ? '...' : ''}</em></p>`;
           card.appendChild(context);
         }
-        
+
         if (candidate.files && candidate.files.length > 0) {
           const files = document.createElement("div");
           files.className = "card__meta";
           files.innerHTML = `<small>Файлы: ${candidate.files.slice(0, 2).map(f => `<code>${f.split('/').pop()}</code>`).join(', ')}${candidate.files.length > 2 ? '...' : ''}</small>`;
           card.appendChild(files);
         }
-        
+
         fragment.appendChild(card);
       });
       unresolvedTermsContainer.appendChild(fragment);
@@ -822,6 +990,7 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.remove("hidden");
       if (unresolvedTermsPanel) unresolvedTermsPanel.classList.add("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.add("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
       if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
       controls?.classList.add("hidden");
@@ -832,6 +1001,18 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
       if (unresolvedTermsPanel) unresolvedTermsPanel.classList.remove("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.add("hidden");
+      if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
+      if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
+      controls?.classList.add("hidden");
+      if (storiesBanner) storiesBanner.classList.add("hidden");
+    } else if (panel === "diagnostics") {
+      docsPanel.classList.add("hidden");
+      storiesPanel.classList.add("hidden");
+      issuesPanel.classList.add("hidden");
+      orphansPanel.classList.add("hidden");
+      if (unresolvedTermsPanel) unresolvedTermsPanel.classList.add("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.remove("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
       if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
       controls?.classList.add("hidden");
@@ -842,6 +1023,7 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
       if (unresolvedTermsPanel) unresolvedTermsPanel.classList.add("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.add("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.remove("hidden");
       if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
       controls?.classList.add("hidden");
@@ -852,6 +1034,7 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
       if (unresolvedTermsPanel) unresolvedTermsPanel.classList.add("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.add("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
       if (storiesIndexPanel) storiesIndexPanel.classList.remove("hidden");
       controls?.classList.add("hidden");
@@ -862,6 +1045,7 @@ async function renderIndex() {
       issuesPanel.classList.add("hidden");
       orphansPanel.classList.add("hidden");
       if (unresolvedTermsPanel) unresolvedTermsPanel.classList.add("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.add("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
       if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
       controls?.classList.remove("hidden");
@@ -996,6 +1180,8 @@ async function renderIndex() {
         renderOrphans();
       } else if (targetPanel === "unresolved-terms") {
         renderUnresolvedTerms();
+      } else if (targetPanel === "diagnostics") {
+        renderDiagnostics();
       } else if (targetPanel === "kb-index") {
         renderKBIndex().catch((error) => {
           console.error("Failed to render KB index:", error);
@@ -1469,25 +1655,25 @@ async function renderPage() {
   const breadcrumbCurrent = document.getElementById("breadcrumb-current");
   if (isStoryPage(entry)) {
     let breadcrumbHTML = `<a href="../index.html#stories-panel">Stories</a>`;
-    
+
     // Если есть series_id, добавляем навигацию по серии
     if (entry.series_id) {
-      const seriesStories = pages.filter(page => 
-        isStoryPage(page) && 
-        page.series_id === entry.series_id && 
+      const seriesStories = pages.filter(page =>
+        isStoryPage(page) &&
+        page.series_id === entry.series_id &&
         page.slug !== entry.slug
       ).sort((a, b) => {
         const orderA = getStoryOrder(a) ?? 999;
         const orderB = getStoryOrder(b) ?? 999;
         return orderA - orderB;
       });
-      
+
       if (seriesStories.length > 0) {
         breadcrumbHTML += `<span aria-hidden="true"> › </span>`;
         breadcrumbHTML += `<a href="../index.html#stories-panel?series=${encodeURIComponent(entry.series_id)}">Серия: ${escapeHtml(entry.series_id)}</a>`;
       }
     }
-    
+
     breadcrumbHTML += `<span aria-hidden="true"> › </span>`;
     breadcrumbHTML += `<span>${escapeHtml(entry.title || entry.slug)}</span>`;
     breadcrumbCurrent.innerHTML = breadcrumbHTML;
@@ -1553,9 +1739,9 @@ async function renderPage() {
 
   // Навигация по серии (другие эпизоды с тем же series_id)
   if (isStoryPage(entry) && entry.series_id) {
-    const seriesStories = pages.filter(page => 
-      isStoryPage(page) && 
-      page.series_id === entry.series_id && 
+    const seriesStories = pages.filter(page =>
+      isStoryPage(page) &&
+      page.series_id === entry.series_id &&
       page.slug !== entry.slug
     ).sort((a, b) => {
       const orderA = getStoryOrder(a) ?? 999;
