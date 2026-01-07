@@ -715,6 +715,171 @@ async function renderIndex() {
     }
   }
 
+  async function renderDiagnostics() {
+    if (!diagnosticsDashboard) return;
+    
+    diagnosticsDashboard.innerHTML = "";
+    
+    try {
+      const [statsResponse, pagesResponse, orphansResponse] = await Promise.all([
+        fetch("data/stats.json").catch(() => null),
+        fetch("data/pages.json").catch(() => null),
+        fetch("data/orphans.json").catch(() => null)
+      ]);
+      
+      const stats = statsResponse?.ok ? await statsResponse.json() : null;
+      const pages = pagesResponse?.ok ? await pagesResponse.json() : null;
+      const orphans = orphansResponse?.ok ? await orphansResponse.json() : null;
+      
+      if (!stats) {
+        if (diagnosticsEmpty) diagnosticsEmpty.classList.remove("hidden");
+        return;
+      }
+      
+      if (diagnosticsEmpty) diagnosticsEmpty.classList.add("hidden");
+      
+      // Основные метрики
+      const metricsSection = document.createElement("div");
+      metricsSection.className = "diagnostics-metrics";
+      
+      const totals = stats.totals || {};
+      const statuses = totals.statuses || {};
+      
+      metricsSection.innerHTML = `
+        <h2 class="diagnostics-section-title">📊 Основные метрики</h2>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">${totals.pages || 0}</div>
+            <div class="metric-label">Всего страниц</div>
+          </div>
+          <div class="metric-card metric-card--ready">
+            <div class="metric-value">${statuses.ready || 0}</div>
+            <div class="metric-label">Ready</div>
+          </div>
+          <div class="metric-card metric-card--review">
+            <div class="metric-value">${statuses.review || 0}</div>
+            <div class="metric-label">Review</div>
+          </div>
+          <div class="metric-card metric-card--draft">
+            <div class="metric-value">${statuses.draft || 0}</div>
+            <div class="metric-label">Draft</div>
+          </div>
+        </div>
+      `;
+      
+      diagnosticsDashboard.appendChild(metricsSection);
+      
+      // Проблемы и issues
+      const issuesSection = document.createElement("div");
+      issuesSection.className = "diagnostics-issues";
+      
+      const issuesTotal = totals.issues_total || 0;
+      const issuesBreakdown = {
+        internal: totals.issues_internal_missing || 0,
+        service: totals.issues_service || 0,
+        external: totals.issues_external || 0,
+        unknown: totals.issues_unknown || 0
+      };
+      
+      issuesSection.innerHTML = `
+        <h2 class="diagnostics-section-title">🔍 Проблемы со ссылками</h2>
+        <div class="metrics-grid">
+          <div class="metric-card metric-card--issues">
+            <div class="metric-value">${issuesTotal}</div>
+            <div class="metric-label">Всего проблем</div>
+          </div>
+          ${issuesBreakdown.internal > 0 ? `
+          <div class="metric-card metric-card--warning">
+            <div class="metric-value">${issuesBreakdown.internal}</div>
+            <div class="metric-label">Internal missing</div>
+          </div>
+          ` : ''}
+          ${issuesBreakdown.service > 0 ? `
+          <div class="metric-card metric-card--warning">
+            <div class="metric-value">${issuesBreakdown.service}</div>
+            <div class="metric-label">Service links</div>
+          </div>
+          ` : ''}
+          ${issuesBreakdown.external > 0 ? `
+          <div class="metric-card">
+            <div class="metric-value">${issuesBreakdown.external}</div>
+            <div class="metric-label">External</div>
+          </div>
+          ` : ''}
+          ${issuesBreakdown.unknown > 0 ? `
+          <div class="metric-card metric-card--warning">
+            <div class="metric-value">${issuesBreakdown.unknown}</div>
+            <div class="metric-label">Unknown</div>
+          </div>
+          ` : ''}
+        </div>
+      `;
+      
+      diagnosticsDashboard.appendChild(issuesSection);
+      
+      // Сиротские страницы
+      if (orphans && orphans.orphans && orphans.orphans.length > 0) {
+        const orphansSection = document.createElement("div");
+        orphansSection.className = "diagnostics-orphans";
+        
+        orphansSection.innerHTML = `
+          <h2 class="diagnostics-section-title">📄 Сиротские страницы</h2>
+          <div class="metric-card metric-card--warning">
+            <div class="metric-value">${orphans.orphans.length}</div>
+            <div class="metric-label">Страниц без маршрутов</div>
+          </div>
+        `;
+        
+        diagnosticsDashboard.appendChild(orphansSection);
+      }
+      
+      // Статистика по статусам (процент ready)
+      if (totals.pages > 0) {
+        const readyPercent = Math.round((statuses.ready / totals.pages) * 100);
+        const progressSection = document.createElement("div");
+        progressSection.className = "diagnostics-progress";
+        
+        progressSection.innerHTML = `
+          <h2 class="diagnostics-section-title">📈 Прогресс готовности</h2>
+          <div class="progress-bar">
+            <div class="progress-bar__fill" style="width: ${readyPercent}%"></div>
+          </div>
+          <div class="progress-text">${readyPercent}% страниц в статусе Ready</div>
+        `;
+        
+        diagnosticsDashboard.appendChild(progressSection);
+      }
+      
+      // Информация о генерации
+      if (stats.generatedAt) {
+        const infoSection = document.createElement("div");
+        infoSection.className = "diagnostics-info";
+        
+        const generatedDate = new Date(stats.generatedAt);
+        const formattedDate = generatedDate.toLocaleString('ru-RU', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+        
+        infoSection.innerHTML = `
+          <div class="diagnostics-meta">
+            <span>Обновлено: ${formattedDate}</span>
+            ${stats.version ? `<span>Версия: ${stats.version}</span>` : ''}
+          </div>
+        `;
+        
+        diagnosticsDashboard.appendChild(infoSection);
+      }
+      
+    } catch (error) {
+      console.warn("⚠️  Failed to load diagnostics:", error.message);
+      if (diagnosticsEmpty) diagnosticsEmpty.classList.remove("hidden");
+    }
+  }
+
   async function renderUnresolvedTerms() {
     unresolvedTermsContainer.innerHTML = "";
     try {
