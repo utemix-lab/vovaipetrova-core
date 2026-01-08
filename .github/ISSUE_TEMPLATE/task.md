@@ -16,15 +16,6 @@ assignees: ''
 - **RFC**: {Link to RFC, if applicable}
 - **Upstream Source**: {Ideas & Proposals | RFC | Incident | Metrics}
 
-## Two-stream Policy
-
-**Stream Type**:
-- [ ] Stream 2 (GitHub → Notion): Работа агента с синхронизацией статусов в Notion
-
-**Синхронизация статусов**:
-- [ ] Задача создана в Notion Briefs (требуется синхронизация статусов)
-- [ ] Статус будет синхронизироваться: `Ready` → `In Progress` → `Review` → `Done`
-
 ## Scope
 
 - [ ] {Scope item 1}
@@ -52,15 +43,6 @@ Select appropriate lane label:
 - `lane:qa` — quality assurance
 - `lane:composer` — Composer tasks (isolated lane)
 
-**Copilot lanes:**
-- `lane:copilot` — GitHub Copilot tasks (general)
-- `lane:copilot:docs` — Copilot documentation tasks
-- `lane:copilot:infra` — Copilot infrastructure tasks
-- `lane:copilot:stories` — Copilot Stories tasks
-- `lane:copilot:refactor` — Copilot refactoring tasks
-- `lane:copilot:feat` — Copilot feature tasks
-- `lane:copilot:fix` — Copilot bug fix tasks
-
 ## Sequence
 
 If this task is part of a sequence, add sequence label:
@@ -69,7 +51,6 @@ If this task is part of a sequence, add sequence label:
 ## Executor
 
 - [ ] Cursor
-- [ ] GitHub Copilot
 - [ ] Manual
 
 ## Additional Context

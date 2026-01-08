@@ -94,9 +94,6 @@ npm run check:lanes    # Проверка lanes policy (one-PR-per-lane)
 # Тестирование guardrails
 npm run test:guardrails  # Эмуляция нарушений для проверки guardrails
 
-# CodeGPT интеграция (требует настройки .env)
-npm run codegpt:github:list-prs  # Список открытых PR
-npm run codegpt:notion:search     # Поиск в Notion
 ```
 
 ## Процесс работы
@@ -116,15 +113,6 @@ npm run codegpt:notion:search     # Поиск в Notion
 ## Export: Backup/Export рутина Notion → GitHub
 
 **Регулярный экспорт и проверки целостности:**
-
-Чек-лист и процедура экспорта описаны в [`docs/backup-export-routine-notion-github.md`](docs/backup-export-routine-notion-github.md).
-
-**Быстрый экспорт (< 20 минут):**
-1. Экспорт из Notion (Markdown & CSV, include subpages)
-2. ZIP скопирован в `uploads/notion_export.zip`
-3. Запущен workflow "Notion Import (Safe PR)" через GitHub Actions
-4. Sanity-check выполнен (`npm run sanity:check`)
-5. PR проверен и готов к мержу
 
 **Sanity-check включает:**
 - Наличие ключевых узлов (Think Tank, Briefs, документация)
@@ -156,56 +144,10 @@ npm run codegpt:notion:search     # Поиск в Notion
    - Выполняет `normalize` и `fix:links`
    - Автоматически коммитит изменения обратно (если есть что коммитить)
 
-2. **Notion Import (Safe PR)** — безопасный импорт из Notion через PR:
-   - Защита от перезаписи критических файлов (`deny_paths`)
-   - Проверка безопасности перед нормализацией
-   - Создаёт PR для ревью изменений
-   - Запускается вручную: Actions → "Notion Import" → "Run workflow"
-
-### Безопасный импорт из Notion
-
-**Вариант 1: ZIP архив (рекомендуется)**
-
-Пошаговая инструкция:
-
-```powershell
-# 1. Убедись, что папка uploads/ существует (создаётся автоматически)
-# 2. Положи ZIP архив из Notion в папку uploads/
-
-# 3. Создай ветку (замени дату на текущую)
-git checkout -b notion-sync/2025-11-06
-
-# 4. Добавь ZIP файл в git
-git add uploads/*.zip
 
 # 5. Закоммить
 git commit -m "Notion export"
 
-# 6. Отправь на GitHub
-git push origin notion-sync/2025-11-06
-```
-
-После push:
-- Workflow автоматически запустится
-- Распакует ZIP из `uploads/`
-- Применит маппинг путей из `docs/.import-map.yaml`
-- Проверит безопасность
-- Нормализует документы с таблицей действий
-- Создаст PR с чек-листом и label (`auto:ready-for-review` или `auto:needs-fixes`)
-
-Проверь PR в GitHub → Actions → "Notion Import" и merge, если всё ок.
-
-**Вариант 2: Уже распакованные .md файлы**
-1. Экспортируй из Notion → получи `.md` файлы
-2. Создай ветку `notion-sync/YYYY-MM-DD` и закоммить файлы в `docs/`
-3. Push в ветку `notion-sync/**`
-4. Workflow проверит безопасность, нормализует и создаст PR
-5. Проверь PR и merge, если всё ок
-
-**Защита:**
-- `docs/.import-map.yaml` — маппинг путей и список `deny_paths`
-- `npm run check:import` — проверка безопасности перед импортом
-- Критические файлы (`scripts/`, `.github/`, `package.json`) защищены от перезаписи
 
 ## Front matter
 
@@ -238,9 +180,9 @@ machine_tags: [theme/ux, product/services]  # скрытые фасеты
    ```
 3. Запусти `npm run normalize`
 
-## CodeGPT интеграция
+## MCP интеграция
 
-Настройка CodeGPT для работы с Notion и GitHub через их API (аналог MCP серверов).
+Настройка MCP сервера для работы Cursor с Notion через MCP протокол.
 
 ### Быстрая настройка
 
@@ -264,11 +206,9 @@ machine_tags: [theme/ux, product/services]  # скрытые фасеты
 - **GitHub**: создание/обновление PR, получение issues
 - **Notion**: поиск страниц, получение/обновление страниц
 
-Полная инструкция: [`docs/codegpt-setup.md`](docs/codegpt-setup.md)
 
 ## Источник истины
 
 - **Notion** → думает, структурирует идеи
 - **GitHub** → хранит машиночитаемую версию
 - **Cursor/LLM** → читает и работает с документами
-- **CodeGPT** → интеграция через API для автоматизации

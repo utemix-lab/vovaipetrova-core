@@ -1,55 +1,77 @@
 {
   // Кодировка файлов по умолчанию
   "files.encoding": "utf8",
-  
+
   // Автоматически определять кодировку при открытии файла
   "files.autoGuessEncoding": true,
-  
+
   // Кодировка для новых файлов
   "files.defaultLanguage": "markdown",
-  
+
   // Настройки для Markdown
   "[markdown]": {
     "files.encoding": "utf8",
     "files.eol": "\n"
   },
-  
+
   // Настройки для JSON
   "[json]": {
     "files.encoding": "utf8"
   },
-  
+
   // Настройки для JavaScript
   "[javascript]": {
     "files.encoding": "utf8"
   },
-  
+
   // Настройки для TypeScript
   "[typescript]": {
     "files.encoding": "utf8"
   },
-  
+
   // Настройки для YAML
   "[yaml]": {
     "files.encoding": "utf8"
   },
-  
+
   // Настройки для PowerShell
   "[powershell]": {
     "files.encoding": "utf8"
   },
-  
+
   // Настройки для Python
   "[python]": {
     "files.encoding": "utf8"
   },
-  
+
   // Удалять пробелы в конце строк при сохранении
   "files.trimTrailingWhitespace": true,
-  
+
   // Вставлять финальный перевод строки при сохранении
   "files.insertFinalNewline": true,
-  
+
   // Использовать EditorConfig для настроек форматирования
-  "editorconfig.generateAuto": false
+  "editorconfig.generateAuto": false,
+
+  // Терминал: использовать PowerShell 7 вместо PowerShell 5.1
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell",
+      "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+      "args": ["-NoLogo"]
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    }
+  }
 }

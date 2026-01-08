@@ -28,7 +28,7 @@ last_edited_time: ""
 
 - **Notion → GitHub:** Задачи берутся по MCP (из базы Briefs), работа выполняется
 - **GitHub → Notion:** Статусы, ссылки на PR и отчёты возвращаются по MCP
-- **Двусторонняя синхронизация:** Через агентов (Cursor, Copilot и другие)
+- **Двусторонняя синхронизация:** Через Cursor (MCP)
 
 **Важно:** Задачи создаются только в Notion. GitHub Issues — только для CI/CD-техники.
 
@@ -42,7 +42,7 @@ last_edited_time: ""
 2. Самостоятельно выбрать оптимальное решение
 3. Выполнить работу → PR
 4. После завершения всех команд — открыть PR или дать ссылку
-5. PR: заголовок и тело по-русски, UTF-8, без моджибаке
+5. PR: заголовок и тело по-русски, UTF-8
 6. Команды агентам — по-русски, сгруппированы
 7. В чат: "PR готов, проверьте и смержите" (без вариантов)
 8. При правках → re-run → исправить
@@ -64,7 +64,6 @@ last_edited_time: ""
 
 **Документация по MCP:**
 - [MCP Quickstart](../MCP-QUICKSTART.md) — быстрый старт с MCP сервером
-- [Настройка Copilot с MCP](copilot-mcp-setup.md) — настройка GitHub Copilot для работы с Notion через MCP
 
 ### 3.2. Решение
 
@@ -84,7 +83,7 @@ last_edited_time: ""
 
 ## 3.3. Границы ответственности
 
-### Исполнитель (Cursor/Copilot/другие агенты)
+### Исполнитель (Cursor)
 
 **Ответственность:**
 
@@ -243,8 +242,8 @@ last_edited_time: ""
 
 **Требования к PR:**
 
-- **Заголовок:** Русский, UTF-8, без моджибаке
-- **Описание:** Русский, UTF-8, без моджибаке
+- **Заголовок:** Русский, UTF-8
+- **Описание:** Русский, UTF-8
 - **Открытие PR:** Только после завершения всех команд
 - **Terms found (для Stories PR):** Обязательный блок с терминами и цитатами контекста
 
@@ -357,8 +356,8 @@ last_edited_time: ""
 **Правила работы:**
 
 - Перед сохранением: убедиться, что в статус-баре указано "UTF-8"
-- Перед коммитом: проверить файлы на моджибаке (открыть в другом редакторе или на GitHub)
-- При работе с PR: заголовок и тело PR — по-русски, **без моджибаке**
+- Перед коммитом: проверить файлы на корректную кодировку UTF-8 (открыть на GitHub для проверки)
+- При работе с PR: заголовок и тело PR — по-русски, UTF-8
 
 **Настройка Git (глобально):**
 
@@ -368,21 +367,13 @@ git config --global i18n.commitencoding utf-8
 git config --global i18n.logoutputencoding utf-8
 ```
 
-**Исправление файла с моджибаке:**
+**Исправление кодировки файла:**
 
 **В VS Code/Cursor:**
 1. Открыть файл
 2. Кликнуть на кодировку в статус-баре
 3. Выбрать "Reopen with Encoding" → "UTF-8"
 4. Сохранить файл
-
-**В PowerShell (Windows-1251 → UTF-8):**
-
-```powershell
-$content = [System.IO.File]::ReadAllText('file.md', [System.Text.Encoding]::GetEncoding('Windows-1251'))
-$utf8 = New-Object System.Text.UTF8Encoding $false
-[System.IO.File]::WriteAllText('file.md', $content, $utf8)
-```
 
 Подробные инструкции см. в [UTF-8-SETUP.md](UTF-8-SETUP.md).
 
@@ -619,7 +610,6 @@ npm run pr:rerun:v2 -- --pr=<номер> [--workflow=<name>] [--job=<name>] [--f
 - [CONTRIBUTING.stories](CONTRIBUTING.stories.md) — гайд для авторов/редакторов Stories
 - [UTF-8-SETUP.md](UTF-8-SETUP.md) — настройка UTF-8 кодировки в редакторах
 - [MCP Quickstart](../MCP-QUICKSTART.md) — быстрый старт с MCP сервером для работы с Notion
-- [Настройка Copilot с MCP](copilot-mcp-setup.md) — настройка GitHub Copilot для работы с Notion через MCP
 - [KB policies](stories/README.md) — политики для Knowledge Base
 
 ---
