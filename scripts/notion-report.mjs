@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Notion Report — публикация минимального отчёта в «Copilot — Отчёты»
- * 
+ * Notion Report — публикация минимального отчёта в Notion
+ *
  * Использование:
  *   node scripts/notion-report.mjs [--file=path] [--payload=json] [--page-id=id] [--title=title] [--minimal] [--auto]
- * 
+ *
  * Параметры:
  *   --file=path     - Путь к JSON файлу с данными отчёта
  *   --payload=json  - JSON строка с данными отчёта
@@ -12,17 +12,17 @@
  *   --title=title   - Заголовок отчёта
  *   --minimal       - Использовать минимальный формат (только JSON блок)
  *   --auto          - Автоматический режим (эквивалент --minimal)
- * 
+ *
  * Минимальный формат (--minimal или --auto):
  *   Публикует только JSON блок с полями:
  *   { last_generated, latest_slug, status, note, generated_by }
- * 
- * Если --page-id не указан, скрипт ищет страницу «Copilot — Отчёты» через поиск.
+ *
+ * Если --page-id не указан, скрипт ищет страницу «Отчёты» через поиск.
  * Если --file и --payload не указаны, создаётся минимальный отчёт с текущей датой и временем.
- * 
+ *
  * Переменные окружения:
  *   NOTION_API_KEY              - API ключ Notion (обязательно)
- *   NOTION_COPILOT_REPORTS_PAGE_ID - ID страницы «Copilot — Отчёты» (опционально)
+ *   NOTION_REPORTS_PAGE_ID - ID страницы «Отчёты» (опционально)
  *   NOTION_REPORT_MINIMAL       - Использовать минимальный формат по умолчанию (true/false)
  */
 
@@ -102,15 +102,15 @@ function extractNotionId(input) {
 }
 
 /**
- * Ищет страницу «Copilot — Отчёты» через поиск Notion
+ * Ищет страницу «Отчёты» через поиск Notion
  */
-async function findCopilotReportsPage() {
+async function findReportsPage() {
   try {
-    console.log('🔍 Searching for "Copilot — Отчёты" page...');
+    console.log('🔍 Searching for "Отчёты" page...');
     const searchResults = await notionRequest('/search', {
       method: 'POST',
       body: JSON.stringify({
-        query: 'Copilot — Отчёты',
+        query: 'Отчёты',
         filter: {
           property: 'object',
           value: 'page',
@@ -124,27 +124,7 @@ async function findCopilotReportsPage() {
       return page.id;
     }
 
-    // Попробуем поиск без фильтра
-    const searchResults2 = await notionRequest('/search', {
-      method: 'POST',
-      body: JSON.stringify({
-        query: 'Copilot Отчёты',
-      }),
-    });
-
-    if (searchResults2.results && searchResults2.results.length > 0) {
-      const page = searchResults2.results.find(p =>
-        p.object === 'page' &&
-        (p.properties?.title?.title?.[0]?.plain_text?.includes('Copilot') ||
-          p.properties?.title?.title?.[0]?.plain_text?.includes('Отчёты'))
-      );
-      if (page) {
-        console.log(`✅ Found page: ${page.id}`);
-        return page.id;
-      }
-    }
-
-    console.warn('⚠️  Page "Copilot — Отчёты" not found via search');
+    console.warn('⚠️  Page "Отчёты" not found via search');
     return null;
   } catch (err) {
     console.error('❌ Failed to search for page:', err.message);
@@ -169,7 +149,7 @@ function createMinimalReport(data = {}) {
   return {
     timestamp,
     date: dateStr,
-    executor: 'GitHub Copilot',
+    executor: 'Cursor',
     status: 'completed',
     ...data,
   };
@@ -177,7 +157,7 @@ function createMinimalReport(data = {}) {
 
 /**
  * Форматирует отчёт в блоки Notion
- * 
+ *
  * Для минимального отчёта публикует только JSON блок (code) с данными:
  * { last_generated, latest_slug, status, note, generated_by }
  */
@@ -192,7 +172,7 @@ function formatReportAsBlocks(report, minimal = false) {
       latest_slug: report.latest_slug || report.slug || report.filename || '',
       status: report.status || 'completed',
       note: report.note || report.message || report.content || '',
-      generated_by: report.generated_by || report.executor || 'GitHub Copilot',
+      generated_by: report.generated_by || report.executor || 'Cursor',
     };
 
     // Удаляем пустые поля
@@ -398,15 +378,15 @@ async function main() {
   let targetPageId = null;
   if (pageId) {
     targetPageId = extractNotionId(pageId);
-  } else if (process.env.NOTION_COPILOT_REPORTS_PAGE_ID) {
-    targetPageId = extractNotionId(process.env.NOTION_COPILOT_REPORTS_PAGE_ID);
+  } else if (process.env.NOTION_REPORTS_PAGE_ID) {
+    targetPageId = extractNotionId(process.env.NOTION_REPORTS_PAGE_ID);
   } else {
-    targetPageId = await findCopilotReportsPage();
+    targetPageId = await findReportsPage();
   }
 
   if (!targetPageId) {
-    console.error('❌ No page ID provided and could not find "Copilot — Отчёты" page.');
-    console.error('   Use --page-id=... or set NOTION_COPILOT_REPORTS_PAGE_ID env var.');
+    console.error('❌ No page ID provided and could not find "Отчёты" page.');
+    console.error('   Use --page-id=... or set NOTION_REPORTS_PAGE_ID env var.');
     process.exit(1);
   }
 
