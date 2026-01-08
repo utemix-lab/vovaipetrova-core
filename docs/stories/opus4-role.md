@@ -3,8 +3,8 @@ title: OPUS4 — Роль агента для работы со Stories
 slug: opus4-role
 summary: Роль и инструкции для агента OPUS4 по работе со Stories
 tags:
-  - Story
   - Автоматизация
+  - Story
 machine_tags:
   - content/story
   - theme/automation

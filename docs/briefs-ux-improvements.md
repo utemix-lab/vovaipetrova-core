@@ -2,7 +2,8 @@
 title: Briefs UX — доводки представлений By Lane / Pending Review / Ready for Copilot
 slug: briefs-ux-improvements
 summary: >-
-  Рекомендации по улучшению UX представлений Briefs: видимые поля, сортировка, группировка и фильтры для By Lane, Pending Review и Ready for Copilot
+  Рекомендации по улучшению UX представлений Briefs: видимые поля, сортировка,
+  группировка и фильтры для By Lane, Pending Review и Ready for Copilot
 tags:
   - Документация
   - Процесс

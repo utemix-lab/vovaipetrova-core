@@ -1,18 +1,29 @@
 ---
-title: "Gateway PoC #2 — Эпизод 2: Развитие серии"
-slug: "gateway-poc-2-episode-2"
-summary: "Второй эпизод серии Gateway PoC #2: продолжение эксперимента с длинным seed_text и HITL режимом."
-tags: [Story, Gateway, PoC]
-machine_tags: [content/story, pipeline/gateway]
+title: 'Gateway PoC #2 — Эпизод 2: Развитие серии'
+slug: gateway-poc-2-episode-2
+summary: >-
+  Второй эпизод серии Gateway PoC #2: продолжение эксперимента с длинным
+  seed_text и HITL режимом.
+tags:
+  - Gateway
+  - PoC
+  - Story
+machine_tags:
+  - content/story
+  - pipeline/gateway
 status: draft
 story_type: dual
-series_id: "gateway-poc-2"
+series_id: gateway-poc-2
 series_order: 2
 visuals:
-  author_prompt: "continuity visualization: connected narrative threads, series structure, evolving experiment, soft transitions between episodes"
-  report_prompt: "series completion diagram: two connected episodes, series_id linking, technical validation, workflow completion"
-notion_page_id: ""
-last_edited_time: ""
+  author_prompt: >-
+    continuity visualization: connected narrative threads, series structure,
+    evolving experiment, soft transitions between episodes
+  report_prompt: >-
+    series completion diagram: two connected episodes, series_id linking,
+    technical validation, workflow completion
+notion_page_id: ''
+last_edited_time: ''
 ---
 
 # TL;DR

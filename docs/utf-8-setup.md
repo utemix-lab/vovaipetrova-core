@@ -8,6 +8,7 @@ tags:
   - Инструменты
 machine_tags:
   - action/build
+  - product/kb
   - theme/dev
 ---
 

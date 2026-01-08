@@ -3,11 +3,14 @@ title: Stories — Общий контекст для работы
 slug: stories-shared-context
 summary: Общий контекст проекта для работы с Stories и агентами
 tags:
-  - Story
   - Проектирование
+  - Story
 machine_tags:
+  - action/build
   - content/story
+  - product/services
   - theme/design
+  - theme/graphics
 status: ready
 ---
 

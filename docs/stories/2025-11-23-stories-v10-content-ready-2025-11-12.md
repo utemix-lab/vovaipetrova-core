@@ -1,19 +1,21 @@
 ---
-title: "Stories · v1.0-content-ready — 2025-11-12"
-slug: "2025-11-23-stories-v10-content-ready-2025-11-12"
-summary: "Черновик автогенератора Stories: синхронизация CHANGELOG, ADR и ProtoLabs."
-tags: [Story]
-machine_tags: [content/story]
+title: Stories · v1.0-content-ready — 2025-11-12
+slug: 2025-11-23-stories-v10-content-ready-2025-11-12
+summary: 'Черновик автогенератора Stories: синхронизация CHANGELOG, ADR и ProtoLabs.'
+tags:
+  - Story
+machine_tags:
+  - content/story
 status: draft
 last_edited_time: ''
 author_image:
-  url: "https://via.placeholder.com/800x450?text=author"
-  status: "placeholder"
+  url: 'https://via.placeholder.com/800x450?text=author'
+  status: placeholder
   uploaded_by: null
   uploaded_at: null
 machine_image:
-  url: "https://via.placeholder.com/800x450?text=machine"
-  status: "placeholder"
+  url: 'https://via.placeholder.com/800x450?text=machine'
+  status: placeholder
   uploaded_by: null
   uploaded_at: null
 ---

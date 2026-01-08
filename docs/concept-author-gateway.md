@@ -2,15 +2,19 @@
 title: CONCEPT — Author Gateway
 slug: concept-author-gateway
 summary: >-
-  Концепция Author Gateway: система управления очередью идей и автоматической генерации Stories через единую точку входа
+  Концепция Author Gateway: система управления очередью идей и автоматической
+  генерации Stories через единую точку входа
 tags:
-  - Story
   - Автоматизация
   - Проектирование
+  - Story
 machine_tags:
+  - action/build
   - content/story
+  - product/services
   - theme/automation
   - theme/design
+  - theme/graphics
 status: ready
 ---
 

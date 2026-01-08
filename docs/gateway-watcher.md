@@ -1,7 +1,9 @@
 ---
 title: Gateway Watcher — валидация контента из inbox/author
 slug: gateway-watcher
-summary: Автоматическая валидация и обработка файлов из inbox/author с проверкой PII, длины и тона
+summary: >-
+  Автоматическая валидация и обработка файлов из inbox/author с проверкой PII,
+  длины и тона
 status: ready
 tags:
   - Автоматизация

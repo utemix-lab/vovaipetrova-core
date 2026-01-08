@@ -1,16 +1,24 @@
 ---
-title: "Seed: Dual Story 001"
-slug: "seed-dual-story-001"
-summary: "Первые заготовки: авторский блок и машинный отчёт в одном файле."
-tags: [Story, Seed]
-machine_tags: [content/story, pipeline/seed]
+title: 'Seed: Dual Story 001'
+slug: seed-dual-story-001
+summary: 'Первые заготовки: авторский блок и машинный отчёт в одном файле.'
+tags:
+  - Seed
+  - Story
+machine_tags:
+  - content/story
+  - pipeline/seed
 status: draft
 story_type: dual
 visuals:
-  author_prompt: "minimalist sketch: a blank page with faint pencil lines, soft shadows, contemplative atmosphere, monochrome"
-  report_prompt: "technical diagram: file structure with seed template, metadata fields, draft status indicator, clean lines"
-notion_page_id: ""
-last_edited_time: ""
+  author_prompt: >-
+    minimalist sketch: a blank page with faint pencil lines, soft shadows,
+    contemplative atmosphere, monochrome
+  report_prompt: >-
+    technical diagram: file structure with seed template, metadata fields, draft
+    status indicator, clean lines
+notion_page_id: ''
+last_edited_time: ''
 ---
 
 # TL;DR

@@ -1,13 +1,18 @@
 ---
 title: CONCEPT — Opus4 notes (draft)
 slug: concept-opus4-notes
-summary: "Наброски концепции Stories v2 от OPUS4: двойная линия (author + machine), front matter spec и предложения по автоматизации."
+summary: >-
+  Наброски концепции Stories v2 от OPUS4: двойная линия (author + machine),
+  front matter spec и предложения по автоматизации.
 tags:
-  - Story
   - Проектирование
+  - Story
 machine_tags:
+  - action/build
   - content/story
+  - product/services
   - theme/design
+  - theme/graphics
 status: draft
 ---
 

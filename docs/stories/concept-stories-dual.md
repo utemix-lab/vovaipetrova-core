@@ -2,13 +2,18 @@
 title: CONCEPT — Dual-story формат (spec + пример)
 slug: concept-stories-dual
 summary: >-
-  Спецификация формата dual-story: две параллельные линии (авторская рефлексия + машинный отчёт) в одном эпизоде Stories
+  Спецификация формата dual-story: две параллельные линии (авторская рефлексия +
+  машинный отчёт) в одном эпизоде Stories
 tags:
-  - Story
   - Проектирование
+  - f3f4f6
+  - Story
 machine_tags:
+  - action/build
   - content/story
+  - product/services
   - theme/design
+  - theme/graphics
 status: ready
 ---
 
