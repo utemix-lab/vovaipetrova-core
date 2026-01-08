@@ -64,7 +64,7 @@ status: ready
   - `scripts/codegpt/` (вся папка)
 - ✅ Обновлены шаблоны PR и Issues (убраны упоминания двухпоточной работы)
 - ✅ Обновлён `scripts/notion-report.mjs` (убраны упоминания Copilot)
-- ✅ Обновлён `docs/SINGLE-SOURCE-PLAYBOOK.md` (убраны упоминания других агентов)
+- ✅ Обновлён `docs/single-source-playbook.md` (убраны упоминания других агентов)
 
 ### Результаты
 
