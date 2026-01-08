@@ -46,7 +46,7 @@ status: ready
 #### Создание нового эпизода
 
 1. **Чтение контекста**:
-   - Изучить `CONCEPT.md` для понимания концепции
+   - Изучить `stories-concept.md` для понимания концепции
    - Изучить `stories-shared-context.md` для общего контекста
    - Прочитать существующие эпизоды для понимания стиля
 
@@ -260,9 +260,9 @@ TL;DR
 
 ## Связанные документы
 
-- [CONCEPT.md](CONCEPT.md) — концепция Stories
+- [stories-concept.md](stories-concept.md) — концепция Stories
 - [stories-shared-context.md](stories-shared-context.md) — общий контекст
-- [OPUS4_ROLE.md](OPUS4_ROLE.md) — роль агента
+- [opus4-role.md](opus4-role.md) — роль агента
 - [README.md](README.md) — быстрый старт
 - [Single Source Playbook — «священный документ» (Notion↔Repo)](../single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [Шаблон story.md](../../templates/story.md)
