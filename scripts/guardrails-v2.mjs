@@ -8,7 +8,7 @@
  */
 
 import { execSync } from 'child_process';
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, unlinkSync, existsSync } from 'fs';
 import { join } from 'path';
 import YAML from 'yaml';
 
@@ -722,8 +722,8 @@ function generateReport(sizeCheck, forbiddenCheck, piiCheck, stats) {
  * Получает PR labels через GitHub API
  */
 function getPRLabels() {
-  const prNumber = process.env.GITHUB_PR_NUMBER;
-  const repo = process.env.GITHUB_REPO || 'utemix-lab/vovaipetrova-core';
+  const prNumber = process.env.GITHUB_PR_NUMBER || process.env.GITHUB_EVENT_PULL_REQUEST_NUMBER;
+  const repo = process.env.GITHUB_REPO || process.env.GITHUB_REPOSITORY || 'utemix-lab/vovaipetrova-core';
   const token = process.env.GITHUB_TOKEN;
 
   if (!prNumber || !token) {
@@ -744,6 +744,235 @@ function getPRLabels() {
       console.warn('⚠️  Failed to get PR labels:', error.message);
     }
     return [];
+  }
+}
+
+/**
+ * Создаёт комментарий в PR при превышении порогов
+ */
+function addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType) {
+  const prNumber = process.env.GITHUB_PR_NUMBER || process.env.GITHUB_EVENT_PULL_REQUEST_NUMBER;
+  const repo = process.env.GITHUB_REPO || process.env.GITHUB_REPOSITORY || 'utemix-lab/vovaipetrova-core';
+  const token = process.env.GITHUB_TOKEN;
+
+  if (!prNumber || !token) {
+    if (VERBOSE) {
+      console.warn('⚠️  GITHUB_TOKEN or PR number not found, skipping PR comment');
+    }
+    return;
+  }
+
+  const totalViolations = sizeCheck.violations.length + forbiddenCheck.length + piiCheck.violations.length;
+  const totalWarnings = sizeCheck.warnings.length + piiCheck.warnings.length;
+
+  if (totalViolations === 0 && totalWarnings === 0) {
+    return; // Нет проблем, не добавляем комментарий
+  }
+
+  const limits = SIZE_LIMITS[taskType] || SIZE_LIMITS.default;
+
+  let comment = '## 🛡️ Guardrails Threshold Alerts\n\n';
+  comment += `**Task type:** \`${taskType}\`\n\n`;
+  comment += `**PR Stats:**\n`;
+  comment += `- Files: ${stats.totalFiles} / ${limits.maxFiles} (critical: ${Math.ceil(limits.maxFiles * limits.criticalMultiplier)})\n`;
+  comment += `- Additions: ${stats.totalAdditions} / ${limits.maxAdditions} (critical: ${Math.ceil(limits.maxAdditions * limits.criticalMultiplier)})\n`;
+  comment += `- Deletions: ${stats.totalDeletions} / ${limits.maxDeletions} (critical: ${Math.ceil(limits.maxDeletions * limits.criticalMultiplier)})\n\n`;
+
+  if (sizeCheck.violations.length > 0) {
+    comment += '### ❌ Critical Violations (Blocking)\n\n';
+    for (const violation of sizeCheck.violations) {
+      comment += `- **${violation.type}**: ${violation.message}\n`;
+    }
+    comment += '\n';
+  }
+
+  if (forbiddenCheck.length > 0) {
+    comment += '### ❌ Forbidden Paths (Blocking)\n\n';
+    for (const violation of forbiddenCheck.slice(0, 10)) {
+      comment += `- \`${violation.file}\`: ${violation.reason}\n`;
+    }
+    if (forbiddenCheck.length > 10) {
+      comment += `- _... and ${forbiddenCheck.length - 10} more_\n`;
+    }
+    comment += '\n';
+  }
+
+  if (piiCheck.violations.length > 0) {
+    comment += '### ❌ PII Violations (Blocking)\n\n';
+    const violationsByFile = {};
+    for (const violation of piiCheck.violations.slice(0, 20)) {
+      if (!violationsByFile[violation.file]) {
+        violationsByFile[violation.file] = [];
+      }
+      violationsByFile[violation.file].push(violation);
+    }
+    for (const [file, violations] of Object.entries(violationsByFile).slice(0, 5)) {
+      comment += `- **\`${file}\`**: ${violations.length} violation(s)\n`;
+    }
+    comment += '\n';
+  }
+
+  if (sizeCheck.warnings.length > 0) {
+    comment += '### ⚠️ Warnings (Non-blocking)\n\n';
+    for (const warning of sizeCheck.warnings) {
+      comment += `- **${warning.type}**: ${warning.message}\n`;
+    }
+    comment += '\n';
+  }
+
+  if (piiCheck.warnings.length > 0) {
+    comment += '### ⚠️ PII Warnings (Non-blocking)\n\n';
+    comment += `${piiCheck.warnings.length} potential PII matches found. Review recommended.\n\n`;
+  }
+
+  comment += '---\n\n';
+  comment += '**Recommendations:**\n';
+  if (sizeCheck.violations.length > 0 || sizeCheck.warnings.length > 0) {
+    comment += '- Consider splitting this PR into smaller changes\n';
+    comment += '- Review changed files and optimize scope if possible\n';
+  }
+  if (forbiddenCheck.length > 0) {
+    comment += '- Remove forbidden paths from changes or request explicit approval\n';
+  }
+  if (piiCheck.violations.length > 0) {
+    comment += '- Sanitize PII data using placeholders like `<user>`, `<email>`, `<path>`\n';
+  }
+  comment += '\n';
+  comment += '<!-- Guardrails Alert -->\n';
+
+  try {
+    // Создаём временный файл для комментария
+    const tmpFile = join(process.cwd(), `tmp-pr-comment-${Date.now()}.md`);
+    writeFileSync(tmpFile, comment, 'utf8');
+
+    // Добавляем комментарий через gh CLI
+    const command = `gh pr comment ${prNumber} --repo ${repo} --body-file "${tmpFile}"`;
+    execSync(command, {
+      encoding: 'utf-8',
+      stdio: VERBOSE ? 'inherit' : 'pipe',
+      env: { ...process.env, GITHUB_TOKEN: token }
+    });
+
+    // Удаляем временный файл
+    unlinkSync(tmpFile);
+
+    if (VERBOSE) {
+      console.log(`✅ PR comment added to PR #${prNumber}`);
+    }
+  } catch (error) {
+    console.warn(`⚠️  Failed to add PR comment: ${error.message}`);
+  }
+}
+
+/**
+ * Создаёт GitHub Issue при критических превышениях
+ */
+function createThresholdIssue(sizeCheck, forbiddenCheck, piiCheck, stats, taskType, prNumber) {
+  const repo = process.env.GITHUB_REPO || process.env.GITHUB_REPOSITORY || 'utemix-lab/vovaipetrova-core';
+  const token = process.env.GITHUB_TOKEN;
+
+  if (!token) {
+    if (VERBOSE) {
+      console.warn('⚠️  GITHUB_TOKEN not found, skipping Issue creation');
+    }
+    return null;
+  }
+
+  // Проверяем, не существует ли уже открытый Issue для этого PR
+  try {
+    const searchQuery = `repo:${repo} is:issue is:open "PR #${prNumber}" in:title`;
+    const command = `gh issue list --repo ${repo} --search "${searchQuery}" --json number,title`;
+    const output = execSync(command, {
+      encoding: 'utf-8',
+      stdio: 'pipe',
+      env: { ...process.env, GITHUB_TOKEN: token }
+    });
+
+    const existingIssues = JSON.parse(output || '[]');
+    if (existingIssues.length > 0) {
+      if (VERBOSE) {
+        console.log(`ℹ️  Issue already exists for PR #${prNumber}: #${existingIssues[0].number}`);
+      }
+      return existingIssues[0].number; // Возвращаем номер существующего Issue
+    }
+  } catch (error) {
+    if (VERBOSE) {
+      console.warn(`⚠️  Failed to check existing issues: ${error.message}`);
+    }
+    // Продолжаем создание Issue, даже если проверка не удалась
+  }
+
+  const limits = SIZE_LIMITS[taskType] || SIZE_LIMITS.default;
+
+  const title = `[Guardrails] Critical threshold violations in PR #${prNumber}`;
+  let body = `## Critical Guardrails Violations Detected\n\n`;
+  body += `**PR:** #${prNumber}\n`;
+  body += `**Task type:** \`${taskType}\`\n\n`;
+  body += `### Statistics\n\n`;
+  body += `- Files changed: ${stats.totalFiles} (limit: ${limits.maxFiles}, critical: ${Math.ceil(limits.maxFiles * limits.criticalMultiplier)})\n`;
+  body += `- Additions: ${stats.totalAdditions} (limit: ${limits.maxAdditions}, critical: ${Math.ceil(limits.maxAdditions * limits.criticalMultiplier)})\n`;
+  body += `- Deletions: ${stats.totalDeletions} (limit: ${limits.maxDeletions}, critical: ${Math.ceil(limits.maxDeletions * limits.criticalMultiplier)})\n\n`;
+  body += `### Violations\n\n`;
+
+  if (sizeCheck.violations.length > 0) {
+    body += `#### Size Guard Violations\n\n`;
+    for (const violation of sizeCheck.violations) {
+      body += `- **${violation.type}**: ${violation.message}\n`;
+    }
+    body += '\n';
+  }
+
+  if (forbiddenCheck.length > 0) {
+    body += `#### Forbidden Paths\n\n`;
+    for (const violation of forbiddenCheck.slice(0, 10)) {
+      body += `- \`${violation.file}\`: ${violation.reason}\n`;
+    }
+    body += '\n';
+  }
+
+  if (piiCheck.violations.length > 0) {
+    body += `#### PII Violations\n\n`;
+    body += `${piiCheck.violations.length} PII violations detected. Review required.\n\n`;
+  }
+
+  body += `---\n\n`;
+  body += `**Action required:**\n`;
+  body += `1. Review the PR #${prNumber}\n`;
+  body += `2. Fix violations or request limit increase\n`;
+  body += `3. Close this issue once resolved\n\n`;
+  body += `**Labels:** \`lane:infra\`, \`priority:high\`\n`;
+
+  try {
+    // Создаём временный файл для Issue body
+    const tmpFile = join(process.cwd(), `tmp-issue-body-${Date.now()}.md`);
+    writeFileSync(tmpFile, body, 'utf8');
+
+    // Создаём Issue через gh CLI
+    const command = `gh issue create --repo ${repo} --title "${title}" --body-file "${tmpFile}" --label "lane:infra,priority:high"`;
+    const output = execSync(command, {
+      encoding: 'utf-8',
+      stdio: VERBOSE ? 'inherit' : 'pipe',
+      env: { ...process.env, GITHUB_TOKEN: token }
+    });
+
+    // Удаляем временный файл
+    unlinkSync(tmpFile);
+
+    const issueUrl = output.trim();
+    // Извлекаем номер Issue из URL
+    const issueNumberMatch = issueUrl.match(/#(\d+)/);
+    const issueNumber = issueNumberMatch ? issueNumberMatch[1] : null;
+
+    if (VERBOSE) {
+      console.log(`✅ Created GitHub Issue: ${issueUrl}`);
+      if (issueNumber) {
+        console.log(`   Issue number: #${issueNumber}`);
+      }
+    }
+    return issueNumber;
+  } catch (error) {
+    console.warn(`⚠️  Failed to create GitHub Issue: ${error.message}`);
+    return null;
   }
 }
 
@@ -782,6 +1011,34 @@ function main() {
   }
   if (piiCheck.violations.length > 0) {
     console.log('❌ PII violations detected');
+  }
+
+  // Создаём алерты
+  const prNumber = process.env.GITHUB_PR_NUMBER || process.env.GITHUB_EVENT_PULL_REQUEST_NUMBER;
+  if (prNumber) {
+    // Добавляем комментарий в PR при превышении порогов
+    addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType);
+
+  // Создаём Issue при критических превышениях (только для очень серьёзных нарушений, чтобы не спамить)
+  // Создаём Issue только если:
+  // 1. Есть критическое превышение size-guard (более чем в 2 раза от лимита)
+  // 2. ИЛИ есть forbidden paths
+  // 3. ИЛИ есть критические PII нарушения (email, полное имя)
+  const limits = SIZE_LIMITS[taskType] || SIZE_LIMITS.default;
+  const criticalSizeViolations = sizeCheck.violations.filter(v => {
+    const limit = v.type === 'files' ? limits.maxFiles :
+                  v.type === 'additions' ? limits.maxAdditions :
+                  limits.maxDeletions;
+    return v.actual > limit * 2; // Более чем в 2 раза от лимита
+  });
+
+  const criticalPIIViolations = piiCheck.violations.filter(v =>
+    v.kind === 'email' || v.kind === 'full_name_english'
+  );
+
+  if (criticalSizeViolations.length > 0 || forbiddenCheck.length > 0 || criticalPIIViolations.length > 0) {
+    createThresholdIssue(sizeCheck, forbiddenCheck, piiCheck, stats, taskType, prNumber);
+  }
   }
 
   // Код выхода

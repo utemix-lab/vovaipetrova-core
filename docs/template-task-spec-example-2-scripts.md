@@ -76,5 +76,5 @@ service: true
 
 - **Spec**: `docs/spec-front-matter-i-slugi.md` — спецификация front matter
 - **Примеры**: `scripts/check-import-safety.mjs` — похожий скрипт проверки
-- **PROTOCOL**: `docs/SINGLE-SOURCE-PLAYBOOK.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
+- **PROTOCOL**: `docs/single-source-playbook.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 

@@ -166,6 +166,6 @@ node scripts/generate-terms-found-block.mjs --max-terms=5 --max-contexts=1
 
 - [extractor-stories-terms.mjs](../../scripts/extractor-stories-terms.mjs) — скрипт для извлечения терминов
 - [generate-terms-found-block.mjs](../../scripts/generate-terms-found-block.mjs) — скрипт для генерации блока
-- [Single Source Playbook](SINGLE-SOURCE-PLAYBOOK.md) — правила работы с Stories
-- [CONTRIBUTING.stories.md](CONTRIBUTING.stories.md) — гайд для авторов Stories
+- [Single Source Playbook](single-source-playbook.md) — правила работы с Stories
+- [contributing-stories.md](contributing-stories.md) — гайд для авторов Stories
 

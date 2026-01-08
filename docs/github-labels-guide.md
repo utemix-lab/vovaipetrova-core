@@ -208,5 +208,5 @@ node scripts/create-github-labels.mjs
 
 ## Связанные документы
 
-- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов (включая Lanes Policy)
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов (включая Lanes Policy)
 

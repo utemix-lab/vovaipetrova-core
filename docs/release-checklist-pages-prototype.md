@@ -246,7 +246,7 @@ git pull origin main
 
 ## Связанные документы
 
-- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - GitHub Actions workflow: `.github/workflows/pages.yml` — конфигурация деплоя
 
 ## Чек-лист быстрого релиза

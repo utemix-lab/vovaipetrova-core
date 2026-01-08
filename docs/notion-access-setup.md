@@ -162,7 +162,6 @@ node mcp-server-notion.mjs
 
 ## Связанные документы
 
-- [COPILOT-NOTION-SETUP.md](../COPILOT-NOTION-SETUP.md) — настройка MCP для Copilot
-- [MCP-QUICKSTART.md](../MCP-QUICKSTART.md) — быстрый старт MCP
+- [single-source-playbook.md](single-source-playbook.md) — правила работы с MCP и Notion
 
 

@@ -153,5 +153,5 @@ const quickRef = JSON.parse(
 - `prototype/link-map.json` — источник маппингов ссылок
 - `docs/glossarij-terminov.md` — источник глоссария
 - `docs/context-map-yaml.md` — источник context-map
-- `docs/SINGLE-SOURCE-PLAYBOOK.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
+- `docs/single-source-playbook.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 

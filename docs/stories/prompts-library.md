@@ -109,7 +109,7 @@ status: ready
 
 ## Связанные документы
 
-- [CONCEPT.stories-dual.md](CONCEPT.stories-dual.md) — спецификация dual-story формата
-- [CONTRIBUTING.stories.md](../CONTRIBUTING.stories.md) — гайд для авторов Stories
-- [Single Source Playbook](../SINGLE-SOURCE-PLAYBOOK.md) — правила работы с Stories
+- [concept-stories-dual.md](concept-stories-dual.md) — спецификация dual-story формата
+- [contributing-stories.md](../contributing-stories.md) — гайд для авторов Stories
+- [Single Source Playbook](../single-source-playbook.md) — правила работы с Stories
 

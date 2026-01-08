@@ -46,7 +46,7 @@ Accepted (V1)
 
 ### Ссылки
 
-- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub
 - Навигация (техническая) — фасеты и канон
 - README репозитория — дерево и правила
 - UI макет — шапка и первый экран

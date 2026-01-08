@@ -57,9 +57,9 @@ status: ready
 
 ### 6. Документация
 
-- `docs/SINGLE-SOURCE-PLAYBOOK.md` — основной документ процесса
+- `docs/single-source-playbook.md` — основной документ процесса
 - `docs/POWERSHELL-7-SETUP.md` — настройка PowerShell 7
-- `docs/UTF-8-SETUP.md` — настройка кодировки
+- `docs/utf-8-setup.md` — настройка кодировки
 
 ### 7. Что удалено (не использовать)
 
@@ -85,4 +85,4 @@ status: ready
 
 ---
 
-**Примечание:** Этот документ создан для быстрого восстановления контекста. Подробная документация — в `docs/SINGLE-SOURCE-PLAYBOOK.md`.
+**Примечание:** Этот документ создан для быстрого восстановления контекста. Подробная документация — в `docs/single-source-playbook.md`.

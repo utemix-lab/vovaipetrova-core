@@ -197,7 +197,7 @@ class MyCustomTest extends EvalTest {
 
 - `tests/composer/eval-harness.mjs` — основной скрипт eval harness
 - `.github/workflows/docs-ci.yml` — интеграция в CI
-- `docs/SINGLE-SOURCE-PLAYBOOK.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
+- `docs/single-source-playbook.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - `scripts/test-guardrails.mjs` — тестирование guardrails
 - `scripts/verify-stats-accuracy.mjs` — верификация метрик
 

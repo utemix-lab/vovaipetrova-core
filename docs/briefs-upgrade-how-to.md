@@ -269,6 +269,6 @@ if(and(or(prop("Status") == "Ready", prop("Status") == "In progress", prop("Stat
 
 ## Связанные документы
 
-- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [Briefs UX — доводки представлений](./briefs-ux-improvements.md) — рекомендации по улучшению UX представлений
 

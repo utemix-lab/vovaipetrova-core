@@ -15,4 +15,4 @@ machine_tags:
 ---
 # Instructions — Исполнители (Cursor/Aider)
 
-**📖 См. также:** [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub.
+**📖 См. также:** [Single Source Playbook — «священный документ» (Notion↔Repo)](single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub.

@@ -15,11 +15,11 @@ status: ready
 
 В папке `docs/stories/` созданы следующие файлы для работы со Stories:
 
-1. **CONCEPT.md** — концепция и принципы Stories
-2. **SHARED_CONTEXT.md** — общий контекст проекта для работы
-3. **OPUS4_ROLE.md** — роль и инструкции для агента OPUS4
-4. **README.md** — инструкции для работы
-5. **GITHUB_INSTRUCTIONS.md** — инструкции для GitHub и агентов
+1. **stories-concept.md** — концепция и принципы Stories
+2. **stories-shared-context.md** — общий контекст проекта для работы
+3. **opus4-role.md** — роль и инструкции для агента OPUS4
+4. **stories-readme.md** — инструкции для работы
+5. **stories-github-instructions.md** — инструкции для GitHub и агентов
 
 ## Для Copilot и других агентов
 
@@ -27,9 +27,9 @@ status: ready
 
 Начните с чтения этих файлов в указанном порядке:
 
-1. `CONCEPT.md` — понимание концепции Stories
-2. `SHARED_CONTEXT.md` — общий контекст проекта
-3. `OPUS4_ROLE.md` — роль и инструкции для работы
+1. `stories-concept.md` — понимание концепции Stories
+2. `stories-shared-context.md` — общий контекст проекта
+3. `opus4-role.md` — роль и инструкции для работы
 
 ### Шаг 2: Используйте шаблон
 
@@ -122,9 +122,9 @@ npm run story:generate         # Генерация Stories
 
 ## Связанные документы
 
-- [CONCEPT.md](CONCEPT.md) — концепция Stories
-- [SHARED_CONTEXT.md](SHARED_CONTEXT.md) — общий контекст
-- [OPUS4_ROLE.md](OPUS4_ROLE.md) — роль агента
-- [GITHUB_INSTRUCTIONS.md](GITHUB_INSTRUCTIONS.md) — инструкции для GitHub
+- [stories-concept.md](stories-concept.md) — концепция Stories
+- [stories-shared-context.md](stories-shared-context.md) — общий контекст
+- [opus4-role.md](opus4-role.md) — роль агента
+- [stories-github-instructions.md](stories-github-instructions.md) — инструкции для GitHub
 - [README.md](README.md) — полная документация
 

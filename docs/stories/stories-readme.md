@@ -15,9 +15,9 @@ service: true
 ### Для агентов (OPUS4, Copilot, CodeGPT)
 
 1. **Прочитайте контекст**:
-   - `CONCEPT.md` — концепция Stories
-   - `SHARED_CONTEXT.md` — общий контекст проекта
-   - `OPUS4_ROLE.md` — роль и инструкции для агента
+   - `stories-concept.md` — концепция Stories
+   - `stories-shared-context.md` — общий контекст проекта
+   - `opus4-role.md` — роль и инструкции для агента
 
 2. **Используйте шаблон**: `../../templates/story.md`
 
@@ -48,9 +48,9 @@ service: true
 
 ## Структура
 
-- `CONCEPT.md` — концепция и принципы Stories
-- `SHARED_CONTEXT.md` — общий контекст для работы
-- `OPUS4_ROLE.md` — роль и инструкции для агента OPUS4
+- `stories-concept.md` — концепция и принципы Stories
+- `stories-shared-context.md` — общий контекст для работы
+- `opus4-role.md` — роль и инструкции для агента OPUS4
 - `README.md` — этот файл (быстрый старт)
 
 ## Формат эпизода
@@ -153,10 +153,10 @@ Stories интегрированы в Explorer:
 
 ## Связанные документы
 
-- [CONCEPT.md](CONCEPT.md) — концепция Stories
-- [SHARED_CONTEXT.md](SHARED_CONTEXT.md) — общий контекст
-- [OPUS4_ROLE.md](OPUS4_ROLE.md) — роль агента
-- [Single Source Playbook — «священный документ» (Notion↔Repo)](../SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
+- [stories-concept.md](stories-concept.md) — концепция Stories
+- [stories-shared-context.md](stories-shared-context.md) — общий контекст
+- [opus4-role.md](opus4-role.md) — роль агента
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](../single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [Шаблон story.md](../../templates/story.md)
 - [README проекта](../../README.md)
 

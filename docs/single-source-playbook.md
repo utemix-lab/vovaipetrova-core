@@ -378,7 +378,7 @@ git config --global i18n.logoutputencoding utf-8
 3. Выбрать "Reopen with Encoding" → "UTF-8"
 4. Сохранить файл
 
-Подробные инструкции см. в [UTF-8-SETUP.md](UTF-8-SETUP.md).
+Подробные инструкции см. в [utf-8-setup.md](utf-8-setup.md).
 
 ---
 
@@ -599,21 +599,21 @@ npm run pr:rerun:v2 -- --pr=<номер> [--workflow=<name>] [--job=<name>] [--f
 
 ### Основные документы
 
-- [PROTOCOL — Контрактная модель для агентов](SINGLE-SOURCE-PLAYBOOK.md) (этот документ)
+- [PROTOCOL — Контрактная модель для агентов](single-source-playbook.md) (этот документ)
 - [ADR — Source of truth и зеркалирование](adr-source-of-truth-i-zerkalirovanie.md)
 - [Think Tank — компактное ядро](think-tank-kompaktnoe-yadro.md)
 
 ### Концепции
 
-- [CONCEPT.stories-dual](stories/SHARED_CONTEXT.md) — двойной формат Stories
-- [CONCEPT.author-gateway](GATEWAY-WATCHER.md) — Gateway Watcher для авторов
+- [CONCEPT.stories-dual](stories/stories-shared-context.md) — двойной формат Stories
+- [CONCEPT.author-gateway](gateway-watcher.md) — Gateway Watcher для авторов
 
 ### Руководства
 
-- [CONTRIBUTING.stories](CONTRIBUTING.stories.md) — гайд для авторов/редакторов Stories
-- [UTF-8-SETUP.md](UTF-8-SETUP.md) — настройка UTF-8 кодировки в редакторах
+- [contributing-stories](contributing-stories.md) — гайд для авторов/редакторов Stories
+- [utf-8-setup.md](utf-8-setup.md) — настройка UTF-8 кодировки в редакторах
 - [MCP Quickstart](../MCP-QUICKSTART.md) — быстрый старт с MCP сервером для работы с Notion
-- [KB policies](stories/README.md) — политики для Knowledge Base
+- [KB policies](stories/stories-readme.md) — политики для Knowledge Base
 
 ---
 
@@ -623,6 +623,4 @@ npm run pr:rerun:v2 -- --pr=<номер> [--workflow=<name>] [--job=<name>] [--f
 - [Think Tank — компактное ядро](think-tank-kompaktnoe-yadro.md)
 - [Playbook — Роли](playbook-roli.md)
 - [Инструкции для Notion AI](instrukcii-dlya-notion-ai-vovaipetrova.md)
-- [Резервное копирование и экспорт](backup-export-routine-notion-github.md)
-- [Экспорт в GitHub — руководство и шаблоны](eksport-v-github-rukovodstvo-i-shablony.md)
 - [Инструкции для исполнителей](instructions-ispolniteli-cursoraider.md)
