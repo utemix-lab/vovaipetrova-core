@@ -2,14 +2,14 @@
 # GitHub Pages: https://utemix-lab.github.io/vovaipetrova-core/
 
 User-agent: *
-Allow: /
 
-# Disallow service/internal pages
+# Disallow service/internal pages (страницы с хешами в имени)
 Disallow: /page/*-*-*.html
+
+# Disallow data directory
 Disallow: /data/
 
 # Allow main Explorer and public pages
-Allow: /
 Allow: /page/*.html
 
 # Sitemap location

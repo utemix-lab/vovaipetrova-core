@@ -35,6 +35,39 @@ jobs:
       - name: Build prototype index
         run: node prototype/build-index.mjs
 
+      - name: Validate sitemap.xml
+        run: |
+          if [ ! -f "prototype/sitemap.xml" ]; then
+            echo "❌ sitemap.xml not found"
+            exit 1
+          fi
+          # Проверка базовой валидности XML структуры
+          if ! grep -q "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" prototype/sitemap.xml; then
+            echo "❌ Invalid XML declaration"
+            exit 1
+          fi
+          if ! grep -q "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">" prototype/sitemap.xml; then
+            echo "❌ Invalid urlset declaration"
+            exit 1
+          fi
+          URL_COUNT=$(grep -c "<loc>" prototype/sitemap.xml || echo "0")
+          if [ "$URL_COUNT" -eq "0" ]; then
+            echo "❌ No URLs found in sitemap"
+            exit 1
+          fi
+          echo "✅ sitemap.xml is valid (${URL_COUNT} URLs)"
+
+      - name: Validate robots.txt
+        run: |
+          if [ ! -f "prototype/robots.txt" ]; then
+            echo "❌ robots.txt not found"
+            exit 1
+          fi
+          if ! grep -q "Sitemap:" prototype/robots.txt; then
+            echo "⚠️  robots.txt missing Sitemap directive"
+          fi
+          echo "✅ robots.txt exists"
+
       - uses: actions/configure-pages@v4.0.0
 
       - uses: actions/upload-pages-artifact@v3.0.0
