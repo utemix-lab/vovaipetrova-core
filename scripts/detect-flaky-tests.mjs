@@ -13,10 +13,12 @@
  * Переменные окружения:
  *   GITHUB_TOKEN - токен для доступа к GitHub API
  *   GITHUB_REPO - репозиторий (по умолчанию: utemix-lab/vovaipetrova-core)
+ *   NOTION_API_KEY - API ключ Notion для отправки уведомлений (опционально)
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync } from 'fs';
 import { join } from 'path';
+import { execSync } from 'child_process';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO || 'utemix-lab/vovaipetrova-core';
@@ -168,6 +170,78 @@ function calculateFlakyMetrics(group) {
 }
 
 /**
+ * Отправляет уведомление о flaky тестах в Notion
+ */
+function sendFlakyAlertToNotion(report) {
+  if (report.flakyJobs.length === 0) {
+    return; // Не отправляем уведомления, если flaky тестов нет
+  }
+
+  const NOTION_API_KEY = process.env.NOTION_API_KEY;
+  if (!NOTION_API_KEY) {
+    console.warn('⚠️  NOTION_API_KEY not found, skipping Notion alert');
+    return;
+  }
+
+  try {
+    // Формируем payload для notion-report.mjs
+    const alertPayload = {
+      title: `🔴 Flaky Tests Alert — ${report.summary.total} job(s) detected`,
+      executor: 'Flaky Tests Detector',
+      status: 'alert',
+      timestamp: report.generatedAt,
+      message: `Обнаружено ${report.summary.total} flaky job(s) за последние ${report.period.days} дней`,
+      period: report.period,
+      summary: report.summary,
+      topFlaky: report.flakyJobs
+        .sort((a, b) => b.failureRate - a.failureRate)
+        .slice(0, 5)
+        .map(job => ({
+          workflow: job.workflow,
+          job: job.job,
+          failureRate: job.failureRate,
+          totalRuns: job.totalRuns,
+          failureCount: job.failureCount,
+          runNumbers: job.runNumbers.slice(0, 5) // Первые 5 run numbers
+        })),
+      fullReport: report
+    };
+
+    // Сохраняем payload во временный файл
+    const tmpFile = join(FLAKY_REPORTS_DIR, `flaky-alert-payload-${Date.now()}.json`);
+    writeFileSync(tmpFile, JSON.stringify(alertPayload, null, 2), 'utf8');
+
+    try {
+      // Вызываем notion-report.mjs
+      execSync(
+        `node scripts/notion-report.mjs --file "${tmpFile}" --title "${alertPayload.title}" --minimal`,
+        {
+          stdio: 'inherit',
+          env: {
+            ...process.env,
+            NOTION_API_KEY: NOTION_API_KEY
+          }
+        }
+      );
+      console.log('✅ Flaky alert sent to Notion successfully');
+    } catch (err) {
+      console.warn(`⚠️  Failed to send flaky alert to Notion: ${err.message}`);
+    } finally {
+      // Удаляем временный файл
+      if (existsSync(tmpFile)) {
+        try {
+          unlinkSync(tmpFile);
+        } catch (e) {
+          // ignore
+        }
+      }
+    }
+  } catch (err) {
+    console.warn(`⚠️  Failed to prepare flaky alert for Notion: ${err.message}`);
+  }
+}
+
+/**
  * Основная функция детекции
  */
 function detectFlakyTests() {
@@ -272,6 +346,9 @@ function detectFlakyTests() {
   }
   
   console.log(`📄 Full report saved to: ${FLAKY_REPORT_FILE}`);
+
+  // Отправляем уведомление в Notion при обнаружении flaky тестов
+  sendFlakyAlertToNotion(report);
 }
 
 detectFlakyTests();
