@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CI Trends Dashboard — Vova &amp; Petrova</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    .trends-dashboard {
+      padding: 2rem clamp(1.5rem, 4vw, 3rem);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .trends-dashboard__header {
+      margin-bottom: 2rem;
+    }
+
+    .trends-dashboard__title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .trends-dashboard__subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .trends-dashboard__summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .summary-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card__label {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .summary-card__value {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .summary-card__value--success {
+      color: var(--ready);
+    }
+
+    .summary-card__value--failure {
+      color: #ef4444;
+    }
+
+    .trends-dashboard__charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .chart-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .chart-card__title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .chart-container {
+      position: relative;
+      height: 300px;
+    }
+
+    .trends-dashboard__tables {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .table-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .table-card__title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .table-card__table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table-card__table th,
+    .table-card__table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .table-card__table th {
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .table-card__table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .status-badge--success {
+      background: rgba(15, 153, 96, 0.1);
+      color: var(--ready);
+    }
+
+    .status-badge--failure {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      .trends-dashboard__charts {
+        grid-template-columns: 1fr;
+      }
+
+      .trends-dashboard__tables {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body data-view="trends-dashboard">
+  <div class="trends-dashboard">
+    <header class="trends-dashboard__header">
+      <h1 class="trends-dashboard__title">CI Trends Dashboard</h1>
+      <p class="trends-dashboard__subtitle">Анализ трендов метрик CI/CD pipeline</p>
+    </header>
+
+    <div id="loading" class="loading">Загрузка данных...</div>
+
+    <div id="dashboard-content" class="hidden">
+      <div class="trends-dashboard__summary" id="summary-cards"></div>
+      <div class="trends-dashboard__charts" id="charts-container"></div>
+      <div class="trends-dashboard__tables" id="tables-container"></div>
+    </div>
+
+    <div id="empty-state" class="empty-state hidden">
+      <h2>Нет данных</h2>
+      <p>Метрики CI еще не собраны. Запустите сбор метрик для отображения трендов.</p>
+    </div>
+  </div>
+
+  <script>
+    async function loadDashboardData() {
+      try {
+        const response = await fetch('data/trends-dashboard.json');
+        if (!response.ok) {
+          throw new Error('Failed to load dashboard data');
+        }
+        return await response.json();
+      } catch (error) {
+        console.error('Error loading dashboard data:', error);
+        return null;
+      }
+    }
+
+    function formatDuration(seconds) {
+      if (!seconds) return 'N/A';
+      if (seconds < 60) return `${seconds.toFixed(1)}s`;
+      return `${(seconds / 60).toFixed(1)}m`;
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('ru-RU', { 
+        year: 'numeric', 
+        month: '2-digit', 
+        day: '2-digit' 
+      });
+    }
+
+    function renderSummaryCards(data) {
+      const container = document.getElementById('summary-cards');
+      const summary = data.summary;
+
+      container.innerHTML = `
+        <div class="summary-card">
+          <div class="summary-card__label">Всего Runs</div>
+          <div class="summary-card__value">${summary.totalRuns}</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card__label">Успешных Runs</div>
+          <div class="summary-card__value summary-card__value--success">${summary.successfulRuns}</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card__label">Провалившихся Runs</div>
+          <div class="summary-card__value summary-card__value--failure">${summary.failedRuns}</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card__label">Success Rate</div>
+          <div class="summary-card__value">
+            ${summary.totalRuns > 0 ? ((summary.successfulRuns / summary.totalRuns) * 100).toFixed(1) : 0}%
+          </div>
+        </div>
+      `;
+    }
+
+    function createChart(canvasId, title, labels, datasets) {
+      const ctx = document.getElementById(canvasId);
+      if (!ctx) return null;
+
+      return new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: title,
+              font: { size: 16, weight: '600' }
+            },
+            legend: {
+              display: datasets.length > 1
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    function renderCharts(data) {
+      const container = document.getElementById('charts-container');
+      const trends = data.trends;
+
+      if (trends.workflowDuration.length === 0) {
+        container.innerHTML = '<div class="empty-state">Нет данных для графиков</div>';
+        return;
+      }
+
+      const dates = trends.workflowDuration.map(d => formatDate(d.date));
+
+      container.innerHTML = `
+        <div class="chart-card">
+          <div class="chart-card__title">Средняя длительность Workflow</div>
+          <div class="chart-container">
+            <canvas id="chart-duration"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card__title">Success Rate (%)</div>
+          <div class="chart-container">
+            <canvas id="chart-success-rate"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card__title">Среднее количество Jobs</div>
+          <div class="chart-container">
+            <canvas id="chart-jobs-count"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card__title">Failure Rate (%)</div>
+          <div class="chart-container">
+            <canvas id="chart-failure-rate"></canvas>
+          </div>
+        </div>
+      `;
+
+      // Workflow Duration
+      createChart('chart-duration', '', dates, [{
+        label: 'Длительность (сек)',
+        data: trends.workflowDuration.map(d => d.value),
+        borderColor: 'rgb(59, 130, 246)',
+        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+        tension: 0.3
+      }]);
+
+      // Success Rate
+      createChart('chart-success-rate', '', dates, [{
+        label: 'Success Rate (%)',
+        data: trends.successRate.map(d => d.value),
+        borderColor: 'rgb(15, 153, 96)',
+        backgroundColor: 'rgba(15, 153, 96, 0.1)',
+        tension: 0.3
+      }]);
+
+      // Jobs Count
+      createChart('chart-jobs-count', '', dates, [{
+        label: 'Jobs',
+        data: trends.jobsCount.map(d => d.value),
+        borderColor: 'rgb(245, 158, 11)',
+        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+        tension: 0.3
+      }]);
+
+      // Failure Rate
+      createChart('chart-failure-rate', '', dates, [{
+        label: 'Failure Rate (%)',
+        data: trends.failureRate.map(d => d.value),
+        borderColor: 'rgb(239, 68, 68)',
+        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+        tension: 0.3
+      }]);
+    }
+
+    function renderTables(data) {
+      const container = document.getElementById('tables-container');
+      const workflows = data.workflows || [];
+      const topJobs = data.topJobs || [];
+
+      let html = '';
+
+      if (workflows.length > 0) {
+        html += `
+          <div class="table-card">
+            <div class="table-card__title">Workflows Summary</div>
+            <table class="table-card__table">
+              <thead>
+                <tr>
+                  <th>Workflow</th>
+                  <th>Runs</th>
+                  <th>Success Rate</th>
+                  <th>Avg Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${workflows.map(wf => `
+                  <tr>
+                    <td>${wf.name}</td>
+                    <td>${wf.runs}</td>
+                    <td>
+                      <span class="status-badge ${wf.successRate >= 80 ? 'status-badge--success' : 'status-badge--failure'}">
+                        ${wf.successRate.toFixed(1)}%
+                      </span>
+                    </td>
+                    <td>${formatDuration(wf.avgDuration / 1000)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+
+      if (topJobs.length > 0) {
+        html += `
+          <div class="table-card">
+            <div class="table-card__title">Top Jobs (по длительности)</div>
+            <table class="table-card__table">
+              <thead>
+                <tr>
+                  <th>Job</th>
+                  <th>Runs</th>
+                  <th>Success Rate</th>
+                  <th>Avg Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${topJobs.map(job => `
+                  <tr>
+                    <td>${job.name}</td>
+                    <td>${job.runs}</td>
+                    <td>
+                      <span class="status-badge ${job.successRate >= 80 ? 'status-badge--success' : 'status-badge--failure'}">
+                        ${job.successRate.toFixed(1)}%
+                      </span>
+                    </td>
+                    <td>${formatDuration(job.avgDuration / 1000)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+
+      container.innerHTML = html || '<div class="empty-state">Нет данных для таблиц</div>';
+    }
+
+    async function init() {
+      const loadingEl = document.getElementById('loading');
+      const contentEl = document.getElementById('dashboard-content');
+      const emptyStateEl = document.getElementById('empty-state');
+
+      const data = await loadDashboardData();
+
+      loadingEl.classList.add('hidden');
+
+      if (!data || !data.summary || data.summary.totalRuns === 0) {
+        emptyStateEl.classList.remove('hidden');
+        return;
+      }
+
+      contentEl.classList.remove('hidden');
+      renderSummaryCards(data);
+      renderCharts(data);
+      renderTables(data);
+    }
+
+    init();
+  </script>
+</body>
+</html>
