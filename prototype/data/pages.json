@@ -351,26 +351,6 @@
     "related_stories": null
   },
   {
-    "title": "Настройка CodeGPT для работы с Notion и GitHub",
-    "slug": "codegpt-setup",
-    "status": "draft",
-    "summary": "Инструкция по настройке CodeGPT для интеграции с Notion и GitHub через API",
-    "tags": [
-      "Автоматизация",
-      "Кодинг"
-    ],
-    "machine_tags": [
-      "theme/automation",
-      "theme/dev"
-    ],
-    "url": "docs/codegpt-setup.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
     "title": "ComfyUI — обзор и быстрый старт",
     "slug": "comfyui-obzor-i-bystryj-start-5a18c5",
     "status": "ready",
@@ -603,30 +583,6 @@
     "machine_tags": [],
     "url": "docs/eksport-v-github-rukovodstvo-i-shablony-007c56.md",
     "service": true,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "Экспорт в GitHub — руководство и шаблоны",
-    "slug": "eksport-v-github-rukovodstvo-i-shablony",
-    "status": "review",
-    "summary": "Как выгружать контент из Notion в GitHub: структура репозитория, скрипты и чек-лист экспорта.",
-    "tags": [
-      "Автоматизация",
-      "Кодинг",
-      "Проектирование"
-    ],
-    "machine_tags": [
-      "action/build",
-      "product/services",
-      "theme/automation",
-      "theme/dev",
-      "theme/graphics"
-    ],
-    "url": "docs/eksport-v-github-rukovodstvo-i-shablony.md",
-    "service": false,
     "collection": null,
     "story_order": null,
     "series_id": null,
@@ -3408,30 +3364,6 @@
     "related_stories": null
   },
   {
-    "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
-    "slug": "backup-export-routine-notion-github",
-    "status": "ready",
-    "summary": "Чек-лист и процедура регулярного экспорта Notion в GitHub с базовыми проверками целостности",
-    "tags": [
-      "Документация",
-      "Процесс",
-      "Backup",
-      "XX"
-    ],
-    "machine_tags": [
-      "action/backup",
-      "action/build",
-      "action/export",
-      "product/kb"
-    ],
-    "url": "docs/backup-export-routine-notion-github.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
     "title": "TEMPLATE — Incident Retrospective",
     "slug": "template-incident-retrospective",
     "status": "review",
@@ -3689,191 +3621,6 @@
     "related_stories": null
   },
   {
-    "title": "CODEGPT Rollout — Roadmap и пакет задач",
-    "slug": "codegpt-rollout-roadmap",
-    "status": "draft",
-    "summary": "Дорожная карта и структурированный пакет задач для полноценного rollout CodeGPT агентов в проект.",
-    "tags": [
-      "Автоматизация",
-      "Кодинг"
-    ],
-    "machine_tags": [
-      "action/build",
-      "theme/automation",
-      "theme/dev"
-    ],
-    "url": "docs/codegpt-rollout-roadmap.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "CodeGPT Kickoff — набор первых задач (KB/Content)",
-    "slug": "codegpt-kickoff-tasks-kb-content",
-    "status": "ready",
-    "summary": "Набор первых задач для CodeGPT агентов по работе с Knowledge Base и контентом. Задачи структурированы по типам агентов и приоритетам.",
-    "tags": [
-      "Автоматизация",
-      "База_знаний",
-      "Контент"
-    ],
-    "machine_tags": [
-      "action/build",
-      "product/kb",
-      "theme/automation"
-    ],
-    "url": "docs/codegpt-kickoff-tasks-kb-content.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "CONCEPT — Author Gateway",
-    "slug": "concept-author-gateway",
-    "status": "ready",
-    "summary": "Концепция Author Gateway: система управления очередью идей и автоматической генерации Stories через единую точку входа",
-    "tags": [
-      "Story",
-      "Автоматизация",
-      "Проектирование"
-    ],
-    "machine_tags": [
-      "content/story",
-      "theme/automation",
-      "theme/design"
-    ],
-    "url": "docs/CONCEPT.author-gateway.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "CONTRIBUTING — Гайд для авторов и редакторов Stories",
-    "slug": "contributing-stories",
-    "status": "ready",
-    "summary": "Руководство по созданию и редактированию эпизодов Stories, включая dual-story формат и проверки качества",
-    "tags": [
-      "Story",
-      "Процесс"
-    ],
-    "machine_tags": [
-      "content/story",
-      "theme/process"
-    ],
-    "url": "docs/CONTRIBUTING.stories.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "Gateway Watcher — валидация контента из inbox/author",
-    "slug": "gateway-watcher",
-    "status": "ready",
-    "summary": "Автоматическая валидация и обработка файлов из inbox/author с проверкой PII, длины и тона",
-    "tags": [
-      "Автоматизация",
-      "Валидация"
-    ],
-    "machine_tags": [
-      "action/build",
-      "theme/automation"
-    ],
-    "url": "docs/GATEWAY-WATCHER.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "Настройка доступа к страницам Notion для MCP",
-    "slug": "notion-access-setup",
-    "status": "ready",
-    "summary": "Как настроить доступ интеграции Notion к страницам и базам данных",
-    "tags": [
-      "Автоматизация"
-    ],
-    "machine_tags": [
-      "theme/automation"
-    ],
-    "url": "docs/NOTION-ACCESS-SETUP.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-    "slug": "single-source-playbook",
-    "status": "draft",
-    "summary": "Единый источник истины для синхронизации между Notion и GitHub репозиторием. Правила, процессы и чек-листы для поддержания консистентности.",
-    "tags": [
-      "Автоматизация",
-      "Проектирование"
-    ],
-    "machine_tags": [
-      "action/build",
-      "product/services",
-      "theme/automation",
-      "theme/dev"
-    ],
-    "url": "docs/SINGLE-SOURCE-PLAYBOOK.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "Terms found — формат блока в PR по Stories",
-    "slug": "terms-found-format",
-    "status": "ready",
-    "summary": "Стандартизированный формат блока \"Terms found\" для добавления в каждый PR по Stories.",
-    "tags": [
-      "Документация",
-      "Stories"
-    ],
-    "machine_tags": [
-      "theme/docs",
-      "content/story"
-    ],
-    "url": "docs/TERMS-FOUND-FORMAT.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "Настройка UTF-8 кодировки в редакторах",
-    "slug": "utf-8-setup",
-    "status": "ready",
-    "summary": "Руководство по настройке UTF-8 кодировки в редакторах и Git для предотвращения моджибаке (искажённых символов) в файлах с русским текстом.",
-    "tags": [
-      "Документация",
-      "Инструменты"
-    ],
-    "machine_tags": [
-      "action/build",
-      "theme/dev"
-    ],
-    "url": "docs/UTF-8-SETUP.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
     "title": "Briefs UX — доводки представлений By Lane / Pending Review / Ready for Copilot",
     "slug": "briefs-ux-improvements",
     "status": "ready",
@@ -3890,46 +3637,6 @@
       "theme/ux"
     ],
     "url": "docs/briefs-ux-improvements.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "Настройка GitHub Copilot с MCP для Notion",
-    "slug": "copilot-mcp-setup",
-    "status": "draft",
-    "summary": "Как настроить GitHub Copilot для работы с Notion через MCP протокол",
-    "tags": [
-      "Автоматизация",
-      "Кодинг"
-    ],
-    "machine_tags": [
-      "theme/automation",
-      "theme/dev"
-    ],
-    "url": "docs/copilot-mcp-setup.md",
-    "service": false,
-    "collection": null,
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "Настройка MCP сервера с OpenRouter для Cursor",
-    "slug": "cursor-mcp-openrouter-setup",
-    "status": "draft",
-    "summary": "Инструкция по настройке MCP сервера с OpenRouter для работы с локальными файлами в Cursor",
-    "tags": [
-      "Автоматизация",
-      "Кодинг"
-    ],
-    "machine_tags": [
-      "theme/automation",
-      "theme/dev"
-    ],
-    "url": "docs/cursor-mcp-openrouter-setup.md",
     "service": false,
     "collection": null,
     "story_order": null,
@@ -3955,88 +3662,6 @@
     "related_stories": null
   },
   {
-    "title": "Gateway PoC #2 — Эпизод 1: Длинный seed_text и HITL",
-    "slug": "gateway-poc-2-episode-1",
-    "status": "draft",
-    "summary": "Первый эпизод серии Gateway PoC #2: эксперимент с длинным seed_text в режиме HITL для генерации dual-story.",
-    "tags": [
-      "Story",
-      "Gateway",
-      "PoC"
-    ],
-    "machine_tags": [
-      "content/story",
-      "pipeline/gateway"
-    ],
-    "url": "docs/stories/2025-01-04-gateway-poc-2-episode-1.md",
-    "service": false,
-    "collection": "stories",
-    "story_order": null,
-    "series_id": "gateway-poc-2",
-    "related_stories": null
-  },
-  {
-    "title": "Gateway PoC #2 — Эпизод 2: Развитие серии",
-    "slug": "gateway-poc-2-episode-2",
-    "status": "draft",
-    "summary": "Второй эпизод серии Gateway PoC #2: продолжение эксперимента с длинным seed_text и HITL режимом.",
-    "tags": [
-      "Story",
-      "Gateway",
-      "PoC"
-    ],
-    "machine_tags": [
-      "content/story",
-      "pipeline/gateway"
-    ],
-    "url": "docs/stories/2025-01-04-gateway-poc-2-episode-2.md",
-    "service": false,
-    "collection": "stories",
-    "story_order": null,
-    "series_id": "gateway-poc-2",
-    "related_stories": null
-  },
-  {
-    "title": "Seed: Dual Story 001",
-    "slug": "seed-dual-story-001",
-    "status": "draft",
-    "summary": "Первые заготовки: авторский блок и машинный отчёт в одном файле.",
-    "tags": [
-      "Story",
-      "Seed"
-    ],
-    "machine_tags": [
-      "content/story",
-      "pipeline/seed"
-    ],
-    "url": "docs/stories/2025-11-23-seed-dual-story-001.md",
-    "service": false,
-    "collection": "stories",
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "Seed: Dual Story 002",
-    "slug": "seed-dual-story-002",
-    "status": "draft",
-    "summary": "Второй эпизод dual-story: авторская рефлексия и машинный отчёт о развитии формата.",
-    "tags": [
-      "Story",
-      "Seed"
-    ],
-    "machine_tags": [
-      "content/story",
-      "pipeline/seed"
-    ],
-    "url": "docs/stories/2025-11-23-seed-dual-story-002.md",
-    "service": false,
-    "collection": "stories",
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
     "title": "Stories · v1.0-content-ready — 2025-11-12",
     "slug": "2025-11-23-stories-v10-content-ready-2025-11-12",
     "status": "draft",
@@ -4055,21 +3680,205 @@
     "related_stories": null
   },
   {
-    "title": "Stories — Концепция и принципы",
-    "slug": "stories-concept",
+    "title": "CONCEPT — Author Gateway",
+    "slug": "concept-author-gateway",
     "status": "ready",
-    "summary": "Концепция Stories как формата хроники проекта и принципы работы с эпизодами",
+    "summary": "Концепция Author Gateway: система управления очередью идей и автоматической генерации Stories через единую точку входа",
     "tags": [
-      "Story",
+      "Автоматизация",
+      "Проектирование",
+      "Story"
+    ],
+    "machine_tags": [
+      "action/build",
+      "content/story",
+      "product/services",
+      "theme/automation",
+      "theme/design",
+      "theme/graphics"
+    ],
+    "url": "docs/concept-author-gateway.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Контекст-напоминание для Cursor",
+    "slug": "context-reminder",
+    "status": "ready",
+    "summary": "Краткое напоминание о ключевых принципах работы для восстановления контекста",
+    "tags": [
+      "Документация",
+      "Процесс"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/kb",
+      "theme/dev"
+    ],
+    "url": "docs/context-reminder.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "CONTRIBUTING — Гайд для авторов и редакторов Stories",
+    "slug": "contributing-stories",
+    "status": "ready",
+    "summary": "Руководство по созданию и редактированию эпизодов Stories, включая dual-story формат и проверки качества",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/contributing-stories.md",
+    "service": true,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Gateway Watcher — валидация контента из inbox/author",
+    "slug": "gateway-watcher",
+    "status": "ready",
+    "summary": "Автоматическая валидация и обработка файлов из inbox/author с проверкой PII, длины и тона",
+    "tags": [
+      "Автоматизация",
+      "Валидация"
+    ],
+    "machine_tags": [
+      "action/build",
+      "theme/automation"
+    ],
+    "url": "docs/gateway-watcher.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Отчёт о переходе на PowerShell 7 и однопоточную работу",
+    "slug": "migration-report-2025-01-08",
+    "status": "ready",
+    "summary": "Отчёт о переходе на PowerShell 7, упрощении процесса работы и очистке репозитория",
+    "tags": [
+      "Миграция",
+      "Процесс"
+    ],
+    "machine_tags": [
+      "action/build",
+      "action/refactor",
+      "theme/dev"
+    ],
+    "url": "docs/migration-report-2025-01-08.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Настройка PowerShell 7 для работы с проектом",
+    "slug": "nastrojka-powershell-7-dlya-raboty-s-proektom",
+    "status": "draft",
+    "summary": "# Настройка PowerShell 7 для работы с проектом",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/nastrojka-powershell-7-dlya-raboty-s-proektom.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Настройка доступа к страницам Notion для MCP",
+    "slug": "notion-access-setup",
+    "status": "ready",
+    "summary": "Как настроить доступ интеграции Notion к страницам и базам данных",
+    "tags": [
+      "Автоматизация"
+    ],
+    "machine_tags": [
+      "theme/automation"
+    ],
+    "url": "docs/notion-access-setup.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Оценка улучшений процесса разработки",
+    "slug": "process-improvements-assessment-364c8d",
+    "status": "ready",
+    "summary": "Оценка улучшений процесса разработки после блока задач по оптимизации. Анализ реализованных инструментов, метрики улучшений и рекомендации на будущее.",
+    "tags": [
+      "Автоматизация",
+      "Метрики",
+      "Процесс",
+      "CI/CD"
+    ],
+    "machine_tags": [
+      "action/analyze",
+      "action/build",
+      "product/infra",
+      "theme/automation"
+    ],
+    "url": "docs/process-improvements-assessment-364c8d.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Оценка улучшений процесса разработки",
+    "slug": "process-improvements-assessment",
+    "status": "ready",
+    "summary": "Оценка улучшений процесса разработки после блока задач по оптимизации. Анализ реализованных инструментов, метрики улучшений и рекомендации на будущее.",
+    "tags": [
+      "Автоматизация",
+      "Метрики",
+      "Процесс",
+      "CI/CD"
+    ],
+    "machine_tags": [
+      "action/analyze",
+      "action/build",
+      "product/infra",
+      "theme/automation"
+    ],
+    "url": "docs/process-improvements-assessment.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
+    "slug": "single-source-playbook",
+    "status": "draft",
+    "summary": "Единый источник истины для синхронизации между Notion и GitHub репозиторием. Правила, процессы и чек-листы для поддержания консистентности.",
+    "tags": [
+      "Автоматизация",
       "Проектирование"
     ],
     "machine_tags": [
-      "content/story",
-      "theme/design"
+      "action/build",
+      "product/services",
+      "theme/automation",
+      "theme/dev",
+      "theme/graphics"
     ],
-    "url": "docs/stories/CONCEPT.md",
+    "url": "docs/single-source-playbook.md",
     "service": false,
-    "collection": "stories",
+    "collection": null,
     "story_order": null,
     "series_id": null,
     "related_stories": null
@@ -4080,14 +3889,17 @@
     "status": "draft",
     "summary": "Наброски концепции Stories v2 от OPUS4: двойная линия (author + machine), front matter spec и предложения по автоматизации.",
     "tags": [
-      "Story",
-      "Проектирование"
+      "Проектирование",
+      "Story"
     ],
     "machine_tags": [
+      "action/build",
       "content/story",
-      "theme/design"
+      "product/services",
+      "theme/design",
+      "theme/graphics"
     ],
-    "url": "docs/stories/CONCEPT.opus4-notes.md",
+    "url": "docs/stories/concept-opus4-notes.md",
     "service": false,
     "collection": "stories",
     "story_order": null,
@@ -4100,18 +3912,64 @@
     "status": "ready",
     "summary": "Спецификация формата dual-story: две параллельные линии (авторская рефлексия + машинный отчёт) в одном эпизоде Stories",
     "tags": [
-      "Story",
-      "Проектирование"
+      "Проектирование",
+      "f3f4f6",
+      "Story"
     ],
     "machine_tags": [
+      "action/build",
       "content/story",
-      "theme/design"
+      "product/services",
+      "theme/design",
+      "theme/graphics"
     ],
-    "url": "docs/stories/CONCEPT.stories-dual.md",
+    "url": "docs/stories/concept-stories-dual.md",
     "service": false,
     "collection": "stories",
     "story_order": null,
     "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Gateway PoC #2 — Эпизод 1: Длинный seed_text и HITL",
+    "slug": "gateway-poc-2-episode-1",
+    "status": "draft",
+    "summary": "Первый эпизод серии Gateway PoC #2: эксперимент с длинным seed_text в режиме HITL для генерации dual-story.",
+    "tags": [
+      "Gateway",
+      "PoC",
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story",
+      "pipeline/gateway"
+    ],
+    "url": "docs/stories/gateway-poc-2-episode-1.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": "gateway-poc-2",
+    "related_stories": null
+  },
+  {
+    "title": "Gateway PoC #2 — Эпизод 2: Развитие серии",
+    "slug": "gateway-poc-2-episode-2",
+    "status": "draft",
+    "summary": "Второй эпизод серии Gateway PoC #2: продолжение эксперимента с длинным seed_text и HITL режимом.",
+    "tags": [
+      "Gateway",
+      "PoC",
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story",
+      "pipeline/gateway"
+    ],
+    "url": "docs/stories/gateway-poc-2-episode-2.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": "gateway-poc-2",
     "related_stories": null
   },
   {
@@ -4120,14 +3978,15 @@
     "status": "draft",
     "summary": "Короткий чеклист для ревью PoC auto",
     "tags": [
-      "Story",
-      "Review"
+      "Review",
+      "Story"
     ],
     "machine_tags": [
+      "content/story",
       "pipeline/poc",
       "review"
     ],
-    "url": "docs/stories/GATEWAY_POC_AUTO.REVIEW.md",
+    "url": "docs/stories/gateway-poc-auto-review.md",
     "service": false,
     "collection": "stories",
     "story_order": null,
@@ -4145,7 +4004,7 @@
     "machine_tags": [
       "content/story"
     ],
-    "url": "docs/stories/GATEWAY_POC_AUTO.md",
+    "url": "docs/stories/gateway-poc-auto.md",
     "service": false,
     "collection": "stories",
     "story_order": null,
@@ -4158,14 +4017,15 @@
     "status": "draft",
     "summary": "Короткий чеклист для ревью PoC HITL",
     "tags": [
-      "Story",
-      "Review"
+      "Review",
+      "Story"
     ],
     "machine_tags": [
+      "content/story",
       "pipeline/poc",
       "review"
     ],
-    "url": "docs/stories/GATEWAY_POC_HITL.REVIEW.md",
+    "url": "docs/stories/gateway-poc-hitl-review.md",
     "service": false,
     "collection": "stories",
     "story_order": null,
@@ -4183,27 +4043,7 @@
     "machine_tags": [
       "content/story"
     ],
-    "url": "docs/stories/GATEWAY_POC_HITL.md",
-    "service": false,
-    "collection": "stories",
-    "story_order": null,
-    "series_id": null,
-    "related_stories": null
-  },
-  {
-    "title": "Stories — Инструкции для GitHub и агентов",
-    "slug": "stories-github-instructions",
-    "status": "ready",
-    "summary": "Инструкции для работы со Stories на GitHub и для AI-агентов",
-    "tags": [
-      "Story",
-      "Автоматизация"
-    ],
-    "machine_tags": [
-      "content/story",
-      "theme/automation"
-    ],
-    "url": "docs/stories/GITHUB_INSTRUCTIONS.md",
+    "url": "docs/stories/gateway-poc-hitl.md",
     "service": false,
     "collection": "stories",
     "story_order": null,
@@ -4216,14 +4056,14 @@
     "status": "ready",
     "summary": "Роль и инструкции для агента OPUS4 по работе со Stories",
     "tags": [
-      "Story",
-      "Автоматизация"
+      "Автоматизация",
+      "Story"
     ],
     "machine_tags": [
       "content/story",
       "theme/automation"
     ],
-    "url": "docs/stories/OPUS4_ROLE.md",
+    "url": "docs/stories/opus4-role.md",
     "service": false,
     "collection": "stories",
     "story_order": null,
@@ -4236,14 +4076,97 @@
     "status": "ready",
     "summary": "Короткий справочник тонов и голосов для написания авторских блоков в dual-story эпизодах.",
     "tags": [
-      "Story",
-      "Справочник"
+      "Справочник",
+      "Story"
     ],
     "machine_tags": [
       "content/story",
       "theme/reference"
     ],
-    "url": "docs/stories/PROMPTS-LIBRARY.md",
+    "url": "docs/stories/prompts-library.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Seed: Dual Story 001",
+    "slug": "seed-dual-story-001",
+    "status": "draft",
+    "summary": "Первые заготовки: авторский блок и машинный отчёт в одном файле.",
+    "tags": [
+      "Seed",
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story",
+      "pipeline/seed"
+    ],
+    "url": "docs/stories/seed-dual-story-001.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Seed: Dual Story 002",
+    "slug": "seed-dual-story-002",
+    "status": "draft",
+    "summary": "Второй эпизод dual-story: авторская рефлексия и машинный отчёт о развитии формата.",
+    "tags": [
+      "Seed",
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story",
+      "pipeline/seed"
+    ],
+    "url": "docs/stories/seed-dual-story-002.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Stories — Концепция и принципы",
+    "slug": "stories-concept",
+    "status": "ready",
+    "summary": "Концепция Stories как формата хроники проекта и принципы работы с эпизодами",
+    "tags": [
+      "Проектирование",
+      "Story"
+    ],
+    "machine_tags": [
+      "action/build",
+      "content/story",
+      "product/services",
+      "theme/design",
+      "theme/graphics"
+    ],
+    "url": "docs/stories/stories-concept.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Stories — Инструкции для GitHub и агентов",
+    "slug": "stories-github-instructions",
+    "status": "ready",
+    "summary": "Инструкции для работы со Stories на GitHub и для AI-агентов",
+    "tags": [
+      "Автоматизация",
+      "Story"
+    ],
+    "machine_tags": [
+      "content/story",
+      "theme/automation"
+    ],
+    "url": "docs/stories/stories-github-instructions.md",
     "service": false,
     "collection": "stories",
     "story_order": null,
@@ -4261,7 +4184,7 @@
     "machine_tags": [
       "content/story"
     ],
-    "url": "docs/stories/QUICK_START.md",
+    "url": "docs/stories/stories-quick-start.md",
     "service": false,
     "collection": "stories",
     "story_order": null,
@@ -4273,14 +4196,10 @@
     "slug": "stories-readme",
     "status": "ready",
     "summary": "Инструкции для работы со Stories эпизодами для агентов и людей",
-    "tags": [
-      "Story"
-    ],
-    "machine_tags": [
-      "content/story"
-    ],
-    "url": "docs/stories/README.md",
-    "service": false,
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/stories/stories-readme.md",
+    "service": true,
     "collection": "stories",
     "story_order": null,
     "series_id": null,
@@ -4292,14 +4211,17 @@
     "status": "ready",
     "summary": "Общий контекст проекта для работы с Stories и агентами",
     "tags": [
-      "Story",
-      "Проектирование"
+      "Проектирование",
+      "Story"
     ],
     "machine_tags": [
+      "action/build",
       "content/story",
-      "theme/design"
+      "product/services",
+      "theme/design",
+      "theme/graphics"
     ],
-    "url": "docs/stories/SHARED_CONTEXT.md",
+    "url": "docs/stories/stories-shared-context.md",
     "service": false,
     "collection": "stories",
     "story_order": null,
@@ -4307,19 +4229,21 @@
     "related_stories": null
   },
   {
-    "title": "Настройка GitHub токена в Voideditor",
-    "slug": "voideditor-github-token-setup",
-    "status": "draft",
-    "summary": "Как настроить GitHub токен для Voideditor через системные настройки Git",
+    "title": "Terms found — формат блока в PR по Stories",
+    "slug": "terms-found-format",
+    "status": "ready",
+    "summary": "Стандартизированный формат блока \"Terms found\" для добавления в каждый PR по Stories.",
     "tags": [
-      "Автоматизация",
-      "Кодинг"
+      "Документация",
+      "Stories"
     ],
     "machine_tags": [
-      "theme/automation",
-      "theme/dev"
+      "action/build",
+      "content/story",
+      "product/kb",
+      "theme/docs"
     ],
-    "url": "docs/voideditor-github-token-setup.md",
+    "url": "docs/terms-found-format.md",
     "service": false,
     "collection": null,
     "story_order": null,
@@ -4327,19 +4251,20 @@
     "related_stories": null
   },
   {
-    "title": "Troubleshooting Voideditor и GitHub",
-    "slug": "voideditor-github-troubleshooting",
-    "status": "draft",
-    "summary": "Решение проблем с интеграцией Voideditor и GitHub",
+    "title": "Настройка UTF-8 кодировки в редакторах",
+    "slug": "utf-8-setup",
+    "status": "ready",
+    "summary": "Руководство по настройке UTF-8 кодировки в редакторах и Git для правильной работы с русским текстом.",
     "tags": [
-      "Автоматизация",
-      "Кодинг"
+      "Документация",
+      "Инструменты"
     ],
     "machine_tags": [
-      "theme/automation",
+      "action/build",
+      "product/kb",
       "theme/dev"
     ],
-    "url": "docs/voideditor-github-troubleshooting.md",
+    "url": "docs/utf-8-setup.md",
     "service": false,
     "collection": null,
     "story_order": null,

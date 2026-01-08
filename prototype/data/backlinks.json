@@ -3,7 +3,7 @@
     {
       "slug": "single-source-playbook",
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
+      "url": "docs/single-source-playbook.md"
     },
     {
       "slug": "vision-strategiya-marketing-autentichnost-tretij-put-onepager",
@@ -72,50 +72,6 @@
       "url": "docs/navigaciya-polzovatelskaya.md"
     }
   ],
-  "codegpt-setup": [
-    {
-      "slug": "codegpt-kickoff-tasks-kb-content",
-      "title": "CodeGPT Kickoff — набор первых задач (KB/Content)",
-      "url": "docs/codegpt-kickoff-tasks-kb-content.md"
-    },
-    {
-      "slug": "codegpt-rollout-roadmap",
-      "title": "CODEGPT Rollout — Roadmap и пакет задач",
-      "url": "docs/codegpt-rollout-roadmap.md"
-    },
-    {
-      "slug": "voideditor-github-troubleshooting",
-      "title": "Troubleshooting Voideditor и GitHub",
-      "url": "docs/voideditor-github-troubleshooting.md"
-    },
-    {
-      "slug": "copilot-mcp-setup",
-      "title": "Настройка GitHub Copilot с MCP для Notion",
-      "url": "docs/copilot-mcp-setup.md"
-    },
-    {
-      "slug": "voideditor-github-token-setup",
-      "title": "Настройка GitHub токена в Voideditor",
-      "url": "docs/voideditor-github-token-setup.md"
-    },
-    {
-      "slug": "cursor-mcp-openrouter-setup",
-      "title": "Настройка MCP сервера с OpenRouter для Cursor",
-      "url": "docs/cursor-mcp-openrouter-setup.md"
-    }
-  ],
-  "eksport-v-github-rukovodstvo-i-shablony": [
-    {
-      "slug": "backup-export-routine-notion-github",
-      "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
-      "url": "docs/backup-export-routine-notion-github.md"
-    },
-    {
-      "slug": "single-source-playbook",
-      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
-    }
-  ],
   "indeks-i-tldr": [
     {
       "slug": "think-tank-kompaktnoe-yadro",
@@ -144,19 +100,14 @@
     {
       "slug": "single-source-playbook",
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
+      "url": "docs/single-source-playbook.md"
     }
   ],
   "instrukcii-dlya-notion-ai-vovaipetrova": [
     {
       "slug": "single-source-playbook",
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
-    },
-    {
-      "slug": "eksport-v-github-rukovodstvo-i-shablony",
-      "title": "Экспорт в GitHub — руководство и шаблоны",
-      "url": "docs/eksport-v-github-rukovodstvo-i-shablony.md"
+      "url": "docs/single-source-playbook.md"
     }
   ],
   "kartochka-uslugi-dizajn": [
@@ -361,7 +312,7 @@
     {
       "slug": "single-source-playbook",
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
+      "url": "docs/single-source-playbook.md"
     }
   ],
   "portfolio-struktura": [
@@ -493,18 +444,13 @@
       "slug": "mcp-notion-api-compatibility-tracker",
       "title": "MCP Notion API Compatibility Tracker",
       "url": "docs/mcp-notion-api-compatibility-tracker.md"
-    },
-    {
-      "slug": "cursor-mcp-openrouter-setup",
-      "title": "Настройка MCP сервера с OpenRouter для Cursor",
-      "url": "docs/cursor-mcp-openrouter-setup.md"
     }
   ],
   "think-tank-kompaktnoe-yadro": [
     {
       "slug": "single-source-playbook",
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
+      "url": "docs/single-source-playbook.md"
     },
     {
       "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
@@ -525,11 +471,6 @@
       "slug": "navigaciya-tehnicheskaya",
       "title": "Навигация (техническая)",
       "url": "docs/navigaciya-tehnicheskaya.md"
-    },
-    {
-      "slug": "eksport-v-github-rukovodstvo-i-shablony",
-      "title": "Экспорт в GitHub — руководство и шаблоны",
-      "url": "docs/eksport-v-github-rukovodstvo-i-shablony.md"
     }
   ],
   "think-tank-vitrina-processa": [
@@ -620,23 +561,6 @@
       "slug": "briefs-ux-improvements",
       "title": "Briefs UX — доводки представлений By Lane / Pending Review / Ready for Copilot",
       "url": "docs/briefs-ux-improvements.md"
-    },
-    {
-      "slug": "codegpt-rollout-roadmap",
-      "title": "CODEGPT Rollout — Roadmap и пакет задач",
-      "url": "docs/codegpt-rollout-roadmap.md"
-    }
-  ],
-  "backup-export-routine-notion-github": [
-    {
-      "slug": "single-source-playbook",
-      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
-    },
-    {
-      "slug": "copilot-mcp-setup",
-      "title": "Настройка GitHub Copilot с MCP для Notion",
-      "url": "docs/copilot-mcp-setup.md"
     }
   ],
   "aliases": [
@@ -792,35 +716,18 @@
       "url": "docs/kb/machine-tags.md"
     }
   ],
-  "codegpt-rollout-roadmap": [
+  "briefs-ux-improvements": [
     {
-      "slug": "codegpt-kickoff-tasks-kb-content",
-      "title": "CodeGPT Kickoff — набор первых задач (KB/Content)",
-      "url": "docs/codegpt-kickoff-tasks-kb-content.md"
-    }
-  ],
-  "contributing-stories": [
-    {
-      "slug": "single-source-playbook",
-      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
-    },
-    {
-      "slug": "terms-found-format",
-      "title": "Terms found — формат блока в PR по Stories",
-      "url": "docs/TERMS-FOUND-FORMAT.md"
-    },
-    {
-      "slug": "prompts-library",
-      "title": "Библиотека тонов для author_block",
-      "url": "docs/stories/PROMPTS-LIBRARY.md"
+      "slug": "briefs-upgrade-how-to",
+      "title": "Briefs upgrade — инструкция по обновлению полей, представлений, SLA и очередей ревью",
+      "url": "docs/briefs-upgrade-how-to.md"
     }
   ],
   "gateway-watcher": [
     {
       "slug": "single-source-playbook",
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
+      "url": "docs/single-source-playbook.md"
     }
   ],
   "single-source-playbook": [
@@ -828,11 +735,6 @@
       "slug": "adr-source-of-truth-i-zerkalirovanie",
       "title": "ADR — Source of truth и зеркалирование",
       "url": "docs/adr-source-of-truth-i-zerkalirovanie.md"
-    },
-    {
-      "slug": "backup-export-routine-notion-github",
-      "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
-      "url": "docs/backup-export-routine-notion-github.md"
     },
     {
       "slug": "briefs-upgrade-how-to",
@@ -843,21 +745,6 @@
       "slug": "briefs-ux-improvements",
       "title": "Briefs UX — доводки представлений By Lane / Pending Review / Ready for Copilot",
       "url": "docs/briefs-ux-improvements.md"
-    },
-    {
-      "slug": "codegpt-kickoff-tasks-kb-content",
-      "title": "CodeGPT Kickoff — набор первых задач (KB/Content)",
-      "url": "docs/codegpt-kickoff-tasks-kb-content.md"
-    },
-    {
-      "slug": "codegpt-rollout-roadmap",
-      "title": "CODEGPT Rollout — Roadmap и пакет задач",
-      "url": "docs/codegpt-rollout-roadmap.md"
-    },
-    {
-      "slug": "contributing-stories",
-      "title": "CONTRIBUTING — Гайд для авторов и редакторов Stories",
-      "url": "docs/CONTRIBUTING.stories.md"
     },
     {
       "slug": "github-labels-guide",
@@ -872,7 +759,7 @@
     {
       "slug": "opus4-role",
       "title": "OPUS4 — Роль агента для работы со Stories",
-      "url": "docs/stories/OPUS4_ROLE.md"
+      "url": "docs/stories/opus4-role.md"
     },
     {
       "slug": "playbook-roli",
@@ -887,32 +774,27 @@
     {
       "slug": "single-source-playbook",
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
+      "url": "docs/single-source-playbook.md"
     },
     {
       "slug": "stories-github-instructions",
       "title": "Stories — Инструкции для GitHub и агентов",
-      "url": "docs/stories/GITHUB_INSTRUCTIONS.md"
-    },
-    {
-      "slug": "stories-readme",
-      "title": "Stories — Инструкции для работы",
-      "url": "docs/stories/README.md"
+      "url": "docs/stories/stories-github-instructions.md"
     },
     {
       "slug": "stories-concept",
       "title": "Stories — Концепция и принципы",
-      "url": "docs/stories/CONCEPT.md"
+      "url": "docs/stories/stories-concept.md"
     },
     {
       "slug": "stories-shared-context",
       "title": "Stories — Общий контекст для работы",
-      "url": "docs/stories/SHARED_CONTEXT.md"
+      "url": "docs/stories/stories-shared-context.md"
     },
     {
       "slug": "terms-found-format",
       "title": "Terms found — формат блока в PR по Stories",
-      "url": "docs/TERMS-FOUND-FORMAT.md"
+      "url": "docs/terms-found-format.md"
     },
     {
       "slug": "think-tank-kompaktnoe-yadro",
@@ -922,7 +804,7 @@
     {
       "slug": "prompts-library",
       "title": "Библиотека тонов для author_block",
-      "url": "docs/stories/PROMPTS-LIBRARY.md"
+      "url": "docs/stories/prompts-library.md"
     },
     {
       "slug": "instrukcii-dlya-notion-ai-vovaipetrova",
@@ -930,101 +812,115 @@
       "url": "docs/instrukcii-dlya-notion-ai-vovaipetrova.md"
     },
     {
-      "slug": "eksport-v-github-rukovodstvo-i-shablony",
-      "title": "Экспорт в GitHub — руководство и шаблоны",
-      "url": "docs/eksport-v-github-rukovodstvo-i-shablony.md"
+      "slug": "notion-access-setup",
+      "title": "Настройка доступа к страницам Notion для MCP",
+      "url": "docs/notion-access-setup.md"
     }
   ],
-  "terms-found-format": [
+  "concept-opus4-notes": [
     {
-      "slug": "single-source-playbook",
-      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
-    }
-  ],
-  "utf-8-setup": [
-    {
-      "slug": "single-source-playbook",
-      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
-    }
-  ],
-  "briefs-ux-improvements": [
-    {
-      "slug": "briefs-upgrade-how-to",
-      "title": "Briefs upgrade — инструкция по обновлению полей, представлений, SLA и очередей ревью",
-      "url": "docs/briefs-upgrade-how-to.md"
-    }
-  ],
-  "copilot-mcp-setup": [
-    {
-      "slug": "single-source-playbook",
-      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
-    }
-  ],
-  "cursor-mcp-openrouter-setup": [
-    {
-      "slug": "voideditor-github-troubleshooting",
-      "title": "Troubleshooting Voideditor и GitHub",
-      "url": "docs/voideditor-github-troubleshooting.md"
-    },
-    {
-      "slug": "copilot-mcp-setup",
-      "title": "Настройка GitHub Copilot с MCP для Notion",
-      "url": "docs/copilot-mcp-setup.md"
-    }
-  ],
-  "stories-concept": [
-    {
-      "slug": "concept-author-gateway",
-      "title": "CONCEPT — Author Gateway",
-      "url": "docs/CONCEPT.author-gateway.md"
+      "slug": "concept-stories-dual",
+      "title": "CONCEPT — Dual-story формат (spec + пример)",
+      "url": "docs/stories/concept-stories-dual.md"
     }
   ],
   "concept-stories-dual": [
     {
       "slug": "concept-author-gateway",
       "title": "CONCEPT — Author Gateway",
-      "url": "docs/CONCEPT.author-gateway.md"
+      "url": "docs/concept-author-gateway.md"
     },
     {
-      "slug": "contributing-stories",
-      "title": "CONTRIBUTING — Гайд для авторов и редакторов Stories",
-      "url": "docs/CONTRIBUTING.stories.md"
+      "slug": "prompts-library",
+      "title": "Библиотека тонов для author_block",
+      "url": "docs/stories/prompts-library.md"
     }
   ],
-  "stories-readme": [
+  "opus4-role": [
     {
-      "slug": "single-source-playbook",
-      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
+      "slug": "stories-quick-start",
+      "title": "Stories — Быстрый старт",
+      "url": "docs/stories/stories-quick-start.md"
+    },
+    {
+      "slug": "stories-github-instructions",
+      "title": "Stories — Инструкции для GitHub и агентов",
+      "url": "docs/stories/stories-github-instructions.md"
+    }
+  ],
+  "stories-concept": [
+    {
+      "slug": "concept-author-gateway",
+      "title": "CONCEPT — Author Gateway",
+      "url": "docs/concept-author-gateway.md"
+    },
+    {
+      "slug": "concept-stories-dual",
+      "title": "CONCEPT — Dual-story формат (spec + пример)",
+      "url": "docs/stories/concept-stories-dual.md"
+    },
+    {
+      "slug": "opus4-role",
+      "title": "OPUS4 — Роль агента для работы со Stories",
+      "url": "docs/stories/opus4-role.md"
+    },
+    {
+      "slug": "stories-quick-start",
+      "title": "Stories — Быстрый старт",
+      "url": "docs/stories/stories-quick-start.md"
+    },
+    {
+      "slug": "stories-github-instructions",
+      "title": "Stories — Инструкции для GitHub и агентов",
+      "url": "docs/stories/stories-github-instructions.md"
+    },
+    {
+      "slug": "stories-shared-context",
+      "title": "Stories — Общий контекст для работы",
+      "url": "docs/stories/stories-shared-context.md"
+    }
+  ],
+  "stories-github-instructions": [
+    {
+      "slug": "stories-quick-start",
+      "title": "Stories — Быстрый старт",
+      "url": "docs/stories/stories-quick-start.md"
     }
   ],
   "stories-shared-context": [
     {
-      "slug": "contributing-stories",
-      "title": "CONTRIBUTING — Гайд для авторов и редакторов Stories",
-      "url": "docs/CONTRIBUTING.stories.md"
+      "slug": "opus4-role",
+      "title": "OPUS4 — Роль агента для работы со Stories",
+      "url": "docs/stories/opus4-role.md"
     },
     {
       "slug": "single-source-playbook",
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
-      "url": "docs/SINGLE-SOURCE-PLAYBOOK.md"
+      "url": "docs/single-source-playbook.md"
+    },
+    {
+      "slug": "stories-quick-start",
+      "title": "Stories — Быстрый старт",
+      "url": "docs/stories/stories-quick-start.md"
+    },
+    {
+      "slug": "stories-github-instructions",
+      "title": "Stories — Инструкции для GitHub и агентов",
+      "url": "docs/stories/stories-github-instructions.md"
     }
   ],
-  "voideditor-github-token-setup": [
+  "terms-found-format": [
     {
-      "slug": "voideditor-github-troubleshooting",
-      "title": "Troubleshooting Voideditor и GitHub",
-      "url": "docs/voideditor-github-troubleshooting.md"
+      "slug": "single-source-playbook",
+      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
+      "url": "docs/single-source-playbook.md"
     }
   ],
-  "voideditor-github-troubleshooting": [
+  "utf-8-setup": [
     {
-      "slug": "voideditor-github-token-setup",
-      "title": "Настройка GitHub токена в Voideditor",
-      "url": "docs/voideditor-github-token-setup.md"
+      "slug": "single-source-playbook",
+      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
+      "url": "docs/single-source-playbook.md"
     }
   ]
 }

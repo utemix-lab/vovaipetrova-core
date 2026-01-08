@@ -1,17 +1,17 @@
 {
   "version": "3.0",
-  "generatedAt": "2026-01-08T08:58:57.069Z",
-  "totalFiles": 244,
+  "generatedAt": "2026-01-08T19:14:06.107Z",
+  "totalFiles": 240,
   "brokenCount": 2,
   "issues": [
     {
-      "file": "TERMS-FOUND-FORMAT.md",
+      "file": "terms-found-format.md",
       "link": "../../scripts/extractor-stories-terms.mjs",
       "reason": "outside_repo",
       "resolved_to": null
     },
     {
-      "file": "TERMS-FOUND-FORMAT.md",
+      "file": "terms-found-format.md",
       "link": "../../scripts/generate-terms-found-block.mjs",
       "reason": "outside_repo",
       "resolved_to": null
