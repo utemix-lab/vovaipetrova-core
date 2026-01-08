@@ -2,8 +2,13 @@
 title: Контекст-напоминание для Cursor
 slug: context-reminder
 summary: Краткое напоминание о ключевых принципах работы для восстановления контекста
-tags: [Документация, Процесс]
-machine_tags: [theme/dev]
+tags:
+  - Документация
+  - Процесс
+machine_tags:
+  - action/build
+  - product/kb
+  - theme/dev
 status: ready
 ---
 

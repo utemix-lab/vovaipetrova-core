@@ -1,9 +1,16 @@
 ---
 title: Отчёт о переходе на PowerShell 7 и однопоточную работу
 slug: migration-report-2025-01-08
-summary: Отчёт о переходе на PowerShell 7, упрощении процесса работы и очистке репозитория
-tags: [Процесс, Миграция]
-machine_tags: [theme/dev, action/refactor]
+summary: >-
+  Отчёт о переходе на PowerShell 7, упрощении процесса работы и очистке
+  репозитория
+tags:
+  - Миграция
+  - Процесс
+machine_tags:
+  - action/build
+  - action/refactor
+  - theme/dev
 status: ready
 ---
 

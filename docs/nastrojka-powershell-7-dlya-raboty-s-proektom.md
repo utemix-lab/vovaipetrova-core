@@ -1,3 +1,10 @@
+---
+title: Настройка PowerShell 7 для работы с проектом
+slug: nastrojka-powershell-7-dlya-raboty-s-proektom
+summary: '# Настройка PowerShell 7 для работы с проектом'
+tags: []
+machine_tags: []
+---
 # Настройка PowerShell 7 для работы с проектом
 
 ## Введение

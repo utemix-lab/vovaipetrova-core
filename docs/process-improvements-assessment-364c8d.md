@@ -1,9 +1,19 @@
 ---
 title: Оценка улучшений процесса разработки
-slug: process-improvements-assessment
-summary: Оценка улучшений процесса разработки после блока задач по оптимизации. Анализ реализованных инструментов, метрики улучшений и рекомендации на будущее.
-tags: [Автоматизация, Метрики, CI/CD, Процесс]
-machine_tags: [theme/automation, action/analyze, product/infra]
+slug: process-improvements-assessment-364c8d
+summary: >-
+  Оценка улучшений процесса разработки после блока задач по оптимизации. Анализ
+  реализованных инструментов, метрики улучшений и рекомендации на будущее.
+tags:
+  - Автоматизация
+  - Метрики
+  - Процесс
+  - CI/CD
+machine_tags:
+  - action/analyze
+  - action/build
+  - product/infra
+  - theme/automation
 status: ready
 ---
 
