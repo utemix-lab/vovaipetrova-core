@@ -18,14 +18,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const REPO_ROOT = join(__dirname, "..");
 
-const NOTION_TOKEN = process.env.NOTION_TOKEN;
+const NOTION_TOKEN = process.env.NOTION_TOKEN || process.env.NOTION_API_KEY;
 const NOTION_PAGE_ID = "fee878a9-9503-4df5-9f10-572df92aaf06"; // Single Source Playbook
-const PLAYBOOK_PATH = join(REPO_ROOT, "docs", "SINGLE-SOURCE-PLAYBOOK.md");
+const PLAYBOOK_PATH = join(REPO_ROOT, "docs", "single-source-playbook.md");
 
 const DRY_RUN = process.argv.includes("--dry-run");
 
 if (!NOTION_TOKEN) {
-  console.error("❌ NOTION_TOKEN не установлен в переменных окружения");
+  console.error("❌ NOTION_TOKEN или NOTION_API_KEY не установлен в переменных окружения");
   process.exit(1);
 }
 
