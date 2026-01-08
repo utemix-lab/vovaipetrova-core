@@ -138,12 +138,12 @@ status: ready
 - `scripts/create-pr-safe.mjs` — упрощён (убрана детекция моджибаке)
 - `scripts/notion-report.mjs` — убраны упоминания Copilot
 - `.cursorrules` — убраны упоминания о проблемах PowerShell 5.1
-- `docs/SINGLE-SOURCE-PLAYBOOK.md` — убраны упоминания других агентов
+- `docs/single-source-playbook.md` — убраны упоминания других агентов
 - `.github/pull_request_template.md` — удалена секция Two-stream
 - `.github/ISSUE_TEMPLATE/task.md` — удалена секция Two-stream Policy
 - `README.md` — убраны упоминания ZIP импорта и CodeGPT
 - `docs/POWERSHELL-7-SETUP.md` — убраны упоминания проблем PowerShell 5.1
-- `docs/UTF-8-SETUP.md` — убраны упоминания моджибаке
+- `docs/utf-8-setup.md` — убраны упоминания моджибаке
 - `docs/PROCESS-IMPROVEMENTS-ASSESSMENT.md` — убраны упоминания моджибаке
 
 **Всего обновлено:** ~11 файлов

@@ -14,7 +14,7 @@ service: true
 
 Этот документ описывает процесс создания и редактирования эпизодов Stories для авторов и редакторов.
 
-**📖 См. также:** [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub.
+**📖 См. также:** [Single Source Playbook — «священный документ» (Notion↔Repo)](single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub.
 
 ## О Stories
 
@@ -114,7 +114,7 @@ machine_report_refs:
 <!-- MACHINE_REPORT END -->
 ```
 
-**Подробнее**: см. [CONCEPT.stories-dual.md](./stories/CONCEPT.stories-dual.md)
+**Подробнее**: см. [concept-stories-dual.md](./stories/concept-stories-dual.md)
 
 ## Процесс создания эпизода
 
@@ -293,9 +293,9 @@ npm run story:generate
 
 ## Связанные документы
 
-- [CONCEPT.stories-dual.md](./stories/CONCEPT.stories-dual.md) — спецификация dual-story формата
-- [SHARED_CONTEXT.md](./stories/SHARED_CONTEXT.md) — общий контекст для работы с Stories
-- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
+- [concept-stories-dual.md](./stories/concept-stories-dual.md) — спецификация dual-story формата
+- [stories-shared-context.md](./stories/stories-shared-context.md) — общий контекст для работы с Stories
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [CONTRIBUTING.md](../CONTRIBUTING.md) — общий гайд по контрибуции
 - [templates/story.md](../templates/story.md) — шаблон для создания эпизодов
 

@@ -83,5 +83,5 @@ service: true
 
 - **Spec**: `docs/prototype.md` — описание прототипа
 - **Примеры**: Существующие фильтры в `prototype/app.js` (поиск, сортировка)
-- **PROTOCOL**: `docs/SINGLE-SOURCE-PLAYBOOK.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
+- **PROTOCOL**: `docs/single-source-playbook.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 

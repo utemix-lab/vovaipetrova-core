@@ -37,7 +37,7 @@ status: ready
 ### Ключевые файлы
 
 - `README.md` — структура и команды проекта
-- `docs/SINGLE-SOURCE-PLAYBOOK.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
+- `docs/single-source-playbook.md` — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - `docs/nav/tags.yaml` — маппинг тегов → машинотегов
 - `docs/nav/routes.yml` — карта маршрутов сайта
 - `templates/story.md` — шаблон для новых эпизодов Stories
@@ -150,7 +150,7 @@ These additions are intended to avoid duplicated work: the generator and Notion 
 ### Вход агента
 
 - **Источник задачи**: Notion (Briefs) с полями `Brief`, `Scope`, `Deliverables`, `Executor`, `Lane`
-- **Контекст проекта**: `docs/SINGLE-SOURCE-PLAYBOOK.md`
+- **Контекст проекта**: `docs/single-source-playbook.md`
 - **Шаблон**: `templates/story.md`
 
 ### Выход агента
@@ -171,9 +171,9 @@ These additions are intended to avoid duplicated work: the generator and Notion 
 
 ## Связанные документы
 
-- **[Single Source Playbook — «священный документ» (Notion↔Repo)](../SINGLE-SOURCE-PLAYBOOK.md)** — единый источник истины для синхронизации между Notion и GitHub
-- [CONCEPT.md](CONCEPT.md) — концепция Stories
-- [Single Source Playbook — «священный документ» (Notion↔Repo)](../SINGLE-SOURCE-PLAYBOOK.md)
+- **[Single Source Playbook — «священный документ» (Notion↔Repo)](../single-source-playbook.md)** — единый источник истины для синхронизации между Notion и GitHub
+- [stories-concept.md](stories-concept.md) — концепция Stories
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](../single-source-playbook.md)
 - [Шаблон story.md](../../templates/story.md)
 - [README](../../README.md)
 
@@ -263,7 +263,7 @@ git push origin feat/author-gateway
 
 ### Короткий чеклист для ассистента при восстановлении сессии
 
-- Проверить `CONTRIBUTING.md` и `docs/stories/SHARED_CONTEXT.md` на политику языка и правила.
+- Проверить `contributing-stories.md` и `docs/stories/stories-shared-context.md` на политику языка и правила.
 - Проверить ветку и PR (#130), CI статусы и последние комментарии ботов.
 - Запустить `npm run lint:docs` и `npm run normalize:dry`.
 - Запустить `node scripts/generate-stories.mjs` локально и проверить, что `docs/stories/` получает файлы.

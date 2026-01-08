@@ -85,7 +85,7 @@ status: review
 
 ### Связано с…
 
-- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub
 - [Think Tank — компактное ядро](think-tank-kompaktnoe-yadro.md)
 - [Spec — Normalize и политика имён](spec-normalize-i-politika-imyon-c9023c.md)
 - [README](../README.md)

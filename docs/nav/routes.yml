@@ -57,9 +57,6 @@ routes:
         doc: docs/artefakty-korzina-i-zayavka-mvp.md
         status: ok
         notes: Игровая витрина, где клиент собирает услуги и кейсы в корзин
-      - slug: eksport-v-github-rukovodstvo-i-shablony
-        doc: docs/eksport-v-github-rukovodstvo-i-shablony.md
-        status: ok
         notes: "Как выгружать контент из Notion в GitHub: структура репозито"
       - slug: instructions-ispolniteli-cursoraider
         doc: docs/instructions-ispolniteli-cursoraider.md
@@ -154,7 +151,7 @@ routes:
         status: ok
         notes: План интеграций и точки подключения. Списком + ссылки Что ав
       - slug: single-source-playbook
-        doc: docs/SINGLE-SOURCE-PLAYBOOK.md
+        doc: docs/single-source-playbook.md
         status: ok
         notes: Единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
       - slug: template-incident
@@ -367,9 +364,6 @@ routes:
         doc: docs/briefs-upgrade-how-to.md
         status: ok
         notes: "Инструкция по обновлению базы данных Briefs в Notion: добавление полей Executor, Lane, SLA, Requires Review, RFC Link, Upstream Source, создание представлений и формулы Overdue"
-      - slug: backup-export-routine-notion-github
-        doc: docs/backup-export-routine-notion-github.md
-        status: ok
         notes: "Чек-лист и процедура регулярного экспорта Notion в GitHub с базовыми проверками целостности (sanity-check)"
       - slug: release-checklist-pages-prototype
         doc: docs/release-checklist-pages-prototype.md

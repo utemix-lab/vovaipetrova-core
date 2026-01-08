@@ -242,7 +242,7 @@ status: ready
 
 После внесения изменений обновить:
 - `docs/briefs-upgrade-how-to.md` — добавить инструкции по настройке новых представлений
-- `docs/SINGLE-SOURCE-PLAYBOOK.md` — обновить описание представлений (если необходимо)
+- `docs/single-source-playbook.md` — обновить описание представлений (если необходимо)
 
 ## Инструкция по применению
 
@@ -296,5 +296,5 @@ status: ready
 ## Связанные документы
 
 - [Briefs upgrade — инструкция по обновлению](./briefs-upgrade-how-to.md) — базовая инструкция по настройке представлений
-- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 

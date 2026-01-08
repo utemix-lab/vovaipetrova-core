@@ -49,7 +49,7 @@ OPUS4 — специализированный агент для работы с
 
 1. **Чтение контекста**:
    - Изучить `CONCEPT.md` для понимания концепции
-   - Изучить `SHARED_CONTEXT.md` для общего контекста
+   - Изучить `stories-shared-context.md` для общего контекста
    - Прочитать существующие эпизоды для понимания стиля
 
 2. **Сбор информации**:
@@ -170,7 +170,7 @@ OPUS4 — специализированный агент для работы с
 ## Связанные документы
 
 - [CONCEPT.md](CONCEPT.md) — концепция Stories
-- [SHARED_CONTEXT.md](SHARED_CONTEXT.md) — общий контекст
-- [Single Source Playbook — «священный документ» (Notion↔Repo)](../SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
+- [stories-shared-context.md](stories-shared-context.md) — общий контекст
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](../single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub, правила работы агентов
 - [Шаблон story.md](../../templates/story.md)
 

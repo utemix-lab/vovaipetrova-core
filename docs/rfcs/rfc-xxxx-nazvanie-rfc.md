@@ -14,7 +14,7 @@ service: true
 **Дата**: {YYYY-MM-DD}
 **Связанные задачи**: {ссылки на Briefs/Issues}
 
-> **Примечание**: При реализации RFC следуйте процессу работы с репозиторием: создайте PR с секцией Deliverables, добавьте соответствующий `lane:*` label, убедитесь что CI зелёный. Подробнее: [`docs/SINGLE-SOURCE-PLAYBOOK.md`](../SINGLE-SOURCE-PLAYBOOK.md)
+> **Примечание**: При реализации RFC следуйте процессу работы с репозиторием: создайте PR с секцией Deliverables, добавьте соответствующий `lane:*` label, убедитесь что CI зелёный. Подробнее: [`docs/single-source-playbook.md`](../single-source-playbook.md)
 
 ## Problem
 

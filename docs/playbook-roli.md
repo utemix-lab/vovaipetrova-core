@@ -43,4 +43,4 @@ Vision → ADR → Spec → Task spec → Scaffold → PR → Normalize CI → P
 
 ### Связано с…
 
-- [Single Source Playbook — «священный документ» (Notion↔Repo)](SINGLE-SOURCE-PLAYBOOK.md) — единый источник истины для синхронизации между Notion и GitHub
+- [Single Source Playbook — «священный документ» (Notion↔Repo)](single-source-playbook.md) — единый источник истины для синхронизации между Notion и GitHub

@@ -16,7 +16,7 @@ status: ready
 В папке `docs/stories/` созданы следующие файлы для работы со Stories:
 
 1. **CONCEPT.md** — концепция и принципы Stories
-2. **SHARED_CONTEXT.md** — общий контекст проекта для работы
+2. **stories-shared-context.md** — общий контекст проекта для работы
 3. **OPUS4_ROLE.md** — роль и инструкции для агента OPUS4
 4. **README.md** — инструкции для работы
 5. **GITHUB_INSTRUCTIONS.md** — инструкции для GitHub и агентов
@@ -28,7 +28,7 @@ status: ready
 Начните с чтения этих файлов в указанном порядке:
 
 1. `CONCEPT.md` — понимание концепции Stories
-2. `SHARED_CONTEXT.md` — общий контекст проекта
+2. `stories-shared-context.md` — общий контекст проекта
 3. `OPUS4_ROLE.md` — роль и инструкции для работы
 
 ### Шаг 2: Используйте шаблон
@@ -123,7 +123,7 @@ npm run story:generate         # Генерация Stories
 ## Связанные документы
 
 - [CONCEPT.md](CONCEPT.md) — концепция Stories
-- [SHARED_CONTEXT.md](SHARED_CONTEXT.md) — общий контекст
+- [stories-shared-context.md](stories-shared-context.md) — общий контекст
 - [OPUS4_ROLE.md](OPUS4_ROLE.md) — роль агента
 - [GITHUB_INSTRUCTIONS.md](GITHUB_INSTRUCTIONS.md) — инструкции для GitHub
 - [README.md](README.md) — полная документация

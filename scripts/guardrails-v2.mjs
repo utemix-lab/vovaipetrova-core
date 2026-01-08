@@ -770,7 +770,7 @@ function addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType) {
   }
 
   const limits = SIZE_LIMITS[taskType] || SIZE_LIMITS.default;
-  
+
   let comment = '## 🛡️ Guardrails Threshold Alerts\n\n';
   comment += `**Task type:** \`${taskType}\`\n\n`;
   comment += `**PR Stats:**\n`;
@@ -887,7 +887,7 @@ function createThresholdIssue(sizeCheck, forbiddenCheck, piiCheck, stats, taskTy
       stdio: 'pipe',
       env: { ...process.env, GITHUB_TOKEN: token }
     });
-    
+
     const existingIssues = JSON.parse(output || '[]');
     if (existingIssues.length > 0) {
       if (VERBOSE) {
@@ -903,7 +903,7 @@ function createThresholdIssue(sizeCheck, forbiddenCheck, piiCheck, stats, taskTy
   }
 
   const limits = SIZE_LIMITS[taskType] || SIZE_LIMITS.default;
-  
+
   const title = `[Guardrails] Critical threshold violations in PR #${prNumber}`;
   let body = `## Critical Guardrails Violations Detected\n\n`;
   body += `**PR:** #${prNumber}\n`;
@@ -962,7 +962,7 @@ function createThresholdIssue(sizeCheck, forbiddenCheck, piiCheck, stats, taskTy
     // Извлекаем номер Issue из URL
     const issueNumberMatch = issueUrl.match(/#(\d+)/);
     const issueNumber = issueNumberMatch ? issueNumberMatch[1] : null;
-    
+
     if (VERBOSE) {
       console.log(`✅ Created GitHub Issue: ${issueUrl}`);
       if (issueNumber) {
@@ -1026,16 +1026,16 @@ function main() {
   // 3. ИЛИ есть критические PII нарушения (email, полное имя)
   const limits = SIZE_LIMITS[taskType] || SIZE_LIMITS.default;
   const criticalSizeViolations = sizeCheck.violations.filter(v => {
-    const limit = v.type === 'files' ? limits.maxFiles : 
-                  v.type === 'additions' ? limits.maxAdditions : 
+    const limit = v.type === 'files' ? limits.maxFiles :
+                  v.type === 'additions' ? limits.maxAdditions :
                   limits.maxDeletions;
     return v.actual > limit * 2; // Более чем в 2 раза от лимита
   });
-  
-  const criticalPIIViolations = piiCheck.violations.filter(v => 
+
+  const criticalPIIViolations = piiCheck.violations.filter(v =>
     v.kind === 'email' || v.kind === 'full_name_english'
   );
-  
+
   if (criticalSizeViolations.length > 0 || forbiddenCheck.length > 0 || criticalPIIViolations.length > 0) {
     createThresholdIssue(sizeCheck, forbiddenCheck, piiCheck, stats, taskType, prNumber);
   }
