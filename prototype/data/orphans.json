@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "updated": "2026-01-08T08:58:57.282Z",
+  "updated": "2026-01-08T19:46:11.725Z",
   "orphans": [
     {
       "slug": "briefs-ux-improvements",
@@ -11,26 +11,14 @@
     {
       "slug": "concept-author-gateway",
       "title": "CONCEPT — Author Gateway",
-      "url": "docs/CONCEPT.author-gateway.md",
+      "url": "docs/concept-author-gateway.md",
       "status": "ready"
     },
     {
-      "slug": "contributing-stories",
-      "title": "CONTRIBUTING — Гайд для авторов и редакторов Stories",
-      "url": "docs/CONTRIBUTING.stories.md",
+      "slug": "context-reminder",
+      "title": "Контекст-напоминание для Cursor",
+      "url": "docs/context-reminder.md",
       "status": "ready"
-    },
-    {
-      "slug": "copilot-mcp-setup",
-      "title": "Настройка GitHub Copilot с MCP для Notion",
-      "url": "docs/copilot-mcp-setup.md",
-      "status": "draft"
-    },
-    {
-      "slug": "cursor-mcp-openrouter-setup",
-      "title": "Настройка MCP сервера с OpenRouter для Cursor",
-      "url": "docs/cursor-mcp-openrouter-setup.md",
-      "status": "draft"
     },
     {
       "slug": "eval-harness-how-to",
@@ -41,7 +29,7 @@
     {
       "slug": "gateway-watcher",
       "title": "Gateway Watcher — валидация контента из inbox/author",
-      "url": "docs/GATEWAY-WATCHER.md",
+      "url": "docs/gateway-watcher.md",
       "status": "ready"
     },
     {
@@ -57,34 +45,46 @@
       "status": "draft"
     },
     {
+      "slug": "migration-report-2025-01-08",
+      "title": "Отчёт о переходе на PowerShell 7 и однопоточную работу",
+      "url": "docs/migration-report-2025-01-08.md",
+      "status": "ready"
+    },
+    {
+      "slug": "nastrojka-powershell-7-dlya-raboty-s-proektom",
+      "title": "Настройка PowerShell 7 для работы с проектом",
+      "url": "docs/nastrojka-powershell-7-dlya-raboty-s-proektom.md",
+      "status": "draft"
+    },
+    {
       "slug": "notion-access-setup",
       "title": "Настройка доступа к страницам Notion для MCP",
-      "url": "docs/NOTION-ACCESS-SETUP.md",
+      "url": "docs/notion-access-setup.md",
+      "status": "ready"
+    },
+    {
+      "slug": "process-improvements-assessment",
+      "title": "Оценка улучшений процесса разработки",
+      "url": "docs/process-improvements-assessment.md",
+      "status": "ready"
+    },
+    {
+      "slug": "process-improvements-assessment-364c8d",
+      "title": "Оценка улучшений процесса разработки",
+      "url": "docs/process-improvements-assessment-364c8d.md",
       "status": "ready"
     },
     {
       "slug": "terms-found-format",
       "title": "Terms found — формат блока в PR по Stories",
-      "url": "docs/TERMS-FOUND-FORMAT.md",
+      "url": "docs/terms-found-format.md",
       "status": "ready"
     },
     {
       "slug": "utf-8-setup",
       "title": "Настройка UTF-8 кодировки в редакторах",
-      "url": "docs/UTF-8-SETUP.md",
+      "url": "docs/utf-8-setup.md",
       "status": "ready"
-    },
-    {
-      "slug": "voideditor-github-token-setup",
-      "title": "Настройка GitHub токена в Voideditor",
-      "url": "docs/voideditor-github-token-setup.md",
-      "status": "draft"
-    },
-    {
-      "slug": "voideditor-github-troubleshooting",
-      "title": "Troubleshooting Voideditor и GitHub",
-      "url": "docs/voideditor-github-troubleshooting.md",
-      "status": "draft"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-01-08T08:58:56.823Z",
-  "totalPages": 36,
+  "generatedAt": "2026-01-08T19:46:11.252Z",
+  "totalPages": 37,
   "letters": [
     "A",
     "B",
@@ -22,6 +22,7 @@
     "И",
     "К",
     "М",
+    "Н",
     "Р",
     "С",
     "Т",
@@ -160,6 +161,13 @@
         "status": "ready"
       },
       {
+        "slug": "context-reminder",
+        "title": "Контекст-напоминание для Cursor",
+        "url": "docs/context-reminder.md",
+        "summary": "Краткое напоминание о ключевых принципах работы для восстановления контекста",
+        "status": "ready"
+      },
+      {
         "slug": "kontentpajplajn-eksporta",
         "title": "Контент‑пайплайн экспорта",
         "url": "docs/kontentpajplajn-eksporta.md",
@@ -239,13 +247,6 @@
         "status": "ready"
       },
       {
-        "slug": "backup-export-routine-notion-github",
-        "title": "Backup/Export рутина — Notion → GitHub + sanity-check",
-        "url": "docs/backup-export-routine-notion-github.md",
-        "summary": "Чек-лист и процедура регулярного экспорта Notion в GitHub с базовыми проверками целостности",
-        "status": "ready"
-      },
-      {
         "slug": "briefs-upgrade-how-to",
         "title": "Briefs upgrade — инструкция по обновлению полей, представлений, SLA и очередей ревью",
         "url": "docs/briefs-upgrade-how-to.md",
@@ -283,13 +284,6 @@
         "url": "docs/kb/canonical-slug.md",
         "summary": "Канонический идентификатор страницы, используемый как основной способ ссылки на документ. Обеспечивает стабильность ссылок при переименованиях.",
         "status": "ready"
-      },
-      {
-        "slug": "codegpt-kickoff-tasks-kb-content",
-        "title": "CodeGPT Kickoff — набор первых задач (KB/Content)",
-        "url": "docs/codegpt-kickoff-tasks-kb-content.md",
-        "summary": "Набор первых задач для CodeGPT агентов по работе с Knowledge Base и контентом. Задачи структурированы по типам агентов и приоритетам.",
-        "status": "ready"
       }
     ],
     "F": [
@@ -325,6 +319,22 @@
         "title": "Tags",
         "url": "docs/kb/tags.md",
         "summary": "Система тегов для категоризации контента: видимые теги и машинотеги. Используется для навигации, фильтрации и поиска материалов.",
+        "status": "ready"
+      },
+      {
+        "slug": "terms-found-format",
+        "title": "Terms found — формат блока в PR по Stories",
+        "url": "docs/terms-found-format.md",
+        "summary": "Стандартизированный формат блока \"Terms found\" для добавления в каждый PR по Stories.",
+        "status": "ready"
+      }
+    ],
+    "Н": [
+      {
+        "slug": "utf-8-setup",
+        "title": "Настройка UTF-8 кодировки в редакторах",
+        "url": "docs/utf-8-setup.md",
+        "summary": "Руководство по настройке UTF-8 кодировки в редакторах и Git для правильной работы с русским текстом.",
         "status": "ready"
       }
     ]

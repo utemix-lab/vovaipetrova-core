@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-01-08T08:58:56.870Z",
-  "totalStories": 50,
+  "generatedAt": "2026-01-08T19:46:11.302Z",
+  "totalStories": 48,
   "groups": [
     "2025-11",
     "episodes-000-009",
@@ -299,7 +299,7 @@
       {
         "slug": "prompts-library",
         "title": "Библиотека тонов для author_block",
-        "url": "docs/stories/PROMPTS-LIBRARY.md",
+        "url": "docs/stories/prompts-library.md",
         "summary": "Короткий справочник тонов и голосов для написания авторских блоков в dual-story эпизодах.",
         "status": "ready",
         "story_order": 9999,
@@ -309,7 +309,7 @@
       {
         "slug": "concept-author-gateway",
         "title": "CONCEPT — Author Gateway",
-        "url": "docs/CONCEPT.author-gateway.md",
+        "url": "docs/concept-author-gateway.md",
         "summary": "Концепция Author Gateway: система управления очередью идей и автоматической генерации Stories через единую точку входа",
         "status": "ready",
         "story_order": 9999,
@@ -319,7 +319,7 @@
       {
         "slug": "concept-stories-dual",
         "title": "CONCEPT — Dual-story формат (spec + пример)",
-        "url": "docs/stories/CONCEPT.stories-dual.md",
+        "url": "docs/stories/concept-stories-dual.md",
         "summary": "Спецификация формата dual-story: две параллельные линии (авторская рефлексия + машинный отчёт) в одном эпизоде Stories",
         "status": "ready",
         "story_order": 9999,
@@ -329,7 +329,7 @@
       {
         "slug": "concept-opus4-notes",
         "title": "CONCEPT — Opus4 notes (draft)",
-        "url": "docs/stories/CONCEPT.opus4-notes.md",
+        "url": "docs/stories/concept-opus4-notes.md",
         "summary": "Наброски концепции Stories v2 от OPUS4: двойная линия (author + machine), front matter spec и предложения по автоматизации.",
         "status": "draft",
         "story_order": 9999,
@@ -337,19 +337,9 @@
         "story_type": null
       },
       {
-        "slug": "contributing-stories",
-        "title": "CONTRIBUTING — Гайд для авторов и редакторов Stories",
-        "url": "docs/CONTRIBUTING.stories.md",
-        "summary": "Руководство по созданию и редактированию эпизодов Stories, включая dual-story формат и проверки качества",
-        "status": "ready",
-        "story_order": 9999,
-        "date": null,
-        "story_type": null
-      },
-      {
         "slug": "gateway-poc-auto",
         "title": "Gateway PoC — auto (no seed)",
-        "url": "docs/stories/GATEWAY_POC_AUTO.md",
+        "url": "docs/stories/gateway-poc-auto.md",
         "summary": "PoC: no seed → auto flow for Author Gateway",
         "status": "draft",
         "story_order": 9999,
@@ -359,7 +349,7 @@
       {
         "slug": "gateway-poc-hitl",
         "title": "Gateway PoC — HITL (seed_text)",
-        "url": "docs/stories/GATEWAY_POC_HITL.md",
+        "url": "docs/stories/gateway-poc-hitl.md",
         "summary": "PoC: seed_text → human-in-the-loop flow for Author Gateway",
         "status": "draft",
         "story_order": 9999,
@@ -369,7 +359,7 @@
       {
         "slug": "gateway-poc-2-episode-1",
         "title": "Gateway PoC #2 — Эпизод 1: Длинный seed_text и HITL",
-        "url": "docs/stories/2025-01-04-gateway-poc-2-episode-1.md",
+        "url": "docs/stories/gateway-poc-2-episode-1.md",
         "summary": "Первый эпизод серии Gateway PoC #2: эксперимент с длинным seed_text в режиме HITL для генерации dual-story.",
         "status": "draft",
         "story_order": 9999,
@@ -379,7 +369,7 @@
       {
         "slug": "gateway-poc-2-episode-2",
         "title": "Gateway PoC #2 — Эпизод 2: Развитие серии",
-        "url": "docs/stories/2025-01-04-gateway-poc-2-episode-2.md",
+        "url": "docs/stories/gateway-poc-2-episode-2.md",
         "summary": "Второй эпизод серии Gateway PoC #2: продолжение эксперимента с длинным seed_text и HITL режимом.",
         "status": "draft",
         "story_order": 9999,
@@ -389,7 +379,7 @@
       {
         "slug": "opus4-role",
         "title": "OPUS4 — Роль агента для работы со Stories",
-        "url": "docs/stories/OPUS4_ROLE.md",
+        "url": "docs/stories/opus4-role.md",
         "summary": "Роль и инструкции для агента OPUS4 по работе со Stories",
         "status": "ready",
         "story_order": 9999,
@@ -399,7 +389,7 @@
       {
         "slug": "gateway-poc-auto-review",
         "title": "Review: Gateway PoC — auto",
-        "url": "docs/stories/GATEWAY_POC_AUTO.REVIEW.md",
+        "url": "docs/stories/gateway-poc-auto-review.md",
         "summary": "Короткий чеклист для ревью PoC auto",
         "status": "draft",
         "story_order": 9999,
@@ -409,7 +399,7 @@
       {
         "slug": "gateway-poc-hitl-review",
         "title": "Review: Gateway PoC — HITL",
-        "url": "docs/stories/GATEWAY_POC_HITL.REVIEW.md",
+        "url": "docs/stories/gateway-poc-hitl-review.md",
         "summary": "Короткий чеклист для ревью PoC HITL",
         "status": "draft",
         "story_order": 9999,
@@ -419,7 +409,7 @@
       {
         "slug": "seed-dual-story-001",
         "title": "Seed: Dual Story 001",
-        "url": "docs/stories/2025-11-23-seed-dual-story-001.md",
+        "url": "docs/stories/seed-dual-story-001.md",
         "summary": "Первые заготовки: авторский блок и машинный отчёт в одном файле.",
         "status": "draft",
         "story_order": 9999,
@@ -429,7 +419,7 @@
       {
         "slug": "seed-dual-story-002",
         "title": "Seed: Dual Story 002",
-        "url": "docs/stories/2025-11-23-seed-dual-story-002.md",
+        "url": "docs/stories/seed-dual-story-002.md",
         "summary": "Второй эпизод dual-story: авторская рефлексия и машинный отчёт о развитии формата.",
         "status": "draft",
         "story_order": 9999,
@@ -439,18 +429,8 @@
       {
         "slug": "stories-quick-start",
         "title": "Stories — Быстрый старт",
-        "url": "docs/stories/QUICK_START.md",
+        "url": "docs/stories/stories-quick-start.md",
         "summary": "Быстрый старт для работы со Stories эпизодами",
-        "status": "ready",
-        "story_order": 9999,
-        "date": null,
-        "story_type": null
-      },
-      {
-        "slug": "stories-readme",
-        "title": "Stories — Инструкции для работы",
-        "url": "docs/stories/README.md",
-        "summary": "Инструкции для работы со Stories эпизодами для агентов и людей",
         "status": "ready",
         "story_order": 9999,
         "date": null,
@@ -459,7 +439,7 @@
       {
         "slug": "stories-github-instructions",
         "title": "Stories — Инструкции для GitHub и агентов",
-        "url": "docs/stories/GITHUB_INSTRUCTIONS.md",
+        "url": "docs/stories/stories-github-instructions.md",
         "summary": "Инструкции для работы со Stories на GitHub и для AI-агентов",
         "status": "ready",
         "story_order": 9999,
@@ -469,7 +449,7 @@
       {
         "slug": "stories-concept",
         "title": "Stories — Концепция и принципы",
-        "url": "docs/stories/CONCEPT.md",
+        "url": "docs/stories/stories-concept.md",
         "summary": "Концепция Stories как формата хроники проекта и принципы работы с эпизодами",
         "status": "ready",
         "story_order": 9999,
@@ -479,7 +459,7 @@
       {
         "slug": "stories-shared-context",
         "title": "Stories — Общий контекст для работы",
-        "url": "docs/stories/SHARED_CONTEXT.md",
+        "url": "docs/stories/stories-shared-context.md",
         "summary": "Общий контекст проекта для работы с Stories и агентами",
         "status": "ready",
         "story_order": 9999,
@@ -499,7 +479,7 @@
       {
         "slug": "terms-found-format",
         "title": "Terms found — формат блока в PR по Stories",
-        "url": "docs/TERMS-FOUND-FORMAT.md",
+        "url": "docs/terms-found-format.md",
         "summary": "Стандартизированный формат блока \"Terms found\" для добавления в каждый PR по Stories.",
         "status": "ready",
         "story_order": 9999,
