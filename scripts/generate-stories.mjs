@@ -275,30 +275,34 @@ function main() {
     sources,
   });
 
-  // Отправляем отчёт в Notion (best-effort, не блокируем при ошибке)
+  // Отправляем минимальный отчёт в Notion (best-effort, не блокируем при ошибке)
   try {
+    const slug = slugifyText(title);
     const reportPayload = {
-      title: `Stories Generator: ${filename}`,
-      message: `Создан новый черновик Stories: **${filename}**`,
-      executor: "Stories Generator",
+      // Минимальный формат согласно требованиям задачи
+      last_generated: new Date().toISOString(),
+      latest_slug: slug,
       status: "completed",
-      timestamp: new Date().toISOString(),
+      note: `Создан новый черновик Stories: ${filename}`,
+      generated_by: "Stories Generator",
+      // Дополнительные поля для совместимости
       filename,
       sources: sources.join(", "),
       date: today,
+      minimal: true, // Флаг для использования минимального формата
     };
 
     const reportPath = path.join(META_DIR, "story-report.json");
     mkdirSync(META_DIR, { recursive: true });
     writeFileSync(reportPath, JSON.stringify(reportPayload, null, 2));
 
-    // Вызываем notion-report.mjs с автоматическим поиском страницы
+    // Вызываем notion-report.mjs с автоматическим поиском страницы и минимальным форматом
     try {
       execSync(
-        `node scripts/notion-report.mjs --file "${reportPath}" --title "Stories Generator: ${filename}"`,
+        `node scripts/notion-report.mjs --file "${reportPath}" --auto`,
         { stdio: "inherit", cwd: process.cwd() }
       );
-      log("✅ Notion report sent successfully");
+      log("✅ Notion report sent successfully (minimal format)");
     } catch (reportErr) {
       log(`⚠️  Notion report failed (non-blocking): ${reportErr.message}`);
       // Не фейлим весь процесс, если отправка отчёта не удалась
