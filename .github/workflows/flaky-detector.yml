@@ -46,6 +46,7 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
         run: |
           echo "🔍 Detecting flaky tests..."
           npm run flaky:detect -- --days=7 --threshold=30 || echo "⚠️  Flaky detection completed with warnings"
