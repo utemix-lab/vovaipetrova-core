@@ -3,10 +3,27 @@
  * Notion Report — публикация минимального отчёта в «Copilot — Отчёты»
  * 
  * Использование:
- *   node scripts/notion-report.mjs [--file=path] [--payload=json] [--page-id=id] [--title=title]
+ *   node scripts/notion-report.mjs [--file=path] [--payload=json] [--page-id=id] [--title=title] [--minimal] [--auto]
+ * 
+ * Параметры:
+ *   --file=path     - Путь к JSON файлу с данными отчёта
+ *   --payload=json  - JSON строка с данными отчёта
+ *   --page-id=id    - ID страницы Notion для публикации
+ *   --title=title   - Заголовок отчёта
+ *   --minimal       - Использовать минимальный формат (только JSON блок)
+ *   --auto          - Автоматический режим (эквивалент --minimal)
+ * 
+ * Минимальный формат (--minimal или --auto):
+ *   Публикует только JSON блок с полями:
+ *   { last_generated, latest_slug, status, note, generated_by }
  * 
  * Если --page-id не указан, скрипт ищет страницу «Copilot — Отчёты» через поиск.
  * Если --file и --payload не указаны, создаётся минимальный отчёт с текущей датой и временем.
+ * 
+ * Переменные окружения:
+ *   NOTION_API_KEY              - API ключ Notion (обязательно)
+ *   NOTION_COPILOT_REPORTS_PAGE_ID - ID страницы «Copilot — Отчёты» (опционально)
+ *   NOTION_REPORT_MINIMAL       - Использовать минимальный формат по умолчанию (true/false)
  */
 
 import { readFileSync } from 'fs';
@@ -160,10 +177,51 @@ function createMinimalReport(data = {}) {
 
 /**
  * Форматирует отчёт в блоки Notion
+ * 
+ * Для минимального отчёта публикует только JSON блок (code) с данными:
+ * { last_generated, latest_slug, status, note, generated_by }
  */
-function formatReportAsBlocks(report) {
+function formatReportAsBlocks(report, minimal = false) {
   const blocks = [];
 
+  // Если это минимальный отчёт, публикуем только JSON блок
+  if (minimal || report.minimal) {
+    // Формируем минимальный payload согласно требованиям
+    const minimalPayload = {
+      last_generated: report.last_generated || report.timestamp || new Date().toISOString(),
+      latest_slug: report.latest_slug || report.slug || report.filename || '',
+      status: report.status || 'completed',
+      note: report.note || report.message || report.content || '',
+      generated_by: report.generated_by || report.executor || 'GitHub Copilot',
+    };
+
+    // Удаляем пустые поля
+    Object.keys(minimalPayload).forEach(key => {
+      if (!minimalPayload[key] && minimalPayload[key] !== 0) {
+        delete minimalPayload[key];
+      }
+    });
+
+    blocks.push({
+      object: 'block',
+      type: 'code',
+      code: {
+        language: 'json',
+        rich_text: [
+          {
+            type: 'text',
+            text: {
+              content: JSON.stringify(minimalPayload, null, 2),
+            },
+          },
+        ],
+      },
+    });
+
+    return blocks;
+  }
+
+  // Полный формат отчёта (для обратной совместимости)
   // Заголовок с датой
   blocks.push({
     object: 'block',
@@ -318,6 +376,8 @@ function parseArgs() {
       out.payload = a.split('=', 2)[1];
     } else if (a.startsWith('--title=')) {
       out.title = a.split('=', 2)[1];
+    } else if (a === '--minimal' || a === '--auto') {
+      out.minimal = true;
     } else if (a === '--file' && i + 1 < args.length) {
       out.file = args[++i];
     } else if (a === '--page-id' && i + 1 < args.length) {
@@ -332,7 +392,7 @@ function parseArgs() {
 }
 
 async function main() {
-  const { file, pageId, payload, title } = parseArgs();
+  const { file, pageId, payload, title, minimal } = parseArgs();
 
   // Определяем страницу для публикации
   let targetPageId = null;
@@ -376,8 +436,11 @@ async function main() {
     });
   }
 
+  // Если используется --minimal или --auto, форсируем минимальный формат
+  const useMinimal = minimal || reportData.minimal || process.env.NOTION_REPORT_MINIMAL === 'true';
+
   // Форматируем отчёт в блоки Notion
-  const blocks = formatReportAsBlocks(reportData);
+  const blocks = formatReportAsBlocks(reportData, useMinimal);
 
   try {
     // Добавляем блоки на страницу
@@ -387,6 +450,7 @@ async function main() {
     });
     console.log('✅ Report posted to Notion successfully');
     console.log(`   Page: ${targetPageId}`);
+    console.log(`   Format: ${useMinimal ? 'minimal (JSON only)' : 'full'}`);
     console.log(`   Blocks: ${blocks.length}`);
   } catch (err) {
     console.error('❌ Failed to post report to Notion:', err.message);
