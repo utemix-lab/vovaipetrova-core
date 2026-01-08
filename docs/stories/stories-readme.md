@@ -2,9 +2,10 @@
 title: Stories — Инструкции для работы
 slug: stories-readme
 summary: Инструкции для работы со Stories эпизодами для агентов и людей
-tags: [Story]
-machine_tags: [content/story]
+tags: []
+machine_tags: []
 status: ready
+service: true
 ---
 
 # Stories — Инструкции для работы

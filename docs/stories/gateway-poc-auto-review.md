@@ -1,9 +1,14 @@
 ---
-title: "Review: Gateway PoC — auto"
-slug: "gateway-poc-auto-review"
-summary: "Короткий чеклист для ревью PoC auto"
-tags: [Story, Review]
-machine_tags: [pipeline/poc, review]
+title: 'Review: Gateway PoC — auto'
+slug: gateway-poc-auto-review
+summary: Короткий чеклист для ревью PoC auto
+tags:
+  - Review
+  - Story
+machine_tags:
+  - content/story
+  - pipeline/poc
+  - review
 status: draft
 ---
 

@@ -1,9 +1,14 @@
 ---
-title: "Review: Gateway PoC — HITL"
-slug: "gateway-poc-hitl-review"
-summary: "Короткий чеклист для ревью PoC HITL"
-tags: [Story, Review]
-machine_tags: [pipeline/poc, review]
+title: 'Review: Gateway PoC — HITL'
+slug: gateway-poc-hitl-review
+summary: Короткий чеклист для ревью PoC HITL
+tags:
+  - Review
+  - Story
+machine_tags:
+  - content/story
+  - pipeline/poc
+  - review
 status: draft
 ---
 

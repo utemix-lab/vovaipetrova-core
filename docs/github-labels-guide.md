@@ -1,7 +1,9 @@
 ---
 title: GitHub Labels — Руководство по использованию
 slug: github-labels-guide
-summary: Руководство по использованию GitHub labels для организации работы и автоматической проверки
+summary: >-
+  Руководство по использованию GitHub labels для организации работы и
+  автоматической проверки
 tags:
   - Автоматизация
 machine_tags:

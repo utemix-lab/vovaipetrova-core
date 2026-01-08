@@ -1,18 +1,29 @@
 ---
-title: "Gateway PoC #2 — Эпизод 1: Длинный seed_text и HITL"
-slug: "gateway-poc-2-episode-1"
-summary: "Первый эпизод серии Gateway PoC #2: эксперимент с длинным seed_text в режиме HITL для генерации dual-story."
-tags: [Story, Gateway, PoC]
-machine_tags: [content/story, pipeline/gateway]
+title: 'Gateway PoC #2 — Эпизод 1: Длинный seed_text и HITL'
+slug: gateway-poc-2-episode-1
+summary: >-
+  Первый эпизод серии Gateway PoC #2: эксперимент с длинным seed_text в режиме
+  HITL для генерации dual-story.
+tags:
+  - Gateway
+  - PoC
+  - Story
+machine_tags:
+  - content/story
+  - pipeline/gateway
 status: draft
 story_type: dual
-series_id: "gateway-poc-2"
+series_id: gateway-poc-2
 series_order: 1
 visuals:
-  author_prompt: "surreal scene: blurred boundary between human and machine, long text flowing into code, soft focus, contemplative atmosphere"
-  report_prompt: "technical workflow: HITL process diagram, seed_text input, gateway system, episode generation, series connection"
-notion_page_id: ""
-last_edited_time: ""
+  author_prompt: >-
+    surreal scene: blurred boundary between human and machine, long text flowing
+    into code, soft focus, contemplative atmosphere
+  report_prompt: >-
+    technical workflow: HITL process diagram, seed_text input, gateway system,
+    episode generation, series connection
+notion_page_id: ''
+last_edited_time: ''
 ---
 
 # TL;DR

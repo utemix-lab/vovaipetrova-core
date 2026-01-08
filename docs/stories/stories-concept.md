@@ -3,11 +3,14 @@ title: Stories — Концепция и принципы
 slug: stories-concept
 summary: Концепция Stories как формата хроники проекта и принципы работы с эпизодами
 tags:
-  - Story
   - Проектирование
+  - Story
 machine_tags:
+  - action/build
   - content/story
+  - product/services
   - theme/design
+  - theme/graphics
 status: ready
 ---
 

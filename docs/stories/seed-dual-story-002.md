@@ -1,16 +1,26 @@
 ---
-title: "Seed: Dual Story 002"
-slug: "seed-dual-story-002"
-summary: "Второй эпизод dual-story: авторская рефлексия и машинный отчёт о развитии формата."
-tags: [Story, Seed]
-machine_tags: [content/story, pipeline/seed]
+title: 'Seed: Dual Story 002'
+slug: seed-dual-story-002
+summary: >-
+  Второй эпизод dual-story: авторская рефлексия и машинный отчёт о развитии
+  формата.
+tags:
+  - Seed
+  - Story
+machine_tags:
+  - content/story
+  - pipeline/seed
 status: draft
 story_type: dual
 visuals:
-  author_prompt: "abstract composition: overlapping forms representing structure and content, soft gradients, contemplative mood, muted colors"
-  report_prompt: "documentation layout: improved file structure, metadata fields, validation checklist, technical precision"
-notion_page_id: ""
-last_edited_time: ""
+  author_prompt: >-
+    abstract composition: overlapping forms representing structure and content,
+    soft gradients, contemplative mood, muted colors
+  report_prompt: >-
+    documentation layout: improved file structure, metadata fields, validation
+    checklist, technical precision
+notion_page_id: ''
+last_edited_time: ''
 ---
 
 # TL;DR

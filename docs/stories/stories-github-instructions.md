@@ -3,8 +3,8 @@ title: Stories — Инструкции для GitHub и агентов
 slug: stories-github-instructions
 summary: Инструкции для работы со Stories на GitHub и для AI-агентов
 tags:
-  - Story
   - Автоматизация
+  - Story
 machine_tags:
   - content/story
   - theme/automation

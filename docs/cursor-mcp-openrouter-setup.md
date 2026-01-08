@@ -1,7 +1,9 @@
 ---
 title: Настройка MCP сервера с OpenRouter для Cursor
 slug: cursor-mcp-openrouter-setup
-summary: Инструкция по настройке MCP сервера с OpenRouter для работы с локальными файлами в Cursor
+summary: >-
+  Инструкция по настройке MCP сервера с OpenRouter для работы с локальными
+  файлами в Cursor
 status: draft
 tags:
   - Автоматизация

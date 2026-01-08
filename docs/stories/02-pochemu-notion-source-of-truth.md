@@ -1,8 +1,7 @@
 ---
 title: Почему Notion остаётся источником истины
 slug: 02-pochemu-notion-source-of-truth
-summary: >-
-  Аргументы в пользу модели Notion → GitHub и как мы оформили зеркалирование.
+summary: Аргументы в пользу модели Notion → GitHub и как мы оформили зеркалирование.
 tags:
   - Story
 machine_tags:

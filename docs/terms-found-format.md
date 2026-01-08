@@ -1,9 +1,17 @@
 ---
 title: Terms found — формат блока в PR по Stories
 slug: terms-found-format
-summary: Стандартизированный формат блока "Terms found" для добавления в каждый PR по Stories.
-tags: [Документация, Stories]
-machine_tags: [theme/docs, content/story]
+summary: >-
+  Стандартизированный формат блока "Terms found" для добавления в каждый PR по
+  Stories.
+tags:
+  - Документация
+  - Stories
+machine_tags:
+  - action/build
+  - content/story
+  - product/kb
+  - theme/docs
 status: ready
 ---
 

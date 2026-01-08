@@ -1,14 +1,13 @@
 ---
 title: CONTRIBUTING — Гайд для авторов и редакторов Stories
 slug: contributing-stories
-summary: Руководство по созданию и редактированию эпизодов Stories, включая dual-story формат и проверки качества
-tags:
-  - Story
-  - Процесс
-machine_tags:
-  - content/story
-  - theme/process
+summary: >-
+  Руководство по созданию и редактированию эпизодов Stories, включая dual-story
+  формат и проверки качества
+tags: []
+machine_tags: []
 status: ready
+service: true
 ---
 
 # CONTRIBUTING — Гайд для авторов и редакторов Stories
