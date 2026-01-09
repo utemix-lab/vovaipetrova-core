@@ -9,17 +9,54 @@
  */
 
 import { execSync } from 'child_process';
-import { writeFileSync, unlinkSync } from 'fs';
+import { writeFileSync, unlinkSync, readFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Настраиваемые лимиты (можно переопределить через переменные окружения)
-const MAX_FILES = parseInt(process.env.PR_SIZE_MAX_FILES || '50', 10);
-const MAX_ADDITIONS = parseInt(process.env.PR_SIZE_MAX_ADDITIONS || '2000', 10);
-const MAX_DELETIONS = parseInt(process.env.PR_SIZE_MAX_DELETIONS || '1000', 10);
+// Загрузка конфигурации порогов
+const THRESHOLDS_CONFIG_PATH = join(__dirname, '..', 'config', 'ci-thresholds.json');
+
+/**
+ * Загружает конфигурацию порогов из config/ci-thresholds.json
+ */
+function loadThresholdsConfig() {
+  if (!existsSync(THRESHOLDS_CONFIG_PATH)) {
+    return null;
+  }
+
+  try {
+    const configContent = readFileSync(THRESHOLDS_CONFIG_PATH, 'utf8');
+    const config = JSON.parse(configContent);
+    return config;
+  } catch (error) {
+    console.warn(`⚠️  Failed to load thresholds config: ${error.message}`);
+    return null;
+  }
+}
+
+const thresholdsConfig = loadThresholdsConfig();
+
+// Настраиваемые лимиты (из конфига, env переменных или дефолтные)
+const prSizeConfig = thresholdsConfig?.prSize || {};
+const MAX_FILES = parseInt(
+  process.env.PR_SIZE_MAX_FILES || prSizeConfig.maxFiles?.toString() || '50',
+  10
+);
+const MAX_ADDITIONS = parseInt(
+  process.env.PR_SIZE_MAX_ADDITIONS || prSizeConfig.maxAdditions?.toString() || '2000',
+  10
+);
+const MAX_DELETIONS = parseInt(
+  process.env.PR_SIZE_MAX_DELETIONS || prSizeConfig.maxDeletions?.toString() || '1000',
+  10
+);
+const WARNING_MULTIPLIER = prSizeConfig.warningMultiplier || 0.5;
+
+// Настройки оповещений
+const ALERTS_ENABLED = thresholdsConfig?.alerts?.prSize?.comments?.enabled !== false;
 
 // Паттерны файлов, которые исключаются из подсчёта (автоматически генерируемые)
 const EXCLUDED_PATTERNS = [
@@ -115,29 +152,29 @@ function main() {
   if (stats.files > MAX_FILES) {
     const diff = stats.files - MAX_FILES;
     const message = `Количество файлов (${stats.files}) превышает лимит (${MAX_FILES}) на ${diff}`;
-    if (diff > MAX_FILES * 0.5) {
+    if (diff > MAX_FILES * WARNING_MULTIPLIER) {
       errors.push(message);
     } else {
       warnings.push(message);
     }
   }
-  
+
   // Проверка добавлений
   if (stats.additions > MAX_ADDITIONS) {
     const diff = stats.additions - MAX_ADDITIONS;
     const message = `Количество добавлений (${formatSize(stats.additions)}) превышает лимит (${formatSize(MAX_ADDITIONS)}) на ${formatSize(diff)}`;
-    if (diff > MAX_ADDITIONS * 0.5) {
+    if (diff > MAX_ADDITIONS * WARNING_MULTIPLIER) {
       errors.push(message);
     } else {
       warnings.push(message);
     }
   }
-  
+
   // Проверка удалений
   if (stats.deletions > MAX_DELETIONS) {
     const diff = stats.deletions - MAX_DELETIONS;
     const message = `Количество удалений (${formatSize(stats.deletions)}) превышает лимит (${formatSize(MAX_DELETIONS)}) на ${formatSize(diff)}`;
-    if (diff > MAX_DELETIONS * 0.5) {
+    if (diff > MAX_DELETIONS * WARNING_MULTIPLIER) {
       errors.push(message);
     } else {
       warnings.push(message);
@@ -187,6 +224,11 @@ function main() {
 }
 
 function addPRComment(warnings, errors, stats) {
+  // Проверяем, включены ли оповещения в конфиге
+  if (!ALERTS_ENABLED) {
+    return;
+  }
+
   const prNumber = process.env.GITHUB_PR_NUMBER || process.env.GITHUB_EVENT_PULL_REQUEST_NUMBER;
   const repo = process.env.GITHUB_REPO || 'utemix-lab/vovaipetrova-core';
   const token = process.env.GITHUB_TOKEN;

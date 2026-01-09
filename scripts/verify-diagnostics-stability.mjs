@@ -16,12 +16,34 @@ const __dirname = dirname(__filename);
 
 const STATS_JSON = join(__dirname, '../prototype/data/stats.json');
 const BROKEN_LINKS_JSON = join(__dirname, '../prototype/data/broken-links.json');
+const THRESHOLDS_CONFIG_PATH = join(__dirname, '..', 'config', 'ci-thresholds.json');
 
-// Пороговые значения для стабильности
+/**
+ * Загружает конфигурацию порогов из config/ci-thresholds.json
+ */
+function loadThresholdsConfig() {
+  if (!existsSync(THRESHOLDS_CONFIG_PATH)) {
+    return null;
+  }
+
+  try {
+    const configContent = readFileSync(THRESHOLDS_CONFIG_PATH, 'utf8');
+    const config = JSON.parse(configContent);
+    return config;
+  } catch (error) {
+    console.warn(`⚠️  Failed to load thresholds config: ${error.message}`);
+    return null;
+  }
+}
+
+const thresholdsConfig = loadThresholdsConfig();
+const diagnosticsConfig = thresholdsConfig?.diagnostics || {};
+
+// Пороговые значения для стабильности (из конфига или дефолтные)
 const THRESHOLDS = {
-  maxInternalMissingIncrease: 5, // Максимальное увеличение internal-missing
-  maxTotalIssuesIncrease: 10,    // Максимальное увеличение total issues
-  minReadyPercent: 40            // Минимальный процент готовых страниц
+  maxInternalMissingIncrease: diagnosticsConfig.maxInternalMissingIncrease ?? 5,
+  maxTotalIssuesIncrease: diagnosticsConfig.maxTotalIssuesIncrease ?? 10,
+  minReadyPercent: diagnosticsConfig.minReadyPercent ?? 40
 };
 
 function loadDiagnostics() {

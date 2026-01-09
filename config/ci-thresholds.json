@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$comment": "CI Thresholds Configuration - все пороги и настройки оповещений CI",
+  "version": "1.0.0",
+  "description": "Конфигурация порогов и оповещений для всех CI проверок",
+  
+  "sizeGuard": {
+    "description": "Пороги size-guard по типам задач (guardrails-v2.mjs)",
+    "taskTypes": {
+      "composer": {
+        "maxFiles": 20,
+        "maxAdditions": 500,
+        "maxDeletions": 200,
+        "criticalMultiplier": 1.5
+      },
+      "codegpt": {
+        "maxFiles": 25,
+        "maxAdditions": 800,
+        "maxDeletions": 300,
+        "criticalMultiplier": 1.5
+      },
+      "copilot": {
+        "maxFiles": 30,
+        "maxAdditions": 1000,
+        "maxDeletions": 400,
+        "criticalMultiplier": 1.5
+      },
+      "docs": {
+        "maxFiles": 30,
+        "maxAdditions": 1000,
+        "maxDeletions": 500,
+        "criticalMultiplier": 1.5
+      },
+      "scripts": {
+        "maxFiles": 15,
+        "maxAdditions": 800,
+        "maxDeletions": 300,
+        "criticalMultiplier": 1.5
+      },
+      "prototype": {
+        "maxFiles": 25,
+        "maxAdditions": 1200,
+        "maxDeletions": 600,
+        "criticalMultiplier": 1.5
+      },
+      "default": {
+        "maxFiles": 50,
+        "maxAdditions": 2000,
+        "maxDeletions": 1000,
+        "criticalMultiplier": 1.5
+      }
+    }
+  },
+
+  "prSize": {
+    "description": "Дефолтные пороги размера PR (check-pr-size.mjs)",
+    "maxFiles": 50,
+    "maxAdditions": 2000,
+    "maxDeletions": 1000,
+    "warningMultiplier": 0.5
+  },
+
+  "flakyTests": {
+    "description": "Пороги для обнаружения flaky тестов (detect-flaky-tests.mjs)",
+    "failureThreshold": 30,
+    "minRuns": 3,
+    "daysFilter": 7
+  },
+
+  "diagnostics": {
+    "description": "Пороги стабильности diagnostics (verify-diagnostics-stability.mjs)",
+    "maxInternalMissingIncrease": 5,
+    "maxTotalIssuesIncrease": 10,
+    "minReadyPercent": 40
+  },
+
+  "alerts": {
+    "description": "Настройки оповещений (включение/выключение)",
+    "guardrails": {
+      "prComments": {
+        "enabled": true,
+        "description": "Комментарии в PR при превышении порогов guardrails"
+      },
+      "issues": {
+        "enabled": true,
+        "description": "Создание GitHub Issues при критических превышениях",
+        "conditions": {
+          "criticalSizeViolations": {
+            "enabled": true,
+            "threshold": 2.0,
+            "description": "Создавать Issue при превышении лимита более чем в 2 раза"
+          },
+          "forbiddenPaths": {
+            "enabled": true,
+            "description": "Создавать Issue при обнаружении forbidden paths"
+          },
+          "criticalPIIViolations": {
+            "enabled": true,
+            "types": ["email", "full_name_english"],
+            "description": "Создавать Issue при обнаружении критических PII нарушений"
+          }
+        }
+      }
+    },
+    "prSize": {
+      "comments": {
+        "enabled": true,
+        "description": "Комментарии в PR при превышении порогов размера PR"
+      }
+    },
+    "flakyTests": {
+      "notion": {
+        "enabled": true,
+        "description": "Отправка оповещений в Notion при обнаружении flaky тестов"
+      }
+    }
+  }
+}
