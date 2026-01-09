@@ -319,14 +319,18 @@ async function renderIndex() {
   // Читаем параметры из URL или localStorage
   const urlParams = new URLSearchParams(window.location.search);
 
+  // Проверяем, есть ли маршрут /kb/<letter> в hash
+  const kbLetterMatch = hash.match(/^kb\/(.+)$/);
+  const kbLetterFromHash = kbLetterMatch ? decodeURIComponent(kbLetterMatch[1]) : null;
+
   let currentStatus = urlParams.get("status") || localStorage.getItem("explorer-status") || "all";
-  let currentSearch = urlParams.get("search") || "";
+  let currentSearch = urlParams.get("search") || localStorage.getItem("explorer-search") || "";
   let currentSort = urlParams.get("sort") || localStorage.getItem("explorer-sort") || "route";
   let currentTagFilter = tagFromHash || urlParams.get("tag") || localStorage.getItem("explorer-tag-filter") || null;
   let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
   let currentPage = parseInt(urlParams.get("page")) || 1;
   const ITEMS_PER_PAGE = 30; // Количество элементов на странице
-  let activePanel = hashWithoutTag.includes("stories-index") ? "stories-index" : hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("unresolved-terms") ? "unresolved-terms" : hashWithoutTag.includes("diagnostics") ? "diagnostics" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
+  let activePanel = kbLetterFromHash ? "kb-index" : hashWithoutTag.includes("stories-index") ? "stories-index" : hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("unresolved-terms") ? "unresolved-terms" : hashWithoutTag.includes("diagnostics") ? "diagnostics" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
 
   // Сбрасываем страницу при изменении фильтров (кроме явного указания page в URL)
   if (!urlParams.get("page")) {
@@ -338,6 +342,8 @@ async function renderIndex() {
   if (urlParams.get("sort")) localStorage.setItem("explorer-sort", currentSort);
   if (urlParams.get("tag") || tagFromHash) localStorage.setItem("explorer-tag-filter", currentTagFilter);
   if (urlParams.get("ready")) localStorage.setItem("explorer-ready-only", readyOnly ? "true" : "false");
+  if (urlParams.get("search") !== null) localStorage.setItem("explorer-search", currentSearch);
+  if (kbLetterFromHash) localStorage.setItem("explorer-kb-letter", kbLetterFromHash);
 
   // Функция для обновления URL без перезагрузки страницы
   function updateURL() {
@@ -360,10 +366,12 @@ async function renderIndex() {
       params.set("page", currentPage.toString());
     }
 
-    // Формируем hash: приоритет тега, затем панель
+    // Формируем hash: приоритет тега, затем KB letter, затем панель
     let newHash = "";
     if (currentTagFilter) {
       newHash = `tags/${encodeURIComponent(currentTagFilter)}`;
+    } else if (activePanel === "kb-index" && localStorage.getItem("explorer-kb-letter")) {
+      newHash = `kb/${encodeURIComponent(localStorage.getItem("explorer-kb-letter"))}`;
     } else if (activePanel !== "docs") {
       newHash = activePanel; // stories, issues, orphans, unresolved-terms, kb-index, stories-index
     }
@@ -374,6 +382,52 @@ async function renderIndex() {
       : `${window.location.pathname}${newHash ? `#${newHash}` : ""}`;
 
     window.history.pushState({}, "", newURL);
+    
+    // Сохраняем позицию скролла перед изменением URL (для будущего восстановления)
+    saveScrollPosition();
+  }
+  
+  // Функция для сохранения позиции скролла
+  function saveScrollPosition() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const scrollX = window.scrollX || window.pageXOffset;
+    
+    // Сохраняем для текущего контекста (tag или kb letter)
+    let scrollKey = "explorer-scroll";
+    if (currentTagFilter) {
+      scrollKey = `explorer-scroll-tag-${currentTagFilter}`;
+    } else if (activePanel === "kb-index" && localStorage.getItem("explorer-kb-letter")) {
+      scrollKey = `explorer-scroll-kb-${localStorage.getItem("explorer-kb-letter")}`;
+    } else if (activePanel !== "docs") {
+      scrollKey = `explorer-scroll-panel-${activePanel}`;
+    }
+    
+    localStorage.setItem(scrollKey, JSON.stringify({ x: scrollX, y: scrollY }));
+  }
+  
+  // Функция для восстановления позиции скролла
+  function restoreScrollPosition() {
+    let scrollKey = "explorer-scroll";
+    if (currentTagFilter) {
+      scrollKey = `explorer-scroll-tag-${currentTagFilter}`;
+    } else if (activePanel === "kb-index" && localStorage.getItem("explorer-kb-letter")) {
+      scrollKey = `explorer-scroll-kb-${localStorage.getItem("explorer-kb-letter")}`;
+    } else if (activePanel !== "docs") {
+      scrollKey = `explorer-scroll-panel-${activePanel}`;
+    }
+    
+    const savedScroll = localStorage.getItem(scrollKey);
+    if (savedScroll) {
+      try {
+        const { x, y } = JSON.parse(savedScroll);
+        // Восстанавливаем скролл после небольшой задержки, чтобы контент успел отрендериться
+        setTimeout(() => {
+          window.scrollTo({ left: x || 0, top: y || 0, behavior: 'auto' });
+        }, 100);
+      } catch (e) {
+        // Игнорируем ошибки парсинга
+      }
+    }
   }
 
   // Функция для копирования текущего URL
@@ -539,6 +593,10 @@ async function renderIndex() {
         chip.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
+          
+          // Сохраняем позицию скролла перед изменением фильтра
+          saveScrollPosition();
+          
           const tagValue = chip.dataset.tag;
           // При клике на тег переключаем фильтр или убираем его
           if (currentTagFilter === tagValue) {
@@ -552,11 +610,25 @@ async function renderIndex() {
           updateURL();
           renderDocs();
           updateTagFilterUI();
+          
+          // Восстанавливаем позицию скролла после рендеринга (но обычно сбрасываем наверх при смене фильтра)
+          setTimeout(() => {
+            restoreScrollPosition();
+          }, 200);
         });
       });
       fragment.appendChild(card);
     }
     cardsContainer.appendChild(fragment);
+    
+    // Восстанавливаем позицию скролла только если не было изменения страницы пагинации
+    // (при изменении страницы скролл сбрасывается наверх в обработчиках пагинации)
+    const wasPageChange = urlParams.get("page") && parseInt(urlParams.get("page")) !== currentPage;
+    if (!wasPageChange) {
+      setTimeout(() => {
+        restoreScrollPosition();
+      }, 200);
+    }
 
     // Рендерим пагинацию
     if (totalPages > 1) {
@@ -588,9 +660,12 @@ async function renderIndex() {
     prevButton.disabled = currentPage === 1;
     prevButton.onclick = () => {
       if (currentPage > 1) {
+        // Сохраняем позицию скролла перед изменением страницы
+        saveScrollPosition();
         currentPage--;
         updateURL();
         renderDocs();
+        // При переходе на другую страницу сбрасываем скролл наверх
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     };
@@ -651,9 +726,12 @@ async function renderIndex() {
     nextButton.disabled = currentPage === totalPages;
     nextButton.onclick = () => {
       if (currentPage < totalPages) {
+        // Сохраняем позицию скролла перед изменением страницы
+        saveScrollPosition();
         currentPage++;
         updateURL();
         renderDocs();
+        // При переходе на другую страницу сбрасываем скролл наверх
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     };
@@ -671,9 +749,12 @@ async function renderIndex() {
     }
     button.textContent = pageNum.toString();
     button.onclick = () => {
+      // Сохраняем позицию скролла перед изменением страницы
+      saveScrollPosition();
       currentPage = pageNum;
       updateURL();
       renderDocs();
+      // При переходе на другую страницу сбрасываем скролл наверх
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
     return button;
@@ -1132,6 +1213,9 @@ async function renderIndex() {
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
+      // Сохраняем позицию скролла перед изменением фильтра
+      saveScrollPosition();
+      
       filterButtons.forEach((btn) => btn.classList.remove("is-active"));
       button.classList.add("is-active");
       currentStatus = button.dataset.status;
@@ -1139,6 +1223,11 @@ async function renderIndex() {
       localStorage.setItem("explorer-status", currentStatus);
       updateURL();
       renderDocs();
+      
+      // Восстанавливаем позицию скролла после рендеринга
+      setTimeout(() => {
+        restoreScrollPosition();
+      }, 200);
     });
   });
 
@@ -1151,6 +1240,9 @@ async function renderIndex() {
 
   sortButtons.forEach((button) => {
     button.addEventListener("click", () => {
+      // Сохраняем позицию скролла перед изменением сортировки
+      saveScrollPosition();
+      
       sortButtons.forEach((btn) => btn.classList.remove("is-active"));
       button.classList.add("is-active");
       currentSort = button.dataset.sort;
@@ -1158,6 +1250,11 @@ async function renderIndex() {
       localStorage.setItem("explorer-sort", currentSort);
       updateURL();
       renderDocs();
+      
+      // Восстанавливаем позицию скролла после рендеринга
+      setTimeout(() => {
+        restoreScrollPosition();
+      }, 200);
     });
   });
 
@@ -1177,11 +1274,19 @@ async function renderIndex() {
   `;
   const checkbox = readyOnlyToggle.querySelector("input");
   checkbox.addEventListener("change", (e) => {
+    // Сохраняем позицию скролла перед изменением фильтра
+    saveScrollPosition();
+    
     readyOnly = e.target.checked;
     currentPage = 1; // Сбрасываем на первую страницу при изменении фильтра Ready only
     localStorage.setItem("explorer-ready-only", readyOnly ? "true" : "false");
     updateURL();
     renderDocs();
+    
+    // Восстанавливаем позицию скролла после рендеринга
+    setTimeout(() => {
+      restoreScrollPosition();
+    }, 200);
   });
 
   // Добавляем tooltip для Ready only
@@ -1236,10 +1341,32 @@ async function renderIndex() {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
       currentSearch = value;
+      localStorage.setItem("explorer-search", currentSearch);
       currentPage = 1; // Сбрасываем на первую страницу при изменении поиска
       updateURL();
       renderDocs();
     }, 150);
+  });
+  
+  // Сохраняем позицию скролла при прокрутке (с debounce)
+  let scrollSaveTimeout;
+  window.addEventListener("scroll", () => {
+    clearTimeout(scrollSaveTimeout);
+    scrollSaveTimeout = setTimeout(() => {
+      saveScrollPosition();
+    }, 500); // Сохраняем позицию скролла через 500ms после последнего скролла
+  }, { passive: true });
+  
+  // Сохраняем позицию скролла перед уходом со страницы
+  window.addEventListener("beforeunload", () => {
+    saveScrollPosition();
+  });
+  
+  // Обрабатываем изменения hash через popstate (кнопки назад/вперёд браузера)
+  window.addEventListener("popstate", () => {
+    // При popstate просто перезагружаем страницу для восстановления состояния из URL
+    // Это проще и надёжнее, чем пытаться синхронизировать всё состояние вручную
+    location.reload();
   });
 
   viewButtons.forEach((button) => {
@@ -1296,21 +1423,49 @@ async function renderIndex() {
         button.textContent = letter;
         button.dataset.letter = letter;
         button.addEventListener("click", () => {
+          // Сохраняем позицию скролла перед изменением
+          saveScrollPosition();
+          
           // Убираем активность с других кнопок
           kbIndexLetters.querySelectorAll(".kb-index-letter").forEach(btn => {
             btn.classList.remove("is-active");
           });
           button.classList.add("is-active");
 
+          // Сохраняем выбранную букву в localStorage и обновляем URL
+          localStorage.setItem("explorer-kb-letter", letter);
+          updateURL();
+
           // Показываем страницы для выбранной буквы
           renderKBIndexLetter(letter, kbIndex.index[letter]);
+          
+          // Восстанавливаем позицию скролла после рендеринга
+          setTimeout(() => {
+            restoreScrollPosition();
+          }, 200);
         });
         lettersFragment.appendChild(button);
       });
       kbIndexLetters.appendChild(lettersFragment);
 
-      // По умолчанию показываем первую букву
-      if (kbIndex.letters.length > 0) {
+      // Определяем какую букву показывать: из hash, localStorage, или первую по умолчанию
+      const letterToShow = kbLetterFromHash || localStorage.getItem("explorer-kb-letter") || kbIndex.letters[0];
+      const buttonToShow = kbIndexLetters.querySelector(`[data-letter="${letterToShow}"]`);
+      
+      if (buttonToShow && kbIndex.index[letterToShow]) {
+        // Показываем сохранённую или указанную в hash букву
+        kbIndexLetters.querySelectorAll(".kb-index-letter").forEach(btn => {
+          btn.classList.remove("is-active");
+        });
+        buttonToShow.classList.add("is-active");
+        renderKBIndexLetter(letterToShow, kbIndex.index[letterToShow]);
+        
+        // Обновляем URL если нужно
+        if (!kbLetterFromHash && localStorage.getItem("explorer-kb-letter")) {
+          updateURL();
+        }
+      } else if (kbIndex.letters.length > 0) {
+        // Fallback: показываем первую букву
         const firstLetter = kbIndex.letters[0];
         const firstButton = kbIndexLetters.querySelector(`[data-letter="${firstLetter}"]`);
         if (firstButton) {
@@ -1318,6 +1473,11 @@ async function renderIndex() {
           renderKBIndexLetter(firstLetter, kbIndex.index[firstLetter]);
         }
       }
+      
+      // Восстанавливаем позицию скролла после загрузки
+      setTimeout(() => {
+        restoreScrollPosition();
+      }, 300);
     } catch (error) {
       console.warn("⚠️  Failed to load KB index:", error.message);
       if (kbIndexEmpty) kbIndexEmpty.classList.remove("hidden");
@@ -1332,6 +1492,7 @@ async function renderIndex() {
     const heading = document.createElement("h2");
     heading.className = "kb-index-letter-heading";
     heading.textContent = `Буква "${letter}" (${pages.length} страниц)`;
+    heading.id = `kb-letter-${letter}`; // ID для якоря
     kbIndexContent.appendChild(heading);
 
     const fragment = document.createDocumentFragment();
