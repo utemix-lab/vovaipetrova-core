@@ -26,8 +26,10 @@ import { join } from 'path';
 import { execSync } from 'child_process';
 
 const REPORTS_DIR = 'reports';
+const PROTOTYPE_DIR = 'prototype';
 const ROLL_UP_FILE = join(REPORTS_DIR, 'weekly-audit-roll-up.json');
 const ROLL_UP_MD_FILE = join(REPORTS_DIR, 'weekly-audit-roll-up.md');
+const ROLL_UP_HTML_FILE = join(PROTOTYPE_DIR, 'weekly-audit-roll-up.html');
 
 const GITHUB_RUN_ID = process.env.GITHUB_RUN_ID;
 const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY || 'utemix-lab/vovaipetrova-core';
@@ -36,9 +38,12 @@ const WORKFLOW_URL = GITHUB_RUN_ID
   ? `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}`
   : null;
 
-// Создаём директорию если её нет
+// Создаём директории если их нет
 if (!existsSync(REPORTS_DIR)) {
   mkdirSync(REPORTS_DIR, { recursive: true });
+}
+if (!existsSync(PROTOTYPE_DIR)) {
+  mkdirSync(PROTOTYPE_DIR, { recursive: true });
 }
 
 /**
@@ -180,6 +185,19 @@ function collectRollUpData() {
     draft: storiesIndex.stories?.filter(s => s.status === 'draft').length || 0
   };
 
+  // 7. KB Index report (для Terms секции)
+  const kbIndex = loadJSON('prototype/data/kb-index.json', { totalPages: 0, letters: [] });
+  rollUp.reports.kbIndex = {
+    totalPages: kbIndex.totalPages || 0,
+    letters: kbIndex.letters || [],
+    termsCount: Object.keys(kbIndex).reduce((sum, key) => {
+      if (key !== 'generatedAt' && key !== 'totalPages' && key !== 'letters' && Array.isArray(kbIndex[key])) {
+        return sum + kbIndex[key].length;
+      }
+      return sum;
+    }, 0)
+  };
+
   // 5. CI Metrics (если доступны)
   const ciMetrics = loadJSON('.ci-metrics/ci-metrics.json', { runs: [], summary: null });
   if (ciMetrics.summary) {
@@ -274,6 +292,428 @@ function collectRollUpData() {
   }
 
   return rollUp;
+}
+
+/**
+ * Генерирует HTML отчёт с якорями для разделов
+ */
+function generateHTMLReport(rollUp) {
+  const healthEmoji = {
+    healthy: '✅',
+    warning: '⚠️',
+    critical: '❌'
+  }[rollUp.summary.health] || '❓';
+
+  const healthColor = {
+    healthy: '#0f9960',
+    warning: '#d9822b',
+    critical: '#db3737'
+  }[rollUp.summary.health] || '#64748b';
+
+  const dateStr = formatDate(rollUp.generatedAt);
+
+  let html = `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weekly Audit Roll-up — ${dateStr} — Vova &amp; Petrova</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .audit-roll-up {
+      padding: 2rem clamp(1.5rem, 4vw, 3rem);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .audit-roll-up__header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .audit-roll-up__title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .audit-roll-up__meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .health-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      background: ${healthColor}20;
+      color: ${healthColor};
+      border: 1px solid ${healthColor};
+    }
+    .nav-anchors {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: var(--chip-bg);
+      border-radius: 8px;
+    }
+    .nav-anchors a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .nav-anchors a:hover {
+      background: var(--card-bg);
+      border-color: var(--text);
+    }
+    .section {
+      margin-bottom: 3rem;
+      padding: 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .section__title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .section__content {
+      line-height: 1.6;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .metric-card {
+      padding: 1rem;
+      background: var(--chip-bg);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .metric-card__label {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+    .metric-card__value {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .recommendations {
+      list-style: none;
+      padding: 0;
+    }
+    .recommendations li {
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      background: var(--chip-bg);
+      border-left: 3px solid var(--text);
+      border-radius: 4px;
+    }
+    .recommendations li[data-priority="high"] {
+      border-left-color: #db3737;
+    }
+    .recommendations li[data-priority="medium"] {
+      border-left-color: #d9822b;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    table th,
+    table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    table th {
+      background: var(--chip-bg);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="audit-roll-up">
+    <header class="audit-roll-up__header">
+      <h1 class="audit-roll-up__title">Weekly Audit Roll-up Report</h1>
+      <div class="audit-roll-up__meta">
+        <span>Generated: ${dateStr}</span>
+        ${WORKFLOW_URL ? ` | <a href="${WORKFLOW_URL}">View Workflow Run</a>` : ''}
+        | <span class="health-badge">${healthEmoji} ${rollUp.summary.health.toUpperCase()}</span>
+      </div>
+    </header>
+
+    <nav class="nav-anchors">
+      <a href="#summary">Summary</a>
+      <a href="#ci">CI Metrics</a>
+      <a href="#kb">KB Report</a>
+      <a href="#backlinks">Backlinks</a>
+      <a href="#terms">Terms</a>
+      <a href="#recommendations">Recommendations</a>
+    </nav>
+
+    <section id="summary" class="section">
+      <h2 class="section__title">Summary</h2>
+      <div class="section__content">
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-card__label">Total Issues</div>
+            <div class="metric-card__value">${rollUp.summary.totalIssues}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Total Warnings</div>
+            <div class="metric-card__value">${rollUp.summary.totalWarnings}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Pages</div>
+            <div class="metric-card__value">${rollUp.summary.metrics.pages}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Ready Rate</div>
+            <div class="metric-card__value">${rollUp.summary.metrics.readyRate}%</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Broken Links</div>
+            <div class="metric-card__value">${rollUp.summary.metrics.brokenLinks}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Lint Errors</div>
+            <div class="metric-card__value">${rollUp.summary.metrics.lintErrors}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ci" class="section">
+      <h2 class="section__title">CI Metrics</h2>
+      <div class="section__content">
+`;
+
+  if (rollUp.reports.ciMetrics) {
+    html += `
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-card__label">Total Runs</div>
+            <div class="metric-card__value">${rollUp.reports.ciMetrics.totalRuns}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Success Rate</div>
+            <div class="metric-card__value">${rollUp.reports.ciMetrics.successRate}%</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Failed Runs</div>
+            <div class="metric-card__value">${rollUp.reports.ciMetrics.failedRuns}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Avg Duration</div>
+            <div class="metric-card__value">${formatDuration(rollUp.reports.ciMetrics.avgWorkflowDuration / 1000)}</div>
+          </div>
+        </div>`;
+
+    if (rollUp.reports.flakyTests && rollUp.reports.flakyTests.totalFlaky > 0) {
+      html += `
+        <h3>Flaky Tests</h3>
+        <p>Total Flaky: ${rollUp.reports.flakyTests.totalFlaky}</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Workflow</th>
+              <th>Job</th>
+              <th>Failure Rate</th>
+              <th>Total Runs</th>
+            </tr>
+          </thead>
+          <tbody>`;
+      rollUp.reports.flakyTests.topFlaky.forEach(job => {
+        html += `
+            <tr>
+              <td>${job.workflow}</td>
+              <td>${job.job}</td>
+              <td>${job.failureRate}%</td>
+              <td>${job.totalRuns}</td>
+            </tr>`;
+      });
+      html += `
+          </tbody>
+        </table>`;
+    }
+  } else {
+    html += `<p>CI metrics not available</p>`;
+  }
+
+  html += `
+      </div>
+    </section>
+
+    <section id="kb" class="section">
+      <h2 class="section__title">KB Report</h2>
+      <div class="section__content">
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-card__label">Total Pages</div>
+            <div class="metric-card__value">${rollUp.reports.stats.totalPages}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Ready</div>
+            <div class="metric-card__value">${rollUp.reports.stats.ready}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Review</div>
+            <div class="metric-card__value">${rollUp.reports.stats.review}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Draft</div>
+            <div class="metric-card__value">${rollUp.reports.stats.draft}</div>
+          </div>
+        </div>
+        <h3>Lint Quality</h3>
+        <p>Errors: ${rollUp.reports.lint.errors} | Warnings: ${rollUp.reports.lint.warnings}</p>
+`;
+
+  if (rollUp.reports.stats.topProblems.length > 0) {
+    html += `
+        <h3>Top Problems</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th>Score</th>
+              <th>Issues</th>
+            </tr>
+          </thead>
+          <tbody>`;
+    rollUp.reports.stats.topProblems.slice(0, 10).forEach(problem => {
+      html += `
+            <tr>
+              <td>${problem.title}</td>
+              <td>${problem.score}</td>
+              <td>${problem.issues_total}</td>
+            </tr>`;
+    });
+    html += `
+          </tbody>
+        </table>`;
+  }
+
+  html += `
+      </div>
+    </section>
+
+    <section id="backlinks" class="section">
+      <h2 class="section__title">Backlinks</h2>
+      <div class="section__content">
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-card__label">Total Broken</div>
+            <div class="metric-card__value">${rollUp.reports.linkMap.totalBroken}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Internal Missing</div>
+            <div class="metric-card__value">${rollUp.reports.linkMap.internalMissing}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">External</div>
+            <div class="metric-card__value">${rollUp.reports.linkMap.external}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Service</div>
+            <div class="metric-card__value">${rollUp.reports.linkMap.service}</div>
+          </div>
+        </div>`;
+
+  if (rollUp.reports.linkMap.issues.length > 0) {
+    html += `
+        <h3>Top Issues</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Link</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>`;
+    rollUp.reports.linkMap.issues.slice(0, 20).forEach(issue => {
+      html += `
+            <tr>
+              <td><code>${issue.file || 'N/A'}</code></td>
+              <td>${issue.link || 'N/A'}</td>
+              <td>${issue.reason || 'N/A'}</td>
+            </tr>`;
+    });
+    html += `
+          </tbody>
+        </table>`;
+  }
+
+  html += `
+      </div>
+    </section>
+
+    <section id="terms" class="section">
+      <h2 class="section__title">Terms</h2>
+      <div class="section__content">
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-card__label">KB Pages</div>
+            <div class="metric-card__value">${rollUp.reports.kbIndex?.totalPages || 0}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Terms Count</div>
+            <div class="metric-card__value">${rollUp.reports.kbIndex?.termsCount || 0}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Letters</div>
+            <div class="metric-card__value">${rollUp.reports.kbIndex?.letters?.length || 0}</div>
+          </div>
+        </div>
+        <h3>Stories</h3>
+        <p>Total: ${rollUp.reports.stories.total || 0}</p>
+        <p>Ready: ${rollUp.reports.stories.ready || 0} | Review: ${rollUp.reports.stories.review || 0} | Draft: ${rollUp.reports.stories.draft || 0}</p>
+      </div>
+    </section>`;
+
+  if (rollUp.recommendations.length > 0) {
+    html += `
+    <section id="recommendations" class="section">
+      <h2 class="section__title">Recommendations</h2>
+      <div class="section__content">
+        <ul class="recommendations">`;
+    rollUp.recommendations.forEach(rec => {
+      html += `
+          <li data-priority="${rec.priority}">
+            <strong>${rec.category}</strong>: ${rec.message}
+          </li>`;
+    });
+    html += `
+        </ul>
+      </div>
+    </section>`;
+  }
+
+  html += `
+    <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.875rem;">
+      <p>Generated by Weekly Audit Roll-up at ${rollUp.generatedAt}</p>
+    </footer>
+  </div>
+</body>
+</html>`;
+
+  return html;
 }
 
 /**
@@ -430,6 +870,16 @@ function main() {
   writeFileSync(mdPath, md, 'utf8');
   console.log(`✅ Markdown report saved: ${mdPath}`);
 
+  // Генерируем HTML
+  const html = generateHTMLReport(rollUp);
+  const htmlPath = ROLL_UP_HTML_FILE;
+  writeFileSync(htmlPath, html, 'utf8');
+  console.log(`✅ HTML report saved: ${htmlPath}`);
+
+  // Формируем URL для GitHub Pages (используем в публикации)
+  const GITHUB_PAGES_URL = `https://utemix-lab.github.io/vovaipetrova-core/weekly-audit-roll-up.html`;
+  rollUp.htmlUrl = GITHUB_PAGES_URL;
+
   // Выводим краткую сводку
   console.log('\n📋 Summary:');
   console.log(`   Health: ${rollUp.summary.health}`);
@@ -459,23 +909,32 @@ function main() {
         status: rollUp.summary.health === 'healthy' ? 'completed' : 
                 rollUp.summary.health === 'warning' ? 'warning' : 'alert',
         timestamp: rollUp.generatedAt,
-        message: `Health: ${rollUp.summary.health.toUpperCase()} | Issues: ${rollUp.summary.totalIssues} | Warnings: ${rollUp.summary.totalWarnings}`,
-        content: md,
+        message: `Health: ${rollUp.summary.health.toUpperCase()} | Issues: ${rollUp.summary.totalIssues} | Warnings: ${rollUp.summary.totalWarnings}\n\n📄 Full Report: ${rollUp.htmlUrl || GITHUB_PAGES_URL}`,
+        content: `${md}\n\n---\n\n📄 [View Full HTML Report](${rollUp.htmlUrl || GITHUB_PAGES_URL})`,
         summary: {
           health: rollUp.summary.health,
           totalIssues: rollUp.summary.totalIssues,
           totalWarnings: rollUp.summary.totalWarnings,
           metrics: rollUp.summary.metrics,
-          recommendations: rollUp.recommendations
+          recommendations: rollUp.recommendations,
+          htmlUrl: rollUp.htmlUrl || GITHUB_PAGES_URL
         },
-        workflowUrl: WORKFLOW_URL
+        workflowUrl: WORKFLOW_URL,
+        htmlUrl: rollUp.htmlUrl || GITHUB_PAGES_URL
       };
 
       // Сохраняем payload во временный файл
       const tmpFile = join(REPORTS_DIR, `notion-roll-up-payload-${Date.now()}.json`);
       writeFileSync(tmpFile, JSON.stringify(reportPayload, null, 2), 'utf8');
 
-      // Вызываем notion-report.mjs
+      // Вызываем notion-report.mjs с ссылкой на HTML
+      const notionReportContent = `Health: ${rollUp.summary.health.toUpperCase()} | Issues: ${rollUp.summary.totalIssues} | Warnings: ${rollUp.summary.totalWarnings}
+
+📄 [View Full HTML Report](${rollUp.htmlUrl || GITHUB_PAGES_URL})`;
+
+      reportPayload.message = notionReportContent;
+      reportPayload.content = notionReportContent;
+
       execSync(
         `node scripts/notion-report.mjs --file "${tmpFile}" --title "${reportPayload.title}"`,
         {

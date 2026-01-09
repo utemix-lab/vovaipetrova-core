@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weekly Audit Roll-up — 9 января 2026 г. в 21:56 — Vova &amp; Petrova</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .audit-roll-up {
+      padding: 2rem clamp(1.5rem, 4vw, 3rem);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .audit-roll-up__header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .audit-roll-up__title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .audit-roll-up__meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .health-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      background: #d9822b20;
+      color: #d9822b;
+      border: 1px solid #d9822b;
+    }
+    .nav-anchors {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: var(--chip-bg);
+      border-radius: 8px;
+    }
+    .nav-anchors a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .nav-anchors a:hover {
+      background: var(--card-bg);
+      border-color: var(--text);
+    }
+    .section {
+      margin-bottom: 3rem;
+      padding: 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .section__title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .section__content {
+      line-height: 1.6;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .metric-card {
+      padding: 1rem;
+      background: var(--chip-bg);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .metric-card__label {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+    .metric-card__value {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .recommendations {
+      list-style: none;
+      padding: 0;
+    }
+    .recommendations li {
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      background: var(--chip-bg);
+      border-left: 3px solid var(--text);
+      border-radius: 4px;
+    }
+    .recommendations li[data-priority="high"] {
+      border-left-color: #db3737;
+    }
+    .recommendations li[data-priority="medium"] {
+      border-left-color: #d9822b;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    table th,
+    table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    table th {
+      background: var(--chip-bg);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="audit-roll-up">
+    <header class="audit-roll-up__header">
+      <h1 class="audit-roll-up__title">Weekly Audit Roll-up Report</h1>
+      <div class="audit-roll-up__meta">
+        <span>Generated: 9 января 2026 г. в 21:56</span>
+        
+        | <span class="health-badge">⚠️ WARNING</span>
+      </div>
+    </header>
+
+    <nav class="nav-anchors">
+      <a href="#summary">Summary</a>
+      <a href="#ci">CI Metrics</a>
+      <a href="#kb">KB Report</a>
+      <a href="#backlinks">Backlinks</a>
+      <a href="#terms">Terms</a>
+      <a href="#recommendations">Recommendations</a>
+    </nav>
+
+    <section id="summary" class="section">
+      <h2 class="section__title">Summary</h2>
+      <div class="section__content">
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-card__label">Total Issues</div>
+            <div class="metric-card__value">0</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Total Warnings</div>
+            <div class="metric-card__value">0</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Pages</div>
+            <div class="metric-card__value">90</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Ready Rate</div>
+            <div class="metric-card__value">48.9%</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Broken Links</div>
+            <div class="metric-card__value">0</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Lint Errors</div>
+            <div class="metric-card__value">0</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ci" class="section">
+      <h2 class="section__title">CI Metrics</h2>
+      <div class="section__content">
+<p>CI metrics not available</p>
+      </div>
+    </section>
+
+    <section id="kb" class="section">
+      <h2 class="section__title">KB Report</h2>
+      <div class="section__content">
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-card__label">Total Pages</div>
+            <div class="metric-card__value">90</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Ready</div>
+            <div class="metric-card__value">44</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Review</div>
+            <div class="metric-card__value">6</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Draft</div>
+            <div class="metric-card__value">40</div>
+          </div>
+        </div>
+        <h3>Lint Quality</h3>
+        <p>Errors: 0 | Warnings: 0</p>
+
+      </div>
+    </section>
+
+    <section id="backlinks" class="section">
+      <h2 class="section__title">Backlinks</h2>
+      <div class="section__content">
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-card__label">Total Broken</div>
+            <div class="metric-card__value">2</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Internal Missing</div>
+            <div class="metric-card__value">0</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">External</div>
+            <div class="metric-card__value">0</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Service</div>
+            <div class="metric-card__value">0</div>
+          </div>
+        </div>
+        <h3>Top Issues</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Link</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>terms-found-format.md</code></td>
+              <td>../../scripts/extractor-stories-terms.mjs</td>
+              <td>outside_repo</td>
+            </tr>
+            <tr>
+              <td><code>terms-found-format.md</code></td>
+              <td>../../scripts/generate-terms-found-block.mjs</td>
+              <td>outside_repo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="terms" class="section">
+      <h2 class="section__title">Terms</h2>
+      <div class="section__content">
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-card__label">KB Pages</div>
+            <div class="metric-card__value">37</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Terms Count</div>
+            <div class="metric-card__value">0</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Letters</div>
+            <div class="metric-card__value">25</div>
+          </div>
+        </div>
+        <h3>Stories</h3>
+        <p>Total: 0</p>
+        <p>Ready: 0 | Review: 0 | Draft: 0</p>
+      </div>
+    </section>
+    <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.875rem;">
+      <p>Generated by Weekly Audit Roll-up at 2026-01-09T18:56:02.254Z</p>
+    </footer>
+  </div>
+</body>
+</html>
