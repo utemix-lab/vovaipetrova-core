@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:autolink": "node tests/autolink/test-autolink-v2-1.mjs",
     "normalize": "node scripts/normalize.mjs",
     "normalize:dry": "node scripts/normalize.mjs --dry",
     "lint:docs": "node scripts/lint-docs.mjs",

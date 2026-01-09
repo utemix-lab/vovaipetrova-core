@@ -26,30 +26,62 @@ import path from 'path';
 const DOCS_ROOT = 'docs';
 const PAGES_JSON_PATH = 'prototype/data/pages.json';
 const TAGS_YAML_PATH = 'docs/nav/tags.yaml';
+const AUTOLINK_CONFIG_PATH = 'docs/nav/autolink-config.yaml';
 const DRY_RUN = process.argv.includes('--dry');
 const FILE_ARG = process.argv.indexOf('--file');
 const TARGET_FILE = FILE_ARG >= 0 && process.argv[FILE_ARG + 1] ? process.argv[FILE_ARG + 1] : null;
 const NO_MORPHOLOGY = process.argv.includes('--no-morphology');
 
-// Исключения: термины, которые не должны быть автолинками
-const EXCLUSIONS = new Set([
-  'a', 'an', 'the', 'is', 'are', 'was', 'were', 'be', 'been', 'being',
-  'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'should',
-  'can', 'could', 'may', 'might', 'must', 'shall',
-  'this', 'that', 'these', 'those', 'it', 'its', 'they', 'them', 'their',
-  'and', 'or', 'but', 'not', 'no', 'yes', 'if', 'then', 'else',
-  'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'as', 'into',
-  'about', 'above', 'across', 'after', 'against', 'along', 'among', 'around',
-  'before', 'behind', 'below', 'beneath', 'beside', 'between', 'beyond',
-  'during', 'except', 'inside', 'outside', 'over', 'through', 'throughout',
-  'under', 'underneath', 'until', 'upon', 'within', 'without'
-]);
+/**
+ * Загружает конфигурацию автолинка из autolink-config.yaml
+ * @returns {{ stopWords: Set<string>, overrides: Map<string, string> }}
+ */
+function loadAutolinkConfig() {
+  const stopWords = new Set();
+  const overrides = new Map();
+
+  if (!existsSync(AUTOLINK_CONFIG_PATH)) {
+    console.warn(`⚠️  Autolink config not found: ${AUTOLINK_CONFIG_PATH}. Using defaults.`);
+    return { stopWords, overrides };
+  }
+
+  try {
+    const configContent = readFileSync(AUTOLINK_CONFIG_PATH, 'utf8');
+    const config = YAML.parse(configContent);
+
+    // Загружаем stop-слова
+    if (config.stop_words && Array.isArray(config.stop_words)) {
+      config.stop_words.forEach(word => {
+        if (typeof word === 'string' && word.length > 0) {
+          stopWords.add(word.toLowerCase().trim());
+        }
+      });
+    }
+
+    // Загружаем override
+    if (config.overrides && typeof config.overrides === 'object') {
+      Object.entries(config.overrides).forEach(([alias, slug]) => {
+        if (typeof alias === 'string' && typeof slug === 'string') {
+          overrides.set(alias.toLowerCase().trim(), slug);
+        }
+      });
+    }
+
+    console.log(`   Loaded ${stopWords.size} stop-words and ${overrides.size} overrides from config`);
+  } catch (error) {
+    console.warn(`⚠️  Failed to load autolink config: ${error.message}. Using defaults.`);
+  }
+
+  return { stopWords, overrides };
+}
 
 /**
  * Загружает словарь slug↔aliases из pages.json и tags.yaml
  * С поддержкой морфологических форм для русского языка
+ * @param {Set<string>} stopWords - Stop-слова для исключения
+ * @param {Map<string, string>} overrides - Ручные override для конфликтных терминов
  */
-function buildSlugAliasesMap() {
+function buildSlugAliasesMap(stopWords, overrides) {
   const map = new Map(); // alias → { slug, title, priority }
   const conflicts = new Map(); // alias → [candidates]
 
@@ -73,29 +105,47 @@ function buildSlugAliasesMap() {
           // Добавляем title как alias
           if (title) {
             const normalizedTitle = title.toLowerCase().trim();
-            if (normalizedTitle && normalizedTitle.length > 2 && !EXCLUSIONS.has(normalizedTitle)) {
-              // Добавляем исходную форму
-              if (map.has(normalizedTitle)) {
-                // Конфликт: добавляем в список конфликтов
-                const existing = map.get(normalizedTitle);
-                if (!conflicts.has(normalizedTitle)) {
-                  conflicts.set(normalizedTitle, [existing]);
+            
+            // Проверяем stop-слова
+            if (normalizedTitle && normalizedTitle.length > 2 && !stopWords.has(normalizedTitle)) {
+              // Проверяем override: если есть ручной override, используем его
+              const overrideSlug = overrides.get(normalizedTitle);
+              if (overrideSlug) {
+                // Если override указывает на текущий slug, используем его с высоким приоритетом
+                if (overrideSlug === slug) {
+                  map.set(normalizedTitle, { slug, title, priority: 0 }); // Приоритет 0 = самый высокий
+                  // Пропускаем добавление морфологических форм, так как override имеет приоритет
+                  // Не добавляем морфологические формы для override
+                } else {
+                  // Override указывает на другой slug - пропускаем этот alias для текущего slug
+                  // Не добавляем в map
                 }
-                conflicts.get(normalizedTitle).push({ slug, title, priority: 1 });
               } else {
-                map.set(normalizedTitle, { slug, title, priority: 1 });
-              }
-
-              // Добавляем морфологические формы для русского языка
-              if (!NO_MORPHOLOGY && isRussianWord(normalizedTitle)) {
-                const morphForms = generateMorphologicalForms(normalizedTitle);
-                morphForms.forEach(form => {
-                  if (form !== normalizedTitle && form.length > 2 && !EXCLUSIONS.has(form)) {
-                    if (!map.has(form)) {
-                      map.set(form, { slug, title, priority: 2 }); // Морфологические формы имеют меньший приоритет
-                    }
+                // Нет override - добавляем обычным образом
+                // Добавляем исходную форму
+                if (map.has(normalizedTitle)) {
+                  // Конфликт: добавляем в список конфликтов
+                  const existing = map.get(normalizedTitle);
+                  if (!conflicts.has(normalizedTitle)) {
+                    conflicts.set(normalizedTitle, [existing]);
                   }
-                });
+                  conflicts.get(normalizedTitle).push({ slug, title, priority: 1 });
+                } else {
+                  map.set(normalizedTitle, { slug, title, priority: 1 });
+                }
+
+                // Добавляем морфологические формы для русского языка
+                if (!NO_MORPHOLOGY && isRussianWord(normalizedTitle)) {
+                  const morphForms = generateMorphologicalForms(normalizedTitle);
+                  morphForms.forEach(form => {
+                    // Пропускаем stop-слова и формы, для которых есть override
+                    if (form !== normalizedTitle && form.length > 2 && !stopWords.has(form) && !overrides.has(form)) {
+                      if (!map.has(form)) {
+                        map.set(form, { slug, title, priority: 2 }); // Морфологические формы имеют меньший приоритет
+                      }
+                    }
+                  });
+                }
               }
             }
           }
@@ -406,16 +456,33 @@ function generateMorphologicalForms(word) {
 
 /**
  * Автолинкинг терминов в контенте
+ * @param {string} content - Контент для обработки
+ * @param {Map} slugAliasesMap - Карта alias → { slug, title, priority }
+ * @param {Map} overrides - Ручные override для конфликтных терминов
  */
-function autolinkContent(content, slugAliasesMap) {
+function autolinkContent(content, slugAliasesMap, overrides) {
   let result = content;
   let offset = 0;
 
   // Сортируем aliases по длине (от длинных к коротким) для правильного матчинга
+  // Также сортируем по приоритету (меньший priority = выше приоритет)
   const sortedAliases = Array.from(slugAliasesMap.entries())
-    .sort((a, b) => b[0].length - a[0].length);
+    .sort((a, b) => {
+      // Сначала по приоритету
+      if (a[1].priority !== b[1].priority) {
+        return a[1].priority - b[1].priority;
+      }
+      // Затем по длине (длинные первыми)
+      return b[0].length - a[0].length;
+    });
 
-  for (const [alias, { slug, title }] of sortedAliases) {
+  for (const [alias, { slug, title, priority }] of sortedAliases) {
+    // Проверяем override: если для этого alias есть override, используем его slug
+    const overrideSlug = overrides.get(alias);
+    if (overrideSlug && overrideSlug !== slug) {
+      // Override указывает на другой slug - пропускаем этот alias
+      continue;
+    }
     // Создаём regex для поиска с учётом границ слова
     // Используем lookbehind и lookahead для границ слова
     const regex = new RegExp(
@@ -473,13 +540,13 @@ function autolinkContent(content, slugAliasesMap) {
 /**
  * Обрабатывает один файл
  */
-function processFile(filePath, slugAliasesMap) {
+function processFile(filePath, slugAliasesMap, overrides) {
   try {
     const raw = readFileSync(filePath, 'utf8');
     const parsed = matter(raw);
 
     const before = parsed.content;
-    const after = autolinkContent(before, slugAliasesMap);
+    const after = autolinkContent(before, slugAliasesMap, overrides);
 
     if (before === after) {
       return { changed: false };
@@ -500,16 +567,20 @@ function processFile(filePath, slugAliasesMap) {
 }
 
 function main() {
-  console.log('🔗 KB autolink v2: slug/aliases map + safe linking rules');
+  console.log('🔗 KB autolink v2.1: slug/aliases map + safe linking rules + exceptions & overrides');
   if (!NO_MORPHOLOGY) {
-    console.log('   ✨ Russian morphology support enabled\n');
+    console.log('   ✨ Russian morphology support enabled');
   } else {
-    console.log('   ⚠️  Morphology disabled (--no-morphology)\n');
+    console.log('   ⚠️  Morphology disabled (--no-morphology)');
   }
 
+  // Загружаем конфигурацию
+  console.log('\n📋 Loading autolink configuration...');
+  const { stopWords, overrides } = loadAutolinkConfig();
+
   // Строим словарь
-  console.log('📚 Building slug/aliases map...');
-  const { map: slugAliasesMap, conflicts } = buildSlugAliasesMap();
+  console.log('\n📚 Building slug/aliases map...');
+  const { map: slugAliasesMap, conflicts } = buildSlugAliasesMap(stopWords, overrides);
   console.log(`   Found ${slugAliasesMap.size} aliases${NO_MORPHOLOGY ? '' : ' (including morphological forms)'}`);
 
   if (conflicts.size > 0) {
@@ -530,7 +601,7 @@ function main() {
   let errorCount = 0;
 
   files.forEach(file => {
-    const result = processFile(file, slugAliasesMap);
+    const result = processFile(file, slugAliasesMap, overrides);
     if (result.changed) {
       changedCount++;
       if (!result.dry) {
