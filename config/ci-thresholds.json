@@ -113,6 +113,17 @@
         "enabled": true,
         "description": "Отправка оповещений в Notion при обнаружении flaky тестов"
       }
+    },
+    "hints": {
+      "enabled": true,
+      "description": "Короткие hints в PR при превышении порогов (без спама)",
+      "types": {
+        "prSize": true,
+        "guardrailsSize": true,
+        "guardrailsForbidden": true,
+        "guardrailsPII": true,
+        "lintFixes": true
+      }
     }
   }
 }

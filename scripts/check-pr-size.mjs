@@ -203,8 +203,8 @@ function main() {
     console.log('');
     console.log('💡 Рекомендация: разбейте изменения на несколько меньших PR для упрощения ревью.');
     
-    // Добавляем комментарий в PR при критическом превышении
-    addPRComment(warnings, errors, stats);
+    // Добавляем короткий hint в PR при критическом превышении
+    await addPRComment(warnings, errors, stats);
     
     process.exit(1);
   }
@@ -213,8 +213,8 @@ function main() {
     console.log('💡 Рекомендация: рассмотрите возможность разбить изменения на несколько PR.');
     console.log('   Проверка не блокирует PR, но рекомендуется уменьшить размер для упрощения ревью.\n');
     
-    // Добавляем комментарий в PR при предупреждениях
-    addPRComment(warnings, errors, stats);
+    // Добавляем короткий hint в PR при предупреждениях
+    await addPRComment(warnings, errors, stats);
     
     process.exit(0);
   }
@@ -223,76 +223,36 @@ function main() {
   process.exit(0);
 }
 
-function addPRComment(warnings, errors, stats) {
+async function addPRComment(warnings, errors, stats) {
   // Проверяем, включены ли оповещения в конфиге
   if (!ALERTS_ENABLED) {
     return;
   }
 
   const prNumber = process.env.GITHUB_PR_NUMBER || process.env.GITHUB_EVENT_PULL_REQUEST_NUMBER;
-  const repo = process.env.GITHUB_REPO || 'utemix-lab/vovaipetrova-core';
-  const token = process.env.GITHUB_TOKEN;
   
-  if (!prNumber || !token) {
-    return; // Пропускаем, если нет PR номера или токена
+  if (!prNumber) {
+    return; // Пропускаем, если нет PR номера
   }
-  
+
   const hasErrors = errors.length > 0;
   const hasWarnings = warnings.length > 0;
-  
+
   if (!hasErrors && !hasWarnings) {
-    return; // Нет проблем, не добавляем комментарий
+    return; // Нет проблем, не добавляем hint
   }
-  
-  const topFiles = stats.fileStats.slice(0, 10).map((fileStat, idx) => {
-    return `${idx + 1}. \`${fileStat.file}\`: +${formatSize(fileStat.additions)}/-${formatSize(fileStat.deletions)}`;
-  }).join('\n');
-  
-  const comment = [
-    hasErrors ? '## ❌ PR Size Exceeds Limits' : '## ⚠️ PR Size Warning',
-    '',
-    `**Статистика изменений:**`,
-    `- Файлов изменено: ${stats.files}`,
-    `- Строк добавлено: ${formatSize(stats.additions)}`,
-    `- Строк удалено: ${formatSize(stats.deletions)}`,
-    `- Всего изменений: ${formatSize(stats.additions + stats.deletions)}`,
-    '',
-    hasErrors ? '**Критические превышения лимитов:**' : '**Предупреждения:**',
-    ...(hasErrors ? errors : warnings).map(w => `- ${w}`),
-    '',
-    '**Топ-10 файлов с наибольшими изменениями:**',
-    topFiles,
-    '',
-    '**Рекомендация:** Рассмотрите возможность разбить изменения на несколько меньших PR для упрощения ревью.',
-    '',
-    `_Generated at ${new Date().toISOString()}_`
-  ].join('\n');
-  
+
+  // Добавляем короткий hint (без длинных комментариев)
   try {
-    const tmpFile = join(__dirname, '../tmp-pr-size-comment.txt');
-    writeFileSync(tmpFile, comment, 'utf8');
-    
-    execSync(
-      `gh pr comment ${prNumber} --repo ${repo} --body-file "${tmpFile}"`,
-      {
-        stdio: 'pipe',
-        encoding: 'utf-8',
-        env: { ...process.env, GITHUB_TOKEN: token }
-      }
-    );
-    console.log('✅ Comment added to PR');
-    
-    // Удаляем временный файл
-    try {
-      unlinkSync(tmpFile);
-    } catch (e) {
-      // Игнорируем ошибки удаления
-    }
+    const { addPRHint } = await import('./add-pr-hint.mjs');
+    addPRHint('pr-size', prNumber);
   } catch (error) {
-    console.warn('⚠️  Failed to add comment:', error.message);
-    // Не блокируем CI
+    // Игнорируем ошибки импорта hints (не блокируем CI)
   }
 }
 
-main();
+main().catch(error => {
+  console.error('❌ Ошибка:', error.message);
+  process.exit(1);
+});
 
