@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-01-09T10:48:58.968Z",
+  "period": 30,
+  "summary": {
+    "14days": {
+      "draft": 0,
+      "ready": 0,
+      "re-run": 0,
+      "other": 0
+    },
+    "30days": {
+      "draft": 0,
+      "ready": 0,
+      "re-run": 0,
+      "other": 0
+    },
+    "total": {
+      "draft": 0,
+      "ready": 0,
+      "re-run": 0,
+      "other": 0
+    }
+  },
+  "trends": {
+    "14days": {
+      "draft": {
+        "raw": [],
+        "movingAverage": [],
+        "movingMedian": []
+      },
+      "ready": {
+        "raw": [],
+        "movingAverage": [],
+        "movingMedian": []
+      },
+      "re-run": {
+        "raw": [],
+        "movingAverage": [],
+        "movingMedian": []
+      },
+      "all": {
+        "raw": [],
+        "movingAverage": [],
+        "movingMedian": []
+      }
+    },
+    "30days": {
+      "draft": {
+        "raw": [],
+        "movingAverage": [],
+        "movingMedian": []
+      },
+      "ready": {
+        "raw": [],
+        "movingAverage": [],
+        "movingMedian": []
+      },
+      "re-run": {
+        "raw": [],
+        "movingAverage": [],
+        "movingMedian": []
+      },
+      "all": {
+        "raw": [],
+        "movingAverage": [],
+        "movingMedian": []
+      }
+    }
+  }
+}
