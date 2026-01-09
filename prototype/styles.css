@@ -70,6 +70,51 @@ body[data-view="index"] {
   color: var(--muted);
 }
 
+.playbook-badge {
+  margin-top: 1rem;
+}
+
+.playbook-badge__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.playbook-badge__link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.playbook-badge__link:active {
+  transform: translateY(0);
+}
+
+.playbook-badge__text {
+  font-size: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .playbook-badge__link {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+  }
+
+  .playbook-badge__link:hover {
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.5);
+    background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  }
+}
+
 .controls {
   display: flex;
   flex-wrap: wrap;
