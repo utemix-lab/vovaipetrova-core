@@ -251,7 +251,7 @@ function buildIndex() {
     `📊 Build stats: ${processedCount} processed, ${skippedCount} skipped (cache hit), ${duration}ms`
   );
   
-  // Generate routes.json, stats.json, backlinks, KB index, Stories index, and sitemap
+  // Generate routes.json, stats.json, backlinks, KB index, Stories index, sitemap, and trends v2
   try {
     execSync("node scripts/generate-routes-json.mjs", { stdio: "inherit" });
     execSync("node scripts/generate-stats.mjs", { stdio: "inherit" });
@@ -259,6 +259,12 @@ function buildIndex() {
     execSync("node scripts/generate-kb-index.mjs", { stdio: "inherit" });
     execSync("node scripts/generate-stories-index.mjs", { stdio: "inherit" });
     execSync("node scripts/generate-sitemap.mjs", { stdio: "inherit" });
+    // Generate trends v2 (continue on error, так как требует GITHUB_TOKEN для получения PR info)
+    try {
+      execSync("node scripts/generate-trends-v2-data.mjs", { stdio: "inherit" });
+    } catch (trendsError) {
+      console.warn("⚠️  Failed to generate trends v2 data (may require GITHUB_TOKEN):", trendsError.message);
+    }
   } catch (error) {
     console.warn("⚠️  Failed to generate auxiliary files:", error.message);
   }

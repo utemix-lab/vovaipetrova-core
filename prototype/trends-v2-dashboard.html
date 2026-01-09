@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CI Trends Dashboard v2 — Vova &amp; Petrova</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    .trends-dashboard {
+      padding: 2rem clamp(1.5rem, 4vw, 3rem);
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .trends-dashboard__header {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .trends-dashboard__title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .trends-dashboard__subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .period-selector {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .period-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .period-btn:hover {
+      background: var(--chip-bg);
+    }
+
+    .period-btn.active {
+      background: var(--text);
+      color: var(--card-bg);
+      border-color: var(--text);
+    }
+
+    .trends-dashboard__summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .summary-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card__label {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .summary-card__value {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .summary-card__value--draft {
+      color: #f59e0b;
+    }
+
+    .summary-card__value--ready {
+      color: var(--ready);
+    }
+
+    .summary-card__value--rerun {
+      color: #8b5cf6;
+    }
+
+    .trends-dashboard__charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .chart-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .chart-card__title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .chart-container {
+      position: relative;
+      height: 350px;
+    }
+
+    .chart-legend {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      font-size: 0.875rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .trends-dashboard__charts {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body data-view="trends-v2-dashboard">
+  <div class="trends-dashboard">
+    <header class="trends-dashboard__header">
+      <div>
+        <h1 class="trends-dashboard__title">CI Trends Dashboard v2</h1>
+        <p class="trends-dashboard__subtitle">Динамика draft/ready/re-run за 14/30 дней</p>
+      </div>
+      <div class="period-selector">
+        <button class="period-btn" data-period="14">14 дней</button>
+        <button class="period-btn active" data-period="30">30 дней</button>
+      </div>
+    </header>
+
+    <div id="loading" class="loading">Загрузка данных...</div>
+
+    <div id="dashboard-content" class="hidden">
+      <div class="trends-dashboard__summary" id="summary-cards"></div>
+      <div class="trends-dashboard__charts" id="charts-container"></div>
+    </div>
+
+    <div id="empty-state" class="empty-state hidden">
+      <h2>Нет данных</h2>
+      <p>Метрики CI еще не собраны. Запустите сбор метрик для отображения трендов.</p>
+    </div>
+  </div>
+
+  <script>
+    let currentPeriod = '30';
+    let dashboardData = null;
+    let charts = {};
+
+    async function loadDashboardData() {
+      try {
+        const response = await fetch('data/trends-v2-dashboard.json');
+        if (!response.ok) {
+          throw new Error('Failed to load dashboard data');
+        }
+        return await response.json();
+      } catch (error) {
+        console.error('Error loading dashboard data:', error);
+        return null;
+      }
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('ru-RU', { 
+        month: '2-digit', 
+        day: '2-digit' 
+      });
+    }
+
+    function renderSummaryCards(data, period) {
+      const container = document.getElementById('summary-cards');
+      const summary = data.summary[`${period}days`] || data.summary.total;
+
+      container.innerHTML = `
+        <div class="summary-card">
+          <div class="summary-card__label">Draft PR</div>
+          <div class="summary-card__value summary-card__value--draft">${summary.draft || 0}</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card__label">Ready PR</div>
+          <div class="summary-card__value summary-card__value--ready">${summary.ready || 0}</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card__label">Re-run</div>
+          <div class="summary-card__value summary-card__value--rerun">${summary['re-run'] || 0}</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card__label">Всего</div>
+          <div class="summary-card__value">${(summary.draft || 0) + (summary.ready || 0) + (summary['re-run'] || 0) + (summary.other || 0)}</div>
+        </div>
+      `;
+    }
+
+    function createChart(canvasId, title, labels, datasets) {
+      const ctx = document.getElementById(canvasId);
+      if (!ctx) return null;
+
+      // Уничтожаем предыдущий график если существует
+      if (charts[canvasId]) {
+        charts[canvasId].destroy();
+      }
+
+      charts[canvasId] = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: title,
+              font: { size: 16, weight: '600' }
+            },
+            legend: {
+              display: true,
+              position: 'top'
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false
+            }
+          },
+          scales: {
+            x: {
+              grid: {
+                color: 'rgba(148, 163, 184, 0.1)'
+              }
+            },
+            y: {
+              beginAtZero: true,
+              grid: {
+                color: 'rgba(148, 163, 184, 0.1)'
+              }
+            }
+          },
+          interaction: {
+            mode: 'nearest',
+            axis: 'x',
+            intersect: false
+          }
+        }
+      });
+
+      return charts[canvasId];
+    }
+
+    function renderCharts(data, period) {
+      const container = document.getElementById('charts-container');
+      const trends = data.trends[`${period}days`];
+
+      if (!trends || trends.all.raw.length === 0) {
+        container.innerHTML = '<div class="empty-state">Нет данных для графиков</div>';
+        return;
+      }
+
+      const dates = trends.all.raw.map(d => formatDate(d.date));
+
+      container.innerHTML = `
+        <div class="chart-card">
+          <div class="chart-card__title">Draft PR Runs</div>
+          <div class="chart-container">
+            <canvas id="chart-draft"></canvas>
+          </div>
+          <div class="chart-legend">
+            <div class="legend-item">
+              <div class="legend-color" style="background: rgba(245, 158, 11, 0.6);"></div>
+              <span>Фактическое значение</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: rgba(245, 158, 11, 1); border: 2px solid #f59e0b;"></div>
+              <span>Скользящее среднее (7 дней)</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: rgba(139, 92, 246, 0.6);"></div>
+              <span>Медиана (7 дней)</span>
+            </div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card__title">Ready PR Runs</div>
+          <div class="chart-container">
+            <canvas id="chart-ready"></canvas>
+          </div>
+          <div class="chart-legend">
+            <div class="legend-item">
+              <div class="legend-color" style="background: rgba(15, 153, 96, 0.6);"></div>
+              <span>Фактическое значение</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: rgba(15, 153, 96, 1); border: 2px solid #0f9960;"></div>
+              <span>Скользящее среднее (7 дней)</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: rgba(139, 92, 246, 0.6);"></div>
+              <span>Медиана (7 дней)</span>
+            </div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card__title">Re-run Workflows</div>
+          <div class="chart-container">
+            <canvas id="chart-rerun"></canvas>
+          </div>
+          <div class="chart-legend">
+            <div class="legend-item">
+              <div class="legend-color" style="background: rgba(139, 92, 246, 0.6);"></div>
+              <span>Фактическое значение</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: rgba(139, 92, 246, 1); border: 2px solid #8b5cf6;"></div>
+              <span>Скользящее среднее (7 дней)</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: rgba(107, 114, 128, 0.6);"></div>
+              <span>Медиана (7 дней)</span>
+            </div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card__title">Все типы (сравнение)</div>
+          <div class="chart-container">
+            <canvas id="chart-all"></canvas>
+          </div>
+        </div>
+      `;
+
+      // Draft chart
+      createChart('chart-draft', '', dates, [
+        {
+          label: 'Draft (факт)',
+          data: trends.draft.raw.map(d => d.value),
+          borderColor: 'rgba(245, 158, 11, 0.6)',
+          backgroundColor: 'rgba(245, 158, 11, 0.1)',
+          tension: 0.3,
+          pointRadius: 2
+        },
+        {
+          label: 'Draft (скользящее среднее)',
+          data: trends.draft.movingAverage.map(d => d.value),
+          borderColor: '#f59e0b',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          tension: 0.3,
+          pointRadius: 0
+        },
+        {
+          label: 'Draft (медиана)',
+          data: trends.draft.movingMedian.map(d => d.value),
+          borderColor: 'rgba(139, 92, 246, 0.6)',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          borderDash: [5, 5],
+          tension: 0.3,
+          pointRadius: 0
+        }
+      ]);
+
+      // Ready chart
+      createChart('chart-ready', '', dates, [
+        {
+          label: 'Ready (факт)',
+          data: trends.ready.raw.map(d => d.value),
+          borderColor: 'rgba(15, 153, 96, 0.6)',
+          backgroundColor: 'rgba(15, 153, 96, 0.1)',
+          tension: 0.3,
+          pointRadius: 2
+        },
+        {
+          label: 'Ready (скользящее среднее)',
+          data: trends.ready.movingAverage.map(d => d.value),
+          borderColor: '#0f9960',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          tension: 0.3,
+          pointRadius: 0
+        },
+        {
+          label: 'Ready (медиана)',
+          data: trends.ready.movingMedian.map(d => d.value),
+          borderColor: 'rgba(139, 92, 246, 0.6)',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          borderDash: [5, 5],
+          tension: 0.3,
+          pointRadius: 0
+        }
+      ]);
+
+      // Re-run chart
+      createChart('chart-rerun', '', dates, [
+        {
+          label: 'Re-run (факт)',
+          data: trends['re-run'].raw.map(d => d.value),
+          borderColor: 'rgba(139, 92, 246, 0.6)',
+          backgroundColor: 'rgba(139, 92, 246, 0.1)',
+          tension: 0.3,
+          pointRadius: 2
+        },
+        {
+          label: 'Re-run (скользящее среднее)',
+          data: trends['re-run'].movingAverage.map(d => d.value),
+          borderColor: '#8b5cf6',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          tension: 0.3,
+          pointRadius: 0
+        },
+        {
+          label: 'Re-run (медиана)',
+          data: trends['re-run'].movingMedian.map(d => d.value),
+          borderColor: 'rgba(107, 114, 128, 0.6)',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          borderDash: [5, 5],
+          tension: 0.3,
+          pointRadius: 0
+        }
+      ]);
+
+      // All types comparison
+      createChart('chart-all', '', dates, [
+        {
+          label: 'Draft',
+          data: trends.draft.raw.map(d => d.value),
+          borderColor: '#f59e0b',
+          backgroundColor: 'rgba(245, 158, 11, 0.1)',
+          tension: 0.3
+        },
+        {
+          label: 'Ready',
+          data: trends.ready.raw.map(d => d.value),
+          borderColor: '#0f9960',
+          backgroundColor: 'rgba(15, 153, 96, 0.1)',
+          tension: 0.3
+        },
+        {
+          label: 'Re-run',
+          data: trends['re-run'].raw.map(d => d.value),
+          borderColor: '#8b5cf6',
+          backgroundColor: 'rgba(139, 92, 246, 0.1)',
+          tension: 0.3
+        }
+      ]);
+    }
+
+    function updateDashboard(period) {
+      if (!dashboardData) return;
+
+      currentPeriod = period;
+      renderSummaryCards(dashboardData, period);
+      renderCharts(dashboardData, period);
+
+      // Обновляем активную кнопку
+      document.querySelectorAll('.period-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.period === period);
+      });
+    }
+
+    async function init() {
+      const loadingEl = document.getElementById('loading');
+      const contentEl = document.getElementById('dashboard-content');
+      const emptyStateEl = document.getElementById('empty-state');
+
+      dashboardData = await loadDashboardData();
+
+      loadingEl.classList.add('hidden');
+
+      if (!dashboardData || !dashboardData.trends || !dashboardData.trends['30days']) {
+        emptyStateEl.classList.remove('hidden');
+        return;
+      }
+
+      contentEl.classList.remove('hidden');
+      updateDashboard('30');
+
+      // Обработчики переключения периода
+      document.querySelectorAll('.period-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          updateDashboard(btn.dataset.period);
+        });
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>

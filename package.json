@@ -68,6 +68,7 @@
     "ci:metrics:collect": "node scripts/collect-ci-metrics.mjs",
     "ci:metrics:report": "node scripts/generate-ci-metrics-report.mjs",
     "trends:dashboard:generate": "node scripts/generate-trends-dashboard-data.mjs",
+    "trends:v2:generate": "node scripts/generate-trends-v2-data.mjs",
     "notion:sync:brief": "node scripts/sync-brief-status.mjs",
     "audit:roll-up": "node scripts/generate-weekly-audit-roll-up.mjs",
     "audit:roll-up:publish": "node scripts/generate-weekly-audit-roll-up.mjs --publish",
