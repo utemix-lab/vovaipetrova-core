@@ -793,9 +793,9 @@ function getPRLabels() {
 }
 
 /**
- * Создаёт комментарий в PR при превышении порогов
+ * Создаёт короткие hints в PR при превышении порогов (заменяет длинные комментарии)
  */
-function addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType) {
+async function addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType) {
   // Проверяем, включены ли оповещения в конфиге
   if (!ALERTS_CONFIG.prComments?.enabled) {
     if (VERBOSE) {
@@ -805,12 +805,10 @@ function addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType) {
   }
 
   const prNumber = process.env.GITHUB_PR_NUMBER || process.env.GITHUB_EVENT_PULL_REQUEST_NUMBER;
-  const repo = process.env.GITHUB_REPO || process.env.GITHUB_REPOSITORY || 'utemix-lab/vovaipetrova-core';
-  const token = process.env.GITHUB_TOKEN;
 
-  if (!prNumber || !token) {
+  if (!prNumber) {
     if (VERBOSE) {
-      console.warn('⚠️  GITHUB_TOKEN or PR number not found, skipping PR comment');
+      console.warn('⚠️  PR number not found, skipping PR hints');
     }
     return;
   }
@@ -819,101 +817,32 @@ function addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType) {
   const totalWarnings = sizeCheck.warnings.length + piiCheck.warnings.length;
 
   if (totalViolations === 0 && totalWarnings === 0) {
-    return; // Нет проблем, не добавляем комментарий
+    return; // Нет проблем, не добавляем hints
   }
 
-  const limits = SIZE_LIMITS[taskType] || SIZE_LIMITS.default;
-
-  let comment = '## 🛡️ Guardrails Threshold Alerts\n\n';
-  comment += `**Task type:** \`${taskType}\`\n\n`;
-  comment += `**PR Stats:**\n`;
-  comment += `- Files: ${stats.totalFiles} / ${limits.maxFiles} (critical: ${Math.ceil(limits.maxFiles * limits.criticalMultiplier)})\n`;
-  comment += `- Additions: ${stats.totalAdditions} / ${limits.maxAdditions} (critical: ${Math.ceil(limits.maxAdditions * limits.criticalMultiplier)})\n`;
-  comment += `- Deletions: ${stats.totalDeletions} / ${limits.maxDeletions} (critical: ${Math.ceil(limits.maxDeletions * limits.criticalMultiplier)})\n\n`;
-
-  if (sizeCheck.violations.length > 0) {
-    comment += '### ❌ Critical Violations (Blocking)\n\n';
-    for (const violation of sizeCheck.violations) {
-      comment += `- **${violation.type}**: ${violation.message}\n`;
-    }
-    comment += '\n';
-  }
-
-  if (forbiddenCheck.length > 0) {
-    comment += '### ❌ Forbidden Paths (Blocking)\n\n';
-    for (const violation of forbiddenCheck.slice(0, 10)) {
-      comment += `- \`${violation.file}\`: ${violation.reason}\n`;
-    }
-    if (forbiddenCheck.length > 10) {
-      comment += `- _... and ${forbiddenCheck.length - 10} more_\n`;
-    }
-    comment += '\n';
-  }
-
-  if (piiCheck.violations.length > 0) {
-    comment += '### ❌ PII Violations (Blocking)\n\n';
-    const violationsByFile = {};
-    for (const violation of piiCheck.violations.slice(0, 20)) {
-      if (!violationsByFile[violation.file]) {
-        violationsByFile[violation.file] = [];
-      }
-      violationsByFile[violation.file].push(violation);
-    }
-    for (const [file, violations] of Object.entries(violationsByFile).slice(0, 5)) {
-      comment += `- **\`${file}\`**: ${violations.length} violation(s)\n`;
-    }
-    comment += '\n';
-  }
-
-  if (sizeCheck.warnings.length > 0) {
-    comment += '### ⚠️ Warnings (Non-blocking)\n\n';
-    for (const warning of sizeCheck.warnings) {
-      comment += `- **${warning.type}**: ${warning.message}\n`;
-    }
-    comment += '\n';
-  }
-
-  if (piiCheck.warnings.length > 0) {
-    comment += '### ⚠️ PII Warnings (Non-blocking)\n\n';
-    comment += `${piiCheck.warnings.length} potential PII matches found. Review recommended.\n\n`;
-  }
-
-  comment += '---\n\n';
-  comment += '**Recommendations:**\n';
-  if (sizeCheck.violations.length > 0 || sizeCheck.warnings.length > 0) {
-    comment += '- Consider splitting this PR into smaller changes\n';
-    comment += '- Review changed files and optimize scope if possible\n';
-  }
-  if (forbiddenCheck.length > 0) {
-    comment += '- Remove forbidden paths from changes or request explicit approval\n';
-  }
-  if (piiCheck.violations.length > 0) {
-    comment += '- Sanitize PII data using placeholders like `<user>`, `<email>`, `<path>`\n';
-  }
-  comment += '\n';
-  comment += '<!-- Guardrails Alert -->\n';
-
+  // Добавляем короткие hints для разных типов проблем (без длинных комментариев)
   try {
-    // Создаём временный файл для комментария
-    const tmpFile = join(process.cwd(), `tmp-pr-comment-${Date.now()}.md`);
-    writeFileSync(tmpFile, comment, 'utf8');
-
-    // Добавляем комментарий через gh CLI
-    const command = `gh pr comment ${prNumber} --repo ${repo} --body-file "${tmpFile}"`;
-    execSync(command, {
-      encoding: 'utf-8',
-      stdio: VERBOSE ? 'inherit' : 'pipe',
-      env: { ...process.env, GITHUB_TOKEN: token }
-    });
-
-    // Удаляем временный файл
-    unlinkSync(tmpFile);
-
-    if (VERBOSE) {
-      console.log(`✅ PR comment added to PR #${prNumber}`);
+    const { addPRHint } = await import('./add-pr-hint.mjs');
+    
+    // Hint для превышения size-guard
+    if (sizeCheck.violations.length > 0 || sizeCheck.warnings.length > 0) {
+      addPRHint('guardrails-size', prNumber);
+    }
+    
+    // Hint для forbidden paths
+    if (forbiddenCheck.length > 0) {
+      addPRHint('guardrails-forbidden', prNumber);
+    }
+    
+    // Hint для PII нарушений
+    if (piiCheck.violations.length > 0) {
+      addPRHint('guardrails-pii', prNumber);
     }
   } catch (error) {
-    console.warn(`⚠️  Failed to add PR comment: ${error.message}`);
+    // Игнорируем ошибки импорта hints (не блокируем CI)
+    if (VERBOSE) {
+      console.warn('⚠️  Failed to add PR hints:', error.message);
+    }
   }
 }
 
@@ -1037,7 +966,7 @@ function createThresholdIssue(sizeCheck, forbiddenCheck, piiCheck, stats, taskTy
   }
 }
 
-function main() {
+async function main() {
   console.log('🛡️  Guardrails v2: size-guard, PII-scrub, forbidden-paths\n');
 
   // Получаем статистику изменений
@@ -1077,8 +1006,8 @@ function main() {
   // Создаём алерты
   const prNumber = process.env.GITHUB_PR_NUMBER || process.env.GITHUB_EVENT_PULL_REQUEST_NUMBER;
   if (prNumber) {
-    // Добавляем комментарий в PR при превышении порогов
-    addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType);
+    // Добавляем короткие hints в PR при превышении порогов
+    await addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType);
 
     // Создаём Issue при критических превышениях (проверяем условия из конфига)
     const issuesConfig = ALERTS_CONFIG.issues;
@@ -1130,7 +1059,10 @@ function main() {
 
 if (import.meta.url === `file://${process.argv[1]}` ||
     import.meta.url.endsWith('guardrails-v2.mjs')) {
-  main();
+  main().catch(error => {
+    console.error('❌ Ошибка:', error.message);
+    process.exit(1);
+  });
 }
 
 export { checkSizeGuard, checkForbiddenPaths, checkPII };
