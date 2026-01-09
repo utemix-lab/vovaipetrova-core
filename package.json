@@ -65,6 +65,8 @@
     "backlinks:generate": "node scripts/generate-backlinks.mjs",
     "backlinks:watchdog": "node scripts/backlinks-watchdog.mjs",
     "backlinks:watchdog:strict": "node scripts/backlinks-watchdog.mjs --strict",
+    "backlinks:watchdog:fix": "node scripts/backlinks-watchdog.mjs --fix",
+    "backlinks:watchdog:fix:dry": "node scripts/backlinks-watchdog.mjs --fix --dry-run",
     "sitemap:generate": "node scripts/generate-sitemap.mjs",
     "ci:metrics:collect": "node scripts/collect-ci-metrics.mjs",
     "ci:metrics:report": "node scripts/generate-ci-metrics-report.mjs",
