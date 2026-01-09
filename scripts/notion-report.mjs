@@ -304,6 +304,68 @@ function formatReportAsBlocks(report, minimal = false) {
 
   // Основное содержимое
   if (report.content || report.message) {
+    const content = report.content || report.message || '';
+    
+    // Если есть ссылки в формате Markdown [text](url), конвертируем их в Notion links
+    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    let lastIndex = 0;
+    const richTextParts = [];
+    let match;
+    
+    while ((match = linkRegex.exec(content)) !== null) {
+      // Добавляем текст до ссылки
+      if (match.index > lastIndex) {
+        const textBefore = content.substring(lastIndex, match.index);
+        if (textBefore.trim()) {
+          richTextParts.push({
+            type: 'text',
+            text: { content: textBefore },
+          });
+        }
+      }
+      
+      // Добавляем ссылку
+      richTextParts.push({
+        type: 'text',
+        text: {
+          content: match[1],
+          link: { url: match[2] },
+        },
+      });
+      
+      lastIndex = match.index + match[0].length;
+    }
+    
+    // Добавляем оставшийся текст
+    if (lastIndex < content.length) {
+      const textAfter = content.substring(lastIndex);
+      if (textAfter.trim()) {
+        richTextParts.push({
+          type: 'text',
+          text: { content: textAfter },
+        });
+      }
+    }
+    
+    // Если не нашлись ссылки, добавляем весь текст как есть
+    if (richTextParts.length === 0) {
+      richTextParts.push({
+        type: 'text',
+        text: { content: content },
+      });
+    }
+    
+    blocks.push({
+      object: 'block',
+      type: 'paragraph',
+      paragraph: {
+        rich_text: richTextParts,
+      },
+    });
+  }
+  
+  // Если есть отдельная ссылка на HTML (для совместимости)
+  if (report.htmlUrl) {
     blocks.push({
       object: 'block',
       type: 'paragraph',
@@ -312,7 +374,14 @@ function formatReportAsBlocks(report, minimal = false) {
           {
             type: 'text',
             text: {
-              content: report.content || report.message || '',
+              content: '📄 ',
+            },
+          },
+          {
+            type: 'text',
+            text: {
+              content: 'View Full HTML Report',
+              link: { url: report.htmlUrl },
             },
           },
         ],
