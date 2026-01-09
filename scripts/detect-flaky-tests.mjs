@@ -17,20 +17,58 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync } from 'fs';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO || 'utemix-lab/vovaipetrova-core';
 const FLAKY_REPORTS_DIR = '.flaky-reports';
 const CI_METRICS_FILE = join('.ci-metrics', 'ci-metrics.json');
 const FLAKY_REPORT_FILE = join(FLAKY_REPORTS_DIR, 'flaky-tests-report.json');
+const THRESHOLDS_CONFIG_PATH = join(__dirname, '..', 'config', 'ci-thresholds.json');
 
-// Параметры командной строки
+/**
+ * Загружает конфигурацию порогов из config/ci-thresholds.json
+ */
+function loadThresholdsConfig() {
+  if (!existsSync(THRESHOLDS_CONFIG_PATH)) {
+    return null;
+  }
+
+  try {
+    const configContent = readFileSync(THRESHOLDS_CONFIG_PATH, 'utf8');
+    const config = JSON.parse(configContent);
+    return config;
+  } catch (error) {
+    console.warn(`⚠️  Failed to load thresholds config: ${error.message}`);
+    return null;
+  }
+}
+
+const thresholdsConfig = loadThresholdsConfig();
+const flakyConfig = thresholdsConfig?.flakyTests || {};
+
+// Параметры командной строки (приоритет: CLI > config > defaults)
 const args = process.argv.slice(2);
 const workflowFilter = args.find(arg => arg.startsWith('--workflow='))?.split('=')[1];
-const daysFilter = parseInt(args.find(arg => arg.startsWith('--days='))?.split('=')[1] || '7');
-const failureThreshold = parseFloat(args.find(arg => arg.startsWith('--threshold='))?.split('=')[1] || '30'); // Процент неудачных запусков
+const daysFilter = parseInt(
+  args.find(arg => arg.startsWith('--days='))?.split('=')[1] || 
+  flakyConfig.daysFilter?.toString() || 
+  '7'
+);
+const failureThreshold = parseFloat(
+  args.find(arg => arg.startsWith('--threshold='))?.split('=')[1] || 
+  flakyConfig.failureThreshold?.toString() || 
+  '30'
+);
+const minRuns = parseInt(flakyConfig.minRuns?.toString() || '3', 10);
+
+// Настройки оповещений
+const NOTION_ALERTS_ENABLED = thresholdsConfig?.alerts?.flakyTests?.notion?.enabled !== false;
 
 if (!GITHUB_TOKEN) {
   console.error('❌ Error: GITHUB_TOKEN is not set.');
@@ -129,7 +167,7 @@ function isFlaky(group) {
   
   // Высокий процент неудач без изменений в коде
   const failureRate = conclusions.filter(c => c === 'failure' || c === 'cancelled').length / conclusions.length * 100;
-  if (failureRate >= failureThreshold && group.runs.length >= 3) {
+  if (failureRate >= failureThreshold && group.runs.length >= minRuns) {
     return true;
   }
   
@@ -173,6 +211,12 @@ function calculateFlakyMetrics(group) {
  * Отправляет уведомление о flaky тестах в Notion
  */
 function sendFlakyAlertToNotion(report) {
+  // Проверяем, включены ли оповещения в конфиге
+  if (!NOTION_ALERTS_ENABLED) {
+    console.log('ℹ️  Notion alerts disabled in config, skipping');
+    return;
+  }
+
   if (report.flakyJobs.length === 0) {
     return; // Не отправляем уведомления, если flaky тестов нет
   }
@@ -249,6 +293,8 @@ function detectFlakyTests() {
   console.log(`   Workflow filter: ${workflowFilter || 'all'}`);
   console.log(`   Days filter: ${daysFilter}`);
   console.log(`   Failure threshold: ${failureThreshold}%`);
+  console.log(`   Min runs: ${minRuns}`);
+  console.log(`   Notion alerts: ${NOTION_ALERTS_ENABLED ? 'enabled' : 'disabled'}`);
   console.log('');
   
   const runs = loadCiMetrics();

@@ -414,13 +414,43 @@ git config --global i18n.logoutputencoding utf-8
 
 ## 11. Метрики и пороги
 
+**⚠️ Важно: все пороги и настройки оповещений CI находятся в `config/ci-thresholds.json`.**
+
+Этот файл содержит централизованную конфигурацию:
+- Пороги size-guard по типам задач (`sizeGuard.taskTypes`: composer, codegpt, copilot, docs, scripts, prototype, default)
+- Пороги размера PR (`prSize`: maxFiles, maxAdditions, maxDeletions, warningMultiplier)
+- Пороги для обнаружения flaky тестов (`flakyTests`: failureThreshold, minRuns, daysFilter)
+- Пороги стабильности diagnostics (`diagnostics`: maxInternalMissingIncrease, maxTotalIssuesIncrease, minReadyPercent)
+- Настройки включения/выключения оповещений (`alerts`: guardrails, prSize, flakyTests)
+
+**Скрипты, использующие конфиг:**
+- `scripts/guardrails-v2.mjs` — пороги size-guard и оповещения
+- `scripts/check-pr-size.mjs` — пороги размера PR
+- `scripts/detect-flaky-tests.mjs` — пороги flaky тестов
+- `scripts/verify-diagnostics-stability.mjs` — пороги стабильности diagnostics
+
+**Для изменения порогов:**
+1. Отредактировать `config/ci-thresholds.json`
+2. Все скрипты автоматически подхватят новые значения
+3. Не требуется изменять код скриптов
+
 ### 11.1. Размер PR
 
-**Пороги для размера PR:**
+**Дефолтные пороги (из `config/ci-thresholds.json` → `prSize`):**
 
 - **Максимум файлов:** 50 (предупреждение при превышении, ошибка при превышении на 50%+)
 - **Максимум добавлений:** 2000 строк (предупреждение при превышении, ошибка при превышении на 50%+)
 - **Максимум удалений:** 1000 строк (предупреждение при превышении, ошибка при превышении на 50%+)
+- **Множитель предупреждения:** 0.5 (warningMultiplier)
+
+**Пороги size-guard по типам задач (из `config/ci-thresholds.json` → `sizeGuard.taskTypes`):**
+- **composer:** maxFiles=20, maxAdditions=500, maxDeletions=200, criticalMultiplier=1.5
+- **codegpt:** maxFiles=25, maxAdditions=800, maxDeletions=300, criticalMultiplier=1.5
+- **copilot:** maxFiles=30, maxAdditions=1000, maxDeletions=400, criticalMultiplier=1.5
+- **docs:** maxFiles=30, maxAdditions=1000, maxDeletions=500, criticalMultiplier=1.5
+- **scripts:** maxFiles=15, maxAdditions=800, maxDeletions=300, criticalMultiplier=1.5
+- **prototype:** maxFiles=25, maxAdditions=1200, maxDeletions=600, criticalMultiplier=1.5
+- **default:** maxFiles=50, maxAdditions=2000, maxDeletions=1000, criticalMultiplier=1.5
 
 **Исключения из подсчёта:**
 - Автоматически генерируемые файлы (`prototype/page/*.html`, `prototype/data/*.json`)
@@ -428,9 +458,9 @@ git config --global i18n.logoutputencoding utf-8
 - Служебные файлы (`.env`, `node_modules/`, `.git/`)
 
 **Проверка:**
-- Скрипт: `scripts/check-pr-size.mjs`
+- Скрипт: `scripts/check-pr-size.mjs` (использует `config/ci-thresholds.json` → `prSize`)
 - Команда: `npm run check:pr-size`
-- Автоматически выполняется в CI через `guardrails-v2.mjs`
+- Автоматически выполняется в CI через `guardrails-v2.mjs` (использует `config/ci-thresholds.json` → `sizeGuard.taskTypes`)
 
 **Рекомендации:**
 - При превышении порогов — разбить изменения на несколько меньших PR
@@ -458,10 +488,13 @@ git config --global i18n.logoutputencoding utf-8
 - Файл метрик: `.ci-metrics/ci-metrics.json`
 - Отчёт: `.ci-metrics/ci-metrics-report.md`
 
-**Flaky тесты:**
+**Flaky тесты (пороги из `config/ci-thresholds.json` → `flakyTests`):**
 
-- **Порог для пометки как flaky:** 30% неудачных запусков за последние 7 дней
-- Детектор: `npm run flaky:detect`
+- **Порог для пометки как flaky:** 30% неудачных запусков (failureThreshold: 30)
+- **Период анализа:** 7 дней (daysFilter: 7)
+- **Минимум запусков для анализа:** 3 (minRuns: 3)
+- **Оповещения в Notion:** включены по умолчанию (`alerts.flakyTests.notion.enabled: true`)
+- Детектор: `npm run flaky:detect` (использует `config/ci-thresholds.json`)
 - Отчёт: `npm run flaky:detect:report`
 - Файл отчёта: `.flaky-reports/flaky-report.json` и `.flaky-reports/flaky-report.md`
 - Автоматический запуск: каждый понедельник в 10:00 UTC
@@ -481,12 +514,12 @@ git config --global i18n.logoutputencoding utf-8
 - Целевой порог: минимизировать количество orphan страниц
 - Проверка: `prototype/data/orphans.json`
 
-**Готовность контента:**
+**Готовность контента (пороги из `config/ci-thresholds.json` → `diagnostics`):**
 
 - **ready:** страницы готовы к публикации
 - **review:** страницы на проверке
 - **draft:** черновики страниц
-- Целевой порог: максимизировать количество `ready` страниц
+- **Минимальный процент ready страниц:** 40% (minReadyPercent: 40)
 - Метрики: `prototype/data/stats.json`
 
 **Статистика контента:**
@@ -510,11 +543,15 @@ git config --global i18n.logoutputencoding utf-8
 
 **Guardrails:**
 
-- **Size guard:** проверка размера PR
+- **Size guard:** проверка размера PR (пороги из `config/ci-thresholds.json` → `sizeGuard.taskTypes`)
 - **PII scrub:** проверка на наличие персональных данных
 - **Forbidden paths:** проверка на использование запрещённых путей
-- Скрипт: `scripts/guardrails-v2.mjs`
+- Скрипт: `scripts/guardrails-v2.mjs` (использует `config/ci-thresholds.json`)
 - Команда: `npm run guardrails:v2`
+- **Настройки оповещений:** `config/ci-thresholds.json` → `alerts.guardrails`
+  - Комментарии в PR (`alerts.guardrails.prComments.enabled`)
+  - GitHub Issues при критических превышениях (`alerts.guardrails.issues.enabled`)
+  - Порог для критических превышений (`alerts.guardrails.issues.conditions.criticalSizeViolations.threshold`: 2.0)
 
 ### 11.5. Метрики в PR
 
@@ -537,11 +574,11 @@ npm run ci:metrics:collect
 
 ### 11.6. Пороги для принятия решений
 
-**Когда разбивать PR:**
+**Когда разбивать PR (пороги из `config/ci-thresholds.json`):**
 
-- Количество файлов > 50
-- Добавления > 2000 строк
-- Удаления > 1000 строк
+- Количество файлов > 50 (или порог для типа задачи из `sizeGuard.taskTypes`)
+- Добавления > 2000 строк (или порог для типа задачи из `sizeGuard.taskTypes`)
+- Удаления > 1000 строк (или порог для типа задачи из `sizeGuard.taskTypes`)
 - PR затрагивает несколько независимых функциональных областей
 
 **Когда можно объединить изменения:**

@@ -15,49 +15,94 @@ import YAML from 'yaml';
 const VERBOSE = process.argv.includes('--verbose');
 const BASE_REF = process.argv.find(arg => arg.startsWith('--base='))?.split('=', 2)[1] || 'main';
 
-// Пороги size-guard по типам задач
-const SIZE_LIMITS = {
-  'composer': {
-    maxFiles: 20,
-    maxAdditions: 500,
-    maxDeletions: 200,
-    criticalMultiplier: 1.5 // Критическое превышение на 50%
-  },
-  'codegpt': {
-    maxFiles: 25,
-    maxAdditions: 800,
-    maxDeletions: 300,
-    criticalMultiplier: 1.5 // CodeGPT задачи могут быть немного больше, чем Composer
-  },
-  'copilot': {
-    maxFiles: 30,
-    maxAdditions: 1000,
-    maxDeletions: 400,
-    criticalMultiplier: 1.5 // Copilot задачи могут быть больше, чем CodeGPT (больше документации и инфраструктуры)
-  },
-  'docs': {
-    maxFiles: 30,
-    maxAdditions: 1000,
-    maxDeletions: 500,
-    criticalMultiplier: 1.5
-  },
-  'scripts': {
-    maxFiles: 15,
-    maxAdditions: 800,
-    maxDeletions: 300,
-    criticalMultiplier: 1.5
-  },
-  'prototype': {
-    maxFiles: 25,
-    maxAdditions: 1200,
-    maxDeletions: 600,
-    criticalMultiplier: 1.5
-  },
-  'default': {
-    maxFiles: 50,
-    maxAdditions: 2000,
-    maxDeletions: 1000,
-    criticalMultiplier: 1.5
+// Загрузка конфигурации порогов
+const THRESHOLDS_CONFIG_PATH = join(process.cwd(), 'config', 'ci-thresholds.json');
+
+/**
+ * Загружает конфигурацию порогов из config/ci-thresholds.json
+ */
+function loadThresholdsConfig() {
+  if (!existsSync(THRESHOLDS_CONFIG_PATH)) {
+    console.warn(`⚠️  Thresholds config not found: ${THRESHOLDS_CONFIG_PATH}`);
+    console.warn('   Using default thresholds');
+    return null;
+  }
+
+  try {
+    const configContent = readFileSync(THRESHOLDS_CONFIG_PATH, 'utf8');
+    const config = JSON.parse(configContent);
+    return config;
+  } catch (error) {
+    console.warn(`⚠️  Failed to load thresholds config: ${error.message}`);
+    console.warn('   Using default thresholds');
+    return null;
+  }
+}
+
+const thresholdsConfig = loadThresholdsConfig();
+
+// Пороги size-guard по типам задач (из конфига или дефолтные)
+const SIZE_LIMITS = (() => {
+  if (thresholdsConfig?.sizeGuard?.taskTypes) {
+    return thresholdsConfig.sizeGuard.taskTypes;
+  }
+  // Дефолтные значения (fallback)
+  return {
+    'composer': {
+      maxFiles: 20,
+      maxAdditions: 500,
+      maxDeletions: 200,
+      criticalMultiplier: 1.5
+    },
+    'codegpt': {
+      maxFiles: 25,
+      maxAdditions: 800,
+      maxDeletions: 300,
+      criticalMultiplier: 1.5
+    },
+    'copilot': {
+      maxFiles: 30,
+      maxAdditions: 1000,
+      maxDeletions: 400,
+      criticalMultiplier: 1.5
+    },
+    'docs': {
+      maxFiles: 30,
+      maxAdditions: 1000,
+      maxDeletions: 500,
+      criticalMultiplier: 1.5
+    },
+    'scripts': {
+      maxFiles: 15,
+      maxAdditions: 800,
+      maxDeletions: 300,
+      criticalMultiplier: 1.5
+    },
+    'prototype': {
+      maxFiles: 25,
+      maxAdditions: 1200,
+      maxDeletions: 600,
+      criticalMultiplier: 1.5
+    },
+    'default': {
+      maxFiles: 50,
+      maxAdditions: 2000,
+      maxDeletions: 1000,
+      criticalMultiplier: 1.5
+    }
+  };
+})();
+
+// Настройки оповещений (из конфига или дефолтные)
+const ALERTS_CONFIG = thresholdsConfig?.alerts?.guardrails || {
+  prComments: { enabled: true },
+  issues: {
+    enabled: true,
+    conditions: {
+      criticalSizeViolations: { enabled: true, threshold: 2.0 },
+      forbiddenPaths: { enabled: true },
+      criticalPIIViolations: { enabled: true, types: ['email', 'full_name_english'] }
+    }
   }
 };
 
@@ -751,6 +796,14 @@ function getPRLabels() {
  * Создаёт комментарий в PR при превышении порогов
  */
 function addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType) {
+  // Проверяем, включены ли оповещения в конфиге
+  if (!ALERTS_CONFIG.prComments?.enabled) {
+    if (VERBOSE) {
+      console.log('ℹ️  PR comments disabled in config, skipping');
+    }
+    return;
+  }
+
   const prNumber = process.env.GITHUB_PR_NUMBER || process.env.GITHUB_EVENT_PULL_REQUEST_NUMBER;
   const repo = process.env.GITHUB_REPO || process.env.GITHUB_REPOSITORY || 'utemix-lab/vovaipetrova-core';
   const token = process.env.GITHUB_TOKEN;
@@ -868,6 +921,14 @@ function addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType) {
  * Создаёт GitHub Issue при критических превышениях
  */
 function createThresholdIssue(sizeCheck, forbiddenCheck, piiCheck, stats, taskType, prNumber) {
+  // Проверяем, включены ли Issues в конфиге
+  if (!ALERTS_CONFIG.issues?.enabled) {
+    if (VERBOSE) {
+      console.log('ℹ️  Issue creation disabled in config, skipping');
+    }
+    return null;
+  }
+
   const repo = process.env.GITHUB_REPO || process.env.GITHUB_REPOSITORY || 'utemix-lab/vovaipetrova-core';
   const token = process.env.GITHUB_TOKEN;
 
@@ -1019,26 +1080,47 @@ function main() {
     // Добавляем комментарий в PR при превышении порогов
     addPRComment(sizeCheck, forbiddenCheck, piiCheck, stats, taskType);
 
-  // Создаём Issue при критических превышениях (только для очень серьёзных нарушений, чтобы не спамить)
-  // Создаём Issue только если:
-  // 1. Есть критическое превышение size-guard (более чем в 2 раза от лимита)
-  // 2. ИЛИ есть forbidden paths
-  // 3. ИЛИ есть критические PII нарушения (email, полное имя)
-  const limits = SIZE_LIMITS[taskType] || SIZE_LIMITS.default;
-  const criticalSizeViolations = sizeCheck.violations.filter(v => {
-    const limit = v.type === 'files' ? limits.maxFiles :
-                  v.type === 'additions' ? limits.maxAdditions :
-                  limits.maxDeletions;
-    return v.actual > limit * 2; // Более чем в 2 раза от лимита
-  });
+    // Создаём Issue при критических превышениях (проверяем условия из конфига)
+    const issuesConfig = ALERTS_CONFIG.issues;
+    if (issuesConfig?.enabled) {
+      const conditions = issuesConfig.conditions || {};
+      let shouldCreateIssue = false;
 
-  const criticalPIIViolations = piiCheck.violations.filter(v =>
-    v.kind === 'email' || v.kind === 'full_name_english'
-  );
+      // Проверка критических превышений size-guard
+      if (conditions.criticalSizeViolations?.enabled) {
+        const threshold = conditions.criticalSizeViolations.threshold || 2.0;
+        const limits = SIZE_LIMITS[taskType] || SIZE_LIMITS.default;
+        const criticalSizeViolations = sizeCheck.violations.filter(v => {
+          const limit = v.type === 'files' ? limits.maxFiles :
+                        v.type === 'additions' ? limits.maxAdditions :
+                        limits.maxDeletions;
+          return v.actual > limit * threshold;
+        });
+        if (criticalSizeViolations.length > 0) {
+          shouldCreateIssue = true;
+        }
+      }
 
-  if (criticalSizeViolations.length > 0 || forbiddenCheck.length > 0 || criticalPIIViolations.length > 0) {
-    createThresholdIssue(sizeCheck, forbiddenCheck, piiCheck, stats, taskType, prNumber);
-  }
+      // Проверка forbidden paths
+      if (conditions.forbiddenPaths?.enabled && forbiddenCheck.length > 0) {
+        shouldCreateIssue = true;
+      }
+
+      // Проверка критических PII нарушений
+      if (conditions.criticalPIIViolations?.enabled) {
+        const criticalTypes = conditions.criticalPIIViolations.types || ['email', 'full_name_english'];
+        const criticalPIIViolations = piiCheck.violations.filter(v =>
+          criticalTypes.includes(v.kind)
+        );
+        if (criticalPIIViolations.length > 0) {
+          shouldCreateIssue = true;
+        }
+      }
+
+      if (shouldCreateIssue) {
+        createThresholdIssue(sizeCheck, forbiddenCheck, piiCheck, stats, taskType, prNumber);
+      }
+    }
   }
 
   // Код выхода
