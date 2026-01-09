@@ -1,16 +1,21 @@
 #!/usr/bin/env node
 /**
- * Extractor Stories Terms v2: улучшенное извлечение терминов из PR → candidates_kb.json → авто-задачи
+ * Extractor Stories Terms v2.1: Stories→KB intake с анти-дублем и цитатами
  *
- * Версия 2 улучшения:
+ * Версия 2.1 улучшения:
+ * - Агрегация кандидатов по slug (анти-дубль): разные термины с одинаковым slug объединяются
+ * - Сохранение 1-2 цитат контекста для каждого кандидата
+ * - Задач не плодится: одна Issue на slug, даже если найдено несколько терминов с одинаковым slug
+ *
+ * Версия 2.0:
  * - Морфология русского языка: извлечение терминов в разных падежах и формах
  * - Улучшенные границы слов: более точное определение терминов
  * - Лучшая фильтрация: исключение ложных срабатываний
  * - Улучшенный контекст: более релевантные примеры использования
  *
  * Извлекает потенциальные термины из измененных файлов Stories в PR и создает:
- * 1. Файл candidates_kb.json с кандидатами терминов
- * 2. GitHub Issues для каждого термина: "KB: добавить термин <slug>"
+ * 1. Файл candidates_kb.json с кандидатами терминов (агрегированными по slug)
+ * 2. GitHub Issues для каждого slug: "KB: добавить термин <slug>" (максимум одна Issue на slug)
  *
  * Использование:
  *   node scripts/extractor-stories-terms.mjs [--pr=<number>] [--base=main] [--dry-run] [--no-issues] [--no-morphology]
@@ -630,7 +635,8 @@ async function main() {
   log(`Загружено ${existingKBTerms.size} существующих терминов из KB для нормализации`);
 
   // Извлекаем термины из каждого файла
-  const allTerms = new Map(); // normalized term -> { count, files, slug, originalForms }
+  // v2.1: Агрегируем по slug (анти-дубль) вместо normalized term
+  const allTerms = new Map(); // slug -> { count, files, slug, originalForms, canonicalTerm }
 
   for (const file of changedFiles) {
     if (!existsSync(file)) {
@@ -663,28 +669,39 @@ async function main() {
         }
       }
 
-      // Используем канонический термин как ключ
-      if (!allTerms.has(canonicalTerm)) {
-        allTerms.set(canonicalTerm, {
-          term: canonicalTerm, // Каноническая форма
-          slug: createSlug(canonicalTerm),
+      // v2.1: Используем slug как ключ для агрегации (анти-дубль)
+      // Это гарантирует, что разные термины с одинаковым slug будут объединены
+      if (!allTerms.has(slug)) {
+        allTerms.set(slug, {
+          slug: slug, // Slug как уникальный ключ
+          term: canonicalTerm, // Каноническая форма термина
           count: 0,
           files: [],
-          contexts: [],
+          contexts: [], // Максимум 1-2 цитаты
           originalForms: new Set() // Все формы, в которых встречался термин
         });
       }
 
-      const entry = allTerms.get(canonicalTerm);
+      const entry = allTerms.get(slug);
       entry.count++;
       entry.originalForms.add(term); // Сохраняем оригинальную форму
+      // Обновляем канонический термин, если нашли более подходящий
+      if (canonicalTerm && canonicalTerm !== normalizedTerm) {
+        entry.term = canonicalTerm;
+      }
       if (!entry.files.includes(file)) {
         entry.files.push(file);
       }
 
-      // Собираем 1-2 цитаты контекста для термина из текста файла
+      // v2.1: Собираем 1-2 цитаты контекста для термина из текста файла
+      // Ограничиваем до максимум 2 цитат на slug (не на термин)
       // Ищем все формы термина (включая морфологические)
       try {
+        // Проверяем, что у нас еще не набралось максимум цитат для этого slug
+        if (entry.contexts.length >= 2) {
+          continue; // Уже есть 2 цитаты для этого slug, пропускаем
+        }
+
         const lower = text.toLowerCase();
         const searchTerms = [term.toLowerCase(), canonicalTerm];
 
@@ -695,11 +712,12 @@ async function main() {
         }
 
         let found = 0;
+        const maxQuotes = 2 - entry.contexts.length; // Сколько еще можно добавить
         for (const searchTerm of searchTerms) {
-          if (found >= 2) break;
+          if (found >= maxQuotes) break;
 
           let startPos = 0;
-          while (found < 2) {
+          while (found < maxQuotes) {
             const idx = lower.indexOf(searchTerm, startPos);
             if (idx === -1) break;
 
@@ -724,8 +742,15 @@ async function main() {
             // Сформатируем цитату: ограничим длину и экранируем бэктики
             snippet = snippet.replace(/`/g, "'");
 
-            // Дедупликация
-            if (!entry.contexts.some(ctx => ctx.includes(searchTerm))) {
+            // Дедупликация: проверяем, что такая цитата еще не добавлена
+            const isDuplicate = entry.contexts.some(ctx => {
+              // Сравниваем нормализованные версии (без многоточий и пробелов)
+              const normalizedCtx = ctx.replace(/…/g, '').replace(/\s+/g, ' ').toLowerCase();
+              const normalizedSnippet = snippet.replace(/…/g, '').replace(/\s+/g, ' ').toLowerCase();
+              return normalizedCtx === normalizedSnippet || normalizedCtx.includes(searchTerm) && normalizedSnippet.includes(searchTerm);
+            });
+
+            if (!isDuplicate) {
               entry.contexts.push(snippet);
               found++;
             }
@@ -739,7 +764,8 @@ async function main() {
     }
   }
 
-  // Сортируем термины по частоте появления
+  // v2.1: Сортируем кандидатов по частоте появления
+  // Убеждаемся, что contexts содержит максимум 1-2 цитаты (уже ограничено выше)
   const candidates = Array.from(allTerms.values())
     .sort((a, b) => b.count - a.count)
     .map(({ term, slug, count, files, contexts, originalForms }) => ({
@@ -747,7 +773,7 @@ async function main() {
       slug,
       frequency: count,
       files: files.slice(0, 5), // Ограничиваем количество файлов
-      contexts: (contexts || []).slice(0, 2), // 1-2 примера контекста
+      contexts: (contexts || []).slice(0, 2), // v2.1: Гарантируем максимум 1-2 цитаты
       originalForms: Array.from(originalForms || []).slice(0, 5), // Формы, в которых встречался термин
       created_at: new Date().toISOString(),
       pr_number: args.pr || null
@@ -760,9 +786,9 @@ async function main() {
 
   log(`Найдено ${candidates.length} потенциальных терминов`);
 
-  // Сохраняем в candidates_kb.json
+  // v2.1: Сохраняем в candidates_kb.json
   const output = {
-    version: '2.0',
+    version: '2.1',
     generated_at: new Date().toISOString(),
     pr_number: args.pr || null,
     base_ref: args.base,
@@ -770,7 +796,9 @@ async function main() {
     features: {
       morphology: !args.noMorphology,
       wordBoundaries: true,
-      normalization: true
+      normalization: true,
+      slugAggregation: true, // v2.1: Агрегация по slug (анти-дубль)
+      maxQuotes: 2 // v2.1: Максимум 1-2 цитаты на кандидата
     },
     candidates
   };
@@ -787,13 +815,21 @@ async function main() {
     log(`[DRY] Would save ${candidates.length} candidates to ${CANDIDATES_OUTPUT}`);
   }
 
-  // Создаем Issues для каждого термина
+  // v2.1: Создаем Issues для каждого slug (не плодим задач - одна на slug)
   if (!args.noIssues) {
     log('Создание GitHub Issues...');
     let created = 0;
     let skipped = 0;
+    const createdSlugs = new Set(); // Отслеживаем созданные Issues по slug
 
     for (const candidate of candidates) {
+      // v2.1: Проверяем, что Issue для этого slug еще не создан (анти-дубль)
+      if (createdSlugs.has(candidate.slug)) {
+        log(`⏭️  Issue для slug "${candidate.slug}" уже создан, пропускаем (анти-дубль)`);
+        skipped++;
+        continue;
+      }
+
       // Создаем Issue только для терминов, которые встречаются минимум 2 раза
       if (candidate.frequency < 2) {
         skipped++;
@@ -803,12 +839,13 @@ async function main() {
       const issueUrl = await createIssueForTerm(candidate.term, candidate.slug, {
         prNumber: args.pr,
         files: candidate.files,
-        contexts: candidate.contexts || [],
+        contexts: candidate.contexts || [], // v2.1: Уже ограничено до 1-2 цитат
         originalForms: candidate.originalForms || []
       }, args);
 
       if (issueUrl) {
         candidate.issue_url = issueUrl;
+        createdSlugs.add(candidate.slug); // Помечаем slug как обработанный
         created++;
       }
 
@@ -816,7 +853,7 @@ async function main() {
       await new Promise(resolve => setTimeout(resolve, 500));
     }
 
-    log(`✅ Создано ${created} Issues, пропущено ${skipped} (низкая частота)`);
+    log(`✅ Создано ${created} Issues (по одному на slug), пропущено ${skipped} (низкая частота или дубликаты)`);
 
     // Обновляем candidates_kb.json с URL Issues
     if (!args.dryRun && created > 0) {
