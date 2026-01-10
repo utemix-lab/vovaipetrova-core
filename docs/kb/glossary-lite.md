@@ -14,7 +14,7 @@ machine_tags:
 
 # Glossary Lite (A–Z)
 
-← [База знаний (KB)](kb-index) • [Explorer](/prototype)
+← [База знаний (KB)](/prototype#kb-index) • [Explorer](/prototype)
 
 Лёгкий справочник терминов базы знаний с короткими определениями и ссылками на канонические карточки.
 
@@ -22,7 +22,7 @@ machine_tags:
 
 ## Навигация по буквам
 
-[A](#a) [B](#b) [C](#c) [F](#f) [L](#l) [M](#m) [R](#r) [S](#s) [T](#t) 
+[A](#a) [B](#b) [C](#c) [F](#f) [L](#l) [M](#m) [R](#r) [S](#s) [T](#t)
 
 ---
 
