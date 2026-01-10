@@ -1225,18 +1225,18 @@ body[data-view="index"] {
   .pagination-nav {
     gap: 0.25rem;
   }
-  
+
   .pagination-button {
     padding: 0.4rem 0.75rem;
     font-size: 0.85rem;
   }
-  
+
   .pagination-number {
     min-width: 2rem;
     height: 2rem;
     font-size: 0.85rem;
   }
-  
+
   .pagination-numbers {
     gap: 0.125rem;
   }
@@ -1452,7 +1452,7 @@ body[data-view="index"] {
   .mini-dashboard__metrics {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .mini-dashboard__metric-value {
     font-size: 1.5rem;
   }
@@ -1478,11 +1478,11 @@ body[data-view="index"] {
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .metric-value {
     font-size: 2rem;
   }
-  
+
   .diagnostics-meta {
     flex-direction: column;
     gap: 0.5rem;

@@ -382,16 +382,16 @@ async function renderIndex() {
       : `${window.location.pathname}${newHash ? `#${newHash}` : ""}`;
 
     window.history.pushState({}, "", newURL);
-    
+
     // Сохраняем позицию скролла перед изменением URL (для будущего восстановления)
     saveScrollPosition();
   }
-  
+
   // Функция для сохранения позиции скролла
   function saveScrollPosition() {
     const scrollY = window.scrollY || window.pageYOffset;
     const scrollX = window.scrollX || window.pageXOffset;
-    
+
     // Сохраняем для текущего контекста (tag или kb letter)
     let scrollKey = "explorer-scroll";
     if (currentTagFilter) {
@@ -401,10 +401,10 @@ async function renderIndex() {
     } else if (activePanel !== "docs") {
       scrollKey = `explorer-scroll-panel-${activePanel}`;
     }
-    
+
     localStorage.setItem(scrollKey, JSON.stringify({ x: scrollX, y: scrollY }));
   }
-  
+
   // Функция для восстановления позиции скролла
   function restoreScrollPosition() {
     let scrollKey = "explorer-scroll";
@@ -415,7 +415,7 @@ async function renderIndex() {
     } else if (activePanel !== "docs") {
       scrollKey = `explorer-scroll-panel-${activePanel}`;
     }
-    
+
     const savedScroll = localStorage.getItem(scrollKey);
     if (savedScroll) {
       try {
@@ -452,25 +452,25 @@ async function renderIndex() {
 
   async function renderMiniDashboard() {
     if (!miniDashboard) return;
-    
+
     // Показываем мини-дашборд только на первой странице без фильтров
     if (currentPage !== 1 || currentStatus !== "all" || currentSearch || currentTagFilter) {
       miniDashboard.classList.add("hidden");
       return;
     }
-    
+
     try {
       const statsResponse = await fetch("data/stats.json").catch(() => null);
       if (!statsResponse?.ok) {
         miniDashboard.classList.add("hidden");
         return;
       }
-      
+
       const stats = await statsResponse.json();
       const totals = stats.totals || {};
       const statuses = totals.statuses || {};
       const readyPercent = totals.pages > 0 ? Math.round((statuses.ready / totals.pages) * 100) : 0;
-      
+
       miniDashboard.innerHTML = `
         <div class="mini-dashboard__content">
           <h2 class="mini-dashboard__title">📊 Обзор</h2>
@@ -506,7 +506,7 @@ async function renderIndex() {
           </div>
         </div>
       `;
-      
+
       miniDashboard.classList.remove("hidden");
     } catch (error) {
       console.warn("⚠️  Failed to load mini dashboard:", error.message);
@@ -593,10 +593,10 @@ async function renderIndex() {
         chip.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
-          
+
           // Сохраняем позицию скролла перед изменением фильтра
           saveScrollPosition();
-          
+
           const tagValue = chip.dataset.tag;
           // При клике на тег переключаем фильтр или убираем его
           if (currentTagFilter === tagValue) {
@@ -610,7 +610,7 @@ async function renderIndex() {
           updateURL();
           renderDocs();
           updateTagFilterUI();
-          
+
           // Восстанавливаем позицию скролла после рендеринга (но обычно сбрасываем наверх при смене фильтра)
           setTimeout(() => {
             restoreScrollPosition();
@@ -620,7 +620,7 @@ async function renderIndex() {
       fragment.appendChild(card);
     }
     cardsContainer.appendChild(fragment);
-    
+
     // Восстанавливаем позицию скролла только если не было изменения страницы пагинации
     // (при изменении страницы скролл сбрасывается наверх в обработчиках пагинации)
     const wasPageChange = urlParams.get("page") && parseInt(urlParams.get("page")) !== currentPage;
@@ -869,34 +869,34 @@ async function renderIndex() {
 
   async function renderDiagnostics() {
     if (!diagnosticsDashboard) return;
-    
+
     diagnosticsDashboard.innerHTML = "";
-    
+
     try {
       const [statsResponse, pagesResponse, orphansResponse] = await Promise.all([
         fetch("data/stats.json").catch(() => null),
         fetch("data/pages.json").catch(() => null),
         fetch("data/orphans.json").catch(() => null)
       ]);
-      
+
       const stats = statsResponse?.ok ? await statsResponse.json() : null;
       const pages = pagesResponse?.ok ? await pagesResponse.json() : null;
       const orphans = orphansResponse?.ok ? await orphansResponse.json() : null;
-      
+
       if (!stats) {
         if (diagnosticsEmpty) diagnosticsEmpty.classList.remove("hidden");
         return;
       }
-      
+
       if (diagnosticsEmpty) diagnosticsEmpty.classList.add("hidden");
-      
+
       // Основные метрики
       const metricsSection = document.createElement("div");
       metricsSection.className = "diagnostics-metrics";
-      
+
       const totals = stats.totals || {};
       const statuses = totals.statuses || {};
-      
+
       metricsSection.innerHTML = `
         <h2 class="diagnostics-section-title">📊 Основные метрики</h2>
         <div class="metrics-grid">
@@ -918,13 +918,13 @@ async function renderIndex() {
           </div>
         </div>
       `;
-      
+
       diagnosticsDashboard.appendChild(metricsSection);
-      
+
       // Проблемы и issues
       const issuesSection = document.createElement("div");
       issuesSection.className = "diagnostics-issues";
-      
+
       const issuesTotal = totals.issues_total || 0;
       const issuesBreakdown = {
         internal: totals.issues_internal_missing || 0,
@@ -932,7 +932,7 @@ async function renderIndex() {
         external: totals.issues_external || 0,
         unknown: totals.issues_unknown || 0
       };
-      
+
       issuesSection.innerHTML = `
         <h2 class="diagnostics-section-title">🔍 Проблемы со ссылками</h2>
         <div class="metrics-grid">
@@ -966,14 +966,14 @@ async function renderIndex() {
           ` : ''}
         </div>
       `;
-      
+
       diagnosticsDashboard.appendChild(issuesSection);
-      
+
       // Сиротские страницы
       if (orphans && orphans.orphans && orphans.orphans.length > 0) {
         const orphansSection = document.createElement("div");
         orphansSection.className = "diagnostics-orphans";
-        
+
         orphansSection.innerHTML = `
           <h2 class="diagnostics-section-title">📄 Сиротские страницы</h2>
           <div class="metric-card metric-card--warning">
@@ -981,16 +981,16 @@ async function renderIndex() {
             <div class="metric-label">Страниц без маршрутов</div>
           </div>
         `;
-        
+
         diagnosticsDashboard.appendChild(orphansSection);
       }
-      
+
       // Статистика по статусам (процент ready)
       if (totals.pages > 0) {
         const readyPercent = Math.round((statuses.ready / totals.pages) * 100);
         const progressSection = document.createElement("div");
         progressSection.className = "diagnostics-progress";
-        
+
         progressSection.innerHTML = `
           <h2 class="diagnostics-section-title">📈 Прогресс готовности</h2>
           <div class="progress-bar">
@@ -998,15 +998,15 @@ async function renderIndex() {
           </div>
           <div class="progress-text">${readyPercent}% страниц в статусе Ready</div>
         `;
-        
+
         diagnosticsDashboard.appendChild(progressSection);
       }
-      
+
       // Информация о генерации
       if (stats.generatedAt) {
         const infoSection = document.createElement("div");
         infoSection.className = "diagnostics-info";
-        
+
         const generatedDate = new Date(stats.generatedAt);
         const formattedDate = generatedDate.toLocaleString('ru-RU', {
           year: 'numeric',
@@ -1015,17 +1015,17 @@ async function renderIndex() {
           hour: '2-digit',
           minute: '2-digit'
         });
-        
+
         infoSection.innerHTML = `
           <div class="diagnostics-meta">
             <span>Обновлено: ${formattedDate}</span>
             ${stats.version ? `<span>Версия: ${stats.version}</span>` : ''}
           </div>
         `;
-        
+
         diagnosticsDashboard.appendChild(infoSection);
       }
-      
+
     } catch (error) {
       console.warn("⚠️  Failed to load diagnostics:", error.message);
       if (diagnosticsEmpty) diagnosticsEmpty.classList.remove("hidden");
@@ -1113,12 +1113,12 @@ async function renderIndex() {
   function setActivePanel(panel) {
     activePanel = panel;
     const storiesBanner = document.getElementById("stories-banner");
-    
+
     // Скрываем мини-дашборд при переключении панелей
     if (miniDashboard && panel !== "docs") {
       miniDashboard.classList.add("hidden");
     }
-    
+
     if (panel === "stories") {
       docsPanel.classList.add("hidden");
       storiesPanel.classList.remove("hidden");
@@ -1215,7 +1215,7 @@ async function renderIndex() {
     button.addEventListener("click", () => {
       // Сохраняем позицию скролла перед изменением фильтра
       saveScrollPosition();
-      
+
       filterButtons.forEach((btn) => btn.classList.remove("is-active"));
       button.classList.add("is-active");
       currentStatus = button.dataset.status;
@@ -1223,7 +1223,7 @@ async function renderIndex() {
       localStorage.setItem("explorer-status", currentStatus);
       updateURL();
       renderDocs();
-      
+
       // Восстанавливаем позицию скролла после рендеринга
       setTimeout(() => {
         restoreScrollPosition();
@@ -1242,7 +1242,7 @@ async function renderIndex() {
     button.addEventListener("click", () => {
       // Сохраняем позицию скролла перед изменением сортировки
       saveScrollPosition();
-      
+
       sortButtons.forEach((btn) => btn.classList.remove("is-active"));
       button.classList.add("is-active");
       currentSort = button.dataset.sort;
@@ -1250,7 +1250,7 @@ async function renderIndex() {
       localStorage.setItem("explorer-sort", currentSort);
       updateURL();
       renderDocs();
-      
+
       // Восстанавливаем позицию скролла после рендеринга
       setTimeout(() => {
         restoreScrollPosition();
@@ -1276,13 +1276,13 @@ async function renderIndex() {
   checkbox.addEventListener("change", (e) => {
     // Сохраняем позицию скролла перед изменением фильтра
     saveScrollPosition();
-    
+
     readyOnly = e.target.checked;
     currentPage = 1; // Сбрасываем на первую страницу при изменении фильтра Ready only
     localStorage.setItem("explorer-ready-only", readyOnly ? "true" : "false");
     updateURL();
     renderDocs();
-    
+
     // Восстанавливаем позицию скролла после рендеринга
     setTimeout(() => {
       restoreScrollPosition();
@@ -1347,7 +1347,7 @@ async function renderIndex() {
       renderDocs();
     }, 150);
   });
-  
+
   // Сохраняем позицию скролла при прокрутке (с debounce)
   let scrollSaveTimeout;
   window.addEventListener("scroll", () => {
@@ -1356,12 +1356,12 @@ async function renderIndex() {
       saveScrollPosition();
     }, 500); // Сохраняем позицию скролла через 500ms после последнего скролла
   }, { passive: true });
-  
+
   // Сохраняем позицию скролла перед уходом со страницы
   window.addEventListener("beforeunload", () => {
     saveScrollPosition();
   });
-  
+
   // Обрабатываем изменения hash через popstate (кнопки назад/вперёд браузера)
   window.addEventListener("popstate", () => {
     // При popstate просто перезагружаем страницу для восстановления состояния из URL
@@ -1425,7 +1425,7 @@ async function renderIndex() {
         button.addEventListener("click", () => {
           // Сохраняем позицию скролла перед изменением
           saveScrollPosition();
-          
+
           // Убираем активность с других кнопок
           kbIndexLetters.querySelectorAll(".kb-index-letter").forEach(btn => {
             btn.classList.remove("is-active");
@@ -1438,7 +1438,7 @@ async function renderIndex() {
 
           // Показываем страницы для выбранной буквы
           renderKBIndexLetter(letter, kbIndex.index[letter]);
-          
+
           // Восстанавливаем позицию скролла после рендеринга
           setTimeout(() => {
             restoreScrollPosition();
@@ -1451,7 +1451,7 @@ async function renderIndex() {
       // Определяем какую букву показывать: из hash, localStorage, или первую по умолчанию
       const letterToShow = kbLetterFromHash || localStorage.getItem("explorer-kb-letter") || kbIndex.letters[0];
       const buttonToShow = kbIndexLetters.querySelector(`[data-letter="${letterToShow}"]`);
-      
+
       if (buttonToShow && kbIndex.index[letterToShow]) {
         // Показываем сохранённую или указанную в hash букву
         kbIndexLetters.querySelectorAll(".kb-index-letter").forEach(btn => {
@@ -1459,7 +1459,7 @@ async function renderIndex() {
         });
         buttonToShow.classList.add("is-active");
         renderKBIndexLetter(letterToShow, kbIndex.index[letterToShow]);
-        
+
         // Обновляем URL если нужно
         if (!kbLetterFromHash && localStorage.getItem("explorer-kb-letter")) {
           updateURL();
@@ -1473,7 +1473,7 @@ async function renderIndex() {
           renderKBIndexLetter(firstLetter, kbIndex.index[firstLetter]);
         }
       }
-      
+
       // Восстанавливаем позицию скролла после загрузки
       setTimeout(() => {
         restoreScrollPosition();
@@ -1631,6 +1631,7 @@ async function renderIndex() {
 
   renderDocs();
   renderStories();
+  renderStoriesFeed();
   setActivePanel(activePanel);
   if (activePanel === "orphans") {
     renderOrphans();
