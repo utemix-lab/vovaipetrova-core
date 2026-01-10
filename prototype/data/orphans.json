@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "updated": "2026-01-10T20:31:55.131Z",
+  "updated": "2026-01-10T21:47:38.125Z",
   "orphans": [
     {
       "slug": "briefs-ux-improvements",
@@ -36,6 +36,12 @@
       "slug": "github-labels-guide",
       "title": "GitHub Labels — Руководство по использованию",
       "url": "docs/github-labels-guide.md",
+      "status": "ready"
+    },
+    {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md",
       "status": "ready"
     },
     {

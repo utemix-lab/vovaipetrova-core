@@ -4277,13 +4277,14 @@
     "status": "draft",
     "summary": "Короткий алиас docs/PLAYBOOK.md и заметный ярлык на главной /prototype",
     "tags": [
+      "Navigation",
       "Story",
-      "UX",
-      "Navigation"
+      "UX"
     ],
     "machine_tags": [
       "content/story",
-      "product/explorer"
+      "product/explorer",
+      "theme/ux"
     ],
     "url": "docs/stories/2026-01-10-episode-playbook-short-link.md",
     "service": false,
@@ -4350,6 +4351,25 @@
     "url": "docs/stories/episode-stories-machine-template-v2.md",
     "service": false,
     "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Glossary Lite (A–Z)",
+    "slug": "glossary-lite",
+    "status": "ready",
+    "summary": "Лёгкий справочник терминов базы знаний с короткими определениями и ссылками на канонические карточки",
+    "tags": [
+      "База_знаний",
+      "Справочник"
+    ],
+    "machine_tags": [
+      "product/kb"
+    ],
+    "url": "docs/kb/glossary-lite.md",
+    "service": false,
+    "collection": null,
     "story_order": null,
     "series_id": null,
     "related_stories": null
