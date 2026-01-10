@@ -1,19 +1,18 @@
 ---
-title: 'Эпизод: Playbook short link'
+title: "Эпизод: Playbook short link"
 slug: 2026-01-10-episode-playbook-short-link
-summary: Короткий алиас docs/PLAYBOOK.md и заметный ярлык на главной /prototype
+summary: "Короткий алиас docs/PLAYBOOK.md и заметный ярлык на главной /prototype"
 tags:
-  - Navigation
   - Story
   - UX
+  - Navigation
 machine_tags:
   - content/story
   - product/explorer
-  - theme/ux
 status: draft
 pr_number: 206
-pr_url: 'https://github.com/utemix-lab/vovaipetrova-core/pull/206'
-merged_at: '2026-01-09T20:56:36Z'
+pr_url: "https://github.com/utemix-lab/vovaipetrova-core/pull/206"
+merged_at: "2026-01-09T20:56:36Z"
 ---
 
 # Эпизод: Playbook short link

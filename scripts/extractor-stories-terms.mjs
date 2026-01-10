@@ -525,6 +525,57 @@ function termExistsInKB(slug) {
 }
 
 /**
+ * Загружает существующие Issues из GitHub для проверки дубликатов
+ * Возвращает Map: slug -> issue_url
+ */
+async function loadExistingIssues() {
+  const issues = new Map();
+
+  if (!GITHUB_TOKEN) {
+    log('⚠️  GITHUB_TOKEN не установлен, пропускаю проверку существующих Issues');
+    return issues;
+  }
+
+  try {
+    // Ищем Issues с меткой kb и заголовком "KB: добавить термин"
+    // Используем --label для поиска по метке (может быть kb или content/kb)
+    const ghArgs = [
+      'issue', 'list',
+      '--repo', GITHUB_REPO,
+      '--label', 'kb',
+      '--state', 'all',
+      '--limit', '500',
+      '--json', 'title,number,url'
+    ];
+    const res = spawnSync('gh', ghArgs, {
+      encoding: 'utf8',
+      stdio: 'pipe',
+      env: { ...process.env, GITHUB_TOKEN }
+    });
+
+    if (res.error || res.status !== 0) {
+      log(`⚠️  Не удалось загрузить существующие Issues: ${res.error?.message || res.stderr}`);
+      return issues;
+    }
+
+    const issuesData = JSON.parse(res.stdout || '[]');
+    for (const issue of issuesData) {
+      // Парсим slug из заголовка "KB: добавить термин <slug>"
+      const match = issue.title.match(/^KB: добавить термин (.+)$/);
+      if (match) {
+        const slug = match[1].trim();
+        issues.set(slug, issue.url);
+      }
+    }
+
+    return issues;
+  } catch (error) {
+    log(`⚠️  Ошибка при загрузке существующих Issues: ${error.message}`);
+    return issues;
+  }
+}
+
+/**
  * Создает GitHub Issue для термина
  */
 async function createIssueForTerm(term, slug, context, args) {
@@ -786,21 +837,83 @@ async function main() {
 
   log(`Найдено ${candidates.length} потенциальных терминов`);
 
-  // v2.1: Сохраняем в candidates_kb.json
+  // v2.2: Загружаем существующих кандидатов и дополняем (анти-дубль)
+  let existingCandidates = [];
+  let existingCandidatesBySlug = new Map();
+  if (!args.dryRun && existsSync(CANDIDATES_OUTPUT)) {
+    try {
+      const existingData = JSON.parse(readFileSync(CANDIDATES_OUTPUT, 'utf8'));
+      if (Array.isArray(existingData.candidates)) {
+        existingCandidates = existingData.candidates;
+        for (const cand of existingCandidates) {
+          existingCandidatesBySlug.set(cand.slug, cand);
+        }
+        log(`Загружено ${existingCandidates.length} существующих кандидатов из ${CANDIDATES_OUTPUT}`);
+      }
+    } catch (error) {
+      log(`⚠️  Не удалось загрузить существующих кандидатов: ${error.message}`);
+    }
+  }
+
+  // Объединяем существующих и новых кандидатов по slug
+  const mergedCandidates = new Map();
+  
+  // Сначала добавляем существующих
+  for (const cand of existingCandidates) {
+    mergedCandidates.set(cand.slug, { ...cand });
+  }
+
+  // Затем добавляем/обновляем новыми (более свежие данные)
+  let newCount = 0;
+  let updatedCount = 0;
+  for (const cand of candidates) {
+    if (mergedCandidates.has(cand.slug)) {
+      // Обновляем существующего: объединяем файлы и контексты, обновляем частоту
+      const existing = mergedCandidates.get(cand.slug);
+      const mergedFiles = new Set([...existing.files, ...cand.files]);
+      existing.files = Array.from(mergedFiles).slice(0, 5);
+      // Объединяем контексты (максимум 2)
+      const mergedContexts = [...(existing.contexts || []), ...(cand.contexts || [])];
+      existing.contexts = mergedContexts.slice(0, 2);
+      // Обновляем частоту
+      existing.frequency = (existing.frequency || 0) + cand.frequency;
+      // Обновляем дату и PR
+      existing.created_at = new Date().toISOString();
+      existing.pr_number = args.pr || existing.pr_number;
+      // Объединяем формы
+      const mergedForms = new Set([...(existing.originalForms || []), ...(cand.originalForms || [])]);
+      existing.originalForms = Array.from(mergedForms).slice(0, 5);
+      updatedCount++;
+    } else {
+      // Новый кандидат
+      mergedCandidates.set(cand.slug, { ...cand });
+      newCount++;
+    }
+  }
+
+  const finalCandidates = Array.from(mergedCandidates.values());
+
+  // v2.2: Сохраняем в candidates_kb.json (дополнение, а не перезапись)
   const output = {
-    version: '2.1',
+    version: '2.2',
     generated_at: new Date().toISOString(),
     pr_number: args.pr || null,
     base_ref: args.base,
-    total_candidates: candidates.length,
+    total_candidates: finalCandidates.length,
+    stats: {
+      new_candidates: newCount,
+      updated_candidates: updatedCount,
+      existing_candidates: existingCandidates.length
+    },
     features: {
       morphology: !args.noMorphology,
       wordBoundaries: true,
       normalization: true,
       slugAggregation: true, // v2.1: Агрегация по slug (анти-дубль)
-      maxQuotes: 2 // v2.1: Максимум 1-2 цитаты на кандидата
+      maxQuotes: 2, // v2.1: Максимум 1-2 цитаты на кандидата
+      incremental: true // v2.2: Дополнение вместо перезаписи
     },
-    candidates
+    candidates: finalCandidates
   };
 
   if (!args.dryRun) {
@@ -810,23 +923,38 @@ async function main() {
       mkdirSync(outputDir, { recursive: true });
     }
     writeFileSync(CANDIDATES_OUTPUT, JSON.stringify(output, null, 2), 'utf8');
-    log(`✅ Сохранено в ${CANDIDATES_OUTPUT}`);
+    log(`✅ Сохранено в ${CANDIDATES_OUTPUT} (${newCount} новых, ${updatedCount} обновлено)`);
   } else {
-    log(`[DRY] Would save ${candidates.length} candidates to ${CANDIDATES_OUTPUT}`);
+    log(`[DRY] Would save ${finalCandidates.length} candidates to ${CANDIDATES_OUTPUT} (${newCount} новых, ${updatedCount} обновлено)`);
   }
 
-  // v2.1: Создаем Issues для каждого slug (не плодим задач - одна на slug)
+  // v2.2: Создаем Issues для каждого slug (не плодим задач - одна на slug)
   if (!args.noIssues) {
-    log('Создание GitHub Issues...');
+    log('Проверка существующих Issues и создание новых...');
+    
+    // v2.2: Загружаем существующие Issues из GitHub (анти-дубль)
+    const existingIssues = await loadExistingIssues();
+    log(`Найдено ${existingIssues.size} существующих Issues для KB терминов`);
+
     let created = 0;
     let skipped = 0;
-    const createdSlugs = new Set(); // Отслеживаем созданные Issues по slug
+    const createdSlugs = new Set(); // Отслеживаем созданные Issues по slug в этой сессии
 
-    for (const candidate of candidates) {
-      // v2.1: Проверяем, что Issue для этого slug еще не создан (анти-дубль)
+    // Используем finalCandidates для создания Issues
+    for (const candidate of finalCandidates) {
+      // v2.2: Проверяем, что Issue для этого slug еще не существует (анти-дубль)
       if (createdSlugs.has(candidate.slug)) {
-        log(`⏭️  Issue для slug "${candidate.slug}" уже создан, пропускаем (анти-дубль)`);
+        log(`⏭️  Issue для slug "${candidate.slug}" уже создан в этой сессии, пропускаем`);
         skipped++;
+        continue;
+      }
+
+      // Проверяем существующие Issues в GitHub
+      if (existingIssues.has(candidate.slug)) {
+        log(`⏭️  Issue для slug "${candidate.slug}" уже существует в GitHub, пропускаем (анти-дубль)`);
+        skipped++;
+        // Обновляем URL Issue в кандидате
+        candidate.issue_url = existingIssues.get(candidate.slug);
         continue;
       }
 
@@ -839,7 +967,7 @@ async function main() {
       const issueUrl = await createIssueForTerm(candidate.term, candidate.slug, {
         prNumber: args.pr,
         files: candidate.files,
-        contexts: candidate.contexts || [], // v2.1: Уже ограничено до 1-2 цитат
+        contexts: candidate.contexts || [], // v2.2: Уже ограничено до 1-2 цитат
         originalForms: candidate.originalForms || []
       }, args);
 
@@ -847,6 +975,7 @@ async function main() {
         candidate.issue_url = issueUrl;
         createdSlugs.add(candidate.slug); // Помечаем slug как обработанный
         created++;
+        existingIssues.set(candidate.slug, issueUrl); // Добавляем в кеш
       }
 
       // Небольшая задержка между запросами
