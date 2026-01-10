@@ -80,7 +80,8 @@
     "flaky:detect:report": "node scripts/generate-flaky-report.mjs",
     "labels:create": "node scripts/create-github-labels.mjs",
     "mcp:notion": "node mcp-server-notion.mjs",
-    "mcp:notion:test": "node mcp-server-notion.mjs"
+    "mcp:notion:test": "node mcp-server-notion.mjs",
+    "glossary:generate": "node scripts/gen-glossary-lite.mjs"
   },
   "repository": {
     "type": "git",
