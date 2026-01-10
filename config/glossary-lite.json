@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$comment": "Glossary Lite Configuration - настройки генерации Glossary Lite",
+  "version": "1.0.0",
+  "description": "Конфигурация для генератора Glossary Lite",
+  
+  "pagination": {
+    "description": "Настройки пагинации Glossary Lite",
+    "enabled": true,
+    "threshold": 1000,
+    "description": "Порог количества терминов для активации пагинации (A–M и N–Z)"
+  }
+}
