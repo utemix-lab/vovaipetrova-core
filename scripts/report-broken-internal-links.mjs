@@ -262,6 +262,18 @@ function main() {
       }
       if (href.startsWith("#")) return;
       
+      // Проверяем ссылки на prototype HTML страницы (например, /prototype, /prototype#kb-index)
+      if (href.startsWith("/prototype")) {
+        // Убираем якорь и query-параметры для проверки существования файла
+        const hrefWithoutAnchor = href.split('#')[0].split('?')[0];
+        // Проверяем существование prototype/index.html
+        const prototypePath = path.resolve(DOCS_ROOT, "..", "prototype", "index.html");
+        if (existsSync(prototypePath)) {
+          // HTML страница существует, не считаем её битой
+          return;
+        }
+      }
+      
       // Проверяем ссылки на JSON файлы (например, ./models/story.schema.json)
       // Эти файлы не имеют slug, поэтому проверяем их существование напрямую
       if (href.endsWith('.json') || href.endsWith('.yaml') || href.endsWith('.yml')) {
