@@ -5,6 +5,9 @@
  * Собирает "лёгкий" список терминов KB с короткими определениями и ссылками
  * на канонические карточки. Выходной файл: docs/kb/glossary-lite.md
  * 
+ * При превышении порога (по умолчанию 1000 терминов) автоматически
+ * создаёт две страницы: glossary-lite-a-m.md и glossary-lite-n-z.md
+ * 
  * Использование:
  *   node scripts/gen-glossary-lite.mjs
  */
@@ -104,19 +107,6 @@ function loadConfig() {
     log(`⚠️  Ошибка чтения конфига: ${error.message}, используем значения по умолчанию`);
     return defaultConfig;
   }
-}
-
-/**
- * Создаёт ссылку на страницу термина
- */
-function createTermLink(slug, url) {
-  // Если URL начинается с docs/, убираем префикс для относительной ссылки
-  if (url.startsWith('docs/')) {
-    const relativeUrl = url.replace(/^docs\//, '');
-    // Преобразуем путь в ссылку для автолинка (используем slug)
-    return `[${slug}](${relativeUrl})`;
-  }
-  return `[${slug}](${url})`;
 }
 
 /**
@@ -299,9 +289,6 @@ function main() {
     termsByLetter[letter] && termsByLetter[letter].length > 0
   );
 
-  // Проверяем, нужно ли включать пагинацию
-  const usePagination = config.pagination.enabled && allTerms.length > config.pagination.threshold;
-
   // Убеждаемся, что директория существует
   const outputDir = dirname(OUTPUT_PATH);
   if (!existsSync(outputDir)) {
@@ -309,6 +296,9 @@ function main() {
   }
 
   const breadcrumbs = `← [База знаний (KB)](/prototype#kb-index) • [Explorer](/prototype)`;
+
+  // Проверяем, нужно ли включать пагинацию
+  const usePagination = config.pagination.enabled && allTerms.length > config.pagination.threshold;
 
   if (usePagination) {
     log(`📄 Пагинация включена (${allTerms.length} > ${config.pagination.threshold})`);

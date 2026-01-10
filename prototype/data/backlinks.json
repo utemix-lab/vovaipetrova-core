@@ -974,5 +974,12 @@
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
       "url": "docs/single-source-playbook.md"
     }
+  ],
+  "glossary-lite": [
+    {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
+    }
   ]
 }
