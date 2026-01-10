@@ -763,6 +763,18 @@ body[data-view="index"] {
   color: var(--muted);
 }
 
+.kb-index-intro__link {
+  color: var(--ready);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.kb-index-intro__link:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
 .card--issue {
   border-left: 3px solid var(--review);
 }
