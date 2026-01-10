@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-01-09T20:56:51.656Z",
-  "totalStories": 48,
+  "generatedAt": "2026-01-10T20:25:03.512Z",
+  "totalStories": 52,
   "groups": [
+    "2026-01",
     "2025-11",
     "episodes-000-009",
     "episodes-010-019",
@@ -307,6 +308,26 @@
         "story_type": null
       },
       {
+        "slug": "episode-playbook-short-link",
+        "title": "Эпизод: Playbook short link",
+        "url": "docs/stories/episode-playbook-short-link.md",
+        "summary": "Короткий алиас docs/PLAYBOOK.md и заметный ярлык на главной /prototype",
+        "status": "draft",
+        "story_order": 9999,
+        "date": null,
+        "story_type": null
+      },
+      {
+        "slug": "episode-stories-machine-template-v2",
+        "title": "Эпизод: Stories machine-template v2",
+        "url": "docs/stories/episode-stories-machine-template-v2.md",
+        "summary": "Упрощение шаблона Stories: front matter + MACHINE_REPORT, AUTHOR_BLOCK = placeholder",
+        "status": "draft",
+        "story_order": 9999,
+        "date": null,
+        "story_type": null
+      },
+      {
         "slug": "concept-author-gateway",
         "title": "CONCEPT — Author Gateway",
         "url": "docs/concept-author-gateway.md",
@@ -496,6 +517,28 @@
         "status": "draft",
         "story_order": 9999,
         "date": "2025-11-23",
+        "story_type": null
+      }
+    ],
+    "2026-01": [
+      {
+        "slug": "2026-01-10-episode-playbook-short-link",
+        "title": "Эпизод: Playbook short link",
+        "url": "docs/stories/2026-01-10-episode-playbook-short-link.md",
+        "summary": "Короткий алиас docs/PLAYBOOK.md и заметный ярлык на главной /prototype",
+        "status": "draft",
+        "story_order": 9999,
+        "date": "2026-01-10",
+        "story_type": null
+      },
+      {
+        "slug": "2026-01-10-episode-stories-machine-template-v2",
+        "title": "Эпизод: Stories machine-template v2",
+        "url": "docs/stories/2026-01-10-episode-stories-machine-template-v2.md",
+        "summary": "Упрощение шаблона Stories: front matter + MACHINE_REPORT, AUTHOR_BLOCK = placeholder",
+        "status": "draft",
+        "story_order": 9999,
+        "date": "2026-01-10",
         "story_type": null
       }
     ]

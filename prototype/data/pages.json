@@ -4270,5 +4270,88 @@
     "story_order": null,
     "series_id": null,
     "related_stories": null
+  },
+  {
+    "title": "Эпизод: Playbook short link",
+    "slug": "2026-01-10-episode-playbook-short-link",
+    "status": "draft",
+    "summary": "Короткий алиас docs/PLAYBOOK.md и заметный ярлык на главной /prototype",
+    "tags": [
+      "Story",
+      "UX",
+      "Navigation"
+    ],
+    "machine_tags": [
+      "content/story",
+      "product/explorer"
+    ],
+    "url": "docs/stories/2026-01-10-episode-playbook-short-link.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Эпизод: Stories machine-template v2",
+    "slug": "2026-01-10-episode-stories-machine-template-v2",
+    "status": "draft",
+    "summary": "Упрощение шаблона Stories: front matter + MACHINE_REPORT, AUTHOR_BLOCK = placeholder",
+    "tags": [
+      "Story",
+      "Template"
+    ],
+    "machine_tags": [
+      "content/story",
+      "tool/template"
+    ],
+    "url": "docs/stories/2026-01-10-episode-stories-machine-template-v2.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Эпизод: Playbook short link",
+    "slug": "episode-playbook-short-link",
+    "status": "draft",
+    "summary": "Короткий алиас docs/PLAYBOOK.md и заметный ярлык на главной /prototype",
+    "tags": [
+      "Navigation",
+      "Story",
+      "UX"
+    ],
+    "machine_tags": [
+      "content/story",
+      "product/explorer",
+      "theme/ux"
+    ],
+    "url": "docs/stories/episode-playbook-short-link.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Эпизод: Stories machine-template v2",
+    "slug": "episode-stories-machine-template-v2",
+    "status": "draft",
+    "summary": "Упрощение шаблона Stories: front matter + MACHINE_REPORT, AUTHOR_BLOCK = placeholder",
+    "tags": [
+      "Story",
+      "Template"
+    ],
+    "machine_tags": [
+      "content/story",
+      "tool/template"
+    ],
+    "url": "docs/stories/episode-stories-machine-template-v2.md",
+    "service": false,
+    "collection": "stories",
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   }
 ]
