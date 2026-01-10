@@ -1,6 +1,6 @@
 ---
 title: "Эпизод: Stories machine-template v2"
-slug: episode-stories-machine-template-v2
+slug: 2026-01-10-episode-stories-machine-template-v2
 summary: "Упрощение шаблона Stories: front matter + MACHINE_REPORT, AUTHOR_BLOCK = placeholder"
 tags:
   - Story

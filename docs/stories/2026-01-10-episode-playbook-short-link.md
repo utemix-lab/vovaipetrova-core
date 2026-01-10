@@ -1,6 +1,6 @@
 ---
 title: "Эпизод: Playbook short link"
-slug: episode-playbook-short-link
+slug: 2026-01-10-episode-playbook-short-link
 summary: "Короткий алиас docs/PLAYBOOK.md и заметный ярлык на главной /prototype"
 tags:
   - Story
