@@ -1,7 +1,9 @@
 ---
-title: "Эпизод: Stories machine-template v2"
+title: 'Эпизод: Stories machine-template v2'
 slug: 2026-01-10-episode-stories-machine-template-v2
-summary: "Упрощение шаблона Stories: front matter + MACHINE_REPORT, AUTHOR_BLOCK = placeholder"
+summary: >-
+  Упрощение шаблона Stories: front matter + MACHINE_REPORT, AUTHOR_BLOCK =
+  placeholder
 tags:
   - Story
   - Template
@@ -10,8 +12,8 @@ machine_tags:
   - tool/template
 status: draft
 pr_number: 207
-pr_url: "https://github.com/utemix-lab/vovaipetrova-core/pull/207"
-merged_at: "2026-01-10T18:07:18Z"
+pr_url: 'https://github.com/utemix-lab/vovaipetrova-core/pull/207'
+merged_at: '2026-01-10T18:07:18Z'
 ---
 
 # Эпизод: Stories machine-template v2
