@@ -28,7 +28,10 @@
     "playbook.md": "single-source-playbook",
     "PLAYBOOK.md": "single-source-playbook",
     "/playbook": "single-source-playbook",
-    "/p": "single-source-playbook"
+    "/p": "single-source-playbook",
+    "/prototype": "prototype",
+    "/prototype#kb-index": "prototype",
+    "/prototype#stories-panel": "prototype"
   },
   "patterns": [
     {
@@ -62,6 +65,10 @@
     {
       "match": "^/nav/",
       "replacement": "vova-i-petrova"
+    },
+    {
+      "match": "^/prototype",
+      "replacement": "prototype"
     },
     {
       "match": "\\.csv$",
