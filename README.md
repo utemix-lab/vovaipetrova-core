@@ -94,7 +94,28 @@ npm run check:lanes    # Проверка lanes policy (one-PR-per-lane)
 # Тестирование guardrails
 npm run test:guardrails  # Эмуляция нарушений для проверки guardrails
 
+# Экспорт Glossary Lite в JSONL
+npm run export:glossary-lite-jsonl  # Генерация kb_glossary_lite.jsonl
+
 ```
+
+### Build-артефакты
+
+**kb_glossary_lite.jsonl** (v1.0) — JSONL-срез Glossary Lite, генерируется при CI-сборке для Ready PR.
+
+**Схема записи:**
+```json
+{
+  "slug": "string",          // Идентификатор термина (из ссылки)
+  "title": "string",         // Название термина
+  "lite_summary": "string",  // Краткое определение (≤200 символов)
+  "link": "string"           // Относительная ссылка на каноническую карточку (kb/*.md)
+}
+```
+
+**Формат:** JSONL (JSON Lines), одна запись на строку, UTF-8.
+
+**Где найти:** Артефакт `kb-glossary-lite-jsonl` прикрепляется к каждому успешному CI-запуску для Ready PR (см. "Artifacts" в GitHub Actions).
 
 ## Процесс работы
 
