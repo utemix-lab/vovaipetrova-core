@@ -1,11 +1,12 @@
 {
-  "generatedAt": "2026-01-10T20:31:54.667Z",
-  "totalPages": 37,
+  "generatedAt": "2026-01-10T21:47:37.694Z",
+  "totalPages": 38,
   "letters": [
     "A",
     "B",
     "C",
     "F",
+    "G",
     "I",
     "L",
     "M",
@@ -335,6 +336,15 @@
         "title": "Настройка UTF-8 кодировки в редакторах",
         "url": "docs/utf-8-setup.md",
         "summary": "Руководство по настройке UTF-8 кодировки в редакторах и Git для правильной работы с русским текстом.",
+        "status": "ready"
+      }
+    ],
+    "G": [
+      {
+        "slug": "glossary-lite",
+        "title": "Glossary Lite (A–Z)",
+        "url": "docs/kb/glossary-lite.md",
+        "summary": "Лёгкий справочник терминов базы знаний с короткими определениями и ссылками на канонические карточки",
         "status": "ready"
       }
     ]
