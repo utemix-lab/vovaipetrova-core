@@ -3,7 +3,7 @@
   "$comment": "Glossary Lite Configuration - настройки генерации Glossary Lite",
   "version": "1.0.0",
   "description": "Конфигурация для генератора Glossary Lite",
-  
+
   "pagination": {
     "description": "Настройки пагинации Glossary Lite",
     "enabled": true,
