@@ -22,7 +22,13 @@
     "../contributing.md": "contributing",
     "../.github/workflows/notion-import.yml": "notion-import-workflow",
     "contributing.md": "contributing",
-    ".github/workflows/notion-import.yml": "notion-import-workflow"
+    ".github/workflows/notion-import.yml": "notion-import-workflow",
+    "playbook": "single-source-playbook",
+    "PLAYBOOK": "single-source-playbook",
+    "playbook.md": "single-source-playbook",
+    "PLAYBOOK.md": "single-source-playbook",
+    "/playbook": "single-source-playbook",
+    "/p": "single-source-playbook"
   },
   "patterns": [
     {
