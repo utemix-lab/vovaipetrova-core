@@ -5,15 +5,21 @@
  * Собирает "лёгкий" список терминов KB с короткими определениями и ссылками
  * на канонические карточки. Выходной файл: docs/kb/glossary-lite.md
  * 
+ * При превышении порога (по умолчанию 1000 терминов) автоматически
+ * создаёт две страницы: glossary-lite-a-m.md и glossary-lite-n-z.md
+ * 
  * Использование:
  *   node scripts/gen-glossary-lite.mjs
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync } from 'fs';
 import { join, dirname } from 'path';
 
 const KB_INDEX_PATH = 'prototype/data/kb-index.json';
+const CONFIG_PATH = 'config/glossary-lite.json';
 const OUTPUT_PATH = 'docs/kb/glossary-lite.md';
+const OUTPUT_PATH_A_M = 'docs/kb/glossary-lite-a-m.md';
+const OUTPUT_PATH_N_Z = 'docs/kb/glossary-lite-n-z.md';
 
 function log(message) {
   console.log(`[gen-glossary-lite] ${message}`);
@@ -59,16 +65,131 @@ function sortLetters(letters) {
 }
 
 /**
- * Создаёт ссылку на страницу термина
+ * Определяет, относится ли буква к первой части (A–M)
  */
-function createTermLink(slug, url) {
-  // Если URL начинается с docs/, убираем префикс для относительной ссылки
-  if (url.startsWith('docs/')) {
-    const relativeUrl = url.replace(/^docs\//, '');
-    // Преобразуем путь в ссылку для автолинка (используем slug)
-    return `[${slug}](${relativeUrl})`;
+function isFirstPart(letter) {
+  // Латиница A-M
+  if (/[A-M]/.test(letter)) {
+    return true;
   }
-  return `[${slug}](${url})`;
+  // Кириллица А-М
+  if (/[А-М]/.test(letter)) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Загружает конфигурацию Glossary Lite
+ */
+function loadConfig() {
+  const defaultConfig = {
+    pagination: {
+      enabled: true,
+      threshold: 1000
+    }
+  };
+
+  if (!existsSync(CONFIG_PATH)) {
+    log(`⚠️  Конфиг ${CONFIG_PATH} не найден, используем значения по умолчанию`);
+    return defaultConfig;
+  }
+
+  try {
+    const config = JSON.parse(readFileSync(CONFIG_PATH, 'utf8'));
+    return {
+      pagination: {
+        enabled: config.pagination?.enabled ?? defaultConfig.pagination.enabled,
+        threshold: config.pagination?.threshold ?? defaultConfig.pagination.threshold
+      }
+    };
+  } catch (error) {
+    log(`⚠️  Ошибка чтения конфига: ${error.message}, используем значения по умолчанию`);
+    return defaultConfig;
+  }
+}
+
+/**
+ * Генерирует Markdown для одной части Glossary Lite
+ */
+function generateGlossaryPart(termsByLetter, lettersWithTerms, partTitle, partSlug, breadcrumbs, isPagination = false, otherPartLink = null) {
+  // Подсчитываем общее количество терминов в этой части
+  const totalTerms = lettersWithTerms.reduce((sum, letter) => {
+    return sum + (termsByLetter[letter]?.length || 0);
+  }, 0);
+
+  let md = `---
+title: ${partTitle}
+slug: ${partSlug}
+summary: >-
+  Лёгкий справочник терминов базы знаний с короткими определениями и ссылками на
+  канонические карточки (${partTitle})
+status: ready
+tags:
+  - База_знаний
+  - Справочник
+machine_tags:
+  - product/kb
+---
+
+# ${partTitle}
+
+${breadcrumbs}
+
+${isPagination && otherPartLink ? `**Навигация:** [← Индекс](glossary-lite.md) • ${otherPartLink}\n\n` : ''}Лёгкий справочник терминов базы знаний с короткими определениями и ссылками на канонические карточки.
+
+**Всего терминов:** ${totalTerms}
+
+## Навигация по буквам
+
+`;
+
+  // Навигация по буквам (только те, где есть термины)
+  for (const letter of lettersWithTerms) {
+    md += `[${letter}](#${letter.toLowerCase()}) `;
+  }
+
+  md += `\n\n---\n\n`;
+
+  // Генерируем секции для каждой буквы (только те, где есть термины)
+  for (const letter of lettersWithTerms) {
+    const terms = termsByLetter[letter];
+    if (!terms || terms.length === 0) continue;
+
+    // Якорь для буквы
+    md += `<a id="${letter.toLowerCase()}"></a>\n\n`;
+    md += `## ${letter}\n\n`;
+
+    // Список терминов
+    for (const term of terms) {
+      md += `### ${term.title}\n\n`;
+      
+      if (term.summary) {
+        // Обрезаем summary до разумной длины (150 символов)
+        const summary = term.summary.length > 150
+          ? `${term.summary.slice(0, 147).trim()}…`
+          : term.summary;
+        md += `${summary}\n\n`;
+      }
+      
+      // Ссылка на каноническую карточку
+      // Формат ссылки: относительный путь без префикса docs/
+      let linkUrl = term.url;
+      if (linkUrl.startsWith('docs/')) {
+        linkUrl = linkUrl.replace(/^docs\//, '');
+      }
+      // Если URL не заканчивается на .md, добавляем
+      if (!linkUrl.endsWith('.md')) {
+        linkUrl = `${linkUrl}.md`;
+      }
+      md += `→ [Читать карточку](${linkUrl})\n\n`;
+    }
+  }
+
+  md += `\n---\n\n`;
+  md += `*Сгенерировано автоматически. Обновление: при изменении KB терминов запустите \`npm run glossary:generate\`.*\n`;
+
+  return md;
 }
 
 /**
@@ -76,6 +197,9 @@ function createTermLink(slug, url) {
  */
 function main() {
   log('Генерация Glossary Lite...');
+
+  // Загружаем конфигурацию
+  const config = loadConfig();
 
   // Загружаем KB index
   if (!existsSync(KB_INDEX_PATH)) {
@@ -165,11 +289,60 @@ function main() {
     termsByLetter[letter] && termsByLetter[letter].length > 0
   );
 
-  // Генерируем Markdown
-  let md = `---
+  // Убеждаемся, что директория существует
+  const outputDir = dirname(OUTPUT_PATH);
+  if (!existsSync(outputDir)) {
+    mkdirSync(outputDir, { recursive: true });
+  }
+
+  const breadcrumbs = `← [База знаний (KB)](/prototype#kb-index) • [Explorer](/prototype)`;
+
+  // Проверяем, нужно ли включать пагинацию
+  const usePagination = config.pagination.enabled && allTerms.length > config.pagination.threshold;
+
+  if (usePagination) {
+    log(`📄 Пагинация включена (${allTerms.length} > ${config.pagination.threshold})`);
+    
+    // Разделяем буквы на две части
+    const lettersA_M = lettersWithTerms.filter(letter => isFirstPart(letter));
+    const lettersN_Z = lettersWithTerms.filter(letter => !isFirstPart(letter));
+
+    // Генерируем первую часть (A–M)
+    const mdA_M = generateGlossaryPart(
+      termsByLetter,
+      lettersA_M,
+      'Glossary Lite (A–M)',
+      'glossary-lite-a-m',
+      breadcrumbs,
+      true,
+      '[N–Z →](glossary-lite-n-z.md)'
+    );
+    writeFileSync(OUTPUT_PATH_A_M, mdA_M, 'utf8');
+    log(`✅ Glossary Lite (A–M) создан: ${OUTPUT_PATH_A_M}`);
+
+    // Генерируем вторую часть (N–Z)
+    const mdN_Z = generateGlossaryPart(
+      termsByLetter,
+      lettersN_Z,
+      'Glossary Lite (N–Z)',
+      'glossary-lite-n-z',
+      breadcrumbs,
+      true,
+      '[← A–M](glossary-lite-a-m.md)'
+    );
+    writeFileSync(OUTPUT_PATH_N_Z, mdN_Z, 'utf8');
+    log(`✅ Glossary Lite (N–Z) создан: ${OUTPUT_PATH_N_Z}`);
+
+    // Генерируем индексную страницу
+    const termsA_M = lettersA_M.reduce((sum, letter) => sum + (termsByLetter[letter]?.length || 0), 0);
+    const termsN_Z = lettersN_Z.reduce((sum, letter) => sum + (termsByLetter[letter]?.length || 0), 0);
+
+    const indexMd = `---
 title: Glossary Lite (A–Z)
 slug: glossary-lite
-summary: Лёгкий справочник терминов базы знаний с короткими определениями и ссылками на канонические карточки
+summary: >-
+  Лёгкий справочник терминов базы знаний с короткими определениями и ссылками на
+  канонические карточки
 status: ready
 tags:
   - База_знаний
@@ -180,70 +353,55 @@ machine_tags:
 
 # Glossary Lite (A–Z)
 
+${breadcrumbs}
+
 Лёгкий справочник терминов базы знаний с короткими определениями и ссылками на канонические карточки.
 
 **Всего терминов:** ${allTerms.length}
 
-## Навигация по буквам
+## Навигация
 
+Glossary Lite разделён на две части для удобства навигации:
+
+- **[Glossary Lite (A–M)](glossary-lite-a-m.md)** — ${termsA_M} терминов
+- **[Glossary Lite (N–Z)](glossary-lite-n-z.md)** — ${termsN_Z} терминов
+
+---
+
+*Сгенерировано автоматически. Обновление: при изменении KB терминов запустите \`npm run glossary:generate\`.*
 `;
 
-  // Навигация по буквам (только те, где есть термины)
-  for (const letter of lettersWithTerms) {
-    md += `[${letter}](#${letter.toLowerCase()}) `;
-  }
-
-  md += `\n\n---\n\n`;
-
-  // Генерируем секции для каждой буквы (только те, где есть термины)
-  for (const letter of lettersWithTerms) {
-    const terms = termsByLetter[letter];
-    if (!terms || terms.length === 0) continue;
-
-    // Якорь для буквы
-    md += `<a id="${letter.toLowerCase()}"></a>\n\n`;
-    md += `## ${letter}\n\n`;
-
-    // Список терминов
-    for (const term of terms) {
-      md += `### ${term.title}\n\n`;
-      
-      if (term.summary) {
-        // Обрезаем summary до разумной длины (150 символов)
-        const summary = term.summary.length > 150
-          ? `${term.summary.slice(0, 147).trim()}…`
-          : term.summary;
-        md += `${summary}\n\n`;
-      }
-      
-      // Ссылка на каноническую карточку
-      // Формат ссылки: относительный путь без префикса docs/
-      let linkUrl = term.url;
-      if (linkUrl.startsWith('docs/')) {
-        linkUrl = linkUrl.replace(/^docs\//, '');
-      }
-      // Если URL не заканчивается на .md, добавляем
-      if (!linkUrl.endsWith('.md')) {
-        linkUrl = `${linkUrl}.md`;
-      }
-      md += `→ [Читать карточку](${linkUrl})\n\n`;
+    writeFileSync(OUTPUT_PATH, indexMd, 'utf8');
+    log(`✅ Glossary Lite (индекс) создан: ${OUTPUT_PATH}`);
+    log(`   Терминов A–M: ${termsA_M}`);
+    log(`   Терминов N–Z: ${termsN_Z}`);
+  } else {
+    log(`📄 Пагинация отключена (${allTerms.length} ≤ ${config.pagination.threshold})`);
+    
+    // Удаляем старые файлы пагинации, если они существуют
+    if (existsSync(OUTPUT_PATH_A_M)) {
+      unlinkSync(OUTPUT_PATH_A_M);
+      log(`🗑️  Удалён старый файл пагинации: ${OUTPUT_PATH_A_M}`);
     }
+    if (existsSync(OUTPUT_PATH_N_Z)) {
+      unlinkSync(OUTPUT_PATH_N_Z);
+      log(`🗑️  Удалён старый файл пагинации: ${OUTPUT_PATH_N_Z}`);
+    }
+    
+    // Генерируем единую страницу
+    const md = generateGlossaryPart(
+      termsByLetter,
+      lettersWithTerms,
+      'Glossary Lite (A–Z)',
+      'glossary-lite',
+      breadcrumbs
+    );
+    
+    writeFileSync(OUTPUT_PATH, md, 'utf8');
+    log(`✅ Glossary Lite создан: ${OUTPUT_PATH}`);
+    log(`   Терминов: ${allTerms.length}`);
+    log(`   Букв: ${lettersWithTerms.length}`);
   }
-
-  md += `\n---\n\n`;
-  md += `*Сгенерировано автоматически. Обновление: при изменении KB терминов запустите \`npm run glossary:generate\`.*\n`;
-
-  // Убеждаемся, что директория существует
-  const outputDir = dirname(OUTPUT_PATH);
-  if (!existsSync(outputDir)) {
-    mkdirSync(outputDir, { recursive: true });
-  }
-
-  // Сохраняем файл
-  writeFileSync(OUTPUT_PATH, md, 'utf8');
-  log(`✅ Glossary Lite создан: ${OUTPUT_PATH}`);
-  log(`   Терминов: ${allTerms.length}`);
-  log(`   Букв: ${lettersWithTerms.length}`);
 }
 
 main();
