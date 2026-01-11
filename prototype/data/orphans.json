@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "updated": "2026-01-10T20:31:55.131Z",
+  "updated": "2026-01-11T20:58:17.039Z",
   "orphans": [
     {
       "slug": "briefs-ux-improvements",
@@ -39,6 +39,12 @@
       "status": "ready"
     },
     {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md",
+      "status": "ready"
+    },
+    {
       "slug": "mcp-notion-api-compatibility-tracker",
       "title": "MCP Notion API Compatibility Tracker",
       "url": "docs/mcp-notion-api-compatibility-tracker.md",
@@ -72,6 +78,12 @@
       "slug": "process-improvements-assessment-364c8d",
       "title": "Оценка улучшений процесса разработки",
       "url": "docs/process-improvements-assessment-364c8d.md",
+      "status": "ready"
+    },
+    {
+      "slug": "site-handoff-protocol",
+      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+      "url": "docs/SITE_HANDOFF_PROTOCOL.md",
       "status": "ready"
     },
     {

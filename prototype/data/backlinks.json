@@ -334,6 +334,11 @@
   ],
   "process-obsudili-razlozhili-svyazali": [
     {
+      "slug": "site-handoff-protocol",
+      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+      "url": "docs/SITE_HANDOFF_PROTOCOL.md"
+    },
+    {
       "slug": "spec-content-linter-i-scaffold-chernovik",
       "title": "Spec — Content linter и scaffold (черновик)",
       "url": "docs/spec-content-linter-i-scaffold-chernovik.md"
@@ -453,6 +458,11 @@
       "url": "docs/single-source-playbook.md"
     },
     {
+      "slug": "site-handoff-protocol",
+      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+      "url": "docs/SITE_HANDOFF_PROTOCOL.md"
+    },
+    {
       "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
       "title": "UI макет — шапка и первый экран (Static First)",
       "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md"
@@ -481,6 +491,11 @@
     }
   ],
   "ui-maket-shapka-i-pervyj-ekran-static-first": [
+    {
+      "slug": "site-handoff-protocol",
+      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+      "url": "docs/SITE_HANDOFF_PROTOCOL.md"
+    },
     {
       "slug": "kontentmodel-i-marshruty",
       "title": "Контент‑модель и маршруты",
@@ -580,6 +595,11 @@
       "url": "docs/kb/facets.md"
     },
     {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
+    },
+    {
       "slug": "machine-tags",
       "title": "Machine Tags",
       "url": "docs/kb/machine-tags.md"
@@ -600,6 +620,18 @@
       "slug": "canonical-slug",
       "title": "Canonical Slug",
       "url": "docs/kb/canonical-slug.md"
+    },
+    {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
+    }
+  ],
+  "backlinks": [
+    {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
     }
   ],
   "canonical-slug": [
@@ -614,12 +646,22 @@
       "url": "docs/kb/autolink.md"
     },
     {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
+    },
+    {
       "slug": "link-map",
       "title": "Link-map",
       "url": "docs/kb/link-map.md"
     }
   ],
   "facets": [
+    {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
+    },
     {
       "slug": "machine-tags",
       "title": "Machine Tags",
@@ -643,6 +685,11 @@
       "url": "docs/kb/canonical-slug.md"
     },
     {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
+    },
+    {
       "slug": "routes",
       "title": "Routes",
       "url": "docs/kb/routes.md"
@@ -655,6 +702,11 @@
   ],
   "machine-tags": [
     {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
+    },
+    {
       "slug": "tags",
       "title": "Tags",
       "url": "docs/kb/tags.md"
@@ -665,6 +717,11 @@
       "slug": "backlinks",
       "title": "Backlinks",
       "url": "docs/kb/backlinks.md"
+    },
+    {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
     },
     {
       "slug": "link-map",
@@ -682,6 +739,11 @@
       "slug": "backlinks",
       "title": "Backlinks",
       "url": "docs/kb/backlinks.md"
+    },
+    {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
     },
     {
       "slug": "link-map",
@@ -709,6 +771,11 @@
       "slug": "facets",
       "title": "Facets",
       "url": "docs/kb/facets.md"
+    },
+    {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
     },
     {
       "slug": "machine-tags",
@@ -775,6 +842,11 @@
       "slug": "single-source-playbook",
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
       "url": "docs/single-source-playbook.md"
+    },
+    {
+      "slug": "site-handoff-protocol",
+      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+      "url": "docs/SITE_HANDOFF_PROTOCOL.md"
     },
     {
       "slug": "stories-github-instructions",
@@ -917,6 +989,20 @@
     }
   ],
   "utf-8-setup": [
+    {
+      "slug": "single-source-playbook",
+      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
+      "url": "docs/single-source-playbook.md"
+    }
+  ],
+  "glossary-lite": [
+    {
+      "slug": "glossary-lite",
+      "title": "Glossary Lite (A–Z)",
+      "url": "docs/kb/glossary-lite.md"
+    }
+  ],
+  "site-handoff-protocol": [
     {
       "slug": "single-source-playbook",
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",

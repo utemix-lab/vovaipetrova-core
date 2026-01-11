@@ -1,0 +1,11 @@
+{"slug":"aliases","title":"Aliases","lite_summary":"Синонимы и альтернативные названия для терминов, тегов и страниц. Используются для нормализации и автолинкинга.","link":"kb/aliases.md"}
+{"slug":"autolink","title":"Autolink","lite_summary":"Автоматическое преобразование упоминаний терминов в ссылки на соответствующие страницы. Использует slug/aliases map и безопасные правила линкинга.","link":"kb/autolink.md"}
+{"slug":"backlinks","title":"Backlinks","lite_summary":"Входящие ссылки на страницу — список всех страниц, которые ссылаются на текущую. Используется для навигации и понимания связей между документами.","link":"kb/backlinks.md"}
+{"slug":"canonical-slug","title":"Canonical Slug","lite_summary":"Канонический идентификатор страницы, используемый как основной способ ссылки на документ. Обеспечивает стабильность ссылок при переименованиях.","link":"kb/canonical-slug.md"}
+{"slug":"facets","title":"Facets","lite_summary":"Фасетная модель навигации: темы, действия, продукты, технологии и роли. Используется для фильтрации и категоризации контента.","link":"kb/facets.md"}
+{"slug":"glossary-lite","title":"Glossary Lite (A–Z)","lite_summary":"Лёгкий справочник терминов базы знаний с короткими определениями и ссылками на канонические карточки (Glossary Lite (A–Z))","link":"kb/glossary-lite.md"}
+{"slug":"link-map","title":"Link-map","lite_summary":"Карта маппинга проблемных ссылок на канонические страницы. Используется для разрешения broken links и нормализации ссылок.","link":"kb/link-map.md"}
+{"slug":"machine-tags","title":"Machine Tags","lite_summary":"Машиночитаемые теги для автоматической категоризации и фильтрации контента. Используются в фасетной модели навигации.","link":"kb/machine-tags.md"}
+{"slug":"routes","title":"Routes","lite_summary":"Маршруты навигации сайта, определённые в routes.yml. Связывают URL-пути с документами и определяют структуру сайта.","link":"kb/routes.md"}
+{"slug":"snapshot","title":"Snapshot","lite_summary":"Моментальный снимок состояния данных (diagnostics snapshot) для отслеживания метрик и проверки регрессий.","link":"kb/snapshot.md"}
+{"slug":"tags","title":"Tags","lite_summary":"Система тегов для категоризации контента: видимые теги и машинотеги. Используется для навигации, фильтрации и поиска материалов.","link":"kb/tags.md"}

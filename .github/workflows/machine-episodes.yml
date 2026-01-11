@@ -1,17 +1,18 @@
-name: Nightly Digest Episode
+name: Machine Episodes
 
 on:
   schedule:
-    # 02:00 UTC = 05:00 Europe/Moscow
-    - cron: "0 2 * * *"
+    # 08:00 UTC = 11:00 Europe/Moscow (после nightly digest)
+    - cron: "0 8 * * *"
   workflow_dispatch:
 
 jobs:
-  generate-digest:
+  generate-machine-episode:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
+      issues: read
     steps:
       - uses: actions/checkout@v4.1.1
         with:
@@ -25,23 +26,31 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate digest episode
-        run: node scripts/generate-nightly-digest-episode.mjs
+      - name: Generate diagnostics snapshot
+        run: |
+          npm run diagnostics:snapshot || echo "⚠️ Diagnostics snapshot failed (non-blocking)"
+        continue-on-error: true
+
+      - name: Generate machine episode
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node scripts/generate-machine-episode.mjs
 
       - id: meta
         run: |
-          if [ ! -f tmp/digest-episode-meta.json ]; then
+          if [ ! -f tmp/machine-episode-meta.json ]; then
             echo "created=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           node <<'EOF'
           const fs = require('fs');
-          const meta = JSON.parse(fs.readFileSync('tmp/digest-episode-meta.json', 'utf8'));
+          const meta = JSON.parse(fs.readFileSync('tmp/machine-episode-meta.json', 'utf8'));
           const output = fs.createWriteStream(process.env.GITHUB_OUTPUT, { flags: 'a' });
           output.write(`created=${meta.created}\n`);
           if (meta.file) output.write(`file=${meta.file}\n`);
           if (meta.title) output.write(`title=${meta.title}\n`);
-          if (meta.sources) output.write(`sources=${meta.sources.join(', ')}\n`);
+          if (meta.pr_count !== undefined) output.write(`pr_count=${meta.pr_count}\n`);
           output.end();
           EOF
 
@@ -57,10 +66,12 @@ jobs:
       - name: Prepare branch
         if: steps.meta.outputs.created == 'true' && steps.git_status.outputs.changed == 'true'
         run: |
-          BRANCH="chore/digest-episode-$(date -u +%Y-%m-%d)"
+          BRANCH="chore/machine-episode-$(date -u +%Y-%m-%d)"
           git checkout -b "$BRANCH"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/stories
-          git commit -m "chore: digest episode $(date -u +%Y-%m-%d) (draft)" || exit 0
+          git commit -m "chore: machine episode $(date -u +%Y-%m-%d) (draft)" || exit 0
           git push -u origin "$BRANCH" || exit 0
           echo "BRANCH_NAME=$BRANCH" >> "$GITHUB_ENV"
 
@@ -69,17 +80,19 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_BRANCH: ${{ env.BRANCH_NAME }}
-          DIGEST_TITLE: ${{ steps.meta.outputs.title }}
-          DIGEST_SOURCES: ${{ steps.meta.outputs.sources }}
+          EPISODE_TITLE: ${{ steps.meta.outputs.title }}
+          PR_COUNT: ${{ steps.meta.outputs.pr_count }}
         run: |
-          BODY="Автогенерирован дайджест-эпизод: ${DIGEST_TITLE:-без названия}.
+          BODY="Автогенерированный machine episode: ${EPISODE_TITLE:-без названия}.
 
-Источники: ${DIGEST_SOURCES:-CI metrics, Diagnostics}.
-Workflow: nightly-digest.yml (02:00 UTC / 05:00 Europe/Moscow)."
+Источники: последние merged PR (${PR_COUNT:-0}), Diagnostics snapshot.
+Workflow: machine-episodes.yml (08:00 UTC / 11:00 Europe/Moscow).
+
+**Примечание:** Machine episode не содержит авторской части (AUTHOR_BLOCK)."
           gh pr create \
             --base main \
             --head "$PR_BRANCH" \
-            --title "chore: digest episode $(date -u +%Y-%m-%d) (draft)" \
+            --title "chore: machine episode $(date -u +%Y-%m-%d) (draft)" \
             --body "$BODY" \
             --label auto:story \
             --label lane:stories || echo "PR already exists or failed"

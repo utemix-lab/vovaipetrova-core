@@ -40,6 +40,11 @@ const VERBOSE = process.argv.includes('--verbose');
 const FIX_MODE = process.argv.includes('--fix');
 const DRY_RUN = process.argv.includes('--dry-run');
 
+// Путь для сохранения отчёта (для CI-артефакта)
+const REPORT_OUTPUT_DIR = process.env.CI_ARTIFACTS_DIR || join(__dirname, '../tmp');
+const REPORT_OUTPUT_PATH = join(REPORT_OUTPUT_DIR, 'backlinks-watchdog-report.md');
+const FIXES_OUTPUT_PATH = join(REPORT_OUTPUT_DIR, 'backlinks-fixes-applied.json');
+
 /**
  * Загружает данные из JSON файла
  */
@@ -696,6 +701,55 @@ function main() {
     // v2: Генерируем отчёт с разделением на авто-исправленные и требующие ручной правки
     const report = generateReport(allIssues, allWarnings, autoFixed, manualFix);
     console.log(report);
+
+    // v2: Сохраняем отчёт в файл для CI-артефакта
+    try {
+        if (!existsSync(REPORT_OUTPUT_DIR)) {
+            mkdirSync(REPORT_OUTPUT_DIR, { recursive: true });
+        }
+        writeFileSync(REPORT_OUTPUT_PATH, report, 'utf8');
+        if (VERBOSE || process.env.CI) {
+            console.log(`\n📄 Report saved to ${REPORT_OUTPUT_PATH}`);
+        }
+    } catch (error) {
+        console.warn(`⚠️  Failed to save report: ${error.message}`);
+    }
+
+    // v2: Сохраняем документацию применённых фиксов
+    if (autoFixed.length > 0 && FIX_MODE && !DRY_RUN) {
+        try {
+            const fixesDoc = {
+                version: '2.0',
+                generated_at: new Date().toISOString(),
+                total_fixes: autoFixed.length,
+                fixes_by_type: {},
+                fixes: autoFixed.map(fix => ({
+                    type: fix.type,
+                    file: fix.file.replace(/^.*[\\/]/, ''),
+                    slug: fix.slug,
+                    old_link: fix.fix.oldLink,
+                    new_link: fix.fix.newLink,
+                    message: fix.message,
+                    details: fix.fix
+                }))
+            };
+
+            // Группируем по типу
+            autoFixed.forEach(fix => {
+                if (!fixesDoc.fixes_by_type[fix.type]) {
+                    fixesDoc.fixes_by_type[fix.type] = 0;
+                }
+                fixesDoc.fixes_by_type[fix.type]++;
+            });
+
+            writeFileSync(FIXES_OUTPUT_PATH, JSON.stringify(fixesDoc, null, 2), 'utf8');
+            if (VERBOSE || process.env.CI) {
+                console.log(`📝 Fixes documentation saved to ${FIXES_OUTPUT_PATH}`);
+            }
+        } catch (error) {
+            console.warn(`⚠️  Failed to save fixes documentation: ${error.message}`);
+        }
+    }
 
     // Сохраняем baseline, если нет проблем или если это первый запуск
     if (allIssues.length === 0 || !baselineBacklinks) {
