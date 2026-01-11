@@ -97,7 +97,23 @@ npm run test:guardrails  # Эмуляция нарушений для прове
 # Экспорт Glossary Lite в JSONL
 npm run export:glossary-lite-jsonl  # Генерация kb_glossary_lite.jsonl
 
+# Static First контракт для внешнего IDE-агента
+npm run static:routes:generate  # Генерация static/routes.json
+npm run static:routes:validate # Валидация static/routes.json
+
 ```
+
+## Static First контракт
+
+Для внешнего IDE-агента доступен файл `static/routes.json` с маршрутами прототипа в упрощённом формате:
+
+- **Формат:** `{path, title, in_sitemap, og?}`
+- **Расположение:** `static/routes.json`
+- **Генерация:** `npm run static:routes:generate`
+- **Валидация:** `npm run static:routes:validate` (проверяется в CI)
+
+Файл содержит все публичные маршруты прототипа с метаданными для генерации статического сайта. Подробнее см. [Site Handoff Protocol](docs/SITE_HANDOFF_PROTOCOL.md).
+
 
 ### Build-артефакты
 
