@@ -72,6 +72,8 @@
     "backlinks:watchdog:fix": "node scripts/backlinks-watchdog.mjs --fix",
     "backlinks:watchdog:fix:dry": "node scripts/backlinks-watchdog.mjs --fix --dry-run",
     "sitemap:generate": "node scripts/generate-sitemap.mjs",
+    "check:sitemap:stories": "node scripts/check-sitemap-stories-coverage.mjs",
+    "check:sitemap:stories:fix": "node scripts/check-sitemap-stories-coverage.mjs --fix",
     "ci:metrics:collect": "node scripts/collect-ci-metrics.mjs",
     "ci:metrics:report": "node scripts/generate-ci-metrics-report.mjs",
     "trends:dashboard:generate": "node scripts/generate-trends-dashboard-data.mjs",
