@@ -81,4 +81,5 @@ Workflow: nightly-digest.yml (02:00 UTC / 05:00 Europe/Moscow)."
             --head "$PR_BRANCH" \
             --title "chore: digest episode $(date -u +%Y-%m-%d) (draft)" \
             --body "$BODY" \
-            --label auto:story || echo "PR already exists or failed"
+            --label auto:story \
+            --label lane:stories || echo "PR already exists or failed"
