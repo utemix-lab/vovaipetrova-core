@@ -114,7 +114,6 @@ npm run static:routes:validate # Валидация static/routes.json
 
 Файл содержит все публичные маршруты прототипа с метаданными для генерации статического сайта. Подробнее см. [Site Handoff Protocol](docs/SITE_HANDOFF_PROTOCOL.md).
 
-```
 ### Build-артефакты
 
 **kb_glossary_lite.jsonl** (v1.0) — JSONL-срез Glossary Lite, генерируется при CI-сборке для Ready PR.
