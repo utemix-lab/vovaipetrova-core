@@ -1,9 +1,22 @@
 {
-  "version": "1.0",
+  "version": "2.2",
   "generated_at": "2026-01-04T23:05:29.963Z",
   "pr_number": null,
   "base_ref": "main",
   "total_candidates": 15,
+  "stats": {
+    "new_candidates": 15,
+    "updated_candidates": 0,
+    "existing_candidates": 0
+  },
+  "features": {
+    "morphology": true,
+    "wordBoundaries": true,
+    "normalization": true,
+    "slugAggregation": true,
+    "maxQuotes": 2,
+    "incremental": true
+  },
   "candidates": [
     {
       "term": "Draft",
