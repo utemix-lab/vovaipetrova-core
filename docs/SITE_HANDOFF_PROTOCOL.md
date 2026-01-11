@@ -1,3 +1,17 @@
+---
+title: Site Handoff Protocol — Think Tank ↔ Static Site
+slug: site-handoff-protocol
+summary: Протокол двустороннего порта для экспериментов визуала/структуры сайта отдельным IDE-агентом на основе прототипа (Think Tank). Без серверной логики, статический режим (Static First).
+tags:
+  - Проектирование
+  - Автоматизация
+machine_tags:
+  - action/build
+  - product/site
+  - theme/automation
+status: ready
+---
+
 # Site Handoff Protocol — Think Tank ↔ Static Site
 
 ## TL;DR
@@ -290,6 +304,6 @@ const artifacts = JSON.parse(localStorage.getItem('vp_artifacts') || '{"items":[
 
 ---
 
-**Версия:** 1.0  
-**Дата:** 2026-01-11  
+**Версия:** 1.0
+**Дата:** 2026-01-11
 **Статус:** Активный протокол
