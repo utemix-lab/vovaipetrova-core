@@ -334,6 +334,11 @@
   ],
   "process-obsudili-razlozhili-svyazali": [
     {
+      "slug": "site-handoff-protocol",
+      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+      "url": "docs/SITE_HANDOFF_PROTOCOL.md"
+    },
+    {
       "slug": "spec-content-linter-i-scaffold-chernovik",
       "title": "Spec — Content linter и scaffold (черновик)",
       "url": "docs/spec-content-linter-i-scaffold-chernovik.md"
@@ -453,6 +458,11 @@
       "url": "docs/single-source-playbook.md"
     },
     {
+      "slug": "site-handoff-protocol",
+      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+      "url": "docs/SITE_HANDOFF_PROTOCOL.md"
+    },
+    {
       "slug": "ui-maket-shapka-i-pervyj-ekran-static-first",
       "title": "UI макет — шапка и первый экран (Static First)",
       "url": "docs/ui-maket-shapka-i-pervyj-ekran-static-first.md"
@@ -481,6 +491,11 @@
     }
   ],
   "ui-maket-shapka-i-pervyj-ekran-static-first": [
+    {
+      "slug": "site-handoff-protocol",
+      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+      "url": "docs/SITE_HANDOFF_PROTOCOL.md"
+    },
     {
       "slug": "kontentmodel-i-marshruty",
       "title": "Контент‑модель и маршруты",
@@ -829,6 +844,11 @@
       "url": "docs/single-source-playbook.md"
     },
     {
+      "slug": "site-handoff-protocol",
+      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+      "url": "docs/SITE_HANDOFF_PROTOCOL.md"
+    },
+    {
       "slug": "stories-github-instructions",
       "title": "Stories — Инструкции для GitHub и агентов",
       "url": "docs/stories/stories-github-instructions.md"
@@ -980,6 +1000,13 @@
       "slug": "glossary-lite",
       "title": "Glossary Lite (A–Z)",
       "url": "docs/kb/glossary-lite.md"
+    }
+  ],
+  "site-handoff-protocol": [
+    {
+      "slug": "single-source-playbook",
+      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
+      "url": "docs/single-source-playbook.md"
     }
   ]
 }
