@@ -1,14 +1,19 @@
 ---
 title: Site Handoff Protocol — Think Tank ↔ Static Site
 slug: site-handoff-protocol
-summary: Протокол двустороннего порта для экспериментов визуала/структуры сайта отдельным IDE-агентом на основе прототипа (Think Tank). Без серверной логики, статический режим (Static First).
+summary: >-
+  Протокол двустороннего порта для экспериментов визуала/структуры сайта
+  отдельным IDE-агентом на основе прототипа (Think Tank). Без серверной логики,
+  статический режим (Static First).
 tags:
-  - Проектирование
   - Автоматизация
+  - Проектирование
 machine_tags:
   - action/build
+  - product/services
   - product/site
   - theme/automation
+  - theme/graphics
 status: ready
 ---
 
