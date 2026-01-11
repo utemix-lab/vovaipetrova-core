@@ -24,6 +24,7 @@
     "scaffold:adr": "node scripts/scaffold.mjs --type=adr",
     "story:generate": "node scripts/generate-stories.mjs",
     "story:digest": "node scripts/generate-nightly-digest-episode.mjs",
+    "story:digest:monthly": "node scripts/gen-stories-digest.mjs",
     "pii:scan": "node scripts/pii-scan.mjs",
     "pii:sanitize": "node scripts/pii-sanitize.mjs",
     "pii:sanitize:apply": "node scripts/pii-sanitize.mjs --apply",
