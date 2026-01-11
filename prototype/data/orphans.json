@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "updated": "2026-01-11T17:23:49.855Z",
+  "updated": "2026-01-11T18:14:33.348Z",
   "orphans": [
     {
       "slug": "briefs-ux-improvements",
@@ -84,12 +84,6 @@
       "slug": "site-handoff-protocol",
       "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
       "url": "docs/SITE_HANDOFF_PROTOCOL.md",
-      "status": "ready"
-    },
-    {
-      "slug": "site-handoff-protocol",
-      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
-      "url": "docs/site-handoff-protocol.md",
       "status": "ready"
     },
     {
