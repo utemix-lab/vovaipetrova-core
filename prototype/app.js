@@ -1631,7 +1631,7 @@ async function renderIndex() {
 
   renderDocs();
   renderStories();
-  renderStoriesFeed();
+  renderStoriesFeed(storyPages);
   setActivePanel(activePanel);
   if (activePanel === "orphans") {
     renderOrphans();
@@ -1645,6 +1645,190 @@ async function renderIndex() {
     renderStoriesIndex().catch((error) => {
       console.error("Failed to render Stories index:", error);
     });
+  }
+}
+
+async function renderStoriesFeed(storyPages) {
+  const feedContent = document.getElementById("stories-feed-content");
+  const feedLinks = document.querySelector(".stories-feed__links");
+
+  if (!feedContent) return;
+
+  try {
+    // Если storyPages не переданы, загружаем их
+    let stories = storyPages;
+    if (!stories) {
+      const pages = await loadPages("data/pages.json");
+      stories = pages.filter((page) => page.service !== true && isStoryPage(page));
+    }
+
+    // Исключаем digest из списка эпизодов
+    stories = stories.filter((story) => !story.slug || !story.slug.startsWith("digest-"));
+
+    // Сортируем по дате/порядку (последние первыми)
+    stories.sort((a, b) => {
+      // Извлекаем дату из slug (формат YYYY-MM-DD-*)
+      const dateA = extractDateFromSlug(a.slug) || extractDateFromSlug(a.url);
+      const dateB = extractDateFromSlug(b.slug) || extractDateFromSlug(b.url);
+
+      if (dateA && dateB) {
+        return dateB.localeCompare(dateA); // Новые первыми
+      }
+      if (dateA) return -1;
+      if (dateB) return 1;
+
+      // Если нет даты, используем story_order (больше = новее)
+      const orderA = getStoryOrder(a) ?? 0;
+      const orderB = getStoryOrder(b) ?? 0;
+      if (orderA !== orderB) {
+        return orderB - orderA; // Больше = новее
+      }
+
+      // Иначе по названию
+      return (a.title || a.slug).localeCompare(b.title || b.slug, "ru");
+    });
+
+    // Берём первые 5
+    const latestStories = stories.slice(0, 5);
+
+    // Очищаем контент
+    feedContent.innerHTML = "";
+
+    if (latestStories.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "stories-feed__empty";
+      empty.textContent = "Пока нет эпизодов";
+      feedContent.appendChild(empty);
+      return;
+    }
+
+    // Рендерим эпизоды
+    const fragment = document.createDocumentFragment();
+    latestStories.forEach((story) => {
+      const item = document.createElement("div");
+      item.className = "stories-feed__item";
+
+      const link = document.createElement("a");
+      link.className = "stories-feed__link";
+      link.href = `page/${story.slug}.html`;
+
+      const title = document.createElement("h3");
+      title.className = "stories-feed__item-title";
+      title.textContent = story.title || story.slug;
+      link.appendChild(title);
+
+      if (story.summary) {
+        const summary = document.createElement("p");
+        summary.className = "stories-feed__item-summary";
+        const maxLength = 120;
+        summary.textContent =
+          story.summary.length > maxLength
+            ? `${story.summary.slice(0, maxLength - 3).trim()}…`
+            : story.summary;
+        link.appendChild(summary);
+      }
+
+      const meta = document.createElement("div");
+      meta.className = "stories-feed__item-meta";
+
+      const status = document.createElement("span");
+      const statusMeta = STATUS_META[story.status] || STATUS_META.draft;
+      status.className = `stories-feed__status ${statusMeta.className}`;
+      status.textContent = `${statusMeta.emoji} ${statusMeta.label}`;
+      meta.appendChild(status);
+
+      // Добавляем дату, если есть
+      const dateStr = extractDateFromSlug(story.slug) || extractDateFromSlug(story.url);
+      if (dateStr) {
+        const date = document.createElement("span");
+        date.className = "stories-feed__date";
+        date.textContent = formatDate(dateStr);
+        meta.appendChild(date);
+      }
+
+      link.appendChild(meta);
+      item.appendChild(link);
+      fragment.appendChild(item);
+    });
+
+    feedContent.appendChild(fragment);
+
+    // Добавляем ссылку на текущий monthly digest
+    await addMonthlyDigestLink(feedLinks);
+
+  } catch (error) {
+    console.error("Failed to render Stories feed:", error);
+    feedContent.innerHTML = `<p class="stories-feed__empty">Ошибка загрузки эпизодов</p>`;
+  }
+}
+
+function extractDateFromSlug(slugOrUrl) {
+  if (!slugOrUrl) return null;
+  // Ищем формат YYYY-MM-DD в начале строки
+  const match = slugOrUrl.match(/^(\d{4}-\d{2}-\d{2})/);
+  return match ? match[1] : null;
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  try {
+    const date = new Date(dateStr + "T00:00:00");
+    const formatter = new Intl.DateTimeFormat("ru-RU", {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+    return formatter.format(date);
+  } catch {
+    return dateStr;
+  }
+}
+
+async function addMonthlyDigestLink(feedLinks) {
+  if (!feedLinks) return;
+
+  // Проверяем, не добавлена ли уже ссылка (чтобы избежать дублирования)
+  const existingDigestLink = feedLinks.querySelector('.stories-feed__digest-link');
+  if (existingDigestLink) return; // Уже добавлена, не обновляем
+
+  try {
+    // Определяем текущий месяц (Europe/Moscow)
+    const now = new Date();
+    const moscowTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
+    const year = moscowTime.getFullYear();
+    const month = String(moscowTime.getMonth() + 1).padStart(2, "0");
+    const monthKey = `${year}-${month}`;
+
+    // Загружаем pages.json для поиска digest
+    const pages = await loadPages("data/pages.json");
+    const digestSlug = `digest-${monthKey}`;
+    const digest = pages.find(
+      (page) => page.slug === digestSlug || page.slug?.startsWith(`digest-${monthKey}`)
+    );
+
+    // Если digest не найден, пробуем предыдущий месяц
+    let foundDigest = digest;
+    if (!foundDigest) {
+      const prevMonth = new Date(moscowTime);
+      prevMonth.setMonth(prevMonth.getMonth() - 1);
+      const prevYear = prevMonth.getFullYear();
+      const prevMonthNum = String(prevMonth.getMonth() + 1).padStart(2, "0");
+      const prevMonthKey = `${prevYear}-${prevMonthNum}`;
+      const prevDigestSlug = `digest-${prevMonthKey}`;
+      foundDigest = pages.find(
+        (page) => page.slug === prevDigestSlug || page.slug?.startsWith(`digest-${prevMonthKey}`)
+      );
+    }
+
+    if (foundDigest) {
+      const digestLink = document.createElement("a");
+      digestLink.className = "stories-feed__link-item stories-feed__digest-link";
+      digestLink.href = `page/${foundDigest.slug}.html`;
+      digestLink.textContent = `📅 Monthly Digest`;
+      feedLinks.appendChild(digestLink);
+    }
+  } catch (error) {
+    console.warn("Failed to add monthly digest link:", error);
   }
 }
 
