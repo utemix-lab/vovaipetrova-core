@@ -1,0 +1,98 @@
+name: Machine Episodes
+
+on:
+  schedule:
+    # 08:00 UTC = 11:00 Europe/Moscow (после nightly digest)
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+jobs:
+  generate-machine-episode:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: read
+    steps:
+      - uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate diagnostics snapshot
+        run: |
+          npm run diagnostics:snapshot || echo "⚠️ Diagnostics snapshot failed (non-blocking)"
+        continue-on-error: true
+
+      - name: Generate machine episode
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node scripts/generate-machine-episode.mjs
+
+      - id: meta
+        run: |
+          if [ ! -f tmp/machine-episode-meta.json ]; then
+            echo "created=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          node <<'EOF'
+          const fs = require('fs');
+          const meta = JSON.parse(fs.readFileSync('tmp/machine-episode-meta.json', 'utf8'));
+          const output = fs.createWriteStream(process.env.GITHUB_OUTPUT, { flags: 'a' });
+          output.write(`created=${meta.created}\n`);
+          if (meta.file) output.write(`file=${meta.file}\n`);
+          if (meta.title) output.write(`title=${meta.title}\n`);
+          if (meta.pr_count !== undefined) output.write(`pr_count=${meta.pr_count}\n`);
+          output.end();
+          EOF
+
+      - name: Check for changes
+        id: git_status
+        run: |
+          if git diff --quiet docs/stories; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Prepare branch
+        if: steps.meta.outputs.created == 'true' && steps.git_status.outputs.changed == 'true'
+        run: |
+          BRANCH="chore/machine-episode-$(date -u +%Y-%m-%d)"
+          git checkout -b "$BRANCH"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/stories
+          git commit -m "chore: machine episode $(date -u +%Y-%m-%d) (draft)" || exit 0
+          git push -u origin "$BRANCH" || exit 0
+          echo "BRANCH_NAME=$BRANCH" >> "$GITHUB_ENV"
+
+      - name: Create PR
+        if: steps.meta.outputs.created == 'true' && steps.git_status.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_BRANCH: ${{ env.BRANCH_NAME }}
+          EPISODE_TITLE: ${{ steps.meta.outputs.title }}
+          PR_COUNT: ${{ steps.meta.outputs.pr_count }}
+        run: |
+          BODY="Автогенерированный machine episode: ${EPISODE_TITLE:-без названия}.
+
+Источники: последние merged PR (${PR_COUNT:-0}), Diagnostics snapshot.
+Workflow: machine-episodes.yml (08:00 UTC / 11:00 Europe/Moscow).
+
+**Примечание:** Machine episode не содержит авторской части (AUTHOR_BLOCK)."
+          gh pr create \
+            --base main \
+            --head "$PR_BRANCH" \
+            --title "chore: machine episode $(date -u +%Y-%m-%d) (draft)" \
+            --body "$BODY" \
+            --label auto:story \
+            --label lane:stories || echo "PR already exists or failed"
