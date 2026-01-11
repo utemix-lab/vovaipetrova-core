@@ -1,0 +1,175 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Design Tokens Schema",
+  "description": "JSON Schema для валидации tokens.json",
+  "type": "object",
+  "required": ["version", "colors", "typography", "spacing", "radius"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "number",
+      "minimum": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "colors": {
+      "type": "object",
+      "required": ["background", "text", "border", "status"],
+      "properties": {
+        "background": {
+          "type": "object",
+          "required": ["primary"],
+          "properties": {
+            "primary": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\\([^)]+\\)$" },
+            "card": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\\([^)]+\\)$" },
+            "chip": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\\([^)]+\\)$" }
+          }
+        },
+        "text": {
+          "type": "object",
+          "required": ["primary"],
+          "properties": {
+            "primary": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\\([^)]+\\)$" },
+            "muted": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\\([^)]+\\)$" },
+            "chip": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\\([^)]+\\)$" }
+          }
+        },
+        "border": {
+          "type": "object",
+          "required": ["default"],
+          "properties": {
+            "default": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\\([^)]+\\)$" }
+          }
+        },
+        "status": {
+          "type": "object",
+          "required": ["ready", "review", "draft"],
+          "properties": {
+            "ready": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" },
+            "review": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" },
+            "draft": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" }
+          }
+        },
+        "theme": {
+          "type": "object",
+          "properties": {
+            "light": { "type": "object" },
+            "brand": { "type": "object" },
+            "dark": { "type": "object" }
+          }
+        },
+        "dark": {
+          "type": "object"
+        }
+      }
+    },
+    "typography": {
+      "type": "object",
+      "required": ["fontFamily", "fontSize", "fontWeight", "lineHeight"],
+      "properties": {
+        "fontFamily": {
+          "type": "object",
+          "required": ["primary"],
+          "properties": {
+            "primary": { "type": "string" },
+            "system": { "type": "string" }
+          }
+        },
+        "fontSize": {
+          "type": "object",
+          "required": ["base"],
+          "properties": {
+            "xs": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+            "sm": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+            "base": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+            "lg": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+            "xl": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+            "2xl": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+            "3xl": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+            "4xl": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" }
+          }
+        },
+        "fontWeight": {
+          "type": "object",
+          "required": ["normal"],
+          "properties": {
+            "normal": { "type": "string", "pattern": "^\\d{3}$" },
+            "medium": { "type": "string", "pattern": "^\\d{3}$" },
+            "semibold": { "type": "string", "pattern": "^\\d{3}$" },
+            "bold": { "type": "string", "pattern": "^\\d{3}$" }
+          }
+        },
+        "lineHeight": {
+          "type": "object",
+          "required": ["normal"],
+          "properties": {
+            "tight": { "type": "string", "pattern": "^\\d+(\\.\\d+)?$" },
+            "normal": { "type": "string", "pattern": "^\\d+(\\.\\d+)?$" },
+            "relaxed": { "type": "string", "pattern": "^\\d+(\\.\\d+)?$" }
+          }
+        },
+        "letterSpacing": {
+          "type": "object",
+          "properties": {
+            "tight": { "type": "string" },
+            "normal": { "type": "string" },
+            "wide": { "type": "string" },
+            "wider": { "type": "string" }
+          }
+        }
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "required": ["base"],
+      "properties": {
+        "xs": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+        "sm": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+        "md": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+        "base": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+        "lg": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+        "xl": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+        "2xl": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+        "3xl": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" },
+        "4xl": { "type": "string", "pattern": "^\\d+(\\.\\d+)?rem$" }
+      }
+    },
+    "radius": {
+      "type": "object",
+      "required": ["base"],
+      "properties": {
+        "none": { "type": "string", "pattern": "^0$" },
+        "sm": { "type": "string", "pattern": "^\\d+px$" },
+        "base": { "type": "string", "pattern": "^\\d+px$" },
+        "md": { "type": "string", "pattern": "^\\d+px$" },
+        "lg": { "type": "string", "pattern": "^\\d+px$" },
+        "xl": { "type": "string", "pattern": "^\\d+px$" },
+        "full": { "type": "string", "pattern": "^999px$" }
+      }
+    },
+    "shadow": {
+      "type": "object",
+      "properties": {
+        "sm": { "type": "string" },
+        "base": { "type": "string" },
+        "md": { "type": "string" },
+        "lg": { "type": "string" },
+        "xl": { "type": "string" }
+      }
+    },
+    "breakpoints": {
+      "type": "object",
+      "properties": {
+        "sm": { "type": "string", "pattern": "^\\d+px$" },
+        "md": { "type": "string", "pattern": "^\\d+px$" },
+        "lg": { "type": "string", "pattern": "^\\d+px$" },
+        "xl": { "type": "string", "pattern": "^\\d+px$" },
+        "2xl": { "type": "string", "pattern": "^\\d+px$" }
+      }
+    }
+  }
+}
