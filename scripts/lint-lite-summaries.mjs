@@ -107,17 +107,27 @@ function parseTerms(filePath) {
     
     // Собираем строки определения термина
     if (inTerm && currentTerm) {
+      // Проверяем, является ли это ссылкой "Читать карточку"
+      const linkMatch = READ_LINK_PATTERNS.some(pattern => pattern.test(trimmed));
+      if (linkMatch) {
+        currentTerm.hasReadLink = true;
+        // Завершаем сбор summary при обнаружении ссылки
+        inTerm = false;
+        continue;
+      }
+      
       // Пропускаем пустые строки в начале
       if (trimmed.length === 0 && currentSummaryLines.length === 0) {
         continue;
       }
+      
+      // Пропускаем HTML-якоря и другие служебные элементы
+      if (trimmed.startsWith('<a id=') || trimmed.startsWith('</a>')) {
+        continue;
+      }
+      
       // Добавляем строку к определению
       currentSummaryLines.push(trimmed);
-      
-      // Если нашли ссылку "Читать карточку", отмечаем
-      if (READ_LINK_PATTERNS.some(pattern => pattern.test(trimmed))) {
-        currentTerm.hasReadLink = true;
-      }
     }
   }
   
