@@ -6,4 +6,7 @@ contact_links:
   - name: Notion Briefs
     url: https://www.notion.so/
     about: Check Notion Briefs for task management
+  - name: Site Handoff Protocol
+    url: https://github.com/utemix-lab/vovaipetrova-core/blob/main/docs/SITE_HANDOFF_PROTOCOL.md
+    about: Read the Site Handoff Protocol for data exchange between Think Tank and static site
 
