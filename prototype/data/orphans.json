@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "updated": "2026-01-11T12:48:12.965Z",
+  "updated": "2026-01-11T17:03:04.921Z",
   "orphans": [
     {
       "slug": "briefs-ux-improvements",
@@ -78,6 +78,18 @@
       "slug": "process-improvements-assessment-364c8d",
       "title": "Оценка улучшений процесса разработки",
       "url": "docs/process-improvements-assessment-364c8d.md",
+      "status": "ready"
+    },
+    {
+      "slug": "site-handoff-protocol",
+      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+      "url": "docs/SITE_HANDOFF_PROTOCOL.md",
+      "status": "ready"
+    },
+    {
+      "slug": "site-handoff-protocol",
+      "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+      "url": "docs/site-handoff-protocol.md",
       "status": "ready"
     },
     {
