@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 /**
- * Stories Monthly Digest Generator
+ * Stories Monthly Digest Generator (параметризованный)
  *
- * Собирает эпизоды месяца: TL;DR, дата, PR-ссылки
+ * Собирает эпизоды за период: TL;DR, дата, PR-ссылки
  * Выход: docs/stories/digest-YYYY-MM.md
  *
  * Использование:
  *   node scripts/gen-stories-digest.mjs [YYYY-MM]
  *   node scripts/gen-stories-digest.mjs 2026-01
+ *   node scripts/gen-stories-digest.mjs --month 2026-01
+ *   node scripts/gen-stories-digest.mjs --help
  *
  * Если месяц не указан, используется текущий месяц (Europe/Moscow)
  */
@@ -33,6 +35,44 @@ function getCurrentMonth() {
   return formatter.format(new Date()); // YYYY-MM
 }
 
+function parseArgs() {
+  const args = process.argv.slice(2);
+  const result = { month: null };
+
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (arg === '--help' || arg === '-h') {
+      console.log(`
+Использование:
+  node scripts/gen-stories-digest.mjs [YYYY-MM]
+  node scripts/gen-stories-digest.mjs --month YYYY-MM
+  node scripts/gen-stories-digest.mjs --help
+
+Параметры:
+  YYYY-MM          Месяц для генерации дайджеста (например: 2026-01)
+  --month YYYY-MM  То же самое, что и позиционный аргумент
+  --help, -h       Показать эту справку
+
+Если месяц не указан, используется текущий месяц (Europe/Moscow).
+
+Примеры:
+  node scripts/gen-stories-digest.mjs
+  node scripts/gen-stories-digest.mjs 2026-01
+  node scripts/gen-stories-digest.mjs --month 2026-01
+`);
+      process.exit(0);
+    } else if (arg === '--month' && i + 1 < args.length) {
+      result.month = args[i + 1];
+      i++;
+    } else if (!arg.startsWith('--')) {
+      // Позиционный аргумент
+      result.month = arg;
+    }
+  }
+
+  return result;
+}
+
 function parseMonth(monthStr) {
   if (!monthStr) return getCurrentMonth();
 
@@ -46,6 +86,13 @@ function parseMonth(monthStr) {
   const monthNum = parseInt(month, 10);
   if (monthNum < 1 || monthNum > 12) {
     throw new Error(`Неверный номер месяца: ${monthNum}. Используйте 01-12`);
+  }
+
+  // Проверяем, что год разумный (не слишком старый и не будущий)
+  const yearNum = parseInt(year, 10);
+  const currentYear = new Date().getFullYear();
+  if (yearNum < 2020 || yearNum > currentYear + 1) {
+    throw new Error(`Неверный год: ${yearNum}. Используйте год от 2020 до ${currentYear + 1}`);
   }
 
   return `${year}-${month}`;
@@ -85,16 +132,37 @@ function extractDateFromFilename(filename) {
   return match ? match[1] : null;
 }
 
+function isValidPRUrl(url) {
+  if (!url || typeof url !== 'string') return false;
+  // Проверяем формат GitHub PR URL
+  const githubPRPattern = /^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/pull\/\d+/i;
+  return githubPRPattern.test(url);
+}
+
+function normalizePRUrl(url, number) {
+  if (!url) return null;
+  // Если есть номер, но URL неполный, формируем полный URL
+  if (number && !url.includes('/pull/')) {
+    // Предполагаем стандартный формат репозитория
+    const repo = process.env.GITHUB_REPOSITORY || 'utemix-lab/vovaipetrova-core';
+    return `https://github.com/${repo}/pull/${number}`;
+  }
+  return url;
+}
+
 function extractPRLinks(frontMatter, content) {
   const links = [];
 
   // Из front matter
-  if (frontMatter.pr_url) {
-    links.push({
-      url: frontMatter.pr_url,
-      number: frontMatter.pr_number || null,
-      source: "frontmatter",
-    });
+  if (frontMatter.pr_url || frontMatter.pr_number) {
+    const url = normalizePRUrl(frontMatter.pr_url, frontMatter.pr_number);
+    if (url && isValidPRUrl(url)) {
+      links.push({
+        url,
+        number: frontMatter.pr_number || parseInt(url.match(/\/pull\/(\d+)/)?.[1] || '0', 10) || null,
+        source: "frontmatter",
+      });
+    }
   }
 
   // Из контента (ищем ссылки вида [PR #123](url) или прямые ссылки)
@@ -102,10 +170,11 @@ function extractPRLinks(frontMatter, content) {
   let match;
   while ((match = prLinkRegex.exec(content)) !== null) {
     const [, number, url] = match;
+    const normalizedUrl = normalizePRUrl(url, parseInt(number, 10));
     // Проверяем, что это не дубликат из front matter
-    if (!links.some(link => link.url === url)) {
+    if (normalizedUrl && isValidPRUrl(normalizedUrl) && !links.some(link => link.url === normalizedUrl || link.number === parseInt(number, 10))) {
       links.push({
-        url,
+        url: normalizedUrl,
         number: parseInt(number, 10),
         source: "content",
       });
@@ -116,9 +185,10 @@ function extractPRLinks(frontMatter, content) {
   const directPRRegex = /(https?:\/\/github\.com\/[^\/]+\/[^\/]+\/pull\/(\d+))/gi;
   while ((match = directPRRegex.exec(content)) !== null) {
     const [, url, number] = match;
-    if (!links.some(link => link.url === url)) {
+    const normalizedUrl = normalizePRUrl(url, parseInt(number, 10));
+    if (normalizedUrl && isValidPRUrl(normalizedUrl) && !links.some(link => link.url === normalizedUrl || link.number === parseInt(number, 10))) {
       links.push({
-        url,
+        url: normalizedUrl,
         number: parseInt(number, 10),
         source: "content",
       });
@@ -275,14 +345,31 @@ function writeDigestFile(month, digestContent) {
   return { filename, filePath };
 }
 
+function validateLinks(episodes) {
+  const invalidLinks = [];
+  for (const episode of episodes) {
+    for (const link of episode.prLinks) {
+      if (!isValidPRUrl(link.url)) {
+        invalidLinks.push({
+          episode: episode.title,
+          link: link.url,
+          source: link.source,
+        });
+      }
+    }
+  }
+  return invalidLinks;
+}
+
 function main() {
-  const monthArg = process.argv[2];
+  const args = parseArgs();
 
   let month;
   try {
-    month = parseMonth(monthArg);
+    month = parseMonth(args.month);
   } catch (error) {
     console.error(`❌ Ошибка: ${error.message}`);
+    console.error(`Используйте --help для справки`);
     process.exit(1);
   }
 
@@ -301,12 +388,28 @@ function main() {
 
   log(`Найдено эпизодов: ${episodes.length}`);
 
+  // Валидация ссылок
+  const invalidLinks = validateLinks(episodes);
+  if (invalidLinks.length > 0) {
+    log(`⚠️  Найдено ${invalidLinks.length} невалидных PR-ссылок:`);
+    invalidLinks.forEach(({ episode, link, source }) => {
+      log(`   - ${episode} (${source}): ${link}`);
+    });
+  }
+
   const digest = buildDigest(month, episodes);
   const result = writeDigestFile(month, digest);
 
+  const totalPRLinks = episodes.reduce((sum, ep) => sum + ep.prLinks.length, 0);
+  const validPRLinks = totalPRLinks - invalidLinks.length;
+
   log(`✅ Создан digest: ${result.filename}`);
   log(`   Эпизодов: ${episodes.length}`);
-  log(`   PR-ссылок: ${episodes.reduce((sum, ep) => sum + ep.prLinks.length, 0)}`);
+  log(`   PR-ссылок: ${totalPRLinks} (валидных: ${validPRLinks}${invalidLinks.length > 0 ? `, невалидных: ${invalidLinks.length}` : ''})`);
+
+  if (invalidLinks.length > 0) {
+    log(`⚠️  Внимание: некоторые PR-ссылки невалидны. Проверьте файлы эпизодов.`);
+  }
 }
 
 main();
