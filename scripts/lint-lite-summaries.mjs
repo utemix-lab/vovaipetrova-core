@@ -78,7 +78,7 @@ function parseTerms(filePath) {
       continue;
     }
     
-    // Конец термина: следующий заголовок уровня 2 или 3, или конец файла
+    // Конец термина: следующий заголовок уровня 2 или 3
     if (inTerm && (trimmed.startsWith('## ') || trimmed.startsWith('### '))) {
       if (currentTerm) {
         const summary = currentSummaryLines.join(' ').trim();
@@ -110,8 +110,13 @@ function parseTerms(filePath) {
       // Проверяем, является ли это ссылкой "Читать карточку"
       const linkMatch = READ_LINK_PATTERNS.some(pattern => pattern.test(trimmed));
       if (linkMatch) {
+        // Сохраняем термин при обнаружении ссылки
+        const summary = currentSummaryLines.join(' ').trim();
+        currentTerm.summary = summary;
         currentTerm.hasReadLink = true;
-        // Завершаем сбор summary при обнаружении ссылки
+        terms.push(currentTerm);
+        currentTerm = null;
+        currentSummaryLines = [];
         inTerm = false;
         continue;
       }
@@ -135,7 +140,7 @@ function parseTerms(filePath) {
   if (currentTerm) {
     const summary = currentSummaryLines.join(' ').trim();
     currentTerm.summary = summary;
-    currentTerm.hasReadLink = currentTerm.hasReadLink || currentSummaryLines.some(line =>
+    currentTerm.hasReadLink = currentSummaryLines.some(line =>
       READ_LINK_PATTERNS.some(pattern => pattern.test(line))
     );
     terms.push(currentTerm);
