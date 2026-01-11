@@ -2097,6 +2097,9 @@ async function renderPage() {
     breadcrumbHTML += `<span aria-hidden="true"> › </span>`;
     breadcrumbHTML += `<span>${escapeHtml(entry.title || entry.slug)}</span>`;
     breadcrumbCurrent.innerHTML = breadcrumbHTML;
+  } else if (slug === "glossary-lite") {
+    // Специальные breadcrumbs для Glossary Lite
+    breadcrumbCurrent.innerHTML = `<a href="../index.html#kb-index-panel">KB</a><span aria-hidden="true"> › </span><span>${escapeHtml(entry.title || entry.slug)}</span>`;
   } else {
     breadcrumbCurrent.textContent = entry.title || entry.slug;
   }
@@ -2140,6 +2143,11 @@ async function renderPage() {
   const article = document.getElementById("page-content");
   article.innerHTML = html;
   rewriteInternalLinks(article, pages, linkMap);
+
+  // Специальная обработка для Glossary Lite: улучшенная навигация A–Z и сохранение позиции
+  if (slug === "glossary-lite") {
+    enhanceGlossaryLiteNavigation(article);
+  }
 
   const headings = article.querySelectorAll("h2, h3");
   const relatedSection = Array.from(headings).find((node) =>
@@ -2257,6 +2265,128 @@ async function renderPage() {
     }
   } catch (error) {
     console.warn("Failed to load backlinks:", error);
+  }
+}
+
+/**
+ * Улучшенная навигация для Glossary Lite: якоря A–Z и сохранение позиции
+ */
+function enhanceGlossaryLiteNavigation(article) {
+  // Находим секцию "Навигация по буквам"
+  const navSection = Array.from(article.querySelectorAll("h2")).find(
+    h2 => h2.textContent.includes("Навигация по буквам")
+  );
+
+  if (!navSection) return;
+
+  // Находим все якоря букв в документе
+  const letterAnchors = article.querySelectorAll("a[id]");
+  const availableLetters = new Set();
+  letterAnchors.forEach(anchor => {
+    const letter = anchor.id.toLowerCase();
+    if (letter.length === 1 && /[a-zа-яё]/.test(letter)) {
+      availableLetters.add(letter);
+    }
+  });
+
+  // Создаём улучшенную навигацию A–Z
+  const navContainer = document.createElement("div");
+  navContainer.className = "glossary-lite-nav";
+  navContainer.setAttribute("role", "navigation");
+  navContainer.setAttribute("aria-label", "Навигация по буквам");
+
+  // Генерируем все буквы алфавита (A–Z)
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const navLinks = document.createDocumentFragment();
+
+  alphabet.forEach(letter => {
+    const link = document.createElement("a");
+    link.href = `#${letter.toLowerCase()}`;
+    link.textContent = letter;
+    link.className = "glossary-lite-nav__link";
+    
+    // Помечаем неактивные буквы (без терминов)
+    if (!availableLetters.has(letter.toLowerCase())) {
+      link.classList.add("glossary-lite-nav__link--disabled");
+      link.setAttribute("aria-disabled", "true");
+      link.setAttribute("tabindex", "-1");
+    } else {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = letter.toLowerCase();
+        const targetAnchor = article.querySelector(`a[id="${targetId}"]`);
+        if (targetAnchor) {
+          // Сохраняем текущую позицию перед переходом
+          saveGlossaryScrollPosition();
+          
+          // Прокручиваем к якорю
+          targetAnchor.scrollIntoView({ behavior: "smooth", block: "start" });
+          
+          // Обновляем URL hash
+          window.history.replaceState(null, "", `#${targetId}`);
+          
+          // Восстанавливаем позицию после небольшой задержки
+          setTimeout(() => {
+            restoreGlossaryScrollPosition(targetId);
+          }, 500);
+        }
+      });
+    }
+
+    navLinks.appendChild(link);
+  });
+
+  navContainer.appendChild(navLinks);
+
+  // Заменяем старую навигацию на новую
+  const oldNav = navSection.nextElementSibling;
+  if (oldNav && oldNav.tagName === "P") {
+    oldNav.replaceWith(navContainer);
+  } else {
+    navSection.insertAdjacentElement("afterend", navContainer);
+  }
+
+  // Обработка hash при загрузке страницы
+  const hash = window.location.hash.slice(1);
+  if (hash && availableLetters.has(hash.toLowerCase())) {
+    setTimeout(() => {
+      const targetAnchor = article.querySelector(`a[id="${hash.toLowerCase()}"]`);
+      if (targetAnchor) {
+        targetAnchor.scrollIntoView({ behavior: "smooth", block: "start" });
+        restoreGlossaryScrollPosition(hash.toLowerCase());
+      }
+    }, 300);
+  }
+
+  // Сохраняем позицию при скролле
+  let scrollTimeout;
+  window.addEventListener("scroll", () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      saveGlossaryScrollPosition();
+    }, 200);
+  });
+}
+
+/**
+ * Сохраняет позицию скролла для Glossary Lite
+ */
+function saveGlossaryScrollPosition() {
+  const hash = window.location.hash.slice(1) || "top";
+  const scrollY = window.scrollY || window.pageYOffset;
+  localStorage.setItem(`glossary-lite-scroll-${hash}`, scrollY.toString());
+}
+
+/**
+ * Восстанавливает позицию скролла для Glossary Lite
+ */
+function restoreGlossaryScrollPosition(letter) {
+  const savedScroll = localStorage.getItem(`glossary-lite-scroll-${letter}`);
+  if (savedScroll) {
+    const scrollY = parseInt(savedScroll, 10);
+    if (!isNaN(scrollY)) {
+      window.scrollTo({ top: scrollY, behavior: "auto" });
+    }
   }
 }
 
