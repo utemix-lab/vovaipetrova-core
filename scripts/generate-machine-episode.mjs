@@ -282,7 +282,8 @@ function main() {
   const brokenLinks = loadJSON('prototype/data/broken-links.json');
 
   // Проверяем, есть ли события для создания эпизода
-  const hasEvents = (prs && prs.length > 0) || stats || brokenLinks;
+  // Создаём эпизод, если есть хотя бы один merged PR или есть Diagnostics данные
+  const hasEvents = (prs && prs.length > 0) || (stats && stats.generatedAt) || (brokenLinks && brokenLinks.issues);
   if (!hasEvents) {
     log(`No events found for ${today}. Skipping episode generation.`);
     saveMeta({ created: false, reason: 'no-events', date: today });
