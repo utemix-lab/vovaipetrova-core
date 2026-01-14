@@ -251,7 +251,7 @@ A: См. `scripts/rag/` для примеров скриптов индекса�
 
 ## Связанные документы
 
-- [RAG Indexing Report](../rag/INDEXING_REPORT.md) — отчёт об индексации
+- [RAG Indexing Report](INDEXING_REPORT.md) — отчёт об индексации
 - [Data Schemas](../data-schemas/) — JSON схемы для валидации
 - [Canon Map Usage](../kb/canonical-slug.md) — использование canon map
 
