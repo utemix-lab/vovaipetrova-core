@@ -1,3 +1,10 @@
+---
+title: Workspace экосистемы Vova & Petrova
+slug: workspace-ekosistemy-vova-and-petrova
+summary: '# Workspace экосистемы Vova & Petrova'
+tags: []
+machine_tags: []
+---
 # Workspace экосистемы Vova & Petrova
 
 ## Описание
