@@ -1,3 +1,12 @@
+---
+title: RAG Evaluation
+slug: rag-evaluation
+summary: Метрики, пороги и процесс оценки качества RAG.
+status: draft
+tags: [RAG, metrics]
+machine_tags: [rag/evaluation]
+---
+
 # Как мы меряем RAG
 
 ## Обзор
@@ -170,7 +179,7 @@ E2E отчёт автоматически включается в Weekly Audit:
 
 - [RAG Data Pack](rag-data-pack-dokumentaciya.md) — структура данных
 - [Indexing Report](INDEXING_REPORT.md) — отчёт об индексации
-- [Tokenization](tokenize.mjs) — нормализация текста
+- [Tokenization](../../scripts/rag/tokenize.mjs) — нормализация текста
 
 ---
 
