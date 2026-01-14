@@ -86,7 +86,7 @@ function normalizeText(text) {
 /**
  * Токенизация текста с нормализацией
  */
-function tokenize(text, options = {}) {
+export function tokenize(text, options = {}) {
   const {
     normalize = true,
     estimateTokenCount = true,
