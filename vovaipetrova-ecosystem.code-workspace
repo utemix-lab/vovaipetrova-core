@@ -1,0 +1,136 @@
+{
+  "folders": [
+    {
+      "name": "📦 Core (Think Tank)",
+      "path": ".",
+      "description": "Ядро: база знаний, процессы, экспорт данных"
+    },
+    {
+      "name": "🌐 Site (Витрина)",
+      "path": "../vovaipetrova-site",
+      "description": "Статический сайт: витрина проекта, независимая структура"
+    }
+  ],
+  "settings": {
+    "files.encoding": "utf8",
+    "files.eol": "\n",
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/.git": true,
+      "**/tmp*": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/tmp*": true
+    },
+    "files.watcherExclude": {
+      "**/node_modules/**": true,
+      "**/dist/**": true,
+      "**/tmp*/**": true
+    },
+    "[markdown]": {
+      "files.encoding": "utf8",
+      "editor.wordWrap": "on"
+    },
+    "[json]": {
+      "files.encoding": "utf8"
+    },
+    "[jsonl]": {
+      "files.encoding": "utf8"
+    },
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": false
+    }
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "🔄 Синхронизация: Core → Site",
+        "type": "shell",
+        "command": "cd ../vovaipetrova-site && npm run import",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        }
+      },
+      {
+        "label": "📦 Core: Генерация content slices",
+        "type": "shell",
+        "command": "npm run content:slices",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "group": "build"
+      },
+      {
+        "label": "📦 Core: Генерация static routes",
+        "type": "shell",
+        "command": "npm run static:routes:generate",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "group": "build"
+      },
+      {
+        "label": "🌐 Site: Сборка",
+        "type": "shell",
+        "command": "cd ../vovaipetrova-site && npm run build",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "group": "build"
+      },
+      {
+        "label": "🚀 Полный цикл: Core → Site → Build",
+        "dependsOn": [
+          "📦 Core: Генерация content slices",
+          "📦 Core: Генерация static routes",
+          "🔄 Синхронизация: Core → Site",
+          "🌐 Site: Сборка"
+        ],
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "✅ Core: Проверка качества",
+        "type": "shell",
+        "command": "npm run lint:docs",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "group": "test"
+      }
+    ]
+  },
+  "extensions": {
+    "recommendations": [
+      "yzhang.markdown-all-in-one",
+      "davidanson.vscode-markdownlint",
+      "bierner.markdown-preview-github-styles"
+    ]
+  }
+}
