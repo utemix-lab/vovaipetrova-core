@@ -37,6 +37,9 @@ last_edited_time: ''
 
 Подробнее см. [ADR — Source of truth и зеркалирование](adr-source-of-truth-i-zerkalirovanie.md).
 
+**Связанные протоколы:**
+- [Site Handoff Protocol](site-handoff-protocol.md) — протокол передачи данных между Think Tank (прототип) и статическим сайтом
+
 ---
 
 ## 2. Быстрый старт (чек-лист)
@@ -93,6 +96,7 @@ last_edited_time: ''
 - ✅ Получение задачи из Notion через MCP
 - ✅ Выполнение технической работы (код, документация, скрипты)
 - ✅ Выбор оптимального решения при наличии вариантов
+- ✅ **ВСЕГДА создавать PR после выполнения задачи** (без исключений)
 - ✅ Создание PR с корректным заголовком и описанием
 - ✅ Исправление ошибок после ревью
 - ✅ Отчёт в Notion после завершения задачи
@@ -651,6 +655,7 @@ npm run pr:rerun:v2 -- --pr=<номер> [--workflow=<name>] [--job=<name>] [--f
 - [utf-8-setup.md](utf-8-setup.md) — настройка UTF-8 кодировки в редакторах
 - [MCP Quickstart](../MCP-QUICKSTART.md) — быстрый старт с MCP сервером для работы с Notion
 - [KB policies](stories/stories-readme.md) — политики для Knowledge Base
+- [Site Handoff Protocol](site-handoff-protocol.md) — протокол передачи данных между Think Tank (прототип) и статическим сайтом
 
 ---
 

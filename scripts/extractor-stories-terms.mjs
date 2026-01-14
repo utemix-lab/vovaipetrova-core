@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 /**
- * Extractor Stories Terms v2.1: Stories→KB intake с анти-дублем и цитатами
+ * Extractor Stories Terms v2.2: Stories→KB intake с цитатами и анти-дублем
  *
- * Версия 2.1 улучшения:
+ * Версия 2.2 улучшения:
+ * - Кандидатам терминов добавляются 1-2 цитаты контекста (улучшенный сбор)
+ * - Агрегация по slug: разные термины с одинаковым slug объединяются
+ * - Анти-дубль для Briefs: не плодятся задачи, только новые термины создают Issues
+ * - Стабильное обновление candidates_kb.json: дополнение вместо перезаписи
+ *
+ * Версия 2.1:
  * - Агрегация кандидатов по slug (анти-дубль): разные термины с одинаковым slug объединяются
  * - Сохранение 1-2 цитат контекста для каждого кандидата
  * - Задач не плодится: одна Issue на slug, даже если найдено несколько терминов с одинаковым slug
@@ -744,7 +750,7 @@ async function main() {
         entry.files.push(file);
       }
 
-      // v2.1: Собираем 1-2 цитаты контекста для термина из текста файла
+      // v2.2: Собираем 1-2 цитаты контекста для термина из текста файла
       // Ограничиваем до максимум 2 цитат на slug (не на термин)
       // Ищем все формы термина (включая морфологические)
       try {
@@ -764,11 +770,19 @@ async function main() {
 
         let found = 0;
         const maxQuotes = 2 - entry.contexts.length; // Сколько еще можно добавить
+        
+        // v2.2: Улучшенный поиск цитат - ищем в разных частях текста для разнообразия
+        const foundQuotes = [];
+        
         for (const searchTerm of searchTerms) {
           if (found >= maxQuotes) break;
 
           let startPos = 0;
-          while (found < maxQuotes) {
+          let attempts = 0;
+          const maxAttempts = 10; // Ограничиваем количество попыток
+          
+          while (found < maxQuotes && attempts < maxAttempts) {
+            attempts++;
             const idx = lower.indexOf(searchTerm, startPos);
             if (idx === -1) break;
 
@@ -782,31 +796,59 @@ async function main() {
               continue;
             }
 
-            const snippetStart = Math.max(0, idx - 80);
-            const snippetEnd = Math.min(text.length, idx + searchTerm.length + 80);
-            let snippet = text.substring(snippetStart, snippetEnd).replace(/\s+/g, ' ').trim();
+            // v2.2: Улучшенное извлечение контекста - ищем предложение целиком
+            const sentenceStart = Math.max(0, text.lastIndexOf('.', idx) + 1, text.lastIndexOf('!', idx) + 1, text.lastIndexOf('?', idx) + 1);
+            const sentenceEnd = Math.min(text.length, 
+              text.indexOf('.', idx) !== -1 ? text.indexOf('.', idx) + 1 : text.length,
+              text.indexOf('!', idx) !== -1 ? text.indexOf('!', idx) + 1 : text.length,
+              text.indexOf('?', idx) !== -1 ? text.indexOf('?', idx) + 1 : text.length
+            );
+            
+            // Если предложение слишком длинное, используем фиксированный контекст
+            const contextStart = sentenceEnd - sentenceStart > 200 
+              ? Math.max(0, idx - 100)
+              : sentenceStart;
+            const contextEnd = sentenceEnd - sentenceStart > 200
+              ? Math.min(text.length, idx + searchTerm.length + 100)
+              : sentenceEnd;
+            
+            let snippet = text.substring(contextStart, contextEnd).replace(/\s+/g, ' ').trim();
 
             // Добавим многоточия, если обрезали текст
-            if (snippetStart > 0) snippet = '…' + snippet;
-            if (snippetEnd < text.length) snippet = snippet + '…';
+            if (contextStart > 0) snippet = '…' + snippet;
+            if (contextEnd < text.length) snippet = snippet + '…';
 
             // Сформатируем цитату: ограничим длину и экранируем бэктики
             snippet = snippet.replace(/`/g, "'");
+            
+            // Ограничиваем длину цитаты до 200 символов
+            if (snippet.length > 200) {
+              snippet = snippet.substring(0, 197) + '…';
+            }
 
             // Дедупликация: проверяем, что такая цитата еще не добавлена
+            const normalizedSnippet = snippet.replace(/…/g, '').replace(/\s+/g, ' ').toLowerCase();
             const isDuplicate = entry.contexts.some(ctx => {
-              // Сравниваем нормализованные версии (без многоточий и пробелов)
               const normalizedCtx = ctx.replace(/…/g, '').replace(/\s+/g, ' ').toLowerCase();
-              const normalizedSnippet = snippet.replace(/…/g, '').replace(/\s+/g, ' ').toLowerCase();
-              return normalizedCtx === normalizedSnippet || normalizedCtx.includes(searchTerm) && normalizedSnippet.includes(searchTerm);
+              // Более строгая проверка дубликатов
+              return normalizedCtx === normalizedSnippet || 
+                     (normalizedCtx.includes(searchTerm) && normalizedSnippet.includes(searchTerm) && 
+                      Math.abs(normalizedCtx.length - normalizedSnippet.length) < 20);
             });
 
             if (!isDuplicate) {
-              entry.contexts.push(snippet);
+              foundQuotes.push(snippet);
               found++;
             }
 
             startPos = idx + searchTerm.length;
+          }
+        }
+        
+        // Добавляем найденные цитаты в entry
+        for (const quote of foundQuotes.slice(0, maxQuotes)) {
+          if (entry.contexts.length < 2) {
+            entry.contexts.push(quote);
           }
         }
       } catch (e) {
@@ -872,8 +914,22 @@ async function main() {
       const existing = mergedCandidates.get(cand.slug);
       const mergedFiles = new Set([...existing.files, ...cand.files]);
       existing.files = Array.from(mergedFiles).slice(0, 5);
-      // Объединяем контексты (максимум 2)
-      const mergedContexts = [...(existing.contexts || []), ...(cand.contexts || [])];
+      // v2.2: Объединяем контексты (максимум 2), избегая дубликатов
+      const mergedContexts = [...(existing.contexts || [])];
+      for (const newCtx of (cand.contexts || [])) {
+        if (mergedContexts.length >= 2) break;
+        // Проверяем на дубликаты перед добавлением
+        const normalizedNew = newCtx.replace(/…/g, '').replace(/\s+/g, ' ').toLowerCase();
+        const isDuplicate = mergedContexts.some(existingCtx => {
+          const normalizedExisting = existingCtx.replace(/…/g, '').replace(/\s+/g, ' ').toLowerCase();
+          return normalizedExisting === normalizedNew || 
+                 (normalizedExisting.includes(normalizedNew) || normalizedNew.includes(normalizedExisting)) &&
+                 Math.abs(normalizedExisting.length - normalizedNew.length) < 20;
+        });
+        if (!isDuplicate) {
+          mergedContexts.push(newCtx);
+        }
+      }
       existing.contexts = mergedContexts.slice(0, 2);
       // Обновляем частоту
       existing.frequency = (existing.frequency || 0) + cand.frequency;

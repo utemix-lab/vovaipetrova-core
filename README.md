@@ -94,7 +94,59 @@ npm run check:lanes    # Проверка lanes policy (one-PR-per-lane)
 # Тестирование guardrails
 npm run test:guardrails  # Эмуляция нарушений для проверки guardrails
 
+# Content slices экспорт (для внешнего IDE-агента)
+npm run content:kb-glossary-lite    # Генерация kb_glossary_lite.jsonl
+npm run content:stories-digests     # Генерация stories_digests.jsonl
+npm run content:slices              # Генерация всех content slices
+
+# Static First контракт для внешнего IDE-агента
+npm run static:routes:generate  # Генерация static/routes.json
+npm run static:routes:validate # Валидация static/routes.json
+
 ```
+
+## Static First контракт
+
+Для внешнего IDE-агента доступен файл `static/routes.json` с маршрутами прототипа в упрощённом формате:
+
+- **Формат:** `{path, title, in_sitemap, og?}`
+- **Расположение:** `static/routes.json`
+- **Генерация:** `npm run static:routes:generate`
+- **Валидация:** `npm run static:routes:validate` (проверяется в CI)
+
+Файл содержит все публичные маршруты прототипа с метаданными для генерации статического сайта. Подробнее см. [Site Handoff Protocol](docs/SITE_HANDOFF_PROTOCOL.md).
+
+### Build-артефакты
+
+**Content slices** — JSONL-файлы для передачи данных от прототипа к статическому сайту (см. [Site Handoff Protocol](docs/SITE_HANDOFF_PROTOCOL.md)):
+
+- **kb_glossary_lite.jsonl** — JSONL-срез Glossary Lite с терминами базы знаний
+  - Расположение: корень репозитория (`kb_glossary_lite.jsonl`)
+  - Схема: `kb_glossary_lite.schema.json`
+  - Генерация: `npm run content:kb-glossary-lite`
+  - Формат записи: `{"slug":"...","title":"...","lite_summary":"...","link":"kb/..."}`
+
+- **stories_digests.jsonl** — JSONL-срез месячных дайджестов Stories
+  - Расположение: `prototype/data/stories_digests.jsonl`
+  - Схема: `prototype/data/stories_digests.schema.json`
+  - Генерация: `npm run content:stories-digests`
+  - Формат записи: `{"slug":"digest-YYYY-MM","title":"...","episodes":[...],"generated_at":"..."}`
+
+Оба файла генерируются автоматически в CI при каждом PR. Для ручной генерации используйте `npm run content:slices`.
+
+**Схема записи kb_glossary_lite.jsonl:**
+```json
+{
+  "slug": "string",          // Идентификатор термина (из ссылки)
+  "title": "string",         // Название термина
+  "lite_summary": "string",  // Краткое определение (≤200 символов)
+  "link": "string"           // Относительная ссылка на каноническую карточку (kb/*.md)
+}
+```
+
+**Формат:** JSONL (JSON Lines), одна запись на строку, UTF-8.
+
+**Где найти:** Артефакт `kb-glossary-lite-jsonl` прикрепляется к каждому успешному CI-запуску для Ready PR (см. "Artifacts" в GitHub Actions).
 
 ## Процесс работы
 

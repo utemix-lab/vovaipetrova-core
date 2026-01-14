@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KB Glossary Lite JSONL Schema",
+  "description": "Schema for kb_glossary_lite.jsonl - one JSON object per line",
+  "type": "object",
+  "required": [
+    "slug",
+    "title",
+    "lite_summary",
+    "link"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug for the term"
+    },
+    "title": {
+      "type": "string",
+      "description": "Display title of the term"
+    },
+    "lite_summary": {
+      "type": "string",
+      "description": "Brief summary (max 300 chars)",
+      "maxLength": 300
+    },
+    "link": {
+      "type": "string",
+      "description": "Relative path to the KB document (e.g., \"kb/aliases.md\")",
+      "pattern": "^kb/.+\\.md$"
+    }
+  },
+  "additionalProperties": false
+}

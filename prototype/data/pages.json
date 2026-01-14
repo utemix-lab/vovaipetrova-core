@@ -4359,7 +4359,7 @@
     "title": "Glossary Lite (A–Z)",
     "slug": "glossary-lite",
     "status": "ready",
-    "summary": "Лёгкий справочник терминов базы знаний с короткими определениями и ссылками на канонические карточки",
+    "summary": "Лёгкий справочник терминов базы знаний с короткими определениями и ссылками на канонические карточки (Glossary Lite (A–Z))",
     "tags": [
       "База_знаний",
       "Справочник"
@@ -4368,6 +4368,57 @@
       "product/kb"
     ],
     "url": "docs/kb/glossary-lite.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "ECOSYSTEM_WORKSPACE",
+    "slug": "ECOSYSTEM_WORKSPACE",
+    "status": "draft",
+    "summary": "",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/ECOSYSTEM_WORKSPACE.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
+    "slug": "site-handoff-protocol",
+    "status": "ready",
+    "summary": "Протокол двустороннего порта для экспериментов визуала/структуры сайта отдельным IDE-агентом на основе прототипа (Think Tank). Без серверной логики, статический режим (Static First).",
+    "tags": [
+      "Автоматизация",
+      "Проектирование"
+    ],
+    "machine_tags": [
+      "action/build",
+      "product/services",
+      "product/site",
+      "theme/automation",
+      "theme/graphics"
+    ],
+    "url": "docs/site-handoff-protocol.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Workspace экосистемы Vova & Petrova",
+    "slug": "workspace-ekosistemy-vova-and-petrova",
+    "status": "draft",
+    "summary": "# Workspace экосистемы Vova & Petrova",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/workspace-ekosistemy-vova-and-petrova.md",
     "service": false,
     "collection": null,
     "story_order": null,
