@@ -1,0 +1,132 @@
+{
+  "kb": {
+    "aliases": [
+      "kb_aliases_0"
+    ],
+    "autolink": [
+      "kb_autolink_0"
+    ],
+    "backlinks": [
+      "kb_backlinks_0"
+    ],
+    "canonical-slug": [
+      "kb_canonical-slug_0"
+    ],
+    "facets": [
+      "kb_facets_0"
+    ],
+    "glossary-lite": [
+      "kb_glossary-lite_0"
+    ],
+    "link-map": [
+      "kb_link-map_0"
+    ],
+    "machine-tags": [
+      "kb_machine-tags_0"
+    ],
+    "routes": [
+      "kb_routes_0"
+    ],
+    "snapshot": [
+      "kb_snapshot_0"
+    ],
+    "tags": [
+      "kb_tags_0"
+    ]
+  },
+  "stories": {
+    "001-rannie-stranicy-notion-indeks-i-think-tank": [
+      "stories_001-rannie-stranicy-notion-indeks-i-think-tank_0"
+    ],
+    "002-adr-source-of-truth-i-zerkalirovanie": [
+      "stories_002-adr-source-of-truth-i-zerkalirovanie_0"
+    ],
+    "003-kontentmodel-i-marshruty": [
+      "stories_003-kontentmodel-i-marshruty_0"
+    ],
+    "004-start-importa-notion-v-github": [
+      "stories_004-start-importa-notion-v-github_0"
+    ],
+    "005-ci-rejly-i-lint-normalize": [
+      "stories_005-ci-rejly-i-lint-normalize_0"
+    ],
+    "006-tags-yaml-i-fasetnaya-taksonomiya": [
+      "stories_006-tags-yaml-i-fasetnaya-taksonomiya_0"
+    ],
+    "007-fix-links-i-normalizaciya-ssylok": [
+      "stories_007-fix-links-i-normalizaciya-ssylok_0"
+    ],
+    "008-avtopilot-notion-cursor-github": [
+      "stories_008-avtopilot-notion-cursor-github_0"
+    ],
+    "009-explorer-i-labs-otdelenie-ot-think-tank": [
+      "stories_009-explorer-i-labs-otdelenie-ot-think-tank_0"
+    ],
+    "01-zarozhdenie-idei": [
+      "stories_01-zarozhdenie-idei_0"
+    ],
+    "010-v1-0-content-ready-milestone": [
+      "stories_010-v1-0-content-ready-milestone_0"
+    ],
+    "011-site-ia-v1-1-i-routes-yml": [
+      "stories_011-site-ia-v1-1-i-routes-yml_0"
+    ],
+    "012-link-map-batch-1-pervye-pravila": [
+      "stories_012-link-map-batch-1-pervye-pravila_0"
+    ],
+    "013-link-map-batch-2-refinement": [
+      "stories_013-link-map-batch-2-refinement_0"
+    ],
+    "014-link-map-batch-3-internal-missing-do-nulya": [
+      "stories_014-link-map-batch-3-internal-missing-do-nulya_0"
+    ],
+    "015-diagnostics-i-issues-view": [
+      "stories_015-diagnostics-i-issues-view_0"
+    ],
+    "016-explorer-ux-polish-karty-filtry": [
+      "stories_016-explorer-ux-polish-karty-filtry_0"
+    ],
+    "017-explorer-ux-polish-2-back-to-list": [
+      "stories_017-explorer-ux-polish-2-back-to-list_0"
+    ],
+    "018-stories-pilotnaya-seriya": [
+      "stories_018-stories-pilotnaya-seriya_0"
+    ],
+    "019-stories-anonimizaciya-i-lint-rule": [
+      "stories_019-stories-anonimizaciya-i-lint-rule_0"
+    ],
+    "02-pochemu-notion-source-of-truth": [
+      "stories_02-pochemu-notion-source-of-truth_0"
+    ],
+    "020-stories-daily-cadence-i-generator": [
+      "stories_020-stories-daily-cadence-i-generator_0"
+    ],
+    "03-import-i-bezopasnost": [
+      "stories_03-import-i-bezopasnost_0"
+    ],
+    "04-avtopilot-notion-cursor-github": [
+      "stories_04-avtopilot-notion-cursor-github_0"
+    ],
+    "05-explorer-vs-think-tank": [
+      "stories_05-explorer-vs-think-tank_0"
+    ],
+    "06-v1-0-content-ready": [
+      "stories_06-v1-0-content-ready_0"
+    ],
+    "07-protolabs-i-issues-view": [
+      "stories_07-protolabs-i-issues-view_0"
+    ],
+    "08-site-ia-v1-i-vitrina": [
+      "stories_08-site-ia-v1-i-vitrina_0"
+    ],
+    "2025-11-23-stories-v10-content-ready-2025-11-12": [
+      "stories_2025-11-23-stories-v10-content-ready-2025-11-12_0"
+    ],
+    "2026-01-10-episode-playbook-short-link": [
+      "stories_2026-01-10-episode-playbook-short-link_0"
+    ],
+    "prompts-library": [
+      "stories_prompts-library_0"
+    ]
+  }
+}

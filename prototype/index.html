@@ -77,6 +77,9 @@
         <button type="button" class="view-button" data-panel="diagnostics">
           Diagnostics
         </button>
+        <button type="button" class="view-button" data-panel="rag">
+          RAG
+        </button>
       </div>
     </header>
     <main class="content">
@@ -183,6 +186,52 @@
         <div id="diagnostics-empty" class="empty-state hidden">
           <h2>Диагностические данные недоступны</h2>
           <p>Не удалось загрузить данные диагностики. Проверьте наличие файла <code>data/stats.json</code>.</p>
+        </div>
+      </section>
+      <section id="rag-panel" class="hidden" aria-live="polite">
+        <div class="rag-widget">
+          <div class="rag-widget__header">
+            <div>
+              <h2 class="rag-widget__title">RAG поиск (локально)</h2>
+              <p class="rag-widget__subtitle">Поиск по офлайн-датапаку KB и Stories без бэкенда.</p>
+            </div>
+            <div class="rag-widget__meta">
+              <div id="rag-datapack-version" class="rag-meta-item">Data pack: —</div>
+              <div id="rag-datapack-details" class="rag-meta-item">Embeddings: —</div>
+            </div>
+          </div>
+          <form id="rag-form" class="rag-form">
+            <label class="rag-form__field">
+              <span class="rag-form__label">Запрос</span>
+              <input id="rag-query" class="rag-form__input" type="search" placeholder="Спросите о проекте..." autocomplete="off" />
+            </label>
+            <button id="rag-search" class="rag-form__submit" type="submit">Найти</button>
+            <button id="rag-clear" class="rag-form__clear" type="button">Очистить</button>
+          </form>
+          <div class="rag-filters">
+            <div class="rag-sources">
+              <span class="rag-filter-label">Источник</span>
+              <div class="rag-source-buttons">
+                <button type="button" class="rag-source-button" data-src="kb">KB</button>
+                <button type="button" class="rag-source-button" data-src="stories">Stories</button>
+                <button type="button" class="rag-source-button" data-src="both">Both</button>
+              </div>
+            </div>
+            <div class="rag-tags">
+              <span class="rag-filter-label">Теги</span>
+              <div id="rag-tags" class="rag-tags-list"></div>
+            </div>
+          </div>
+          <div id="rag-results" class="rag-results"></div>
+          <div id="rag-empty" class="rag-empty hidden">
+            <h3>Ничего не найдено</h3>
+            <p>Попробуйте другой запрос или выберите теги.</p>
+            <div id="rag-suggestions" class="rag-suggestions"></div>
+          </div>
+          <div id="rag-history" class="rag-history hidden">
+            <h3>Последние запросы</h3>
+            <div id="rag-history-list" class="rag-history-list"></div>
+          </div>
         </div>
       </section>
     </main>

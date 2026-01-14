@@ -1,0 +1,23 @@
+{
+  "k": 5,
+  "max_context_tokens": 1200,
+  "min_score": 0,
+  "log_session": false,
+  "max_tags": 20,
+  "snippet_max_length": 300,
+  "snippet_context_before": 50,
+  "snippet_context_after": 50,
+  "history_limit": 8,
+  "empty_state": {
+    "queries": [
+      "Что такое автолинкинг?",
+      "Как работает система тегов?",
+      "Что такое canonical slug?"
+    ],
+    "tags": [
+      "autolink",
+      "tags",
+      "link-map"
+    ]
+  }
+}

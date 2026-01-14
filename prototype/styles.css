@@ -1792,3 +1792,199 @@ a[data-link-kind="external"] {
   }
 }
 
+
+.rag-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.rag-widget__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.rag-widget__title {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.rag-widget__subtitle {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.rag-widget__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.rag-meta-item {
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: var(--chip-bg);
+}
+
+.rag-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.rag-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rag-form__label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.rag-form__input {
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.rag-form__submit,
+.rag-form__clear {
+  padding: 0.7rem 1.1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.rag-form__submit {
+  background: #6366f1;
+  color: #fff;
+}
+
+.rag-form__clear {
+  background: var(--chip-bg);
+  color: var(--text);
+}
+
+.rag-filters {
+  display: grid;
+  gap: 1rem;
+}
+
+.rag-filter-label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.rag-source-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rag-source-button,
+.rag-tag {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.rag-source-button.is-active,
+.rag-tag.is-active {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.6);
+}
+
+.rag-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rag-results {
+  display: grid;
+  gap: 1rem;
+}
+
+.rag-result {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+}
+
+.rag-result__title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.rag-result__meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.rag-result__snippet {
+  margin: 0.4rem 0 0.6rem;
+}
+
+.rag-result__link {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.rag-empty {
+  text-align: center;
+  padding: 1.5rem;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+}
+
+.rag-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.rag-history {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--chip-bg);
+}
+
+.rag-history-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 860px) {
+  .rag-form {
+    grid-template-columns: 1fr;
+  }
+}

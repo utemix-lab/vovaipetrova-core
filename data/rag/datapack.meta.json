@@ -1,0 +1,30 @@
+{
+  "version": "2026-01-14",
+  "generated_at": "2026-01-14T22:50:04.842Z",
+  "kb": {
+    "count": 11,
+    "updated_at": "2026-01-14T09:41:27.347Z"
+  },
+  "stories": {
+    "count": 31,
+    "updated_at": "2026-01-14T09:41:27.905Z"
+  },
+  "slices": {
+    "kb": 11,
+    "stories": 31,
+    "total": 42
+  },
+  "embeddings": {
+    "kb": {
+      "count": 10,
+      "dimensions": 384,
+      "generated_at": "2026-01-14T10:04:44.250Z"
+    },
+    "stories": {
+      "count": 0,
+      "dimensions": 0,
+      "generated_at": null
+    },
+    "total": 10
+  }
+}
