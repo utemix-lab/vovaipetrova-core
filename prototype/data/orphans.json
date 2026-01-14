@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "updated": "2026-01-11T21:07:49.692Z",
+  "updated": "2026-01-14T07:52:34.570Z",
   "orphans": [
     {
       "slug": "briefs-ux-improvements",
@@ -19,6 +19,12 @@
       "title": "Контекст-напоминание для Cursor",
       "url": "docs/context-reminder.md",
       "status": "ready"
+    },
+    {
+      "slug": "ECOSYSTEM_WORKSPACE",
+      "title": "ECOSYSTEM_WORKSPACE",
+      "url": "docs/ECOSYSTEM_WORKSPACE.md",
+      "status": "draft"
     },
     {
       "slug": "eval-harness-how-to",
@@ -83,7 +89,7 @@
     {
       "slug": "site-handoff-protocol",
       "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
-      "url": "docs/SITE_HANDOFF_PROTOCOL.md",
+      "url": "docs/site-handoff-protocol.md",
       "status": "ready"
     },
     {
@@ -97,6 +103,12 @@
       "title": "Настройка UTF-8 кодировки в редакторах",
       "url": "docs/utf-8-setup.md",
       "status": "ready"
+    },
+    {
+      "slug": "workspace-ekosistemy-vova-and-petrova",
+      "title": "Workspace экосистемы Vova & Petrova",
+      "url": "docs/workspace-ekosistemy-vova-and-petrova.md",
+      "status": "draft"
     }
   ]
 }

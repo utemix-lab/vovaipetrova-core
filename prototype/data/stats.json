@@ -1,19 +1,41 @@
 {
   "version": "3.0",
-  "generatedAt": "2026-01-11T21:07:49.578Z",
+  "generatedAt": "2026-01-14T07:52:34.458Z",
   "totals": {
-    "pages": 92,
+    "pages": 94,
     "statuses": {
       "ready": 46,
       "review": 6,
-      "draft": 40
+      "draft": 42
     },
-    "issues_total": 2,
-    "issues_internal_missing": 0,
+    "issues_total": 4,
+    "issues_internal_missing": 2,
     "issues_service": 0,
     "issues_external": 0,
     "issues_unknown": 0
   },
-  "topProblems": [],
-  "issuesPerPage": []
+  "topProblems": [
+    {
+      "slug": "single-source-playbook",
+      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
+      "issues_total": 2,
+      "issues_internal_missing": 2,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 6
+    }
+  ],
+  "issuesPerPage": [
+    {
+      "slug": "single-source-playbook",
+      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
+      "issues_total": 2,
+      "issues_internal_missing": 2,
+      "issues_service": 0,
+      "issues_external": 0,
+      "issues_unknown": 0,
+      "score": 6
+    }
+  ]
 }
