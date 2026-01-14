@@ -1,3 +1,11 @@
+---
+title: Отчёт об индексации RAG
+slug: otchyot-ob-indeksacii-rag
+service: true
+summary: '# Отчёт об индексации RAG'
+tags: []
+machine_tags: []
+---
 # Отчёт об индексации RAG
 
 ## Обзор
