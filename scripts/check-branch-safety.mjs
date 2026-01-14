@@ -66,6 +66,16 @@ function validateBranchName(branchName) {
     };
   }
 
+  // Исключение для автоматических веток dependabot
+  if (branchName.startsWith('dependabot/')) {
+    return {
+      valid: true,
+      skipReason: 'Автоматическая ветка dependabot',
+      prefix: 'dependabot',
+      description: 'автоматическое обновление зависимостей'
+    };
+  }
+
   // Проверка на защищённые ветки
   if (PROTECTED_BRANCHES.includes(branchName.toLowerCase())) {
     return {
@@ -152,8 +162,15 @@ function main() {
   }
 
   log(`✅ Ветка соответствует конвенциям безопасности`);
-  log(`   Префикс: ${result.prefix}`);
-  log(`   Описание: ${result.description}`);
+  if (result.skipReason) {
+    log(`   ${result.skipReason}`);
+  }
+  if (result.prefix) {
+    log(`   Префикс: ${result.prefix}`);
+  }
+  if (result.description) {
+    log(`   Описание: ${result.description}`);
+  }
   
   process.exit(0);
 }
