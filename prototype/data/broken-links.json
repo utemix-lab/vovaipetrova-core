@@ -1,8 +1,8 @@
 {
   "version": "3.0",
-  "generatedAt": "2026-01-14T07:52:34.374Z",
+  "generatedAt": "2026-01-14T08:44:16.394Z",
   "totalFiles": 248,
-  "brokenCount": 4,
+  "brokenCount": 2,
   "issues": [
     {
       "file": "terms-found-format.md",
@@ -14,18 +14,6 @@
       "file": "terms-found-format.md",
       "link": "../../scripts/generate-terms-found-block.mjs",
       "reason": "outside_repo",
-      "resolved_to": null
-    },
-    {
-      "file": "single-source-playbook.md",
-      "link": "SITE_HANDOFF_PROTOCOL.md",
-      "reason": "missing",
-      "resolved_to": null
-    },
-    {
-      "file": "single-source-playbook.md",
-      "link": "SITE_HANDOFF_PROTOCOL.md",
-      "reason": "missing",
       "resolved_to": null
     }
   ]

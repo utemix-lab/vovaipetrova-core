@@ -1001,5 +1001,12 @@
       "title": "Glossary Lite (A–Z)",
       "url": "docs/kb/glossary-lite.md"
     }
+  ],
+  "site-handoff-protocol": [
+    {
+      "slug": "single-source-playbook",
+      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
+      "url": "docs/single-source-playbook.md"
+    }
   ]
 }
