@@ -84,6 +84,7 @@
     "export:stories-jsonl": "node scripts/export-stories-jsonl.mjs",
     "export:canon-map": "node scripts/build-canon-map.mjs",
     "export:rag": "npm run export:kb-jsonl && npm run export:stories-jsonl && npm run export:canon-map",
+    "rag:split-slices": "node scripts/split-slices.mjs",
     "ci:metrics:collect": "node scripts/collect-ci-metrics.mjs",
     "ci:metrics:report": "node scripts/generate-ci-metrics-report.mjs",
     "trends:dashboard:generate": "node scripts/generate-trends-dashboard-data.mjs",
