@@ -33,6 +33,12 @@
       color: var(--muted);
       font-size: 0.9rem;
     }
+    .trends-dashboard__section-title {
+      margin: 2rem 0 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+    }
 
     .period-selector {
       display: flex;
@@ -188,9 +194,9 @@
 
     <div id="dashboard-content" class="hidden">
       <div class="trends-dashboard__summary" id="summary-cards"></div>
-      <div class="trends-dashboard__summary" id="rag-readiness-cards" style="margin-top: 1rem;">
-        <h3 style="margin-bottom: 0.5rem; font-size: 1rem; color: var(--muted);">RAG Readiness</h3>
-      </div>
+      <h2 class="trends-dashboard__section-title">RAG готовность</h2>
+      <div class="trends-dashboard__summary" id="rag-summary"></div>
+      <div class="trends-dashboard__charts" id="rag-charts"></div>
       <div class="trends-dashboard__charts" id="charts-container"></div>
     </div>
 
@@ -203,6 +209,7 @@
   <script>
     let currentPeriod = '30';
     let dashboardData = null;
+    let ragTrends = null;
     let charts = {};
 
     async function loadDashboardData() {
@@ -214,6 +221,19 @@
         return await response.json();
       } catch (error) {
         console.error('Error loading dashboard data:', error);
+        return null;
+      }
+    }
+
+    async function loadRagTrends() {
+      try {
+        const response = await fetch('data/rag-trends.json');
+        if (!response.ok) {
+          return null;
+        }
+        return await response.json();
+      } catch (error) {
+        console.error('Error loading RAG trends:', error);
         return null;
       }
     }
@@ -249,26 +269,87 @@
         </div>
       `;
       
-      // Добавляем карточки RAG готовности, если данные доступны
-      if (data.ragReadiness) {
-        const ragContainer = document.getElementById('rag-readiness-cards');
-        if (ragContainer) {
-          ragContainer.innerHTML = `
-            <div class="summary-card">
-              <div class="summary-card__label">KB Terms</div>
-              <div class="summary-card__value">${data.ragReadiness.docs_count || 0}</div>
-            </div>
-            <div class="summary-card">
-              <div class="summary-card__label">Stories</div>
-              <div class="summary-card__value">${data.ragReadiness.stories_count || 0}</div>
-            </div>
-            <div class="summary-card">
-              <div class="summary-card__label">Slices</div>
-              <div class="summary-card__value">${data.ragReadiness.slices_count || 0}</div>
-            </div>
-          `;
-        }
+    }
+
+    function filterSeriesByDays(series, days) {
+      const cutoff = new Date();
+      cutoff.setDate(cutoff.getDate() - days);
+      cutoff.setHours(0, 0, 0, 0);
+      return series.filter(item => new Date(item.date) >= cutoff);
+    }
+
+    function renderRagSummary(series, period) {
+      const container = document.getElementById('rag-summary');
+      if (!container) return;
+      if (!Array.isArray(series) || series.length === 0) {
+        container.innerHTML = '<div class="empty-state">Нет данных по RAG готовности</div>';
+        return;
       }
+      const filtered = filterSeriesByDays(series, Number(period));
+      const latest = filtered.length > 0 ? filtered[filtered.length - 1] : series[series.length - 1];
+      container.innerHTML = `
+        <div class="summary-card">
+          <div class="summary-card__label">KB Terms</div>
+          <div class="summary-card__value">${latest.docs_count || 0}</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card__label">Stories</div>
+          <div class="summary-card__value">${latest.stories_count || 0}</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card__label">Slices</div>
+          <div class="summary-card__value">${latest.slices_count || 0}</div>
+        </div>
+      `;
+    }
+
+    function renderRagCharts(series, period) {
+      const container = document.getElementById('rag-charts');
+      if (!container) return;
+      if (!Array.isArray(series) || series.length === 0) {
+        container.innerHTML = '<div class="empty-state">Нет данных по RAG готовности</div>';
+        return;
+      }
+      const filtered = filterSeriesByDays(series, Number(period));
+      if (filtered.length === 0) {
+        container.innerHTML = '<div class="empty-state">Нет данных за выбранный период</div>';
+        return;
+      }
+      const dates = filtered.map(item => formatDate(item.date));
+      container.innerHTML = `
+        <div class="chart-card">
+          <div class="chart-card__title">RAG counts (KB/Stories/Slices)</div>
+          <div class="chart-container">
+            <canvas id="chart-rag"></canvas>
+          </div>
+        </div>
+      `;
+      createChart('chart-rag', '', dates, [
+        {
+          label: 'KB Terms',
+          data: filtered.map(item => item.docs_count),
+          borderColor: 'rgba(59, 130, 246, 0.8)',
+          backgroundColor: 'rgba(59, 130, 246, 0.1)',
+          tension: 0.3,
+          pointRadius: 2
+        },
+        {
+          label: 'Stories',
+          data: filtered.map(item => item.stories_count),
+          borderColor: 'rgba(16, 185, 129, 0.8)',
+          backgroundColor: 'rgba(16, 185, 129, 0.1)',
+          tension: 0.3,
+          pointRadius: 2
+        },
+        {
+          label: 'Slices',
+          data: filtered.map(item => item.slices_count),
+          borderColor: 'rgba(245, 158, 11, 0.8)',
+          backgroundColor: 'rgba(245, 158, 11, 0.1)',
+          tension: 0.3,
+          pointRadius: 2
+        }
+      ]);
     }
 
     function createChart(canvasId, title, labels, datasets) {
@@ -533,6 +614,10 @@
       currentPeriod = period;
       renderSummaryCards(dashboardData, period);
       renderCharts(dashboardData, period);
+      if (ragTrends && Array.isArray(ragTrends.series)) {
+        renderRagSummary(ragTrends.series, period);
+        renderRagCharts(ragTrends.series, period);
+      }
 
       // Обновляем активную кнопку
       document.querySelectorAll('.period-btn').forEach(btn => {
@@ -546,6 +631,7 @@
       const emptyStateEl = document.getElementById('empty-state');
 
       dashboardData = await loadDashboardData();
+      ragTrends = await loadRagTrends();
 
       loadingEl.classList.add('hidden');
 
