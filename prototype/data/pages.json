@@ -4438,5 +4438,19 @@
     "story_order": null,
     "series_id": null,
     "related_stories": null
+  },
+  {
+    "title": "Отчёт об индексации RAG",
+    "slug": "otchyot-ob-indeksacii-rag",
+    "status": "draft",
+    "summary": "# Отчёт об индексации RAG",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/rag/otchyot-ob-indeksacii-rag.md",
+    "service": true,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   }
 ]
