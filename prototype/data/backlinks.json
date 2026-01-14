@@ -654,6 +654,11 @@
       "slug": "link-map",
       "title": "Link-map",
       "url": "docs/kb/link-map.md"
+    },
+    {
+      "slug": "rag-data-pack-dokumentaciya",
+      "title": "RAG Data Pack — документация",
+      "url": "docs/rag/rag-data-pack-dokumentaciya.md"
     }
   ],
   "facets": [

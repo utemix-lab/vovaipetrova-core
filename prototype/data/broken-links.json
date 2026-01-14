@@ -1,8 +1,8 @@
 {
   "version": "3.0",
-  "generatedAt": "2026-01-14T08:44:16.394Z",
-  "totalFiles": 248,
-  "brokenCount": 2,
+  "generatedAt": "2026-01-14T09:49:41.586Z",
+  "totalFiles": 249,
+  "brokenCount": 3,
   "issues": [
     {
       "file": "terms-found-format.md",
@@ -14,6 +14,12 @@
       "file": "terms-found-format.md",
       "link": "../../scripts/generate-terms-found-block.mjs",
       "reason": "outside_repo",
+      "resolved_to": null
+    },
+    {
+      "file": "rag/rag-data-pack-dokumentaciya.md",
+      "link": "../rag/INDEXING_REPORT.md",
+      "reason": "missing",
       "resolved_to": null
     }
   ]
