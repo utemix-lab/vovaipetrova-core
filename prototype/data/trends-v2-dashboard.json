@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-01-14T10:07:46.993Z",
+  "generatedAt": "2026-01-14T10:12:19.998Z",
   "period": 30,
   "summary": {
     "14days": {
@@ -66,5 +66,10 @@
         "movingMedian": []
       }
     }
+  },
+  "ragReadiness": {
+    "docs_count": 11,
+    "stories_count": 31,
+    "slices_count": 42
   }
 }

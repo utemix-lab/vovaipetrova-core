@@ -21,7 +21,7 @@
  *   GITHUB_SERVER_URL - сервер GitHub (для ссылок)
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync, statSync } from 'fs';
 import { join } from 'path';
 import { execSync } from 'child_process';
 
@@ -226,6 +226,100 @@ function collectRollUpData() {
         }))
     };
   }
+
+  // 7. RAG Data Pack Report
+  const EXPORTS_DIR = join('data', 'exports');
+  const SLICES_DIR = join('data', 'slices');
+  const EMBEDDINGS_DIR = join('data', 'embeddings');
+  
+  let ragDocsCount = 0;
+  let ragStoriesCount = 0;
+  let ragSlicesCount = 0;
+  let ragVersion = 'v1';
+  let ragKbSize = 0;
+  let ragStoriesSize = 0;
+  let ragCanonMapSize = 0;
+  
+  // Подсчитываем KB термины
+  const kbTermsPath = join(EXPORTS_DIR, 'kb_terms.v1.jsonl');
+  if (existsSync(kbTermsPath)) {
+    try {
+      const content = readFileSync(kbTermsPath, 'utf8');
+      const lines = content.trim().split('\n').filter(line => line.trim());
+      ragDocsCount = lines.length;
+      const stats = statSync(kbTermsPath);
+      ragKbSize = stats.size;
+    } catch (e) {
+      console.warn(`⚠️  Failed to read KB terms: ${e.message}`);
+    }
+  }
+  
+  // Подсчитываем Stories эпизоды
+  const storiesPath = join(EXPORTS_DIR, 'stories.v1.jsonl');
+  if (existsSync(storiesPath)) {
+    try {
+      const content = readFileSync(storiesPath, 'utf8');
+      const lines = content.trim().split('\n').filter(line => line.trim());
+      ragStoriesCount = lines.length;
+      const stats = statSync(storiesPath);
+      ragStoriesSize = stats.size;
+    } catch (e) {
+      console.warn(`⚠️  Failed to read Stories: ${e.message}`);
+    }
+  }
+  
+  // Подсчитываем срезы
+  const kbSlicesPath = join(SLICES_DIR, 'kb', 'slices.jsonl');
+  const storiesSlicesPath = join(SLICES_DIR, 'stories', 'slices.jsonl');
+  
+  if (existsSync(kbSlicesPath)) {
+    try {
+      const content = readFileSync(kbSlicesPath, 'utf8');
+      const lines = content.trim().split('\n').filter(line => line.trim());
+      ragSlicesCount += lines.length;
+    } catch (e) {
+      console.warn(`⚠️  Failed to read KB slices: ${e.message}`);
+    }
+  }
+  
+  if (existsSync(storiesSlicesPath)) {
+    try {
+      const content = readFileSync(storiesSlicesPath, 'utf8');
+      const lines = content.trim().split('\n').filter(line => line.trim());
+      ragSlicesCount += lines.length;
+    } catch (e) {
+      console.warn(`⚠️  Failed to read Stories slices: ${e.message}`);
+    }
+  }
+  
+  // Размер canon_map
+  const canonMapPath = join(EXPORTS_DIR, 'canon_map.v1.json');
+  if (existsSync(canonMapPath)) {
+    try {
+      const stats = statSync(canonMapPath);
+      ragCanonMapSize = stats.size;
+    } catch (e) {
+      console.warn(`⚠️  Failed to read canon_map: ${e.message}`);
+    }
+  }
+  
+  // Последние ошибки линтера (из lint report)
+  const ragLintErrors = lintErrors; // Используем уже загруженные ошибки линтера
+  
+  rollUp.reports.rag = {
+    version: ragVersion,
+    docsCount: ragDocsCount,
+    storiesCount: ragStoriesCount,
+    slicesCount: ragSlicesCount,
+    sizes: {
+      kb: ragKbSize,
+      stories: ragStoriesSize,
+      canonMap: ragCanonMapSize,
+      total: ragKbSize + ragStoriesSize + ragCanonMapSize
+    },
+    lintErrors: ragLintErrors,
+    lastUpdated: new Date().toISOString()
+  };
 
   // Вычисляем общее здоровье системы
   const hasCriticalIssues = rollUp.reports.linkMap.internalMissing > 0 || rollUp.reports.lint.errors > 0;
@@ -812,6 +906,21 @@ function generateMarkdownReport(rollUp) {
       md += `- ${job.workflow} / ${job.job} (failure rate: ${job.failureRate}%, runs: ${job.totalRuns})\n`;
     });
     md += `\n`;
+  }
+
+  // RAG Data Pack Report
+  if (rollUp.reports.rag) {
+    md += `## RAG Data Pack Report\n\n`;
+    md += `- **Version:** ${rollUp.reports.rag.version}\n`;
+    md += `- **KB Terms (docs_count):** ${rollUp.reports.rag.docsCount}\n`;
+    md += `- **Stories Episodes (stories_count):** ${rollUp.reports.rag.storiesCount}\n`;
+    md += `- **Slices (slices_count):** ${rollUp.reports.rag.slicesCount}\n`;
+    md += `- **Total Size:** ${(rollUp.reports.rag.sizes.total / 1024).toFixed(2)} KB\n`;
+    md += `  - KB: ${(rollUp.reports.rag.sizes.kb / 1024).toFixed(2)} KB\n`;
+    md += `  - Stories: ${(rollUp.reports.rag.sizes.stories / 1024).toFixed(2)} KB\n`;
+    md += `  - Canon Map: ${(rollUp.reports.rag.sizes.canonMap / 1024).toFixed(2)} KB\n`;
+    md += `- **Lint Errors:** ${rollUp.reports.rag.lintErrors}\n`;
+    md += `- **Last Updated:** ${formatDate(rollUp.reports.rag.lastUpdated)}\n\n`;
   }
 
   // Recommendations
