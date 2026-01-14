@@ -10,7 +10,7 @@
  *   node scripts/rag/e2e.mjs --test  # запуск на контрольных вопросах
  */
 
-import { writeFileSync, mkdirSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { tokenize } from './tokenize.mjs';
@@ -47,7 +47,6 @@ function generateQueryEmbedding(text) {
  * Загружает эмбеддинги
  */
 function loadEmbeddings(sourceType) {
-  const { readFileSync, existsSync } = require('fs');
   const embeddingsPath = join(__dirname, '../../data/embeddings', `${sourceType}.jsonl`);
   
   if (!existsSync(embeddingsPath)) {
@@ -70,7 +69,6 @@ function loadEmbeddings(sourceType) {
  * Загружает исходные срезы
  */
 function loadSlices(sourceType) {
-  const { readFileSync, existsSync } = require('fs');
   const slicesPath = join(__dirname, '../../data/slices', sourceType, 'slices.jsonl');
   
   if (!existsSync(slicesPath)) {
@@ -282,7 +280,6 @@ function main() {
   if (args.includes('--test')) {
     console.log('🧪 Запуск E2E тестов на контрольных вопросах...\n');
     
-    const { readFileSync } = require('fs');
     const sources = ['kb'];
     let maxTokens = 2000;
     
