@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Golden Set Schema",
+  "description": "JSON Schema для валидации golden_set.jsonl - набор контрольных вопросов для оценки RAG",
+  "type": "object",
+  "required": [
+    "id",
+    "question",
+    "expected_ids",
+    "notes"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Уникальный идентификатор вопроса",
+      "pattern": "^golden-\\d{3}$"
+    },
+    "question": {
+      "type": "string",
+      "description": "Текст вопроса",
+      "minLength": 10,
+      "maxLength": 500
+    },
+    "expected_ids": {
+      "type": "array",
+      "description": "Массив ожидаемых slug источников (KB термины или Stories эпизоды)",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "notes": {
+      "type": "string",
+      "description": "Краткая заметка/контекст по вопросу",
+      "maxLength": 300
+    }
+  },
+  "additionalProperties": false
+}
