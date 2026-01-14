@@ -1,0 +1,1172 @@
+{
+  "theme/ux": {
+    "aliases": [
+      "UX",
+      "Навигация"
+    ],
+    "preferred_title": "theme/ux"
+  },
+  "theme/graphics": {
+    "aliases": [
+      "Видео",
+      "Генерация_Видео",
+      "Дизайн"
+    ],
+    "preferred_title": "theme/graphics"
+  },
+  "theme/references": {
+    "aliases": [
+      "Референсы"
+    ],
+    "preferred_title": "theme/references"
+  },
+  "theme/branding": {
+    "aliases": [
+      "Айдентика"
+    ],
+    "preferred_title": "theme/branding"
+  },
+  "action/build": {
+    "aliases": [
+      "Монтаж",
+      "Нормализация",
+      "Процесс"
+    ],
+    "preferred_title": "action/build"
+  },
+  "action/edit": {
+    "aliases": [
+      "Видеомонтаж"
+    ],
+    "preferred_title": "action/edit"
+  },
+  "action/publish": {
+    "aliases": [
+      "Публикация"
+    ],
+    "preferred_title": "action/publish"
+  },
+  "action/learn": {
+    "aliases": [
+      "Обучение"
+    ],
+    "preferred_title": "action/learn"
+  },
+  "theme/automation": {
+    "aliases": [
+      "Автоматизация"
+    ],
+    "preferred_title": "theme/automation"
+  },
+  "producer/adobe": {
+    "aliases": [
+      "Adobe"
+    ],
+    "preferred_title": "producer/adobe"
+  },
+  "tool/adobe-photoshop": {
+    "aliases": [
+      "Adobe_Photoshop"
+    ],
+    "preferred_title": "tool/adobe-photoshop"
+  },
+  "tool/figma": {
+    "aliases": [
+      "Figma"
+    ],
+    "preferred_title": "tool/figma"
+  },
+  "tool/nextjs": {
+    "aliases": [
+      "NextJS",
+      "Next_js"
+    ],
+    "preferred_title": "tool/nextjs"
+  },
+  "tool/wordpress": {
+    "aliases": [
+      "WordPress"
+    ],
+    "preferred_title": "tool/wordpress"
+  },
+  "tool/fastapi": {
+    "aliases": [
+      "FastAPI"
+    ],
+    "preferred_title": "tool/fastapi"
+  },
+  "tool/stable-diffusion": {
+    "aliases": [
+      "ComfyUI",
+      "StableDiffusion",
+      "Stable_Diffusion"
+    ],
+    "preferred_title": "tool/stable-diffusion"
+  },
+  "product/services": {
+    "aliases": [
+      "CAD_3D",
+      "Think_Tank",
+      "Проектирование",
+      "Услуги"
+    ],
+    "preferred_title": "product/services"
+  },
+  "theme/dev": {
+    "aliases": [
+      "Кодинг"
+    ],
+    "preferred_title": "theme/dev"
+  },
+  "product/artifacts": {
+    "aliases": [
+      "Артефакты",
+      "Дорожная_карта"
+    ],
+    "preferred_title": "product/artifacts"
+  },
+  "product/kb": {
+    "aliases": [
+      "База_знаний",
+      "Глоссарий",
+      "Документация",
+      "Контент"
+    ],
+    "preferred_title": "product/kb"
+  },
+  "product/portfolio": {
+    "aliases": [
+      "Портфолио"
+    ],
+    "preferred_title": "product/portfolio"
+  },
+  "product/site": {
+    "aliases": [
+      "Сайт",
+      "Экспорт"
+    ],
+    "preferred_title": "product/site"
+  },
+  "producer/openai": {
+    "aliases": [
+      "OpenAI"
+    ],
+    "preferred_title": "producer/openai"
+  },
+  "tool/ollama": {
+    "aliases": [
+      "Ollama"
+    ],
+    "preferred_title": "tool/ollama"
+  },
+  "tool/aftereffects": {
+    "aliases": [
+      "AfterEffects"
+    ],
+    "preferred_title": "tool/aftereffects"
+  },
+  "tool/sketchup": {
+    "aliases": [
+      "SketchUp"
+    ],
+    "preferred_title": "tool/sketchup"
+  },
+  "content/story": {
+    "aliases": [
+      "Stories",
+      "Story"
+    ],
+    "preferred_title": "content/story"
+  },
+  "theme/taxonomy": {
+    "aliases": [
+      "Теги",
+      "Хэштегов"
+    ],
+    "preferred_title": "theme/taxonomy"
+  },
+  "adr-source-of-truth-i-zerkalirovanie-f649b1": {
+    "aliases": [],
+    "preferred_title": "ADR — Source of truth и зеркалирование"
+  },
+  "adr-source-of-truth-i-zerkalirovanie": {
+    "aliases": [],
+    "preferred_title": "ADR — Source of truth и зеркалирование"
+  },
+  "adr-source-of-truth-mirroring": {
+    "aliases": [],
+    "preferred_title": "ADR — Source of truth и зеркалирование"
+  },
+  "adr-tags-and-facets": {
+    "aliases": [],
+    "preferred_title": "ADR — Политика тегов и фасетов"
+  },
+  "adr-tegi-i-fasety-b1150c": {
+    "aliases": [],
+    "preferred_title": "ADR — Теги и фасеты"
+  },
+  "adr-tegi-i-fasety-f3195c": {
+    "aliases": [],
+    "preferred_title": "ADR — Теги и фасеты"
+  },
+  "adr-tegi-i-fasety": {
+    "aliases": [],
+    "preferred_title": "ADR — Теги и фасеты"
+  },
+  "adr-zhurnal-reshenij-b34c2e": {
+    "aliases": [],
+    "preferred_title": "[ADR] Журнал решений"
+  },
+  "ancy-b786fe": {
+    "aliases": [],
+    "preferred_title": "Ancy"
+  },
+  "ancy": {
+    "aliases": [],
+    "preferred_title": "Ancy"
+  },
+  "api-reestr-i-specifikacii-711159": {
+    "aliases": [],
+    "preferred_title": "[API] Реестр и спецификации"
+  },
+  "arhitektura-i-komponenty-486a0b": {
+    "aliases": [],
+    "preferred_title": "Архитектура и компоненты"
+  },
+  "arhitektura-i-komponenty": {
+    "aliases": [],
+    "preferred_title": "Архитектура и компоненты"
+  },
+  "arhitektura-proekta-komponenty-bb23c3": {
+    "aliases": [],
+    "preferred_title": "Архитектура проекта — компоненты"
+  },
+  "arhitektura-proekta-komponenty": {
+    "aliases": [],
+    "preferred_title": "Архитектура проекта — компоненты"
+  },
+  "artefakty-korzina-i-zayavka-mvp-925151": {
+    "aliases": [],
+    "preferred_title": "Артефакты — корзина и заявка (MVP)"
+  },
+  "artefakty-korzina-i-zayavka-mvp": {
+    "aliases": [],
+    "preferred_title": "Артефакты — корзина и заявка (MVP)"
+  },
+  "baza-znanij-koren-8cd215": {
+    "aliases": [],
+    "preferred_title": "База знаний — корень"
+  },
+  "baza-znanij-koren": {
+    "aliases": [],
+    "preferred_title": "База знаний — корень"
+  },
+  "cadrik-b04be9": {
+    "aliases": [],
+    "preferred_title": "CADрик"
+  },
+  "comfyui-obzor-i-bystryj-start-5a18c5": {
+    "aliases": [],
+    "preferred_title": "ComfyUI — обзор и быстрый старт"
+  },
+  "comfyui-obzor-i-bystryj-start": {
+    "aliases": [],
+    "preferred_title": "ComfyUI — обзор и быстрый старт"
+  },
+  "context-map-yaml-64b43e": {
+    "aliases": [],
+    "preferred_title": "context-map.yaml"
+  },
+  "context-map-yaml-da0108": {
+    "aliases": [],
+    "preferred_title": "context-map.yaml"
+  },
+  "context-map-yaml": {
+    "aliases": [],
+    "preferred_title": "context-map.yaml"
+  },
+  "data-model-dannyh-214280": {
+    "aliases": [],
+    "preferred_title": "[DATA] Модель данных"
+  },
+  "dinozavrik-7e5f67": {
+    "aliases": [],
+    "preferred_title": "Динозаврик"
+  },
+  "dinozavrik": {
+    "aliases": [],
+    "preferred_title": "Динозаврик"
+  },
+  "dizzy-8844f5": {
+    "aliases": [],
+    "preferred_title": "Dizzy"
+  },
+  "dizzy": {
+    "aliases": [],
+    "preferred_title": "Dizzy"
+  },
+  "dorozhnaya-karta-etapy-8d0cea": {
+    "aliases": [],
+    "preferred_title": "Дорожная карта (этапы)"
+  },
+  "dorozhnaya-karta-etapy": {
+    "aliases": [],
+    "preferred_title": "Дорожная карта (этапы)"
+  },
+  "dorozhnaya-karta-i-beklog-1b53af": {
+    "aliases": [],
+    "preferred_title": "Дорожная карта и бэклог"
+  },
+  "dorozhnaya-karta-i-beklog": {
+    "aliases": [],
+    "preferred_title": "Дорожная карта и бэклог"
+  },
+  "eksport-v-github-rukovodstvo-i-shablony-007c56": {
+    "aliases": [],
+    "preferred_title": "Р­РєСЃРїРѕСЂС‚ РІ GitHub вЂ” СЂСѓРєРѕРІРѕРґСЃС‚РІРѕ Рё С€Р°Р±Р»РѕРЅС‹"
+  },
+  "glossarij-terminov-c32542": {
+    "aliases": [],
+    "preferred_title": "Глоссарий терминов"
+  },
+  "glossarij-terminov": {
+    "aliases": [],
+    "preferred_title": "Глоссарий терминов"
+  },
+  "hyugo-c8aa97": {
+    "aliases": [],
+    "preferred_title": "Хьюго"
+  },
+  "hyugo": {
+    "aliases": [],
+    "preferred_title": "Хьюго"
+  },
+  "ii-7e98b8": {
+    "aliases": [],
+    "preferred_title": "ИИ"
+  },
+  "ii": {
+    "aliases": [],
+    "preferred_title": "ИИ"
+  },
+  "indeks-i-tldr-11ee74": {
+    "aliases": [],
+    "preferred_title": "Индекс и TL;DR"
+  },
+  "indeks-i-tldr": {
+    "aliases": [],
+    "preferred_title": "Индекс и TL;DR"
+  },
+  "indeks-sajta-4b85d7": {
+    "aliases": [],
+    "preferred_title": "Индекс сайта"
+  },
+  "indeks-sajta": {
+    "aliases": [],
+    "preferred_title": "Индекс сайта"
+  },
+  "instructions-ispolniteli-cursoraider-7f55e8": {
+    "aliases": [],
+    "preferred_title": "Instructions — Исполнители (Cursor/Aider)"
+  },
+  "instructions-ispolniteli-cursoraider-acae4b": {
+    "aliases": [],
+    "preferred_title": "Instructions — Исполнители (Cursor/Aider)"
+  },
+  "instructions-ispolniteli-cursoraider": {
+    "aliases": [],
+    "preferred_title": "Instructions — Исполнители (Cursor/Aider)"
+  },
+  "instrukcii-dlya-notion-ai-vovaipetrova-28ce52": {
+    "aliases": [],
+    "preferred_title": "Инструкции для Notion AI — vova_i_petrova"
+  },
+  "instrukcii-dlya-notion-ai-vovaipetrova": {
+    "aliases": [],
+    "preferred_title": "Инструкции для Notion AI — vova_i_petrova"
+  },
+  "integracii-s-socsetyami-aa8cb5": {
+    "aliases": [],
+    "preferred_title": "Интеграции с соцсетями"
+  },
+  "integracii-s-socsetyami": {
+    "aliases": [],
+    "preferred_title": "Интеграции с соцсетями"
+  },
+  "kartochka-instrumenta-shablon-e0b872": {
+    "aliases": [],
+    "preferred_title": "Карточка инструмента — шаблон"
+  },
+  "kartochka-instrumenta-shablon": {
+    "aliases": [],
+    "preferred_title": "Карточка инструмента — шаблон"
+  },
+  "kartochka-uslugi-dizajn-9e4fbf": {
+    "aliases": [],
+    "preferred_title": "Карточка услуги: Дизайн"
+  },
+  "kartochka-uslugi-dizajn": {
+    "aliases": [],
+    "preferred_title": "Карточка услуги: Дизайн"
+  },
+  "kartochka-uslugi-proektirovanie-cad3d-9622f6": {
+    "aliases": [],
+    "preferred_title": "Карточка услуги: Проектирование (CAD/3D)"
+  },
+  "kartochka-uslugi-proektirovanie-cad3d": {
+    "aliases": [],
+    "preferred_title": "Карточка услуги: Проектирование (CAD/3D)"
+  },
+  "kartochka-uslugi-videoprodakshn-f80343": {
+    "aliases": [],
+    "preferred_title": "Карточка услуги: Видеопродакшн"
+  },
+  "kartochka-uslugi-videoprodakshn": {
+    "aliases": [],
+    "preferred_title": "Карточка услуги: Видеопродакшн"
+  },
+  "koncepciya-portov-interfejsy-do-realizacii-9b9fb5": {
+    "aliases": [],
+    "preferred_title": "Концепция «портов» — интерфейсы до реализации"
+  },
+  "koncepciya-portov-interfejsy-do-realizacii": {
+    "aliases": [],
+    "preferred_title": "Концепция «портов» — интерфейсы до реализации"
+  },
+  "kontentmodel-i-marshruty-7c779a": {
+    "aliases": [],
+    "preferred_title": "Контент‑модель и маршруты"
+  },
+  "kontentmodel-i-marshruty": {
+    "aliases": [],
+    "preferred_title": "Контент‑модель и маршруты"
+  },
+  "kontentpajplajn-eksporta-b05ec3": {
+    "aliases": [],
+    "preferred_title": "Контент‑пайплайн экспорта"
+  },
+  "kontentpajplajn-eksporta": {
+    "aliases": [],
+    "preferred_title": "Контент‑пайплайн экспорта"
+  },
+  "metriki-uspeha-d5c625": {
+    "aliases": [],
+    "preferred_title": "Метрики успеха"
+  },
+  "metriki-uspeha": {
+    "aliases": [],
+    "preferred_title": "Метрики успеха"
+  },
+  "monetizaciya-i-urovni-dostupa-726e1d": {
+    "aliases": [],
+    "preferred_title": "Монетизация и уровни доступа"
+  },
+  "monetizaciya-i-urovni-dostupa": {
+    "aliases": [],
+    "preferred_title": "Монетизация и уровни доступа"
+  },
+  "navigaciya-shema-razdelov-i-marshrutov": {
+    "aliases": [],
+    "preferred_title": "Навигация — схема разделов и маршрутов"
+  },
+  "orphans-how-to": {
+    "aliases": [],
+    "preferred_title": "Как работать с orphan страницами"
+  },
+  "routes-yml-how-to": {
+    "aliases": [],
+    "preferred_title": "Как работать с routes.yml"
+  },
+  "site-ia-nav": {
+    "aliases": [],
+    "preferred_title": "Site IA / nav"
+  },
+  "navigaciya-polzovatelskaya-4dd66e": {
+    "aliases": [],
+    "preferred_title": "Навигация (пользовательская)"
+  },
+  "navigaciya-polzovatelskaya": {
+    "aliases": [],
+    "preferred_title": "Навигация (пользовательская)"
+  },
+  "navigaciya-tehnicheskaya-9213d8": {
+    "aliases": [],
+    "preferred_title": "Навигация (техническая)"
+  },
+  "navigaciya-tehnicheskaya": {
+    "aliases": [],
+    "preferred_title": "Навигация (техническая)"
+  },
+  "nej-705e63": {
+    "aliases": [],
+    "preferred_title": "Нэй"
+  },
+  "nej": {
+    "aliases": [],
+    "preferred_title": "Нэй"
+  },
+  "notion-brain-108a7f": {
+    "aliases": [],
+    "preferred_title": "notion-brain"
+  },
+  "notion-brain": {
+    "aliases": [],
+    "preferred_title": "notion-brain"
+  },
+  "okruzheniya-i-deploj-6cd51f": {
+    "aliases": [],
+    "preferred_title": "Окружения и деплой"
+  },
+  "okruzheniya-i-deploj": {
+    "aliases": [],
+    "preferred_title": "Окружения и деплой"
+  },
+  "opisanie-literaturnaya-versiya-8dfedb": {
+    "aliases": [],
+    "preferred_title": "Описание — литературная версия"
+  },
+  "opisanie-literaturnaya-versiya": {
+    "aliases": [],
+    "preferred_title": "Описание — литературная версия"
+  },
+  "petrova-6ab5c2": {
+    "aliases": [],
+    "preferred_title": "Петрова"
+  },
+  "petrova": {
+    "aliases": [],
+    "preferred_title": "Петрова"
+  },
+  "playbook-roli-511083": {
+    "aliases": [],
+    "preferred_title": "Playbook — Роли"
+  },
+  "playbook-roli": {
+    "aliases": [],
+    "preferred_title": "Playbook — Роли"
+  },
+  "pochemu-eto-srabotaet-cennost-938a63": {
+    "aliases": [],
+    "preferred_title": "Почему это сработает — ценность"
+  },
+  "pochemu-eto-srabotaet-cennost": {
+    "aliases": [],
+    "preferred_title": "Почему это сработает — ценность"
+  },
+  "portfolio-koren-ac02dd": {
+    "aliases": [],
+    "preferred_title": "Портфолио — корень"
+  },
+  "portfolio-koren": {
+    "aliases": [],
+    "preferred_title": "Портфолио — корень"
+  },
+  "portfolio-struktura-4545fd": {
+    "aliases": [],
+    "preferred_title": "Портфолио — структура"
+  },
+  "portfolio-struktura": {
+    "aliases": [],
+    "preferred_title": "Портфолио — структура"
+  },
+  "process-obsudili-razlozhili-svyazali-5af71f": {
+    "aliases": [],
+    "preferred_title": "Процесс: Обсудили → Разложили → Связали"
+  },
+  "process-obsudili-razlozhili-svyazali": {
+    "aliases": [],
+    "preferred_title": "Процесс: Обсудили → Разложили → Связали"
+  },
+  "prototype-a80bcc": {
+    "aliases": [],
+    "preferred_title": "prototype"
+  },
+  "prototype": {
+    "aliases": [],
+    "preferred_title": "prototype"
+  },
+  "readme-notion-brain-193a47": {
+    "aliases": [],
+    "preferred_title": "README (notion-brain)"
+  },
+  "readme-notion-brain-d26e74": {
+    "aliases": [],
+    "preferred_title": "README (notion-brain)"
+  },
+  "readme-notion-brain": {
+    "aliases": [],
+    "preferred_title": "README (notion-brain)"
+  },
+  "rfc-xxxx-nazvanie-rfc": {
+    "aliases": [],
+    "preferred_title": "RFC-XXXX: {Название RFC}"
+  },
+  "runa-c42971": {
+    "aliases": [],
+    "preferred_title": "Руна"
+  },
+  "runa": {
+    "aliases": [],
+    "preferred_title": "Руна"
+  },
+  "shablon-kartochka-proizvoditelya-7ce17e": {
+    "aliases": [],
+    "preferred_title": "Шаблон: Карточка производителя"
+  },
+  "shablon-kartochka-proizvoditelya": {
+    "aliases": [],
+    "preferred_title": "Шаблон: Карточка производителя"
+  },
+  "shablon-kartochka-strany-f062b2": {
+    "aliases": [],
+    "preferred_title": "Шаблон: Карточка страны"
+  },
+  "shablon-kartochka-strany": {
+    "aliases": [],
+    "preferred_title": "Шаблон: Карточка страны"
+  },
+  "sintaksis-i-razmetka-markdown-wordpress-60cc6c": {
+    "aliases": [],
+    "preferred_title": "Синтаксис и разметка — Markdown → WordPress"
+  },
+  "sintaksis-i-razmetka-markdown-wordpress": {
+    "aliases": [],
+    "preferred_title": "Синтаксис и разметка — Markdown → WordPress"
+  },
+  "spec-content-linter-i-scaffold-chernovik-6329bc": {
+    "aliases": [],
+    "preferred_title": "Spec — Content linter и scaffold (черновик)"
+  },
+  "spec-content-linter-i-scaffold-chernovik": {
+    "aliases": [],
+    "preferred_title": "Spec — Content linter и scaffold (черновик)"
+  },
+  "spec-front-matter-i-slugi-1491ff": {
+    "aliases": [],
+    "preferred_title": "Spec — Front matter и слуги"
+  },
+  "spec-front-matter-i-slugi-91237c": {
+    "aliases": [],
+    "preferred_title": "Spec — Front matter и слуги"
+  },
+  "spec-front-matter-i-slugi": {
+    "aliases": [],
+    "preferred_title": "Spec — Front matter и слуги"
+  },
+  "spec-normalize-i-politika-imyon-c9023c": {
+    "aliases": [],
+    "preferred_title": "Spec — Normalize и политика имён"
+  },
+  "spec-normalize-i-politika-imyon-ff0378": {
+    "aliases": [],
+    "preferred_title": "Spec — Normalize и политика имён"
+  },
+  "spec-normalize-i-politika-imyon": {
+    "aliases": [],
+    "preferred_title": "Spec — Normalize и политика имён"
+  },
+  "001-rannie-stranicy-notion-indeks-i-think-tank": {
+    "aliases": [],
+    "preferred_title": "Ранние страницы Notion: Индекс и Think Tank"
+  },
+  "002-adr-source-of-truth-i-zerkalirovanie": {
+    "aliases": [],
+    "preferred_title": "ADR: Source of truth и зеркалирование"
+  },
+  "003-kontentmodel-i-marshruty": {
+    "aliases": [],
+    "preferred_title": "Контент-модель и маршруты"
+  },
+  "004-start-importa-notion-v-github": {
+    "aliases": [],
+    "preferred_title": "Старт импорта: Notion → GitHub"
+  },
+  "005-ci-rejly-i-lint-normalize": {
+    "aliases": [],
+    "preferred_title": "CI, рейлы и линт: normalize"
+  },
+  "006-tags-yaml-i-fasetnaya-taksonomiya": {
+    "aliases": [],
+    "preferred_title": "tags.yaml и фасетная таксономия"
+  },
+  "007-fix-links-i-normalizaciya-ssylok": {
+    "aliases": [],
+    "preferred_title": "Fix links и нормализация ссылок"
+  },
+  "008-avtopilot-notion-cursor-github": {
+    "aliases": [],
+    "preferred_title": "Автопилот: Notion ↔ Cursor ↔ GitHub"
+  },
+  "009-explorer-i-labs-otdelenie-ot-think-tank": {
+    "aliases": [],
+    "preferred_title": "Explorer и Labs: отделение от Think Tank"
+  },
+  "01-zarozhdenie-idei": {
+    "aliases": [],
+    "preferred_title": "Исток: зачем вообще собирать истории"
+  },
+  "010-v1-0-content-ready-milestone": {
+    "aliases": [],
+    "preferred_title": "v1.0-content-ready: фиксация контентного ядра"
+  },
+  "011-site-ia-v1-1-i-routes-yml": {
+    "aliases": [],
+    "preferred_title": "Site IA v1.1 и routes.yml"
+  },
+  "012-link-map-batch-1-pervye-pravila": {
+    "aliases": [],
+    "preferred_title": "Link-map batch-1: первые правила сопоставления"
+  },
+  "013-link-map-batch-2-refinement": {
+    "aliases": [],
+    "preferred_title": "Link-map batch-2: refinement правил"
+  },
+  "014-link-map-batch-3-internal-missing-do-nulya": {
+    "aliases": [],
+    "preferred_title": "Link-map batch-3: internal-missing до нуля"
+  },
+  "015-diagnostics-i-issues-view": {
+    "aliases": [],
+    "preferred_title": "Diagnostics и issues view"
+  },
+  "016-explorer-ux-polish-karty-filtry": {
+    "aliases": [],
+    "preferred_title": "Explorer UX polish: карты, фильтры, breadcrumbs"
+  },
+  "017-explorer-ux-polish-2-back-to-list": {
+    "aliases": [],
+    "preferred_title": "Explorer UX polish 2: back-to-list и визуальные улучшения"
+  },
+  "018-stories-pilotnaya-seriya": {
+    "aliases": [],
+    "preferred_title": "Stories: пилотная серия"
+  },
+  "019-stories-anonimizaciya-i-lint-rule": {
+    "aliases": [],
+    "preferred_title": "Stories: анонимизация и lint-rule"
+  },
+  "02-pochemu-notion-source-of-truth": {
+    "aliases": [],
+    "preferred_title": "Почему Notion остаётся источником истины"
+  },
+  "020-stories-daily-cadence-i-generator": {
+    "aliases": [],
+    "preferred_title": "Stories: daily cadence и генератор"
+  },
+  "03-import-i-bezopasnost": {
+    "aliases": [],
+    "preferred_title": "Импорт и безопасность: как мы перестали бояться ZIP"
+  },
+  "04-avtopilot-notion-cursor-github": {
+    "aliases": [],
+    "preferred_title": "Автопилот: Notion → Cursor → GitHub"
+  },
+  "05-explorer-vs-think-tank": {
+    "aliases": [],
+    "preferred_title": "Explorer против Think Tank: делим витрину и лабораторию"
+  },
+  "06-v1-0-content-ready": {
+    "aliases": [],
+    "preferred_title": "Версия v1.0: фиксируем контентное ядро"
+  },
+  "07-protolabs-i-issues-view": {
+    "aliases": [],
+    "preferred_title": "ProtoLabs: диагностика и Issues View"
+  },
+  "08-site-ia-v1-i-vitrina": {
+    "aliases": [],
+    "preferred_title": "Site IA v1: готовим витрину"
+  },
+  "stories-v10-content-ready-2025-11-12": {
+    "aliases": [],
+    "preferred_title": "Stories · v1.0-content-ready — 2025-11-12"
+  },
+  "sut-proekta-one-liner-f9aa4d": {
+    "aliases": [],
+    "preferred_title": "Суть проекта — One-liner"
+  },
+  "sut-proekta-one-liner": {
+    "aliases": [],
+    "preferred_title": "Суть проекта — One-liner"
+  },
+  "taksonomiya-i-tegi-26693f": {
+    "aliases": [],
+    "preferred_title": "Таксономия и теги"
+  },
+  "taksonomiya-i-tegi": {
+    "aliases": [],
+    "preferred_title": "Таксономия и теги"
+  },
+  "tehnicheskij-stek-i-infrastruktura-7fa814": {
+    "aliases": [],
+    "preferred_title": "Технический стек и инфраструктура"
+  },
+  "tehnicheskij-stek-i-infrastruktura": {
+    "aliases": [],
+    "preferred_title": "Технический стек и инфраструктура"
+  },
+  "tekushie-zadachi-4ab1b1": {
+    "aliases": [],
+    "preferred_title": "Текущие задачи"
+  },
+  "tekushie-zadachi": {
+    "aliases": [],
+    "preferred_title": "Текущие задачи"
+  },
+  "template-adr-237529": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — ADR"
+  },
+  "template-adr": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — ADR"
+  },
+  "template-pr-cheklist-3a6077": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — PR чек‑лист"
+  },
+  "template-pr-cheklist": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — PR чек‑лист"
+  },
+  "template-task-spec-bfe53d": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — Task spec"
+  },
+  "template-task-spec": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — Task spec"
+  },
+  "template-vision-e2acba": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — Vision"
+  },
+  "template-vision": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — Vision"
+  },
+  "template-zadacha-dlya-ispolnitelya-cursoraider-82545d": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — Задача для исполнителя (Cursor/Aider)"
+  },
+  "template-zadacha-dlya-ispolnitelya-cursoraider": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — Задача для исполнителя (Cursor/Aider)"
+  },
+  "teststrategiya-i-kachestvo-0728dd": {
+    "aliases": [],
+    "preferred_title": "Тест‑стратегия и качество"
+  },
+  "teststrategiya-i-kachestvo": {
+    "aliases": [],
+    "preferred_title": "Тест‑стратегия и качество"
+  },
+  "think-tank-kompaktnoe-yadro-1d36dd": {
+    "aliases": [],
+    "preferred_title": "Think Tank — компактное ядро"
+  },
+  "think-tank-kompaktnoe-yadro": {
+    "aliases": [],
+    "preferred_title": "Think Tank — компактное ядро"
+  },
+  "think-tank-vitrina-processa-cfb19b": {
+    "aliases": [],
+    "preferred_title": "Think Tank — витрина процесса"
+  },
+  "think-tank-vitrina-processa": {
+    "aliases": [],
+    "preferred_title": "Think Tank — витрина процесса"
+  },
+  "ui-maket-shapka-i-pervyj-ekran-static-first-0b7377": {
+    "aliases": [],
+    "preferred_title": "UI макет — шапка и первый экран (Static First)"
+  },
+  "ui-maket-shapka-i-pervyj-ekran-static-first": {
+    "aliases": [],
+    "preferred_title": "UI макет — шапка и первый экран (Static First)"
+  },
+  "uslugi-e38e09": {
+    "aliases": [],
+    "preferred_title": "Услуги"
+  },
+  "uslugi": {
+    "aliases": [],
+    "preferred_title": "Услуги"
+  },
+  "vasya-a127c4": {
+    "aliases": [],
+    "preferred_title": "Вася"
+  },
+  "vasya": {
+    "aliases": [],
+    "preferred_title": "Вася"
+  },
+  "vision-igrovaya-navigaciya-i-roli-v1-103cfe": {
+    "aliases": [],
+    "preferred_title": "Vision — Игровая навигация и роли (V1)"
+  },
+  "vision-igrovaya-navigaciya-i-roli-v1": {
+    "aliases": [],
+    "preferred_title": "Vision — Игровая навигация и роли (V1)"
+  },
+  "vision-strategiya-marketing-autentichnost-tretij-put-onepager-09a168": {
+    "aliases": [],
+    "preferred_title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)"
+  },
+  "vision-strategiya-marketing-autentichnost-tretij-put-onepager": {
+    "aliases": [],
+    "preferred_title": "Vision — Стратегия: Маркетинг × Аутентичность × Третий путь (one‑pager)"
+  },
+  "vova-9804f8": {
+    "aliases": [],
+    "preferred_title": "Вова"
+  },
+  "vova-i-petrova-ef2871": {
+    "aliases": [],
+    "preferred_title": "Вова и Петрова"
+  },
+  "vova-i-petrova": {
+    "aliases": [],
+    "preferred_title": "Вова и Петрова"
+  },
+  "vova": {
+    "aliases": [],
+    "preferred_title": "Вова"
+  },
+  "template-task-spec-example-1-docs": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — Task spec Example 1: Документация"
+  },
+  "template-task-spec-example-2-scripts": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — Task spec Example 2: Скрипты"
+  },
+  "template-task-spec-example-3-prototype": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — Task spec Example 3: Прототип UI"
+  },
+  "cache-warmup-how-to": {
+    "aliases": [],
+    "preferred_title": "Cache warmup — контекст и словари"
+  },
+  "eval-harness-how-to": {
+    "aliases": [],
+    "preferred_title": "Eval harness — метрики качества и регрессии"
+  },
+  "mcp-notion-api-compatibility-tracker": {
+    "aliases": [],
+    "preferred_title": "MCP Notion API Compatibility Tracker"
+  },
+  "briefs-upgrade-how-to": {
+    "aliases": [],
+    "preferred_title": "Briefs upgrade — инструкция по обновлению полей, представлений, SLA и очередей ревью"
+  },
+  "release-checklist-pages-prototype": {
+    "aliases": [],
+    "preferred_title": "Release checklist — процедура релиза Pages прототипа"
+  },
+  "template-incident-retrospective": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — Incident Retrospective"
+  },
+  "template-incident": {
+    "aliases": [],
+    "preferred_title": "TEMPLATE — Incident Log"
+  },
+  "state-snapshot-current-state": {
+    "aliases": [],
+    "preferred_title": "State snapshot — текущее состояние"
+  },
+  "aliases": {
+    "aliases": [],
+    "preferred_title": "Aliases"
+  },
+  "autolink": {
+    "aliases": [],
+    "preferred_title": "Autolink"
+  },
+  "backlinks": {
+    "aliases": [],
+    "preferred_title": "Backlinks"
+  },
+  "canonical-slug": {
+    "aliases": [],
+    "preferred_title": "Canonical Slug"
+  },
+  "facets": {
+    "aliases": [],
+    "preferred_title": "Facets"
+  },
+  "link-map": {
+    "aliases": [],
+    "preferred_title": "Link-map"
+  },
+  "machine-tags": {
+    "aliases": [],
+    "preferred_title": "Machine Tags"
+  },
+  "routes": {
+    "aliases": [],
+    "preferred_title": "Routes"
+  },
+  "snapshot": {
+    "aliases": [],
+    "preferred_title": "Snapshot"
+  },
+  "tags": {
+    "aliases": [],
+    "preferred_title": "Tags"
+  },
+  "briefs-ux-improvements": {
+    "aliases": [],
+    "preferred_title": "Briefs UX — доводки представлений By Lane / Pending Review / Ready for Copilot"
+  },
+  "github-labels-guide": {
+    "aliases": [],
+    "preferred_title": "GitHub Labels — Руководство по использованию"
+  },
+  "2025-11-23-stories-v10-content-ready-2025-11-12": {
+    "aliases": [],
+    "preferred_title": "Stories · v1.0-content-ready — 2025-11-12"
+  },
+  "concept-author-gateway": {
+    "aliases": [],
+    "preferred_title": "CONCEPT — Author Gateway"
+  },
+  "context-reminder": {
+    "aliases": [],
+    "preferred_title": "Контекст-напоминание для Cursor"
+  },
+  "contributing-stories": {
+    "aliases": [],
+    "preferred_title": "CONTRIBUTING — Гайд для авторов и редакторов Stories"
+  },
+  "gateway-watcher": {
+    "aliases": [],
+    "preferred_title": "Gateway Watcher — валидация контента из inbox/author"
+  },
+  "migration-report-2025-01-08": {
+    "aliases": [],
+    "preferred_title": "Отчёт о переходе на PowerShell 7 и однопоточную работу"
+  },
+  "nastrojka-powershell-7-dlya-raboty-s-proektom": {
+    "aliases": [],
+    "preferred_title": "Настройка PowerShell 7 для работы с проектом"
+  },
+  "notion-access-setup": {
+    "aliases": [],
+    "preferred_title": "Настройка доступа к страницам Notion для MCP"
+  },
+  "process-improvements-assessment-364c8d": {
+    "aliases": [],
+    "preferred_title": "Оценка улучшений процесса разработки"
+  },
+  "process-improvements-assessment": {
+    "aliases": [],
+    "preferred_title": "Оценка улучшений процесса разработки"
+  },
+  "single-source-playbook": {
+    "aliases": [],
+    "preferred_title": "Single Source Playbook — «священный документ» (Notion↔Repo)"
+  },
+  "concept-opus4-notes": {
+    "aliases": [],
+    "preferred_title": "CONCEPT — Opus4 notes (draft)"
+  },
+  "concept-stories-dual": {
+    "aliases": [],
+    "preferred_title": "CONCEPT — Dual-story формат (spec + пример)"
+  },
+  "gateway-poc-2-episode-1": {
+    "aliases": [],
+    "preferred_title": "Gateway PoC #2 — Эпизод 1: Длинный seed_text и HITL"
+  },
+  "gateway-poc-2-episode-2": {
+    "aliases": [],
+    "preferred_title": "Gateway PoC #2 — Эпизод 2: Развитие серии"
+  },
+  "gateway-poc-auto-review": {
+    "aliases": [],
+    "preferred_title": "Review: Gateway PoC — auto"
+  },
+  "gateway-poc-auto": {
+    "aliases": [],
+    "preferred_title": "Gateway PoC — auto (no seed)"
+  },
+  "gateway-poc-hitl-review": {
+    "aliases": [],
+    "preferred_title": "Review: Gateway PoC — HITL"
+  },
+  "gateway-poc-hitl": {
+    "aliases": [],
+    "preferred_title": "Gateway PoC — HITL (seed_text)"
+  },
+  "opus4-role": {
+    "aliases": [],
+    "preferred_title": "OPUS4 — Роль агента для работы со Stories"
+  },
+  "prompts-library": {
+    "aliases": [],
+    "preferred_title": "Библиотека тонов для author_block"
+  },
+  "seed-dual-story-001": {
+    "aliases": [],
+    "preferred_title": "Seed: Dual Story 001"
+  },
+  "seed-dual-story-002": {
+    "aliases": [],
+    "preferred_title": "Seed: Dual Story 002"
+  },
+  "stories-concept": {
+    "aliases": [],
+    "preferred_title": "Stories — Концепция и принципы"
+  },
+  "stories-github-instructions": {
+    "aliases": [],
+    "preferred_title": "Stories — Инструкции для GitHub и агентов"
+  },
+  "stories-quick-start": {
+    "aliases": [],
+    "preferred_title": "Stories — Быстрый старт"
+  },
+  "stories-readme": {
+    "aliases": [],
+    "preferred_title": "Stories — Инструкции для работы"
+  },
+  "stories-shared-context": {
+    "aliases": [],
+    "preferred_title": "Stories — Общий контекст для работы"
+  },
+  "terms-found-format": {
+    "aliases": [],
+    "preferred_title": "Terms found — формат блока в PR по Stories"
+  },
+  "utf-8-setup": {
+    "aliases": [],
+    "preferred_title": "Настройка UTF-8 кодировки в редакторах"
+  },
+  "2026-01-10-episode-playbook-short-link": {
+    "aliases": [],
+    "preferred_title": "Эпизод: Playbook short link"
+  },
+  "2026-01-10-episode-stories-machine-template-v2": {
+    "aliases": [],
+    "preferred_title": "Эпизод: Stories machine-template v2"
+  },
+  "episode-playbook-short-link": {
+    "aliases": [],
+    "preferred_title": "Эпизод: Playbook short link"
+  },
+  "episode-stories-machine-template-v2": {
+    "aliases": [],
+    "preferred_title": "Эпизод: Stories machine-template v2"
+  },
+  "glossary-lite": {
+    "aliases": [],
+    "preferred_title": "Glossary Lite (A–Z)"
+  },
+  "site-handoff-protocol": {
+    "aliases": [],
+    "preferred_title": "Site Handoff Protocol — Think Tank ↔ Static Site"
+  }
+}

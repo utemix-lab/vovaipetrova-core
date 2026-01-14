@@ -4375,20 +4375,50 @@
     "related_stories": null
   },
   {
+    "title": "ECOSYSTEM_WORKSPACE",
+    "slug": "ECOSYSTEM_WORKSPACE",
+    "status": "draft",
+    "summary": "",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/ECOSYSTEM_WORKSPACE.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
     "title": "Site Handoff Protocol — Think Tank ↔ Static Site",
     "slug": "site-handoff-protocol",
     "status": "ready",
     "summary": "Протокол двустороннего порта для экспериментов визуала/структуры сайта отдельным IDE-агентом на основе прототипа (Think Tank). Без серверной логики, статический режим (Static First).",
     "tags": [
-      "Проектирование",
-      "Автоматизация"
+      "Автоматизация",
+      "Проектирование"
     ],
     "machine_tags": [
       "action/build",
+      "product/services",
       "product/site",
-      "theme/automation"
+      "theme/automation",
+      "theme/graphics"
     ],
-    "url": "docs/SITE_HANDOFF_PROTOCOL.md",
+    "url": "docs/site-handoff-protocol.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "Workspace экосистемы Vova & Petrova",
+    "slug": "workspace-ekosistemy-vova-and-petrova",
+    "status": "draft",
+    "summary": "# Workspace экосистемы Vova & Petrova",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/workspace-ekosistemy-vova-and-petrova.md",
     "service": false,
     "collection": null,
     "story_order": null,
