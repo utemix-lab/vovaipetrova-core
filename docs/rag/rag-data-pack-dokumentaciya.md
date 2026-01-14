@@ -1,3 +1,10 @@
+---
+title: RAG Data Pack — документация
+slug: rag-data-pack-dokumentaciya
+summary: '# RAG Data Pack — документация'
+tags: []
+machine_tags: []
+---
 # RAG Data Pack — документация
 
 ## Обзор
