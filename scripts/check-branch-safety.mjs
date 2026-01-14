@@ -95,7 +95,7 @@ function validateBranchName(branchName) {
 
   // Проверка префикса
   const hasValidPrefix = ALLOWED_PREFIXES.some(prefix => branchName.startsWith(prefix));
-  
+
   if (!hasValidPrefix) {
     return {
       valid: false,
@@ -123,11 +123,11 @@ function validateBranchName(branchName) {
 
 function main() {
   const args = parseArgs();
-  
+
   // В CI используем переменную окружения GITHUB_HEAD_REF
   // Локально можно передать через --branch=
-  const branchName = args.branch || 
-                     process.env.GITHUB_HEAD_REF || 
+  const branchName = args.branch ||
+                     process.env.GITHUB_HEAD_REF ||
                      process.env.CI_BRANCH_NAME ||
                      null;
 
@@ -145,11 +145,11 @@ function main() {
   if (!result.valid) {
     log(`❌ Ветка не соответствует конвенциям безопасности:`);
     log(`   ${result.error}`);
-    
+
     if (result.suggestion) {
       log(`   💡 Рекомендация: ${result.suggestion}`);
     }
-    
+
     log('');
     log('📖 Правила именования веток:');
     log('   - Префиксы: feat/, fix/, docs/, chore/, notion-sync/, refactor/, test/');
@@ -157,7 +157,7 @@ function main() {
     log('   - Примеры: feat/my-feature, fix/bug-description, docs/update-readme');
     log('');
     log('📖 См. также: CONTRIBUTING.md и docs/SINGLE-SOURCE-PLAYBOOK.md');
-    
+
     process.exit(1);
   }
 
@@ -171,7 +171,7 @@ function main() {
   if (result.description) {
     log(`   Описание: ${result.description}`);
   }
-  
+
   process.exit(0);
 }
 
