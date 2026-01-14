@@ -38,7 +38,7 @@ last_edited_time: ''
 Подробнее см. [ADR — Source of truth и зеркалирование](adr-source-of-truth-i-zerkalirovanie.md).
 
 **Связанные протоколы:**
-- [Site Handoff Protocol](SITE_HANDOFF_PROTOCOL.md) — протокол передачи данных между Think Tank (прототип) и статическим сайтом
+- [Site Handoff Protocol](site-handoff-protocol.md) — протокол передачи данных между Think Tank (прототип) и статическим сайтом
 
 ---
 
@@ -655,7 +655,7 @@ npm run pr:rerun:v2 -- --pr=<номер> [--workflow=<name>] [--job=<name>] [--f
 - [utf-8-setup.md](utf-8-setup.md) — настройка UTF-8 кодировки в редакторах
 - [MCP Quickstart](../MCP-QUICKSTART.md) — быстрый старт с MCP сервером для работы с Notion
 - [KB policies](stories/stories-readme.md) — политики для Knowledge Base
-- [Site Handoff Protocol](SITE_HANDOFF_PROTOCOL.md) — протокол передачи данных между Think Tank (прототип) и статическим сайтом
+- [Site Handoff Protocol](site-handoff-protocol.md) — протокол передачи данных между Think Tank (прототип) и статическим сайтом
 
 ---
 
