@@ -260,6 +260,72 @@ function calculateTrendsByType(runs, days) {
 }
 
 /**
+ * Вычисляет метрики RAG готовности
+ */
+function calculateRAGReadiness() {
+  const EXPORTS_DIR = join('data', 'exports');
+  const SLICES_DIR = join('data', 'slices');
+  
+  let docsCount = 0;
+  let storiesCount = 0;
+  let slicesCount = 0;
+  
+  // Подсчитываем KB термины (docs_count)
+  const kbTermsPath = join(EXPORTS_DIR, 'kb_terms.v1.jsonl');
+  if (existsSync(kbTermsPath)) {
+    try {
+      const content = readFileSync(kbTermsPath, 'utf8');
+      const lines = content.trim().split('\n').filter(line => line.trim());
+      docsCount = lines.length;
+    } catch (e) {
+      console.warn(`⚠️  Failed to count KB terms: ${e.message}`);
+    }
+  }
+  
+  // Подсчитываем Stories эпизоды (stories_count)
+  const storiesPath = join(EXPORTS_DIR, 'stories.v1.jsonl');
+  if (existsSync(storiesPath)) {
+    try {
+      const content = readFileSync(storiesPath, 'utf8');
+      const lines = content.trim().split('\n').filter(line => line.trim());
+      storiesCount = lines.length;
+    } catch (e) {
+      console.warn(`⚠️  Failed to count Stories: ${e.message}`);
+    }
+  }
+  
+  // Подсчитываем срезы (slices_count)
+  const kbSlicesPath = join(SLICES_DIR, 'kb', 'slices.jsonl');
+  const storiesSlicesPath = join(SLICES_DIR, 'stories', 'slices.jsonl');
+  
+  if (existsSync(kbSlicesPath)) {
+    try {
+      const content = readFileSync(kbSlicesPath, 'utf8');
+      const lines = content.trim().split('\n').filter(line => line.trim());
+      slicesCount += lines.length;
+    } catch (e) {
+      console.warn(`⚠️  Failed to count KB slices: ${e.message}`);
+    }
+  }
+  
+  if (existsSync(storiesSlicesPath)) {
+    try {
+      const content = readFileSync(storiesSlicesPath, 'utf8');
+      const lines = content.trim().split('\n').filter(line => line.trim());
+      slicesCount += lines.length;
+    } catch (e) {
+      console.warn(`⚠️  Failed to count Stories slices: ${e.message}`);
+    }
+  }
+  
+  return {
+    docs_count: docsCount,
+    stories_count: storiesCount,
+    slices_count: slicesCount
+  };
+}
+
+/**
  * Главная функция
  */
 function main() {
@@ -301,6 +367,10 @@ function main() {
     other: filtered30.filter(r => getRunType(r) === 'other').length
   };
 
+  // Вычисляем метрики RAG готовности
+  const ragReadiness = calculateRAGReadiness();
+  console.log(`   RAG readiness: docs=${ragReadiness.docs_count}, stories=${ragReadiness.stories_count}, slices=${ragReadiness.slices_count}`);
+
   const dashboardData = {
     generatedAt: new Date().toISOString(),
     period: DAYS_FILTER,
@@ -317,7 +387,8 @@ function main() {
     trends: {
       '14days': trends14,
       '30days': trends30
-    }
+    },
+    ragReadiness: ragReadiness
   };
 
   // Создаём директорию если её нет

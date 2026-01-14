@@ -188,6 +188,9 @@
 
     <div id="dashboard-content" class="hidden">
       <div class="trends-dashboard__summary" id="summary-cards"></div>
+      <div class="trends-dashboard__summary" id="rag-readiness-cards" style="margin-top: 1rem;">
+        <h3 style="margin-bottom: 0.5rem; font-size: 1rem; color: var(--muted);">RAG Readiness</h3>
+      </div>
       <div class="trends-dashboard__charts" id="charts-container"></div>
     </div>
 
@@ -245,6 +248,27 @@
           <div class="summary-card__value">${(summary.draft || 0) + (summary.ready || 0) + (summary['re-run'] || 0) + (summary.other || 0)}</div>
         </div>
       `;
+      
+      // Добавляем карточки RAG готовности, если данные доступны
+      if (data.ragReadiness) {
+        const ragContainer = document.getElementById('rag-readiness-cards');
+        if (ragContainer) {
+          ragContainer.innerHTML = `
+            <div class="summary-card">
+              <div class="summary-card__label">KB Terms</div>
+              <div class="summary-card__value">${data.ragReadiness.docs_count || 0}</div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-card__label">Stories</div>
+              <div class="summary-card__value">${data.ragReadiness.stories_count || 0}</div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-card__label">Slices</div>
+              <div class="summary-card__value">${data.ragReadiness.slices_count || 0}</div>
+            </div>
+          `;
+        }
+      }
     }
 
     function createChart(canvasId, title, labels, datasets) {
