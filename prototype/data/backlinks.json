@@ -1013,5 +1013,12 @@
       "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
       "url": "docs/single-source-playbook.md"
     }
+  ],
+  "rag-data-pack-dokumentaciya": [
+    {
+      "slug": "rag-evaluation",
+      "title": "RAG Evaluation",
+      "url": "docs/rag/EVALUATION.md"
+    }
   ]
 }

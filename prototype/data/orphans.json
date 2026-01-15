@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "updated": "2026-01-15T19:23:41.647Z",
+  "updated": "2026-01-15T19:35:12.163Z",
   "orphans": [
     {
       "slug": "briefs-ux-improvements",
@@ -84,6 +84,12 @@
       "slug": "rag-data-pack-dokumentaciya",
       "title": "RAG Data Pack — документация",
       "url": "docs/rag/rag-data-pack-dokumentaciya.md",
+      "status": "draft"
+    },
+    {
+      "slug": "rag-evaluation",
+      "title": "RAG Evaluation",
+      "url": "docs/rag/EVALUATION.md",
       "status": "draft"
     },
     {

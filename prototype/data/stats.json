@@ -1,12 +1,12 @@
 {
   "version": "3.0",
-  "generatedAt": "2026-01-15T19:23:41.521Z",
+  "generatedAt": "2026-01-15T19:35:12.052Z",
   "totals": {
-    "pages": 95,
+    "pages": 96,
     "statuses": {
       "ready": 46,
       "review": 6,
-      "draft": 43
+      "draft": 44
     },
     "issues_total": 2,
     "issues_internal_missing": 0,

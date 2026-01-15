@@ -4452,5 +4452,24 @@
     "story_order": null,
     "series_id": null,
     "related_stories": null
+  },
+  {
+    "title": "RAG Evaluation",
+    "slug": "rag-evaluation",
+    "status": "draft",
+    "summary": "Метрики, пороги и процесс оценки качества RAG.",
+    "tags": [
+      "RAG",
+      "metrics"
+    ],
+    "machine_tags": [
+      "rag/evaluation"
+    ],
+    "url": "docs/rag/EVALUATION.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   }
 ]
