@@ -4471,5 +4471,27 @@
     "story_order": null,
     "series_id": null,
     "related_stories": null
+  },
+  {
+    "title": "UNIVERSE_SPEC v0.1 — спецификация графа экосистемы",
+    "slug": "universe-spec-v0-1",
+    "status": "draft",
+    "summary": "Короткая спецификация property-graph для связи артефактов, терминов и решений.",
+    "tags": [
+      "Universe_Graph",
+      "Graph_Spec",
+      "Ecosystem"
+    ],
+    "machine_tags": [
+      "theme/architecture",
+      "action/spec",
+      "product/graph"
+    ],
+    "url": "docs/graph/UNIVERSE_SPEC.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
   }
 ]
