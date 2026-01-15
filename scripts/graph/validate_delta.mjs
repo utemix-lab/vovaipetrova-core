@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Валидация входящих дельт графа по universe.schema.json
+ * Валидация входящих дельт графа
  *
  * Использование:
  *   node scripts/graph/validate_delta.mjs
@@ -48,9 +48,29 @@ function main() {
   }
 
   const schema = JSON.parse(readFileSync(SCHEMA_PATH, 'utf8'));
+  const deltaSchema = {
+    $schema: 'https://json-schema.org/draft/2020-12/schema',
+    title: 'Graph Delta Schema (candidate_edge)',
+    type: 'object',
+    required: ['delta_type', 'from', 'to', 'edge_type', 'rationale', 'confidence', 'source'],
+    properties: {
+      delta_type: { const: 'candidate_edge' },
+      from: { type: 'string', minLength: 1 },
+      to: { type: 'string', minLength: 1 },
+      edge_type: {
+        type: 'string',
+        enum: ['related_to', 'see_also', 'semantic_near'],
+      },
+      rationale: { type: 'string', minLength: 1 },
+      confidence: { type: 'string', enum: ['low', 'med', 'high'] },
+      source: { type: 'string', minLength: 1 },
+    },
+    additionalProperties: true,
+  };
   const ajv = new Ajv({ allErrors: true, strict: false });
   addFormats(ajv);
-  const validate = ajv.compile(schema);
+  const validateUniverse = ajv.compile(schema);
+  const validateDelta = ajv.compile(deltaSchema);
 
   let hasErrors = false;
   let totalLines = 0;
@@ -80,11 +100,13 @@ function main() {
         return;
       }
 
-      const valid = validate(payload);
+      const isDelta = payload && typeof payload === 'object' && Object.prototype.hasOwnProperty.call(payload, 'delta_type');
+      const validator = isDelta ? validateDelta : validateUniverse;
+      const valid = validator(payload);
       if (!valid) {
         hasErrors = true;
         log(`❌ ${filePath} строка ${index + 1}: ошибка схемы`);
-        for (const err of validate.errors || []) {
+        for (const err of validator.errors || []) {
           log(`   - ${err.instancePath} ${err.message}`);
         }
       }
