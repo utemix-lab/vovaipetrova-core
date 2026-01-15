@@ -40,6 +40,11 @@ data/
 
 Каждая строка — JSON объект с полями:
 
+- `stable_id` (string) — стабильный ID термина (`vovaipetrova:kb:<slug>`)
+- `project_id` (string) — идентификатор проекта (`vovaipetrova`)
+- `source` (string) — источник датасета (`vova-petrova`)
+- `graph_version` (string) — версия Universe Graph (`0.1`)
+- `provenance` (object) — источник строки (file/line/hash)
 - `slug` (string) — канонический slug термина
 - `title` (string) — заголовок термина
 - `lite_summary` (string) — краткое описание (для быстрого поиска)
@@ -51,6 +56,17 @@ data/
 **Пример:**
 ```json
 {
+  "stable_id": "vovaipetrova:kb:canonical-slug",
+  "project_id": "vovaipetrova",
+  "source": "vova-petrova",
+  "graph_version": "0.1",
+  "provenance": {
+    "system": "repo",
+    "origin": "exports",
+    "file": "data/exports/kb_terms.v1.jsonl",
+    "line": 42,
+    "hash": "f6c4..."
+  },
   "slug": "canonical-slug",
   "title": "Canonical Slug",
   "lite_summary": "Канонический идентификатор для терминов базы знаний",
@@ -65,6 +81,11 @@ data/
 
 Каждая строка — JSON объект с полями:
 
+- `stable_id` (string) — стабильный ID эпизода (`vovaipetrova:stories:<slug>`)
+- `project_id` (string) — идентификатор проекта (`vovaipetrova`)
+- `source` (string) — источник датасета (`vova-petrova`)
+- `graph_version` (string) — версия Universe Graph (`0.1`)
+- `provenance` (object) — источник строки (file/line/hash)
 - `slug` (string) — slug эпизода
 - `tldr` (string) — краткое резюме эпизода
 - `machine_report_md` (string) — машинный отчёт в Markdown (основной контент)
@@ -77,6 +98,17 @@ data/
 **Пример:**
 ```json
 {
+  "stable_id": "vovaipetrova:stories:explorer-unresolved-terms",
+  "project_id": "vovaipetrova",
+  "source": "vova-petrova",
+  "graph_version": "0.1",
+  "provenance": {
+    "system": "repo",
+    "origin": "exports",
+    "file": "data/exports/stories.v1.jsonl",
+    "line": 12,
+    "hash": "0b9a..."
+  },
   "slug": "explorer-unresolved-terms",
   "tldr": "Добавлена панель 'Unresolved terms' в Explorer",
   "machine_report_md": "# Explorer: Unresolved Terms\n\n...",
@@ -112,6 +144,11 @@ data/
 Разбитые на чанки данные для эффективного embedding и retrieval:
 
 - `id` (string) — уникальный ID среза
+- `stable_id` (string) — стабильный ID исходного документа
+- `project_id` (string) — идентификатор проекта (`vovaipetrova`)
+- `source` (string) — источник датасета (`vova-petrova`)
+- `graph_version` (string) — версия Universe Graph (`0.1`)
+- `provenance` (object) — источник строки (file/line/hash)
 - `source_id` (string) — ID исходного документа
 - `source_type` (string) — тип источника (`kb` или `stories`)
 - `text` (string) — текст среза
@@ -122,6 +159,17 @@ data/
 ```json
 {
   "id": "kb_canonical-slug_0",
+  "stable_id": "vovaipetrova:kb:canonical-slug",
+  "project_id": "vovaipetrova",
+  "source": "vova-petrova",
+  "graph_version": "0.1",
+  "provenance": {
+    "system": "repo",
+    "origin": "slices",
+    "file": "data/slices/kb/slices.jsonl",
+    "line": 3,
+    "hash": "c1d2..."
+  },
   "source_id": "canonical-slug",
   "source_type": "kb",
   "text": "# Canonical Slug\n\nКанонический slug...",
