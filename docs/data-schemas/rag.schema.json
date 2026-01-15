@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RAG Config Schema",
+  "description": "Schema для config/rag.json (настройки локального RAG-виджета)",
+  "type": "object",
+  "properties": {
+    "k": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Top-K результатов"
+    },
+    "max_context_tokens": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Лимит контекста (для офлайн-оценки)"
+    },
+    "min_score": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Минимальный порог score"
+    },
+    "log_session": {
+      "type": "boolean",
+      "description": "Запись истории запросов в localStorage"
+    },
+    "max_tags": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Максимум тегов для отображения"
+    },
+    "snippet_max_length": {
+      "type": "integer",
+      "minimum": 50,
+      "description": "Длина сниппета"
+    },
+    "snippet_context_before": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Контекст до совпадения"
+    },
+    "snippet_context_after": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Контекст после совпадения"
+    },
+    "history_limit": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Лимит истории запросов"
+    },
+    "empty_state": {
+      "type": "object",
+      "properties": {
+        "queries": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -605,7 +605,16 @@ npm run pr:rerun -- --pr=<номер>
 npm run pr:rerun:v2 -- --pr=<номер> [--workflow=<name>] [--job=<name>] [--failed-only]
 ```
 
-### 11.7. Мониторинг и отчёты
+### 11.7. RAG в прототипе
+
+- Виджет в `prototype/index.html` → вкладка **RAG** (офлайн, без бэкенда).
+- Настройки: `config/rag.json` (schema: `docs/data-schemas/rag.schema.json`).
+- Данные: `data/embeddings/*.jsonl`, `data/slices/*`, `data/rag/datapack.meta.json`.
+- Обновление datapack: `npm run export:rag`, эмбеддинги: `npm run rag:embed`, метаданные: `npm run rag:meta`.
+- Метрики качества: `npm run rag:eval` (artifacts) и `npm run rag:e2e-report` (HTML в `prototype/`).
+- Логи запросов: включить `log_session` в `config/rag.json` (localStorage).
+
+### 11.8. Мониторинг и отчёты
 
 **Еженедельный аудит:**
 

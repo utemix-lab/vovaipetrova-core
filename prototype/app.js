@@ -210,6 +210,38 @@ async function loadRoutes(basePath) {
   }
 }
 
+async function loadRagConfig() {
+  const defaults = {
+    k: 5,
+    max_context_tokens: 1200,
+    min_score: 0,
+    log_session: false,
+    max_tags: 20,
+    snippet_max_length: 300,
+    snippet_context_before: 50,
+    snippet_context_after: 50,
+    history_limit: 10,
+    empty_state: {
+      queries: [],
+      tags: []
+    }
+  };
+
+  const candidates = ["../config/rag.json", "config/rag.json"];
+  for (const path of candidates) {
+    try {
+      const response = await fetch(path);
+      if (!response.ok) continue;
+      const data = await response.json();
+      return { ...defaults, ...data };
+    } catch (error) {
+      continue;
+    }
+  }
+
+  return defaults;
+}
+
 function buildRouteMap(routes) {
   const map = new Map();
   routes.routes.forEach(route => {
@@ -292,10 +324,23 @@ async function renderIndex() {
   const storiesIndexGroups = document.getElementById("stories-index-groups");
   const storiesIndexContent = document.getElementById("stories-index-content");
   const storiesIndexEmpty = document.getElementById("stories-index-empty");
+  const ragPanel = document.getElementById("rag-panel");
+  const ragForm = document.getElementById("rag-form");
+  const ragQueryInput = document.getElementById("rag-query");
+  const ragResults = document.getElementById("rag-results");
+  const ragEmpty = document.getElementById("rag-empty");
+  const ragSuggestions = document.getElementById("rag-suggestions");
+  const ragTagsContainer = document.getElementById("rag-tags");
+  const ragSourceButtons = Array.from(document.querySelectorAll(".rag-source-button"));
+  const ragDatapackVersion = document.getElementById("rag-datapack-version");
+  const ragDatapackDetails = document.getElementById("rag-datapack-details");
+  const ragHistory = document.getElementById("rag-history");
+  const ragHistoryList = document.getElementById("rag-history-list");
 
-  const [pages, routes] = await Promise.all([
+  const [pages, routes, ragConfig] = await Promise.all([
     loadPages("data/pages.json"),
-    loadRoutes("data/routes.json")
+    loadRoutes("data/routes.json"),
+    loadRagConfig()
   ]);
   const routeMap = buildRouteMap(routes);
 
@@ -322,6 +367,8 @@ async function renderIndex() {
   // Проверяем, есть ли маршрут /kb/<letter> в hash
   const kbLetterMatch = hash.match(/^kb\/(.+)$/);
   const kbLetterFromHash = kbLetterMatch ? decodeURIComponent(kbLetterMatch[1]) : null;
+  const ragHashMatch = hashWithoutTag.match(/^rag(?:\?(.*))?$/);
+  const ragParams = ragHashMatch ? new URLSearchParams(ragHashMatch[1] || "") : null;
 
   let currentStatus = urlParams.get("status") || localStorage.getItem("explorer-status") || "all";
   let currentSearch = urlParams.get("search") || localStorage.getItem("explorer-search") || "";
@@ -330,7 +377,10 @@ async function renderIndex() {
   let readyOnly = urlParams.get("ready") === "1" || localStorage.getItem("explorer-ready-only") === "true";
   let currentPage = parseInt(urlParams.get("page")) || 1;
   const ITEMS_PER_PAGE = 30; // Количество элементов на странице
-  let activePanel = kbLetterFromHash ? "kb-index" : hashWithoutTag.includes("stories-index") ? "stories-index" : hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("unresolved-terms") ? "unresolved-terms" : hashWithoutTag.includes("diagnostics") ? "diagnostics" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
+  let activePanel = kbLetterFromHash ? "kb-index" : ragHashMatch ? "rag" : hashWithoutTag.includes("stories-index") ? "stories-index" : hashWithoutTag.includes("stories") ? "stories" : hashWithoutTag.includes("issues") ? "issues" : hashWithoutTag.includes("orphans") ? "orphans" : hashWithoutTag.includes("unresolved-terms") ? "unresolved-terms" : hashWithoutTag.includes("diagnostics") ? "diagnostics" : hashWithoutTag.includes("kb-index") ? "kb-index" : "docs";
+  let ragSource = ragParams?.get("src") || localStorage.getItem("rag-src") || "both";
+  let ragTags = (ragParams?.get("tags") || localStorage.getItem("rag-tags") || "").split(",").filter(Boolean);
+  let ragQuery = ragParams?.get("q") || localStorage.getItem("rag-query") || "";
 
   // Сбрасываем страницу при изменении фильтров (кроме явного указания page в URL)
   if (!urlParams.get("page")) {
@@ -344,10 +394,28 @@ async function renderIndex() {
   if (urlParams.get("ready")) localStorage.setItem("explorer-ready-only", readyOnly ? "true" : "false");
   if (urlParams.get("search") !== null) localStorage.setItem("explorer-search", currentSearch);
   if (kbLetterFromHash) localStorage.setItem("explorer-kb-letter", kbLetterFromHash);
+  if (ragSource) localStorage.setItem("rag-src", ragSource);
+  if (ragTags.length) localStorage.setItem("rag-tags", ragTags.join(","));
+  if (ragQuery) localStorage.setItem("rag-query", ragQuery);
+
+  const ragCache = {
+    embeddings: {},
+    slices: {},
+    tags: null,
+    meta: null
+  };
+  let ragInitialized = false;
 
   // Функция для обновления URL без перезагрузки страницы
   function updateURL() {
     const params = new URLSearchParams();
+    if (activePanel === "rag") {
+      const ragHash = buildRagHash();
+      const newURL = `${window.location.pathname}${ragHash ? `#${ragHash}` : ""}`;
+      window.history.pushState({}, "", newURL);
+      saveScrollPosition();
+      return;
+    }
 
     if (currentStatus !== "all") {
       params.set("status", currentStatus);
@@ -385,6 +453,21 @@ async function renderIndex() {
 
     // Сохраняем позицию скролла перед изменением URL (для будущего восстановления)
     saveScrollPosition();
+  }
+
+  function buildRagHash() {
+    const params = new URLSearchParams();
+    if (ragSource && ragSource !== "both") {
+      params.set("src", ragSource);
+    }
+    if (ragTags.length) {
+      params.set("tags", ragTags.join(","));
+    }
+    if (ragQuery) {
+      params.set("q", ragQuery);
+    }
+    const query = params.toString();
+    return query ? `rag?${query}` : "rag";
   }
 
   // Функция для сохранения позиции скролла
@@ -1113,6 +1196,7 @@ async function renderIndex() {
   function setActivePanel(panel) {
     activePanel = panel;
     const storiesBanner = document.getElementById("stories-banner");
+    if (ragPanel) ragPanel.classList.add("hidden");
 
     // Скрываем мини-дашборд при переключении панелей
     if (miniDashboard && panel !== "docs") {
@@ -1192,6 +1276,18 @@ async function renderIndex() {
       if (diagnosticsPanel) diagnosticsPanel.classList.add("hidden");
       if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
       if (storiesIndexPanel) storiesIndexPanel.classList.remove("hidden");
+      controls?.classList.add("hidden");
+      if (storiesBanner) storiesBanner.classList.add("hidden");
+    } else if (panel === "rag") {
+      docsPanel.classList.add("hidden");
+      storiesPanel.classList.add("hidden");
+      issuesPanel.classList.add("hidden");
+      orphansPanel.classList.add("hidden");
+      if (unresolvedTermsPanel) unresolvedTermsPanel.classList.add("hidden");
+      if (diagnosticsPanel) diagnosticsPanel.classList.add("hidden");
+      if (kbIndexPanel) kbIndexPanel.classList.add("hidden");
+      if (storiesIndexPanel) storiesIndexPanel.classList.add("hidden");
+      if (ragPanel) ragPanel.classList.remove("hidden");
       controls?.classList.add("hidden");
       if (storiesBanner) storiesBanner.classList.add("hidden");
     } else {
@@ -1391,6 +1487,8 @@ async function renderIndex() {
         renderStoriesIndex().catch((error) => {
           console.error("Failed to render Stories index:", error);
         });
+      } else if (targetPanel === "rag") {
+        initializeRagWidget();
       }
     });
   });
@@ -1629,6 +1727,505 @@ async function renderIndex() {
     storiesIndexContent.appendChild(fragment);
   }
 
+  function normalizeText(text) {
+    if (!text) return '';
+    let normalized = text;
+
+    normalized = normalized.replace(/[\u200B-\u200D\uFEFF]/g, '');
+    normalized = normalized.replace(/\r\n/g, '\n');
+    normalized = normalized.replace(/\n{3,}/g, '\n\n');
+    normalized = normalized.replace(/[ \t]+/g, ' ');
+    normalized = normalized.replace(/[.,!?;:]{2,}/g, (match) => match[0]);
+    normalized = normalized.replace(/[—–−-]{2,}/g, '—');
+    normalized = normalized.replace(/[—–−]/g, ' — ');
+    normalized = normalized.replace(/["""«»]/g, '"');
+    normalized = normalized.replace(/['''„‚]/g, "'");
+    normalized = normalized.replace(/(\d+)\s*([.,])\s*(\d+)/g, '$1$2$3');
+    normalized = normalized.replace(/(\d+)\s+(\d+)/g, '$1 $2');
+    normalized = normalized.replace(/ё/g, 'е');
+    normalized = normalized.replace(/Ё/g, 'Е');
+    normalized = normalized.replace(/([а-яА-Яa-zA-Z])-([а-яА-Яa-zA-Z])/g, '$1-$2');
+    normalized = normalized.replace(/\s+([.,!?;:])/g, '$1');
+    normalized = normalized.replace(/([.,!?;:])\s{2,}/g, '$1 ');
+    normalized = normalized.replace(/[ \t]+/g, ' ');
+    normalized = normalized.replace(/[ \t]+(\n)/g, '$1');
+    normalized = normalized.replace(/(\n)[ \t]+/g, '$1');
+
+    return normalized.trim();
+  }
+
+  function generateQueryEmbedding(text) {
+    const dimensions = 384;
+    const vector = [];
+    let hash = 0;
+
+    for (let i = 0; i < text.length; i++) {
+      hash = ((hash << 5) - hash) + text.charCodeAt(i);
+      hash = hash & hash;
+    }
+
+    for (let i = 0; i < dimensions; i++) {
+      const seed = hash + i * 7919;
+      const value = Math.sin(seed) * 0.5 + 0.5;
+      vector.push(value);
+    }
+
+    const norm = Math.sqrt(vector.reduce((sum, v) => sum + v * v, 0));
+    return vector.map(v => v / norm);
+  }
+
+  function cosineSimilarity(vecA, vecB) {
+    if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
+    let dotProduct = 0;
+    let normA = 0;
+    let normB = 0;
+    for (let i = 0; i < vecA.length; i++) {
+      dotProduct += vecA[i] * vecB[i];
+      normA += vecA[i] * vecA[i];
+      normB += vecB[i] * vecB[i];
+    }
+    const denominator = Math.sqrt(normA) * Math.sqrt(normB);
+    return denominator === 0 ? 0 : dotProduct / denominator;
+  }
+
+  function findWordBoundary(text, position, direction) {
+    if (direction === "backward") {
+      for (let i = position; i >= 0; i--) {
+        if (i === 0) return 0;
+        const char = text[i];
+        if (/\s/.test(char) || /[.,!?;:]/.test(char)) {
+          return i + 1;
+        }
+      }
+      return 0;
+    }
+    for (let i = position; i < text.length; i++) {
+      if (i === text.length - 1) return text.length;
+      const char = text[i];
+      if (/\s/.test(char) || /[.,!?;:]/.test(char)) {
+        return i;
+      }
+    }
+    return text.length;
+  }
+
+  function extractSnippet(text, query) {
+    if (!text || !query) {
+      return { snippet: text ? text.slice(0, ragConfig.snippet_max_length) : '', highlighted: false };
+    }
+
+    const queryTokens = query
+      .toLowerCase()
+      .split(/\s+/)
+      .filter(t => t.length > 2);
+
+    if (queryTokens.length === 0) {
+      return { snippet: text.slice(0, ragConfig.snippet_max_length), highlighted: false };
+    }
+
+    const normalizedText = text.toLowerCase();
+    const positions = [];
+    queryTokens.forEach(token => {
+      let startIndex = 0;
+      while (true) {
+        const index = normalizedText.indexOf(token, startIndex);
+        if (index === -1) break;
+        positions.push({ start: index, end: index + token.length });
+        startIndex = index + 1;
+      }
+    });
+
+    if (positions.length === 0) {
+      return { snippet: text.slice(0, ragConfig.snippet_max_length), highlighted: false };
+    }
+
+    positions.sort((a, b) => a.start - b.start);
+    const firstMatch = positions[0];
+    let snippetStart = Math.max(0, firstMatch.start - ragConfig.snippet_context_before);
+    let snippetEnd = Math.min(text.length, firstMatch.end + ragConfig.snippet_context_after);
+
+    const currentLength = snippetEnd - snippetStart;
+    if (currentLength < ragConfig.snippet_max_length) {
+      const extra = ragConfig.snippet_max_length - currentLength;
+      snippetStart = Math.max(0, snippetStart - Math.floor(extra / 2));
+      snippetEnd = Math.min(text.length, snippetEnd + Math.ceil(extra / 2));
+    }
+
+    if (snippetEnd - snippetStart > ragConfig.snippet_max_length) {
+      snippetEnd = snippetStart + ragConfig.snippet_max_length;
+    }
+
+    snippetStart = findWordBoundary(text, snippetStart, "backward");
+    snippetEnd = findWordBoundary(text, snippetEnd, "forward");
+
+    let snippet = text.substring(snippetStart, snippetEnd);
+    if (snippetStart > 0) snippet = "..." + snippet;
+    if (snippetEnd < text.length) snippet = snippet + "...";
+
+    queryTokens.forEach(token => {
+      const regex = new RegExp(`(${token})`, "gi");
+      snippet = snippet.replace(regex, "**$1**");
+    });
+
+    return { snippet, highlighted: true };
+  }
+
+  function formatSnippetHtml(snippet) {
+    return snippet.replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>');
+  }
+
+  async function fetchJsonl(paths) {
+    for (const path of paths) {
+      try {
+        const response = await fetch(path);
+        if (!response.ok) continue;
+        const text = await response.text();
+        const lines = text.trim().split("\n").filter(Boolean);
+        return lines.map(line => {
+          try {
+            return JSON.parse(line);
+          } catch {
+            return null;
+          }
+        }).filter(Boolean);
+      } catch (error) {
+        continue;
+      }
+    }
+    return [];
+  }
+
+  async function loadRagEmbeddings(sourceType) {
+    if (ragCache.embeddings[sourceType]) return ragCache.embeddings[sourceType];
+    const paths = [
+      `../data/embeddings/${sourceType}.jsonl`,
+      `data/embeddings/${sourceType}.jsonl`
+    ];
+    const embeddings = await fetchJsonl(paths);
+    ragCache.embeddings[sourceType] = embeddings;
+    return embeddings;
+  }
+
+  async function loadRagSlices(sourceType) {
+    if (ragCache.slices[sourceType]) return ragCache.slices[sourceType];
+    const paths = [
+      `../data/slices/${sourceType}/slices.jsonl`,
+      `data/slices/${sourceType}/slices.jsonl`
+    ];
+    const slices = await fetchJsonl(paths);
+    const map = {};
+    slices.forEach(slice => {
+      map[slice.id] = slice;
+    });
+    ragCache.slices[sourceType] = map;
+    return map;
+  }
+
+  async function loadRagMeta() {
+    if (ragCache.meta) return ragCache.meta;
+    const paths = ["../data/rag/datapack.meta.json", "data/rag/datapack.meta.json"];
+    for (const path of paths) {
+      try {
+        const response = await fetch(path);
+        if (!response.ok) continue;
+        ragCache.meta = await response.json();
+        return ragCache.meta;
+      } catch (error) {
+        continue;
+      }
+    }
+    return null;
+  }
+
+  async function ensureRagMeta() {
+    if (!ragDatapackVersion || !ragDatapackDetails) return;
+    const meta = await loadRagMeta();
+    if (!meta) return;
+    const version = meta.version || meta.generated_at || "unknown";
+    ragDatapackVersion.textContent = `Data pack: ${version}`;
+    const kbCount = meta.kb?.count ?? "—";
+    const storiesCount = meta.stories?.count ?? "—";
+    const embeddingsCount = meta.embeddings?.total ?? "—";
+    ragDatapackDetails.textContent = `KB: ${kbCount} | Stories: ${storiesCount} | Embeddings: ${embeddingsCount}`;
+  }
+
+  async function buildRagTags() {
+    if (ragCache.tags) return ragCache.tags;
+    const [kbEmbeddings, storiesEmbeddings] = await Promise.all([
+      loadRagEmbeddings("kb"),
+      loadRagEmbeddings("stories")
+    ]);
+    const tagCounts = {};
+    [...kbEmbeddings, ...storiesEmbeddings].forEach(emb => {
+      const tags = emb.meta?.tags || [];
+      tags.forEach(tag => {
+        const key = tag.toLowerCase();
+        tagCounts[key] = (tagCounts[key] || 0) + 1;
+      });
+    });
+    const sorted = Object.entries(tagCounts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([tag]) => tag)
+      .slice(0, ragConfig.max_tags);
+    ragCache.tags = sorted;
+    return sorted;
+  }
+
+  function renderRagTags(tags) {
+    if (!ragTagsContainer) return;
+    ragTagsContainer.innerHTML = "";
+    tags.forEach(tag => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "rag-tag";
+      button.textContent = tag;
+      button.dataset.tag = tag;
+      if (ragTags.includes(tag)) {
+        button.classList.add("is-active");
+      }
+      button.addEventListener("click", () => {
+        if (ragTags.includes(tag)) {
+          ragTags = ragTags.filter(t => t !== tag);
+        } else {
+          ragTags = [...ragTags, tag];
+        }
+        localStorage.setItem("rag-tags", ragTags.join(","));
+        updateURL();
+        renderRagTags(tags);
+        if (ragQuery) {
+          runRagSearch();
+        }
+      });
+      ragTagsContainer.appendChild(button);
+    });
+  }
+
+  function renderRagSuggestions(tags) {
+    if (!ragSuggestions) return;
+    ragSuggestions.innerHTML = "";
+    const suggestions = [];
+    if (Array.isArray(ragConfig.empty_state?.queries)) {
+      ragConfig.empty_state.queries.forEach(query => {
+        suggestions.push({ type: "query", value: query });
+      });
+    }
+    if (Array.isArray(ragConfig.empty_state?.tags)) {
+      ragConfig.empty_state.tags.forEach(tag => {
+        suggestions.push({ type: "tag", value: tag });
+      });
+    }
+    tags.slice(0, 6).forEach(tag => {
+      if (!suggestions.find(item => item.type === "tag" && item.value === tag)) {
+        suggestions.push({ type: "tag", value: tag });
+      }
+    });
+
+    suggestions.forEach(item => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "rag-tag";
+      button.textContent = item.type === "tag" ? `#${item.value}` : item.value;
+      button.addEventListener("click", () => {
+        if (item.type === "query") {
+          ragQuery = item.value;
+          if (ragQueryInput) ragQueryInput.value = item.value;
+        } else {
+          ragTags = [item.value];
+        }
+        localStorage.setItem("rag-query", ragQuery);
+        localStorage.setItem("rag-tags", ragTags.join(","));
+        updateURL();
+        runRagSearch();
+      });
+      ragSuggestions.appendChild(button);
+    });
+  }
+
+  function renderRagHistory() {
+    if (!ragHistory || !ragHistoryList) return;
+    if (!ragConfig.log_session) {
+      ragHistory.classList.add("hidden");
+      return;
+    }
+    const raw = localStorage.getItem("rag-session-log");
+    let entries = [];
+    try {
+      entries = raw ? JSON.parse(raw) : [];
+    } catch (error) {
+      entries = [];
+    }
+    ragHistoryList.innerHTML = "";
+    entries.slice(0, ragConfig.history_limit).forEach(entry => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "rag-tag";
+      button.textContent = entry.query;
+      button.addEventListener("click", () => {
+        ragQuery = entry.query;
+        if (ragQueryInput) ragQueryInput.value = ragQuery;
+        updateURL();
+        runRagSearch();
+      });
+      ragHistoryList.appendChild(button);
+    });
+    ragHistory.classList.toggle("hidden", entries.length === 0);
+  }
+
+  function recordRagQuery(query) {
+    if (!ragConfig.log_session || !query) return;
+    const raw = localStorage.getItem("rag-session-log");
+    let entries = [];
+    try {
+      entries = raw ? JSON.parse(raw) : [];
+    } catch (error) {
+      entries = [];
+    }
+    const updated = [{ query, ts: Date.now() }, ...entries.filter(entry => entry.query !== query)];
+    localStorage.setItem("rag-session-log", JSON.stringify(updated.slice(0, ragConfig.history_limit)));
+  }
+
+  async function runRagSearch() {
+    if (!ragResults) return;
+    ragQuery = ragQueryInput?.value.trim() || "";
+    localStorage.setItem("rag-query", ragQuery);
+    updateURL();
+
+    if (!ragQuery) {
+      ragResults.innerHTML = "";
+      ragEmpty?.classList.remove("hidden");
+      const tags = await buildRagTags();
+      renderRagSuggestions(tags);
+      return;
+    }
+
+    const normalizedQuery = normalizeText(ragQuery);
+    const queryEmbedding = generateQueryEmbedding(normalizedQuery);
+    const sources = ragSource === "both" ? ["kb", "stories"] : [ragSource];
+
+    let embeddings = [];
+    for (const sourceType of sources) {
+      const sourceEmbeddings = await loadRagEmbeddings(sourceType);
+      embeddings = embeddings.concat(sourceEmbeddings);
+    }
+
+    if (ragTags.length > 0) {
+      const tagSet = new Set(ragTags.map(tag => tag.toLowerCase()));
+      embeddings = embeddings.filter(emb => {
+        const embTags = (emb.meta?.tags || []).map(tag => tag.toLowerCase());
+        return embTags.some(tag => tagSet.has(tag));
+      });
+    }
+
+    const scored = embeddings.map(emb => ({
+      ...emb,
+      score: cosineSimilarity(queryEmbedding, emb.vector)
+    }));
+
+    const filtered = scored
+      .filter(result => result.score >= ragConfig.min_score)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, ragConfig.k);
+
+    if (filtered.length === 0) {
+      ragResults.innerHTML = "";
+      ragEmpty?.classList.remove("hidden");
+      const tags = await buildRagTags();
+      renderRagSuggestions(tags);
+      return;
+    }
+
+    ragEmpty?.classList.add("hidden");
+    ragResults.innerHTML = "";
+
+    recordRagQuery(ragQuery);
+    renderRagHistory();
+
+    for (const result of filtered) {
+      const sourceType = result.source_type || ragSource;
+      const slicesMap = await loadRagSlices(sourceType);
+      const sliceText = slicesMap[result.id]?.text || '';
+      const maxChars = ragConfig.max_context_tokens ? ragConfig.max_context_tokens * 4 : null;
+      const snippetSource = maxChars ? sliceText.slice(0, maxChars) : sliceText;
+      const snippetData = extractSnippet(snippetSource, normalizedQuery);
+
+      const item = document.createElement("article");
+      item.className = "rag-result";
+
+      const title = document.createElement("h3");
+      title.className = "rag-result__title";
+      title.textContent = result.meta?.title || result.source_id;
+      item.appendChild(title);
+
+      const meta = document.createElement("div");
+      meta.className = "rag-result__meta";
+      const tagsText = (result.meta?.tags || []).slice(0, 4).join(", ");
+      meta.textContent = `score: ${result.score.toFixed(4)} · ${sourceType}${tagsText ? ` · ${tagsText}` : ""}`;
+      item.appendChild(meta);
+
+      if (snippetData.snippet) {
+        const snippet = document.createElement("p");
+        snippet.className = "rag-result__snippet";
+        snippet.innerHTML = formatSnippetHtml(escapeHtml(snippetData.snippet));
+        item.appendChild(snippet);
+      }
+
+      const link = document.createElement("a");
+      link.className = "rag-result__link";
+      link.href = `page/${result.source_id}.html`;
+      link.textContent = "Открыть источник →";
+      item.appendChild(link);
+
+      ragResults.appendChild(item);
+    }
+  }
+
+  async function initializeRagWidget() {
+    if (!ragPanel || ragInitialized) return;
+    ragInitialized = true;
+
+    if (ragQueryInput) {
+      ragQueryInput.value = ragQuery;
+    }
+
+    ragSourceButtons.forEach(button => {
+      button.classList.toggle("is-active", button.dataset.src === ragSource);
+      button.addEventListener("click", () => {
+        ragSource = button.dataset.src || "both";
+        localStorage.setItem("rag-src", ragSource);
+        ragSourceButtons.forEach(btn => btn.classList.toggle("is-active", btn.dataset.src === ragSource));
+        updateURL();
+        if (ragQuery) {
+          runRagSearch();
+        }
+      });
+    });
+
+    ragForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      runRagSearch();
+    });
+
+    document.getElementById("rag-clear")?.addEventListener("click", () => {
+      if (ragQueryInput) ragQueryInput.value = "";
+      ragQuery = "";
+      ragTags = [];
+      localStorage.removeItem("rag-query");
+      localStorage.removeItem("rag-tags");
+      updateURL();
+      runRagSearch();
+    });
+
+    await ensureRagMeta();
+    const tags = await buildRagTags();
+    renderRagTags(tags);
+    renderRagSuggestions(tags);
+    renderRagHistory();
+
+    if (ragQuery) {
+      runRagSearch();
+    }
+  }
+
   renderDocs();
   renderStories();
   renderStoriesFeed(storyPages);
@@ -1645,6 +2242,8 @@ async function renderIndex() {
     renderStoriesIndex().catch((error) => {
       console.error("Failed to render Stories index:", error);
     });
+  } else if (activePanel === "rag") {
+    initializeRagWidget();
   }
 }
 
@@ -2304,7 +2903,7 @@ function enhanceGlossaryLiteNavigation(article) {
     link.href = `#${letter.toLowerCase()}`;
     link.textContent = letter;
     link.className = "glossary-lite-nav__link";
-    
+
     // Помечаем неактивные буквы (без терминов)
     if (!availableLetters.has(letter.toLowerCase())) {
       link.classList.add("glossary-lite-nav__link--disabled");
@@ -2318,13 +2917,13 @@ function enhanceGlossaryLiteNavigation(article) {
         if (targetAnchor) {
           // Сохраняем текущую позицию перед переходом
           saveGlossaryScrollPosition();
-          
+
           // Прокручиваем к якорю
           targetAnchor.scrollIntoView({ behavior: "smooth", block: "start" });
-          
+
           // Обновляем URL hash
           window.history.replaceState(null, "", `#${targetId}`);
-          
+
           // Восстанавливаем позицию после небольшой задержки
           setTimeout(() => {
             restoreGlossaryScrollPosition(targetId);
