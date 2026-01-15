@@ -61,18 +61,9 @@ status: draft
 - ссылка на schema — в документации (эта страница).
 
 ## Пример
-Файл `docs/graph/graph.jsonl` показывает минимальный пример формата.
-
-## Экспорт локального подграфа
-Скрипт: `scripts/graph/map_local_to_universe.mjs`
-
-Выход:
-- `data/graph/graph.jsonl`
+Файл `docs/graph/graph.jsonl` должен валидироваться схемой.
 
 ## Валидация
-Скрипт: `scripts/graph/validate_universe.mjs`
-
-### Пути
 - Schema: `docs/graph/universe.schema.json`
 - Пример: `docs/graph/graph.jsonl`
 
