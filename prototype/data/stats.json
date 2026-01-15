@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "generatedAt": "2026-01-14T10:14:50.529Z",
+  "generatedAt": "2026-01-15T19:23:41.521Z",
   "totals": {
     "pages": 95,
     "statuses": {
@@ -8,34 +8,12 @@
       "review": 6,
       "draft": 43
     },
-    "issues_total": 4,
-    "issues_internal_missing": 2,
+    "issues_total": 2,
+    "issues_internal_missing": 0,
     "issues_service": 0,
     "issues_external": 0,
     "issues_unknown": 0
   },
-  "topProblems": [
-    {
-      "slug": "rag-data-pack-dokumentaciya",
-      "title": "RAG Data Pack — документация",
-      "issues_total": 1,
-      "issues_internal_missing": 1,
-      "issues_service": 0,
-      "issues_external": 0,
-      "issues_unknown": 0,
-      "score": 3
-    }
-  ],
-  "issuesPerPage": [
-    {
-      "slug": "rag-data-pack-dokumentaciya",
-      "title": "RAG Data Pack — документация",
-      "issues_total": 1,
-      "issues_internal_missing": 1,
-      "issues_service": 0,
-      "issues_external": 0,
-      "issues_unknown": 0,
-      "score": 3
-    }
-  ]
+  "topProblems": [],
+  "issuesPerPage": []
 }

@@ -1,8 +1,14 @@
 {
-  "generatedAt": "2026-01-14T23:23:12.314Z",
+  "generatedAt": "2026-01-15T19:23:41.231Z",
   "series": [
     {
       "date": "2026-01-14",
+      "docs_count": 11,
+      "stories_count": 31,
+      "slices_count": 0
+    },
+    {
+      "date": "2026-01-15",
       "docs_count": 11,
       "stories_count": 31,
       "slices_count": 0
