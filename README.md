@@ -40,6 +40,17 @@
 
 Подробно: [`docs/rag/rag-data-pack-dokumentaciya.md`](docs/rag/rag-data-pack-dokumentaciya.md).
 
+## Graph Delta inbox
+
+Входящие дельты экосистемного графа кладутся в `data/graph/inbox/*.jsonl`.  
+Файлы валидируются по `docs/graph/universe.schema.json` без автопринятия.
+
+Проверка:
+
+```bash
+npm run graph:validate-delta
+```
+
 ## Статистика контента (v1.0)
 
 Снимок состояния на 2025-11-12.
