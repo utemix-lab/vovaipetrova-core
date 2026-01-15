@@ -10,6 +10,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { createHash } from 'crypto';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -19,11 +20,53 @@ const __dirname = dirname(__filename);
 const EXPORTS_DIR = join(__dirname, '../data/exports');
 const SLICES_DIR = join(__dirname, '../data/slices');
 const MAX_TOKENS_DEFAULT = 2000;
+const PROJECT_ID = 'vovaipetrova';
+const SOURCE_ID = 'vova-petrova';
+const GRAPH_VERSION = '0.1';
+const KB_SLICES_REL_PATH = 'data/slices/kb/slices.jsonl';
+const STORIES_SLICES_REL_PATH = 'data/slices/stories/slices.jsonl';
 
 // Простая оценка токенов: ~4 символа на токен для русского/английского текста
 function estimateTokens(text) {
   if (!text) return 0;
   return Math.ceil(text.length / 4);
+}
+
+function hashPayload(payload) {
+  return createHash('sha256').update(JSON.stringify(payload)).digest('hex');
+}
+
+function withProvenance(slice, lineNumber, filePath) {
+  return {
+    ...slice,
+    provenance: {
+      system: 'repo',
+      origin: 'slices',
+      file: filePath,
+      line: lineNumber,
+      hash: hashPayload(slice),
+    },
+  };
+}
+
+function resolveStableId(entry, sourceType) {
+  if (entry.stable_id) {
+    return entry.stable_id;
+  }
+  const projectId = entry.project_id || PROJECT_ID;
+  return `${projectId}:${sourceType}:${entry.slug}`;
+}
+
+function resolveProjectId(entry) {
+  return entry.project_id || PROJECT_ID;
+}
+
+function resolveSource(entry) {
+  return entry.source || SOURCE_ID;
+}
+
+function resolveGraphVersion(entry) {
+  return entry.graph_version || GRAPH_VERSION;
 }
 
 /**
@@ -140,10 +183,18 @@ function processKB(source, maxTokens) {
     try {
       const entry = JSON.parse(line);
       const text = entry.full_text_md || '';
+      const stableId = resolveStableId(entry, 'kb');
+      const projectId = resolveProjectId(entry);
+      const source = resolveSource(entry);
+      const graphVersion = resolveGraphVersion(entry);
       const entrySlices = splitIntoSlices(text, maxTokens, entry.slug, 'kb');
 
       // Добавляем метаданные из исходной записи
       for (const slice of entrySlices) {
+        slice.stable_id = stableId;
+        slice.project_id = projectId;
+        slice.source = source;
+        slice.graph_version = graphVersion;
         slice.meta = {
           slug: entry.slug,
           title: entry.title,
@@ -177,10 +228,18 @@ function processStories(source, maxTokens) {
       const text = entry.machine_report_md || entry.tldr || '';
       if (!text) continue;
 
+      const stableId = resolveStableId(entry, 'stories');
+      const projectId = resolveProjectId(entry);
+      const source = resolveSource(entry);
+      const graphVersion = resolveGraphVersion(entry);
       const entrySlices = splitIntoSlices(text, maxTokens, entry.slug, 'stories');
 
       // Добавляем метаданные из исходной записи
       for (const slice of entrySlices) {
+        slice.stable_id = stableId;
+        slice.project_id = projectId;
+        slice.source = source;
+        slice.graph_version = graphVersion;
         slice.meta = {
           slug: entry.slug,
           tldr: entry.tldr,
@@ -248,14 +307,18 @@ function main() {
   // Сохраняем срезы в JSONL файлы
   if (kbSlices.length > 0) {
     const kbOutputPath = join(SLICES_DIR, 'kb', 'slices.jsonl');
-    const kbJsonl = kbSlices.map(slice => JSON.stringify(slice)).join('\n') + '\n';
+    const kbJsonl = kbSlices
+      .map((slice, index) => JSON.stringify(withProvenance(slice, index + 1, KB_SLICES_REL_PATH)))
+      .join('\n') + '\n';
     writeFileSync(kbOutputPath, kbJsonl, 'utf8');
     console.log(`✅ Создан ${kbOutputPath}`);
   }
 
   if (storiesSlices.length > 0) {
     const storiesOutputPath = join(SLICES_DIR, 'stories', 'slices.jsonl');
-    const storiesJsonl = storiesSlices.map(slice => JSON.stringify(slice)).join('\n') + '\n';
+    const storiesJsonl = storiesSlices
+      .map((slice, index) => JSON.stringify(withProvenance(slice, index + 1, STORIES_SLICES_REL_PATH)))
+      .join('\n') + '\n';
     writeFileSync(storiesOutputPath, storiesJsonl, 'utf8');
     console.log(`✅ Создан ${storiesOutputPath}`);
   }

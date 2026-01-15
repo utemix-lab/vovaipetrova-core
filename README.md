@@ -33,6 +33,13 @@
 - `docs/nav/routes.yml` — карта маршрутов сайта и навигационная структура ([как работать с routes.yml](docs/nav/routes-yml-how-to.md))
 - `scripts/` — инструменты нормализации и линтинга
 
+## RAG Exports (JSONL)
+
+Экспорты находятся в `data/exports/`, срезы — в `data/slices/`.  
+Каждая запись включает `stable_id`, `project_id`, `source`, `graph_version` и `provenance` (file/line/hash).
+
+Подробно: [`docs/rag/rag-data-pack-dokumentaciya.md`](docs/rag/rag-data-pack-dokumentaciya.md).
+
 ## Статистика контента (v1.0)
 
 Снимок состояния на 2025-11-12.

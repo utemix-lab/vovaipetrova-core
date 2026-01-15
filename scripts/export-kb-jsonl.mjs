@@ -16,6 +16,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync, statSync } from 'fs';
+import { createHash } from 'crypto';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { globSync } from 'glob';
@@ -29,9 +30,34 @@ const OUTPUT_DIR = join(__dirname, '../data/exports');
 const OUTPUT_PATH = join(OUTPUT_DIR, 'kb_terms.v1.jsonl');
 const SCHEMA_DIR = join(__dirname, '../docs/data-schemas');
 const SCHEMA_PATH = join(SCHEMA_DIR, 'kb_terms.schema.json');
+const OUTPUT_REL_PATH = 'data/exports/kb_terms.v1.jsonl';
+const PROJECT_ID = 'vovaipetrova';
+const SOURCE_ID = 'vova-petrova';
+const GRAPH_VERSION = '0.1';
 
 function log(message) {
   console.log(`[export-kb-jsonl] ${message}`);
+}
+
+function buildStableId(slug) {
+  return `${PROJECT_ID}:kb:${slug}`;
+}
+
+function hashEntry(entry) {
+  return createHash('sha256').update(JSON.stringify(entry)).digest('hex');
+}
+
+function attachProvenance(entry, lineNumber) {
+  return {
+    ...entry,
+    provenance: {
+      system: 'repo',
+      origin: 'exports',
+      file: OUTPUT_REL_PATH,
+      line: lineNumber,
+      hash: hashEntry(entry),
+    },
+  };
 }
 
 /**
@@ -140,6 +166,10 @@ function main() {
       const updatedAt = data.updated_at || data.last_edited_time || getUpdatedAt(filePath);
 
       entries.push({
+        stable_id: buildStableId(data.slug),
+        project_id: PROJECT_ID,
+        source: SOURCE_ID,
+        graph_version: GRAPH_VERSION,
         slug: data.slug,
         title: data.title,
         lite_summary: liteSummary,
@@ -154,7 +184,7 @@ function main() {
   }
 
   // Записываем JSONL (каждая строка - валидный JSON)
-  const jsonlLines = entries.map(entry => JSON.stringify(entry));
+  const jsonlLines = entries.map((entry, index) => JSON.stringify(attachProvenance(entry, index + 1)));
   writeFileSync(OUTPUT_PATH, jsonlLines.join('\n') + '\n', 'utf8');
 
   log(`✅ Создан ${OUTPUT_PATH}`);
@@ -168,6 +198,22 @@ function main() {
     type: 'object',
     required: ['slug', 'title', 'lite_summary', 'full_text_md', 'tags', 'links', 'updated_at'],
     properties: {
+      stable_id: {
+        type: 'string',
+        description: 'Stable identifier for the term',
+      },
+      project_id: {
+        type: 'string',
+        description: 'Project identifier',
+      },
+      source: {
+        type: 'string',
+        description: 'Source dataset identifier',
+      },
+      graph_version: {
+        type: 'string',
+        description: 'Universe graph version',
+      },
       slug: {
         type: 'string',
         description: 'URL-friendly slug for the term',
@@ -203,6 +249,18 @@ function main() {
         type: 'string',
         description: 'ISO 8601 timestamp of last update',
         format: 'date-time',
+      },
+      provenance: {
+        type: 'object',
+        description: 'Provenance metadata for the export line',
+        required: ['system', 'origin', 'file', 'line', 'hash'],
+        properties: {
+          system: { type: 'string' },
+          origin: { type: 'string' },
+          file: { type: 'string' },
+          line: { type: 'integer', minimum: 1 },
+          hash: { type: 'string' },
+        },
       },
     },
     additionalProperties: false,
