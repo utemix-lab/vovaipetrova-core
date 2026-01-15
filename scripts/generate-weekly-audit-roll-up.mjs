@@ -112,6 +112,11 @@ function formatDuration(seconds) {
   return `${(seconds / 60).toFixed(1)}m`;
 }
 
+function formatSize(bytes) {
+  if (bytes === null || bytes === undefined) return 'N/A';
+  return `${(bytes / 1024).toFixed(2)} KB`;
+}
+
 /**
  * Собирает данные для сводного отчёта
  */
@@ -557,6 +562,7 @@ function generateHTMLReport(rollUp) {
       <a href="#kb">KB Report</a>
       <a href="#backlinks">Backlinks</a>
       <a href="#terms">Terms</a>
+      <a href="#rag">RAG</a>
       <a href="#recommendations">Recommendations</a>
     </nav>
 
@@ -778,6 +784,32 @@ function generateHTMLReport(rollUp) {
         <h3>Stories</h3>
         <p>Total: ${rollUp.reports.stories.total || 0}</p>
         <p>Ready: ${rollUp.reports.stories.ready || 0} | Review: ${rollUp.reports.stories.review || 0} | Draft: ${rollUp.reports.stories.draft || 0}</p>
+      </div>
+    </section>
+
+    <section id="rag" class="section">
+      <h2 class="section__title">RAG</h2>
+      <div class="section__content">
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-card__label">KB Terms</div>
+            <div class="metric-card__value">${rollUp.reports.rag?.docsCount || 0}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Stories</div>
+            <div class="metric-card__value">${rollUp.reports.rag?.storiesCount || 0}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Slices</div>
+            <div class="metric-card__value">${rollUp.reports.rag?.slicesCount || 0}</div>
+          </div>
+        </div>
+        <p><strong>Version:</strong> ${rollUp.reports.rag?.version || 'v1'}</p>
+        <p><strong>Last Updated:</strong> ${formatDate(rollUp.reports.rag?.lastUpdated)}</p>
+        <p><strong>Sizes:</strong> Total ${formatSize(rollUp.reports.rag?.sizes?.total || 0)} (KB: ${formatSize(rollUp.reports.rag?.sizes?.kb || 0)}, Stories: ${formatSize(rollUp.reports.rag?.sizes?.stories || 0)}, Canon Map: ${formatSize(rollUp.reports.rag?.sizes?.canonMap || 0)})</p>
+        <p><strong>Lint Errors:</strong> ${rollUp.reports.rag?.lintErrors ?? 0}</p>
+        <p><a href="rag-e2e-report.html">📊 RAG E2E Report</a> — регрессионное тестирование качества извлечения</p>
+        <p>Для оценки метрик запустите: <code>npm run rag:eval</code></p>
       </div>
     </section>`;
 

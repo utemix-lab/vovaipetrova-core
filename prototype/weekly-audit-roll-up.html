@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Weekly Audit Roll-up — 9 января 2026 г. в 21:56 — Vova &amp; Petrova</title>
+  <title>Weekly Audit Roll-up — 15 января 2026 г. в 02:32 — Vova &amp; Petrova</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
     .audit-roll-up {
@@ -32,9 +32,9 @@
       border-radius: 4px;
       font-size: 0.875rem;
       font-weight: 500;
-      background: #d9822b20;
-      color: #d9822b;
-      border: 1px solid #d9822b;
+      background: #db373720;
+      color: #db3737;
+      border: 1px solid #db3737;
     }
     .nav-anchors {
       display: flex;
@@ -137,9 +137,9 @@
     <header class="audit-roll-up__header">
       <h1 class="audit-roll-up__title">Weekly Audit Roll-up Report</h1>
       <div class="audit-roll-up__meta">
-        <span>Generated: 9 января 2026 г. в 21:56</span>
+        <span>Generated: 15 января 2026 г. в 02:32</span>
         
-        | <span class="health-badge">⚠️ WARNING</span>
+        | <span class="health-badge">❌ CRITICAL</span>
       </div>
     </header>
 
@@ -149,6 +149,7 @@
       <a href="#kb">KB Report</a>
       <a href="#backlinks">Backlinks</a>
       <a href="#terms">Terms</a>
+      <a href="#rag">RAG</a>
       <a href="#recommendations">Recommendations</a>
     </nav>
 
@@ -158,7 +159,7 @@
         <div class="metric-grid">
           <div class="metric-card">
             <div class="metric-card__label">Total Issues</div>
-            <div class="metric-card__value">0</div>
+            <div class="metric-card__value">2</div>
           </div>
           <div class="metric-card">
             <div class="metric-card__label">Total Warnings</div>
@@ -166,15 +167,15 @@
           </div>
           <div class="metric-card">
             <div class="metric-card__label">Pages</div>
-            <div class="metric-card__value">90</div>
+            <div class="metric-card__value">95</div>
           </div>
           <div class="metric-card">
             <div class="metric-card__label">Ready Rate</div>
-            <div class="metric-card__value">48.9%</div>
+            <div class="metric-card__value">48.4%</div>
           </div>
           <div class="metric-card">
             <div class="metric-card__label">Broken Links</div>
-            <div class="metric-card__value">0</div>
+            <div class="metric-card__value">2</div>
           </div>
           <div class="metric-card">
             <div class="metric-card__label">Lint Errors</div>
@@ -197,11 +198,11 @@
         <div class="metric-grid">
           <div class="metric-card">
             <div class="metric-card__label">Total Pages</div>
-            <div class="metric-card__value">90</div>
+            <div class="metric-card__value">95</div>
           </div>
           <div class="metric-card">
             <div class="metric-card__label">Ready</div>
-            <div class="metric-card__value">44</div>
+            <div class="metric-card__value">46</div>
           </div>
           <div class="metric-card">
             <div class="metric-card__label">Review</div>
@@ -209,12 +210,29 @@
           </div>
           <div class="metric-card">
             <div class="metric-card__label">Draft</div>
-            <div class="metric-card__value">40</div>
+            <div class="metric-card__value">43</div>
           </div>
         </div>
         <h3>Lint Quality</h3>
         <p>Errors: 0 | Warnings: 0</p>
 
+        <h3>Top Problems</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th>Score</th>
+              <th>Issues</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>RAG Data Pack — документация</td>
+              <td>3</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -224,11 +242,11 @@
         <div class="metric-grid">
           <div class="metric-card">
             <div class="metric-card__label">Total Broken</div>
-            <div class="metric-card__value">2</div>
+            <div class="metric-card__value">4</div>
           </div>
           <div class="metric-card">
             <div class="metric-card__label">Internal Missing</div>
-            <div class="metric-card__value">0</div>
+            <div class="metric-card__value">2</div>
           </div>
           <div class="metric-card">
             <div class="metric-card__label">External</div>
@@ -259,6 +277,16 @@
               <td>../../scripts/generate-terms-found-block.mjs</td>
               <td>outside_repo</td>
             </tr>
+            <tr>
+              <td><code>rag/rag-data-pack-dokumentaciya.md</code></td>
+              <td>../rag/INDEXING_REPORT.md</td>
+              <td>missing</td>
+            </tr>
+            <tr>
+              <td><code>rag/otchyot-ob-indeksacii-rag.md</code></td>
+              <td>scripts/rag/</td>
+              <td>missing</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -270,7 +298,7 @@
         <div class="metric-grid">
           <div class="metric-card">
             <div class="metric-card__label">KB Pages</div>
-            <div class="metric-card__value">37</div>
+            <div class="metric-card__value">38</div>
           </div>
           <div class="metric-card">
             <div class="metric-card__label">Terms Count</div>
@@ -278,7 +306,7 @@
           </div>
           <div class="metric-card">
             <div class="metric-card__label">Letters</div>
-            <div class="metric-card__value">25</div>
+            <div class="metric-card__value">26</div>
           </div>
         </div>
         <h3>Stories</h3>
@@ -286,8 +314,44 @@
         <p>Ready: 0 | Review: 0 | Draft: 0</p>
       </div>
     </section>
+
+    <section id="rag" class="section">
+      <h2 class="section__title">RAG</h2>
+      <div class="section__content">
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-card__label">KB Terms</div>
+            <div class="metric-card__value">11</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Stories</div>
+            <div class="metric-card__value">31</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__label">Slices</div>
+            <div class="metric-card__value">0</div>
+          </div>
+        </div>
+        <p><strong>Version:</strong> v1</p>
+        <p><strong>Last Updated:</strong> 15 января 2026 г. в 02:32</p>
+        <p><strong>Sizes:</strong> Total 76.94 KB (KB: 32.70 KB, Stories: 9.18 KB, Canon Map: 35.07 KB)</p>
+        <p><strong>Lint Errors:</strong> 0</p>
+        <p><a href="rag-e2e-report.html">📊 RAG E2E Report</a> — регрессионное тестирование качества извлечения</p>
+        <p>Для оценки метрик запустите: <code>npm run rag:eval</code></p>
+      </div>
+    </section>
+    <section id="recommendations" class="section">
+      <h2 class="section__title">Recommendations</h2>
+      <div class="section__content">
+        <ul class="recommendations">
+          <li data-priority="high">
+            <strong>links</strong>: Исправить 2 битых внутренних ссылок
+          </li>
+        </ul>
+      </div>
+    </section>
     <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.875rem;">
-      <p>Generated by Weekly Audit Roll-up at 2026-01-09T18:56:02.254Z</p>
+      <p>Generated by Weekly Audit Roll-up at 2026-01-14T23:32:18.519Z</p>
     </footer>
   </div>
 </body>

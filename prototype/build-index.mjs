@@ -259,6 +259,11 @@ function buildIndex() {
     execSync("node scripts/generate-kb-index.mjs", { stdio: "inherit" });
     execSync("node scripts/generate-stories-index.mjs", { stdio: "inherit" });
     execSync("node scripts/generate-sitemap.mjs", { stdio: "inherit" });
+    try {
+      execSync("node scripts/rag/update-trends.mjs", { stdio: "inherit" });
+    } catch (ragTrendsError) {
+      console.warn("⚠️  Failed to update RAG trends:", ragTrendsError.message);
+    }
     // Generate trends v2 (continue on error, так как требует GITHUB_TOKEN для получения PR info)
     try {
       execSync("node scripts/generate-trends-v2-data.mjs", { stdio: "inherit" });

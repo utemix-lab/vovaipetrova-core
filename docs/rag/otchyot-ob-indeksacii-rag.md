@@ -192,7 +192,7 @@ node scripts/rag/embed.mjs --source both
 ## Связанные документы
 
 - [RAG Data Pack](rag-data-pack-dokumentaciya.md) — описание структуры данных
-- [scripts/rag/](scripts/rag/) — скрипты для индексации и поиска
+- [scripts/rag/](../../scripts/rag/) — скрипты для индексации и поиска
 
 ---
 
