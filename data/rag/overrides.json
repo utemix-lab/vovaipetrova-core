@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "description": "Ручные оверрайды для RAG: blacklist и boost для спорных кейсов",
+  "blacklist": [
+    {
+      "id": "example-slice-id",
+      "reason": "Пример: этот slice содержит некорректную информацию"
+    }
+  ],
+  "boost": [
+    {
+      "id": "example-slice-id",
+      "weight": 1.5,
+      "reason": "Пример: этот slice особенно важен для определённых запросов"
+    }
+  ],
+  "notes": [
+    "blacklist: slice_id, которые полностью исключаются из результатов",
+    "boost: slice_id с повышенным весом (weight > 1.0 увеличивает score)",
+    "weight должен быть > 0, рекомендуется диапазон 1.0-2.0"
+  ]
+}
