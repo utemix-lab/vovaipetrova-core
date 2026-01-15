@@ -38,6 +38,7 @@
     "check:pr-size": "node scripts/check-pr-size.mjs",
     "check:deliverables": "node scripts/check-deliverables.mjs",
     "check:branch-safety": "node scripts/check-branch-safety.mjs",
+    "graph:validate-delta": "node scripts/graph/validate_delta.mjs",
     "test:guardrails": "node scripts/test-guardrails.mjs",
     "test:security": "node test-guardrails/test-security-violations.mjs",
     "verify:stats": "node scripts/verify-stats-accuracy.mjs",
