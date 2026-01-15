@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vovaipetrova.universe.schema.v0.1",
+  "title": "Universe Graph Schema v0.1",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/node" },
+    { "$ref": "#/$defs/edge" }
+  ],
+  "$defs": {
+    "common": {
+      "type": "object",
+      "required": [
+        "stable_id",
+        "project_id",
+        "source",
+        "version",
+        "updated_at",
+        "provenance"
+      ],
+      "properties": {
+        "stable_id": { "type": "string", "minLength": 1 },
+        "project_id": { "type": "string", "minLength": 1 },
+        "source": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "provenance": {
+          "type": "object",
+          "properties": {
+            "system": { "type": "string" },
+            "origin": { "type": "string" },
+            "path": { "type": "string" },
+            "url": { "type": "string" },
+            "notion_page_id": { "type": "string" },
+            "commit": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "node": {
+      "allOf": [
+        { "$ref": "#/$defs/common" },
+        {
+          "type": "object",
+          "required": ["type", "node_type", "label"],
+          "properties": {
+            "type": { "const": "node" },
+            "node_type": {
+              "type": "string",
+              "enum": [
+                "Project",
+                "Repository",
+                "Concept",
+                "Pattern",
+                "Decision",
+                "Rule",
+                "Term",
+                "Doc",
+                "Chunk"
+              ]
+            },
+            "label": { "type": "string", "minLength": 1 },
+            "tags": { "type": "array", "items": { "type": "string" } },
+            "properties": { "type": "object" }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "edge": {
+      "allOf": [
+        { "$ref": "#/$defs/common" },
+        {
+          "type": "object",
+          "required": ["type", "edge_type", "from", "to", "modality"],
+          "properties": {
+            "type": { "const": "edge" },
+            "edge_type": {
+              "type": "string",
+              "enum": [
+                "governs",
+                "implements",
+                "constrains",
+                "see_also",
+                "mentions",
+                "has_tag",
+                "in_facet",
+                "semantic_near",
+                "similar_to"
+              ]
+            },
+            "modality": { "type": "string", "enum": ["symbolic", "vector"] },
+            "from": { "type": "string", "minLength": 1 },
+            "to": { "type": "string", "minLength": 1 },
+            "weight": { "type": "number" },
+            "properties": { "type": "object" }
+          },
+          "additionalProperties": true
+        }
+      ]
+    }
+  }
+}
