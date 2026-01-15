@@ -178,7 +178,7 @@ E2E отчёт автоматически включается в Weekly Audit:
 ## Связанные документы
 
 - [RAG Data Pack](rag-data-pack-dokumentaciya.md) — структура данных
-- [Indexing Report](INDEXING_REPORT.md) — отчёт об индексации
+- [Отчёт об индексации RAG](otchyot-ob-indeksacii-rag.md) — отчёт об индексации
 - [Tokenization](../../scripts/rag/tokenize.mjs) — нормализация текста
 
 ---
