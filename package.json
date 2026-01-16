@@ -39,6 +39,8 @@
     "check:deliverables": "node scripts/check-deliverables.mjs",
     "check:branch-safety": "node scripts/check-branch-safety.mjs",
     "graph:validate-delta": "node scripts/graph/validate_delta.mjs",
+    "graph:universe-snapshot": "node scripts/graph/universe_snapshot.mjs",
+    "graph:round-trip-provenance": "node scripts/graph/round_trip_provenance.mjs",
     "test:guardrails": "node scripts/test-guardrails.mjs",
     "test:security": "node test-guardrails/test-security-violations.mjs",
     "verify:stats": "node scripts/verify-stats-accuracy.mjs",
