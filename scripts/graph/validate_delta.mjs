@@ -6,7 +6,7 @@
  *   node scripts/graph/validate_delta.mjs
  */
 
-import { readFileSync, existsSync, readdirSync } from 'fs';
+import { readFileSync, existsSync, readdirSync, mkdirSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import Ajv from 'ajv/dist/2020.js';
@@ -18,9 +18,23 @@ const ROOT = join(__dirname, '..', '..');
 
 const INBOX_DIR = join(ROOT, 'data', 'graph', 'inbox');
 const SCHEMA_PATH = join(ROOT, 'docs', 'graph', 'universe.schema.json');
+const LOGS_DIR = join(ROOT, 'logs');
+const REPORT_MD = join(LOGS_DIR, 'graph-delta-report.md');
+const REPORT_HTML = join(LOGS_DIR, 'graph-delta-report.html');
 
 function log(message) {
   console.log(`[validate-delta] ${message}`);
+}
+
+function formatEdgeKey(payload) {
+  return `${payload.from} -> ${payload.to}`;
+}
+
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
 
 function collectJsonlFiles() {
@@ -74,6 +88,12 @@ function main() {
 
   let hasErrors = false;
   let totalLines = 0;
+  let validLines = 0;
+  let warningsCount = 0;
+  let conflictsCount = 0;
+  const conflicts = [];
+  const warnings = [];
+  const edgeIndex = new Map();
 
   for (const filePath of deltaFiles) {
     const raw = readFileSync(filePath, 'utf8');
@@ -109,9 +129,99 @@ function main() {
         for (const err of validator.errors || []) {
           log(`   - ${err.instancePath} ${err.message}`);
         }
+        return;
+      }
+
+      validLines += 1;
+
+      if (isDelta) {
+        const edgeKey = formatEdgeKey(payload);
+        const edgeType = payload.edge_type;
+        const sourceFile = filePath.split(/[/\\]/).pop();
+        const entry = edgeIndex.get(edgeKey) || { types: new Set(), sources: new Set(), entries: [] };
+        entry.types.add(edgeType);
+        entry.sources.add(sourceFile);
+        entry.entries.push({ edge_type: edgeType, rationale: payload.rationale, source: sourceFile });
+        edgeIndex.set(edgeKey, entry);
       }
     });
   }
+
+  for (const [edgeKey, entry] of edgeIndex.entries()) {
+    if (entry.types.size > 1) {
+      conflictsCount += 1;
+      conflicts.push({
+        edge_key: edgeKey,
+        edge_types: Array.from(entry.types.values()),
+        sources: Array.from(entry.sources.values()),
+      });
+    } else if (entry.entries.length > 1) {
+      warningsCount += 1;
+      warnings.push({
+        edge_key: edgeKey,
+        edge_type: entry.entries[0]?.edge_type,
+        count: entry.entries.length,
+        sources: Array.from(entry.sources.values()),
+      });
+    }
+  }
+
+  mkdirSync(LOGS_DIR, { recursive: true });
+  const mdLines = [
+    '# Graph Delta Validation Report',
+    '',
+    `**Date:** ${new Date().toISOString()}`,
+    '',
+    '## Summary',
+    '',
+    `- Files: ${deltaFiles.length}`,
+    `- Lines: ${totalLines}`,
+    `- Valid: ${validLines}`,
+    `- Warnings: ${warningsCount}`,
+    `- Conflicts: ${conflictsCount}`,
+    '',
+    '## Conflicts',
+    '',
+  ];
+
+  if (conflicts.length === 0) {
+    mdLines.push('- None');
+  } else {
+    for (const conflict of conflicts) {
+      mdLines.push(
+        `- **${conflict.edge_key}**`,
+        `  - edge_types: ${conflict.edge_types.join(', ')}`,
+        `  - sources: ${conflict.sources.join(', ')}`
+      );
+    }
+  }
+
+  mdLines.push('', '## Warnings', '');
+  if (warnings.length === 0) {
+    mdLines.push('- None');
+  } else {
+    for (const warning of warnings) {
+      mdLines.push(
+        `- **${warning.edge_key}**`,
+        `  - edge_type: ${warning.edge_type}`,
+        `  - count: ${warning.count}`,
+        `  - sources: ${warning.sources.join(', ')}`
+      );
+    }
+  }
+
+  writeFileSync(REPORT_MD, mdLines.join('\n') + '\n', 'utf8');
+  const htmlBody = `<pre>${escapeHtml(mdLines.join('\n'))}</pre>`;
+  writeFileSync(REPORT_HTML, `<!doctype html><html><body>${htmlBody}</body></html>\n`, 'utf8');
+
+  log(`Summary: files=${deltaFiles.length} lines=${totalLines} valid=${validLines} warnings=${warningsCount} conflicts=${conflictsCount}`);
+  for (const conflict of conflicts.slice(0, 3)) {
+    log(`Conflict: ${conflict.edge_key} types=${conflict.edge_types.join(', ')} sources=${conflict.sources.join(', ')}`);
+  }
+  if (conflicts.length > 0) {
+    log('Next: manual review required');
+  }
+  log(`Report: ${REPORT_MD}`);
 
   if (hasErrors) {
     process.exit(1);

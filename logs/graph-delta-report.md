@@ -1,0 +1,21 @@
+# Graph Delta Validation Report
+
+**Date:** 2026-01-16T06:49:45.445Z
+
+## Summary
+
+- Files: 2
+- Lines: 5
+- Valid: 5
+- Warnings: 0
+- Conflicts: 1
+
+## Conflicts
+
+- **ecosystem:project:extended-mind -> ecosystem:project:evoquant**
+  - edge_types: see_also, semantic_near
+  - sources: delta-b.jsonl
+
+## Warnings
+
+- None

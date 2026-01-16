@@ -87,7 +87,7 @@ function makeCommon({ source, updated_at, provenance }) {
 }
 
 function ensureTerm(slug, label, source, provenance, properties = {}) {
-  const id = stableId('term', slug);
+  const id = properties.stable_id || stableId('term', slug);
   addNode({
     type: 'node',
     node_type: 'Term',
@@ -101,7 +101,7 @@ function ensureTerm(slug, label, source, provenance, properties = {}) {
 }
 
 function ensureDoc(slug, label, source, provenance, properties = {}) {
-  const id = stableId('doc', slug);
+  const id = properties.stable_id || stableId('doc', slug);
   addNode({
     type: 'node',
     node_type: 'Doc',
@@ -186,6 +186,7 @@ function main() {
         updated_at: term.updated_at,
         tags: term.tags || [],
         links: term.links || [],
+        stable_id: term.stable_id,
       }
     );
 
@@ -228,6 +229,7 @@ function main() {
         series_id: story.series_id,
         refs: story.refs,
         updated_at: story.updated_at,
+        stable_id: story.stable_id,
       }
     );
   }
@@ -294,14 +296,14 @@ function main() {
             slice.metadata?.title || slice.source_id,
             'kb',
             makeProvenance('exports', 'data/exports/kb_terms.v1.jsonl'),
-            { slug: slice.source_id }
+            { slug: slice.source_id, stable_id: slice.stable_id }
           )
         : ensureDoc(
             slice.source_id,
             slice.metadata?.title || slice.source_id,
             'stories',
             makeProvenance('exports', 'data/exports/stories.v1.jsonl'),
-            { slug: slice.source_id }
+            { slug: slice.source_id, stable_id: slice.stable_id }
           );
 
     addEdge({
