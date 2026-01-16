@@ -1,6 +1,6 @@
 # Graph Delta Validation Report
 
-**Date:** 2026-01-16T06:49:45.445Z
+**Date:** 2026-01-16T14:12:29.634Z
 
 ## Summary
 
@@ -15,6 +15,11 @@
 - **ecosystem:project:extended-mind -> ecosystem:project:evoquant**
   - edge_types: see_also, semantic_near
   - sources: delta-b.jsonl
+  - entries:
+    - see_also (confidence: low, source: codex-ecosystem, file: delta-b.jsonl:1)
+      rationale: Смысловой контекст и методология пересекаются.
+    - semantic_near (confidence: low, source: codex-ecosystem, file: delta-b.jsonl:2)
+      rationale: Семантическая близость по README.
 
 ## Warnings
 
