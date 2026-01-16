@@ -1,10 +1,13 @@
 ---
 title: RAG Evaluation
 slug: rag-evaluation
-summary: Метрики, пороги и процесс оценки качества RAG.
+summary: 'Метрики, пороги и процесс оценки качества RAG.'
 status: draft
-tags: [RAG, metrics]
-machine_tags: [rag/evaluation]
+tags:
+  - metrics
+  - RAG
+machine_tags:
+  - rag/evaluation
 ---
 
 # Как мы меряем RAG
