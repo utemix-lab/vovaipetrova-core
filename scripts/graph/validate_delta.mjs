@@ -6,7 +6,7 @@
  *   node scripts/graph/validate_delta.mjs
  */
 
-import { readFileSync, existsSync, readdirSync } from 'fs';
+import { readFileSync, existsSync, readdirSync, mkdirSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import Ajv from 'ajv/dist/2020.js';
@@ -18,9 +18,25 @@ const ROOT = join(__dirname, '..', '..');
 
 const INBOX_DIR = join(ROOT, 'data', 'graph', 'inbox');
 const SCHEMA_PATH = join(ROOT, 'docs', 'graph', 'universe.schema.json');
+const LOGS_DIR = join(ROOT, 'logs');
+const REPORT_MD = join(LOGS_DIR, 'graph-delta-report.md');
+const REPORT_HTML = join(LOGS_DIR, 'graph-delta-report.html');
 
 function log(message) {
   console.log(`[validate-delta] ${message}`);
+}
+
+function formatEdgeKey(from, to) {
+  return `${from} -> ${to}`;
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function collectJsonlFiles() {
@@ -74,6 +90,12 @@ function main() {
 
   let hasErrors = false;
   let totalLines = 0;
+  let validLines = 0;
+  let warningsCount = 0;
+  let conflictsCount = 0;
+  const conflicts = [];
+  const warnings = [];
+  const edgeIndex = new Map(); // edgeKey -> { types: Set, sources: Set, entries: [] }
 
   for (const filePath of deltaFiles) {
     const raw = readFileSync(filePath, 'utf8');
@@ -87,6 +109,7 @@ function main() {
       continue;
     }
 
+    const fileName = filePath.split(/[/\\]/).pop();
     log(`Проверка ${filePath} (${lines.length} строк)`);
     totalLines += lines.length;
 
@@ -109,9 +132,136 @@ function main() {
         for (const err of validator.errors || []) {
           log(`   - ${err.instancePath} ${err.message}`);
         }
+        return;
+      }
+
+      validLines += 1;
+
+      // Анализ конфликтов и предупреждений только для candidate_edge
+      if (isDelta && payload.delta_type === 'candidate_edge') {
+        const edgeKey = formatEdgeKey(payload.from, payload.to);
+        const edgeType = payload.edge_type;
+        const entry = edgeIndex.get(edgeKey) || { types: new Set(), sources: new Set(), entries: [] };
+        entry.types.add(edgeType);
+        entry.sources.add(fileName);
+        entry.entries.push({
+          edge_type: edgeType,
+          rationale: payload.rationale,
+          confidence: payload.confidence,
+          source: payload.source,
+          file: fileName,
+          line: index + 1,
+        });
+        edgeIndex.set(edgeKey, entry);
       }
     });
   }
+
+  // Анализ конфликтов и предупреждений
+  for (const [edgeKey, entry] of edgeIndex.entries()) {
+    if (entry.types.size > 1) {
+      // Конфликт: одна и та же пара from->to с разными edge_type
+      conflictsCount += 1;
+      conflicts.push({
+        edge_key: edgeKey,
+        edge_types: Array.from(entry.types.values()),
+        sources: Array.from(entry.sources.values()),
+        entries: entry.entries,
+      });
+    } else if (entry.entries.length > 1) {
+      // Предупреждение: дубликаты одной и той же дельты
+      warningsCount += 1;
+      warnings.push({
+        edge_key: edgeKey,
+        edge_type: entry.entries[0]?.edge_type,
+        count: entry.entries.length,
+        sources: Array.from(entry.sources.values()),
+        entries: entry.entries,
+      });
+    }
+  }
+
+  // Генерация отчётов
+  mkdirSync(LOGS_DIR, { recursive: true });
+
+  const mdLines = [
+    '# Graph Delta Validation Report',
+    '',
+    `**Date:** ${new Date().toISOString()}`,
+    '',
+    '## Summary',
+    '',
+    `- Files: ${deltaFiles.length}`,
+    `- Lines: ${totalLines}`,
+    `- Valid: ${validLines}`,
+    `- Warnings: ${warningsCount}`,
+    `- Conflicts: ${conflictsCount}`,
+    '',
+    '## Conflicts',
+    '',
+  ];
+
+  if (conflicts.length === 0) {
+    mdLines.push('- None');
+  } else {
+    for (const conflict of conflicts) {
+      mdLines.push(
+        `- **${conflict.edge_key}**`,
+        `  - edge_types: ${conflict.edge_types.join(', ')}`,
+        `  - sources: ${conflict.sources.join(', ')}`,
+        `  - entries:`
+      );
+      for (const entry of conflict.entries) {
+        mdLines.push(
+          `    - ${entry.edge_type} (confidence: ${entry.confidence}, source: ${entry.source}, file: ${entry.file}:${entry.line})`,
+          `      rationale: ${entry.rationale}`
+        );
+      }
+    }
+  }
+
+  mdLines.push('', '## Warnings', '');
+  if (warnings.length === 0) {
+    mdLines.push('- None');
+  } else {
+    for (const warning of warnings) {
+      mdLines.push(
+        `- **${warning.edge_key}**`,
+        `  - edge_type: ${warning.edge_type}`,
+        `  - count: ${warning.count}`,
+        `  - sources: ${warning.sources.join(', ')}`,
+        `  - entries:`
+      );
+      for (const entry of warning.entries) {
+        mdLines.push(
+          `    - ${entry.file}:${entry.line} (confidence: ${entry.confidence}, source: ${entry.source})`
+        );
+      }
+    }
+  }
+
+  writeFileSync(REPORT_MD, mdLines.join('\n') + '\n', 'utf8');
+
+  // HTML отчёт
+  const htmlBody = `<pre>${escapeHtml(mdLines.join('\n'))}</pre>`;
+  writeFileSync(REPORT_HTML, `<!doctype html><html><head><meta charset="utf-8"><title>Graph Delta Validation Report</title></head><body>${htmlBody}</body></html>\n`, 'utf8');
+
+  // Короткий сигнал для CI (≤10 строк)
+  log(`Summary: files=${deltaFiles.length} lines=${totalLines} valid=${validLines} warnings=${warningsCount} conflicts=${conflictsCount}`);
+  if (conflicts.length > 0) {
+    log('⚠️  Conflicts detected:');
+    for (const conflict of conflicts.slice(0, 3)) {
+      log(`   ${conflict.edge_key}: types=[${conflict.edge_types.join(', ')}] sources=[${conflict.sources.join(', ')}]`);
+    }
+    if (conflicts.length > 3) {
+      log(`   ... and ${conflicts.length - 3} more`);
+    }
+    log('Next: manual review required');
+  }
+  if (warnings.length > 0 && conflicts.length === 0) {
+    log(`⚠️  Warnings: ${warningsCount} duplicate entries`);
+  }
+  log(`Report: ${REPORT_MD}`);
 
   if (hasErrors) {
     process.exit(1);
