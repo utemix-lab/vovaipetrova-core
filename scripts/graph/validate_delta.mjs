@@ -246,22 +246,23 @@ function main() {
   const htmlBody = `<pre>${escapeHtml(mdLines.join('\n'))}</pre>`;
   writeFileSync(REPORT_HTML, `<!doctype html><html><head><meta charset="utf-8"><title>Graph Delta Validation Report</title></head><body>${htmlBody}</body></html>\n`, 'utf8');
 
-  // Короткий сигнал для CI (≤10 строк)
+  // Короткий сигнал для CI (≤10 строк, без автопринятия)
   log(`Summary: files=${deltaFiles.length} lines=${totalLines} valid=${validLines} warnings=${warningsCount} conflicts=${conflictsCount}`);
+
   if (conflicts.length > 0) {
-    log('⚠️  Conflicts detected:');
-    for (const conflict of conflicts.slice(0, 3)) {
-      log(`   ${conflict.edge_key}: types=[${conflict.edge_types.join(', ')}] sources=[${conflict.sources.join(', ')}]`);
+    log(`⚠️  CONFLICTS: ${conflicts.length} detected`);
+    // Выводим максимум 3 конфликта для краткости
+    const conflictsToShow = conflicts.slice(0, 3);
+    for (const conflict of conflictsToShow) {
+      log(`  type=edge_type_mismatch edge_key="${conflict.edge_key}" sources=[${conflict.sources.join(',')}]`);
     }
     if (conflicts.length > 3) {
-      log(`   ... and ${conflicts.length - 3} more`);
+      log(`  ... +${conflicts.length - 3} more (see artifact)`);
     }
-    log('Next: manual review required');
+    log(`Next step: manual review required | Details: ${REPORT_MD.split(/[/\\]/).pop()}`);
+  } else if (warnings.length > 0) {
+    log(`⚠️  Warnings: ${warningsCount} duplicates (see artifact)`);
   }
-  if (warnings.length > 0 && conflicts.length === 0) {
-    log(`⚠️  Warnings: ${warningsCount} duplicate entries`);
-  }
-  log(`Report: ${REPORT_MD}`);
 
   if (hasErrors) {
     process.exit(1);
