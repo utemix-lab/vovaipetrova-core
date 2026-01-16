@@ -1,0 +1,2 @@
+{"delta_type":"candidate_edge","from":"ecosystem:project:extended-mind","to":"ecosystem:project:evoquant","edge_type":"see_also","rationale":"Смысловой контекст и методология пересекаются.","confidence":"low","source":"codex-ecosystem"}
+{"delta_type":"candidate_edge","from":"ecosystem:project:extended-mind","to":"ecosystem:project:evoquant","edge_type":"semantic_near","rationale":"Семантическая близость по README.","confidence":"low","source":"codex-ecosystem"}

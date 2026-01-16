@@ -1,0 +1,3 @@
+{"delta_type":"candidate_edge","from":"ecosystem:project:extended-mind","to":"ecosystem:project:dream-graph","edge_type":"semantic_near","rationale":"Обе линии используют графовый контур и контракт Cosmos Map.","confidence":"med","source":"codex-ecosystem"}
+{"delta_type":"candidate_edge","from":"ecosystem:project:extended-mind","to":"ecosystem:project:minds-lorgnette","edge_type":"semantic_near","rationale":"Общий фокус на семантических пайплайнах и онтологии.","confidence":"med","source":"codex-ecosystem"}
+{"delta_type":"candidate_edge","from":"ecosystem:project:dream-graph","to":"ecosystem:project:extended-mind","edge_type":"see_also","rationale":"Renderer использует контракты и сцены, описанные в extended-mind.","confidence":"low","source":"codex-ecosystem"}
