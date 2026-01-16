@@ -248,7 +248,7 @@ function main() {
 
   // Короткий сигнал для CI (≤10 строк, без автопринятия)
   log(`Summary: files=${deltaFiles.length} lines=${totalLines} valid=${validLines} warnings=${warningsCount} conflicts=${conflictsCount}`);
-  
+
   if (conflicts.length > 0) {
     log(`⚠️  CONFLICTS: ${conflicts.length} detected`);
     // Выводим максимум 3 конфликта для краткости
