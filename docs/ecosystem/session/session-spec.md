@@ -2,6 +2,9 @@
 title: Session Spec (Pilot)
 slug: session-spec
 status: draft
+summary: '# Session Spec (Pilot)'
+tags: []
+machine_tags: []
 ---
 
 # Session Spec (Pilot)
