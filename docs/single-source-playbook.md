@@ -651,15 +651,15 @@ npm run pr:rerun:v2 -- --pr=<номер> [--workflow=<name>] [--job=<name>] [--f
 
 При ревью входящих дельт графа (`data/graph/inbox/*.jsonl`) проверьте:
 
-1. **Валидность по схеме** — дельта проходит валидацию `universe.schema.json` (см. [UNIVERSE_SPEC.md](graph/UNIVERSE_SPEC.md))
+1. **Валидность по схеме** — дельта проходит валидацию `universe.schema.json` (см. [universe-spec-v0-1.md](./graph/universe-spec-v0-1.md))
 2. **Источник и доверие** — проверьте `source` и `confidence` (low/med/high), оцените надёжность источника
 3. **Конфликтность** — проверьте отчёт `validate_delta.mjs` на наличие конфликтов (одинаковая пара `from->to` с разными `edge_type`)
-4. **Пороги для VECTOR** — для рёбер типа `semantic_near` проверьте `min_score` ≥ 0.78 (см. [UNIVERSE_SPEC.md](graph/UNIVERSE_SPEC.md))
+4. **Пороги для VECTOR** — для рёбер типа `semantic_near` проверьте `min_score` ≥ 0.78 (см. [universe-spec-v0-1.md](./graph/universe-spec-v0-1.md))
 5. **Ручной мэппинг в SYMBOLIC** — если дельта принята, добавьте её в `graph.jsonl` через [map_local_to_universe.mjs](../scripts/graph/map_local_to_universe.mjs)
 6. **Как отклонить** — удалите файл дельты из `data/graph/inbox/` или переместите в архив с пометкой причины отклонения
 
 **Ссылки:**
-- [UNIVERSE_SPEC.md](graph/UNIVERSE_SPEC.md) — спецификация графа
+- [universe-spec-v0-1.md](./graph/universe-spec-v0-1.md) — спецификация графа
 - [map_local_to_universe.mjs](../scripts/graph/map_local_to_universe.mjs) — маппер локальных экспортов в Universe
 - [validate_delta.mjs](../scripts/graph/validate_delta.mjs) — валидатор дельт и детектор конфликтов
 - `data/graph/inbox/` — директория для входящих дельт
