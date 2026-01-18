@@ -41,37 +41,37 @@ function findInGraph(graphEntries, stableId) {
 
 function compareProvenance(exportProv, graphProv, type) {
   const issues = [];
-  
+
   if (!exportProv && !graphProv) {
     return { match: true, issues: [] };
   }
-  
+
   if (!exportProv) {
     issues.push(`${type}: export provenance отсутствует`);
     return { match: false, issues };
   }
-  
+
   if (!graphProv) {
     issues.push(`${type}: graph provenance отсутствует`);
     return { match: false, issues };
   }
-  
+
   // Проверка основных полей
   if (exportProv.system !== graphProv.system) {
     issues.push(`${type}: system mismatch (export: ${exportProv.system}, graph: ${graphProv?.system || 'N/A'})`);
   }
-  
+
   if (exportProv.origin !== graphProv.origin) {
     issues.push(`${type}: origin mismatch (export: ${exportProv.origin}, graph: ${graphProv?.origin || 'N/A'})`);
   }
-  
+
   // Проверка file/path (могут отличаться, но должны быть связаны)
   const exportFile = exportProv.file || '';
   const graphPath = graphProv.path || '';
   if (exportFile && graphPath && !graphPath.includes(exportFile.split('/').pop())) {
     issues.push(`${type}: file/path mismatch (export: ${exportFile}, graph: ${graphPath})`);
   }
-  
+
   return {
     match: issues.length === 0,
     issues: issues.length > 0 ? issues : [],
@@ -80,25 +80,25 @@ function compareProvenance(exportProv, graphProv, type) {
 
 function main() {
   console.log('[round-trip-provenance] Загрузка данных...');
-  
+
   const kbTerms = readJsonl(KB_EXPORT);
   const stories = readJsonl(STORIES_EXPORT);
   const graphEntries = readJsonl(GRAPH_PATH);
-  
+
   console.log(`[round-trip-provenance] Загружено: ${kbTerms.length} Term, ${stories.length} Doc, ${graphEntries.length} graph entries`);
-  
+
   // Выбираем 10 Term (первые 10 с полными данными)
   const selectedTerms = kbTerms
     .filter(term => term.stable_id && term.project_id && term.provenance)
     .slice(0, 10);
-  
+
   // Выбираем 5 Doc (первые 5 с полными данными)
   const selectedDocs = stories
     .filter(doc => doc.stable_id && doc.project_id && doc.provenance)
     .slice(0, 5);
-  
+
   console.log(`[round-trip-provenance] Выбрано: ${selectedTerms.length} Term, ${selectedDocs.length} Doc`);
-  
+
   const results = {
     terms: [],
     docs: [],
@@ -109,11 +109,11 @@ function main() {
       perfect: 0,
     },
   };
-  
+
   // Проверка Term
   for (const term of selectedTerms) {
     const graphNode = findInGraph(graphEntries, term.stable_id);
-    
+
     if (!graphNode) {
       results.terms.push({
         slug: term.slug,
@@ -126,41 +126,41 @@ function main() {
       results.summary.critical += 1;
       continue;
     }
-    
+
     const issues = [];
     let status = 'perfect';
-    
+
     // Проверка stable_id
     if (term.stable_id !== graphNode.stable_id) {
       issues.push(`stable_id mismatch: export="${term.stable_id}", graph="${graphNode.stable_id}"`);
       status = 'critical';
     }
-    
+
     // Проверка project_id
     if (term.project_id !== graphNode.project_id) {
       issues.push(`project_id mismatch: export="${term.project_id}", graph="${graphNode.project_id}"`);
       status = 'critical';
     }
-    
+
     // Проверка source (ожидаемое различие: экспорт использует "vova-petrova", граф - более конкретные "kb"/"stories")
     if (term.source !== graphNode.source) {
       issues.push(`source mismatch (expected): export="${term.source}", graph="${graphNode.source}"`);
       // Не меняем status на minor, так как это ожидаемое поведение маппера
     }
-    
+
     // Проверка graph_version
     if (term.graph_version !== graphNode.version) {
       issues.push(`graph_version mismatch: export="${term.graph_version}", graph="${graphNode.version}"`);
       status = 'minor';
     }
-    
+
     // Проверка provenance
     const provCheck = compareProvenance(term.provenance, graphNode.provenance, 'provenance');
     if (!provCheck.match) {
       issues.push(...provCheck.issues);
       status = provCheck.issues.some(i => i.includes('mismatch')) ? 'critical' : 'minor';
     }
-    
+
     results.terms.push({
       slug: term.slug,
       stable_id: term.stable_id,
@@ -181,7 +181,7 @@ function main() {
         provenance: graphNode.provenance,
       },
     });
-    
+
     if (status === 'critical') {
       results.summary.critical += 1;
     } else if (status === 'minor') {
@@ -191,11 +191,11 @@ function main() {
     }
     results.summary.total += 1;
   }
-  
+
   // Проверка Doc
   for (const doc of selectedDocs) {
     const graphNode = findInGraph(graphEntries, doc.stable_id);
-    
+
     if (!graphNode) {
       results.docs.push({
         slug: doc.slug,
@@ -208,41 +208,41 @@ function main() {
       results.summary.critical += 1;
       continue;
     }
-    
+
     const issues = [];
     let status = 'perfect';
-    
+
     // Проверка stable_id
     if (doc.stable_id !== graphNode.stable_id) {
       issues.push(`stable_id mismatch: export="${doc.stable_id}", graph="${graphNode.stable_id}"`);
       status = 'critical';
     }
-    
+
     // Проверка project_id
     if (doc.project_id !== graphNode.project_id) {
       issues.push(`project_id mismatch: export="${doc.project_id}", graph="${graphNode.project_id}"`);
       status = 'critical';
     }
-    
+
     // Проверка source (ожидаемое различие: экспорт использует "vova-petrova", граф - более конкретные "kb"/"stories")
     if (doc.source !== graphNode.source) {
       issues.push(`source mismatch (expected): export="${doc.source}", graph="${graphNode.source}"`);
       // Не меняем status на minor, так как это ожидаемое поведение маппера
     }
-    
+
     // Проверка graph_version
     if (doc.graph_version !== graphNode.version) {
       issues.push(`graph_version mismatch: export="${doc.graph_version}", graph="${graphNode.version}"`);
       status = 'minor';
     }
-    
+
     // Проверка provenance
     const provCheck = compareProvenance(doc.provenance, graphNode.provenance, 'provenance');
     if (!provCheck.match) {
       issues.push(...provCheck.issues);
       status = provCheck.issues.some(i => i.includes('mismatch')) ? 'critical' : 'minor';
     }
-    
+
     results.docs.push({
       slug: doc.slug,
       stable_id: doc.stable_id,
@@ -263,7 +263,7 @@ function main() {
         provenance: graphNode.provenance,
       },
     });
-    
+
     if (status === 'critical') {
       results.summary.critical += 1;
     } else if (status === 'minor') {
@@ -273,10 +273,10 @@ function main() {
     }
     results.summary.total += 1;
   }
-  
+
   // Генерация отчёта
   mkdirSync(LOGS_DIR, { recursive: true });
-  
+
   const reportLines = [
     '# Round-trip Provenance Report',
     '',
@@ -298,23 +298,23 @@ function main() {
     '| Slug | Stable ID | Status | Issues |',
     '|------|-----------|--------|--------|',
   ];
-  
+
   for (const term of results.terms) {
     const statusEmoji = term.status === 'perfect' ? '✅' : term.status === 'critical' ? '❌' : '⚠️';
     const issuesText = term.issues.length > 0 ? term.issues.join('; ') : 'None';
     reportLines.push(`| ${term.slug} | \`${term.stable_id}\` | ${statusEmoji} ${term.status} | ${issuesText} |`);
   }
-  
+
   reportLines.push('', '## Docs (5 selected)', '', '| Slug | Stable ID | Status | Issues |', '|------|-----------|--------|--------|');
-  
+
   for (const doc of results.docs) {
     const statusEmoji = doc.status === 'perfect' ? '✅' : doc.status === 'critical' ? '❌' : '⚠️';
     const issuesText = doc.issues.length > 0 ? doc.issues.join('; ') : 'None';
     reportLines.push(`| ${doc.slug} | \`${doc.stable_id}\` | ${statusEmoji} ${doc.status} | ${issuesText} |`);
   }
-  
+
   reportLines.push('', '## Detailed Comparison', '');
-  
+
   // Детальное сравнение для Term
   reportLines.push('### Terms Details', '');
   for (const term of results.terms) {
@@ -330,7 +330,7 @@ function main() {
     }
     reportLines.push('');
   }
-  
+
   // Детальное сравнение для Doc
   reportLines.push('### Docs Details', '');
   for (const doc of results.docs) {
@@ -346,12 +346,12 @@ function main() {
     }
     reportLines.push('');
   }
-  
+
   writeFileSync(REPORT_PATH, reportLines.join('\n') + '\n', 'utf8');
-  
+
   console.log(`[round-trip-provenance] Report: ${REPORT_PATH}`);
   console.log(`[round-trip-provenance] Summary: ${results.summary.perfect} perfect, ${results.summary.minor} minor, ${results.summary.critical} critical`);
-  
+
   if (results.summary.critical > 0) {
     console.error(`[round-trip-provenance] ❌ Критические расхождения обнаружены`);
     process.exit(1);
