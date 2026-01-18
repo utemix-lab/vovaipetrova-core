@@ -1,9 +1,15 @@
 ---
 title: UNIVERSE_SPEC v0.1 — спецификация графа экосистемы
 slug: universe-spec-v0-1
-summary: Короткая спецификация property-graph для связи артефактов, терминов и решений.
-tags: [Universe_Graph, Graph_Spec, Ecosystem]
-machine_tags: [theme/architecture, action/spec, product/graph]
+summary: 'Короткая спецификация property-graph для связи артефактов, терминов и решений.'
+tags:
+  - Ecosystem
+  - Graph_Spec
+  - Universe_Graph
+machine_tags:
+  - action/spec
+  - product/graph
+  - theme/architecture
 status: draft
 ---
 # UNIVERSE_SPEC v0.1 — спецификация графа экосистемы
