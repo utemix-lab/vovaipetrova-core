@@ -1018,7 +1018,14 @@
     {
       "slug": "rag-evaluation",
       "title": "RAG Evaluation",
-      "url": "docs/rag/EVALUATION.md"
+      "url": "docs/rag/rag-evaluation.md"
+    }
+  ],
+  "universe-spec-v0-1": [
+    {
+      "slug": "single-source-playbook",
+      "title": "Single Source Playbook — «священный документ» (Notion↔Repo)",
+      "url": "docs/single-source-playbook.md"
     }
   ]
 }

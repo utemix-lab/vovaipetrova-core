@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "updated": "2026-01-16T17:23:00.591Z",
+  "updated": "2026-01-18T11:07:49.336Z",
   "orphans": [
     {
       "slug": "briefs-ux-improvements",
@@ -89,7 +89,13 @@
     {
       "slug": "rag-evaluation",
       "title": "RAG Evaluation",
-      "url": "docs/rag/EVALUATION.md",
+      "url": "docs/rag/rag-evaluation.md",
+      "status": "draft"
+    },
+    {
+      "slug": "session-spec",
+      "title": "Session Spec (Pilot)",
+      "url": "docs/ecosystem/session/session-spec.md",
       "status": "draft"
     },
     {
@@ -107,7 +113,7 @@
     {
       "slug": "universe-spec-v0-1",
       "title": "UNIVERSE_SPEC v0.1 — спецификация графа экосистемы",
-      "url": "docs/graph/UNIVERSE_SPEC.md",
+      "url": "docs/graph/universe-spec-v0-1.md",
       "status": "draft"
     },
     {

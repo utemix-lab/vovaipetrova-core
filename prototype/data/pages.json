@@ -4454,18 +4454,13 @@
     "related_stories": null
   },
   {
-    "title": "RAG Evaluation",
-    "slug": "rag-evaluation",
+    "title": "Session Spec (Pilot)",
+    "slug": "session-spec",
     "status": "draft",
-    "summary": "Метрики, пороги и процесс оценки качества RAG.",
-    "tags": [
-      "RAG",
-      "metrics"
-    ],
-    "machine_tags": [
-      "rag/evaluation"
-    ],
-    "url": "docs/rag/EVALUATION.md",
+    "summary": "# Session Spec (Pilot)",
+    "tags": [],
+    "machine_tags": [],
+    "url": "docs/ecosystem/session/session-spec.md",
     "service": false,
     "collection": null,
     "story_order": null,
@@ -4478,16 +4473,35 @@
     "status": "draft",
     "summary": "Короткая спецификация property-graph для связи артефактов, терминов и решений.",
     "tags": [
-      "Universe_Graph",
+      "Ecosystem",
       "Graph_Spec",
-      "Ecosystem"
+      "Universe_Graph"
     ],
     "machine_tags": [
-      "theme/architecture",
       "action/spec",
-      "product/graph"
+      "product/graph",
+      "theme/architecture"
     ],
-    "url": "docs/graph/UNIVERSE_SPEC.md",
+    "url": "docs/graph/universe-spec-v0-1.md",
+    "service": false,
+    "collection": null,
+    "story_order": null,
+    "series_id": null,
+    "related_stories": null
+  },
+  {
+    "title": "RAG Evaluation",
+    "slug": "rag-evaluation",
+    "status": "draft",
+    "summary": "Метрики, пороги и процесс оценки качества RAG.",
+    "tags": [
+      "metrics",
+      "RAG"
+    ],
+    "machine_tags": [
+      "rag/evaluation"
+    ],
+    "url": "docs/rag/rag-evaluation.md",
     "service": false,
     "collection": null,
     "story_order": null,
